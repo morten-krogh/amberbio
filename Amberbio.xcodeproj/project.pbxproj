@@ -14,7 +14,149 @@
 		601003571BA18744008A1FF9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 601003551BA18744008A1FF9 /* LaunchScreen.storyboard */; };
 		601003621BA18744008A1FF9 /* AmberbioTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601003611BA18744008A1FF9 /* AmberbioTests.swift */; };
 		6010036D1BA18744008A1FF9 /* AmberbioUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6010036C1BA18744008A1FF9 /* AmberbioUITests.swift */; };
-		60B400321BA1968600D8DD80 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400311BA1968600D8DD80 /* State.swift */; settings = {ASSET_TAGS = (); }; };
+		60B400391BA1982900D8DD80 /* state_init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400381BA1982900D8DD80 /* state_init.swift */; settings = {ASSET_TAGS = (); }; };
+		60B4003B1BA1983900D8DD80 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B4003A1BA1983900D8DD80 /* State.swift */; settings = {ASSET_TAGS = (); }; };
+		60B400411BA19BED00D8DD80 /* AttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B4003D1BA19BED00D8DD80 /* AttributedString.swift */; settings = {ASSET_TAGS = (); }; };
+		60B400421BA19BED00D8DD80 /* NumberFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B4003E1BA19BED00D8DD80 /* NumberFormat.swift */; settings = {ASSET_TAGS = (); }; };
+		60B400431BA19BED00D8DD80 /* Serialize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B4003F1BA19BED00D8DD80 /* Serialize.swift */; settings = {ASSET_TAGS = (); }; };
+		60B400441BA19BED00D8DD80 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400401BA19BED00D8DD80 /* String.swift */; settings = {ASSET_TAGS = (); }; };
+		60B400D51BA19C7900D8DD80 /* ActiveDataSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400461BA19C7900D8DD80 /* ActiveDataSet.swift */; settings = {ASSET_TAGS = (); }; };
+		60B400D61BA19C7900D8DD80 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400471BA19C7900D8DD80 /* ActivityIndicator.swift */; settings = {ASSET_TAGS = (); }; };
+		60B400D71BA19C7900D8DD80 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400481BA19C7900D8DD80 /* Alert.swift */; settings = {ASSET_TAGS = (); }; };
+		60B400D81BA19C7900D8DD80 /* Anova.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400491BA19C7900D8DD80 /* Anova.swift */; settings = {ASSET_TAGS = (); }; };
+		60B400D91BA19C7900D8DD80 /* AnovaFactorSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B4004A1BA19C7900D8DD80 /* AnovaFactorSelection.swift */; settings = {ASSET_TAGS = (); }; };
+		60B400DA1BA19C7900D8DD80 /* AnovaPlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B4004B1BA19C7900D8DD80 /* AnovaPlot.swift */; settings = {ASSET_TAGS = (); }; };
+		60B400DB1BA19C7900D8DD80 /* AnovaTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B4004C1BA19C7900D8DD80 /* AnovaTable.swift */; settings = {ASSET_TAGS = (); }; };
+		60B400DC1BA19C7900D8DD80 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B4004D1BA19C7900D8DD80 /* AppDelegate.swift */; settings = {ASSET_TAGS = (); }; };
+		60B400DD1BA19C7900D8DD80 /* Back.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B4004E1BA19C7900D8DD80 /* Back.swift */; settings = {ASSET_TAGS = (); }; };
+		60B400DE1BA19C7900D8DD80 /* CenteredHeaderFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400501BA19C7900D8DD80 /* CenteredHeaderFooterView.swift */; settings = {ASSET_TAGS = (); }; };
+		60B400DF1BA19C7900D8DD80 /* CenteredTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400511BA19C7900D8DD80 /* CenteredTableViewCell.swift */; settings = {ASSET_TAGS = (); }; };
+		60B400E01BA19C7900D8DD80 /* ChiSquare.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400521BA19C7900D8DD80 /* ChiSquare.swift */; settings = {ASSET_TAGS = (); }; };
+		60B400E11BA19C7900D8DD80 /* ChiSquareTableMath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400531BA19C7900D8DD80 /* ChiSquareTableMath.swift */; settings = {ASSET_TAGS = (); }; };
+		60B400E21BA19C7900D8DD80 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400541BA19C7900D8DD80 /* Color.swift */; settings = {ASSET_TAGS = (); }; };
+		60B400E31BA19C7900D8DD80 /* ColorKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400551BA19C7900D8DD80 /* ColorKey.swift */; settings = {ASSET_TAGS = (); }; };
+		60B400E41BA19C7900D8DD80 /* ColorSelectionLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400561BA19C7900D8DD80 /* ColorSelectionLevel.swift */; settings = {ASSET_TAGS = (); }; };
+		60B400E51BA19C7900D8DD80 /* ColorSelectionPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400571BA19C7900D8DD80 /* ColorSelectionPicker.swift */; settings = {ASSET_TAGS = (); }; };
+		60B400E61BA19C7900D8DD80 /* Component.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400581BA19C7900D8DD80 /* Component.swift */; settings = {ASSET_TAGS = (); }; };
+		60B400E71BA19C7900D8DD80 /* ContingencyTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400591BA19C7900D8DD80 /* ContingencyTable.swift */; settings = {ASSET_TAGS = (); }; };
+		60B400E81BA19C7900D8DD80 /* Csv.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B4005A1BA19C7900D8DD80 /* Csv.swift */; settings = {ASSET_TAGS = (); }; };
+		60B400E91BA19C7900D8DD80 /* DataSetSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B4005B1BA19C7900D8DD80 /* DataSetSelection.swift */; settings = {ASSET_TAGS = (); }; };
+		60B400EA1BA19C7900D8DD80 /* DataSetSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B4005C1BA19C7900D8DD80 /* DataSetSummary.swift */; settings = {ASSET_TAGS = (); }; };
+		60B400EB1BA19C7900D8DD80 /* DataSetTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B4005D1BA19C7900D8DD80 /* DataSetTable.swift */; settings = {ASSET_TAGS = (); }; };
+		60B400EC1BA19C7900D8DD80 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B4005E1BA19C7900D8DD80 /* Date.swift */; settings = {ASSET_TAGS = (); }; };
+		60B400ED1BA19C7900D8DD80 /* Distances.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B4005F1BA19C7900D8DD80 /* Distances.swift */; settings = {ASSET_TAGS = (); }; };
+		60B400EE1BA19C7900D8DD80 /* distributions.c in Sources */ = {isa = PBXBuildFile; fileRef = 60B400601BA19C7900D8DD80 /* distributions.c */; settings = {ASSET_TAGS = (); }; };
+		60B400EF1BA19C7900D8DD80 /* DocumentInteractionOpen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400621BA19C7900D8DD80 /* DocumentInteractionOpen.swift */; settings = {ASSET_TAGS = (); }; };
+		60B400F01BA19C7900D8DD80 /* DocumentPickerExport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400631BA19C7900D8DD80 /* DocumentPickerExport.swift */; settings = {ASSET_TAGS = (); }; };
+		60B400F11BA19C7900D8DD80 /* DocumentPickerImport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400641BA19C7900D8DD80 /* DocumentPickerImport.swift */; settings = {ASSET_TAGS = (); }; };
+		60B400F21BA19C7900D8DD80 /* Drawing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400651BA19C7900D8DD80 /* Drawing.swift */; settings = {ASSET_TAGS = (); }; };
+		60B400F31BA19C7900D8DD80 /* EditFactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400661BA19C7900D8DD80 /* EditFactor.swift */; settings = {ASSET_TAGS = (); }; };
+		60B400F41BA19C7900D8DD80 /* EditFactors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400671BA19C7900D8DD80 /* EditFactors.swift */; settings = {ASSET_TAGS = (); }; };
+		60B400F51BA19C7900D8DD80 /* EditProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400681BA19C7900D8DD80 /* EditProject.swift */; settings = {ASSET_TAGS = (); }; };
+		60B400F61BA19C7900D8DD80 /* Email.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400691BA19C7900D8DD80 /* Email.swift */; settings = {ASSET_TAGS = (); }; };
+		60B400F71BA19C7900D8DD80 /* ExportProjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B4006A1BA19C7900D8DD80 /* ExportProjects.swift */; settings = {ASSET_TAGS = (); }; };
+		60B400F81BA19C7900D8DD80 /* FactorAssociation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B4006B1BA19C7900D8DD80 /* FactorAssociation.swift */; settings = {ASSET_TAGS = (); }; };
+		60B400F91BA19C7900D8DD80 /* FactorChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B4006C1BA19C7900D8DD80 /* FactorChart.swift */; settings = {ASSET_TAGS = (); }; };
+		60B400FA1BA19C7900D8DD80 /* FactorContingencyTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B4006D1BA19C7900D8DD80 /* FactorContingencyTable.swift */; settings = {ASSET_TAGS = (); }; };
+		60B400FB1BA19C7900D8DD80 /* FactorElimination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B4006E1BA19C7900D8DD80 /* FactorElimination.swift */; settings = {ASSET_TAGS = (); }; };
+		60B400FC1BA19C7900D8DD80 /* FactorSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B4006F1BA19C7900D8DD80 /* FactorSummary.swift */; settings = {ASSET_TAGS = (); }; };
+		60B400FD1BA19C7900D8DD80 /* FactorSummaryDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400701BA19C7900D8DD80 /* FactorSummaryDetail.swift */; settings = {ASSET_TAGS = (); }; };
+		60B400FE1BA19C7900D8DD80 /* Feedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400711BA19C7900D8DD80 /* Feedback.swift */; settings = {ASSET_TAGS = (); }; };
+		60B400FF1BA19C7900D8DD80 /* Files.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400721BA19C7900D8DD80 /* Files.swift */; settings = {ASSET_TAGS = (); }; };
+		60B401001BA19C7900D8DD80 /* Forward.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400731BA19C7900D8DD80 /* Forward.swift */; settings = {ASSET_TAGS = (); }; };
+		60B401011BA19C7900D8DD80 /* FullPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400741BA19C7900D8DD80 /* FullPage.swift */; settings = {ASSET_TAGS = (); }; };
+		60B401021BA19C7900D8DD80 /* HierarchicalClustering.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400751BA19C7900D8DD80 /* HierarchicalClustering.swift */; settings = {ASSET_TAGS = (); }; };
+		60B401031BA19C7900D8DD80 /* HierarchicalClusteringDrawer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400761BA19C7900D8DD80 /* HierarchicalClusteringDrawer.swift */; settings = {ASSET_TAGS = (); }; };
+		60B401041BA19C7900D8DD80 /* HierarchicalClusteringPlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400771BA19C7900D8DD80 /* HierarchicalClusteringPlot.swift */; settings = {ASSET_TAGS = (); }; };
+		60B401051BA19C7900D8DD80 /* HierarchicalClusteringSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400781BA19C7900D8DD80 /* HierarchicalClusteringSelection.swift */; settings = {ASSET_TAGS = (); }; };
+		60B401061BA19C7900D8DD80 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400791BA19C7900D8DD80 /* Home.swift */; settings = {ASSET_TAGS = (); }; };
+		60B401071BA19C7900D8DD80 /* HomeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B4007A1BA19C7900D8DD80 /* HomeButton.swift */; settings = {ASSET_TAGS = (); }; };
+		60B401081BA19C7900D8DD80 /* HomeButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B4007B1BA19C7900D8DD80 /* HomeButtonView.swift */; settings = {ASSET_TAGS = (); }; };
+		60B401091BA19C7900D8DD80 /* ImportData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B4007C1BA19C7900D8DD80 /* ImportData.swift */; settings = {ASSET_TAGS = (); }; };
+		60B4010A1BA19C7900D8DD80 /* InfoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B4007D1BA19C7900D8DD80 /* InfoButton.swift */; settings = {ASSET_TAGS = (); }; };
+		60B4010B1BA19C7900D8DD80 /* Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B4007E1BA19C7900D8DD80 /* Layout.swift */; settings = {ASSET_TAGS = (); }; };
+		60B4010C1BA19C7900D8DD80 /* linear_regression.c in Sources */ = {isa = PBXBuildFile; fileRef = 60B4007F1BA19C7900D8DD80 /* linear_regression.c */; settings = {ASSET_TAGS = (); }; };
+		60B4010D1BA19C7900D8DD80 /* LinearRegressionDrawer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400811BA19C7900D8DD80 /* LinearRegressionDrawer.swift */; settings = {ASSET_TAGS = (); }; };
+		60B4010E1BA19C7900D8DD80 /* LinearRegressionPlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400821BA19C7900D8DD80 /* LinearRegressionPlot.swift */; settings = {ASSET_TAGS = (); }; };
+		60B4010F1BA19C7900D8DD80 /* LinearRegressionSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400831BA19C7900D8DD80 /* LinearRegressionSelection.swift */; settings = {ASSET_TAGS = (); }; };
+		60B401101BA19C7900D8DD80 /* LinearRegressionTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400841BA19C7900D8DD80 /* LinearRegressionTable.swift */; settings = {ASSET_TAGS = (); }; };
+		60B401111BA19C7900D8DD80 /* LogarithmTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400851BA19C7900D8DD80 /* LogarithmTransform.swift */; settings = {ASSET_TAGS = (); }; };
+		60B401121BA19C7900D8DD80 /* MannWhitney.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400861BA19C7900D8DD80 /* MannWhitney.swift */; settings = {ASSET_TAGS = (); }; };
+		60B401131BA19C7900D8DD80 /* Manual.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400871BA19C7900D8DD80 /* Manual.swift */; settings = {ASSET_TAGS = (); }; };
+		60B401141BA19C7900D8DD80 /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400881BA19C7900D8DD80 /* Math.swift */; settings = {ASSET_TAGS = (); }; };
+		60B401151BA19C7900D8DD80 /* MatrixUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400891BA19C7900D8DD80 /* MatrixUtil.swift */; settings = {ASSET_TAGS = (); }; };
+		60B401161BA19C7900D8DD80 /* MissingValueHistogram.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B4008A1BA19C7900D8DD80 /* MissingValueHistogram.swift */; settings = {ASSET_TAGS = (); }; };
+		60B401171BA19C7900D8DD80 /* MissingValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B4008B1BA19C7900D8DD80 /* MissingValues.swift */; settings = {ASSET_TAGS = (); }; };
+		60B401181BA19C7900D8DD80 /* MissingValuesForSamples.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B4008C1BA19C7900D8DD80 /* MissingValuesForSamples.swift */; settings = {ASSET_TAGS = (); }; };
+		60B401191BA19C7900D8DD80 /* MoleculeAnnotations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B4008D1BA19C7900D8DD80 /* MoleculeAnnotations.swift */; settings = {ASSET_TAGS = (); }; };
+		60B4011A1BA19C7900D8DD80 /* MoleculeRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B4008E1BA19C7900D8DD80 /* MoleculeRange.swift */; settings = {ASSET_TAGS = (); }; };
+		60B4011B1BA19C7900D8DD80 /* MultipleMoleculePlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B4008F1BA19C7900D8DD80 /* MultipleMoleculePlot.swift */; settings = {ASSET_TAGS = (); }; };
+		60B4011C1BA19C7900D8DD80 /* MultiSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400901BA19C7900D8DD80 /* MultiSegmentedControl.swift */; settings = {ASSET_TAGS = (); }; };
+		60B4011D1BA19C7900D8DD80 /* NameColorTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400911BA19C7900D8DD80 /* NameColorTableView.swift */; settings = {ASSET_TAGS = (); }; };
+		60B4011E1BA19C7900D8DD80 /* NameDateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400921BA19C7900D8DD80 /* NameDateTableViewCell.swift */; settings = {ASSET_TAGS = (); }; };
+		60B4011F1BA19C7900D8DD80 /* NormalDistribution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400931BA19C7900D8DD80 /* NormalDistribution.swift */; settings = {ASSET_TAGS = (); }; };
+		60B401201BA19C7900D8DD80 /* PageState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400941BA19C7900D8DD80 /* PageState.swift */; settings = {ASSET_TAGS = (); }; };
+		60B401211BA19C7900D8DD80 /* PairedComparisonFactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400951BA19C7900D8DD80 /* PairedComparisonFactor.swift */; settings = {ASSET_TAGS = (); }; };
+		60B401221BA19C7900D8DD80 /* PairedLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400961BA19C7900D8DD80 /* PairedLevel.swift */; settings = {ASSET_TAGS = (); }; };
+		60B401231BA19C7900D8DD80 /* PairedPairingFactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400971BA19C7900D8DD80 /* PairedPairingFactor.swift */; settings = {ASSET_TAGS = (); }; };
+		60B401241BA19C7900D8DD80 /* PairedPlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400981BA19C7900D8DD80 /* PairedPlot.swift */; settings = {ASSET_TAGS = (); }; };
+		60B401251BA19C7900D8DD80 /* PairedTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400991BA19C7900D8DD80 /* PairedTable.swift */; settings = {ASSET_TAGS = (); }; };
+		60B401261BA19C7900D8DD80 /* PairTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B4009A1BA19C7900D8DD80 /* PairTable.swift */; settings = {ASSET_TAGS = (); }; };
+		60B401271BA19C7900D8DD80 /* PairwiseFactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B4009B1BA19C7900D8DD80 /* PairwiseFactor.swift */; settings = {ASSET_TAGS = (); }; };
+		60B401281BA19C7900D8DD80 /* PairwiseLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B4009C1BA19C7900D8DD80 /* PairwiseLevel.swift */; settings = {ASSET_TAGS = (); }; };
+		60B401291BA19C7900D8DD80 /* PairwiseTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B4009D1BA19C7900D8DD80 /* PairwiseTable.swift */; settings = {ASSET_TAGS = (); }; };
+		60B4012A1BA19C7900D8DD80 /* parse_values.c in Sources */ = {isa = PBXBuildFile; fileRef = 60B4009E1BA19C7900D8DD80 /* parse_values.c */; settings = {ASSET_TAGS = (); }; };
+		60B4012B1BA19C7900D8DD80 /* parse_values.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400A01BA19C7900D8DD80 /* parse_values.swift */; settings = {ASSET_TAGS = (); }; };
+		60B4012C1BA19C7900D8DD80 /* PCA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400A11BA19C7900D8DD80 /* PCA.swift */; settings = {ASSET_TAGS = (); }; };
+		60B4012D1BA19C7900D8DD80 /* PCA2dPlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400A21BA19C7900D8DD80 /* PCA2dPlot.swift */; settings = {ASSET_TAGS = (); }; };
+		60B4012E1BA19C7900D8DD80 /* PCA3Plot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400A31BA19C7900D8DD80 /* PCA3Plot.swift */; settings = {ASSET_TAGS = (); }; };
+		60B4012F1BA19C7900D8DD80 /* PCAaxis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400A41BA19C7900D8DD80 /* PCAaxis.swift */; settings = {ASSET_TAGS = (); }; };
+		60B401301BA19C7900D8DD80 /* PCAPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400A51BA19C7900D8DD80 /* PCAPage.swift */; settings = {ASSET_TAGS = (); }; };
+		60B401311BA19C7900D8DD80 /* Pdf.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400A61BA19C7900D8DD80 /* Pdf.swift */; settings = {ASSET_TAGS = (); }; };
+		60B401321BA19C7900D8DD80 /* PdfTxtButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400A71BA19C7900D8DD80 /* PdfTxtButtons.swift */; settings = {ASSET_TAGS = (); }; };
+		60B401331BA19C7900D8DD80 /* PieChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400A81BA19C7900D8DD80 /* PieChart.swift */; settings = {ASSET_TAGS = (); }; };
+		60B401341BA19C7900D8DD80 /* ProgressIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400A91BA19C7900D8DD80 /* ProgressIndicator.swift */; settings = {ASSET_TAGS = (); }; };
+		60B401351BA19C7900D8DD80 /* ProgressIndicator2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400AA1BA19C7900D8DD80 /* ProgressIndicator2.swift */; settings = {ASSET_TAGS = (); }; };
+		60B401361BA19C7900D8DD80 /* ProjectNotes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400AB1BA19C7900D8DD80 /* ProjectNotes.swift */; settings = {ASSET_TAGS = (); }; };
+		60B401371BA19C7900D8DD80 /* PValueHistogram.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400AC1BA19C7900D8DD80 /* PValueHistogram.swift */; settings = {ASSET_TAGS = (); }; };
+		60B401381BA19C7900D8DD80 /* PValueHistogramDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400AD1BA19C7900D8DD80 /* PValueHistogramDelegate.swift */; settings = {ASSET_TAGS = (); }; };
+		60B401391BA19C7900D8DD80 /* Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400AE1BA19C7900D8DD80 /* Query.swift */; settings = {ASSET_TAGS = (); }; };
+		60B4013A1BA19C7900D8DD80 /* Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400AF1BA19C7900D8DD80 /* Random.swift */; settings = {ASSET_TAGS = (); }; };
+		60B4013B1BA19C7900D8DD80 /* remove_molecules.c in Sources */ = {isa = PBXBuildFile; fileRef = 60B400B01BA19C7900D8DD80 /* remove_molecules.c */; settings = {ASSET_TAGS = (); }; };
+		60B4013C1BA19C7900D8DD80 /* RemoveMolecules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400B21BA19C7900D8DD80 /* RemoveMolecules.swift */; settings = {ASSET_TAGS = (); }; };
+		60B4013D1BA19C7900D8DD80 /* RemoveSamples.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400B31BA19C7900D8DD80 /* RemoveSamples.swift */; settings = {ASSET_TAGS = (); }; };
+		60B4013E1BA19C7900D8DD80 /* ResultFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400B41BA19C7900D8DD80 /* ResultFiles.swift */; settings = {ASSET_TAGS = (); }; };
+		60B4013F1BA19C7900D8DD80 /* RootComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400B51BA19C7900D8DD80 /* RootComponent.swift */; settings = {ASSET_TAGS = (); }; };
+		60B401401BA19C7900D8DD80 /* SampleNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400B61BA19C7900D8DD80 /* SampleNames.swift */; settings = {ASSET_TAGS = (); }; };
+		60B401411BA19C7900D8DD80 /* SampleNormalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400B71BA19C7900D8DD80 /* SampleNormalization.swift */; settings = {ASSET_TAGS = (); }; };
+		60B401421BA19C7900D8DD80 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400B81BA19C7900D8DD80 /* SearchBar.swift */; settings = {ASSET_TAGS = (); }; };
+		60B401431BA19C7900D8DD80 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400B91BA19C7900D8DD80 /* SearchTableViewCell.swift */; settings = {ASSET_TAGS = (); }; };
+		60B401441BA19C7900D8DD80 /* SegmentedControlTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400BA1BA19C7900D8DD80 /* SegmentedControlTableViewCell.swift */; settings = {ASSET_TAGS = (); }; };
+		60B401451BA19C7900D8DD80 /* SingleChoiceTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400BB1BA19C7900D8DD80 /* SingleChoiceTable.swift */; settings = {ASSET_TAGS = (); }; };
+		60B401461BA19C7900D8DD80 /* SingleMolecule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400BC1BA19C7900D8DD80 /* SingleMolecule.swift */; settings = {ASSET_TAGS = (); }; };
+		60B401471BA19C7900D8DD80 /* SingleMoleculePlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400BD1BA19C7900D8DD80 /* SingleMoleculePlot.swift */; settings = {ASSET_TAGS = (); }; };
+		60B401481BA19C7900D8DD80 /* SingleMoleculePlotTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400BE1BA19C7900D8DD80 /* SingleMoleculePlotTable.swift */; settings = {ASSET_TAGS = (); }; };
+		60B401491BA19C7900D8DD80 /* SingleMoleculeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400BF1BA19C7900D8DD80 /* SingleMoleculeTableViewCell.swift */; settings = {ASSET_TAGS = (); }; };
+		60B4014A1BA19C7900D8DD80 /* SliderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400C01BA19C7900D8DD80 /* SliderTableViewCell.swift */; settings = {ASSET_TAGS = (); }; };
+		60B4014B1BA19C7900D8DD80 /* SpreadSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400C11BA19C7900D8DD80 /* SpreadSheet.swift */; settings = {ASSET_TAGS = (); }; };
+		60B4014C1BA19C7900D8DD80 /* sqlite_execute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400C21BA19C7900D8DD80 /* sqlite_execute.swift */; settings = {ASSET_TAGS = (); }; };
+		60B4014D1BA19C7900D8DD80 /* sqlite_import_export.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400C31BA19C7900D8DD80 /* sqlite_import_export.swift */; settings = {ASSET_TAGS = (); }; };
+		60B4014E1BA19C7900D8DD80 /* sqlite_indices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400C41BA19C7900D8DD80 /* sqlite_indices.swift */; settings = {ASSET_TAGS = (); }; };
+		60B4014F1BA19C7900D8DD80 /* sqlite_info.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400C51BA19C7900D8DD80 /* sqlite_info.swift */; settings = {ASSET_TAGS = (); }; };
+		60B401501BA19C7900D8DD80 /* sqlite_tables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400C61BA19C7900D8DD80 /* sqlite_tables.swift */; settings = {ASSET_TAGS = (); }; };
+		60B401511BA19C7900D8DD80 /* sqlite_triggers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400C71BA19C7900D8DD80 /* sqlite_triggers.swift */; settings = {ASSET_TAGS = (); }; };
+		60B401521BA19C7900D8DD80 /* sqlite_views.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400C81BA19C7900D8DD80 /* sqlite_views.swift */; settings = {ASSET_TAGS = (); }; };
+		60B401531BA19C7900D8DD80 /* Statistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400C91BA19C7900D8DD80 /* Statistics.swift */; settings = {ASSET_TAGS = (); }; };
+		60B401541BA19C7900D8DD80 /* TableOfAttributedStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400CA1BA19C7900D8DD80 /* TableOfAttributedStrings.swift */; settings = {ASSET_TAGS = (); }; };
+		60B401551BA19C7900D8DD80 /* TableViewCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400CB1BA19C7900D8DD80 /* TableViewCells.swift */; settings = {ASSET_TAGS = (); }; };
+		60B401561BA19C7900D8DD80 /* TextFieldHeaderFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400CC1BA19C7900D8DD80 /* TextFieldHeaderFooterView.swift */; settings = {ASSET_TAGS = (); }; };
+		60B401571BA19C7900D8DD80 /* TextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400CD1BA19C7900D8DD80 /* TextFieldTableViewCell.swift */; settings = {ASSET_TAGS = (); }; };
+		60B401581BA19C7900D8DD80 /* TiledLayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400CE1BA19C7900D8DD80 /* TiledLayerView.swift */; settings = {ASSET_TAGS = (); }; };
+		60B401591BA19C7900D8DD80 /* TiledScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400CF1BA19C7900D8DD80 /* TiledScrollView.swift */; settings = {ASSET_TAGS = (); }; };
+		60B4015A1BA19C7900D8DD80 /* Title.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400D01BA19C7900D8DD80 /* Title.swift */; settings = {ASSET_TAGS = (); }; };
+		60B4015B1BA19C7900D8DD80 /* Txt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400D11BA19C7900D8DD80 /* Txt.swift */; settings = {ASSET_TAGS = (); }; };
+		60B4015C1BA19C7900D8DD80 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400D21BA19C7900D8DD80 /* User.swift */; settings = {ASSET_TAGS = (); }; };
+		60B4015D1BA19C7900D8DD80 /* values.c in Sources */ = {isa = PBXBuildFile; fileRef = 60B400D31BA19C7900D8DD80 /* values.c */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,7 +190,156 @@
 		601003681BA18744008A1FF9 /* AmberbioUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AmberbioUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6010036C1BA18744008A1FF9 /* AmberbioUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmberbioUITests.swift; sourceTree = "<group>"; };
 		6010036E1BA18744008A1FF9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		60B400311BA1968600D8DD80 /* State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = State.swift; path = Source/State.swift; sourceTree = SOURCE_ROOT; };
+		60B400381BA1982900D8DD80 /* state_init.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = state_init.swift; path = Source/state_init.swift; sourceTree = "<group>"; };
+		60B4003A1BA1983900D8DD80 /* State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = State.swift; path = Source/State.swift; sourceTree = "<group>"; };
+		60B4003D1BA19BED00D8DD80 /* AttributedString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AttributedString.swift; path = Source/AttributedString.swift; sourceTree = "<group>"; };
+		60B4003E1BA19BED00D8DD80 /* NumberFormat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NumberFormat.swift; path = Source/NumberFormat.swift; sourceTree = "<group>"; };
+		60B4003F1BA19BED00D8DD80 /* Serialize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Serialize.swift; path = Source/Serialize.swift; sourceTree = "<group>"; };
+		60B400401BA19BED00D8DD80 /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = String.swift; path = Source/String.swift; sourceTree = "<group>"; };
+		60B400451BA19C7900D8DD80 /* Amberbio-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Amberbio-Bridging-Header.h"; sourceTree = "<group>"; };
+		60B400461BA19C7900D8DD80 /* ActiveDataSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ActiveDataSet.swift; path = Source/ActiveDataSet.swift; sourceTree = "<group>"; };
+		60B400471BA19C7900D8DD80 /* ActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ActivityIndicator.swift; path = Source/ActivityIndicator.swift; sourceTree = "<group>"; };
+		60B400481BA19C7900D8DD80 /* Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Alert.swift; path = Source/Alert.swift; sourceTree = "<group>"; };
+		60B400491BA19C7900D8DD80 /* Anova.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Anova.swift; path = Source/Anova.swift; sourceTree = "<group>"; };
+		60B4004A1BA19C7900D8DD80 /* AnovaFactorSelection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AnovaFactorSelection.swift; path = Source/AnovaFactorSelection.swift; sourceTree = "<group>"; };
+		60B4004B1BA19C7900D8DD80 /* AnovaPlot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AnovaPlot.swift; path = Source/AnovaPlot.swift; sourceTree = "<group>"; };
+		60B4004C1BA19C7900D8DD80 /* AnovaTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AnovaTable.swift; path = Source/AnovaTable.swift; sourceTree = "<group>"; };
+		60B4004D1BA19C7900D8DD80 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Source/AppDelegate.swift; sourceTree = "<group>"; };
+		60B4004E1BA19C7900D8DD80 /* Back.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Back.swift; path = Source/Back.swift; sourceTree = "<group>"; };
+		60B4004F1BA19C7900D8DD80 /* Bioinformatics-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Bioinformatics-Bridging-Header.h"; path = "Source/Bioinformatics-Bridging-Header.h"; sourceTree = "<group>"; };
+		60B400501BA19C7900D8DD80 /* CenteredHeaderFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CenteredHeaderFooterView.swift; path = Source/CenteredHeaderFooterView.swift; sourceTree = "<group>"; };
+		60B400511BA19C7900D8DD80 /* CenteredTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CenteredTableViewCell.swift; path = Source/CenteredTableViewCell.swift; sourceTree = "<group>"; };
+		60B400521BA19C7900D8DD80 /* ChiSquare.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChiSquare.swift; path = Source/ChiSquare.swift; sourceTree = "<group>"; };
+		60B400531BA19C7900D8DD80 /* ChiSquareTableMath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChiSquareTableMath.swift; path = Source/ChiSquareTableMath.swift; sourceTree = "<group>"; };
+		60B400541BA19C7900D8DD80 /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Color.swift; path = Source/Color.swift; sourceTree = "<group>"; };
+		60B400551BA19C7900D8DD80 /* ColorKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ColorKey.swift; path = Source/ColorKey.swift; sourceTree = "<group>"; };
+		60B400561BA19C7900D8DD80 /* ColorSelectionLevel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ColorSelectionLevel.swift; path = Source/ColorSelectionLevel.swift; sourceTree = "<group>"; };
+		60B400571BA19C7900D8DD80 /* ColorSelectionPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ColorSelectionPicker.swift; path = Source/ColorSelectionPicker.swift; sourceTree = "<group>"; };
+		60B400581BA19C7900D8DD80 /* Component.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Component.swift; path = Source/Component.swift; sourceTree = "<group>"; };
+		60B400591BA19C7900D8DD80 /* ContingencyTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContingencyTable.swift; path = Source/ContingencyTable.swift; sourceTree = "<group>"; };
+		60B4005A1BA19C7900D8DD80 /* Csv.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Csv.swift; path = Source/Csv.swift; sourceTree = "<group>"; };
+		60B4005B1BA19C7900D8DD80 /* DataSetSelection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataSetSelection.swift; path = Source/DataSetSelection.swift; sourceTree = "<group>"; };
+		60B4005C1BA19C7900D8DD80 /* DataSetSummary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataSetSummary.swift; path = Source/DataSetSummary.swift; sourceTree = "<group>"; };
+		60B4005D1BA19C7900D8DD80 /* DataSetTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataSetTable.swift; path = Source/DataSetTable.swift; sourceTree = "<group>"; };
+		60B4005E1BA19C7900D8DD80 /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Date.swift; path = Source/Date.swift; sourceTree = "<group>"; };
+		60B4005F1BA19C7900D8DD80 /* Distances.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Distances.swift; path = Source/Distances.swift; sourceTree = "<group>"; };
+		60B400601BA19C7900D8DD80 /* distributions.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = distributions.c; path = Source/distributions.c; sourceTree = "<group>"; };
+		60B400611BA19C7900D8DD80 /* distributions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = distributions.h; path = Source/distributions.h; sourceTree = "<group>"; };
+		60B400621BA19C7900D8DD80 /* DocumentInteractionOpen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DocumentInteractionOpen.swift; path = Source/DocumentInteractionOpen.swift; sourceTree = "<group>"; };
+		60B400631BA19C7900D8DD80 /* DocumentPickerExport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DocumentPickerExport.swift; path = Source/DocumentPickerExport.swift; sourceTree = "<group>"; };
+		60B400641BA19C7900D8DD80 /* DocumentPickerImport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DocumentPickerImport.swift; path = Source/DocumentPickerImport.swift; sourceTree = "<group>"; };
+		60B400651BA19C7900D8DD80 /* Drawing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Drawing.swift; path = Source/Drawing.swift; sourceTree = "<group>"; };
+		60B400661BA19C7900D8DD80 /* EditFactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditFactor.swift; path = Source/EditFactor.swift; sourceTree = "<group>"; };
+		60B400671BA19C7900D8DD80 /* EditFactors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditFactors.swift; path = Source/EditFactors.swift; sourceTree = "<group>"; };
+		60B400681BA19C7900D8DD80 /* EditProject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditProject.swift; path = Source/EditProject.swift; sourceTree = "<group>"; };
+		60B400691BA19C7900D8DD80 /* Email.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Email.swift; path = Source/Email.swift; sourceTree = "<group>"; };
+		60B4006A1BA19C7900D8DD80 /* ExportProjects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExportProjects.swift; path = Source/ExportProjects.swift; sourceTree = "<group>"; };
+		60B4006B1BA19C7900D8DD80 /* FactorAssociation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FactorAssociation.swift; path = Source/FactorAssociation.swift; sourceTree = "<group>"; };
+		60B4006C1BA19C7900D8DD80 /* FactorChart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FactorChart.swift; path = Source/FactorChart.swift; sourceTree = "<group>"; };
+		60B4006D1BA19C7900D8DD80 /* FactorContingencyTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FactorContingencyTable.swift; path = Source/FactorContingencyTable.swift; sourceTree = "<group>"; };
+		60B4006E1BA19C7900D8DD80 /* FactorElimination.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FactorElimination.swift; path = Source/FactorElimination.swift; sourceTree = "<group>"; };
+		60B4006F1BA19C7900D8DD80 /* FactorSummary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FactorSummary.swift; path = Source/FactorSummary.swift; sourceTree = "<group>"; };
+		60B400701BA19C7900D8DD80 /* FactorSummaryDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FactorSummaryDetail.swift; path = Source/FactorSummaryDetail.swift; sourceTree = "<group>"; };
+		60B400711BA19C7900D8DD80 /* Feedback.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Feedback.swift; path = Source/Feedback.swift; sourceTree = "<group>"; };
+		60B400721BA19C7900D8DD80 /* Files.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Files.swift; path = Source/Files.swift; sourceTree = "<group>"; };
+		60B400731BA19C7900D8DD80 /* Forward.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Forward.swift; path = Source/Forward.swift; sourceTree = "<group>"; };
+		60B400741BA19C7900D8DD80 /* FullPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FullPage.swift; path = Source/FullPage.swift; sourceTree = "<group>"; };
+		60B400751BA19C7900D8DD80 /* HierarchicalClustering.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HierarchicalClustering.swift; path = Source/HierarchicalClustering.swift; sourceTree = "<group>"; };
+		60B400761BA19C7900D8DD80 /* HierarchicalClusteringDrawer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HierarchicalClusteringDrawer.swift; path = Source/HierarchicalClusteringDrawer.swift; sourceTree = "<group>"; };
+		60B400771BA19C7900D8DD80 /* HierarchicalClusteringPlot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HierarchicalClusteringPlot.swift; path = Source/HierarchicalClusteringPlot.swift; sourceTree = "<group>"; };
+		60B400781BA19C7900D8DD80 /* HierarchicalClusteringSelection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HierarchicalClusteringSelection.swift; path = Source/HierarchicalClusteringSelection.swift; sourceTree = "<group>"; };
+		60B400791BA19C7900D8DD80 /* Home.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Home.swift; path = Source/Home.swift; sourceTree = "<group>"; };
+		60B4007A1BA19C7900D8DD80 /* HomeButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeButton.swift; path = Source/HomeButton.swift; sourceTree = "<group>"; };
+		60B4007B1BA19C7900D8DD80 /* HomeButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeButtonView.swift; path = Source/HomeButtonView.swift; sourceTree = "<group>"; };
+		60B4007C1BA19C7900D8DD80 /* ImportData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImportData.swift; path = Source/ImportData.swift; sourceTree = "<group>"; };
+		60B4007D1BA19C7900D8DD80 /* InfoButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InfoButton.swift; path = Source/InfoButton.swift; sourceTree = "<group>"; };
+		60B4007E1BA19C7900D8DD80 /* Layout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Layout.swift; path = Source/Layout.swift; sourceTree = "<group>"; };
+		60B4007F1BA19C7900D8DD80 /* linear_regression.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = linear_regression.c; path = Source/linear_regression.c; sourceTree = "<group>"; };
+		60B400801BA19C7900D8DD80 /* linear_regression.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = linear_regression.h; path = Source/linear_regression.h; sourceTree = "<group>"; };
+		60B400811BA19C7900D8DD80 /* LinearRegressionDrawer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LinearRegressionDrawer.swift; path = Source/LinearRegressionDrawer.swift; sourceTree = "<group>"; };
+		60B400821BA19C7900D8DD80 /* LinearRegressionPlot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LinearRegressionPlot.swift; path = Source/LinearRegressionPlot.swift; sourceTree = "<group>"; };
+		60B400831BA19C7900D8DD80 /* LinearRegressionSelection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LinearRegressionSelection.swift; path = Source/LinearRegressionSelection.swift; sourceTree = "<group>"; };
+		60B400841BA19C7900D8DD80 /* LinearRegressionTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LinearRegressionTable.swift; path = Source/LinearRegressionTable.swift; sourceTree = "<group>"; };
+		60B400851BA19C7900D8DD80 /* LogarithmTransform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LogarithmTransform.swift; path = Source/LogarithmTransform.swift; sourceTree = "<group>"; };
+		60B400861BA19C7900D8DD80 /* MannWhitney.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MannWhitney.swift; path = Source/MannWhitney.swift; sourceTree = "<group>"; };
+		60B400871BA19C7900D8DD80 /* Manual.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Manual.swift; path = Source/Manual.swift; sourceTree = "<group>"; };
+		60B400881BA19C7900D8DD80 /* Math.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Math.swift; path = Source/Math.swift; sourceTree = "<group>"; };
+		60B400891BA19C7900D8DD80 /* MatrixUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MatrixUtil.swift; path = Source/MatrixUtil.swift; sourceTree = "<group>"; };
+		60B4008A1BA19C7900D8DD80 /* MissingValueHistogram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MissingValueHistogram.swift; path = Source/MissingValueHistogram.swift; sourceTree = "<group>"; };
+		60B4008B1BA19C7900D8DD80 /* MissingValues.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MissingValues.swift; path = Source/MissingValues.swift; sourceTree = "<group>"; };
+		60B4008C1BA19C7900D8DD80 /* MissingValuesForSamples.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MissingValuesForSamples.swift; path = Source/MissingValuesForSamples.swift; sourceTree = "<group>"; };
+		60B4008D1BA19C7900D8DD80 /* MoleculeAnnotations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MoleculeAnnotations.swift; path = Source/MoleculeAnnotations.swift; sourceTree = "<group>"; };
+		60B4008E1BA19C7900D8DD80 /* MoleculeRange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MoleculeRange.swift; path = Source/MoleculeRange.swift; sourceTree = "<group>"; };
+		60B4008F1BA19C7900D8DD80 /* MultipleMoleculePlot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MultipleMoleculePlot.swift; path = Source/MultipleMoleculePlot.swift; sourceTree = "<group>"; };
+		60B400901BA19C7900D8DD80 /* MultiSegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MultiSegmentedControl.swift; path = Source/MultiSegmentedControl.swift; sourceTree = "<group>"; };
+		60B400911BA19C7900D8DD80 /* NameColorTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NameColorTableView.swift; path = Source/NameColorTableView.swift; sourceTree = "<group>"; };
+		60B400921BA19C7900D8DD80 /* NameDateTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NameDateTableViewCell.swift; path = Source/NameDateTableViewCell.swift; sourceTree = "<group>"; };
+		60B400931BA19C7900D8DD80 /* NormalDistribution.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NormalDistribution.swift; path = Source/NormalDistribution.swift; sourceTree = "<group>"; };
+		60B400941BA19C7900D8DD80 /* PageState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PageState.swift; path = Source/PageState.swift; sourceTree = "<group>"; };
+		60B400951BA19C7900D8DD80 /* PairedComparisonFactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PairedComparisonFactor.swift; path = Source/PairedComparisonFactor.swift; sourceTree = "<group>"; };
+		60B400961BA19C7900D8DD80 /* PairedLevel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PairedLevel.swift; path = Source/PairedLevel.swift; sourceTree = "<group>"; };
+		60B400971BA19C7900D8DD80 /* PairedPairingFactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PairedPairingFactor.swift; path = Source/PairedPairingFactor.swift; sourceTree = "<group>"; };
+		60B400981BA19C7900D8DD80 /* PairedPlot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PairedPlot.swift; path = Source/PairedPlot.swift; sourceTree = "<group>"; };
+		60B400991BA19C7900D8DD80 /* PairedTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PairedTable.swift; path = Source/PairedTable.swift; sourceTree = "<group>"; };
+		60B4009A1BA19C7900D8DD80 /* PairTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PairTable.swift; path = Source/PairTable.swift; sourceTree = "<group>"; };
+		60B4009B1BA19C7900D8DD80 /* PairwiseFactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PairwiseFactor.swift; path = Source/PairwiseFactor.swift; sourceTree = "<group>"; };
+		60B4009C1BA19C7900D8DD80 /* PairwiseLevel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PairwiseLevel.swift; path = Source/PairwiseLevel.swift; sourceTree = "<group>"; };
+		60B4009D1BA19C7900D8DD80 /* PairwiseTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PairwiseTable.swift; path = Source/PairwiseTable.swift; sourceTree = "<group>"; };
+		60B4009E1BA19C7900D8DD80 /* parse_values.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = parse_values.c; path = Source/parse_values.c; sourceTree = "<group>"; };
+		60B4009F1BA19C7900D8DD80 /* parse_values.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = parse_values.h; path = Source/parse_values.h; sourceTree = "<group>"; };
+		60B400A01BA19C7900D8DD80 /* parse_values.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = parse_values.swift; path = Source/parse_values.swift; sourceTree = "<group>"; };
+		60B400A11BA19C7900D8DD80 /* PCA.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PCA.swift; path = Source/PCA.swift; sourceTree = "<group>"; };
+		60B400A21BA19C7900D8DD80 /* PCA2dPlot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PCA2dPlot.swift; path = Source/PCA2dPlot.swift; sourceTree = "<group>"; };
+		60B400A31BA19C7900D8DD80 /* PCA3Plot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PCA3Plot.swift; path = Source/PCA3Plot.swift; sourceTree = "<group>"; };
+		60B400A41BA19C7900D8DD80 /* PCAaxis.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PCAaxis.swift; path = Source/PCAaxis.swift; sourceTree = "<group>"; };
+		60B400A51BA19C7900D8DD80 /* PCAPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PCAPage.swift; path = Source/PCAPage.swift; sourceTree = "<group>"; };
+		60B400A61BA19C7900D8DD80 /* Pdf.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Pdf.swift; path = Source/Pdf.swift; sourceTree = "<group>"; };
+		60B400A71BA19C7900D8DD80 /* PdfTxtButtons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PdfTxtButtons.swift; path = Source/PdfTxtButtons.swift; sourceTree = "<group>"; };
+		60B400A81BA19C7900D8DD80 /* PieChart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PieChart.swift; path = Source/PieChart.swift; sourceTree = "<group>"; };
+		60B400A91BA19C7900D8DD80 /* ProgressIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProgressIndicator.swift; path = Source/ProgressIndicator.swift; sourceTree = "<group>"; };
+		60B400AA1BA19C7900D8DD80 /* ProgressIndicator2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProgressIndicator2.swift; path = Source/ProgressIndicator2.swift; sourceTree = "<group>"; };
+		60B400AB1BA19C7900D8DD80 /* ProjectNotes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProjectNotes.swift; path = Source/ProjectNotes.swift; sourceTree = "<group>"; };
+		60B400AC1BA19C7900D8DD80 /* PValueHistogram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PValueHistogram.swift; path = Source/PValueHistogram.swift; sourceTree = "<group>"; };
+		60B400AD1BA19C7900D8DD80 /* PValueHistogramDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PValueHistogramDelegate.swift; path = Source/PValueHistogramDelegate.swift; sourceTree = "<group>"; };
+		60B400AE1BA19C7900D8DD80 /* Query.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Query.swift; path = Source/Query.swift; sourceTree = "<group>"; };
+		60B400AF1BA19C7900D8DD80 /* Random.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Random.swift; path = Source/Random.swift; sourceTree = "<group>"; };
+		60B400B01BA19C7900D8DD80 /* remove_molecules.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = remove_molecules.c; path = Source/remove_molecules.c; sourceTree = "<group>"; };
+		60B400B11BA19C7900D8DD80 /* remove_molecules.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = remove_molecules.h; path = Source/remove_molecules.h; sourceTree = "<group>"; };
+		60B400B21BA19C7900D8DD80 /* RemoveMolecules.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RemoveMolecules.swift; path = Source/RemoveMolecules.swift; sourceTree = "<group>"; };
+		60B400B31BA19C7900D8DD80 /* RemoveSamples.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RemoveSamples.swift; path = Source/RemoveSamples.swift; sourceTree = "<group>"; };
+		60B400B41BA19C7900D8DD80 /* ResultFiles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ResultFiles.swift; path = Source/ResultFiles.swift; sourceTree = "<group>"; };
+		60B400B51BA19C7900D8DD80 /* RootComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RootComponent.swift; path = Source/RootComponent.swift; sourceTree = "<group>"; };
+		60B400B61BA19C7900D8DD80 /* SampleNames.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SampleNames.swift; path = Source/SampleNames.swift; sourceTree = "<group>"; };
+		60B400B71BA19C7900D8DD80 /* SampleNormalization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SampleNormalization.swift; path = Source/SampleNormalization.swift; sourceTree = "<group>"; };
+		60B400B81BA19C7900D8DD80 /* SearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchBar.swift; path = Source/SearchBar.swift; sourceTree = "<group>"; };
+		60B400B91BA19C7900D8DD80 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchTableViewCell.swift; path = Source/SearchTableViewCell.swift; sourceTree = "<group>"; };
+		60B400BA1BA19C7900D8DD80 /* SegmentedControlTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SegmentedControlTableViewCell.swift; path = Source/SegmentedControlTableViewCell.swift; sourceTree = "<group>"; };
+		60B400BB1BA19C7900D8DD80 /* SingleChoiceTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SingleChoiceTable.swift; path = Source/SingleChoiceTable.swift; sourceTree = "<group>"; };
+		60B400BC1BA19C7900D8DD80 /* SingleMolecule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SingleMolecule.swift; path = Source/SingleMolecule.swift; sourceTree = "<group>"; };
+		60B400BD1BA19C7900D8DD80 /* SingleMoleculePlot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SingleMoleculePlot.swift; path = Source/SingleMoleculePlot.swift; sourceTree = "<group>"; };
+		60B400BE1BA19C7900D8DD80 /* SingleMoleculePlotTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SingleMoleculePlotTable.swift; path = Source/SingleMoleculePlotTable.swift; sourceTree = "<group>"; };
+		60B400BF1BA19C7900D8DD80 /* SingleMoleculeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SingleMoleculeTableViewCell.swift; path = Source/SingleMoleculeTableViewCell.swift; sourceTree = "<group>"; };
+		60B400C01BA19C7900D8DD80 /* SliderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SliderTableViewCell.swift; path = Source/SliderTableViewCell.swift; sourceTree = "<group>"; };
+		60B400C11BA19C7900D8DD80 /* SpreadSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SpreadSheet.swift; path = Source/SpreadSheet.swift; sourceTree = "<group>"; };
+		60B400C21BA19C7900D8DD80 /* sqlite_execute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = sqlite_execute.swift; path = Source/sqlite_execute.swift; sourceTree = "<group>"; };
+		60B400C31BA19C7900D8DD80 /* sqlite_import_export.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = sqlite_import_export.swift; path = Source/sqlite_import_export.swift; sourceTree = "<group>"; };
+		60B400C41BA19C7900D8DD80 /* sqlite_indices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = sqlite_indices.swift; path = Source/sqlite_indices.swift; sourceTree = "<group>"; };
+		60B400C51BA19C7900D8DD80 /* sqlite_info.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = sqlite_info.swift; path = Source/sqlite_info.swift; sourceTree = "<group>"; };
+		60B400C61BA19C7900D8DD80 /* sqlite_tables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = sqlite_tables.swift; path = Source/sqlite_tables.swift; sourceTree = "<group>"; };
+		60B400C71BA19C7900D8DD80 /* sqlite_triggers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = sqlite_triggers.swift; path = Source/sqlite_triggers.swift; sourceTree = "<group>"; };
+		60B400C81BA19C7900D8DD80 /* sqlite_views.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = sqlite_views.swift; path = Source/sqlite_views.swift; sourceTree = "<group>"; };
+		60B400C91BA19C7900D8DD80 /* Statistics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Statistics.swift; path = Source/Statistics.swift; sourceTree = "<group>"; };
+		60B400CA1BA19C7900D8DD80 /* TableOfAttributedStrings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TableOfAttributedStrings.swift; path = Source/TableOfAttributedStrings.swift; sourceTree = "<group>"; };
+		60B400CB1BA19C7900D8DD80 /* TableViewCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TableViewCells.swift; path = Source/TableViewCells.swift; sourceTree = "<group>"; };
+		60B400CC1BA19C7900D8DD80 /* TextFieldHeaderFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextFieldHeaderFooterView.swift; path = Source/TextFieldHeaderFooterView.swift; sourceTree = "<group>"; };
+		60B400CD1BA19C7900D8DD80 /* TextFieldTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextFieldTableViewCell.swift; path = Source/TextFieldTableViewCell.swift; sourceTree = "<group>"; };
+		60B400CE1BA19C7900D8DD80 /* TiledLayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TiledLayerView.swift; path = Source/TiledLayerView.swift; sourceTree = "<group>"; };
+		60B400CF1BA19C7900D8DD80 /* TiledScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TiledScrollView.swift; path = Source/TiledScrollView.swift; sourceTree = "<group>"; };
+		60B400D01BA19C7900D8DD80 /* Title.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Title.swift; path = Source/Title.swift; sourceTree = "<group>"; };
+		60B400D11BA19C7900D8DD80 /* Txt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Txt.swift; path = Source/Txt.swift; sourceTree = "<group>"; };
+		60B400D21BA19C7900D8DD80 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = Source/User.swift; sourceTree = "<group>"; };
+		60B400D31BA19C7900D8DD80 /* values.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = values.c; path = Source/values.c; sourceTree = "<group>"; };
+		60B400D41BA19C7900D8DD80 /* values.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = values.h; path = Source/values.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,7 +370,7 @@
 		601003401BA18744008A1FF9 = {
 			isa = PBXGroup;
 			children = (
-				60B400301BA18F6C00D8DD80 /* State */,
+				60B400361BA1980000D8DD80 /* Source */,
 				6010034B1BA18744008A1FF9 /* Amberbio */,
 				601003601BA18744008A1FF9 /* AmberbioTests */,
 				6010036B1BA18744008A1FF9 /* AmberbioUITests */,
@@ -128,13 +419,177 @@
 			path = AmberbioUITests;
 			sourceTree = "<group>";
 		};
-		60B400301BA18F6C00D8DD80 /* State */ = {
+		60B400361BA1980000D8DD80 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				60B400311BA1968600D8DD80 /* State.swift */,
+				60B400371BA1981A00D8DD80 /* State */,
+				60B4003C1BA19B0F00D8DD80 /* Functions */,
+			);
+			name = Source;
+			sourceTree = "<group>";
+		};
+		60B400371BA1981A00D8DD80 /* State */ = {
+			isa = PBXGroup;
+			children = (
+				60B400381BA1982900D8DD80 /* state_init.swift */,
+				60B4003A1BA1983900D8DD80 /* State.swift */,
 			);
 			name = State;
-			path = Amberbio;
+			sourceTree = "<group>";
+		};
+		60B4003C1BA19B0F00D8DD80 /* Functions */ = {
+			isa = PBXGroup;
+			children = (
+				60B400461BA19C7900D8DD80 /* ActiveDataSet.swift */,
+				60B400471BA19C7900D8DD80 /* ActivityIndicator.swift */,
+				60B400481BA19C7900D8DD80 /* Alert.swift */,
+				60B400491BA19C7900D8DD80 /* Anova.swift */,
+				60B4004A1BA19C7900D8DD80 /* AnovaFactorSelection.swift */,
+				60B4004B1BA19C7900D8DD80 /* AnovaPlot.swift */,
+				60B4004C1BA19C7900D8DD80 /* AnovaTable.swift */,
+				60B4004D1BA19C7900D8DD80 /* AppDelegate.swift */,
+				60B4004E1BA19C7900D8DD80 /* Back.swift */,
+				60B4004F1BA19C7900D8DD80 /* Bioinformatics-Bridging-Header.h */,
+				60B400501BA19C7900D8DD80 /* CenteredHeaderFooterView.swift */,
+				60B400511BA19C7900D8DD80 /* CenteredTableViewCell.swift */,
+				60B400521BA19C7900D8DD80 /* ChiSquare.swift */,
+				60B400531BA19C7900D8DD80 /* ChiSquareTableMath.swift */,
+				60B400541BA19C7900D8DD80 /* Color.swift */,
+				60B400551BA19C7900D8DD80 /* ColorKey.swift */,
+				60B400561BA19C7900D8DD80 /* ColorSelectionLevel.swift */,
+				60B400571BA19C7900D8DD80 /* ColorSelectionPicker.swift */,
+				60B400581BA19C7900D8DD80 /* Component.swift */,
+				60B400591BA19C7900D8DD80 /* ContingencyTable.swift */,
+				60B4005A1BA19C7900D8DD80 /* Csv.swift */,
+				60B4005B1BA19C7900D8DD80 /* DataSetSelection.swift */,
+				60B4005C1BA19C7900D8DD80 /* DataSetSummary.swift */,
+				60B4005D1BA19C7900D8DD80 /* DataSetTable.swift */,
+				60B4005E1BA19C7900D8DD80 /* Date.swift */,
+				60B4005F1BA19C7900D8DD80 /* Distances.swift */,
+				60B400601BA19C7900D8DD80 /* distributions.c */,
+				60B400611BA19C7900D8DD80 /* distributions.h */,
+				60B400621BA19C7900D8DD80 /* DocumentInteractionOpen.swift */,
+				60B400631BA19C7900D8DD80 /* DocumentPickerExport.swift */,
+				60B400641BA19C7900D8DD80 /* DocumentPickerImport.swift */,
+				60B400651BA19C7900D8DD80 /* Drawing.swift */,
+				60B400661BA19C7900D8DD80 /* EditFactor.swift */,
+				60B400671BA19C7900D8DD80 /* EditFactors.swift */,
+				60B400681BA19C7900D8DD80 /* EditProject.swift */,
+				60B400691BA19C7900D8DD80 /* Email.swift */,
+				60B4006A1BA19C7900D8DD80 /* ExportProjects.swift */,
+				60B4006B1BA19C7900D8DD80 /* FactorAssociation.swift */,
+				60B4006C1BA19C7900D8DD80 /* FactorChart.swift */,
+				60B4006D1BA19C7900D8DD80 /* FactorContingencyTable.swift */,
+				60B4006E1BA19C7900D8DD80 /* FactorElimination.swift */,
+				60B4006F1BA19C7900D8DD80 /* FactorSummary.swift */,
+				60B400701BA19C7900D8DD80 /* FactorSummaryDetail.swift */,
+				60B400711BA19C7900D8DD80 /* Feedback.swift */,
+				60B400721BA19C7900D8DD80 /* Files.swift */,
+				60B400731BA19C7900D8DD80 /* Forward.swift */,
+				60B400741BA19C7900D8DD80 /* FullPage.swift */,
+				60B400751BA19C7900D8DD80 /* HierarchicalClustering.swift */,
+				60B400761BA19C7900D8DD80 /* HierarchicalClusteringDrawer.swift */,
+				60B400771BA19C7900D8DD80 /* HierarchicalClusteringPlot.swift */,
+				60B400781BA19C7900D8DD80 /* HierarchicalClusteringSelection.swift */,
+				60B400791BA19C7900D8DD80 /* Home.swift */,
+				60B4007A1BA19C7900D8DD80 /* HomeButton.swift */,
+				60B4007B1BA19C7900D8DD80 /* HomeButtonView.swift */,
+				60B4007C1BA19C7900D8DD80 /* ImportData.swift */,
+				60B4007D1BA19C7900D8DD80 /* InfoButton.swift */,
+				60B4007E1BA19C7900D8DD80 /* Layout.swift */,
+				60B4007F1BA19C7900D8DD80 /* linear_regression.c */,
+				60B400801BA19C7900D8DD80 /* linear_regression.h */,
+				60B400811BA19C7900D8DD80 /* LinearRegressionDrawer.swift */,
+				60B400821BA19C7900D8DD80 /* LinearRegressionPlot.swift */,
+				60B400831BA19C7900D8DD80 /* LinearRegressionSelection.swift */,
+				60B400841BA19C7900D8DD80 /* LinearRegressionTable.swift */,
+				60B400851BA19C7900D8DD80 /* LogarithmTransform.swift */,
+				60B400861BA19C7900D8DD80 /* MannWhitney.swift */,
+				60B400871BA19C7900D8DD80 /* Manual.swift */,
+				60B400881BA19C7900D8DD80 /* Math.swift */,
+				60B400891BA19C7900D8DD80 /* MatrixUtil.swift */,
+				60B4008A1BA19C7900D8DD80 /* MissingValueHistogram.swift */,
+				60B4008B1BA19C7900D8DD80 /* MissingValues.swift */,
+				60B4008C1BA19C7900D8DD80 /* MissingValuesForSamples.swift */,
+				60B4008D1BA19C7900D8DD80 /* MoleculeAnnotations.swift */,
+				60B4008E1BA19C7900D8DD80 /* MoleculeRange.swift */,
+				60B4008F1BA19C7900D8DD80 /* MultipleMoleculePlot.swift */,
+				60B400901BA19C7900D8DD80 /* MultiSegmentedControl.swift */,
+				60B400911BA19C7900D8DD80 /* NameColorTableView.swift */,
+				60B400921BA19C7900D8DD80 /* NameDateTableViewCell.swift */,
+				60B400931BA19C7900D8DD80 /* NormalDistribution.swift */,
+				60B400941BA19C7900D8DD80 /* PageState.swift */,
+				60B400951BA19C7900D8DD80 /* PairedComparisonFactor.swift */,
+				60B400961BA19C7900D8DD80 /* PairedLevel.swift */,
+				60B400971BA19C7900D8DD80 /* PairedPairingFactor.swift */,
+				60B400981BA19C7900D8DD80 /* PairedPlot.swift */,
+				60B400991BA19C7900D8DD80 /* PairedTable.swift */,
+				60B4009A1BA19C7900D8DD80 /* PairTable.swift */,
+				60B4009B1BA19C7900D8DD80 /* PairwiseFactor.swift */,
+				60B4009C1BA19C7900D8DD80 /* PairwiseLevel.swift */,
+				60B4009D1BA19C7900D8DD80 /* PairwiseTable.swift */,
+				60B4009E1BA19C7900D8DD80 /* parse_values.c */,
+				60B4009F1BA19C7900D8DD80 /* parse_values.h */,
+				60B400A01BA19C7900D8DD80 /* parse_values.swift */,
+				60B400A11BA19C7900D8DD80 /* PCA.swift */,
+				60B400A21BA19C7900D8DD80 /* PCA2dPlot.swift */,
+				60B400A31BA19C7900D8DD80 /* PCA3Plot.swift */,
+				60B400A41BA19C7900D8DD80 /* PCAaxis.swift */,
+				60B400A51BA19C7900D8DD80 /* PCAPage.swift */,
+				60B400A61BA19C7900D8DD80 /* Pdf.swift */,
+				60B400A71BA19C7900D8DD80 /* PdfTxtButtons.swift */,
+				60B400A81BA19C7900D8DD80 /* PieChart.swift */,
+				60B400A91BA19C7900D8DD80 /* ProgressIndicator.swift */,
+				60B400AA1BA19C7900D8DD80 /* ProgressIndicator2.swift */,
+				60B400AB1BA19C7900D8DD80 /* ProjectNotes.swift */,
+				60B400AC1BA19C7900D8DD80 /* PValueHistogram.swift */,
+				60B400AD1BA19C7900D8DD80 /* PValueHistogramDelegate.swift */,
+				60B400AE1BA19C7900D8DD80 /* Query.swift */,
+				60B400AF1BA19C7900D8DD80 /* Random.swift */,
+				60B400B01BA19C7900D8DD80 /* remove_molecules.c */,
+				60B400B11BA19C7900D8DD80 /* remove_molecules.h */,
+				60B400B21BA19C7900D8DD80 /* RemoveMolecules.swift */,
+				60B400B31BA19C7900D8DD80 /* RemoveSamples.swift */,
+				60B400B41BA19C7900D8DD80 /* ResultFiles.swift */,
+				60B400B51BA19C7900D8DD80 /* RootComponent.swift */,
+				60B400B61BA19C7900D8DD80 /* SampleNames.swift */,
+				60B400B71BA19C7900D8DD80 /* SampleNormalization.swift */,
+				60B400B81BA19C7900D8DD80 /* SearchBar.swift */,
+				60B400B91BA19C7900D8DD80 /* SearchTableViewCell.swift */,
+				60B400BA1BA19C7900D8DD80 /* SegmentedControlTableViewCell.swift */,
+				60B400BB1BA19C7900D8DD80 /* SingleChoiceTable.swift */,
+				60B400BC1BA19C7900D8DD80 /* SingleMolecule.swift */,
+				60B400BD1BA19C7900D8DD80 /* SingleMoleculePlot.swift */,
+				60B400BE1BA19C7900D8DD80 /* SingleMoleculePlotTable.swift */,
+				60B400BF1BA19C7900D8DD80 /* SingleMoleculeTableViewCell.swift */,
+				60B400C01BA19C7900D8DD80 /* SliderTableViewCell.swift */,
+				60B400C11BA19C7900D8DD80 /* SpreadSheet.swift */,
+				60B400C21BA19C7900D8DD80 /* sqlite_execute.swift */,
+				60B400C31BA19C7900D8DD80 /* sqlite_import_export.swift */,
+				60B400C41BA19C7900D8DD80 /* sqlite_indices.swift */,
+				60B400C51BA19C7900D8DD80 /* sqlite_info.swift */,
+				60B400C61BA19C7900D8DD80 /* sqlite_tables.swift */,
+				60B400C71BA19C7900D8DD80 /* sqlite_triggers.swift */,
+				60B400C81BA19C7900D8DD80 /* sqlite_views.swift */,
+				60B400C91BA19C7900D8DD80 /* Statistics.swift */,
+				60B400CA1BA19C7900D8DD80 /* TableOfAttributedStrings.swift */,
+				60B400CB1BA19C7900D8DD80 /* TableViewCells.swift */,
+				60B400CC1BA19C7900D8DD80 /* TextFieldHeaderFooterView.swift */,
+				60B400CD1BA19C7900D8DD80 /* TextFieldTableViewCell.swift */,
+				60B400CE1BA19C7900D8DD80 /* TiledLayerView.swift */,
+				60B400CF1BA19C7900D8DD80 /* TiledScrollView.swift */,
+				60B400D01BA19C7900D8DD80 /* Title.swift */,
+				60B400D11BA19C7900D8DD80 /* Txt.swift */,
+				60B400D21BA19C7900D8DD80 /* User.swift */,
+				60B400D31BA19C7900D8DD80 /* values.c */,
+				60B400D41BA19C7900D8DD80 /* values.h */,
+				60B4003D1BA19BED00D8DD80 /* AttributedString.swift */,
+				60B4003E1BA19BED00D8DD80 /* NumberFormat.swift */,
+				60B4003F1BA19BED00D8DD80 /* Serialize.swift */,
+				60B400401BA19BED00D8DD80 /* String.swift */,
+				60B400451BA19C7900D8DD80 /* Amberbio-Bridging-Header.h */,
+			);
+			name = Functions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -199,6 +654,7 @@
 		601003411BA18744008A1FF9 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Morten Krogh";
 				TargetAttributes = {
@@ -268,9 +724,151 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				60B401121BA19C7900D8DD80 /* MannWhitney.swift in Sources */,
 				6010034F1BA18744008A1FF9 /* ViewController.swift in Sources */,
+				60B400E91BA19C7900D8DD80 /* DataSetSelection.swift in Sources */,
+				60B401041BA19C7900D8DD80 /* HierarchicalClusteringPlot.swift in Sources */,
+				60B4014A1BA19C7900D8DD80 /* SliderTableViewCell.swift in Sources */,
+				60B400D91BA19C7900D8DD80 /* AnovaFactorSelection.swift in Sources */,
+				60B4011B1BA19C7900D8DD80 /* MultipleMoleculePlot.swift in Sources */,
+				60B4014E1BA19C7900D8DD80 /* sqlite_indices.swift in Sources */,
+				60B401031BA19C7900D8DD80 /* HierarchicalClusteringDrawer.swift in Sources */,
+				60B400FB1BA19C7900D8DD80 /* FactorElimination.swift in Sources */,
+				60B4012D1BA19C7900D8DD80 /* PCA2dPlot.swift in Sources */,
+				60B400FA1BA19C7900D8DD80 /* FactorContingencyTable.swift in Sources */,
+				60B401221BA19C7900D8DD80 /* PairedLevel.swift in Sources */,
+				60B401081BA19C7900D8DD80 /* HomeButtonView.swift in Sources */,
+				60B400EC1BA19C7900D8DD80 /* Date.swift in Sources */,
+				60B4014F1BA19C7900D8DD80 /* sqlite_info.swift in Sources */,
+				60B401541BA19C7900D8DD80 /* TableOfAttributedStrings.swift in Sources */,
+				60B4013F1BA19C7900D8DD80 /* RootComponent.swift in Sources */,
+				60B400F41BA19C7900D8DD80 /* EditFactors.swift in Sources */,
+				60B401201BA19C7900D8DD80 /* PageState.swift in Sources */,
+				60B400431BA19BED00D8DD80 /* Serialize.swift in Sources */,
+				60B400F31BA19C7900D8DD80 /* EditFactor.swift in Sources */,
+				60B4010E1BA19C7900D8DD80 /* LinearRegressionPlot.swift in Sources */,
+				60B400E01BA19C7900D8DD80 /* ChiSquare.swift in Sources */,
+				60B4011A1BA19C7900D8DD80 /* MoleculeRange.swift in Sources */,
+				60B400F61BA19C7900D8DD80 /* Email.swift in Sources */,
+				60B401191BA19C7900D8DD80 /* MoleculeAnnotations.swift in Sources */,
+				60B401481BA19C7900D8DD80 /* SingleMoleculePlotTable.swift in Sources */,
+				60B400FC1BA19C7900D8DD80 /* FactorSummary.swift in Sources */,
+				60B401531BA19C7900D8DD80 /* Statistics.swift in Sources */,
+				60B400FE1BA19C7900D8DD80 /* Feedback.swift in Sources */,
+				60B401591BA19C7900D8DD80 /* TiledScrollView.swift in Sources */,
+				60B401231BA19C7900D8DD80 /* PairedPairingFactor.swift in Sources */,
+				60B401561BA19C7900D8DD80 /* TextFieldHeaderFooterView.swift in Sources */,
+				60B400EF1BA19C7900D8DD80 /* DocumentInteractionOpen.swift in Sources */,
+				60B401171BA19C7900D8DD80 /* MissingValues.swift in Sources */,
+				60B400F51BA19C7900D8DD80 /* EditProject.swift in Sources */,
+				60B400FD1BA19C7900D8DD80 /* FactorSummaryDetail.swift in Sources */,
+				60B400E81BA19C7900D8DD80 /* Csv.swift in Sources */,
+				60B401011BA19C7900D8DD80 /* FullPage.swift in Sources */,
+				60B400F01BA19C7900D8DD80 /* DocumentPickerExport.swift in Sources */,
+				60B4013A1BA19C7900D8DD80 /* Random.swift in Sources */,
 				6010034D1BA18744008A1FF9 /* AppDelegate.swift in Sources */,
-				60B400321BA1968600D8DD80 /* State.swift in Sources */,
+				60B4010A1BA19C7900D8DD80 /* InfoButton.swift in Sources */,
+				60B4012B1BA19C7900D8DD80 /* parse_values.swift in Sources */,
+				60B4011F1BA19C7900D8DD80 /* NormalDistribution.swift in Sources */,
+				60B401581BA19C7900D8DD80 /* TiledLayerView.swift in Sources */,
+				60B401091BA19C7900D8DD80 /* ImportData.swift in Sources */,
+				60B401291BA19C7900D8DD80 /* PairwiseTable.swift in Sources */,
+				60B401381BA19C7900D8DD80 /* PValueHistogramDelegate.swift in Sources */,
+				60B400E11BA19C7900D8DD80 /* ChiSquareTableMath.swift in Sources */,
+				60B401261BA19C7900D8DD80 /* PairTable.swift in Sources */,
+				60B400D51BA19C7900D8DD80 /* ActiveDataSet.swift in Sources */,
+				60B4010D1BA19C7900D8DD80 /* LinearRegressionDrawer.swift in Sources */,
+				60B4015A1BA19C7900D8DD80 /* Title.swift in Sources */,
+				60B401051BA19C7900D8DD80 /* HierarchicalClusteringSelection.swift in Sources */,
+				60B401511BA19C7900D8DD80 /* sqlite_triggers.swift in Sources */,
+				60B401131BA19C7900D8DD80 /* Manual.swift in Sources */,
+				60B401111BA19C7900D8DD80 /* LogarithmTransform.swift in Sources */,
+				60B401101BA19C7900D8DD80 /* LinearRegressionTable.swift in Sources */,
+				60B4015B1BA19C7900D8DD80 /* Txt.swift in Sources */,
+				60B400DB1BA19C7900D8DD80 /* AnovaTable.swift in Sources */,
+				60B401361BA19C7900D8DD80 /* ProjectNotes.swift in Sources */,
+				60B401351BA19C7900D8DD80 /* ProgressIndicator2.swift in Sources */,
+				60B400E71BA19C7900D8DD80 /* ContingencyTable.swift in Sources */,
+				60B4013E1BA19C7900D8DD80 /* ResultFiles.swift in Sources */,
+				60B400411BA19BED00D8DD80 /* AttributedString.swift in Sources */,
+				60B401281BA19C7900D8DD80 /* PairwiseLevel.swift in Sources */,
+				60B4015C1BA19C7900D8DD80 /* User.swift in Sources */,
+				60B401251BA19C7900D8DD80 /* PairedTable.swift in Sources */,
+				60B4013C1BA19C7900D8DD80 /* RemoveMolecules.swift in Sources */,
+				60B4014B1BA19C7900D8DD80 /* SpreadSheet.swift in Sources */,
+				60B401391BA19C7900D8DD80 /* Query.swift in Sources */,
+				60B400421BA19BED00D8DD80 /* NumberFormat.swift in Sources */,
+				60B4011D1BA19C7900D8DD80 /* NameColorTableView.swift in Sources */,
+				60B4010B1BA19C7900D8DD80 /* Layout.swift in Sources */,
+				60B401431BA19C7900D8DD80 /* SearchTableViewCell.swift in Sources */,
+				60B400DF1BA19C7900D8DD80 /* CenteredTableViewCell.swift in Sources */,
+				60B401371BA19C7900D8DD80 /* PValueHistogram.swift in Sources */,
+				60B400EB1BA19C7900D8DD80 /* DataSetTable.swift in Sources */,
+				60B400DE1BA19C7900D8DD80 /* CenteredHeaderFooterView.swift in Sources */,
+				60B401331BA19C7900D8DD80 /* PieChart.swift in Sources */,
+				60B401061BA19C7900D8DD80 /* Home.swift in Sources */,
+				60B400F11BA19C7900D8DD80 /* DocumentPickerImport.swift in Sources */,
+				60B401441BA19C7900D8DD80 /* SegmentedControlTableViewCell.swift in Sources */,
+				60B401001BA19C7900D8DD80 /* Forward.swift in Sources */,
+				60B400EA1BA19C7900D8DD80 /* DataSetSummary.swift in Sources */,
+				60B400DC1BA19C7900D8DD80 /* AppDelegate.swift in Sources */,
+				60B401141BA19C7900D8DD80 /* Math.swift in Sources */,
+				60B400EE1BA19C7900D8DD80 /* distributions.c in Sources */,
+				60B401151BA19C7900D8DD80 /* MatrixUtil.swift in Sources */,
+				60B400E21BA19C7900D8DD80 /* Color.swift in Sources */,
+				60B400ED1BA19C7900D8DD80 /* Distances.swift in Sources */,
+				60B401341BA19C7900D8DD80 /* ProgressIndicator.swift in Sources */,
+				60B4014C1BA19C7900D8DD80 /* sqlite_execute.swift in Sources */,
+				60B401501BA19C7900D8DD80 /* sqlite_tables.swift in Sources */,
+				60B401321BA19C7900D8DD80 /* PdfTxtButtons.swift in Sources */,
+				60B400D61BA19C7900D8DD80 /* ActivityIndicator.swift in Sources */,
+				60B400F91BA19C7900D8DD80 /* FactorChart.swift in Sources */,
+				60B401411BA19C7900D8DD80 /* SampleNormalization.swift in Sources */,
+				60B401311BA19C7900D8DD80 /* Pdf.swift in Sources */,
+				60B401301BA19C7900D8DD80 /* PCAPage.swift in Sources */,
+				60B401271BA19C7900D8DD80 /* PairwiseFactor.swift in Sources */,
+				60B401021BA19C7900D8DD80 /* HierarchicalClustering.swift in Sources */,
+				60B400F81BA19C7900D8DD80 /* FactorAssociation.swift in Sources */,
+				60B4014D1BA19C7900D8DD80 /* sqlite_import_export.swift in Sources */,
+				60B4013B1BA19C7900D8DD80 /* remove_molecules.c in Sources */,
+				60B400DA1BA19C7900D8DD80 /* AnovaPlot.swift in Sources */,
+				60B4012F1BA19C7900D8DD80 /* PCAaxis.swift in Sources */,
+				60B400F71BA19C7900D8DD80 /* ExportProjects.swift in Sources */,
+				60B4011C1BA19C7900D8DD80 /* MultiSegmentedControl.swift in Sources */,
+				60B401571BA19C7900D8DD80 /* TextFieldTableViewCell.swift in Sources */,
+				60B400E31BA19C7900D8DD80 /* ColorKey.swift in Sources */,
+				60B401471BA19C7900D8DD80 /* SingleMoleculePlot.swift in Sources */,
+				60B400E51BA19C7900D8DD80 /* ColorSelectionPicker.swift in Sources */,
+				60B400E41BA19C7900D8DD80 /* ColorSelectionLevel.swift in Sources */,
+				60B401241BA19C7900D8DD80 /* PairedPlot.swift in Sources */,
+				60B400E61BA19C7900D8DD80 /* Component.swift in Sources */,
+				60B4013D1BA19C7900D8DD80 /* RemoveSamples.swift in Sources */,
+				60B400391BA1982900D8DD80 /* state_init.swift in Sources */,
+				60B401401BA19C7900D8DD80 /* SampleNames.swift in Sources */,
+				60B400FF1BA19C7900D8DD80 /* Files.swift in Sources */,
+				60B4011E1BA19C7900D8DD80 /* NameDateTableViewCell.swift in Sources */,
+				60B401491BA19C7900D8DD80 /* SingleMoleculeTableViewCell.swift in Sources */,
+				60B400F21BA19C7900D8DD80 /* Drawing.swift in Sources */,
+				60B401521BA19C7900D8DD80 /* sqlite_views.swift in Sources */,
+				60B4010F1BA19C7900D8DD80 /* LinearRegressionSelection.swift in Sources */,
+				60B400DD1BA19C7900D8DD80 /* Back.swift in Sources */,
+				60B401161BA19C7900D8DD80 /* MissingValueHistogram.swift in Sources */,
+				60B401071BA19C7900D8DD80 /* HomeButton.swift in Sources */,
+				60B401461BA19C7900D8DD80 /* SingleMolecule.swift in Sources */,
+				60B4015D1BA19C7900D8DD80 /* values.c in Sources */,
+				60B401421BA19C7900D8DD80 /* SearchBar.swift in Sources */,
+				60B401181BA19C7900D8DD80 /* MissingValuesForSamples.swift in Sources */,
+				60B4012C1BA19C7900D8DD80 /* PCA.swift in Sources */,
+				60B400D71BA19C7900D8DD80 /* Alert.swift in Sources */,
+				60B400441BA19BED00D8DD80 /* String.swift in Sources */,
+				60B4003B1BA1983900D8DD80 /* State.swift in Sources */,
+				60B401451BA19C7900D8DD80 /* SingleChoiceTable.swift in Sources */,
+				60B401551BA19C7900D8DD80 /* TableViewCells.swift in Sources */,
+				60B401211BA19C7900D8DD80 /* PairedComparisonFactor.swift in Sources */,
+				60B400D81BA19C7900D8DD80 /* Anova.swift in Sources */,
+				60B4012E1BA19C7900D8DD80 /* PCA3Plot.swift in Sources */,
+				60B4010C1BA19C7900D8DD80 /* linear_regression.c in Sources */,
+				60B4012A1BA19C7900D8DD80 /* parse_values.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -412,12 +1010,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Amberbio/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.amberbio.Amberbio;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Amberbio-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -425,12 +1026,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Amberbio/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.amberbio.Amberbio;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Amberbio-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 			};
 			name = Release;
