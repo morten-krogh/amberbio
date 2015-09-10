@@ -161,8 +161,26 @@
 		60B4016C1BA1B60F00D8DD80 /* AmberbioLaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60B4016A1BA1B60F00D8DD80 /* AmberbioLaunchScreen.storyboard */; settings = {ASSET_TAGS = (); }; };
 		60B401711BA1BC1100D8DD80 /* manual.css in Resources */ = {isa = PBXBuildFile; fileRef = 60B4016F1BA1BC1100D8DD80 /* manual.css */; settings = {ASSET_TAGS = (); }; };
 		60B401721BA1BC1100D8DD80 /* manual.html in Resources */ = {isa = PBXBuildFile; fileRef = 60B401701BA1BC1100D8DD80 /* manual.html */; settings = {ASSET_TAGS = (); }; };
-		60B401761BA1BE2400D8DD80 /* DatabasePopulate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B401741BA1BE2400D8DD80 /* DatabasePopulate.swift */; settings = {ASSET_TAGS = (); }; };
-		60B401771BA1BE2400D8DD80 /* MakeDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B401751BA1BE2400D8DD80 /* MakeDatabase.swift */; settings = {ASSET_TAGS = (); }; };
+		60B4017F1BA1BEC400D8DD80 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B4017E1BA1BEC400D8DD80 /* AppDelegate.swift */; };
+		60B401811BA1BEC400D8DD80 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B401801BA1BEC400D8DD80 /* ViewController.swift */; };
+		60B401841BA1BEC400D8DD80 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60B401821BA1BEC400D8DD80 /* Main.storyboard */; };
+		60B401861BA1BEC400D8DD80 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 60B401851BA1BEC400D8DD80 /* Assets.xcassets */; };
+		60B401891BA1BEC400D8DD80 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60B401871BA1BEC400D8DD80 /* LaunchScreen.storyboard */; };
+		60B4018E1BA1BF3000D8DD80 /* MakeDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B401751BA1BE2400D8DD80 /* MakeDatabase.swift */; settings = {ASSET_TAGS = (); }; };
+		60B4018F1BA1BF3400D8DD80 /* DatabasePopulate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B401741BA1BE2400D8DD80 /* DatabasePopulate.swift */; settings = {ASSET_TAGS = (); }; };
+		60B401901BA1BF5400D8DD80 /* sqlite_execute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400C21BA19C7900D8DD80 /* sqlite_execute.swift */; settings = {ASSET_TAGS = (); }; };
+		60B401911BA1C21B00D8DD80 /* Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400AE1BA19C7900D8DD80 /* Query.swift */; settings = {ASSET_TAGS = (); }; };
+		60B401921BA1C22600D8DD80 /* sqlite_tables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400C61BA19C7900D8DD80 /* sqlite_tables.swift */; settings = {ASSET_TAGS = (); }; };
+		60B401931BA1C23100D8DD80 /* sqlite_indices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400C41BA19C7900D8DD80 /* sqlite_indices.swift */; settings = {ASSET_TAGS = (); }; };
+		60B401941BA1C23700D8DD80 /* sqlite_triggers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400C71BA19C7900D8DD80 /* sqlite_triggers.swift */; settings = {ASSET_TAGS = (); }; };
+		60B401951BA1C2A200D8DD80 /* sqlite_info.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400C51BA19C7900D8DD80 /* sqlite_info.swift */; settings = {ASSET_TAGS = (); }; };
+		60B401961BA1C2B900D8DD80 /* Files.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400721BA19C7900D8DD80 /* Files.swift */; settings = {ASSET_TAGS = (); }; };
+		60B401971BA1C2DB00D8DD80 /* Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400AF1BA19C7900D8DD80 /* Random.swift */; settings = {ASSET_TAGS = (); }; };
+		60B401981BA1C35D00D8DD80 /* Serialize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B4003F1BA19BED00D8DD80 /* Serialize.swift */; settings = {ASSET_TAGS = (); }; };
+		60B401991BA1C37100D8DD80 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400541BA19C7900D8DD80 /* Color.swift */; settings = {ASSET_TAGS = (); }; };
+		60B4019A1BA1C38800D8DD80 /* parse_values.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400A01BA19C7900D8DD80 /* parse_values.swift */; settings = {ASSET_TAGS = (); }; };
+		60B4019B1BA1C3F100D8DD80 /* parse_values.c in Sources */ = {isa = PBXBuildFile; fileRef = 60B4009E1BA19C7900D8DD80 /* parse_values.c */; settings = {ASSET_TAGS = (); }; };
+		60B4019C1BA1C48600D8DD80 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 60B401681BA1B2ED00D8DD80 /* libsqlite3.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -354,6 +372,13 @@
 		60B401701BA1BC1100D8DD80 /* manual.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = manual.html; path = manual/manual.html; sourceTree = "<group>"; };
 		60B401741BA1BE2400D8DD80 /* DatabasePopulate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DatabasePopulate.swift; path = Source/DatabasePopulate.swift; sourceTree = "<group>"; };
 		60B401751BA1BE2400D8DD80 /* MakeDatabase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MakeDatabase.swift; path = Source/MakeDatabase.swift; sourceTree = "<group>"; };
+		60B4017C1BA1BEC400D8DD80 /* AmberbioMakeDatabase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AmberbioMakeDatabase.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		60B4017E1BA1BEC400D8DD80 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		60B401801BA1BEC400D8DD80 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		60B401831BA1BEC400D8DD80 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		60B401851BA1BEC400D8DD80 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		60B401881BA1BEC400D8DD80 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		60B4018A1BA1BEC400D8DD80 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -379,6 +404,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		60B401791BA1BEC400D8DD80 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				60B4019C1BA1C48600D8DD80 /* libsqlite3.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -390,6 +423,7 @@
 				6010034B1BA18744008A1FF9 /* Amberbio */,
 				601003601BA18744008A1FF9 /* AmberbioTests */,
 				6010036B1BA18744008A1FF9 /* AmberbioUITests */,
+				60B4017D1BA1BEC400D8DD80 /* AmberbioMakeDatabase */,
 				6010034A1BA18744008A1FF9 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -400,6 +434,7 @@
 				601003491BA18744008A1FF9 /* Amberbio.app */,
 				6010035D1BA18744008A1FF9 /* AmberbioTests.xctest */,
 				601003681BA18744008A1FF9 /* AmberbioUITests.xctest */,
+				60B4017C1BA1BEC400D8DD80 /* AmberbioMakeDatabase.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -499,6 +534,7 @@
 				60B400671BA19C7900D8DD80 /* EditFactors.swift */,
 				60B400681BA19C7900D8DD80 /* EditProject.swift */,
 				60B400691BA19C7900D8DD80 /* Email.swift */,
+				60B400831BA19C7900D8DD80 /* LinearRegressionSelection.swift */,
 				60B4006A1BA19C7900D8DD80 /* ExportProjects.swift */,
 				60B4006B1BA19C7900D8DD80 /* FactorAssociation.swift */,
 				60B4006C1BA19C7900D8DD80 /* FactorChart.swift */,
@@ -522,7 +558,6 @@
 				60B4007E1BA19C7900D8DD80 /* Layout.swift */,
 				60B400811BA19C7900D8DD80 /* LinearRegressionDrawer.swift */,
 				60B400821BA19C7900D8DD80 /* LinearRegressionPlot.swift */,
-				60B400831BA19C7900D8DD80 /* LinearRegressionSelection.swift */,
 				60B400841BA19C7900D8DD80 /* LinearRegressionTable.swift */,
 				60B400851BA19C7900D8DD80 /* LogarithmTransform.swift */,
 				60B400861BA19C7900D8DD80 /* MannWhitney.swift */,
@@ -647,6 +682,19 @@
 			name = MakeDatabase;
 			sourceTree = "<group>";
 		};
+		60B4017D1BA1BEC400D8DD80 /* AmberbioMakeDatabase */ = {
+			isa = PBXGroup;
+			children = (
+				60B4017E1BA1BEC400D8DD80 /* AppDelegate.swift */,
+				60B401801BA1BEC400D8DD80 /* ViewController.swift */,
+				60B401821BA1BEC400D8DD80 /* Main.storyboard */,
+				60B401851BA1BEC400D8DD80 /* Assets.xcassets */,
+				60B401871BA1BEC400D8DD80 /* LaunchScreen.storyboard */,
+				60B4018A1BA1BEC400D8DD80 /* Info.plist */,
+			);
+			path = AmberbioMakeDatabase;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -703,6 +751,23 @@
 			productReference = 601003681BA18744008A1FF9 /* AmberbioUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		60B4017B1BA1BEC400D8DD80 /* AmberbioMakeDatabase */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 60B4018B1BA1BEC400D8DD80 /* Build configuration list for PBXNativeTarget "AmberbioMakeDatabase" */;
+			buildPhases = (
+				60B401781BA1BEC400D8DD80 /* Sources */,
+				60B401791BA1BEC400D8DD80 /* Frameworks */,
+				60B4017A1BA1BEC400D8DD80 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AmberbioMakeDatabase;
+			productName = AmberbioMakeDatabase;
+			productReference = 60B4017C1BA1BEC400D8DD80 /* AmberbioMakeDatabase.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -730,6 +795,9 @@
 						CreatedOnToolsVersion = 7.0;
 						TestTargetID = 601003481BA18744008A1FF9;
 					};
+					60B4017B1BA1BEC400D8DD80 = {
+						CreatedOnToolsVersion = 7.0;
+					};
 				};
 			};
 			buildConfigurationList = 601003441BA18744008A1FF9 /* Build configuration list for PBXProject "Amberbio" */;
@@ -748,6 +816,7 @@
 				601003481BA18744008A1FF9 /* Amberbio */,
 				6010035C1BA18744008A1FF9 /* AmberbioTests */,
 				601003671BA18744008A1FF9 /* AmberbioUITests */,
+				60B4017B1BA1BEC400D8DD80 /* AmberbioMakeDatabase */,
 			);
 		};
 /* End PBXProject section */
@@ -776,6 +845,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		60B4017A1BA1BEC400D8DD80 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				60B401891BA1BEC400D8DD80 /* LaunchScreen.storyboard in Resources */,
+				60B401861BA1BEC400D8DD80 /* Assets.xcassets in Resources */,
+				60B401841BA1BEC400D8DD80 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -814,7 +893,6 @@
 				60B400F61BA19C7900D8DD80 /* Email.swift in Sources */,
 				60B401191BA19C7900D8DD80 /* MoleculeAnnotations.swift in Sources */,
 				60B401481BA19C7900D8DD80 /* SingleMoleculePlotTable.swift in Sources */,
-				60B401771BA1BE2400D8DD80 /* MakeDatabase.swift in Sources */,
 				60B400FC1BA19C7900D8DD80 /* FactorSummary.swift in Sources */,
 				60B401531BA19C7900D8DD80 /* Statistics.swift in Sources */,
 				60B400FE1BA19C7900D8DD80 /* Feedback.swift in Sources */,
@@ -882,7 +960,6 @@
 				60B400E21BA19C7900D8DD80 /* Color.swift in Sources */,
 				60B400ED1BA19C7900D8DD80 /* Distances.swift in Sources */,
 				60B401341BA19C7900D8DD80 /* ProgressIndicator.swift in Sources */,
-				60B401761BA1BE2400D8DD80 /* DatabasePopulate.swift in Sources */,
 				60B4014C1BA19C7900D8DD80 /* sqlite_execute.swift in Sources */,
 				60B401501BA19C7900D8DD80 /* sqlite_tables.swift in Sources */,
 				60B401321BA19C7900D8DD80 /* PdfTxtButtons.swift in Sources */,
@@ -953,6 +1030,29 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		60B401781BA1BEC400D8DD80 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				60B4018F1BA1BF3400D8DD80 /* DatabasePopulate.swift in Sources */,
+				60B401961BA1C2B900D8DD80 /* Files.swift in Sources */,
+				60B401901BA1BF5400D8DD80 /* sqlite_execute.swift in Sources */,
+				60B401811BA1BEC400D8DD80 /* ViewController.swift in Sources */,
+				60B4017F1BA1BEC400D8DD80 /* AppDelegate.swift in Sources */,
+				60B401981BA1C35D00D8DD80 /* Serialize.swift in Sources */,
+				60B401911BA1C21B00D8DD80 /* Query.swift in Sources */,
+				60B4018E1BA1BF3000D8DD80 /* MakeDatabase.swift in Sources */,
+				60B4019A1BA1C38800D8DD80 /* parse_values.swift in Sources */,
+				60B4019B1BA1C3F100D8DD80 /* parse_values.c in Sources */,
+				60B401921BA1C22600D8DD80 /* sqlite_tables.swift in Sources */,
+				60B401991BA1C37100D8DD80 /* Color.swift in Sources */,
+				60B401971BA1C2DB00D8DD80 /* Random.swift in Sources */,
+				60B401931BA1C23100D8DD80 /* sqlite_indices.swift in Sources */,
+				60B401941BA1C23700D8DD80 /* sqlite_triggers.swift in Sources */,
+				60B401951BA1C2A200D8DD80 /* sqlite_info.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -983,6 +1083,22 @@
 				60B4016B1BA1B60F00D8DD80 /* Base */,
 			);
 			name = AmberbioLaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		60B401821BA1BEC400D8DD80 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				60B401831BA1BEC400D8DD80 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		60B401871BA1BEC400D8DD80 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				60B401881BA1BEC400D8DD80 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -1153,6 +1269,31 @@
 			};
 			name = Release;
 		};
+		60B4018C1BA1BEC400D8DD80 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = AmberbioMakeDatabase/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.amberbio.AmberbioMakeDatabase;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = "Amberbio-Bridging-Header.h";
+			};
+			name = Debug;
+		};
+		60B4018D1BA1BEC400D8DD80 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = AmberbioMakeDatabase/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.amberbio.AmberbioMakeDatabase;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1191,6 +1332,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		60B4018B1BA1BEC400D8DD80 /* Build configuration list for PBXNativeTarget "AmberbioMakeDatabase" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				60B4018C1BA1BEC400D8DD80 /* Debug */,
+				60B4018D1BA1BEC400D8DD80 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
