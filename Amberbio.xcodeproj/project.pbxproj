@@ -14,6 +14,7 @@
 		6010036D1BA18744008A1FF9 /* AmberbioUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6010036C1BA18744008A1FF9 /* AmberbioUITests.swift */; };
 		602708B81BA1CA3100672D54 /* iris_factors.txt in Resources */ = {isa = PBXBuildFile; fileRef = 602708B41BA1C98900672D54 /* iris_factors.txt */; settings = {ASSET_TAGS = (); }; };
 		602708B91BA1CA3500672D54 /* iris_values.txt in Resources */ = {isa = PBXBuildFile; fileRef = 602708B51BA1C98900672D54 /* iris_values.txt */; settings = {ASSET_TAGS = (); }; };
+		602708BB1BA1CCA600672D54 /* amberbio-main.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 602708BA1BA1CCA600672D54 /* amberbio-main.sqlite */; settings = {ASSET_TAGS = (); }; };
 		60B400391BA1982900D8DD80 /* state_init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400381BA1982900D8DD80 /* state_init.swift */; settings = {ASSET_TAGS = (); }; };
 		60B4003B1BA1983900D8DD80 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B4003A1BA1983900D8DD80 /* State.swift */; settings = {ASSET_TAGS = (); }; };
 		60B400411BA19BED00D8DD80 /* AttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B4003D1BA19BED00D8DD80 /* AttributedString.swift */; settings = {ASSET_TAGS = (); }; };
@@ -216,6 +217,7 @@
 		6010036E1BA18744008A1FF9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		602708B41BA1C98900672D54 /* iris_factors.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = iris_factors.txt; path = "demo-data/iris/iris_factors.txt"; sourceTree = "<group>"; };
 		602708B51BA1C98900672D54 /* iris_values.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = iris_values.txt; path = "demo-data/iris/iris_values.txt"; sourceTree = "<group>"; };
+		602708BA1BA1CCA600672D54 /* amberbio-main.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; name = "amberbio-main.sqlite"; path = "../../../Desktop/amberbio-main.sqlite"; sourceTree = "<group>"; };
 		60B400381BA1982900D8DD80 /* state_init.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = state_init.swift; path = Source/state_init.swift; sourceTree = "<group>"; };
 		60B4003A1BA1983900D8DD80 /* State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = State.swift; path = Source/State.swift; sourceTree = "<group>"; };
 		60B4003D1BA19BED00D8DD80 /* AttributedString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AttributedString.swift; path = Source/AttributedString.swift; sourceTree = "<group>"; };
@@ -422,6 +424,7 @@
 		601003401BA18744008A1FF9 = {
 			isa = PBXGroup;
 			children = (
+				602708BA1BA1CCA600672D54 /* amberbio-main.sqlite */,
 				60B401681BA1B2ED00D8DD80 /* libsqlite3.dylib */,
 				60B400361BA1980000D8DD80 /* Source */,
 				6010034B1BA18744008A1FF9 /* Amberbio */,
@@ -841,6 +844,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				60B401721BA1BC1100D8DD80 /* manual.html in Resources */,
+				602708BB1BA1CCA600672D54 /* amberbio-main.sqlite in Resources */,
 				601003541BA18744008A1FF9 /* Assets.xcassets in Resources */,
 				60B4016C1BA1B60F00D8DD80 /* AmberbioLaunchScreen.storyboard in Resources */,
 				601003521BA18744008A1FF9 /* Main.storyboard in Resources */,
