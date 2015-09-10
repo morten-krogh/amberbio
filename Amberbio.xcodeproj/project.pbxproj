@@ -181,6 +181,8 @@
 		60B4019A1BA1C38800D8DD80 /* parse_values.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400A01BA19C7900D8DD80 /* parse_values.swift */; settings = {ASSET_TAGS = (); }; };
 		60B4019B1BA1C3F100D8DD80 /* parse_values.c in Sources */ = {isa = PBXBuildFile; fileRef = 60B4009E1BA19C7900D8DD80 /* parse_values.c */; settings = {ASSET_TAGS = (); }; };
 		60B4019C1BA1C48600D8DD80 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 60B401681BA1B2ED00D8DD80 /* libsqlite3.dylib */; };
+		60B401A01BA1C79200D8DD80 /* iris_factors.txt in Resources */ = {isa = PBXBuildFile; fileRef = 60B4019E1BA1C79200D8DD80 /* iris_factors.txt */; settings = {ASSET_TAGS = (); }; };
+		60B401A11BA1C79200D8DD80 /* iris_values.txt in Resources */ = {isa = PBXBuildFile; fileRef = 60B4019F1BA1C79200D8DD80 /* iris_values.txt */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -379,6 +381,8 @@
 		60B401851BA1BEC400D8DD80 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		60B401881BA1BEC400D8DD80 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		60B4018A1BA1BEC400D8DD80 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		60B4019E1BA1C79200D8DD80 /* iris_factors.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = iris_factors.txt; path = data/iris/iris_factors.txt; sourceTree = "<group>"; };
+		60B4019F1BA1C79200D8DD80 /* iris_values.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = iris_values.txt; path = data/iris/iris_values.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -425,6 +429,7 @@
 				6010036B1BA18744008A1FF9 /* AmberbioUITests */,
 				60B4017D1BA1BEC400D8DD80 /* AmberbioMakeDatabase */,
 				6010034A1BA18744008A1FF9 /* Products */,
+				60B4019D1BA1C77200D8DD80 /* DemoData */,
 			);
 			sourceTree = "<group>";
 		};
@@ -695,6 +700,15 @@
 			path = AmberbioMakeDatabase;
 			sourceTree = "<group>";
 		};
+		60B4019D1BA1C77200D8DD80 /* DemoData */ = {
+			isa = PBXGroup;
+			children = (
+				60B4019E1BA1C79200D8DD80 /* iris_factors.txt */,
+				60B4019F1BA1C79200D8DD80 /* iris_values.txt */,
+			);
+			name = DemoData;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -826,10 +840,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				60B401A01BA1C79200D8DD80 /* iris_factors.txt in Resources */,
 				60B401721BA1BC1100D8DD80 /* manual.html in Resources */,
 				601003541BA18744008A1FF9 /* Assets.xcassets in Resources */,
 				60B4016C1BA1B60F00D8DD80 /* AmberbioLaunchScreen.storyboard in Resources */,
 				601003521BA18744008A1FF9 /* Main.storyboard in Resources */,
+				60B401A11BA1C79200D8DD80 /* iris_values.txt in Resources */,
 				60B401711BA1BC1100D8DD80 /* manual.css in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

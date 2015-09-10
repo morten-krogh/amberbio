@@ -6,6 +6,12 @@ func set_user_name(database database: Database, user_name: String) {
         sqlite_execute(database: database, query: query)
 }
 
+func set_email(database database: Database, email: String) {
+        let statement = "insert into email (email_address) values (:text0)"
+        let query = Query(statement: statement, bind_texts: [email])
+        sqlite_execute(database: database, query: query)
+}
+
 func insert_file_data(database database: Database, data: NSData) -> Int {
         let statement = "insert into file_data (file_bytes) values (:blob0)"
         let query = Query(statement: statement, bind_blobs: [data])
@@ -152,7 +158,7 @@ func insert_project(database database: Database, project_name: String, data_set_
         return project_id
 }
 
-func import_data(database database: Database, stem: String, project_name: String, include_factors: Bool = true, include_annotations: Bool = true) {
+func import_data(database database: Database, stem: String, project_name: String, include_factors: Bool = true, include_annotations: Bool = true) -> Int {
 
         var values = [] as [Double]
         var sample_names = [] as [String]
@@ -182,13 +188,14 @@ func import_data(database database: Database, stem: String, project_name: String
                 }
         }
 
-        insert_project(database: database, project_name: project_name, data_set_name: "Original data set", values: values, sample_names: sample_names, molecule_names: molecule_names, factor_names: factor_names, level_names_of_samples_array: level_names_of_samples_array, molecule_annotation_names: molecule_annotation_names, molecule_annotation_values_array: molecule_annotation_values_array, project_note_texts: [], project_note_types: [], project_note_user_names: [])
+        return insert_project(database: database, project_name: project_name, data_set_name: "Original data set", values: values, sample_names: sample_names, molecule_names: molecule_names, factor_names: factor_names, level_names_of_samples_array: level_names_of_samples_array, molecule_annotation_names: molecule_annotation_names, molecule_annotation_values_array: molecule_annotation_values_array, project_note_texts: [], project_note_types: [], project_note_user_names: [])
 }
 
 func database_populate(database database: Database) {
 
-        sqlite_set_info(database: database, version: 1, type: "amberbio app main database")
+        sqlite_set_info(database: database, version: 1, type: "Amberbio main database")
         set_user_name(database: database, user_name: "Morten Krogh")
+        set_email(database: database, email: "m@amberbio.com")
 
         let imported_file_data = [
                 "corrupt database".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!,
