@@ -197,78 +197,79 @@ func database_populate(database database: Database) {
         set_user_name(database: database, user_name: "Morten Krogh")
         set_email(database: database, email: "m@amberbio.com")
 
-        let imported_file_data = [
-                "corrupt database".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!,
-                "dummy\tsample 1\t sample 2\nmolecule 1\t12.3\t-9.8\nmolecule 2\t45.6\t-100.0\n".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!,
-                "dummy\tSample 1\tSample 2\tSample 3\ngender\tmale\tfemale\tmale\n".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!,
-                "id\tsequence\nMolecule 1\tACGT\nMolecule 2\tCCGG\n".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!,
-                "dummy\tsample 1\tsample 2\tsample 3\ncondition\tgood\tbad\tgood\n".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!,
-                "id\tfunction\tnetwork\nMolecule 1\tphosphase\tnetwork 1\nMolecule 2\ttranscription factor\t network 2\n".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!,
-                "dummy\tsample 1\nmol1\t12.12\t56\t45\n".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!,
-                "dummy\tSwiss Prot\nMolecule 2\tSwiss 2\nMolecule 3\t Swiss 3\nMolecule 1\tSwiss 1\n".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!
-        ]
+//        let imported_file_data = [
+//                "corrupt database".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!,
+//                "dummy\tsample 1\t sample 2\nmolecule 1\t12.3\t-9.8\nmolecule 2\t45.6\t-100.0\n".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!,
+//                "dummy\tSample 1\tSample 2\tSample 3\ngender\tmale\tfemale\tmale\n".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!,
+//                "id\tsequence\nMolecule 1\tACGT\nMolecule 2\tCCGG\n".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!,
+//                "dummy\tsample 1\tsample 2\tsample 3\ncondition\tgood\tbad\tgood\n".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!,
+//                "id\tfunction\tnetwork\nMolecule 1\tphosphase\tnetwork 1\nMolecule 2\ttranscription factor\t network 2\n".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!,
+//                "dummy\tsample 1\nmol1\t12.12\t56\t45\n".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!,
+//                "dummy\tSwiss Prot\nMolecule 2\tSwiss 2\nMolecule 3\t Swiss 3\nMolecule 1\tSwiss 1\n".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!
+//        ]
+//
+//        let imported_file_names = [
+//                "CorruptDatabase.sqlite",
+//                "ExpressionValues1.txt",
+//                "Samples3.txt",
+//                "Molecules4.txt",
+//                "Samples5.txt",
+//                "Molecules6.txt",
+//                "ExpressionValues7.txt",
+//                "Annotations1.txt"
+//        ]
+//
+//        for i in 0 ..< imported_file_data.count {
+//                insert_file(database: database, name: imported_file_names[i], type: "imported", data: imported_file_data[i])
+//        }
+//
+//        var project_name = "Project 1"
+//        var values = [12.3, -2.3, Double.NaN, 8.9, 3.7, Double.NaN] as [Double]
+//        var sample_names = ["Sample 1", "Sample 2", "Sample 3"]
+//        var molecule_names = ["Molecule 1", "Molecule 2"]
+//        var factor_names = ["Disease", "Gender", "Country", "Hospital"]
+//        var level_names_of_samples_array = [
+//                ["Diabetes", "Cancer", "Diabetes"],
+//                ["Male", "Female", "Female"],
+//                ["Denmark", "Sweden", "Iceland"],
+//                ["Lund", "Stockholm", "Lund"]
+//        ]
+//        var molecule_annotation_names = ["Unigene"]
+//        var molecule_annotation_values_array = [
+//                 ["Unigene 1", "Unigene 2"]
+//        ]
+//        var project_note_texts = ["Project note 1"]
+//        var project_note_types = ["auto"]
+//        var project_note_user_names = ["Morten Krogh"]
+//
+//        insert_project(database: database, project_name: project_name, data_set_name: "Original data set", values: values, sample_names: sample_names, molecule_names: molecule_names,factor_names: factor_names, level_names_of_samples_array: level_names_of_samples_array, molecule_annotation_names: molecule_annotation_names, molecule_annotation_values_array: molecule_annotation_values_array, project_note_texts: project_note_texts, project_note_types: project_note_types, project_note_user_names: project_note_user_names)
+//
+//        project_name = "Project 2"
+//        values = [12.3, -2.3, 4.5, 12.6, 8.9, 3.7, -10.2, -9.8, 67.5, -7.67, 3.4, 19.9, 1.2, 2.3, 3.4, 4.5, 5.6, -6.7, 7.8, -8.9] as [Double]
+//        sample_names = ["Sample 1", "Sample 2", "Sample 3", "Sample 4"]
+//        molecule_names = ["Molecule 1", "Molecule 2", "Molecule 3", "Molecule 4", "Molecule 5"]
+//        factor_names = ["Disease", "Gender", "Country", "Hospital", "Time"]
+//        level_names_of_samples_array = [
+//                ["Diabetes", "Cancer", "Diabetes", "Cancer"],
+//                ["Male", "Female", "Female", "Female"],
+//                ["Denmark", "Sweden", "Iceland", "Sweden"],
+//                ["Lund", "Stockholm", "Lund", "Copenhagen"],
+//                ["1 day", "3 days", "5days", "7 days"]
+//        ]
+//        molecule_annotation_names = []
+//        molecule_annotation_values_array = []
+//        project_note_texts = []
+//        project_note_types = []
+//        project_note_user_names = []
+//
+//        insert_project(database: database, project_name: project_name, data_set_name: "Original data set", values: values, sample_names: sample_names, molecule_names: molecule_names,factor_names: factor_names, level_names_of_samples_array: level_names_of_samples_array, molecule_annotation_names: molecule_annotation_names, molecule_annotation_values_array: molecule_annotation_values_array, project_note_texts: project_note_texts, project_note_types: project_note_types, project_note_user_names: project_note_user_names)
 
-        let imported_file_names = [
-                "CorruptDatabase.sqlite",
-                "ExpressionValues1.txt",
-                "Samples3.txt",
-                "Molecules4.txt",
-                "Samples5.txt",
-                "Molecules6.txt",
-                "ExpressionValues7.txt",
-                "Annotations1.txt"
-        ]
-
-        for i in 0 ..< imported_file_data.count {
-                insert_file(database: database, name: imported_file_names[i], type: "imported", data: imported_file_data[i])
-        }
-
-        var project_name = "Project 1"
-        var values = [12.3, -2.3, Double.NaN, 8.9, 3.7, Double.NaN] as [Double]
-        var sample_names = ["Sample 1", "Sample 2", "Sample 3"]
-        var molecule_names = ["Molecule 1", "Molecule 2"]
-        var factor_names = ["Disease", "Gender", "Country", "Hospital"]
-        var level_names_of_samples_array = [
-                ["Diabetes", "Cancer", "Diabetes"],
-                ["Male", "Female", "Female"],
-                ["Denmark", "Sweden", "Iceland"],
-                ["Lund", "Stockholm", "Lund"]
-        ]
-        var molecule_annotation_names = ["Unigene"]
-        var molecule_annotation_values_array = [
-                 ["Unigene 1", "Unigene 2"]
-        ]
-        var project_note_texts = ["Project note 1"]
-        var project_note_types = ["auto"]
-        var project_note_user_names = ["Morten Krogh"]
-
-        insert_project(database: database, project_name: project_name, data_set_name: "Original data set", values: values, sample_names: sample_names, molecule_names: molecule_names,factor_names: factor_names, level_names_of_samples_array: level_names_of_samples_array, molecule_annotation_names: molecule_annotation_names, molecule_annotation_values_array: molecule_annotation_values_array, project_note_texts: project_note_texts, project_note_types: project_note_types, project_note_user_names: project_note_user_names)
-
-        project_name = "Project 2"
-        values = [12.3, -2.3, 4.5, 12.6, 8.9, 3.7, -10.2, -9.8, 67.5, -7.67, 3.4, 19.9, 1.2, 2.3, 3.4, 4.5, 5.6, -6.7, 7.8, -8.9] as [Double]
-        sample_names = ["Sample 1", "Sample 2", "Sample 3", "Sample 4"]
-        molecule_names = ["Molecule 1", "Molecule 2", "Molecule 3", "Molecule 4", "Molecule 5"]
-        factor_names = ["Disease", "Gender", "Country", "Hospital", "Time"]
-        level_names_of_samples_array = [
-                ["Diabetes", "Cancer", "Diabetes", "Cancer"],
-                ["Male", "Female", "Female", "Female"],
-                ["Denmark", "Sweden", "Iceland", "Sweden"],
-                ["Lund", "Stockholm", "Lund", "Copenhagen"],
-                ["1 day", "3 days", "5days", "7 days"]
-        ]
-        molecule_annotation_names = []
-        molecule_annotation_values_array = []
-        project_note_texts = []
-        project_note_types = []
-        project_note_user_names = []
-
-        insert_project(database: database, project_name: project_name, data_set_name: "Original data set", values: values, sample_names: sample_names, molecule_names: molecule_names,factor_names: factor_names, level_names_of_samples_array: level_names_of_samples_array, molecule_annotation_names: molecule_annotation_names, molecule_annotation_values_array: molecule_annotation_values_array, project_note_texts: project_note_texts, project_note_types: project_note_types, project_note_user_names: project_note_user_names)
-
-        import_data(database: database, stem: "brca", project_name: "brca srm")
-        import_data(database: database, stem: "sox", project_name: "sox cell lines")
-        import_data(database: database, stem: "ovarian", project_name: "ovarian cancer")
-        import_data(database: database, stem: "mouse_brain", project_name: "mouse brain")
-        import_data(database: database, stem: "paired", project_name: "paired")
+        import_data(database: database, stem: "iris", project_name: "Iris flowers", include_factors: true, include_annotations: false)
+//        import_data(database: database, stem: "brca", project_name: "brca srm")
+//        import_data(database: database, stem: "sox", project_name: "sox cell lines")
+//        import_data(database: database, stem: "ovarian", project_name: "ovarian cancer")
+//        import_data(database: database, stem: "mouse_brain", project_name: "mouse brain")
+//        import_data(database: database, stem: "paired", project_name: "paired")
 //        import_data(database: database, stem: "xintela", project_name: "xintela", include_factors: false)
 //        import_data(database: database, stem: "xintela_special", project_name: "xintela_special", include_factors: false, include_annotations: false)
 }
