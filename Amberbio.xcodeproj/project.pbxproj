@@ -1,0 +1,506 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		6010034D1BA18744008A1FF9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6010034C1BA18744008A1FF9 /* AppDelegate.swift */; };
+		6010034F1BA18744008A1FF9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6010034E1BA18744008A1FF9 /* ViewController.swift */; };
+		601003521BA18744008A1FF9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 601003501BA18744008A1FF9 /* Main.storyboard */; };
+		601003541BA18744008A1FF9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 601003531BA18744008A1FF9 /* Assets.xcassets */; };
+		601003571BA18744008A1FF9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 601003551BA18744008A1FF9 /* LaunchScreen.storyboard */; };
+		601003621BA18744008A1FF9 /* AmberbioTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601003611BA18744008A1FF9 /* AmberbioTests.swift */; };
+		6010036D1BA18744008A1FF9 /* AmberbioUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6010036C1BA18744008A1FF9 /* AmberbioUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		6010035E1BA18744008A1FF9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 601003411BA18744008A1FF9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 601003481BA18744008A1FF9;
+			remoteInfo = Amberbio;
+		};
+		601003691BA18744008A1FF9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 601003411BA18744008A1FF9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 601003481BA18744008A1FF9;
+			remoteInfo = Amberbio;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		601003491BA18744008A1FF9 /* Amberbio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Amberbio.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6010034C1BA18744008A1FF9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		6010034E1BA18744008A1FF9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		601003511BA18744008A1FF9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		601003531BA18744008A1FF9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		601003561BA18744008A1FF9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		601003581BA18744008A1FF9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6010035D1BA18744008A1FF9 /* AmberbioTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AmberbioTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		601003611BA18744008A1FF9 /* AmberbioTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmberbioTests.swift; sourceTree = "<group>"; };
+		601003631BA18744008A1FF9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		601003681BA18744008A1FF9 /* AmberbioUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AmberbioUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6010036C1BA18744008A1FF9 /* AmberbioUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmberbioUITests.swift; sourceTree = "<group>"; };
+		6010036E1BA18744008A1FF9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		601003461BA18744008A1FF9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6010035A1BA18744008A1FF9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		601003651BA18744008A1FF9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		601003401BA18744008A1FF9 = {
+			isa = PBXGroup;
+			children = (
+				6010034B1BA18744008A1FF9 /* Amberbio */,
+				601003601BA18744008A1FF9 /* AmberbioTests */,
+				6010036B1BA18744008A1FF9 /* AmberbioUITests */,
+				6010034A1BA18744008A1FF9 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		6010034A1BA18744008A1FF9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				601003491BA18744008A1FF9 /* Amberbio.app */,
+				6010035D1BA18744008A1FF9 /* AmberbioTests.xctest */,
+				601003681BA18744008A1FF9 /* AmberbioUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6010034B1BA18744008A1FF9 /* Amberbio */ = {
+			isa = PBXGroup;
+			children = (
+				6010034C1BA18744008A1FF9 /* AppDelegate.swift */,
+				6010034E1BA18744008A1FF9 /* ViewController.swift */,
+				601003501BA18744008A1FF9 /* Main.storyboard */,
+				601003531BA18744008A1FF9 /* Assets.xcassets */,
+				601003551BA18744008A1FF9 /* LaunchScreen.storyboard */,
+				601003581BA18744008A1FF9 /* Info.plist */,
+			);
+			path = Amberbio;
+			sourceTree = "<group>";
+		};
+		601003601BA18744008A1FF9 /* AmberbioTests */ = {
+			isa = PBXGroup;
+			children = (
+				601003611BA18744008A1FF9 /* AmberbioTests.swift */,
+				601003631BA18744008A1FF9 /* Info.plist */,
+			);
+			path = AmberbioTests;
+			sourceTree = "<group>";
+		};
+		6010036B1BA18744008A1FF9 /* AmberbioUITests */ = {
+			isa = PBXGroup;
+			children = (
+				6010036C1BA18744008A1FF9 /* AmberbioUITests.swift */,
+				6010036E1BA18744008A1FF9 /* Info.plist */,
+			);
+			path = AmberbioUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		601003481BA18744008A1FF9 /* Amberbio */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 601003711BA18744008A1FF9 /* Build configuration list for PBXNativeTarget "Amberbio" */;
+			buildPhases = (
+				601003451BA18744008A1FF9 /* Sources */,
+				601003461BA18744008A1FF9 /* Frameworks */,
+				601003471BA18744008A1FF9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Amberbio;
+			productName = Amberbio;
+			productReference = 601003491BA18744008A1FF9 /* Amberbio.app */;
+			productType = "com.apple.product-type.application";
+		};
+		6010035C1BA18744008A1FF9 /* AmberbioTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 601003741BA18744008A1FF9 /* Build configuration list for PBXNativeTarget "AmberbioTests" */;
+			buildPhases = (
+				601003591BA18744008A1FF9 /* Sources */,
+				6010035A1BA18744008A1FF9 /* Frameworks */,
+				6010035B1BA18744008A1FF9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6010035F1BA18744008A1FF9 /* PBXTargetDependency */,
+			);
+			name = AmberbioTests;
+			productName = AmberbioTests;
+			productReference = 6010035D1BA18744008A1FF9 /* AmberbioTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		601003671BA18744008A1FF9 /* AmberbioUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 601003771BA18744008A1FF9 /* Build configuration list for PBXNativeTarget "AmberbioUITests" */;
+			buildPhases = (
+				601003641BA18744008A1FF9 /* Sources */,
+				601003651BA18744008A1FF9 /* Frameworks */,
+				601003661BA18744008A1FF9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6010036A1BA18744008A1FF9 /* PBXTargetDependency */,
+			);
+			name = AmberbioUITests;
+			productName = AmberbioUITests;
+			productReference = 601003681BA18744008A1FF9 /* AmberbioUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		601003411BA18744008A1FF9 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0700;
+				ORGANIZATIONNAME = "Morten Krogh";
+				TargetAttributes = {
+					601003481BA18744008A1FF9 = {
+						CreatedOnToolsVersion = 7.0;
+					};
+					6010035C1BA18744008A1FF9 = {
+						CreatedOnToolsVersion = 7.0;
+						TestTargetID = 601003481BA18744008A1FF9;
+					};
+					601003671BA18744008A1FF9 = {
+						CreatedOnToolsVersion = 7.0;
+						TestTargetID = 601003481BA18744008A1FF9;
+					};
+				};
+			};
+			buildConfigurationList = 601003441BA18744008A1FF9 /* Build configuration list for PBXProject "Amberbio" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 601003401BA18744008A1FF9;
+			productRefGroup = 6010034A1BA18744008A1FF9 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				601003481BA18744008A1FF9 /* Amberbio */,
+				6010035C1BA18744008A1FF9 /* AmberbioTests */,
+				601003671BA18744008A1FF9 /* AmberbioUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		601003471BA18744008A1FF9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				601003571BA18744008A1FF9 /* LaunchScreen.storyboard in Resources */,
+				601003541BA18744008A1FF9 /* Assets.xcassets in Resources */,
+				601003521BA18744008A1FF9 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6010035B1BA18744008A1FF9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		601003661BA18744008A1FF9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		601003451BA18744008A1FF9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6010034F1BA18744008A1FF9 /* ViewController.swift in Sources */,
+				6010034D1BA18744008A1FF9 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		601003591BA18744008A1FF9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				601003621BA18744008A1FF9 /* AmberbioTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		601003641BA18744008A1FF9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6010036D1BA18744008A1FF9 /* AmberbioUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		6010035F1BA18744008A1FF9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 601003481BA18744008A1FF9 /* Amberbio */;
+			targetProxy = 6010035E1BA18744008A1FF9 /* PBXContainerItemProxy */;
+		};
+		6010036A1BA18744008A1FF9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 601003481BA18744008A1FF9 /* Amberbio */;
+			targetProxy = 601003691BA18744008A1FF9 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		601003501BA18744008A1FF9 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				601003511BA18744008A1FF9 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		601003551BA18744008A1FF9 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				601003561BA18744008A1FF9 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		6010036F1BA18744008A1FF9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		601003701BA18744008A1FF9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		601003721BA18744008A1FF9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Amberbio/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.amberbio.Amberbio;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		601003731BA18744008A1FF9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Amberbio/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.amberbio.Amberbio;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		601003751BA18744008A1FF9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = AmberbioTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.amberbio.AmberbioTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Amberbio.app/Amberbio";
+			};
+			name = Debug;
+		};
+		601003761BA18744008A1FF9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = AmberbioTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.amberbio.AmberbioTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Amberbio.app/Amberbio";
+			};
+			name = Release;
+		};
+		601003781BA18744008A1FF9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = AmberbioUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.amberbio.AmberbioUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = Amberbio;
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		601003791BA18744008A1FF9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = AmberbioUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.amberbio.AmberbioUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = Amberbio;
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		601003441BA18744008A1FF9 /* Build configuration list for PBXProject "Amberbio" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6010036F1BA18744008A1FF9 /* Debug */,
+				601003701BA18744008A1FF9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		601003711BA18744008A1FF9 /* Build configuration list for PBXNativeTarget "Amberbio" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				601003721BA18744008A1FF9 /* Debug */,
+				601003731BA18744008A1FF9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		601003741BA18744008A1FF9 /* Build configuration list for PBXNativeTarget "AmberbioTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				601003751BA18744008A1FF9 /* Debug */,
+				601003761BA18744008A1FF9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		601003771BA18744008A1FF9 /* Build configuration list for PBXNativeTarget "AmberbioUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				601003781BA18744008A1FF9 /* Debug */,
+				601003791BA18744008A1FF9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 601003411BA18744008A1FF9 /* Project object */;
+}
