@@ -159,6 +159,7 @@
 		60B401631BA1A1D200D8DD80 /* ColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B401611BA1A1D200D8DD80 /* ColorPicker.swift */; settings = {ASSET_TAGS = (); }; };
 		60B401661BA1A20400D8DD80 /* ColorGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B401641BA1A20400D8DD80 /* ColorGrid.swift */; settings = {ASSET_TAGS = (); }; };
 		60B401671BA1A20400D8DD80 /* ColorSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B401651BA1A20400D8DD80 /* ColorSlider.swift */; settings = {ASSET_TAGS = (); }; };
+		60B401691BA1B2ED00D8DD80 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 60B401681BA1B2ED00D8DD80 /* libsqlite3.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -345,6 +346,7 @@
 		60B401611BA1A1D200D8DD80 /* ColorPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ColorPicker.swift; path = Source/ColorPicker.swift; sourceTree = "<group>"; };
 		60B401641BA1A20400D8DD80 /* ColorGrid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ColorGrid.swift; path = Source/ColorGrid.swift; sourceTree = "<group>"; };
 		60B401651BA1A20400D8DD80 /* ColorSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ColorSlider.swift; path = Source/ColorSlider.swift; sourceTree = "<group>"; };
+		60B401681BA1B2ED00D8DD80 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = ../../../../../usr/lib/libsqlite3.dylib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -352,6 +354,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				60B401691BA1B2ED00D8DD80 /* libsqlite3.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -375,6 +378,7 @@
 		601003401BA18744008A1FF9 = {
 			isa = PBXGroup;
 			children = (
+				60B401681BA1B2ED00D8DD80 /* libsqlite3.dylib */,
 				60B400361BA1980000D8DD80 /* Source */,
 				6010034B1BA18744008A1FF9 /* Amberbio */,
 				601003601BA18744008A1FF9 /* AmberbioTests */,
