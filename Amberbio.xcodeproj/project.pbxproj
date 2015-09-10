@@ -477,9 +477,17 @@
 			path = AmberbioUITests;
 			sourceTree = "<group>";
 		};
+		602708C11BA1EBDC00672D54 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Components;
+			sourceTree = "<group>";
+		};
 		60B400361BA1980000D8DD80 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				602708C11BA1EBDC00672D54 /* Components */,
 				60B400371BA1981A00D8DD80 /* State */,
 				60B4015E1BA19D8900D8DD80 /* SQLite */,
 				60B4003C1BA19B0F00D8DD80 /* Functions */,

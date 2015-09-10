@@ -47,7 +47,7 @@ func hex_to_cgfloat(hex hex: String) -> CGFloat {
 
 func color_from_hex(hex hex: String) -> UIColor {
         let red = hex_to_cgfloat(hex: hex.substringWithRange(hex.startIndex ..< hex.startIndex.advancedBy(2)))
-        let green = hex_to_cgfloat(hex: hex.substringWithRange(hex.startIndex.advancedBy(2) ..< hex.startIndex.advancedBy(2)))
+        let green = hex_to_cgfloat(hex: hex.substringWithRange(hex.startIndex.advancedBy(2) ..< hex.startIndex.advancedBy(4)))
         let blue = hex_to_cgfloat(hex: hex.substringWithRange(hex.startIndex.advancedBy(4) ..< hex.startIndex.advancedBy(6)))
         return UIColor(red: red, green: green, blue: blue, alpha: 1)
 }
