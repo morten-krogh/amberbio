@@ -11,7 +11,6 @@
 		6010034F1BA18744008A1FF9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6010034E1BA18744008A1FF9 /* ViewController.swift */; };
 		601003521BA18744008A1FF9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 601003501BA18744008A1FF9 /* Main.storyboard */; };
 		601003541BA18744008A1FF9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 601003531BA18744008A1FF9 /* Assets.xcassets */; };
-		601003571BA18744008A1FF9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 601003551BA18744008A1FF9 /* LaunchScreen.storyboard */; };
 		601003621BA18744008A1FF9 /* AmberbioTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601003611BA18744008A1FF9 /* AmberbioTests.swift */; };
 		6010036D1BA18744008A1FF9 /* AmberbioUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6010036C1BA18744008A1FF9 /* AmberbioUITests.swift */; };
 		60B400391BA1982900D8DD80 /* state_init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400381BA1982900D8DD80 /* state_init.swift */; settings = {ASSET_TAGS = (); }; };
@@ -160,6 +159,7 @@
 		60B401661BA1A20400D8DD80 /* ColorGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B401641BA1A20400D8DD80 /* ColorGrid.swift */; settings = {ASSET_TAGS = (); }; };
 		60B401671BA1A20400D8DD80 /* ColorSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B401651BA1A20400D8DD80 /* ColorSlider.swift */; settings = {ASSET_TAGS = (); }; };
 		60B401691BA1B2ED00D8DD80 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 60B401681BA1B2ED00D8DD80 /* libsqlite3.dylib */; };
+		60B4016C1BA1B60F00D8DD80 /* AmberbioLaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60B4016A1BA1B60F00D8DD80 /* AmberbioLaunchScreen.storyboard */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -185,7 +185,6 @@
 		6010034E1BA18744008A1FF9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		601003511BA18744008A1FF9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		601003531BA18744008A1FF9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		601003561BA18744008A1FF9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		601003581BA18744008A1FF9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6010035D1BA18744008A1FF9 /* AmberbioTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AmberbioTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		601003611BA18744008A1FF9 /* AmberbioTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmberbioTests.swift; sourceTree = "<group>"; };
@@ -347,6 +346,7 @@
 		60B401641BA1A20400D8DD80 /* ColorGrid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ColorGrid.swift; path = Source/ColorGrid.swift; sourceTree = "<group>"; };
 		60B401651BA1A20400D8DD80 /* ColorSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ColorSlider.swift; path = Source/ColorSlider.swift; sourceTree = "<group>"; };
 		60B401681BA1B2ED00D8DD80 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = ../../../../../usr/lib/libsqlite3.dylib; sourceTree = "<group>"; };
+		60B4016B1BA1B60F00D8DD80 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/AmberbioLaunchScreen.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -405,7 +405,7 @@
 				6010034E1BA18744008A1FF9 /* ViewController.swift */,
 				601003501BA18744008A1FF9 /* Main.storyboard */,
 				601003531BA18744008A1FF9 /* Assets.xcassets */,
-				601003551BA18744008A1FF9 /* LaunchScreen.storyboard */,
+				60B4016A1BA1B60F00D8DD80 /* AmberbioLaunchScreen.storyboard */,
 				601003581BA18744008A1FF9 /* Info.plist */,
 			);
 			path = Amberbio;
@@ -725,8 +725,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				601003571BA18744008A1FF9 /* LaunchScreen.storyboard in Resources */,
 				601003541BA18744008A1FF9 /* Assets.xcassets in Resources */,
+				60B4016C1BA1B60F00D8DD80 /* AmberbioLaunchScreen.storyboard in Resources */,
 				601003521BA18744008A1FF9 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -942,12 +942,12 @@
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		601003551BA18744008A1FF9 /* LaunchScreen.storyboard */ = {
+		60B4016A1BA1B60F00D8DD80 /* AmberbioLaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				601003561BA18744008A1FF9 /* Base */,
+				60B4016B1BA1B60F00D8DD80 /* Base */,
 			);
-			name = LaunchScreen.storyboard;
+			name = AmberbioLaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
