@@ -12,6 +12,8 @@
 		601003541BA18744008A1FF9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 601003531BA18744008A1FF9 /* Assets.xcassets */; };
 		601003621BA18744008A1FF9 /* AmberbioTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601003611BA18744008A1FF9 /* AmberbioTests.swift */; };
 		6010036D1BA18744008A1FF9 /* AmberbioUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6010036C1BA18744008A1FF9 /* AmberbioUITests.swift */; };
+		602708B81BA1CA3100672D54 /* iris_factors.txt in Resources */ = {isa = PBXBuildFile; fileRef = 602708B41BA1C98900672D54 /* iris_factors.txt */; settings = {ASSET_TAGS = (); }; };
+		602708B91BA1CA3500672D54 /* iris_values.txt in Resources */ = {isa = PBXBuildFile; fileRef = 602708B51BA1C98900672D54 /* iris_values.txt */; settings = {ASSET_TAGS = (); }; };
 		60B400391BA1982900D8DD80 /* state_init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400381BA1982900D8DD80 /* state_init.swift */; settings = {ASSET_TAGS = (); }; };
 		60B4003B1BA1983900D8DD80 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B4003A1BA1983900D8DD80 /* State.swift */; settings = {ASSET_TAGS = (); }; };
 		60B400411BA19BED00D8DD80 /* AttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B4003D1BA19BED00D8DD80 /* AttributedString.swift */; settings = {ASSET_TAGS = (); }; };
@@ -181,8 +183,6 @@
 		60B4019A1BA1C38800D8DD80 /* parse_values.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400A01BA19C7900D8DD80 /* parse_values.swift */; settings = {ASSET_TAGS = (); }; };
 		60B4019B1BA1C3F100D8DD80 /* parse_values.c in Sources */ = {isa = PBXBuildFile; fileRef = 60B4009E1BA19C7900D8DD80 /* parse_values.c */; settings = {ASSET_TAGS = (); }; };
 		60B4019C1BA1C48600D8DD80 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 60B401681BA1B2ED00D8DD80 /* libsqlite3.dylib */; };
-		60B401A01BA1C79200D8DD80 /* iris_factors.txt in Resources */ = {isa = PBXBuildFile; fileRef = 60B4019E1BA1C79200D8DD80 /* iris_factors.txt */; settings = {ASSET_TAGS = (); }; };
-		60B401A11BA1C79200D8DD80 /* iris_values.txt in Resources */ = {isa = PBXBuildFile; fileRef = 60B4019F1BA1C79200D8DD80 /* iris_values.txt */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -214,6 +214,8 @@
 		601003681BA18744008A1FF9 /* AmberbioUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AmberbioUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6010036C1BA18744008A1FF9 /* AmberbioUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmberbioUITests.swift; sourceTree = "<group>"; };
 		6010036E1BA18744008A1FF9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		602708B41BA1C98900672D54 /* iris_factors.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = iris_factors.txt; path = "demo-data/iris/iris_factors.txt"; sourceTree = "<group>"; };
+		602708B51BA1C98900672D54 /* iris_values.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = iris_values.txt; path = "demo-data/iris/iris_values.txt"; sourceTree = "<group>"; };
 		60B400381BA1982900D8DD80 /* state_init.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = state_init.swift; path = Source/state_init.swift; sourceTree = "<group>"; };
 		60B4003A1BA1983900D8DD80 /* State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = State.swift; path = Source/State.swift; sourceTree = "<group>"; };
 		60B4003D1BA19BED00D8DD80 /* AttributedString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AttributedString.swift; path = Source/AttributedString.swift; sourceTree = "<group>"; };
@@ -381,8 +383,6 @@
 		60B401851BA1BEC400D8DD80 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		60B401881BA1BEC400D8DD80 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		60B4018A1BA1BEC400D8DD80 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		60B4019E1BA1C79200D8DD80 /* iris_factors.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = iris_factors.txt; path = data/iris/iris_factors.txt; sourceTree = "<group>"; };
-		60B4019F1BA1C79200D8DD80 /* iris_values.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = iris_values.txt; path = data/iris/iris_values.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -479,10 +479,10 @@
 		60B400361BA1980000D8DD80 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				60B4015F1BA19E7F00D8DD80 /* CFunctions */,
 				60B400371BA1981A00D8DD80 /* State */,
 				60B4015E1BA19D8900D8DD80 /* SQLite */,
 				60B4003C1BA19B0F00D8DD80 /* Functions */,
+				60B4015F1BA19E7F00D8DD80 /* CFunctions */,
 				60B4016E1BA1BBFD00D8DD80 /* Manual */,
 				60B401731BA1BDE800D8DD80 /* MakeDatabase */,
 			);
@@ -703,8 +703,8 @@
 		60B4019D1BA1C77200D8DD80 /* DemoData */ = {
 			isa = PBXGroup;
 			children = (
-				60B4019E1BA1C79200D8DD80 /* iris_factors.txt */,
-				60B4019F1BA1C79200D8DD80 /* iris_values.txt */,
+				602708B41BA1C98900672D54 /* iris_factors.txt */,
+				602708B51BA1C98900672D54 /* iris_values.txt */,
 			);
 			name = DemoData;
 			sourceTree = "<group>";
@@ -840,12 +840,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				60B401A01BA1C79200D8DD80 /* iris_factors.txt in Resources */,
 				60B401721BA1BC1100D8DD80 /* manual.html in Resources */,
 				601003541BA18744008A1FF9 /* Assets.xcassets in Resources */,
 				60B4016C1BA1B60F00D8DD80 /* AmberbioLaunchScreen.storyboard in Resources */,
 				601003521BA18744008A1FF9 /* Main.storyboard in Resources */,
-				60B401A11BA1C79200D8DD80 /* iris_values.txt in Resources */,
 				60B401711BA1BC1100D8DD80 /* manual.css in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -869,7 +867,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				60B401891BA1BEC400D8DD80 /* LaunchScreen.storyboard in Resources */,
+				602708B91BA1CA3500672D54 /* iris_values.txt in Resources */,
 				60B401861BA1BEC400D8DD80 /* Assets.xcassets in Resources */,
+				602708B81BA1CA3100672D54 /* iris_factors.txt in Resources */,
 				60B401841BA1BEC400D8DD80 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1356,6 +1356,7 @@
 				60B4018D1BA1BEC400D8DD80 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -1,7 +1,7 @@
 import Foundation
 
 func make_database() {
-        let database_file_name = "bioinformatics.sqlite"
+        let database_file_name = "amberbio-main.sqlite"
         let database_path = file_app_directory_url(file_name: database_file_name).path!
 
         var database: Database!
