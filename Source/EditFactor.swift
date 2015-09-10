@@ -38,7 +38,7 @@ class EditFactor: Component, UITextFieldDelegate, SingleChoiceTableDelegate {
         let message_label = UILabel()
         let edit_level_text_field = UITextField()
         let delete_level_button = UIButton(type: .System)
-        let single_choice_table = SingleChoiceTable(frame: CGRect.zeroRect)
+        let single_choice_table = SingleChoiceTable(frame: CGRect.zero)
 
         var edit_level_index: Int?
 

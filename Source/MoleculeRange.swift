@@ -20,7 +20,7 @@ class MoleculeRange: UIView {
 
         init(delegate: MoleculeRangeDelegate) {
                 self.delegate = delegate
-                super.init(frame: CGRect.zeroRect)
+                super.init(frame: CGRect.zero)
 
                 info_label.textAlignment = .Center
 

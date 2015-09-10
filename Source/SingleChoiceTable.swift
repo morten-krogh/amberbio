@@ -17,9 +17,9 @@ class SingleChoiceTable: UIView, TiledScrollViewDelegate {
         var choices: [Int] = [] { didSet { propertiesDidChange() } }      // choices.count == rowNames.count. Each choice is in [0, colNames.count - 1]
         var delegate: SingleChoiceTableDelegate?
 
-        let tiledScrollView = TiledScrollView(frame: CGRect.zeroRect)
+        let tiledScrollView = TiledScrollView(frame: CGRect.zero)
 
-        var content_size = CGSize.zeroSize
+        var content_size = CGSize.zero
         var maximum_zoom_scale = 1.0 as CGFloat
         var minimum_zoom_scale = 1.0 as CGFloat
 

@@ -40,6 +40,6 @@ class TiledLayerView: UIView {
 
         override func drawRect(rect: CGRect) {
                 let ctx = UIGraphicsGetCurrentContext()
-                delegate?.draw(context: ctx, rect: rect)
+                delegate?.draw(context: ctx!, rect: rect)
         }
 }

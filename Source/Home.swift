@@ -143,7 +143,7 @@ class Home: Component, UICollectionViewDataSource, UICollectionViewDelegate, UIC
 
                 let collection_view_layout = UICollectionViewFlowLayout()
 
-                collection_view = UICollectionView(frame: CGRect.zeroRect, collectionViewLayout: collection_view_layout)
+                collection_view = UICollectionView(frame: CGRect.zero, collectionViewLayout: collection_view_layout)
 
                 collection_view.backgroundColor = UIColor.whiteColor()
                 collection_view.registerClass(HomeCellView.self, forCellWithReuseIdentifier: "cell")

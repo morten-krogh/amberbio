@@ -22,7 +22,7 @@ class PValueHistogram: Component {
         var p_value_histogram_state: PValueHistogramState!
 
         let info_label = UILabel()
-        let tiled_scroll_view = TiledScrollView(frame: CGRect.zeroRect)
+        let tiled_scroll_view = TiledScrollView(frame: CGRect.zero)
         let p_value_histogram_delegate = PValueHistogramDelegate()
 
         override func viewDidLoad() {

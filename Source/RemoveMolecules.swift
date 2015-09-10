@@ -105,16 +105,16 @@ class RemoveMolecules: Component, UITextFieldDelegate {
 
                 let margin = 20 as CGFloat
                 let text_field_width = 70 as CGFloat
-                let text_field_height = missing_values_field.sizeThatFits(CGSize.zeroSize).height
+                let text_field_height = missing_values_field.sizeThatFits(CGSize.zero).height
 
                 let width = view.frame.width
                 var origin_y = margin
 
-                var height = create_data_set_button.sizeThatFits(CGSize.zeroSize).height
+                var height = create_data_set_button.sizeThatFits(CGSize.zero).height
                 create_data_set_button.frame = CGRect(x: 0, y: origin_y, width: width, height: height)
                 origin_y += height + margin
 
-                height = number_of_molecules_label.sizeThatFits(CGSize.zeroSize).height
+                height = number_of_molecules_label.sizeThatFits(CGSize.zero).height
                 number_of_molecules_label.frame = CGRect(x: 0, y: origin_y, width: width, height: height)
                 origin_y += height + 3 * margin
 

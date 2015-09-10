@@ -116,8 +116,8 @@ class MissingValuesForSamples: Component, MissingValueHistogramDelegate {
         let scroll_view_segmented_control = UIScrollView()
         var segmented_control: UISegmentedControl?
 
-        let tiled_scroll_view_histogram = TiledScrollView(frame: CGRect.zeroRect)
-        var histogram_rect = CGRect.zeroRect
+        let tiled_scroll_view_histogram = TiledScrollView(frame: CGRect.zero)
+        var histogram_rect = CGRect.zero
         var histogram: MissingValueHistogram?
 
         override func viewDidLoad() {
@@ -137,7 +137,7 @@ class MissingValuesForSamples: Component, MissingValueHistogramDelegate {
                         let segmented_rect = CGRect(x: 0, y: 0, width: view.frame.width, height: segmented_control.frame.height + 2 * top_margin)
                         scroll_view_segmented_control.frame = layout_centered_frame(contentSize: segmented_control.frame.size, rect: segmented_rect)
                         scroll_view_segmented_control.contentSize = segmented_control.bounds.size
-                        segmented_control.frame.origin = CGPoint.zeroPoint
+                        segmented_control.frame.origin = CGPoint.zero
 
                         histogram_rect = CGRect(x: side_margin, y: segmented_rect.height, width: view.frame.width - 2 * side_margin, height: view.frame.height - segmented_rect.height)
 

@@ -15,7 +15,7 @@ class FactorAssociation: Component {
         var p_values = [] as [[Double]]
 
         var failure_label = UILabel()
-        let tiled_scroll_view = TiledScrollView(frame: CGRect.zeroRect)
+        let tiled_scroll_view = TiledScrollView(frame: CGRect.zero)
         var table_of_attributed_strings: TableOfAttributedStrings?
 
         override func viewDidLoad() {

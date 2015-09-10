@@ -18,9 +18,9 @@ class NameColorTableView: UIView, TiledScrollViewDelegate {
                 }
         }
 
-        let tiledScrollView = TiledScrollView(frame: CGRect.zeroRect)
+        let tiledScrollView = TiledScrollView(frame: CGRect.zero)
 
-        var contentSize = CGSize.zeroSize
+        var contentSize = CGSize.zero
         var maximumZoomScale = 1.0 as CGFloat
         var minimumZoomScale = 1.0 as CGFloat
         var rowHeight = 0.0 as CGFloat
@@ -44,7 +44,7 @@ class NameColorTableView: UIView, TiledScrollViewDelegate {
                         maximumZoomScale = 1.0
                         tiledScrollView.delegate = self
                 } else {
-                        contentSize = CGSize.zeroSize
+                        contentSize = CGSize.zero
                         maximumZoomScale = 1.0 as CGFloat
                         minimumZoomScale = 1.0 as CGFloat
                         rowHeight = 0.0 as CGFloat
@@ -83,10 +83,10 @@ class NameColorTableView: UIView, TiledScrollViewDelegate {
         }
 
         func drawPDF() {
-                let rect = CGRect(origin: CGPoint.zeroPoint, size: contentSize)
+                let rect = CGRect(origin: CGPoint.zero, size: contentSize)
                 UIGraphicsBeginPDFPageWithInfo(rect, nil)
                 let context = UIGraphicsGetCurrentContext()
-                draw(context: context, rect: rect)
+                draw(context: context!, rect: rect)
         }
 
         func draw(context ctx: CGContext, rect: CGRect) {

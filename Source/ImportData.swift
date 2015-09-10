@@ -133,7 +133,7 @@ class ImportData: Component, UITableViewDataSource, UITableViewDelegate {
         func import_projects(row row: Int) {
                 let file_id = file_ids[row]
                 let (file_name, file_data) = state.select_file_name_and_file_data(file_id: file_id)!
-                let database_path = file_create_temp_path(content: file_data)
+                let database_path = file_create_temp_file_url(content: file_data).path!
                 let import_database = sqlite_open(database_path: database_path)!
                 if let (_, type) = sqlite_info(database: import_database) where type == "exported database" {
                         sqlite_begin(database: state.database)
@@ -569,9 +569,9 @@ func parse_find_separator(string string: String) -> Character? {
                         return "\t"
                 case ",":
                         comma_found = true
-                        current_index = advance(current_index, 1)
+                        current_index = current_index.advancedBy(1)
                 default:
-                        current_index = advance(current_index, 1)
+                        current_index = current_index.advancedBy(1)
                 }
         }
         return comma_found ? "," : nil
@@ -589,13 +589,13 @@ func parse_separator_separated_string(string string: String, separator: Characte
                 case separator:
                         let cell = trim(string: string.substringWithRange(previous_index ..< current_index))
                         current_row.append(cell)
-                        current_index = advance(current_index, 1)
+                        current_index = current_index.advancedBy(1)
                         previous_index = current_index
                         charIsCarriageReturn = false
                 case "\r":
                         let cell = trim(string: string.substringWithRange(previous_index ..< current_index))
                         current_row.append(cell)
-                        current_index = advance(current_index, 1)
+                        current_index = current_index.advancedBy(1)
                         previous_index = current_index
                         charIsCarriageReturn = true
                 case "\n":
@@ -605,11 +605,11 @@ func parse_separator_separated_string(string string: String, separator: Characte
                         }
                         result.append(current_row)
                         current_row = []
-                        current_index = advance(current_index, 1)
+                        current_index = current_index.advancedBy(1)
                         previous_index = current_index
                         charIsCarriageReturn = false
                 default:
-                        current_index = advance(current_index, 1)
+                        current_index = current_index.advancedBy(1)
                 }
         }
 

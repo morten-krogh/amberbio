@@ -4,14 +4,14 @@ let documentPickerExport = DocumentPickerExport()
 
 class DocumentPickerExport: NSObject, UIDocumentMenuDelegate, UIDocumentPickerDelegate {
 
-        var tempURL: NSURL?
+        var temp_url: NSURL?
         var fromViewController: UIViewController?
 
         func exportResultFile(fileName fileName: String, fileData: NSData, fromViewController: UIViewController, sourceView: UIView) {
                 self.fromViewController = fromViewController
-                tempURL = file_create_temp(file_name: fileName, content: fileData)
-                if let tempURL = tempURL {
-                        let exportMenu = UIDocumentMenuViewController(URL: tempURL, inMode: UIDocumentPickerMode.ExportToService)
+                temp_url = file_create_temp_file_url(file_name: fileName, content: fileData)
+                if let temp_url = temp_url {
+                        let exportMenu = UIDocumentMenuViewController(URL: temp_url, inMode: UIDocumentPickerMode.ExportToService)
                         exportMenu.delegate = self
                         if let popOverPresentationController = exportMenu.popoverPresentationController {
                                 popOverPresentationController.sourceView = sourceView
@@ -44,10 +44,10 @@ class DocumentPickerExport: NSObject, UIDocumentMenuDelegate, UIDocumentPickerDe
         }
 
         func cleanUp() {
-                if let tempURL = tempURL {
-                        file_remove(url: tempURL)
+                if let temp_url = temp_url {
+                        file_remove(url: temp_url)
                 }
-                tempURL = nil
+                temp_url = nil
                 fromViewController = nil
         }
 }

@@ -2,7 +2,7 @@ import UIKit
 
 class TableOfAttributedStrings: TiledScrollViewDelegate {
 
-        var content_size = CGSize.zeroSize
+        var content_size = CGSize.zero
         var maximum_zoom_scale = 1 as CGFloat
         var minimum_zoom_scale = 1 as CGFloat
 
@@ -50,7 +50,7 @@ class TableOfAttributedStrings: TiledScrollViewDelegate {
                                 if let attributed_string = attributed_strings[row][col] {
                                         size = attributed_string.size()
                                 } else {
-                                        size = CGSize.zeroSize
+                                        size = CGSize.zero
                                 }
                                 let horizontal_cell = horizontal_cells == nil || horizontal_cells![row][col]
                                 var width = (horizontal_cell ? size.width : size.height) + (col == 0 ? 1 : 2) * margin_horizontal
@@ -87,7 +87,7 @@ class TableOfAttributedStrings: TiledScrollViewDelegate {
         }
 
         func rect_for_cell(row row: Int, col: Int) -> CGRect {
-                var rect = CGRect.zeroRect
+                var rect = CGRect.zero
                 for i in 0..<col {
                         rect.origin.x += column_widths[i]
                 }

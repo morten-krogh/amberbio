@@ -93,7 +93,7 @@ class LinearRegressionPlot: Component {
         let previous_button = UIButton(type: UIButtonType.System)
         let info_label = UILabel()
 
-        let tiled_scroll_view = TiledScrollView(frame: CGRect.zeroRect)
+        let tiled_scroll_view = TiledScrollView(frame: CGRect.zero)
         var linear_regression_drawer: LinearRegressionDrawer?
 
         override func viewDidLoad() {

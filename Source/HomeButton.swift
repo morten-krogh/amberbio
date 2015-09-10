@@ -2,7 +2,7 @@ import UIKit
 
 class HomeButton: Component {
 
-        let home_button_view = HomeButtonView(frame: CGRect.zeroRect)
+        let home_button_view = HomeButtonView(frame: CGRect.zero)
 
         override func loadView() {
                 view = home_button_view

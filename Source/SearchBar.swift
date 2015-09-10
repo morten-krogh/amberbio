@@ -1,14 +1,14 @@
 import UIKit
 
 func colored_search_bar(color color: UIColor, background_color: UIColor, size: CGSize) -> UISearchBar {
-        let search_bar = UISearchBar(frame: CGRect(origin: CGPoint.zeroPoint, size: size))
+        let search_bar = UISearchBar(frame: CGRect(origin: CGPoint.zero, size: size))
 
         search_bar.searchBarStyle = UISearchBarStyle.Minimal
 
         search_bar.backgroundColor = background_color
         search_bar.barTintColor = background_color
 
-        let rect = CGRect(origin: CGPoint.zeroPoint, size: size)
+        let rect = CGRect(origin: CGPoint.zero, size: size)
         UIGraphicsBeginImageContextWithOptions(size, false, 0)
         UIBezierPath(roundedRect: rect, cornerRadius: size.height / 2).addClip()
         color.setFill()

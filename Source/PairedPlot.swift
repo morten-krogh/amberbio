@@ -70,7 +70,7 @@ class PairedPlot: Component {
         let previous_button = UIButton(type: UIButtonType.System)
         let info_label = UILabel()
 
-        let tiled_scroll_view = TiledScrollView(frame: CGRect.zeroRect)
+        let tiled_scroll_view = TiledScrollView(frame: CGRect.zero)
         var single_molecule_plot: SingleMoleculePlot?
 
         override func viewDidLoad() {

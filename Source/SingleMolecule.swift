@@ -36,7 +36,7 @@ class SingleMolecule: Component {
         let previous_button = UIButton(type: UIButtonType.System)
         let info_label = UILabel()
 
-        let tiled_scroll_view = TiledScrollView(frame: CGRect.zeroRect)
+        let tiled_scroll_view = TiledScrollView(frame: CGRect.zero)
         var single_molecule_plot: SingleMoleculePlot?
 
         override func viewDidLoad() {
@@ -76,7 +76,7 @@ class SingleMolecule: Component {
                         let segmented_rect = CGRect(x: 0, y: 0, width: width, height: segmented_control.frame.height + 2 * top_margin)
                         scroll_view_segmented_control.frame = layout_centered_frame(contentSize: segmented_control.frame.size, rect: segmented_rect)
                         scroll_view_segmented_control.contentSize = segmented_control.bounds.size
-                        segmented_control.frame.origin = CGPoint.zeroPoint
+                        segmented_control.frame.origin = CGPoint.zero
                         origin_y += segmented_control.frame.height
                 }
 

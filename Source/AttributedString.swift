@@ -71,7 +71,7 @@ func astring_shorten(string string: Astring, width: CGFloat) -> Astring {
 
         let str = string.string
         let position = min(number_of_chars, str.characters.count)
-        let prefix = str.substringToIndex(advance(str.startIndex, position))
+        let prefix = str.substringToIndex(str.startIndex.advancedBy(position))
         return astring_body(string: prefix)
 }
 
@@ -86,6 +86,6 @@ func astring_shorten_footnote(string string: Astring, width: CGFloat) -> Astring
 
         let str = string.string
         let position = min(number_of_chars, str.characters.count)
-        let prefix = str.substringToIndex(advance(str.startIndex, position))
+        let prefix = str.substringToIndex(str.startIndex.advancedBy(position))
         return astring_footnote(string: prefix)
 }

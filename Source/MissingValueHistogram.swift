@@ -8,7 +8,7 @@ class MissingValueHistogram: TiledScrollViewDelegate {
 
         var delegate: MissingValueHistogramDelegate?
 
-        var content_size = CGSize.zeroSize
+        var content_size = CGSize.zero
         var maximum_zoom_scale = 1 as CGFloat
         var minimum_zoom_scale = 0.5 as CGFloat
 
@@ -30,7 +30,7 @@ class MissingValueHistogram: TiledScrollViewDelegate {
         let fontFootnote = UIFont.preferredFontForTextStyle(UIFontTextStyleFootnote)
 
         var numberOfTicks: Int!
-        var originCoordinateSystem = CGPoint.zeroPoint
+        var originCoordinateSystem = CGPoint.zero
 
         init(labels: [Astring], values: [Int], colors: [UIColor]) {
                 self.labels = labels

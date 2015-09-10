@@ -2,7 +2,8 @@ import UIKit
 
 func pdf_draw_info_page(description description: String, project_name: String, data_set_name: String, user_name: String) {
 
-        let content = "\r\n".join(result_file_info_array(description: description, project_name: project_name, data_set_name: data_set_name, user_name: user_name)) + "\r\n"
+        let content = result_file_info_array(description: description, project_name: project_name, data_set_name: data_set_name, user_name: user_name).joinWithSeparator("\r\n") + "\r\n"
+
         let attributed_content = astring_body(string: content)
 
         UIGraphicsBeginPDFPage()
@@ -15,12 +16,12 @@ func pdf_draw_info_page(description description: String, project_name: String, d
 func pdf_result_file(name name: String, description: String, project_name: String, data_set_name: String, user_name: String, content_size: CGSize, draw: (context: CGContext, rect: CGRect) -> ()) -> (file_name: String, content: NSData) {
 
         let data = NSMutableData()
-        UIGraphicsBeginPDFContextToData(data, CGRect.zeroRect, [:])
-        let rect = CGRect(origin: CGPoint.zeroPoint, size: content_size)
+        UIGraphicsBeginPDFContextToData(data, CGRect.zero, [:])
+        let rect = CGRect(origin: CGPoint.zero, size: content_size)
         UIGraphicsBeginPDFPageWithInfo(rect, nil)
 
         let context = UIGraphicsGetCurrentContext()
-        draw(context: context, rect: rect)
+        draw(context: context!, rect: rect)
         pdf_draw_info_page(description: description, project_name: project_name, data_set_name: data_set_name, user_name: user_name)
         UIGraphicsEndPDFContext()
 

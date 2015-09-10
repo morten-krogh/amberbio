@@ -126,7 +126,7 @@ class HierarchicalClusteringPlot: Component {
 
         var hierarchical_clustering_plot_state: HierarchicalClusteringPlotState!
 
-        let tiled_scroll_view = TiledScrollView(frame: CGRect.zeroRect)
+        let tiled_scroll_view = TiledScrollView(frame: CGRect.zero)
 
         override func viewDidLoad() {
                 super.viewDidLoad()

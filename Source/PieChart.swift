@@ -2,7 +2,7 @@ import UIKit
 
 class PieChart: TiledScrollViewDelegate {
 
-        var content_size = CGSize.zeroSize
+        var content_size = CGSize.zero
         var maximum_zoom_scale = 1 as CGFloat
         var minimum_zoom_scale = 1 as CGFloat
 

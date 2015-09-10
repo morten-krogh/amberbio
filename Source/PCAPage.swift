@@ -117,7 +117,7 @@ class PCA: Component, UITableViewDataSource, UITableViewDelegate, PCA2dDelegate 
         let scroll_view = UIScrollView()
         let tiled_scroll_view = TiledScrollView()
         let left_view = UIView()
-        let pca3d_plot = PCA3dPlot(frame: CGRect.zeroRect)
+        let pca3d_plot = PCA3dPlot(frame: CGRect.zero)
         var pca_2d_drawer: PCA2dPlot?
         let table_view = UITableView()
         let info_label = UILabel()
@@ -198,7 +198,7 @@ class PCA: Component, UITableViewDataSource, UITableViewDelegate, PCA2dDelegate 
                 if spacing > 0 {
                         let content_offset_x = scroll_view.contentOffset.x
                         if content_offset_x > spacing / 2 {
-                                scroll_view.contentOffset = CGPoint.zeroPoint
+                                scroll_view.contentOffset = CGPoint.zero
                         } else {
                                 scroll_view.contentOffset = CGPoint(x: spacing, y: 0)
                         }

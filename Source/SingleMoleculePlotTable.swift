@@ -59,7 +59,7 @@ class SingleMoleculePlotTable: Component, UISearchBarDelegate, UITableViewDataSo
                                 let segmented_rect = CGRect(x: 0, y: origin_y, width: width, height: segmented_control.frame.height)
                                 scroll_view_segmented_control.frame = layout_centered_frame(contentSize: segmented_control.frame.size, rect: segmented_rect)
                                 scroll_view_segmented_control.contentSize = segmented_control.bounds.size
-                                segmented_control.frame.origin = CGPoint.zeroPoint
+                                segmented_control.frame.origin = CGPoint.zero
 
                                 origin_y += segmented_control.frame.height + 5
                 }

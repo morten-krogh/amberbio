@@ -47,7 +47,7 @@ class State {
         var values = [] as [Double]
         var offsets_by_level_id = [:] as [Int: [Int]]
 
-        var home_content_offset = CGPoint.zeroPoint
+        var home_content_offset = CGPoint.zero
         var home_selected_index_path: NSIndexPath?
 
         var full_page_scroll_offset = 0 as CGFloat

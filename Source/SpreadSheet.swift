@@ -28,8 +28,8 @@ class SpreadSheet: UIView, UIScrollViewDelegate, SpreadSheetCellsDelegate {
         let header_scroll_view = UIScrollView()
         let cell_scroll_view = UIScrollView()
 
-        let header_spread_sheet_cells = SpreadSheetCells(frame: CGRect.zeroRect)
-        let cell_spread_sheet_cells = SpreadSheetCells(frame: CGRect.zeroRect)
+        let header_spread_sheet_cells = SpreadSheetCells(frame: CGRect.zero)
+        let cell_spread_sheet_cells = SpreadSheetCells(frame: CGRect.zero)
 
         var header_tap_action: ((column: Int) -> ())?
         var cell_tap_action: ((row: Int, column: Int) -> ())?
@@ -101,8 +101,8 @@ class SpreadSheet: UIView, UIScrollViewDelegate, SpreadSheetCellsDelegate {
                 header_scroll_view.contentSize = header_spread_sheet_cells.content_size
                 cell_scroll_view.contentSize = cell_spread_sheet_cells.content_size
 
-                header_spread_sheet_cells.frame = CGRect(origin: CGPoint.zeroPoint, size: header_spread_sheet_cells.content_size)
-                cell_spread_sheet_cells.frame = CGRect(origin: CGPoint.zeroPoint, size: cell_spread_sheet_cells.content_size)
+                header_spread_sheet_cells.frame = CGRect(origin: CGPoint.zero, size: header_spread_sheet_cells.content_size)
+                cell_spread_sheet_cells.frame = CGRect(origin: CGPoint.zero, size: cell_spread_sheet_cells.content_size)
 
                 setNeedsLayout()
         }
@@ -110,8 +110,8 @@ class SpreadSheet: UIView, UIScrollViewDelegate, SpreadSheetCellsDelegate {
         override func layoutSubviews() {
                 super.layoutSubviews()
 
-                header_scroll_view.frame = CGRect.zeroRect
-                cell_scroll_view.frame = CGRect.zeroRect
+                header_scroll_view.frame = CGRect.zero
+                cell_scroll_view.frame = CGRect.zero
 
                 let content_width = header_spread_sheet_cells.content_size.width
 
@@ -172,13 +172,13 @@ class SpreadSheetCells: UIView {
         weak var delegate: SpreadSheetCellsDelegate?
         var row_heights = [] as [CGFloat]
         var column_widths = [] as [CGFloat]
-        var content_size = CGSize.zeroSize
+        var content_size = CGSize.zero
         var bottom_line = false
 
         var tap_recognizer: UITapGestureRecognizer?
 
         override init(frame: CGRect) {
-                super.init(frame: CGRect.zeroRect)
+                super.init(frame: CGRect.zero)
 
                 backgroundColor = UIColor.whiteColor()
         }
@@ -229,7 +229,7 @@ class SpreadSheetCells: UIView {
         }
 
         func rect_for_cell(row row: Int, col: Int) -> CGRect {
-                var rect = CGRect.zeroRect
+                var rect = CGRect.zero
                 for i in 0 ..< col {
                         rect.origin.x += column_widths[i]
                 }
@@ -243,7 +243,7 @@ class SpreadSheetCells: UIView {
 
         override func drawRect(rect: CGRect) {
                 let context = UIGraphicsGetCurrentContext()
-                drawSpreadSheetCells(context: context, rect: rect)
+                drawSpreadSheetCells(context: context!, rect: rect)
         }
 
         func drawSpreadSheetCells(context context: CGContext, rect: CGRect) {

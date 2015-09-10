@@ -18,7 +18,7 @@ func validate_email(address address: String) -> Bool {
 func file_extension(file_name file_name: String) -> String? {
         let regex = "\\.[A-Za-z]+$"
         if let range = file_name.rangeOfString(regex, options: NSStringCompareOptions.RegularExpressionSearch, range: nil, locale: nil) {
-                return file_name.substringWithRange(Range<String.Index>(start: advance(range.startIndex, 1), end: range.endIndex))
+                return file_name.substringWithRange(Range<String.Index>(start: range.startIndex.advancedBy(1), end: range.endIndex))
         } else {
                 return nil
         }

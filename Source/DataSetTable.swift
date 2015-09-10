@@ -5,7 +5,7 @@ class DataSetTableState: PageState {
         var txt_table = [] as [[String]]
 
         var filtered_search_rows = [] as [Int]
-        var spread_sheet_content_offset = CGPoint.zeroPoint
+        var spread_sheet_content_offset = CGPoint.zero
 
         override init() {
                 super.init()

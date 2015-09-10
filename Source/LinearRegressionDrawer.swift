@@ -7,7 +7,7 @@ class LinearRegressionDrawer: TiledScrollViewDelegate {
         let margin = 40 as CGFloat
         let axis_title_font_size = 16 as CGFloat
         let tick_font_size = 14 as CGFloat
-        var content_size = CGSize.zeroSize
+        var content_size = CGSize.zero
 
         var x_values = [] as [Double]
         var y_values = [] as [Double]

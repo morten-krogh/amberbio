@@ -20,7 +20,7 @@ class AnovaTableState: PageState {
         var sort_direction_increasing = true
         var filtered_search_rows = [] as [Int]
         var sorted_rows = [] as [Int]
-        var spread_sheet_content_offset = CGPoint.zeroPoint
+        var spread_sheet_content_offset = CGPoint.zero
 
         init(factor_id: Int, level_ids: [Int]) {
                 super.init()

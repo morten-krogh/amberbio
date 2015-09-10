@@ -5,7 +5,7 @@ class MultiSegmentedScrollView: UIControl {
         var selected_segments = [] as [Int]
         let multi_segmented_view = MultiSegmentedView()
         let scroll_view = UIScrollView()
-        var content_size = CGSize.zeroSize
+        var content_size = CGSize.zero
 
         override init(frame: CGRect) {
                 super.init(frame: frame)
@@ -31,10 +31,10 @@ class MultiSegmentedScrollView: UIControl {
         }
 
         override func layoutSubviews() {
-                let rect = CGRect(origin: CGPoint.zeroPoint, size: bounds.size)
+                let rect = CGRect(origin: CGPoint.zero, size: bounds.size)
                 scroll_view.frame = layout_centered_frame(contentSize: multi_segmented_view.content_size, rect: rect)
                 scroll_view.contentSize = multi_segmented_view.content_size
-                multi_segmented_view.frame = CGRect(origin: CGPoint.zeroPoint, size: multi_segmented_view.content_size)
+                multi_segmented_view.frame = CGRect(origin: CGPoint.zero, size: multi_segmented_view.content_size)
         }
 }
 
@@ -47,7 +47,7 @@ class MultiSegmentedView: UIControl {
         let fill_color = UIColor(red: 0, green: 122 / 255, blue: 1, alpha: 1)
         let stroke_color = UIColor.blueColor()
 
-        var content_size = CGSize.zeroSize
+        var content_size = CGSize.zero
         var names = [] as [String]
         var selected_segments = [] as [Int]
 
@@ -71,7 +71,7 @@ class MultiSegmentedView: UIControl {
 
         override func drawRect(rect: CGRect) {
                 let context = UIGraphicsGetCurrentContext()
-                draw_segmented_control(context: context)
+                draw_segmented_control(context: context!)
         }
 
         func draw_segmented_control(context context: CGContext) {

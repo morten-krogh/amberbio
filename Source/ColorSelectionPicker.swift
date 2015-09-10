@@ -32,7 +32,7 @@ class ColorSelectionPicker: Component {
 
         let scroll_view = UIScrollView()
         let info_label = UILabel()
-        let color_picker = ColorPicker(frame: CGRect.zeroRect)
+        let color_picker = ColorPicker(frame: CGRect.zero)
 
         override func loadView() {
                 view = scroll_view

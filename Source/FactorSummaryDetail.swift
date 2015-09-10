@@ -45,7 +45,7 @@ class FactorSummaryDetail: Component {
 
         var factor_summary_detail_state: FactorSummaryDetailState!
 
-        let tiled_scroll_view = TiledScrollView(frame: CGRect.zeroRect)
+        let tiled_scroll_view = TiledScrollView(frame: CGRect.zero)
         var pie_chart: PieChart?
 
         override func viewDidLoad() {

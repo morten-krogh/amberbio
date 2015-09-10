@@ -4,15 +4,15 @@ let documentInteractionOpen = DocumentInteractionOpen()
 
 class DocumentInteractionOpen: NSObject, UIDocumentInteractionControllerDelegate {
 
-        var tempURL: NSURL?
-        var interactionController: UIDocumentInteractionController?
+        var temp_url: NSURL?
+        var interaction_controller: UIDocumentInteractionController?
 
         func openResultFile(fileName fileName: String, fileData: NSData, inRect: CGRect, inView: UIView) {
-                tempURL = file_create_temp(file_name: fileName, content: fileData)
-                if let tempURL = tempURL {
-                        interactionController = UIDocumentInteractionController(URL: tempURL)
-                        interactionController?.delegate = self
-                        interactionController?.presentOpenInMenuFromRect(inRect, inView: inView, animated: true)
+                temp_url = file_create_temp_file_url(file_name: fileName, content: fileData)
+                if let temp_url = temp_url {
+                        interaction_controller = UIDocumentInteractionController(URL: temp_url)
+                        interaction_controller?.delegate = self
+                        interaction_controller?.presentOpenInMenuFromRect(inRect, inView: inView, animated: true)
                 }
         }
 
@@ -21,10 +21,10 @@ class DocumentInteractionOpen: NSObject, UIDocumentInteractionControllerDelegate
         }
 
         func cleanUp() {
-                if let tempURL = tempURL {
-                        file_remove(url: tempURL)
+                if let temp_url = temp_url {
+                        file_remove(url: temp_url)
                 }
-                tempURL = nil
-                interactionController = nil
+                temp_url = nil
+                interaction_controller = nil
         }
 }

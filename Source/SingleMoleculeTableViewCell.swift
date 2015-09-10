@@ -14,7 +14,7 @@ class SingleMoleculeTableViewCell: UITableViewCell {
         let info_label = UILabel()
         var pdf_txt_buttons: PdfTxtButtons!
 
-        let tiled_scroll_view = TiledScrollView(frame: CGRect.zeroRect)
+        let tiled_scroll_view = TiledScrollView(frame: CGRect.zero)
         var single_molecule_plot: SingleMoleculePlot?
 
         override init(style: UITableViewCellStyle, reuseIdentifier: String?) {

@@ -23,8 +23,8 @@ class TiledScrollView: UIView, UIScrollViewDelegate, TiledLayerViewDelegate {
                 }
         }
 
-        let scroll_view = UIScrollView(frame: CGRect.zeroRect)
-        let tiled_view = TiledLayerView(frame: CGRect.zeroRect)
+        let scroll_view = UIScrollView(frame: CGRect.zero)
+        let tiled_view = TiledLayerView(frame: CGRect.zero)
         var levelsOfDetail = 1
         var levelsOfDetailBias = 0
 
@@ -41,7 +41,7 @@ class TiledScrollView: UIView, UIScrollViewDelegate, TiledLayerViewDelegate {
         }
 
         convenience init() {
-                self.init(frame: CGRect.zeroRect)
+                self.init(frame: CGRect.zero)
         }
 
         required init(coder aDecoder: NSCoder) {fatalError("This initializer should not be called")}
@@ -50,7 +50,7 @@ class TiledScrollView: UIView, UIScrollViewDelegate, TiledLayerViewDelegate {
                 scroll_view.frame = bounds
                 scroll_view.zoomScale = 1.0
                 if let delegate = delegate {
-                        tiled_view.frame = CGRect(origin: CGPoint.zeroPoint, size: delegate.content_size)
+                        tiled_view.frame = CGRect(origin: CGPoint.zero, size: delegate.content_size)
                         scroll_view.contentSize = delegate.content_size
                         levelsOfDetail = Int(floor(log(delegate.maximum_zoom_scale / delegate.minimum_zoom_scale) / log(2.0)) + 1)
                         levelsOfDetailBias = Int(ceil(log(delegate.maximum_zoom_scale) / log(2.0)))
@@ -58,10 +58,10 @@ class TiledScrollView: UIView, UIScrollViewDelegate, TiledLayerViewDelegate {
                         scroll_view.minimumZoomScale = delegate.minimum_zoom_scale
                         layoutScrollView()
                 } else {
-                        tiled_view.frame = CGRect.zeroRect
+                        tiled_view.frame = CGRect.zero
                         levelsOfDetail = 1
                         levelsOfDetailBias = 0
-                        scroll_view.contentSize = CGSize.zeroSize
+                        scroll_view.contentSize = CGSize.zero
                         scroll_view.maximumZoomScale = 1
                         scroll_view.minimumZoomScale = 1
                 }
@@ -85,7 +85,7 @@ class TiledScrollView: UIView, UIScrollViewDelegate, TiledLayerViewDelegate {
                                 scroll_view.frame.origin.y = 0
                                 scroll_view.frame.size.height = bounds.height
                         }
-                        tiled_view.frame = CGRect(origin: CGPoint.zeroPoint, size: scaledContentSize)
+                        tiled_view.frame = CGRect(origin: CGPoint.zero, size: scaledContentSize)
                 }
         }
 

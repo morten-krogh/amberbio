@@ -9,7 +9,7 @@ class PdfTxtButtons: UIView {
         init(target: AnyObject, pdf_action: Selector?, txt_action: Selector?) {
                 (contentSize, pdfButton, txtButton) = PdfTxtButtons.initHelper(target: target, pdf_action: pdf_action, txt_action: txt_action)
 
-                super.init(frame: CGRect.zeroRect)
+                super.init(frame: CGRect.zero)
 
                 if let pdfButton = pdfButton {
                         addSubview(pdfButton)
@@ -25,7 +25,7 @@ class PdfTxtButtons: UIView {
         class func initHelper(target target: AnyObject, pdf_action: Selector?, txt_action: Selector?) -> (contentSize: CGSize, pdfButton: UIButton?, txtButton: UIButton?) {
                 let margin = 20 as CGFloat
 
-                var contentSize = CGSize.zeroSize
+                var contentSize = CGSize.zero
                 var pdfButton: UIButton?
                 var txtButton: UIButton?
 
