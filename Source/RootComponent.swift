@@ -5,7 +5,7 @@ class RootComponent: Component {
         var child_view_controller: UIViewController?
 
         let full_page = FullPage()
-        let progress_indicator = ProgressIndicator2()
+        let progress_indicator = ProgressIndicator()
         let activity_indicator = ActivityIndicator()
 
         override func viewWillLayoutSubviews() {

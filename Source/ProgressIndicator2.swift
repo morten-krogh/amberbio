@@ -1,6 +1,6 @@
 import UIKit
 
-class ProgressIndicator2: Component {
+class ProgressIndicator: Component {
 
         var progress = -1
 

@@ -13,14 +13,12 @@
 		6010036D1BA18744008A1FF9 /* AmberbioUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6010036C1BA18744008A1FF9 /* AmberbioUITests.swift */; };
 		602708B81BA1CA3100672D54 /* iris_factors.txt in Resources */ = {isa = PBXBuildFile; fileRef = 602708B41BA1C98900672D54 /* iris_factors.txt */; settings = {ASSET_TAGS = (); }; };
 		602708B91BA1CA3500672D54 /* iris_values.txt in Resources */ = {isa = PBXBuildFile; fileRef = 602708B51BA1C98900672D54 /* iris_values.txt */; settings = {ASSET_TAGS = (); }; };
-		602708BE1BA1E39E00672D54 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400401BA19BED00D8DD80 /* String.swift */; settings = {ASSET_TAGS = (); }; };
 		602708C01BA1E72300672D54 /* amberbio-main.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 602708BF1BA1E72300672D54 /* amberbio-main.sqlite */; settings = {ASSET_TAGS = (); }; };
 		60B400391BA1982900D8DD80 /* state_init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400381BA1982900D8DD80 /* state_init.swift */; settings = {ASSET_TAGS = (); }; };
 		60B4003B1BA1983900D8DD80 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B4003A1BA1983900D8DD80 /* State.swift */; settings = {ASSET_TAGS = (); }; };
 		60B400411BA19BED00D8DD80 /* AttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B4003D1BA19BED00D8DD80 /* AttributedString.swift */; settings = {ASSET_TAGS = (); }; };
 		60B400421BA19BED00D8DD80 /* NumberFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B4003E1BA19BED00D8DD80 /* NumberFormat.swift */; settings = {ASSET_TAGS = (); }; };
 		60B400431BA19BED00D8DD80 /* Serialize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B4003F1BA19BED00D8DD80 /* Serialize.swift */; settings = {ASSET_TAGS = (); }; };
-		60B400441BA19BED00D8DD80 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400401BA19BED00D8DD80 /* String.swift */; settings = {ASSET_TAGS = (); }; };
 		60B400D51BA19C7900D8DD80 /* ActiveDataSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400461BA19C7900D8DD80 /* ActiveDataSet.swift */; settings = {ASSET_TAGS = (); }; };
 		60B400D61BA19C7900D8DD80 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400471BA19C7900D8DD80 /* ActivityIndicator.swift */; settings = {ASSET_TAGS = (); }; };
 		60B400D71BA19C7900D8DD80 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400481BA19C7900D8DD80 /* Alert.swift */; settings = {ASSET_TAGS = (); }; };
@@ -114,7 +112,6 @@
 		60B401311BA19C7900D8DD80 /* Pdf.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400A61BA19C7900D8DD80 /* Pdf.swift */; settings = {ASSET_TAGS = (); }; };
 		60B401321BA19C7900D8DD80 /* PdfTxtButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400A71BA19C7900D8DD80 /* PdfTxtButtons.swift */; settings = {ASSET_TAGS = (); }; };
 		60B401331BA19C7900D8DD80 /* PieChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400A81BA19C7900D8DD80 /* PieChart.swift */; settings = {ASSET_TAGS = (); }; };
-		60B401341BA19C7900D8DD80 /* ProgressIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400A91BA19C7900D8DD80 /* ProgressIndicator.swift */; settings = {ASSET_TAGS = (); }; };
 		60B401351BA19C7900D8DD80 /* ProgressIndicator2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400AA1BA19C7900D8DD80 /* ProgressIndicator2.swift */; settings = {ASSET_TAGS = (); }; };
 		60B401361BA19C7900D8DD80 /* ProjectNotes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400AB1BA19C7900D8DD80 /* ProjectNotes.swift */; settings = {ASSET_TAGS = (); }; };
 		60B401371BA19C7900D8DD80 /* PValueHistogram.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400AC1BA19C7900D8DD80 /* PValueHistogram.swift */; settings = {ASSET_TAGS = (); }; };
@@ -144,7 +141,6 @@
 		60B4014F1BA19C7900D8DD80 /* sqlite_info.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400C51BA19C7900D8DD80 /* sqlite_info.swift */; settings = {ASSET_TAGS = (); }; };
 		60B401501BA19C7900D8DD80 /* sqlite_tables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400C61BA19C7900D8DD80 /* sqlite_tables.swift */; settings = {ASSET_TAGS = (); }; };
 		60B401511BA19C7900D8DD80 /* sqlite_triggers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400C71BA19C7900D8DD80 /* sqlite_triggers.swift */; settings = {ASSET_TAGS = (); }; };
-		60B401521BA19C7900D8DD80 /* sqlite_views.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400C81BA19C7900D8DD80 /* sqlite_views.swift */; settings = {ASSET_TAGS = (); }; };
 		60B401531BA19C7900D8DD80 /* Statistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400C91BA19C7900D8DD80 /* Statistics.swift */; settings = {ASSET_TAGS = (); }; };
 		60B401541BA19C7900D8DD80 /* TableOfAttributedStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400CA1BA19C7900D8DD80 /* TableOfAttributedStrings.swift */; settings = {ASSET_TAGS = (); }; };
 		60B401551BA19C7900D8DD80 /* TableViewCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400CB1BA19C7900D8DD80 /* TableViewCells.swift */; settings = {ASSET_TAGS = (); }; };
@@ -222,7 +218,6 @@
 		60B4003D1BA19BED00D8DD80 /* AttributedString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AttributedString.swift; path = Source/AttributedString.swift; sourceTree = "<group>"; };
 		60B4003E1BA19BED00D8DD80 /* NumberFormat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NumberFormat.swift; path = Source/NumberFormat.swift; sourceTree = "<group>"; };
 		60B4003F1BA19BED00D8DD80 /* Serialize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Serialize.swift; path = Source/Serialize.swift; sourceTree = "<group>"; };
-		60B400401BA19BED00D8DD80 /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = String.swift; path = Source/String.swift; sourceTree = "<group>"; };
 		60B400451BA19C7900D8DD80 /* Amberbio-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Amberbio-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
 		60B400461BA19C7900D8DD80 /* ActiveDataSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ActiveDataSet.swift; path = Source/ActiveDataSet.swift; sourceTree = "<group>"; };
 		60B400471BA19C7900D8DD80 /* ActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ActivityIndicator.swift; path = Source/ActivityIndicator.swift; sourceTree = "<group>"; };
@@ -322,7 +317,6 @@
 		60B400A61BA19C7900D8DD80 /* Pdf.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Pdf.swift; path = Source/Pdf.swift; sourceTree = "<group>"; };
 		60B400A71BA19C7900D8DD80 /* PdfTxtButtons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PdfTxtButtons.swift; path = Source/PdfTxtButtons.swift; sourceTree = "<group>"; };
 		60B400A81BA19C7900D8DD80 /* PieChart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PieChart.swift; path = Source/PieChart.swift; sourceTree = "<group>"; };
-		60B400A91BA19C7900D8DD80 /* ProgressIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProgressIndicator.swift; path = Source/ProgressIndicator.swift; sourceTree = "<group>"; };
 		60B400AA1BA19C7900D8DD80 /* ProgressIndicator2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProgressIndicator2.swift; path = Source/ProgressIndicator2.swift; sourceTree = "<group>"; };
 		60B400AB1BA19C7900D8DD80 /* ProjectNotes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProjectNotes.swift; path = Source/ProjectNotes.swift; sourceTree = "<group>"; };
 		60B400AC1BA19C7900D8DD80 /* PValueHistogram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PValueHistogram.swift; path = Source/PValueHistogram.swift; sourceTree = "<group>"; };
@@ -353,7 +347,6 @@
 		60B400C51BA19C7900D8DD80 /* sqlite_info.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = sqlite_info.swift; path = Source/sqlite_info.swift; sourceTree = "<group>"; };
 		60B400C61BA19C7900D8DD80 /* sqlite_tables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = sqlite_tables.swift; path = Source/sqlite_tables.swift; sourceTree = "<group>"; };
 		60B400C71BA19C7900D8DD80 /* sqlite_triggers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = sqlite_triggers.swift; path = Source/sqlite_triggers.swift; sourceTree = "<group>"; };
-		60B400C81BA19C7900D8DD80 /* sqlite_views.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = sqlite_views.swift; path = Source/sqlite_views.swift; sourceTree = "<group>"; };
 		60B400C91BA19C7900D8DD80 /* Statistics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Statistics.swift; path = Source/Statistics.swift; sourceTree = "<group>"; };
 		60B400CA1BA19C7900D8DD80 /* TableOfAttributedStrings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TableOfAttributedStrings.swift; path = Source/TableOfAttributedStrings.swift; sourceTree = "<group>"; };
 		60B400CB1BA19C7900D8DD80 /* TableViewCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TableViewCells.swift; path = Source/TableViewCells.swift; sourceTree = "<group>"; };
@@ -487,9 +480,9 @@
 		60B400361BA1980000D8DD80 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				602708C11BA1EBDC00672D54 /* Components */,
 				60B400371BA1981A00D8DD80 /* State */,
 				60B4015E1BA19D8900D8DD80 /* SQLite */,
+				602708C11BA1EBDC00672D54 /* Components */,
 				60B4003C1BA19B0F00D8DD80 /* Functions */,
 				60B4015F1BA19E7F00D8DD80 /* CFunctions */,
 				60B4016E1BA1BBFD00D8DD80 /* Manual */,
@@ -606,7 +599,6 @@
 				60B400A61BA19C7900D8DD80 /* Pdf.swift */,
 				60B400A71BA19C7900D8DD80 /* PdfTxtButtons.swift */,
 				60B400A81BA19C7900D8DD80 /* PieChart.swift */,
-				60B400A91BA19C7900D8DD80 /* ProgressIndicator.swift */,
 				60B400AA1BA19C7900D8DD80 /* ProgressIndicator2.swift */,
 				60B400AB1BA19C7900D8DD80 /* ProjectNotes.swift */,
 				60B400AC1BA19C7900D8DD80 /* PValueHistogram.swift */,
@@ -641,7 +633,6 @@
 				60B4003D1BA19BED00D8DD80 /* AttributedString.swift */,
 				60B4003E1BA19BED00D8DD80 /* NumberFormat.swift */,
 				60B4003F1BA19BED00D8DD80 /* Serialize.swift */,
-				60B400401BA19BED00D8DD80 /* String.swift */,
 			);
 			name = Functions;
 			sourceTree = "<group>";
@@ -654,7 +645,6 @@
 				60B400C61BA19C7900D8DD80 /* sqlite_tables.swift */,
 				60B400C41BA19C7900D8DD80 /* sqlite_indices.swift */,
 				60B400C71BA19C7900D8DD80 /* sqlite_triggers.swift */,
-				60B400C81BA19C7900D8DD80 /* sqlite_views.swift */,
 				60B400C51BA19C7900D8DD80 /* sqlite_info.swift */,
 				60B400C31BA19C7900D8DD80 /* sqlite_import_export.swift */,
 			);
@@ -984,7 +974,6 @@
 				60B401151BA19C7900D8DD80 /* MatrixUtil.swift in Sources */,
 				60B400E21BA19C7900D8DD80 /* Color.swift in Sources */,
 				60B400ED1BA19C7900D8DD80 /* Distances.swift in Sources */,
-				60B401341BA19C7900D8DD80 /* ProgressIndicator.swift in Sources */,
 				60B4014C1BA19C7900D8DD80 /* sqlite_execute.swift in Sources */,
 				60B401501BA19C7900D8DD80 /* sqlite_tables.swift in Sources */,
 				60B401321BA19C7900D8DD80 /* PdfTxtButtons.swift in Sources */,
@@ -1016,7 +1005,6 @@
 				60B4011E1BA19C7900D8DD80 /* NameDateTableViewCell.swift in Sources */,
 				60B401491BA19C7900D8DD80 /* SingleMoleculeTableViewCell.swift in Sources */,
 				60B400F21BA19C7900D8DD80 /* Drawing.swift in Sources */,
-				60B401521BA19C7900D8DD80 /* sqlite_views.swift in Sources */,
 				60B4010F1BA19C7900D8DD80 /* LinearRegressionSelection.swift in Sources */,
 				60B400DD1BA19C7900D8DD80 /* Back.swift in Sources */,
 				60B401161BA19C7900D8DD80 /* MissingValueHistogram.swift in Sources */,
@@ -1027,7 +1015,6 @@
 				60B401181BA19C7900D8DD80 /* MissingValuesForSamples.swift in Sources */,
 				60B4012C1BA19C7900D8DD80 /* PCA.swift in Sources */,
 				60B400D71BA19C7900D8DD80 /* Alert.swift in Sources */,
-				60B400441BA19BED00D8DD80 /* String.swift in Sources */,
 				60B4003B1BA1983900D8DD80 /* State.swift in Sources */,
 				60B401451BA19C7900D8DD80 /* SingleChoiceTable.swift in Sources */,
 				60B401551BA19C7900D8DD80 /* TableViewCells.swift in Sources */,
@@ -1073,7 +1060,6 @@
 				60B401991BA1C37100D8DD80 /* Color.swift in Sources */,
 				60B401971BA1C2DB00D8DD80 /* Random.swift in Sources */,
 				60B401931BA1C23100D8DD80 /* sqlite_indices.swift in Sources */,
-				602708BE1BA1E39E00672D54 /* String.swift in Sources */,
 				60B401941BA1C23700D8DD80 /* sqlite_triggers.swift in Sources */,
 				60B401951BA1C2A200D8DD80 /* sqlite_info.swift in Sources */,
 			);

@@ -388,3 +388,7 @@ func string_to_double (string string: String) -> Double? {
 
         return sign * number * pow(10.0, Double(exponentSign * exponent))
 }
+
+func trim(string string: String) -> String {
+        return string.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+}
