@@ -142,7 +142,6 @@
 		60B401511BA19C7900D8DD80 /* sqlite_triggers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400C71BA19C7900D8DD80 /* sqlite_triggers.swift */; settings = {ASSET_TAGS = (); }; };
 		60B401531BA19C7900D8DD80 /* Statistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400C91BA19C7900D8DD80 /* Statistics.swift */; settings = {ASSET_TAGS = (); }; };
 		60B401541BA19C7900D8DD80 /* TableOfAttributedStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400CA1BA19C7900D8DD80 /* TableOfAttributedStrings.swift */; settings = {ASSET_TAGS = (); }; };
-		60B401551BA19C7900D8DD80 /* TableViewCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400CB1BA19C7900D8DD80 /* TableViewCells.swift */; settings = {ASSET_TAGS = (); }; };
 		60B401561BA19C7900D8DD80 /* TextFieldHeaderFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400CC1BA19C7900D8DD80 /* TextFieldHeaderFooterView.swift */; settings = {ASSET_TAGS = (); }; };
 		60B401571BA19C7900D8DD80 /* TextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400CD1BA19C7900D8DD80 /* TextFieldTableViewCell.swift */; settings = {ASSET_TAGS = (); }; };
 		60B401581BA19C7900D8DD80 /* TiledLayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400CE1BA19C7900D8DD80 /* TiledLayerView.swift */; settings = {ASSET_TAGS = (); }; };
@@ -346,7 +345,6 @@
 		60B400C71BA19C7900D8DD80 /* sqlite_triggers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = sqlite_triggers.swift; path = Source/sqlite_triggers.swift; sourceTree = "<group>"; };
 		60B400C91BA19C7900D8DD80 /* Statistics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Statistics.swift; path = Source/Statistics.swift; sourceTree = "<group>"; };
 		60B400CA1BA19C7900D8DD80 /* TableOfAttributedStrings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TableOfAttributedStrings.swift; path = Source/TableOfAttributedStrings.swift; sourceTree = "<group>"; };
-		60B400CB1BA19C7900D8DD80 /* TableViewCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TableViewCells.swift; path = Source/TableViewCells.swift; sourceTree = "<group>"; };
 		60B400CC1BA19C7900D8DD80 /* TextFieldHeaderFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextFieldHeaderFooterView.swift; path = Source/TextFieldHeaderFooterView.swift; sourceTree = "<group>"; };
 		60B400CD1BA19C7900D8DD80 /* TextFieldTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextFieldTableViewCell.swift; path = Source/TextFieldTableViewCell.swift; sourceTree = "<group>"; };
 		60B400CE1BA19C7900D8DD80 /* TiledLayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TiledLayerView.swift; path = Source/TiledLayerView.swift; sourceTree = "<group>"; };
@@ -545,8 +543,22 @@
 				60B401611BA1A1D200D8DD80 /* ColorPicker.swift */,
 				60B400761BA19C7900D8DD80 /* HierarchicalClusteringDrawer.swift */,
 				60B400811BA19C7900D8DD80 /* LinearRegressionDrawer.swift */,
+				60B4008A1BA19C7900D8DD80 /* MissingValueHistogram.swift */,
 				60B400901BA19C7900D8DD80 /* MultiSegmentedControl.swift */,
+				60B400911BA19C7900D8DD80 /* NameColorTableView.swift */,
+				60B4009A1BA19C7900D8DD80 /* PairTable.swift */,
+				60B400A21BA19C7900D8DD80 /* PCA2dPlot.swift */,
+				60B400A31BA19C7900D8DD80 /* PCA3Plot.swift */,
+				60B400A71BA19C7900D8DD80 /* PdfTxtButtons.swift */,
+				60B400A81BA19C7900D8DD80 /* PieChart.swift */,
+				60B400AD1BA19C7900D8DD80 /* PValueHistogramDelegate.swift */,
+				60B400BD1BA19C7900D8DD80 /* SingleMoleculePlot.swift */,
+				60B400B81BA19C7900D8DD80 /* SearchBar.swift */,
 				60B400BB1BA19C7900D8DD80 /* SingleChoiceTable.swift */,
+				60B400C11BA19C7900D8DD80 /* SpreadSheet.swift */,
+				60B400CA1BA19C7900D8DD80 /* TableOfAttributedStrings.swift */,
+				60B400CE1BA19C7900D8DD80 /* TiledLayerView.swift */,
+				60B400CF1BA19C7900D8DD80 /* TiledScrollView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -563,9 +575,6 @@
 				60B400C01BA19C7900D8DD80 /* SliderTableViewCell.swift */,
 				60B400CC1BA19C7900D8DD80 /* TextFieldHeaderFooterView.swift */,
 				60B400CD1BA19C7900D8DD80 /* TextFieldTableViewCell.swift */,
-				60B400A21BA19C7900D8DD80 /* PCA2dPlot.swift */,
-				60B400A31BA19C7900D8DD80 /* PCA3Plot.swift */,
-				60B400A81BA19C7900D8DD80 /* PieChart.swift */,
 			);
 			name = TableViews;
 			sourceTree = "<group>";
@@ -582,8 +591,11 @@
 				60B400861BA19C7900D8DD80 /* MannWhitney.swift */,
 				60B400881BA19C7900D8DD80 /* Math.swift */,
 				60B400891BA19C7900D8DD80 /* MatrixUtil.swift */,
+				60B4008B1BA19C7900D8DD80 /* MissingValues.swift */,
+				60B400931BA19C7900D8DD80 /* NormalDistribution.swift */,
 				60B400A11BA19C7900D8DD80 /* PCA.swift */,
 				60B400AF1BA19C7900D8DD80 /* Random.swift */,
+				60B400C91BA19C7900D8DD80 /* Statistics.swift */,
 			);
 			name = Math;
 			sourceTree = "<group>";
@@ -629,25 +641,10 @@
 				60B400691BA19C7900D8DD80 /* Email.swift */,
 				60B400721BA19C7900D8DD80 /* Files.swift */,
 				60B4007E1BA19C7900D8DD80 /* Layout.swift */,
-				60B4008A1BA19C7900D8DD80 /* MissingValueHistogram.swift */,
-				60B4008B1BA19C7900D8DD80 /* MissingValues.swift */,
 				60B4008E1BA19C7900D8DD80 /* MoleculeRange.swift */,
-				60B400911BA19C7900D8DD80 /* NameColorTableView.swift */,
-				60B400931BA19C7900D8DD80 /* NormalDistribution.swift */,
-				60B4009A1BA19C7900D8DD80 /* PairTable.swift */,
 				60B400A01BA19C7900D8DD80 /* parse_values.swift */,
 				60B400A41BA19C7900D8DD80 /* PCAaxis.swift */,
 				60B400A61BA19C7900D8DD80 /* Pdf.swift */,
-				60B400A71BA19C7900D8DD80 /* PdfTxtButtons.swift */,
-				60B400AD1BA19C7900D8DD80 /* PValueHistogramDelegate.swift */,
-				60B400B81BA19C7900D8DD80 /* SearchBar.swift */,
-				60B400BD1BA19C7900D8DD80 /* SingleMoleculePlot.swift */,
-				60B400C11BA19C7900D8DD80 /* SpreadSheet.swift */,
-				60B400C91BA19C7900D8DD80 /* Statistics.swift */,
-				60B400CA1BA19C7900D8DD80 /* TableOfAttributedStrings.swift */,
-				60B400CB1BA19C7900D8DD80 /* TableViewCells.swift */,
-				60B400CE1BA19C7900D8DD80 /* TiledLayerView.swift */,
-				60B400CF1BA19C7900D8DD80 /* TiledScrollView.swift */,
 				60B400D11BA19C7900D8DD80 /* Txt.swift */,
 				60B4003D1BA19BED00D8DD80 /* AttributedString.swift */,
 				60B4003E1BA19BED00D8DD80 /* NumberFormat.swift */,
@@ -1035,7 +1032,6 @@
 				60B400D71BA19C7900D8DD80 /* Alert.swift in Sources */,
 				60B4003B1BA1983900D8DD80 /* State.swift in Sources */,
 				60B401451BA19C7900D8DD80 /* SingleChoiceTable.swift in Sources */,
-				60B401551BA19C7900D8DD80 /* TableViewCells.swift in Sources */,
 				60B401211BA19C7900D8DD80 /* PairedComparisonFactor.swift in Sources */,
 				60B400D81BA19C7900D8DD80 /* Anova.swift in Sources */,
 				60B4012E1BA19C7900D8DD80 /* PCA3Plot.swift in Sources */,
