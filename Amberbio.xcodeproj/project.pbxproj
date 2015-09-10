@@ -535,12 +535,68 @@
 			name = Components;
 			sourceTree = "<group>";
 		};
+		602708C31BA20A0E00672D54 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				60B400481BA19C7900D8DD80 /* Alert.swift */,
+				60B401641BA1A20400D8DD80 /* ColorGrid.swift */,
+				60B401651BA1A20400D8DD80 /* ColorSlider.swift */,
+				60B401601BA1A1D200D8DD80 /* ColorCircle.swift */,
+				60B401611BA1A1D200D8DD80 /* ColorPicker.swift */,
+				60B400761BA19C7900D8DD80 /* HierarchicalClusteringDrawer.swift */,
+				60B400811BA19C7900D8DD80 /* LinearRegressionDrawer.swift */,
+				60B400901BA19C7900D8DD80 /* MultiSegmentedControl.swift */,
+				60B400BB1BA19C7900D8DD80 /* SingleChoiceTable.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		602708C41BA20A7200672D54 /* TableViews */ = {
+			isa = PBXGroup;
+			children = (
+				60B400501BA19C7900D8DD80 /* CenteredHeaderFooterView.swift */,
+				60B400511BA19C7900D8DD80 /* CenteredTableViewCell.swift */,
+				60B400921BA19C7900D8DD80 /* NameDateTableViewCell.swift */,
+				60B400B91BA19C7900D8DD80 /* SearchTableViewCell.swift */,
+				60B400BA1BA19C7900D8DD80 /* SegmentedControlTableViewCell.swift */,
+				60B400BF1BA19C7900D8DD80 /* SingleMoleculeTableViewCell.swift */,
+				60B400C01BA19C7900D8DD80 /* SliderTableViewCell.swift */,
+				60B400CC1BA19C7900D8DD80 /* TextFieldHeaderFooterView.swift */,
+				60B400CD1BA19C7900D8DD80 /* TextFieldTableViewCell.swift */,
+				60B400A21BA19C7900D8DD80 /* PCA2dPlot.swift */,
+				60B400A31BA19C7900D8DD80 /* PCA3Plot.swift */,
+				60B400A81BA19C7900D8DD80 /* PieChart.swift */,
+			);
+			name = TableViews;
+			sourceTree = "<group>";
+		};
+		602708C51BA20BCB00672D54 /* Math */ = {
+			isa = PBXGroup;
+			children = (
+				60B400491BA19C7900D8DD80 /* Anova.swift */,
+				60B400521BA19C7900D8DD80 /* ChiSquare.swift */,
+				60B400531BA19C7900D8DD80 /* ChiSquareTableMath.swift */,
+				60B400591BA19C7900D8DD80 /* ContingencyTable.swift */,
+				60B4005F1BA19C7900D8DD80 /* Distances.swift */,
+				60B400751BA19C7900D8DD80 /* HierarchicalClustering.swift */,
+				60B400861BA19C7900D8DD80 /* MannWhitney.swift */,
+				60B400881BA19C7900D8DD80 /* Math.swift */,
+				60B400891BA19C7900D8DD80 /* MatrixUtil.swift */,
+				60B400A11BA19C7900D8DD80 /* PCA.swift */,
+				60B400AF1BA19C7900D8DD80 /* Random.swift */,
+			);
+			name = Math;
+			sourceTree = "<group>";
+		};
 		60B400361BA1980000D8DD80 /* Source */ = {
 			isa = PBXGroup;
 			children = (
 				60B400371BA1981A00D8DD80 /* State */,
 				60B4015E1BA19D8900D8DD80 /* SQLite */,
 				602708C11BA1EBDC00672D54 /* Components */,
+				602708C31BA20A0E00672D54 /* Views */,
+				602708C41BA20A7200672D54 /* TableViews */,
+				602708C51BA20BCB00672D54 /* Math */,
 				60B4003C1BA19B0F00D8DD80 /* Functions */,
 				60B4015F1BA19E7F00D8DD80 /* CFunctions */,
 				60B4016E1BA1BBFD00D8DD80 /* Manual */,
@@ -562,66 +618,34 @@
 		60B4003C1BA19B0F00D8DD80 /* Functions */ = {
 			isa = PBXGroup;
 			children = (
-				60B401641BA1A20400D8DD80 /* ColorGrid.swift */,
-				60B401651BA1A20400D8DD80 /* ColorSlider.swift */,
-				60B401601BA1A1D200D8DD80 /* ColorCircle.swift */,
-				60B401611BA1A1D200D8DD80 /* ColorPicker.swift */,
-				60B400481BA19C7900D8DD80 /* Alert.swift */,
-				60B400491BA19C7900D8DD80 /* Anova.swift */,
-				60B400501BA19C7900D8DD80 /* CenteredHeaderFooterView.swift */,
-				60B400511BA19C7900D8DD80 /* CenteredTableViewCell.swift */,
-				60B400521BA19C7900D8DD80 /* ChiSquare.swift */,
-				60B400531BA19C7900D8DD80 /* ChiSquareTableMath.swift */,
 				60B400541BA19C7900D8DD80 /* Color.swift */,
 				60B400551BA19C7900D8DD80 /* ColorKey.swift */,
-				60B400591BA19C7900D8DD80 /* ContingencyTable.swift */,
 				60B4005A1BA19C7900D8DD80 /* Csv.swift */,
 				60B4005E1BA19C7900D8DD80 /* Date.swift */,
-				60B4005F1BA19C7900D8DD80 /* Distances.swift */,
 				60B400621BA19C7900D8DD80 /* DocumentInteractionOpen.swift */,
 				60B400631BA19C7900D8DD80 /* DocumentPickerExport.swift */,
 				60B400641BA19C7900D8DD80 /* DocumentPickerImport.swift */,
 				60B400651BA19C7900D8DD80 /* Drawing.swift */,
 				60B400691BA19C7900D8DD80 /* Email.swift */,
 				60B400721BA19C7900D8DD80 /* Files.swift */,
-				60B400751BA19C7900D8DD80 /* HierarchicalClustering.swift */,
-				60B400761BA19C7900D8DD80 /* HierarchicalClusteringDrawer.swift */,
 				60B4007E1BA19C7900D8DD80 /* Layout.swift */,
-				60B400811BA19C7900D8DD80 /* LinearRegressionDrawer.swift */,
-				60B400861BA19C7900D8DD80 /* MannWhitney.swift */,
-				60B400881BA19C7900D8DD80 /* Math.swift */,
-				60B400891BA19C7900D8DD80 /* MatrixUtil.swift */,
 				60B4008A1BA19C7900D8DD80 /* MissingValueHistogram.swift */,
 				60B4008B1BA19C7900D8DD80 /* MissingValues.swift */,
 				60B4008E1BA19C7900D8DD80 /* MoleculeRange.swift */,
-				60B400901BA19C7900D8DD80 /* MultiSegmentedControl.swift */,
 				60B400911BA19C7900D8DD80 /* NameColorTableView.swift */,
-				60B400921BA19C7900D8DD80 /* NameDateTableViewCell.swift */,
 				60B400931BA19C7900D8DD80 /* NormalDistribution.swift */,
 				60B4009A1BA19C7900D8DD80 /* PairTable.swift */,
 				60B400A01BA19C7900D8DD80 /* parse_values.swift */,
-				60B400A11BA19C7900D8DD80 /* PCA.swift */,
-				60B400A21BA19C7900D8DD80 /* PCA2dPlot.swift */,
-				60B400A31BA19C7900D8DD80 /* PCA3Plot.swift */,
 				60B400A41BA19C7900D8DD80 /* PCAaxis.swift */,
 				60B400A61BA19C7900D8DD80 /* Pdf.swift */,
 				60B400A71BA19C7900D8DD80 /* PdfTxtButtons.swift */,
-				60B400A81BA19C7900D8DD80 /* PieChart.swift */,
 				60B400AD1BA19C7900D8DD80 /* PValueHistogramDelegate.swift */,
-				60B400AF1BA19C7900D8DD80 /* Random.swift */,
 				60B400B81BA19C7900D8DD80 /* SearchBar.swift */,
-				60B400B91BA19C7900D8DD80 /* SearchTableViewCell.swift */,
-				60B400BA1BA19C7900D8DD80 /* SegmentedControlTableViewCell.swift */,
-				60B400BB1BA19C7900D8DD80 /* SingleChoiceTable.swift */,
 				60B400BD1BA19C7900D8DD80 /* SingleMoleculePlot.swift */,
-				60B400BF1BA19C7900D8DD80 /* SingleMoleculeTableViewCell.swift */,
-				60B400C01BA19C7900D8DD80 /* SliderTableViewCell.swift */,
 				60B400C11BA19C7900D8DD80 /* SpreadSheet.swift */,
 				60B400C91BA19C7900D8DD80 /* Statistics.swift */,
 				60B400CA1BA19C7900D8DD80 /* TableOfAttributedStrings.swift */,
 				60B400CB1BA19C7900D8DD80 /* TableViewCells.swift */,
-				60B400CC1BA19C7900D8DD80 /* TextFieldHeaderFooterView.swift */,
-				60B400CD1BA19C7900D8DD80 /* TextFieldTableViewCell.swift */,
 				60B400CE1BA19C7900D8DD80 /* TiledLayerView.swift */,
 				60B400CF1BA19C7900D8DD80 /* TiledScrollView.swift */,
 				60B400D11BA19C7900D8DD80 /* Txt.swift */,

@@ -2,9 +2,9 @@
 
 INK=/Applications/Inkscape.app/Contents/Resources/bin/inkscape
 
-BASE=/Users/mkrogh/amber/app/Bioinformatics/app-icon/heatmap
+BASE=/Users/mkrogh/amber/app/Amberbio/app-icon/heatmap
 
-SVG=/Users/mkrogh/amber/app/Bioinformatics/app-icon/heatmap.svg
+SVG=/Users/mkrogh/amber/app/Amberbio/app-icon/heatmap.svg
 
 # iPhone Spotlight iOS5,6 Settings iOS and iPad 5-7 29pt
 $INK -z -D -e "$BASE-29.png" -f 	$SVG -w 29 -h 29
