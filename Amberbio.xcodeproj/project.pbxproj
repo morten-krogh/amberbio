@@ -14,6 +14,7 @@
 		601003571BA18744008A1FF9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 601003551BA18744008A1FF9 /* LaunchScreen.storyboard */; };
 		601003621BA18744008A1FF9 /* AmberbioTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601003611BA18744008A1FF9 /* AmberbioTests.swift */; };
 		6010036D1BA18744008A1FF9 /* AmberbioUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6010036C1BA18744008A1FF9 /* AmberbioUITests.swift */; };
+		60B400321BA1968600D8DD80 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400311BA1968600D8DD80 /* State.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		601003681BA18744008A1FF9 /* AmberbioUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AmberbioUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6010036C1BA18744008A1FF9 /* AmberbioUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmberbioUITests.swift; sourceTree = "<group>"; };
 		6010036E1BA18744008A1FF9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		60B400311BA1968600D8DD80 /* State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = State.swift; path = Source/State.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +79,7 @@
 		601003401BA18744008A1FF9 = {
 			isa = PBXGroup;
 			children = (
+				60B400301BA18F6C00D8DD80 /* State */,
 				6010034B1BA18744008A1FF9 /* Amberbio */,
 				601003601BA18744008A1FF9 /* AmberbioTests */,
 				6010036B1BA18744008A1FF9 /* AmberbioUITests */,
@@ -123,6 +126,15 @@
 				6010036E1BA18744008A1FF9 /* Info.plist */,
 			);
 			path = AmberbioUITests;
+			sourceTree = "<group>";
+		};
+		60B400301BA18F6C00D8DD80 /* State */ = {
+			isa = PBXGroup;
+			children = (
+				60B400311BA1968600D8DD80 /* State.swift */,
+			);
+			name = State;
+			path = Amberbio;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -192,6 +204,7 @@
 				TargetAttributes = {
 					601003481BA18744008A1FF9 = {
 						CreatedOnToolsVersion = 7.0;
+						DevelopmentTeam = 4V72F28742;
 					};
 					6010035C1BA18744008A1FF9 = {
 						CreatedOnToolsVersion = 7.0;
@@ -257,6 +270,7 @@
 			files = (
 				6010034F1BA18744008A1FF9 /* ViewController.swift in Sources */,
 				6010034D1BA18744008A1FF9 /* AppDelegate.swift in Sources */,
+				60B400321BA1968600D8DD80 /* State.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -398,6 +412,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Amberbio/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -410,11 +425,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Amberbio/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.amberbio.Amberbio;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 			};
 			name = Release;
 		};
