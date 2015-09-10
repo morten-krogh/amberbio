@@ -1,10 +1,3 @@
-//
-//  distributions.h
-//  Bioinformatics
-//
-//  Created by Morten Krogh on 12/08/15.
-//  Copyright © 2015 Amber Biosicences. All rights reserved.
-//
 
 #ifndef distributions_h
 #define distributions_h

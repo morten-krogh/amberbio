@@ -1,10 +1,3 @@
-//
-//  linear_regression.h
-//  Bioinformatics
-//
-//  Created by Morten Krogh on 01/09/15.
-//  Copyright © 2015 Amber Biosicences. All rights reserved.
-//
 
 #ifndef linear_regression_h
 #define linear_regression_h

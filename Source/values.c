@@ -1,11 +1,3 @@
-//
-//  values.c
-//  Bioinformatics
-//
-//  Created by Morten Krogh on 10/06/15.
-//  Copyright (c) 2015 Amber Biosicences. All rights reserved.
-//
-
 #include "values.h"
 
 void calculate_molecule_centered_values(const double* values, const long number_of_molecules, const long number_of_samples, double* values_corrected)

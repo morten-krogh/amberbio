@@ -1,13 +1,7 @@
-//
-//  parse_values.h
-//  Bioinformatics
-//
-//  Created by Morten Krogh on 16/06/15.
-//  Copyright © 2015 Amber Biosicences. All rights reserved.
-//
 
-#ifndef parse_values_c
-#define parse_values_c
+
+#ifndef parse_values_h
+#define parse_values_h
 
 #include <stdio.h>
 
@@ -19,4 +13,4 @@ long c_parse_number_of_empty_rows_at_top(const char* data, long data_length);
 long c_parse_number_of_empty_rows_at_bottom(const char* data, long data_length);
 long c_parse_doubles(const char* data, long start, long end, long skip, double* values, long value_start);
 
-#endif /* parse_values_c */
+#endif /* parse_values_h */

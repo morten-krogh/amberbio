@@ -69,7 +69,6 @@
 		60B401051BA19C7900D8DD80 /* HierarchicalClusteringSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400781BA19C7900D8DD80 /* HierarchicalClusteringSelection.swift */; settings = {ASSET_TAGS = (); }; };
 		60B401061BA19C7900D8DD80 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400791BA19C7900D8DD80 /* Home.swift */; settings = {ASSET_TAGS = (); }; };
 		60B401071BA19C7900D8DD80 /* HomeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B4007A1BA19C7900D8DD80 /* HomeButton.swift */; settings = {ASSET_TAGS = (); }; };
-		60B401081BA19C7900D8DD80 /* HomeButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B4007B1BA19C7900D8DD80 /* HomeButtonView.swift */; settings = {ASSET_TAGS = (); }; };
 		60B401091BA19C7900D8DD80 /* ImportData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B4007C1BA19C7900D8DD80 /* ImportData.swift */; settings = {ASSET_TAGS = (); }; };
 		60B4010A1BA19C7900D8DD80 /* InfoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B4007D1BA19C7900D8DD80 /* InfoButton.swift */; settings = {ASSET_TAGS = (); }; };
 		60B4010B1BA19C7900D8DD80 /* Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B4007E1BA19C7900D8DD80 /* Layout.swift */; settings = {ASSET_TAGS = (); }; };
@@ -112,7 +111,7 @@
 		60B401311BA19C7900D8DD80 /* Pdf.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400A61BA19C7900D8DD80 /* Pdf.swift */; settings = {ASSET_TAGS = (); }; };
 		60B401321BA19C7900D8DD80 /* PdfTxtButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400A71BA19C7900D8DD80 /* PdfTxtButtons.swift */; settings = {ASSET_TAGS = (); }; };
 		60B401331BA19C7900D8DD80 /* PieChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400A81BA19C7900D8DD80 /* PieChart.swift */; settings = {ASSET_TAGS = (); }; };
-		60B401351BA19C7900D8DD80 /* ProgressIndicator2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400AA1BA19C7900D8DD80 /* ProgressIndicator2.swift */; settings = {ASSET_TAGS = (); }; };
+		60B401351BA19C7900D8DD80 /* ProgressIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400AA1BA19C7900D8DD80 /* ProgressIndicator.swift */; settings = {ASSET_TAGS = (); }; };
 		60B401361BA19C7900D8DD80 /* ProjectNotes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400AB1BA19C7900D8DD80 /* ProjectNotes.swift */; settings = {ASSET_TAGS = (); }; };
 		60B401371BA19C7900D8DD80 /* PValueHistogram.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400AC1BA19C7900D8DD80 /* PValueHistogram.swift */; settings = {ASSET_TAGS = (); }; };
 		60B401381BA19C7900D8DD80 /* PValueHistogramDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400AD1BA19C7900D8DD80 /* PValueHistogramDelegate.swift */; settings = {ASSET_TAGS = (); }; };
@@ -227,7 +226,6 @@
 		60B4004B1BA19C7900D8DD80 /* AnovaPlot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AnovaPlot.swift; path = Source/AnovaPlot.swift; sourceTree = "<group>"; };
 		60B4004C1BA19C7900D8DD80 /* AnovaTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AnovaTable.swift; path = Source/AnovaTable.swift; sourceTree = "<group>"; };
 		60B4004E1BA19C7900D8DD80 /* Back.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Back.swift; path = Source/Back.swift; sourceTree = "<group>"; };
-		60B4004F1BA19C7900D8DD80 /* Bioinformatics-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Bioinformatics-Bridging-Header.h"; path = "Source/Bioinformatics-Bridging-Header.h"; sourceTree = "<group>"; };
 		60B400501BA19C7900D8DD80 /* CenteredHeaderFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CenteredHeaderFooterView.swift; path = Source/CenteredHeaderFooterView.swift; sourceTree = "<group>"; };
 		60B400511BA19C7900D8DD80 /* CenteredTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CenteredTableViewCell.swift; path = Source/CenteredTableViewCell.swift; sourceTree = "<group>"; };
 		60B400521BA19C7900D8DD80 /* ChiSquare.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChiSquare.swift; path = Source/ChiSquare.swift; sourceTree = "<group>"; };
@@ -271,7 +269,6 @@
 		60B400781BA19C7900D8DD80 /* HierarchicalClusteringSelection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HierarchicalClusteringSelection.swift; path = Source/HierarchicalClusteringSelection.swift; sourceTree = "<group>"; };
 		60B400791BA19C7900D8DD80 /* Home.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Home.swift; path = Source/Home.swift; sourceTree = "<group>"; };
 		60B4007A1BA19C7900D8DD80 /* HomeButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeButton.swift; path = Source/HomeButton.swift; sourceTree = "<group>"; };
-		60B4007B1BA19C7900D8DD80 /* HomeButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeButtonView.swift; path = Source/HomeButtonView.swift; sourceTree = "<group>"; };
 		60B4007C1BA19C7900D8DD80 /* ImportData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImportData.swift; path = Source/ImportData.swift; sourceTree = "<group>"; };
 		60B4007D1BA19C7900D8DD80 /* InfoButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InfoButton.swift; path = Source/InfoButton.swift; sourceTree = "<group>"; };
 		60B4007E1BA19C7900D8DD80 /* Layout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Layout.swift; path = Source/Layout.swift; sourceTree = "<group>"; };
@@ -317,7 +314,7 @@
 		60B400A61BA19C7900D8DD80 /* Pdf.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Pdf.swift; path = Source/Pdf.swift; sourceTree = "<group>"; };
 		60B400A71BA19C7900D8DD80 /* PdfTxtButtons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PdfTxtButtons.swift; path = Source/PdfTxtButtons.swift; sourceTree = "<group>"; };
 		60B400A81BA19C7900D8DD80 /* PieChart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PieChart.swift; path = Source/PieChart.swift; sourceTree = "<group>"; };
-		60B400AA1BA19C7900D8DD80 /* ProgressIndicator2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProgressIndicator2.swift; path = Source/ProgressIndicator2.swift; sourceTree = "<group>"; };
+		60B400AA1BA19C7900D8DD80 /* ProgressIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProgressIndicator.swift; path = Source/ProgressIndicator.swift; sourceTree = "<group>"; };
 		60B400AB1BA19C7900D8DD80 /* ProjectNotes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProjectNotes.swift; path = Source/ProjectNotes.swift; sourceTree = "<group>"; };
 		60B400AC1BA19C7900D8DD80 /* PValueHistogram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PValueHistogram.swift; path = Source/PValueHistogram.swift; sourceTree = "<group>"; };
 		60B400AD1BA19C7900D8DD80 /* PValueHistogramDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PValueHistogramDelegate.swift; path = Source/PValueHistogramDelegate.swift; sourceTree = "<group>"; };
@@ -473,6 +470,67 @@
 		602708C11BA1EBDC00672D54 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				60B400581BA19C7900D8DD80 /* Component.swift */,
+				60B400461BA19C7900D8DD80 /* ActiveDataSet.swift */,
+				60B400471BA19C7900D8DD80 /* ActivityIndicator.swift */,
+				60B4004A1BA19C7900D8DD80 /* AnovaFactorSelection.swift */,
+				60B4004B1BA19C7900D8DD80 /* AnovaPlot.swift */,
+				60B4004C1BA19C7900D8DD80 /* AnovaTable.swift */,
+				60B4004E1BA19C7900D8DD80 /* Back.swift */,
+				60B400561BA19C7900D8DD80 /* ColorSelectionLevel.swift */,
+				60B400571BA19C7900D8DD80 /* ColorSelectionPicker.swift */,
+				60B4005B1BA19C7900D8DD80 /* DataSetSelection.swift */,
+				60B4005C1BA19C7900D8DD80 /* DataSetSummary.swift */,
+				60B4005D1BA19C7900D8DD80 /* DataSetTable.swift */,
+				60B400661BA19C7900D8DD80 /* EditFactor.swift */,
+				60B400671BA19C7900D8DD80 /* EditFactors.swift */,
+				60B400681BA19C7900D8DD80 /* EditProject.swift */,
+				60B4006A1BA19C7900D8DD80 /* ExportProjects.swift */,
+				60B4006B1BA19C7900D8DD80 /* FactorAssociation.swift */,
+				60B4006C1BA19C7900D8DD80 /* FactorChart.swift */,
+				60B4006D1BA19C7900D8DD80 /* FactorContingencyTable.swift */,
+				60B4006E1BA19C7900D8DD80 /* FactorElimination.swift */,
+				60B4006F1BA19C7900D8DD80 /* FactorSummary.swift */,
+				60B400701BA19C7900D8DD80 /* FactorSummaryDetail.swift */,
+				60B400711BA19C7900D8DD80 /* Feedback.swift */,
+				60B400731BA19C7900D8DD80 /* Forward.swift */,
+				60B400741BA19C7900D8DD80 /* FullPage.swift */,
+				60B400771BA19C7900D8DD80 /* HierarchicalClusteringPlot.swift */,
+				60B400781BA19C7900D8DD80 /* HierarchicalClusteringSelection.swift */,
+				60B400791BA19C7900D8DD80 /* Home.swift */,
+				60B4007A1BA19C7900D8DD80 /* HomeButton.swift */,
+				60B4007C1BA19C7900D8DD80 /* ImportData.swift */,
+				60B4007D1BA19C7900D8DD80 /* InfoButton.swift */,
+				60B400821BA19C7900D8DD80 /* LinearRegressionPlot.swift */,
+				60B400831BA19C7900D8DD80 /* LinearRegressionSelection.swift */,
+				60B400841BA19C7900D8DD80 /* LinearRegressionTable.swift */,
+				60B400851BA19C7900D8DD80 /* LogarithmTransform.swift */,
+				60B400871BA19C7900D8DD80 /* Manual.swift */,
+				60B4008C1BA19C7900D8DD80 /* MissingValuesForSamples.swift */,
+				60B4008D1BA19C7900D8DD80 /* MoleculeAnnotations.swift */,
+				60B4008F1BA19C7900D8DD80 /* MultipleMoleculePlot.swift */,
+				60B400951BA19C7900D8DD80 /* PairedComparisonFactor.swift */,
+				60B400961BA19C7900D8DD80 /* PairedLevel.swift */,
+				60B400971BA19C7900D8DD80 /* PairedPairingFactor.swift */,
+				60B400981BA19C7900D8DD80 /* PairedPlot.swift */,
+				60B400991BA19C7900D8DD80 /* PairedTable.swift */,
+				60B4009B1BA19C7900D8DD80 /* PairwiseFactor.swift */,
+				60B4009C1BA19C7900D8DD80 /* PairwiseLevel.swift */,
+				60B4009D1BA19C7900D8DD80 /* PairwiseTable.swift */,
+				60B400A51BA19C7900D8DD80 /* PCAPage.swift */,
+				60B400AA1BA19C7900D8DD80 /* ProgressIndicator.swift */,
+				60B400AB1BA19C7900D8DD80 /* ProjectNotes.swift */,
+				60B400AC1BA19C7900D8DD80 /* PValueHistogram.swift */,
+				60B400B21BA19C7900D8DD80 /* RemoveMolecules.swift */,
+				60B400B31BA19C7900D8DD80 /* RemoveSamples.swift */,
+				60B400B41BA19C7900D8DD80 /* ResultFiles.swift */,
+				60B400B51BA19C7900D8DD80 /* RootComponent.swift */,
+				60B400B61BA19C7900D8DD80 /* SampleNames.swift */,
+				60B400B71BA19C7900D8DD80 /* SampleNormalization.swift */,
+				60B400BC1BA19C7900D8DD80 /* SingleMolecule.swift */,
+				60B400BE1BA19C7900D8DD80 /* SingleMoleculePlotTable.swift */,
+				60B400D01BA19C7900D8DD80 /* Title.swift */,
+				60B400D21BA19C7900D8DD80 /* User.swift */,
 			);
 			name = Components;
 			sourceTree = "<group>";
@@ -508,115 +566,54 @@
 				60B401651BA1A20400D8DD80 /* ColorSlider.swift */,
 				60B401601BA1A1D200D8DD80 /* ColorCircle.swift */,
 				60B401611BA1A1D200D8DD80 /* ColorPicker.swift */,
-				60B400461BA19C7900D8DD80 /* ActiveDataSet.swift */,
-				60B400471BA19C7900D8DD80 /* ActivityIndicator.swift */,
 				60B400481BA19C7900D8DD80 /* Alert.swift */,
 				60B400491BA19C7900D8DD80 /* Anova.swift */,
-				60B4004A1BA19C7900D8DD80 /* AnovaFactorSelection.swift */,
-				60B4004B1BA19C7900D8DD80 /* AnovaPlot.swift */,
-				60B4004C1BA19C7900D8DD80 /* AnovaTable.swift */,
-				60B4004E1BA19C7900D8DD80 /* Back.swift */,
-				60B4004F1BA19C7900D8DD80 /* Bioinformatics-Bridging-Header.h */,
 				60B400501BA19C7900D8DD80 /* CenteredHeaderFooterView.swift */,
 				60B400511BA19C7900D8DD80 /* CenteredTableViewCell.swift */,
 				60B400521BA19C7900D8DD80 /* ChiSquare.swift */,
 				60B400531BA19C7900D8DD80 /* ChiSquareTableMath.swift */,
 				60B400541BA19C7900D8DD80 /* Color.swift */,
 				60B400551BA19C7900D8DD80 /* ColorKey.swift */,
-				60B400561BA19C7900D8DD80 /* ColorSelectionLevel.swift */,
-				60B400571BA19C7900D8DD80 /* ColorSelectionPicker.swift */,
-				60B400581BA19C7900D8DD80 /* Component.swift */,
 				60B400591BA19C7900D8DD80 /* ContingencyTable.swift */,
 				60B4005A1BA19C7900D8DD80 /* Csv.swift */,
-				60B4005B1BA19C7900D8DD80 /* DataSetSelection.swift */,
-				60B4005C1BA19C7900D8DD80 /* DataSetSummary.swift */,
-				60B4005D1BA19C7900D8DD80 /* DataSetTable.swift */,
 				60B4005E1BA19C7900D8DD80 /* Date.swift */,
 				60B4005F1BA19C7900D8DD80 /* Distances.swift */,
 				60B400621BA19C7900D8DD80 /* DocumentInteractionOpen.swift */,
 				60B400631BA19C7900D8DD80 /* DocumentPickerExport.swift */,
 				60B400641BA19C7900D8DD80 /* DocumentPickerImport.swift */,
 				60B400651BA19C7900D8DD80 /* Drawing.swift */,
-				60B400661BA19C7900D8DD80 /* EditFactor.swift */,
-				60B400671BA19C7900D8DD80 /* EditFactors.swift */,
-				60B400681BA19C7900D8DD80 /* EditProject.swift */,
 				60B400691BA19C7900D8DD80 /* Email.swift */,
-				60B400831BA19C7900D8DD80 /* LinearRegressionSelection.swift */,
-				60B4006A1BA19C7900D8DD80 /* ExportProjects.swift */,
-				60B4006B1BA19C7900D8DD80 /* FactorAssociation.swift */,
-				60B4006C1BA19C7900D8DD80 /* FactorChart.swift */,
-				60B4006D1BA19C7900D8DD80 /* FactorContingencyTable.swift */,
-				60B4006E1BA19C7900D8DD80 /* FactorElimination.swift */,
-				60B4006F1BA19C7900D8DD80 /* FactorSummary.swift */,
-				60B400701BA19C7900D8DD80 /* FactorSummaryDetail.swift */,
-				60B400711BA19C7900D8DD80 /* Feedback.swift */,
 				60B400721BA19C7900D8DD80 /* Files.swift */,
-				60B400731BA19C7900D8DD80 /* Forward.swift */,
-				60B400741BA19C7900D8DD80 /* FullPage.swift */,
 				60B400751BA19C7900D8DD80 /* HierarchicalClustering.swift */,
 				60B400761BA19C7900D8DD80 /* HierarchicalClusteringDrawer.swift */,
-				60B400771BA19C7900D8DD80 /* HierarchicalClusteringPlot.swift */,
-				60B400781BA19C7900D8DD80 /* HierarchicalClusteringSelection.swift */,
-				60B400791BA19C7900D8DD80 /* Home.swift */,
-				60B4007A1BA19C7900D8DD80 /* HomeButton.swift */,
-				60B4007B1BA19C7900D8DD80 /* HomeButtonView.swift */,
-				60B4007C1BA19C7900D8DD80 /* ImportData.swift */,
-				60B4007D1BA19C7900D8DD80 /* InfoButton.swift */,
 				60B4007E1BA19C7900D8DD80 /* Layout.swift */,
 				60B400811BA19C7900D8DD80 /* LinearRegressionDrawer.swift */,
-				60B400821BA19C7900D8DD80 /* LinearRegressionPlot.swift */,
-				60B400841BA19C7900D8DD80 /* LinearRegressionTable.swift */,
-				60B400851BA19C7900D8DD80 /* LogarithmTransform.swift */,
 				60B400861BA19C7900D8DD80 /* MannWhitney.swift */,
-				60B400871BA19C7900D8DD80 /* Manual.swift */,
 				60B400881BA19C7900D8DD80 /* Math.swift */,
 				60B400891BA19C7900D8DD80 /* MatrixUtil.swift */,
 				60B4008A1BA19C7900D8DD80 /* MissingValueHistogram.swift */,
 				60B4008B1BA19C7900D8DD80 /* MissingValues.swift */,
-				60B4008C1BA19C7900D8DD80 /* MissingValuesForSamples.swift */,
-				60B4008D1BA19C7900D8DD80 /* MoleculeAnnotations.swift */,
 				60B4008E1BA19C7900D8DD80 /* MoleculeRange.swift */,
-				60B4008F1BA19C7900D8DD80 /* MultipleMoleculePlot.swift */,
 				60B400901BA19C7900D8DD80 /* MultiSegmentedControl.swift */,
 				60B400911BA19C7900D8DD80 /* NameColorTableView.swift */,
 				60B400921BA19C7900D8DD80 /* NameDateTableViewCell.swift */,
 				60B400931BA19C7900D8DD80 /* NormalDistribution.swift */,
-				60B400951BA19C7900D8DD80 /* PairedComparisonFactor.swift */,
-				60B400961BA19C7900D8DD80 /* PairedLevel.swift */,
-				60B400971BA19C7900D8DD80 /* PairedPairingFactor.swift */,
-				60B400981BA19C7900D8DD80 /* PairedPlot.swift */,
-				60B400991BA19C7900D8DD80 /* PairedTable.swift */,
 				60B4009A1BA19C7900D8DD80 /* PairTable.swift */,
-				60B4009B1BA19C7900D8DD80 /* PairwiseFactor.swift */,
-				60B4009C1BA19C7900D8DD80 /* PairwiseLevel.swift */,
-				60B4009D1BA19C7900D8DD80 /* PairwiseTable.swift */,
 				60B400A01BA19C7900D8DD80 /* parse_values.swift */,
 				60B400A11BA19C7900D8DD80 /* PCA.swift */,
 				60B400A21BA19C7900D8DD80 /* PCA2dPlot.swift */,
 				60B400A31BA19C7900D8DD80 /* PCA3Plot.swift */,
 				60B400A41BA19C7900D8DD80 /* PCAaxis.swift */,
-				60B400A51BA19C7900D8DD80 /* PCAPage.swift */,
 				60B400A61BA19C7900D8DD80 /* Pdf.swift */,
 				60B400A71BA19C7900D8DD80 /* PdfTxtButtons.swift */,
 				60B400A81BA19C7900D8DD80 /* PieChart.swift */,
-				60B400AA1BA19C7900D8DD80 /* ProgressIndicator2.swift */,
-				60B400AB1BA19C7900D8DD80 /* ProjectNotes.swift */,
-				60B400AC1BA19C7900D8DD80 /* PValueHistogram.swift */,
 				60B400AD1BA19C7900D8DD80 /* PValueHistogramDelegate.swift */,
 				60B400AF1BA19C7900D8DD80 /* Random.swift */,
-				60B400B21BA19C7900D8DD80 /* RemoveMolecules.swift */,
-				60B400B31BA19C7900D8DD80 /* RemoveSamples.swift */,
-				60B400B41BA19C7900D8DD80 /* ResultFiles.swift */,
-				60B400B51BA19C7900D8DD80 /* RootComponent.swift */,
-				60B400B61BA19C7900D8DD80 /* SampleNames.swift */,
-				60B400B71BA19C7900D8DD80 /* SampleNormalization.swift */,
 				60B400B81BA19C7900D8DD80 /* SearchBar.swift */,
 				60B400B91BA19C7900D8DD80 /* SearchTableViewCell.swift */,
 				60B400BA1BA19C7900D8DD80 /* SegmentedControlTableViewCell.swift */,
 				60B400BB1BA19C7900D8DD80 /* SingleChoiceTable.swift */,
-				60B400BC1BA19C7900D8DD80 /* SingleMolecule.swift */,
 				60B400BD1BA19C7900D8DD80 /* SingleMoleculePlot.swift */,
-				60B400BE1BA19C7900D8DD80 /* SingleMoleculePlotTable.swift */,
 				60B400BF1BA19C7900D8DD80 /* SingleMoleculeTableViewCell.swift */,
 				60B400C01BA19C7900D8DD80 /* SliderTableViewCell.swift */,
 				60B400C11BA19C7900D8DD80 /* SpreadSheet.swift */,
@@ -627,9 +624,7 @@
 				60B400CD1BA19C7900D8DD80 /* TextFieldTableViewCell.swift */,
 				60B400CE1BA19C7900D8DD80 /* TiledLayerView.swift */,
 				60B400CF1BA19C7900D8DD80 /* TiledScrollView.swift */,
-				60B400D01BA19C7900D8DD80 /* Title.swift */,
 				60B400D11BA19C7900D8DD80 /* Txt.swift */,
-				60B400D21BA19C7900D8DD80 /* User.swift */,
 				60B4003D1BA19BED00D8DD80 /* AttributedString.swift */,
 				60B4003E1BA19BED00D8DD80 /* NumberFormat.swift */,
 				60B4003F1BA19BED00D8DD80 /* Serialize.swift */,
@@ -893,7 +888,6 @@
 				60B4012D1BA19C7900D8DD80 /* PCA2dPlot.swift in Sources */,
 				60B400FA1BA19C7900D8DD80 /* FactorContingencyTable.swift in Sources */,
 				60B401221BA19C7900D8DD80 /* PairedLevel.swift in Sources */,
-				60B401081BA19C7900D8DD80 /* HomeButtonView.swift in Sources */,
 				60B400EC1BA19C7900D8DD80 /* Date.swift in Sources */,
 				60B4014F1BA19C7900D8DD80 /* sqlite_info.swift in Sources */,
 				60B401541BA19C7900D8DD80 /* TableOfAttributedStrings.swift in Sources */,
@@ -945,7 +939,7 @@
 				60B4015B1BA19C7900D8DD80 /* Txt.swift in Sources */,
 				60B400DB1BA19C7900D8DD80 /* AnovaTable.swift in Sources */,
 				60B401361BA19C7900D8DD80 /* ProjectNotes.swift in Sources */,
-				60B401351BA19C7900D8DD80 /* ProgressIndicator2.swift in Sources */,
+				60B401351BA19C7900D8DD80 /* ProgressIndicator.swift in Sources */,
 				60B400E71BA19C7900D8DD80 /* ContingencyTable.swift in Sources */,
 				60B4013E1BA19C7900D8DD80 /* ResultFiles.swift in Sources */,
 				60B400411BA19BED00D8DD80 /* AttributedString.swift in Sources */,

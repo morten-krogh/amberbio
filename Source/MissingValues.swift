@@ -1,11 +1,3 @@
-//
-//  MissingValues.swift
-//  Bioinformatics
-//
-//  Created by Morten Krogh on 25/05/15.
-//  Copyright (c) 2015 Amber Biosicences. All rights reserved.
-//
-
 import Foundation
 
 func calculate_molecule_indices_without_missing_values(values values: [Double], number_of_molecules: Int, selected_sample_indices: [Int]) -> [Int] {

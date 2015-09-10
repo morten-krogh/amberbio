@@ -1,13 +1,6 @@
-//
-//  values.h
-//  Bioinformatics
-//
-//  Created by Morten Krogh on 10/06/15.
-//  Copyright (c) 2015 Amber Biosicences. All rights reserved.
-//
 
-#ifndef __Bioinformatics__values__
-#define __Bioinformatics__values__
+#ifndef values_h
+#define values_h
 
 #include <stdio.h>
 #include <math.h>
@@ -19,4 +12,4 @@ void calculate_molecules_without_missing_values(const double* values, const long
 void calculate_factor_elimination(const double* values, const long number_of_molecules, const long number_of_samples, const long* sample_level, const long number_of_levels, double* values_eliminated);
 
 
-#endif /* defined(__Bioinformatics__values__) */
+#endif /* defined(values_h) */
