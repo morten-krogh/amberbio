@@ -12,7 +12,6 @@ func state_init() {
         //        print(database_path)
 
         let database_file_exists = file_exists(url: database_url)
-        print(database_file_exists)
 
         if reset_database && database_file_exists {
                 try! NSFileManager.defaultManager().removeItemAtURL(database_url)

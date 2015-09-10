@@ -158,7 +158,7 @@ func insert_project(database database: Database, project_name: String, data_set_
         return project_id
 }
 
-func import_data(database database: Database, stem: String, project_name: String, include_factors: Bool = true, include_annotations: Bool = true) -> Int {
+func import_data(database database: Database, stem: String, project_name: String) -> Int {
 
         var values = [] as [Double]
         var sample_names = [] as [String]
@@ -169,23 +169,22 @@ func import_data(database database: Database, stem: String, project_name: String
         var molecule_annotation_values_array = [] as [[String]]
 
         let data = NSData(contentsOfFile: NSBundle.mainBundle().pathForResource("\(stem)_values", ofType: "txt")!)!
-        (sample_names, molecule_names, values, _, _, _) = parse_import_data(data: data, double_values: true)
+
+        let parsed_project_data = parse_project_file(data: data)
+        sample_names = parsed_project_data.sample_names!
+        molecule_names = parsed_project_data.molecule_names!
+        values = parsed_project_data.values!
 
         if let file_content = NSBundle.mainBundle().pathForResource("\(stem)_annotations", ofType: "txt"), let data = NSData(contentsOfFile: file_content) {
-                (molecule_annotation_names, _, _, _, molecule_annotation_values_array, _) = parse_import_data(data: data, double_values: false)
+                let parsed_annotation_data = parse_annotation_file(data: data, molecule_names: molecule_names, current_annotation_names: [])
+                molecule_annotation_names = parsed_annotation_data.annotation_names
+                molecule_annotation_values_array = parsed_annotation_data.annotation_values
         }
 
         if let file_content = NSBundle.mainBundle().pathForResource("\(stem)_factors", ofType: "txt"), let data = NSData(contentsOfFile: file_content) {
-                var cells = [] as [[String]]
-
-                (_, factor_names, _, _, cells, _) = parse_import_data(data: data, double_values: false)
-                for i in 0 ..< factor_names.count {
-                        var sample_level_names = [] as [String]
-                        for j in 0 ..< cells.count {
-                                sample_level_names.append(cells[j][i])
-                        }
-                        level_names_of_samples_array.append(sample_level_names)
-                }
+                let parsed_factor_data = parse_factor_file(data: data, current_sample_names: sample_names, current_factor_names: [])
+                factor_names = parsed_factor_data.factor_names
+                level_names_of_samples_array = parsed_factor_data.sample_levels
         }
 
         return insert_project(database: database, project_name: project_name, data_set_name: "Original data set", values: values, sample_names: sample_names, molecule_names: molecule_names, factor_names: factor_names, level_names_of_samples_array: level_names_of_samples_array, molecule_annotation_names: molecule_annotation_names, molecule_annotation_values_array: molecule_annotation_values_array, project_note_texts: [], project_note_types: [], project_note_user_names: [])
@@ -264,7 +263,7 @@ func database_populate(database database: Database) {
 //
 //        insert_project(database: database, project_name: project_name, data_set_name: "Original data set", values: values, sample_names: sample_names, molecule_names: molecule_names,factor_names: factor_names, level_names_of_samples_array: level_names_of_samples_array, molecule_annotation_names: molecule_annotation_names, molecule_annotation_values_array: molecule_annotation_values_array, project_note_texts: project_note_texts, project_note_types: project_note_types, project_note_user_names: project_note_user_names)
 
-        import_data(database: database, stem: "iris", project_name: "Iris flowers", include_factors: true, include_annotations: false)
+        import_data(database: database, stem: "iris", project_name: "Iris flowers")
 //        import_data(database: database, stem: "brca", project_name: "brca srm")
 //        import_data(database: database, stem: "sox", project_name: "sox cell lines")
 //        import_data(database: database, stem: "ovarian", project_name: "ovarian cancer")

@@ -24,8 +24,6 @@
 	<true/>
 	<key>UILaunchStoryboardName</key>
 	<string>AmberbioLaunchScreen</string>
-	<key>UIMainStoryboardFile</key>
-	<string>Main</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
@@ -59,7 +57,7 @@
 			<string>txt</string>
 			<key>LSItemContentTypes</key>
 			<array>
-								<string>public.text</string>
+				<string>public.text</string>
 			</array>
 		</dict>
 		<dict>
