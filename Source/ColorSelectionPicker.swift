@@ -3,8 +3,8 @@ import UIKit
 class ColorSelectionPickerState: PageState {
 
         let level_id: Int
-        let level_name: String?
-        let factor_name: String?
+        let level_name: String
+        let factor_name: String
         let reset_color: UIColor
         var color: UIColor
 
