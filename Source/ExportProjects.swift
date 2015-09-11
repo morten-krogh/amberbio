@@ -40,12 +40,10 @@ class ExportProjects: Component, UITableViewDataSource, UITableViewDelegate, MFM
 
                 select_all_button.setAttributedTitle(astring_body(string: "Select all"), forState: .Normal)
                 select_all_button.addTarget(self, action: "select_all_action", forControlEvents: .TouchUpInside)
-                select_all_button.sizeToFit()
                 view.addSubview(select_all_button)
 
                 deselect_all_button.setAttributedTitle(astring_body(string: "Deselect all"), forState: .Normal)
                 deselect_all_button.addTarget(self, action: "deselect_all_action", forControlEvents: .TouchUpInside)
-                deselect_all_button.sizeToFit()
                 view.addSubview(deselect_all_button)
                 
                 table_view.registerClass(CenteredTableViewCell.self, forCellReuseIdentifier: "cell")
@@ -73,6 +71,8 @@ class ExportProjects: Component, UITableViewDataSource, UITableViewDelegate, MFM
                 export_button.frame = CGRect(x: 0, y: origin_y, width: width, height: export_button.frame.height)
                 origin_y += export_button.frame.height + 15
 
+                select_all_button.sizeToFit()
+                deselect_all_button.sizeToFit()
                 select_all_button.frame.origin = CGPoint(x: width - side_margin - select_all_button.frame.width, y: origin_y)
                 deselect_all_button.frame.origin = CGPoint(x: side_margin, y: origin_y)
                 origin_y += select_all_button.frame.height + 15

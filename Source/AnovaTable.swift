@@ -371,9 +371,9 @@ class AnovaTable: Component, SpreadSheetDelegate {
                         let level_index = (column - 5) / 4
                         switch (column - 5) % 4 {
                         case 2:
-                                return decimal_astring(number: anova_table_state.mean_values[row][level_index], fraction_digits: 1)
+                                return decimal_astring(number: anova_table_state.mean_values[row][level_index], fraction_digits: 3)
                         case 3:
-                                return decimal_astring(number: anova_table_state.standard_deviations[row][level_index], fraction_digits: 1)
+                                return decimal_astring(number: anova_table_state.standard_deviations[row][level_index], fraction_digits: 3)
                         default:
                                 return astring_body(string: cell_string(row: row, column: column))
                         }

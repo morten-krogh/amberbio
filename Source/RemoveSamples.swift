@@ -20,6 +20,9 @@ class RemoveSamples: Component, UITableViewDataSource, UITableViewDelegate {
 
         let create_data_set_button = UIButton(type: .System)
 
+        let select_all_button = UIButton(type: .System)
+        let deselect_all_button = UIButton(type: .System)
+
         let table_view = UITableView()
 
         override func viewDidLoad() {
@@ -29,6 +32,15 @@ class RemoveSamples: Component, UITableViewDataSource, UITableViewDelegate {
                 create_data_set_button.addTarget(self, action: "create_data_set_action", forControlEvents: .TouchUpInside)
                 create_data_set_button.sizeToFit()
                 view.addSubview(create_data_set_button)
+
+                select_all_button.setAttributedTitle(astring_body(string: "Select all"), forState: .Normal)
+                select_all_button.addTarget(self, action: "select_all_action", forControlEvents: .TouchUpInside)
+                view.addSubview(select_all_button)
+
+                deselect_all_button.setAttributedTitle(astring_body(string: "Deselect all"), forState: .Normal)
+                deselect_all_button.addTarget(self, action: "deselect_all_action", forControlEvents: .TouchUpInside)
+                deselect_all_button.sizeToFit()
+                view.addSubview(deselect_all_button)
 
                 table_view.registerClass(CenteredHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: "header")
                 table_view.registerClass(CenteredTableViewCell.self, forCellReuseIdentifier: "cell")
@@ -43,10 +55,17 @@ class RemoveSamples: Component, UITableViewDataSource, UITableViewDelegate {
                 super.viewWillLayoutSubviews()
 
                 let width = view.frame.width
-                var origin_y = 30 as CGFloat
+                let side_margin = 20 as CGFloat
+                var origin_y = 25 as CGFloat
 
                 create_data_set_button.frame = CGRect(x: (width - create_data_set_button.frame.width) / 2, y: origin_y, width: width, height: create_data_set_button.frame.height)
-                origin_y += create_data_set_button.frame.height + 5
+                origin_y += create_data_set_button.frame.height + 15
+
+                select_all_button.sizeToFit()
+                deselect_all_button.sizeToFit()
+                select_all_button.frame.origin = CGPoint(x: width - side_margin - select_all_button.frame.width, y: origin_y)
+                deselect_all_button.frame.origin = CGPoint(x: side_margin, y: origin_y)
+                origin_y += select_all_button.frame.height
 
                 table_view.frame = CGRect(x: 0, y: origin_y, width: width, height: view.frame.height - origin_y)
         }
@@ -75,7 +94,7 @@ class RemoveSamples: Component, UITableViewDataSource, UITableViewDelegate {
         }
 
         func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-                return centered_header_footer_view_height
+                return centered_header_footer_view_height - 10
         }
 
         func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -119,6 +138,20 @@ class RemoveSamples: Component, UITableViewDataSource, UITableViewDelegate {
                 } else {
                         remove_samples_state.selected_rows.insert(indexPath.row)
                 }
+                render_create_data_set_button()
+                table_view.reloadData()
+        }
+
+        func select_all_action() {
+                for i in 0 ..< state.number_of_samples {
+                        remove_samples_state.selected_rows.insert(i)
+                }
+                render_create_data_set_button()
+                table_view.reloadData()
+        }
+
+        func deselect_all_action() {
+                remove_samples_state.selected_rows.removeAll()
                 render_create_data_set_button()
                 table_view.reloadData()
         }
