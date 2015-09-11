@@ -192,7 +192,6 @@ func import_data(database database: Database, stem: String, project_name: String
 
 func database_populate(database database: Database) {
 
-        sqlite_set_info(database: database, version: 1, type: "Amberbio main database")
         set_user_name(database: database, user_name: "Morten Krogh")
         set_email(database: database, email: "m@amberbio.com")
 
