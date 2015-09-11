@@ -69,8 +69,8 @@ class PCA2dPlot: TiledScrollViewDelegate {
                         tick_values.append(-tick_value)
                 }
 
-                circle_radius = CGFloat(2 + symbol_size * 6)
-                names_font_size = CGFloat(4 + symbol_size * 20)
+                circle_radius = CGFloat(0.5 + symbol_size * 6)
+                names_font_size = CGFloat(0.5 + symbol_size * 20)
                 axis_title_font_size = CGFloat(2 + symbol_size * 4)
         }
 

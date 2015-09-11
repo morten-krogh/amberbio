@@ -125,7 +125,7 @@ class PCA3dPlot: SCNView {
                         title_node.scale = SCNVector3(x: Float(axis_title_scale), y: Float(axis_title_scale), z: Float(axis_title_scale))
                 }
 
-                let xyz_scale = 0.3 + symbol_size
+                let xyz_scale = 0.1 + symbol_size
                 let sphere_scale = SCNVector3(x: Float(xyz_scale), y: Float(xyz_scale), z: Float(xyz_scale))
                 let name_scale = SCNVector3(x: Float(0.01 * xyz_scale), y: Float(0.01 * xyz_scale), z: Float(0.01 * xyz_scale))
                 for i in 0 ..< sphere_nodes.count {

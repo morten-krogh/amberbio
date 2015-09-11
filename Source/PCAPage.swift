@@ -183,7 +183,7 @@ class PCA: Component, UITableViewDataSource, UITableViewDelegate, PCA2dDelegate,
                 if let pca_2d_drawer = pca_2d_drawer {
                         min_zoom = min(width_left, height) / pca_2d_drawer.content_size.height
                         pca_2d_drawer.minimum_zoom_scale = max(1, min_zoom)
-                        pca_2d_drawer.maximum_zoom_scale = 3 * pca_2d_drawer.minimum_zoom_scale
+                        pca_2d_drawer.maximum_zoom_scale = max(2, 20 * pca_2d_drawer.minimum_zoom_scale)
                         tiled_scroll_view.frame = CGRect(x: 0, y: 0, width: width_left, height: height)
                         tiled_scroll_view.scroll_view.zoomScale = pca_state.pca_2d_zoom_scale
                 }
@@ -323,7 +323,7 @@ class PCA: Component, UITableViewDataSource, UITableViewDelegate, PCA2dDelegate,
                         case 4:
                                 header.update_normal(text: "Color scheme")
                         default:
-                                header.update_normal(text: "Select components")
+                                header.update_normal(text: "Select \(pca_state.dimension) components")
                         }
                         return header
                 } else {
