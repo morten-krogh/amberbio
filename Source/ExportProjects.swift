@@ -170,7 +170,7 @@ class ExportProjects: Component, UITableViewDataSource, UITableViewDelegate, MFM
                 sqlite_exported_tables(database: export_database)
 
                 let (version, _) = sqlite_get_info(database: state.database)
-                sqlite_set_info(database: export_database, version: version, type: "exported database")
+                sqlite_set_info(database: export_database, version: version, type: database_export_info_type)
 
                 for project_id in selected_project_ids {
                         sqlite_export_project(source_database: state.database, destination_database: export_database, project_id: project_id)

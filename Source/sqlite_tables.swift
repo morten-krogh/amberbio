@@ -1,5 +1,9 @@
 import Foundation
 
+let database_info_version = 1
+let database_main_info_type = "Amberbio main database"
+let database_export_info_type = "Amberbio export database"
+
 func sqlite_tables(database database: Database) {
         var queries = [] as [Query]
 

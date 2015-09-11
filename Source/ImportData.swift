@@ -135,7 +135,7 @@ class ImportData: Component, UITableViewDataSource, UITableViewDelegate {
                 let (file_name, file_data) = state.select_file_name_and_file_data(file_id: file_id)!
                 let database_path = file_create_temp_file_url(content: file_data).path!
                 let import_database = sqlite_open(database_path: database_path)!
-                if let (_, type) = sqlite_info(database: import_database) where type == "exported database" {
+                if let (_, type) = sqlite_info(database: import_database) where type == database_export_info_type {
                         sqlite_begin(database: state.database)
                         sqlite_begin(database: import_database)
                         let (new_projects, existing_projects) = sqlite_import_database(source_database: import_database, destination_database: state.database)

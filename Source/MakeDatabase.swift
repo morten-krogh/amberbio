@@ -14,7 +14,7 @@ func make_database() {
         sqlite_tables(database: database)
         sqlite_triggers(database: database)
         sqlite_indices(database: database)
-        sqlite_set_info(database: database, version: 1, type: "main database")
+        sqlite_set_info(database: database, version: database_info_version, type: database_main_info_type)
         sqlite_end(database: database)
 
         database_populate(database: database)
