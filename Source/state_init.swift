@@ -6,7 +6,7 @@ let database_url = file_app_directory_url(file_name: database_file_name)
 let reset_database = true
 
 let initial_active_data_set_id = 1
-let initial_page_state = HomeState()
+let initial_page_state = HierarchicalClusteringSelectionState()
 
 func state_init() {
         //        print(database_path)

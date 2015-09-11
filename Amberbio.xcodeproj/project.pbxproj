@@ -14,6 +14,7 @@
 		602708B81BA1CA3100672D54 /* iris_factors.txt in Resources */ = {isa = PBXBuildFile; fileRef = 602708B41BA1C98900672D54 /* iris_factors.txt */; settings = {ASSET_TAGS = (); }; };
 		602708B91BA1CA3500672D54 /* iris_values.txt in Resources */ = {isa = PBXBuildFile; fileRef = 602708B51BA1C98900672D54 /* iris_values.txt */; settings = {ASSET_TAGS = (); }; };
 		602708C81BA2B67500672D54 /* amberbio-main.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 602708C71BA2B67500672D54 /* amberbio-main.sqlite */; settings = {ASSET_TAGS = (); }; };
+		602708CA1BA2CA0300672D54 /* SelectAllTableViewHeaderFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602708C91BA2CA0300672D54 /* SelectAllTableViewHeaderFooterView.swift */; settings = {ASSET_TAGS = (); }; };
 		60B400391BA1982900D8DD80 /* state_init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400381BA1982900D8DD80 /* state_init.swift */; settings = {ASSET_TAGS = (); }; };
 		60B4003B1BA1983900D8DD80 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B4003A1BA1983900D8DD80 /* State.swift */; settings = {ASSET_TAGS = (); }; };
 		60B400411BA19BED00D8DD80 /* AttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B4003D1BA19BED00D8DD80 /* AttributedString.swift */; settings = {ASSET_TAGS = (); }; };
@@ -211,6 +212,7 @@
 		602708B41BA1C98900672D54 /* iris_factors.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = iris_factors.txt; path = "demo-data/iris/iris_factors.txt"; sourceTree = "<group>"; };
 		602708B51BA1C98900672D54 /* iris_values.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = iris_values.txt; path = "demo-data/iris/iris_values.txt"; sourceTree = "<group>"; };
 		602708C71BA2B67500672D54 /* amberbio-main.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; name = "amberbio-main.sqlite"; path = "../../../Desktop/amberbio-main.sqlite"; sourceTree = "<group>"; };
+		602708C91BA2CA0300672D54 /* SelectAllTableViewHeaderFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectAllTableViewHeaderFooterView.swift; sourceTree = "<group>"; };
 		60B400381BA1982900D8DD80 /* state_init.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = state_init.swift; path = Source/state_init.swift; sourceTree = "<group>"; };
 		60B4003A1BA1983900D8DD80 /* State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = State.swift; path = Source/State.swift; sourceTree = "<group>"; };
 		60B4003D1BA19BED00D8DD80 /* AttributedString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AttributedString.swift; path = Source/AttributedString.swift; sourceTree = "<group>"; };
@@ -575,6 +577,7 @@
 				60B400C01BA19C7900D8DD80 /* SliderTableViewCell.swift */,
 				60B400CC1BA19C7900D8DD80 /* TextFieldHeaderFooterView.swift */,
 				60B400CD1BA19C7900D8DD80 /* TextFieldTableViewCell.swift */,
+				602708C91BA2CA0300672D54 /* SelectAllTableViewHeaderFooterView.swift */,
 			);
 			name = TableViews;
 			sourceTree = "<group>";
@@ -960,6 +963,7 @@
 				60B4015B1BA19C7900D8DD80 /* Txt.swift in Sources */,
 				60B400DB1BA19C7900D8DD80 /* AnovaTable.swift in Sources */,
 				60B401361BA19C7900D8DD80 /* ProjectNotes.swift in Sources */,
+				602708CA1BA2CA0300672D54 /* SelectAllTableViewHeaderFooterView.swift in Sources */,
 				60B401351BA19C7900D8DD80 /* ProgressIndicator.swift in Sources */,
 				60B400E71BA19C7900D8DD80 /* ContingencyTable.swift in Sources */,
 				60B4013E1BA19C7900D8DD80 /* ResultFiles.swift in Sources */,

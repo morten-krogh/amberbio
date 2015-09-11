@@ -18,7 +18,7 @@ class HierarchicalClusteringSelectionState: PageState {
         }
 }
 
-class HierarchicalClusteringSelection: Component, UITableViewDataSource, UITableViewDelegate {
+class HierarchicalClusteringSelection: Component, UITableViewDataSource, UITableViewDelegate, SelectAllHeaderFooterViewDelegate {
 
         var hierarchical_clustering_selection_state: HierarchicalClusteringSelectionState!
 
@@ -43,7 +43,8 @@ class HierarchicalClusteringSelection: Component, UITableViewDataSource, UITable
 
                 view.addSubview(number_of_molecules_label)
 
-                table_view.registerClass(CenteredHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: "header")
+                table_view.registerClass(CenteredHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: "centered-header")
+                table_view.registerClass(SelectAllHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: "select-all-header")
                 table_view.registerClass(UITableViewHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: "footer")
                 table_view.registerClass(CenteredTableViewCell.self, forCellReuseIdentifier: "cell")
                 table_view.dataSource = self
@@ -76,32 +77,40 @@ class HierarchicalClusteringSelection: Component, UITableViewDataSource, UITable
         }
 
         func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-                return centered_header_footer_view_height - 30
+                return section == 6 ? select_all_header_footer_view_height : centered_header_footer_view_height - 30
         }
 
         func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-                let header = tableView.dequeueReusableHeaderFooterViewWithIdentifier("header") as! CenteredHeaderFooterView
-                let text: String
-                switch section {
-                case 0:
-                        text = "Distance measure"
-                case 1:
-                        text = "Linkage"
-                case 2:
-                        text = "Values"
-                case 3:
-                        text = "Molecules shown"
-                case 4:
-                        text = "Order of molecules"
-                case 5:
-                        text = "Factors to include"
-                default:
-                        text = "Samples to include"
+                if section < 6 {
+                        let header = tableView.dequeueReusableHeaderFooterViewWithIdentifier("centered-header") as! CenteredHeaderFooterView
+                        let text: String
+                        switch section {
+                        case 0:
+                                text = "Distance measure"
+                        case 1:
+                                text = "Linkage"
+                        case 2:
+                                text = "Values"
+                        case 3:
+                                text = "Molecules shown"
+                        case 4:
+                                text = "Order of molecules"
+                        case 5:
+                                text = "Factors to include"
+                        default:
+                                text = "Samples to include"
+                        }
+                        
+                        header.update_normal(text: text)
+
+                        return header
+                } else {
+                        let header = tableView.dequeueReusableHeaderFooterViewWithIdentifier("select-all-header") as! SelectAllHeaderFooterView
+                        let text = "Samples to include"
+                        header.update(text: text, tag: 0, delegate: self)
+
+                        return header
                 }
-
-                header.update_normal(text: text)
-
-                return header
         }
 
         func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
@@ -215,6 +224,22 @@ class HierarchicalClusteringSelection: Component, UITableViewDataSource, UITable
                 number_of_molecules_label.text = "Molecules without missing values: \(number_of_present_molecules)"
 
                 create_plot_button.enabled = selected_sample_indices.count != 0 && number_of_present_molecules > 1
+        }
+
+        func select_all_action(tag tag: Int) {
+                for i in 0 ..< hierarchical_clustering_selection_state.selected_samples.count {
+                        hierarchical_clustering_selection_state.selected_samples[i] = true
+                }
+                table_view.reloadData()
+                render_top_part()
+        }
+
+        func deselect_all_action(tag tag: Int) {
+                for i in 0 ..< hierarchical_clustering_selection_state.selected_samples.count {
+                        hierarchical_clustering_selection_state.selected_samples[i] = false
+                }
+                table_view.reloadData()
+                render_top_part()
         }
 
         func create_plot_action() {
