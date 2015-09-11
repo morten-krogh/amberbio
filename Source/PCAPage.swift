@@ -110,7 +110,7 @@ class PCAState: PageState {
         }
 }
 
-class PCA: Component, UITableViewDataSource, UITableViewDelegate, PCA2dDelegate {
+class PCA: Component, UITableViewDataSource, UITableViewDelegate, PCA2dDelegate, SelectAllHeaderFooterViewDelegate {
 
         var pca_state: PCAState!
 
@@ -137,7 +137,8 @@ class PCA: Component, UITableViewDataSource, UITableViewDelegate, PCA2dDelegate 
                 scroll_view.addSubview(tiled_scroll_view)
                 scroll_view.addSubview(pca3d_plot)
 
-                table_view.registerClass(CenteredHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: "header")
+                table_view.registerClass(CenteredHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: "centered-header")
+                table_view.registerClass(SelectAllHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: "select-all-header")
                 table_view.registerClass(CenteredTableViewCell.self, forCellReuseIdentifier: "centered_cell")
                 table_view.registerClass(SegmentedControlTableViewCell.self, forCellReuseIdentifier: "segmented_control_cell")
                 table_view.registerClass(SliderTableViewCell.self, forCellReuseIdentifier: "slider_cell")
@@ -304,29 +305,33 @@ class PCA: Component, UITableViewDataSource, UITableViewDelegate, PCA2dDelegate 
         }
 
         func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-                return centered_header_footer_view_height
+                return section == 6 ? select_all_header_footer_view_height : centered_header_footer_view_height
         }
 
         func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-                let header = tableView.dequeueReusableHeaderFooterViewWithIdentifier("header") as! CenteredHeaderFooterView
-                switch section {
-                case 0:
-                        header.update_normal(text: "Number of dimensions")
-                case 1:
-                        header.update_normal(text: "Plot symbol")
-                case 2:
-                        header.update_normal(text: "Plot symbol size")
-                case 3:
-                        header.update_normal(text: "Select a factor for colors")
-                case 4:
-                        header.update_normal(text: "Color scheme")
-                case 5:
-                        let number_of_components = pca_state.dimension == 2 ? "two" : "three"
-                        header.update_normal(text: "Select \(number_of_components) components")
-                default:
-                        header.update_normal(text: "Select samples")
+                if section < 6 {
+                        let header = tableView.dequeueReusableHeaderFooterViewWithIdentifier("centered-header") as! CenteredHeaderFooterView
+                        switch section {
+                        case 0:
+                                header.update_normal(text: "Number of dimensions")
+                        case 1:
+                                header.update_normal(text: "Plot symbol")
+                        case 2:
+                                header.update_normal(text: "Plot symbol size")
+                        case 3:
+                                header.update_normal(text: "Select a factor for colors")
+                        case 4:
+                                header.update_normal(text: "Color scheme")
+                        default:
+                                header.update_normal(text: "Select components")
+                        }
+                        return header
+                } else {
+                        let header = tableView.dequeueReusableHeaderFooterViewWithIdentifier("select-all-header") as! SelectAllHeaderFooterView
+                        let text = "Select samples"
+                        header.update(text: text, tag: 0, delegate: self)
+                        return header
                 }
-                return header
         }
 
         func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -442,6 +447,20 @@ class PCA: Component, UITableViewDataSource, UITableViewDelegate, PCA2dDelegate 
         func plot_symbol_size_action(sender: UISlider) {
                 pca_state.symbol_size = Double(sender.value)
                 update_pca_plot()
+        }
+
+        func select_all_action(tag tag: Int) {
+                for i in 0 ..< pca_state.selected_samples.count {
+                        pca_state.selected_samples[i] = true
+                }
+                render_after_sample_change()
+        }
+
+        func deselect_all_action(tag tag: Int) {
+                for i in 0 ..< pca_state.selected_samples.count {
+                        pca_state.selected_samples[i] = false
+                }
+                render_after_sample_change()
         }
 
         func scroll_view_did_end_zooming(zoom_scale zoom_scale: CGFloat) {

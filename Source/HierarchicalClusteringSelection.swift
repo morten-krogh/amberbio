@@ -95,10 +95,8 @@ class HierarchicalClusteringSelection: Component, UITableViewDataSource, UITable
                                 text = "Molecules shown"
                         case 4:
                                 text = "Order of molecules"
-                        case 5:
-                                text = "Factors to include"
                         default:
-                                text = "Samples to include"
+                                text = "Factors to include"
                         }
                         
                         header.update_normal(text: text)
