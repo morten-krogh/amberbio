@@ -65,6 +65,66 @@ func draw_arrow_horizontal(context context: CGContext, point: CGPoint, length: C
         draw_line(context: context, start_point: point, end_point: CGPoint(x: point.x - offSetX , y: point.y + offSetY))
 }
 
+func draw_cell_with_attributed_text(context context: CGContext, rect: CGRect, line_width: CGFloat, attributed_text: Astring?, background_color: UIColor?, horizontal_cell: Bool, margin_horizontal: CGFloat, margin_vertical: CGFloat, text_centered: Bool, circle_color: UIColor?, circle_radius: CGFloat, top_line: Bool, right_line: Bool, bottom_line: Bool, left_line: Bool) {
+        CGContextSaveGState(context)
+        CGContextSetLineWidth(context, line_width)
+        if let background_color = background_color {
+                CGContextSetFillColorWithColor(context, background_color.CGColor)
+                CGContextBeginPath(context)
+                CGContextMoveToPoint(context, rect.origin.x, rect.origin.y)
+                CGContextAddLineToPoint(context, rect.origin.x + rect.size.width, rect.origin.y)
+                CGContextAddLineToPoint(context, rect.origin.x + rect.size.width, rect.origin.y + rect.size.height)
+                CGContextAddLineToPoint(context, rect.origin.x, rect.origin.y + rect.size.height)
+                CGContextClosePath(context)
+                CGContextFillPath(context)
+        }
+
+        CGContextSetStrokeColorWithColor(context, UIColor.blackColor().CGColor)
+        CGContextBeginPath(context)
+        if top_line {
+                CGContextMoveToPoint(context, rect.origin.x, rect.origin.y)
+                CGContextAddLineToPoint(context, rect.origin.x + rect.size.width, rect.origin.y)
+        }
+        if right_line {
+                CGContextMoveToPoint(context, rect.origin.x + rect.size.width, rect.origin.y)
+                CGContextAddLineToPoint(context, rect.origin.x + rect.size.width, rect.origin.y + rect.size.height)
+        }
+        if bottom_line {
+                CGContextMoveToPoint(context, rect.origin.x, rect.origin.y + rect.size.height)
+                CGContextAddLineToPoint(context, rect.origin.x + rect.size.width, rect.origin.y + rect.size.height)
+        }
+        if left_line {
+                CGContextMoveToPoint(context, rect.origin.x, rect.origin.y)
+                CGContextAddLineToPoint(context, rect.origin.x, rect.origin.y + rect.size.height)
+        }
+        CGContextStrokePath(context)
+
+        if let attributed_text = attributed_text {
+                let size = attributed_text.size()
+                var origin: CGPoint
+                let rectMidX = rect.origin.x + (rect.size.width - (circle_color == nil ? 0 : (margin_horizontal + 2.0 * circle_radius))) / 2.0
+                if horizontal_cell {
+                        let origin_x = text_centered ? rectMidX - size.width / 2.0 : rect.origin.x
+                        origin = CGPoint(x: origin_x, y: CGRectGetMidY(rect) - size.height / 2.0)
+                } else {
+                        let origin_y = text_centered ? CGRectGetMidY(rect) - size.width / 2.0 : rect.origin.y
+                        origin = CGPoint(x: rectMidX + size.height / 2.0, y: origin_y)
+                }
+                draw_attributed_text(context: context, attributed_text: attributed_text, origin: origin, horizontal: horizontal_cell)
+        }
+
+        if let circle_color = circle_color {
+                let center_x = CGRectGetMaxX(rect) - margin_horizontal - circle_radius
+                let center_y = CGRectGetMidY(rect)
+                draw_circle(context: context, center_x: center_x, center_y: center_y, radius: circle_radius, color: circle_color)
+        }
+
+        CGContextRestoreGState(context)
+}
+
+
+
+
 
 
 

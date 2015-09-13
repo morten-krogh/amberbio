@@ -104,9 +104,12 @@ class SingleChoiceTable: UIView, TiledScrollViewDelegate {
                 let rect = CGRect(x: 0, y: originY, width: rowNamesWidth, height: rowHeight)
                 let astring = astring_font_size_color(string: name, font: font, font_size: nil, color: nil)
 
+                draw_cell_with_attributed_text(context: context, rect: rect, line_width: lineWidth, attributed_text: astring, background_color: nil, horizontal_cell: true, margin_horizontal: 0, margin_vertical: 0, text_centered: false, circle_color: nil, circle_radius: 0, top_line: false, right_line: true, bottom_line: index != rowNames.count - 1, left_line: false)
+
+
 //                Drawing.drawCellWithAttributedString(context: context, rect: rect, lineWidth: lineWidth, attributedString: astring, backgroundColor: nil, horizontalCell: true, marginHorizontal: 0, marginVertical: 0, circleColor: nil, circleRadius: 0, topLine: false, rightLine: true, bottomLine: index != rowNames.count - 1, leftLine: false)
 
-                Drawing.drawCellWithName(context: context, originX: 0, originY: originY, width: rowNamesWidth, height: rowHeight, lineWidth: lineWidth, name: name, font: font, horizontalName: true, margin: 0, topLine: false, rightLine: true, bottomLine: index != rowNames.count - 1, leftLine: false)
+//                Drawing.drawCellWithName(context: context, originX: 0, originY: originY, width: rowNamesWidth, height: rowHeight, lineWidth: lineWidth, name: name, font: font, horizontalName: true, margin: 0, topLine: false, rightLine: true, bottomLine: index != rowNames.count - 1, leftLine: false)
         }
 
         func drawColName(context context: CGContext, index: Int) {
