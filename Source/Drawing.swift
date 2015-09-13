@@ -1,16 +1,27 @@
 import UIKit
 
+func draw_max_width(names names: [String], font: UIFont) -> CGFloat {
+        var maximum = 0 as CGFloat
+        for name in names {
+                let attributed_string = astring_font_size_color(string: name, font: font, font_size: nil, color: nil)
+                let width = ceil(attributed_string.size().width)
+                maximum = max(maximum, width)
+        }
+        return maximum
+}
+
+
 class Drawing {
 
-        class func maxWidth(names names: [String], font: UIFont) -> CGFloat {
-                var maximum = 0 as CGFloat
-                for name in names {
-                        let attributedString = Astring(string: name, attributes: [NSFontAttributeName: font])
-                        let width = ceil(attributedString.size().width)
-                        maximum = max(maximum, width)
-                }
-                return maximum
-        }
+//        class func maxWidth(names names: [String], font: UIFont) -> CGFloat {
+//                var maximum = 0 as CGFloat
+//                for name in names {
+//                        let attributedString = Astring(string: name, attributes: [NSFontAttributeName: font])
+//                        let width = ceil(attributedString.size().width)
+//                        maximum = max(maximum, width)
+//                }
+//                return maximum
+//        }
 
         class func drawCellWithAttributedString(context context: CGContext, rect: CGRect, lineWidth: CGFloat, attributedString: Astring?, backgroundColor: UIColor?, horizontalCell: Bool, marginHorizontal: CGFloat, marginVertical: CGFloat, circleColor: UIColor?, circleRadius: CGFloat, topLine: Bool, rightLine: Bool, bottomLine: Bool, leftLine: Bool) {
                 CGContextSaveGState(context)

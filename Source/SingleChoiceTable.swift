@@ -52,8 +52,8 @@ class SingleChoiceTable: UIView, TiledScrollViewDelegate {
         func propertiesDidChange() {
                 if rowNames.count > 0 && colNames.count > 0 && choices.count == rowNames.count {
                         tiledScrollView.frame = bounds
-                        rowNamesWidth = Drawing.maxWidth(names: rowNames, font: font) + margin
-                        colNamesHeight = Drawing.maxWidth(names: colNames, font: font) + margin
+                        rowNamesWidth = draw_max_width(names: rowNames, font: font) + margin
+                        colNamesHeight = draw_max_width(names: colNames, font: font) + margin
                         content_size.width = rowNamesWidth + CGFloat(colNames.count) * rowWidth
                         content_size.height = colNamesHeight + CGFloat(rowNames.count) * rowHeight
                         tiledScrollView.delegate = self
