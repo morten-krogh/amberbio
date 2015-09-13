@@ -119,8 +119,8 @@ class SingleMoleculePlot: TiledScrollViewDelegate {
         func draw_y_axis(context context: CGContext) {
                 let start_point = CGPoint(x: y_axis_margin_left, y: plot_height - y_axis_margin_bottom)
                 let end_point = CGPoint(x: y_axis_margin_left, y: y_axis_margin_top)
-                Drawing.drawLine(context: context, startPoint: start_point, endPoint: end_point)
-                Drawing.drawArrowVertical(context: context, point: end_point, length: 10)
+                draw_line(context: context, start_point: start_point, end_point: end_point)
+                draw_arrow_vertical(context: context, point: end_point, length: 10)
         }
 
         func y_value_to_y_cord(y_value y_value: Double) -> CGFloat {
@@ -133,7 +133,7 @@ class SingleMoleculePlot: TiledScrollViewDelegate {
                 let y_coord = y_value_to_y_cord(y_value: y_value)
                 let start_point = CGPoint(x: y_axis_margin_left - protrusion, y: y_coord)
                 let end_point = CGPoint(x: y_axis_margin_left + protrusion, y: y_coord)
-                Drawing.drawLine(context: context, startPoint: start_point, endPoint: end_point)
+                draw_line(context: context, start_point: start_point, end_point: end_point)
 
                 let astring: Astring
                 var is_integer = abs(y_value - floor(y_value)) <= 0.01 * abs(y_value)
@@ -146,14 +146,14 @@ class SingleMoleculePlot: TiledScrollViewDelegate {
                 }
 
                 let text_origin = CGPoint(x: tick_margin_left, y: y_coord - astring.size().height / 2)
-                Drawing.drawAttributedText(context: context, attributedText: astring, origin: text_origin, horizontal: true)
+                draw_attributed_text(context: context, attributed_text: astring, origin: text_origin, horizontal: true)
         }
 
         func draw_x_axis(context context: CGContext) {
                 let y_cord = y_value_to_y_cord(y_value: 0)
                 let start_point = CGPoint(x: y_axis_margin_left, y: y_cord)
                 let end_point = CGPoint(x: content_size.width - margin_right, y: y_cord)
-                Drawing.drawLine(context: context, startPoint: start_point, endPoint: end_point)
+                draw_line(context: context, start_point: start_point, end_point: end_point)
         }
 
         func index_to_x_coord(index index: Int) -> CGFloat {
@@ -170,7 +170,7 @@ class SingleMoleculePlot: TiledScrollViewDelegate {
                 let astring = astring_footnote(string: names[index])
                 let x_coord = index_to_x_coord(index: index)
                 let origin = CGPoint(x: x_coord - astring.size().width / 2, y: plot_height - y_axis_margin_bottom + margin_middle)
-                Drawing.drawAttributedString(context: context, attributedString: astring, origin: origin, horizontal: true)
+                draw_attributed_text(context: context, attributed_text: astring, origin: origin, horizontal: true)
         }
 
         func draw_present(context context: CGContext, index: Int) {
@@ -179,7 +179,7 @@ class SingleMoleculePlot: TiledScrollViewDelegate {
                 let astring = astring_footnote(string: string)
                 let x_coord = index_to_x_coord(index: index)
                 let origin = CGPoint(x: x_coord - astring.size().width / 2, y: plot_height - y_axis_margin_bottom + 2 * margin_middle + height_present_missing + 3)
-                Drawing.drawAttributedString(context: context, attributedString: astring, origin: origin, horizontal: true)
+                draw_attributed_text(context: context, attributed_text: astring, origin: origin, horizontal: true)
         }
 
         func draw_missing(context context: CGContext, index: Int) {
@@ -187,7 +187,7 @@ class SingleMoleculePlot: TiledScrollViewDelegate {
                 let astring = astring_footnote(string: string)
                 let x_coord = index_to_x_coord(index: index)
                 let origin = CGPoint(x: x_coord - astring.size().width / 2, y: plot_height - y_axis_margin_bottom + 3 * margin_middle + 2 * height_present_missing)
-                Drawing.drawAttributedString(context: context, attributedString: astring, origin: origin, horizontal: true)
+                draw_attributed_text(context: context, attributed_text: astring, origin: origin, horizontal: true)
         }
 
         func draw_values(context context: CGContext, index: Int) {
@@ -197,7 +197,7 @@ class SingleMoleculePlot: TiledScrollViewDelegate {
                         if !value.isNaN {
                                 let color = colors[index][i]
                                 let y_coord = y_value_to_y_cord(y_value: value)
-                                Drawing.drawCircle(context: context, centerX: x_coord, centerY: y_coord, radius: circle_radius, color: color)
+                                draw_circle(context: context, center_x: x_coord, center_y: y_coord, radius: circle_radius, color: color)
                         }
                 }
         }

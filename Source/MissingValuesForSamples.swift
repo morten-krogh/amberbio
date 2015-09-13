@@ -174,7 +174,7 @@ class MissingValuesForSamples: Component, MissingValueHistogramDelegate {
                 let description = "Histogram of missing values"
 
                 if let histogram = histogram {
-                        state.insert_pdf_result_file(file_name_stem: file_name_stem, description: description, content_size: histogram.content_size, draw: histogram.drawHistogram)
+                        state.insert_pdf_result_file(file_name_stem: file_name_stem, description: description, content_size: histogram.content_size, draw: histogram.draw_histogram)
                 }
                 state.render()
         }

@@ -99,7 +99,7 @@ class PCA2dPlot: TiledScrollViewDelegate {
                         }
                 } else {
                         for index in 0 ..< points.count {
-                                draw_circle(context: context, index: index, rect: rect)
+                                draw_pca_circle(context: context, index: index, rect: rect)
                         }
                 }
 
@@ -119,18 +119,18 @@ class PCA2dPlot: TiledScrollViewDelegate {
 
                 let start_point = CGPoint(x: point_x_min, y: point_y)
                 let end_point = CGPoint(x: point_x_max, y: point_y)
-                Drawing.drawLine(context: context, startPoint: start_point, endPoint: end_point)
+                draw_line(context: context, start_point: start_point, end_point: end_point)
                 let arrow_size = 6 as CGFloat
                 var arrow_point = CGPoint(x: end_point.x - arrow_size, y: end_point.y - 0.8 * arrow_size)
-                Drawing.drawLine(context: context, startPoint: end_point, endPoint: arrow_point)
+                draw_line(context: context, start_point: end_point, end_point: arrow_point)
                 arrow_point = CGPoint(x: end_point.x - arrow_size, y: end_point.y + 0.8 * arrow_size)
-                Drawing.drawLine(context: context, startPoint: end_point, endPoint: arrow_point)
+                draw_line(context: context, start_point: end_point, end_point: arrow_point)
 
                 if let axis_titles = axis_titles {
                         let title = axis_titles[0]
                         let astring = astring_font_size_color(string: title, font: font_footnote, font_size: axis_title_font_size)
                         let text_origin = CGPoint(x: end_point.x - astring.size().width, y: end_point.y + 10)
-                        Drawing.drawAttributedText(context: context, attributedText: astring, origin: text_origin, horizontal: true)
+                        draw_attributed_text(context: context, attributed_text: astring, origin: text_origin, horizontal: true)
                 }
 
                 for tick_value in tick_values {
@@ -141,12 +141,12 @@ class PCA2dPlot: TiledScrollViewDelegate {
 
                         let start_point = CGPoint(x: point_x, y: point_y + 5)
                         let end_point = CGPoint(x: point_x, y: point_y - 5)
-                        Drawing.drawLine(context: context, startPoint: start_point, endPoint: end_point)
+                        draw_line(context: context, start_point: start_point, end_point: end_point)
 
                         let value_as_string = decimal_string(number: tick_value, fraction_digits: 1)
                         let astring = astring_font_size_color(string: value_as_string, font: font_footnote, font_size: 4)
                         let text_origin = CGPoint(x: point_x - astring.size().width / 2, y: point_y + 10)
-                        Drawing.drawAttributedText(context: context, attributedText: astring, origin: text_origin, horizontal: true)
+                        draw_attributed_text(context: context, attributed_text: astring, origin: text_origin, horizontal: true)
                 }
         }
 
@@ -163,18 +163,18 @@ class PCA2dPlot: TiledScrollViewDelegate {
 
                 let start_point = CGPoint(x: point_x, y: point_y_max)
                 let end_point = CGPoint(x: point_x, y: point_y_min)
-                Drawing.drawLine(context: context, startPoint: start_point, endPoint: end_point)
+                draw_line(context: context, start_point: start_point, end_point: end_point)
                 let arrow_size = 6 as CGFloat
                 var arrow_point = CGPoint(x: end_point.x - arrow_size, y: end_point.y + 0.8 * arrow_size)
-                Drawing.drawLine(context: context, startPoint: end_point, endPoint: arrow_point)
+                draw_line(context: context, start_point: end_point, end_point: arrow_point)
                 arrow_point = CGPoint(x: end_point.x + arrow_size, y: end_point.y + 0.8 * arrow_size)
-                Drawing.drawLine(context: context, startPoint: end_point, endPoint: arrow_point)
+                draw_line(context: context, start_point: end_point, end_point: arrow_point)
 
                 if let axis_titles = axis_titles {
                         let title = axis_titles[1]
                         let astring = astring_font_size_color(string: title, font: font_footnote, font_size: axis_title_font_size)
                         let text_origin = CGPoint(x: end_point.x - 10 - astring.size().width, y: end_point.y)
-                        Drawing.drawAttributedText(context: context, attributedText: astring, origin: text_origin, horizontal: true)
+                        draw_attributed_text(context: context, attributed_text: astring, origin: text_origin, horizontal: true)
                 }
 
                 for tick_value in tick_values {
@@ -185,19 +185,19 @@ class PCA2dPlot: TiledScrollViewDelegate {
 
                         let start_point = CGPoint(x: point_x - 5, y: point_y)
                         let end_point = CGPoint(x: point_x + 5, y: point_y)
-                        Drawing.drawLine(context: context, startPoint: start_point, endPoint: end_point)
+                        draw_line(context: context, start_point: start_point, end_point: end_point)
 
                         let value_as_string = decimal_string(number: tick_value, fraction_digits: 1)
                         let astring = astring_font_size_color(string: value_as_string, font: font_footnote, font_size: 4)
                         let text_origin = CGPoint(x: point_x - 10 - astring.size().width, y: point_y - astring.size().height / 2)
-                        Drawing.drawAttributedText(context: context, attributedText: astring, origin: text_origin, horizontal: true)
+                        draw_attributed_text(context: context, attributed_text: astring, origin: text_origin, horizontal: true)
                 }
         }
 
-        func draw_circle(context context: CGContext, index: Int, rect: CGRect) {
+        func draw_pca_circle(context context: CGContext, index: Int, rect: CGRect) {
                 let point = points[index]
                 let color = colors[index]
-                Drawing.drawCircle(context: context, centerX: point.x, centerY: point.y, radius: circle_radius, color: color)
+                draw_circle(context: context, center_x: point.x, center_y: point.y, radius: circle_radius, color: color)
         }
 
         func draw_name(context context: CGContext, name: String, index: Int, rect: CGRect) {
@@ -205,7 +205,7 @@ class PCA2dPlot: TiledScrollViewDelegate {
                 let color = colors[index]
                 let astring = astring_font_size_color(string: name, font: font_footnote, font_size: names_font_size, color: color)
                 let origin = CGPoint(x: point.x - astring.size().width / 2, y: point.y - astring.size().height / 2)
-                Drawing.drawAttributedString(context: context, attributedString: astring, origin: origin, horizontal: true)
+                draw_attributed_text(context: context, attributed_text: astring, origin: origin, horizontal: true)
         }
 
         func scroll_view_did_end_zooming(zoom_scale zoom_scale: CGFloat) {

@@ -60,37 +60,37 @@ class MissingValueHistogram: TiledScrollViewDelegate {
         }
 
         func draw(context ctx: CGContext, rect: CGRect) {
-                drawHistogram(context: ctx, rect: rect)
+                draw_histogram(context: ctx, rect: rect)
         }
 
-        func drawHistogram(context context: CGContext, rect: CGRect) {
+        func draw_histogram(context context: CGContext, rect: CGRect) {
 
                 CGContextSetLineWidth(context, lineWidth)
                 CGContextSetStrokeColorWithColor(context, UIColor.blackColor().CGColor)
 
-                Drawing.drawText(context: context, text: "Missing\nValues", font: fontFootnote, origin: CGPoint(x: margin, y: margin), horizontal: true)
+                draw_text(context: context, text: "Missing\nValues", font: fontFootnote, origin: CGPoint(x: margin, y: margin), horizontal: true)
 
                 let endPointYAxis = CGPoint(x: originCoordinateSystem.x, y: margin)
-                Drawing.drawLine(context: context, startPoint: originCoordinateSystem, endPoint: endPointYAxis)
-                Drawing.drawArrowVertical(context: context, point: endPointYAxis, length: 10)
+                draw_line(context: context, start_point: originCoordinateSystem, end_point: endPointYAxis)
+                draw_arrow_vertical(context: context, point: endPointYAxis, length: 10)
 
                 let protrusion = 3 as CGFloat
                 var tickPoint = originCoordinateSystem
                 var tickNumber = 0
                 for  i in 0 ..< numberOfTicks + 1 {
                         if i > 0 {
-                                Drawing.drawLine(context: context, startPoint: CGPoint(x: tickPoint.x - protrusion, y: tickPoint.y), endPoint: CGPoint(x: tickPoint.x + protrusion, y: tickPoint.y))
+                                draw_line(context: context, start_point: CGPoint(x: tickPoint.x - protrusion, y: tickPoint.y), end_point: CGPoint(x: tickPoint.x + protrusion, y: tickPoint.y))
                         }
                         let attributedString = astring_body(string: "\(tickNumber)")
                         let tickNumberPoint = CGPoint(x: tickPoint.x - 2 * protrusion - attributedString.size().width, y: tickPoint.y - attributedString.size().height / 2)
-                        Drawing.drawText(context: context, text: "\(tickNumber)", font: font, origin: tickNumberPoint, horizontal: true)
+                        draw_text(context: context, text: "\(tickNumber)", font: font, origin: tickNumberPoint, horizontal: true)
                         tickPoint.y -= distanceBetweenTicks
                         tickNumber = tickNumber == 0 ? 1 : 2 * tickNumber
                 }
 
                 let endPointXAxis = CGPoint(x: originCoordinateSystem.x + lineWidth + (CGFloat(labels.count) + 1) * (widthOfBar + distanceBetweenTicks), y: originCoordinateSystem.y)
-                Drawing.drawLine(context: context, startPoint: originCoordinateSystem, endPoint: endPointXAxis)
-                Drawing.drawArrowHorizontal(context: context, point: endPointXAxis, length: 10)
+                draw_line(context: context, start_point: originCoordinateSystem, end_point: endPointXAxis)
+                draw_arrow_horizontal(context: context, point: endPointXAxis, length: 10)
 
                 for i in 0 ..< labels.count {
                         let lowerLeftCornerOfRect = CGPoint(x: originCoordinateSystem.x + distanceBetweenTicks + CGFloat(i) * (widthOfBar + distanceBetweenTicks), y: originCoordinateSystem.y)
@@ -106,11 +106,11 @@ class MissingValueHistogram: TiledScrollViewDelegate {
 
                         let attributedValue = Astring(string: String(value), attributes: [NSFontAttributeName: fontFootnote])
                         let originValue = CGPoint(x: lowerLeftCornerOfRect.x + (widthOfBar - attributedValue.size().width) / 2, y: lowerLeftCornerOfRect.y + 0.2 * heightValueText)
-                        Drawing.drawText(context: context, text: String(value), font: fontFootnote, origin: originValue, horizontal: true)
+                        draw_text(context: context, text: String(value), font: fontFootnote, origin: originValue, horizontal: true)
 
                         let label = labels[i]
                         let originLabel = CGPoint(x: lowerLeftCornerOfRect.x + (widthOfBar + label.size().height) / 2, y: lowerLeftCornerOfRect.y + heightValueText)
-                        Drawing.drawAttributedText(context: context, attributedText: label, origin: originLabel, horizontal: false)
+                        draw_attributed_text(context: context, attributed_text: label, origin: originLabel, horizontal: false)
                 }
         }
 

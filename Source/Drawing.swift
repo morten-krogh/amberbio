@@ -10,6 +10,65 @@ func draw_max_width(names names: [String], font: UIFont) -> CGFloat {
         return maximum
 }
 
+func draw_text(context context: CGContext, text: String, font: UIFont, origin: CGPoint, horizontal: Bool) {
+        let attributed_text = astring_font_size_color(string: text, font: font, font_size: nil, color: nil)
+        draw_attributed_text(context: context, attributed_text: attributed_text, origin: origin, horizontal: horizontal)
+}
+
+func draw_attributed_text(context context: CGContext, attributed_text: Astring, origin: CGPoint, horizontal: Bool) {
+        CGContextSaveGState(context)
+        UIGraphicsPushContext(context)
+        if horizontal {
+                attributed_text.drawAtPoint(origin)
+        } else {
+                let translation = CGAffineTransformMakeTranslation(-origin.x, -origin.y)
+                let rotation = CGAffineTransformMakeRotation(CGFloat(M_PI_2))
+                let transform = CGAffineTransformConcat(CGAffineTransformConcat(translation, rotation), CGAffineTransformInvert(translation))
+                CGContextConcatCTM(context, transform)
+                attributed_text.drawAtPoint(origin)
+        }
+        UIGraphicsPopContext()
+        CGContextRestoreGState(context)
+}
+
+func draw_circle(context ctx: CGContext, center_x: CGFloat, center_y: CGFloat, radius: CGFloat, color: UIColor) {
+        CGContextSaveGState(ctx)
+        CGContextSetLineWidth(ctx, 0)
+        CGContextSetFillColorWithColor(ctx, color.CGColor)
+        CGContextBeginPath(ctx)
+        CGContextAddEllipseInRect(ctx, CGRect(x: center_x - radius, y: center_y - radius, width: 2.0 * radius, height: 2.0 * radius))
+        CGContextClosePath(ctx)
+        CGContextFillPath(ctx)
+        CGContextRestoreGState(ctx)
+}
+
+func draw_line(context context: CGContext, start_point: CGPoint, end_point: CGPoint) {
+        CGContextSaveGState(context)
+        CGContextBeginPath(context)
+        CGContextMoveToPoint(context, start_point.x, start_point.y)
+        CGContextAddLineToPoint(context, end_point.x, end_point.y)
+        CGContextStrokePath(context)
+        CGContextRestoreGState(context)
+}
+
+func draw_arrow_vertical(context context: CGContext, point: CGPoint, length: CGFloat) {
+        let offSetX = length
+        let offSetY = length
+        draw_line(context: context, start_point: point, end_point: CGPoint(x: point.x - offSetX , y: point.y + offSetY))
+        draw_line(context: context, start_point: point, end_point: CGPoint(x: point.x + offSetX , y: point.y + offSetY))
+}
+
+func draw_arrow_horizontal(context context: CGContext, point: CGPoint, length: CGFloat) {
+        let offSetX = length
+        let offSetY = length
+        draw_line(context: context, start_point: point, end_point: CGPoint(x: point.x - offSetX , y: point.y - offSetY))
+        draw_line(context: context, start_point: point, end_point: CGPoint(x: point.x - offSetX , y: point.y + offSetY))
+}
+
+
+
+
+
 
 class Drawing {
 
@@ -66,31 +125,15 @@ class Drawing {
                         } else {
                                 origin = CGPoint(x: rectMidX + size.height / 2.0, y: CGRectGetMidY(rect) - size.width / 2.0)
                         }
-                        drawAttributedString(context: context, attributedString: attributedString, origin: origin, horizontal: horizontalCell)
+                        draw_attributed_text(context: context, attributed_text: attributedString, origin: origin, horizontal: horizontalCell)
                 }
 
                 if let circleColor = circleColor {
                         let centerX = CGRectGetMaxX(rect) - marginHorizontal - circleRadius
                         let centerY = CGRectGetMidY(rect)
-                        drawCircle(context: context, centerX: centerX, centerY: centerY, radius: circleRadius, color: circleColor)
+                        draw_circle(context: context, center_x: centerX, center_y: centerY, radius: circleRadius, color: circleColor)
                 }
 
-                CGContextRestoreGState(context)
-        }
-
-        class func drawAttributedString(context context: CGContext, attributedString: Astring, origin: CGPoint, horizontal: Bool) {
-                CGContextSaveGState(context)
-                UIGraphicsPushContext(context)
-                if horizontal {
-                        attributedString.drawAtPoint(origin)
-                } else {
-                        let translation = CGAffineTransformMakeTranslation(-origin.x, -origin.y)
-                        let rotation = CGAffineTransformMakeRotation(CGFloat(M_PI_2))
-                        let transform = CGAffineTransformConcat(CGAffineTransformConcat(translation, rotation), CGAffineTransformInvert(translation))
-                        CGContextConcatCTM(context, transform)
-                        attributedString.drawAtPoint(origin)
-                }
-                UIGraphicsPopContext()
                 CGContextRestoreGState(context)
         }
 
@@ -125,73 +168,24 @@ class Drawing {
                         if horizontalName! {
                                 let originNameX = originX + margin!
                                 let originNameY = originY + height / 2.0 - font!.lineHeight / 2.0
-                                drawText(context: ctx, text: name, font: font!, origin: CGPoint(x: originNameX, y: originNameY), horizontal: true)
+                                draw_text(context: ctx, text: name, font: font!, origin: CGPoint(x: originNameX, y: originNameY), horizontal: true)
                         } else {
                                 let originNameX = originX + width / 2.0 + font!.lineHeight / 2.0
                                 let originNameY = originY + margin!
-                                drawText(context: ctx, text: name, font: font!, origin: CGPoint(x: originNameX, y: originNameY), horizontal: false)
+                                draw_text(context: ctx, text: name, font: font!, origin: CGPoint(x: originNameX, y: originNameY), horizontal: false)
                         }
                 }
                 CGContextRestoreGState(ctx)
         }
 
-        class func drawText(context context: CGContext, text: String, font: UIFont, origin: CGPoint, horizontal: Bool) {
-                let attributedText = Astring(string: text, attributes: [NSFontAttributeName: font])
-                drawAttributedText(context: context, attributedText: attributedText, origin: origin, horizontal: horizontal)
-        }
-
-        class func drawAttributedText(context context: CGContext, attributedText: Astring, origin: CGPoint, horizontal: Bool) {
-                CGContextSaveGState(context)
-                UIGraphicsPushContext(context)
-                if horizontal {
-                        attributedText.drawAtPoint(origin)
-                } else {
-                        let translation = CGAffineTransformMakeTranslation(-origin.x, -origin.y)
-                        let rotation = CGAffineTransformMakeRotation(CGFloat(M_PI_2))
-                        let transform = CGAffineTransformConcat(CGAffineTransformConcat(translation, rotation), CGAffineTransformInvert(translation))
-                        CGContextConcatCTM(context, transform)
-                        attributedText.drawAtPoint(origin)
-                }
-                UIGraphicsPopContext()
-                CGContextRestoreGState(context)
-        }
-
         class func drawCellWithCenteredCircle(context context: CGContext, originX: CGFloat, originY: CGFloat, width: CGFloat, height: CGFloat, lineWidth: CGFloat, topLine: Bool, rightLine: Bool, bottomLine: Bool, leftLine: Bool, radius: CGFloat, color: UIColor) {
                 drawCell(context: context, originX: originX, originY: originY, width: width, height: height, lineWidth: lineWidth, topLine: topLine, rightLine: rightLine, bottomLine: bottomLine, leftLine: leftLine)
-                drawCircle(context: context, centerX: originX + 0.5 * width, centerY: originY + 0.5 * height, radius: radius, color: color)
+                draw_circle(context: context, center_x: originX + 0.5 * width, center_y: originY + 0.5 * height, radius: radius, color: color)
         }
 
-        class func drawCircle(context ctx: CGContext, centerX: CGFloat, centerY: CGFloat, radius: CGFloat, color: UIColor) {
-                CGContextSaveGState(ctx)
-                CGContextSetLineWidth(ctx, 0)
-                CGContextSetFillColorWithColor(ctx, color.CGColor)
-                CGContextBeginPath(ctx)
-                CGContextAddEllipseInRect(ctx, CGRect(x: centerX - radius, y: centerY - radius, width: 2.0 * radius, height: 2.0 * radius))
-                CGContextClosePath(ctx)
-                CGContextFillPath(ctx)
-                CGContextRestoreGState(ctx)
-        }
 
-        class func drawLine(context context: CGContext, startPoint: CGPoint, endPoint: CGPoint) {
-                CGContextSaveGState(context)
-                CGContextBeginPath(context)
-                CGContextMoveToPoint(context, startPoint.x, startPoint.y)
-                CGContextAddLineToPoint(context, endPoint.x, endPoint.y)
-                CGContextStrokePath(context)
-                CGContextRestoreGState(context)
-        }
 
-        class func drawArrowVertical(context context: CGContext, point: CGPoint, length: CGFloat) {
-                let offSetX = length
-                let offSetY = length
-                drawLine(context: context, startPoint: point, endPoint: CGPoint(x: point.x - offSetX , y: point.y + offSetY))
-                drawLine(context: context, startPoint: point, endPoint: CGPoint(x: point.x + offSetX , y: point.y + offSetY))
-        }
 
-        class func drawArrowHorizontal(context context: CGContext, point: CGPoint, length: CGFloat) {
-                let offSetX = length
-                let offSetY = length
-                drawLine(context: context, startPoint: point, endPoint: CGPoint(x: point.x - offSetX , y: point.y - offSetY))
-                drawLine(context: context, startPoint: point, endPoint: CGPoint(x: point.x - offSetX , y: point.y + offSetY))
-        }
+
+
 }

@@ -73,7 +73,7 @@ class PieChart: TiledScrollViewDelegate {
                 for  i in 0 ..< names.count {
                         let name = names[i]
                         let origin_y = first_square_center_y + CGFloat(i) * (line_margin + color_square_length) - font.lineHeight / 2
-                        Drawing.drawText(context: context, text: name, font: font, origin: CGPoint(x: origin_x, y: origin_y), horizontal: true)
+                        draw_text(context: context, text: name, font: font, origin: CGPoint(x: origin_x, y: origin_y), horizontal: true)
                 }
         }
 
