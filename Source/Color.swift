@@ -19,10 +19,19 @@ let color_gray_unselected = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1)
 let circle_color_green = UIColor(red: 0.5, green: 0.9, blue: 0.5, alpha: 1)
 let circle_color_gray = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1)
 
-let red_yellow_green_palette = [(165,0,38), (215,48,39), (244,109,67), (253,174,97), (254,224,139), (255,255,191), (217,239,139), (166,217,106), (102,189,99), (26,152,80), (0,104,55)]
 
-let color_brewer_scheme = [(251,180,174), (179,205,227), (204,235,197), (222,203,228), (254,217,166), (255,255,204), (229,216,189), (253,218,236)]
 
+
+//let color_brewer_diverging_11 = [(165,0,38), (215,48,39), (244,109,67), (253,174,97), (254,224,139), (255,255,191), (217,239,139), (166,217,106), (102,189,99), (26,152,80), (0,104,55)]
+
+let color_brewer_diverging_11_RdYlGn = ["a50026", "d73027", "f46d43", "fdae61", "fee08b", "ffffbf", "d9ef8b", "a6d96a", "66bd63", "1a9850", "006837"]
+
+
+
+let color_brewer_qualitative_8_pastel1 = ["fbb4ae", "b3cde3", "ccebc5", "decbe4", "fed9a6", "ffffcc", "e5d8bd", "fddaec"]
+
+
+let color_brewer_qualitative_9 = ["e41a1c", "377eb8", "4daf4a", "984ea3", "ff7f00", "ffff33", "a65628", "f781bf", "999999"]
 
 func color_from_int(red red: Int, green: Int, blue: Int, alpha: CGFloat = 1) -> UIColor {
         return UIColor(red: CGFloat(red) / CGFloat(255), green: CGFloat(green) / CGFloat(255), blue: CGFloat(blue) / CGFloat(255), alpha: alpha)
@@ -72,6 +81,10 @@ func random_color() -> String {
         let red = Int(arc4random_uniform(256))
         let green = Int(arc4random_uniform(256))
         let blue = Int(arc4random_uniform(256))
+        return color_rgb_to_hex(red: red, green: green, blue: blue)
+}
+
+func color_rgb_to_hex(red red: Int, green: Int, blue: Int) -> String {
         return two_digit_hex(value: red) + two_digit_hex(value: green) + two_digit_hex(value: blue)
 }
 
@@ -85,7 +98,10 @@ func color_palette(number_of_colors number_of_colors: Int) -> [UIColor] {
 }
 
 func color_palette_hex(number_of_colors number_of_colors: Int) -> [String] {
-        let colors = color_palette(number_of_colors: number_of_colors)
-        return colors.map(color_to_hex_format)
+        if number_of_colors <= color_brewer_qualitative_9.count {
+                return [String](color_brewer_qualitative_9[0 ..< number_of_colors])
+        } else {
+                let colors = color_palette(number_of_colors: number_of_colors)
+                return colors.map(color_to_hex_format)
+        }
 }
-

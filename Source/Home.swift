@@ -283,8 +283,7 @@ class HomeCellView: UICollectionViewCell {
                 let attributed_text = astring_font_size_color(string: title, font: font_body, font_size: 16, color: nil)
                 label.attributedText = attributed_text
                 label.textAlignment = .Center
-                (red, green, blue) = color_brewer_scheme[section]
-                contentView.backgroundColor = color_from_int(red: red, green: green, blue: blue)
+                contentView.backgroundColor = color_from_hex(hex: color_brewer_qualitative_8_pastel1[section])
                 if border {
                         contentView.layer.borderWidth = 2
                         contentView.layer.borderColor = UIColor.blackColor().CGColor

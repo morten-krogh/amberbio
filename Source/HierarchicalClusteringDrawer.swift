@@ -251,8 +251,7 @@ class HierarchicalClusteringDrawer: TiledScrollViewDelegate {
                 cell_position_y += astring.size().height + 20
 
                 for i in 0 ..< color_key.color_palette.count {
-                        let (red, green, blue) = color_key.color_palette[i]
-                        let color = UIColor(red: CGFloat(red) / 255, green: CGFloat(green) / 255, blue: CGFloat(blue) / 255, alpha: 1)
+                        let color = color_from_hex(hex: color_key.color_palette[i])
 
                         CGContextSetFillColorWithColor(context, color.CGColor)
                         let cell_position_x = margin_left + space_per_color * CGFloat(i)

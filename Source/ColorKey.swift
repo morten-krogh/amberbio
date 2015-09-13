@@ -2,7 +2,7 @@ import UIKit
 
 class ColorKey {
 
-        let color_palette = Array(red_yellow_green_palette.reverse())
+        let color_palette = [String](color_brewer_diverging_11_RdYlGn.reverse())
         var break_points = [] as [Double]
 
         let missing_color = UIColor.whiteColor()
@@ -40,14 +40,13 @@ class ColorKey {
         }
 
         func color_from_value(value value: Double) -> UIColor {
-                var rgb = (0, 0, 0)
+                var hex_color = "000000"
                 for i in 0 ..< color_palette.count {
                         if value <= break_points[i + 1] {
-                                rgb = color_palette[i]
+                                hex_color = color_palette[i]
                                 break
                         }
                 }
-                let (red, green, blue) = rgb
-                return UIColor(red: CGFloat(red) / 255, green: CGFloat(green) / 255, blue: CGFloat(blue) / 255, alpha: 1)
+                return color_from_hex(hex: hex_color)
         }
 }
