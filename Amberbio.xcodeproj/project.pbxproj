@@ -41,7 +41,6 @@
 		60B400E51BA19C7900D8DD80 /* ColorSelectionPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400571BA19C7900D8DD80 /* ColorSelectionPicker.swift */; settings = {ASSET_TAGS = (); }; };
 		60B400E61BA19C7900D8DD80 /* Component.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400581BA19C7900D8DD80 /* Component.swift */; settings = {ASSET_TAGS = (); }; };
 		60B400E71BA19C7900D8DD80 /* ContingencyTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400591BA19C7900D8DD80 /* ContingencyTable.swift */; settings = {ASSET_TAGS = (); }; };
-		60B400E81BA19C7900D8DD80 /* Csv.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B4005A1BA19C7900D8DD80 /* Csv.swift */; settings = {ASSET_TAGS = (); }; };
 		60B400E91BA19C7900D8DD80 /* DataSetSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B4005B1BA19C7900D8DD80 /* DataSetSelection.swift */; settings = {ASSET_TAGS = (); }; };
 		60B400EA1BA19C7900D8DD80 /* DataSetSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B4005C1BA19C7900D8DD80 /* DataSetSummary.swift */; settings = {ASSET_TAGS = (); }; };
 		60B400EB1BA19C7900D8DD80 /* DataSetTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B4005D1BA19C7900D8DD80 /* DataSetTable.swift */; settings = {ASSET_TAGS = (); }; };
@@ -243,7 +242,6 @@
 		60B400571BA19C7900D8DD80 /* ColorSelectionPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ColorSelectionPicker.swift; path = Source/ColorSelectionPicker.swift; sourceTree = "<group>"; };
 		60B400581BA19C7900D8DD80 /* Component.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Component.swift; path = Source/Component.swift; sourceTree = "<group>"; };
 		60B400591BA19C7900D8DD80 /* ContingencyTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContingencyTable.swift; path = Source/ContingencyTable.swift; sourceTree = "<group>"; };
-		60B4005A1BA19C7900D8DD80 /* Csv.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Csv.swift; path = Source/Csv.swift; sourceTree = "<group>"; };
 		60B4005B1BA19C7900D8DD80 /* DataSetSelection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataSetSelection.swift; path = Source/DataSetSelection.swift; sourceTree = "<group>"; };
 		60B4005C1BA19C7900D8DD80 /* DataSetSummary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataSetSummary.swift; path = Source/DataSetSummary.swift; sourceTree = "<group>"; };
 		60B4005D1BA19C7900D8DD80 /* DataSetTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataSetTable.swift; path = Source/DataSetTable.swift; sourceTree = "<group>"; };
@@ -642,7 +640,6 @@
 			children = (
 				60B400541BA19C7900D8DD80 /* Color.swift */,
 				60B400551BA19C7900D8DD80 /* ColorKey.swift */,
-				60B4005A1BA19C7900D8DD80 /* Csv.swift */,
 				60B4005E1BA19C7900D8DD80 /* Date.swift */,
 				60B400621BA19C7900D8DD80 /* DocumentInteractionOpen.swift */,
 				60B400631BA19C7900D8DD80 /* DocumentPickerExport.swift */,
@@ -949,7 +946,6 @@
 				60B401171BA19C7900D8DD80 /* MissingValues.swift in Sources */,
 				60B400F51BA19C7900D8DD80 /* EditProject.swift in Sources */,
 				60B400FD1BA19C7900D8DD80 /* FactorSummaryDetail.swift in Sources */,
-				60B400E81BA19C7900D8DD80 /* Csv.swift in Sources */,
 				60B401011BA19C7900D8DD80 /* FullPage.swift in Sources */,
 				60B400F01BA19C7900D8DD80 /* DocumentPickerExport.swift in Sources */,
 				60B4013A1BA19C7900D8DD80 /* Random.swift in Sources */,

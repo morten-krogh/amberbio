@@ -2,7 +2,6 @@ import UIKit
 
 class Drawing {
 
-
         class func maxWidth(names names: [String], font: UIFont) -> CGFloat {
                 var maximum = 0 as CGFloat
                 for name in names {
