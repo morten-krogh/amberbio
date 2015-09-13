@@ -21,8 +21,10 @@ class FactorAssociation: Component {
         override func viewDidLoad() {
                 super.viewDidLoad()
 
-                failure_label.text = "Association tables require at least 2 factors"
+                failure_label.attributedText = astring_body(string: "Association tables require at least 2 factors")
                 failure_label.textColor = UIColor.redColor()
+                failure_label.textAlignment = .Center
+                failure_label.numberOfLines = 0
                 view.addSubview(failure_label)
 
                 view.addSubview(tiled_scroll_view)
@@ -34,11 +36,8 @@ class FactorAssociation: Component {
                 let width = view.frame.width
                 let height = view.frame.height
 
-                let top_margin = 20 as CGFloat
-                let rect = CGRect(x: 0, y: top_margin, width: view.frame.width, height: view.frame.height - top_margin)
-
                 failure_label.sizeToFit()
-                failure_label.frame = layout_centered_frame(contentSize: failure_label.frame.size, rect: rect)
+                failure_label.center = CGPoint(x: width / 2, y: height / 2)
 
                 tiled_scroll_view.frame = view.bounds
                 if let table_of_atrributed_strings = table_of_attributed_strings {
