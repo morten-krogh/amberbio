@@ -1,7 +1,7 @@
 import Foundation
 
 func txt_result_file(name name: String, description: String, project_name: String, data_set_name: String, user_name: String, table: [[String]]) -> (file_name: String, content: NSData) {
-        var txt_string = string_from_table(table: table) + "\n\n\n\n"
+        var txt_string = txt_string_from_table(table: table) + "\n\n\n\n"
 
         for info in result_file_info_array(description: description, project_name: project_name, data_set_name: data_set_name, user_name: user_name) {
                 txt_string += info + "\n"
@@ -14,7 +14,7 @@ func txt_result_file(name name: String, description: String, project_name: Strin
         return (file_name, data)
 }
 
-func string_from_table(table table: [[String]]) -> String {
+func txt_string_from_table(table table: [[String]]) -> String {
         var result = ""
         var first_field_in_row = true
         for row in table {
