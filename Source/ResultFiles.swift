@@ -129,8 +129,8 @@ class ResultFiles: Component, UITableViewDataSource, UITableViewDelegate, MFMail
 
         func open_action(sender: UIButton) {
                 let file_id = (sender.superview!.superview!.superview! as! ResultFilesTableViewCell).result_file_id
-                let (file_name, file_data) = state.select_file_name_and_file_data(file_id: file_id)!
-                documentInteractionOpen.openResultFile(fileName: file_name, fileData: file_data, inRect: sender.frame, inView: view)
+                let (file_name, file_content) = state.select_file_name_and_file_data(file_id: file_id)!
+                document_interaction_open.open_result_file(file_name: file_name, file_content: file_content, inRect: sender.frame, inView: view)
         }
 }
 

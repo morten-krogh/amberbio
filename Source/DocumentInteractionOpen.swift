@@ -1,14 +1,14 @@
 import UIKit
 
-let documentInteractionOpen = DocumentInteractionOpen()
+let document_interaction_open = DocumentInteractionOpen()
 
 class DocumentInteractionOpen: NSObject, UIDocumentInteractionControllerDelegate {
 
         var temp_url: NSURL?
         var interaction_controller: UIDocumentInteractionController?
 
-        func openResultFile(fileName fileName: String, fileData: NSData, inRect: CGRect, inView: UIView) {
-                temp_url = file_create_temp_file_url(file_name: fileName, content: fileData)
+        func open_result_file(file_name file_name: String, file_content: NSData, inRect: CGRect, inView: UIView) {
+                temp_url = file_create_temp_file_url(file_name: file_name, content: file_content)
                 if let temp_url = temp_url {
                         interaction_controller = UIDocumentInteractionController(URL: temp_url)
                         interaction_controller?.delegate = self
@@ -17,10 +17,10 @@ class DocumentInteractionOpen: NSObject, UIDocumentInteractionControllerDelegate
         }
 
         func documentInteractionController(controller: UIDocumentInteractionController, didEndSendingToApplication application: String?) {
-                cleanUp()
+                clean_up()
         }
 
-        func cleanUp() {
+        func clean_up() {
                 if let temp_url = temp_url {
                         file_remove(url: temp_url)
                 }
