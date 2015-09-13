@@ -532,6 +532,18 @@ class State {
                 return factor_id
         }
 
+        func insert_factor(factor_name factor_name: String, temp_level_id_to_name: [Int: String], sample_id_to_temp_level_id: [Int: Int]) {
+                let data_set_id = get_original_data_set_id(project_id: project_id)
+                let sample_ids = get_sample_ids(data_set_id: data_set_id)
+                var level_names_of_samples = [] as [String]
+                for sample_id in sample_ids {
+                        let level_name = temp_level_id_to_name[sample_id_to_temp_level_id[sample_id]!]!
+                        level_names_of_samples.append(level_name)
+                }
+
+                insert_factor(project_id: project_id, factor_name: factor_name, level_names_of_samples: level_names_of_samples)
+        }
+
         func insert_project_note(project_note_text project_note_text: String, project_note_type: String, project_note_user_name: String, project_id: Int) {
                 let statement = "insert into project_note (project_note_text, project_note_type, project_note_user_name, project_id) values (:text0, :text1, :text2, :integer0)"
                 let query = Query(statement: statement, bind_texts: [project_note_text, project_note_type, project_note_user_name], bind_integers: [project_id])
@@ -749,41 +761,6 @@ class State {
                 let statement = "delete from factor where factor_id = :integer0"
                 let query = Query(statement: statement, bind_integers: [factor_id])
                 sqlite_execute(database: database, query: query)
-                set_factors_and_levels()
-                reset_history()
-        }
-
-        func insert_factor(factor_name factor_name: String, temp_level_id_to_name: [Int: String], sample_id_to_temp_level_id: [Int: Int]) {
-                let statement_factor = "insert into factor (factor_name, project_id) values (:text0, :integer0)"
-                let query_factor = Query(statement: statement_factor, bind_texts: [factor_name], bind_integers: [project_id])
-                sqlite_begin(database: database)
-                sqlite_execute(database: database, query: query_factor)
-                let factor_id = sqlite_last_insert_rowid(database: database)
-
-                let temp_level_ids = [Int](temp_level_id_to_name.keys)
-                var temp_level_id_to_level_id = [:] as [Int: Int]
-
-                let palette = color_palette_hex(number_of_colors: temp_level_ids.count)
-                for i in 0 ..< temp_level_ids.count {
-                        let color = palette[i]
-                        let temp_level_id = temp_level_ids[i]
-                        let level_name = temp_level_id_to_name[temp_level_id]!
-                        let statement_level = "insert into level (level_name, level_color, factor_id) values (:text0, :text1, :integer0)"
-                        let query_level = Query(statement: statement_level, bind_texts: [level_name, color], bind_integers: [factor_id])
-                        sqlite_execute(database: database, query: query_level)
-                        let level_id = sqlite_last_insert_rowid(database: database)
-                        temp_level_id_to_level_id[temp_level_id] = level_id
-                }
-
-                for sample_id in sample_ids {
-                        let temp_level_id = sample_id_to_temp_level_id[sample_id]!
-                        let level_id = temp_level_id_to_level_id[temp_level_id]!
-                        let statement = "insert into sample_level (sample_id, level_id) values (:integer0, :integer1)"
-                        let query = Query(statement: statement, bind_integers: [sample_id, level_id])
-                        sqlite_execute(database: database, query: query)
-                }
-                sqlite_end(database: database)
-
                 set_factors_and_levels()
                 reset_history()
         }

@@ -15,6 +15,9 @@
 		602708B91BA1CA3500672D54 /* iris_values.txt in Resources */ = {isa = PBXBuildFile; fileRef = 602708B51BA1C98900672D54 /* iris_values.txt */; settings = {ASSET_TAGS = (); }; };
 		602708C81BA2B67500672D54 /* amberbio-main.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 602708C71BA2B67500672D54 /* amberbio-main.sqlite */; settings = {ASSET_TAGS = (); }; };
 		602708CA1BA2CA0300672D54 /* SelectAllTableViewHeaderFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602708C91BA2CA0300672D54 /* SelectAllTableViewHeaderFooterView.swift */; settings = {ASSET_TAGS = (); }; };
+		602708D11BA31CDC00672D54 /* ovarian_annotations.txt in Resources */ = {isa = PBXBuildFile; fileRef = 602708CB1BA3195900672D54 /* ovarian_annotations.txt */; settings = {ASSET_TAGS = (); }; };
+		602708D21BA31CDF00672D54 /* ovarian_factors.txt in Resources */ = {isa = PBXBuildFile; fileRef = 602708CC1BA3195900672D54 /* ovarian_factors.txt */; settings = {ASSET_TAGS = (); }; };
+		602708D31BA31CE300672D54 /* ovarian_values.txt in Resources */ = {isa = PBXBuildFile; fileRef = 602708CD1BA3195900672D54 /* ovarian_values.txt */; settings = {ASSET_TAGS = (); }; };
 		60B400391BA1982900D8DD80 /* state_init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400381BA1982900D8DD80 /* state_init.swift */; settings = {ASSET_TAGS = (); }; };
 		60B4003B1BA1983900D8DD80 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B4003A1BA1983900D8DD80 /* State.swift */; settings = {ASSET_TAGS = (); }; };
 		60B400411BA19BED00D8DD80 /* AttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B4003D1BA19BED00D8DD80 /* AttributedString.swift */; settings = {ASSET_TAGS = (); }; };
@@ -213,6 +216,9 @@
 		602708B51BA1C98900672D54 /* iris_values.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = iris_values.txt; path = "demo-data/iris/iris_values.txt"; sourceTree = "<group>"; };
 		602708C71BA2B67500672D54 /* amberbio-main.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; name = "amberbio-main.sqlite"; path = "../../../Desktop/amberbio-main.sqlite"; sourceTree = "<group>"; };
 		602708C91BA2CA0300672D54 /* SelectAllTableViewHeaderFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectAllTableViewHeaderFooterView.swift; sourceTree = "<group>"; };
+		602708CB1BA3195900672D54 /* ovarian_annotations.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ovarian_annotations.txt; path = "demo-data/ovarian/ovarian_annotations.txt"; sourceTree = "<group>"; };
+		602708CC1BA3195900672D54 /* ovarian_factors.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ovarian_factors.txt; path = "demo-data/ovarian/ovarian_factors.txt"; sourceTree = "<group>"; };
+		602708CD1BA3195900672D54 /* ovarian_values.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ovarian_values.txt; path = "demo-data/ovarian/ovarian_values.txt"; sourceTree = "<group>"; };
 		60B400381BA1982900D8DD80 /* state_init.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = state_init.swift; path = Source/state_init.swift; sourceTree = "<group>"; };
 		60B4003A1BA1983900D8DD80 /* State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = State.swift; path = Source/State.swift; sourceTree = "<group>"; };
 		60B4003D1BA19BED00D8DD80 /* AttributedString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AttributedString.swift; path = Source/AttributedString.swift; sourceTree = "<group>"; };
@@ -723,6 +729,9 @@
 			children = (
 				602708B41BA1C98900672D54 /* iris_factors.txt */,
 				602708B51BA1C98900672D54 /* iris_values.txt */,
+				602708CB1BA3195900672D54 /* ovarian_annotations.txt */,
+				602708CC1BA3195900672D54 /* ovarian_factors.txt */,
+				602708CD1BA3195900672D54 /* ovarian_values.txt */,
 			);
 			name = DemoData;
 			sourceTree = "<group>";
@@ -884,11 +893,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				602708D21BA31CDF00672D54 /* ovarian_factors.txt in Resources */,
 				60B401891BA1BEC400D8DD80 /* LaunchScreen.storyboard in Resources */,
 				602708B91BA1CA3500672D54 /* iris_values.txt in Resources */,
+				602708D11BA31CDC00672D54 /* ovarian_annotations.txt in Resources */,
 				60B401861BA1BEC400D8DD80 /* Assets.xcassets in Resources */,
 				602708B81BA1CA3100672D54 /* iris_factors.txt in Resources */,
 				60B401841BA1BEC400D8DD80 /* Main.storyboard in Resources */,
+				602708D31BA31CE300672D54 /* ovarian_values.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -262,10 +262,14 @@ func database_populate(database database: Database) {
 //
 //        insert_project(database: database, project_name: project_name, data_set_name: "Original data set", values: values, sample_names: sample_names, molecule_names: molecule_names,factor_names: factor_names, level_names_of_samples_array: level_names_of_samples_array, molecule_annotation_names: molecule_annotation_names, molecule_annotation_values_array: molecule_annotation_values_array, project_note_texts: project_note_texts, project_note_types: project_note_types, project_note_user_names: project_note_user_names)
 
-        import_data(database: database, stem: "iris", project_name: "Iris flowers")
-//        import_data(database: database, stem: "brca", project_name: "brca srm")
+        let iris_project_id = import_data(database: database, stem: "iris", project_name: "Iris flowers")
+        let iris_project_note_text = "The iris data set is a classic data set that is often used in machine learning. Four features were measured for 150 iris flowers. The 150 flowers belonged to three species, Iris setosa, Iris virginica and Iris versicolor, with 50 flowers from each species. The four measured features were the length and the width of the sepals and petals in centimetres. The data set is availabel at http://archive.ics.uci.edu/ml/datasets/Iris"
+        insert_project_note(database: database, project_note_text: iris_project_note_text, project_note_type: "auto", project_note_user_name: "Demo", project_id: iris_project_id)
+
+
+        //        import_data(database: database, stem: "brca", project_name: "brca srm")
 //        import_data(database: database, stem: "sox", project_name: "sox cell lines")
-//        import_data(database: database, stem: "ovarian", project_name: "ovarian cancer")
+        import_data(database: database, stem: "ovarian", project_name: "Ovarian cancer")
 //        import_data(database: database, stem: "mouse_brain", project_name: "mouse brain")
 //        import_data(database: database, stem: "paired", project_name: "paired")
 //        import_data(database: database, stem: "xintela", project_name: "xintela", include_factors: false)
