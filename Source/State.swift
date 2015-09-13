@@ -783,7 +783,7 @@ class State {
                                 let query = Query(statement: statement, bind_texts: [level_name], bind_integers: [level_id])
                                 sqlite_execute(database: database, query: query)
                         } else {
-                                let color = random_color()
+                                let color = color_random_hex()
                                 let statement = "insert into level (level_name, level_color, factor_id) values (:text0, :text1, :integer0)"
                                 let query = Query(statement: statement, bind_texts: [level_name, color], bind_integers: [factor_id])
                                 sqlite_execute(database: database, query: query)
