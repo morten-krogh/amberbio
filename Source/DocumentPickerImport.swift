@@ -1,54 +1,54 @@
 import UIKit
 
-let documentPickerImport = DocumentPickerImport()
+let document_picker_import = DocumentPickerImport()
 
 class DocumentPickerImport: NSObject, UIDocumentMenuDelegate, UIDocumentPickerDelegate {
 
-        var importedFileHandler: ((file_name: String, content: NSData) -> Void)?
-        let documentTypes = ["public.text"]
-        var fromViewController: UIViewController?
+        var imported_file_handler: ((file_name: String, content: NSData) -> Void)?
+        let document_types = ["public.text"]
+        var from_view_controller: UIViewController?
 
-        func importFile(fromViewController fromViewController: UIViewController, sourceView: UIView, importedFileHandler: ((file_name: String, content: NSData) -> Void)) {
-                self.fromViewController = fromViewController
-                self.importedFileHandler = importedFileHandler
-                let importMenu = UIDocumentMenuViewController(documentTypes: documentTypes, inMode: UIDocumentPickerMode.Import)
+        func import_file(from_view_controller from_view_controller: UIViewController, source_view: UIView, imported_file_handler: ((file_name: String, content: NSData) -> Void)) {
+                self.from_view_controller = from_view_controller
+                self.imported_file_handler = imported_file_handler
+                let importMenu = UIDocumentMenuViewController(documentTypes: document_types, inMode: UIDocumentPickerMode.Import)
                 importMenu.delegate = self
                 if let popOverPresentationController = importMenu.popoverPresentationController {
-                        popOverPresentationController.sourceView = sourceView
-                        popOverPresentationController.sourceRect = CGRect(x: sourceView.frame.width / 2.0, y: sourceView.frame.height, width: 0, height: 5)
+                        popOverPresentationController.sourceView = source_view
+                        popOverPresentationController.sourceRect = CGRect(x: source_view.frame.width / 2.0, y: source_view.frame.height, width: 0, height: 5)
                         popOverPresentationController.permittedArrowDirections = UIPopoverArrowDirection.Up
                         importMenu.view.translatesAutoresizingMaskIntoConstraints = false
                 }
-                fromViewController.presentViewController(importMenu, animated: true, completion: nil)
+                from_view_controller.presentViewController(importMenu, animated: true, completion: nil)
         }
 
         func documentMenu(documentMenu: UIDocumentMenuViewController, didPickDocumentPicker documentPicker: UIDocumentPickerViewController) {
                 documentPicker.delegate = self
-                if let fromViewController = fromViewController {
-                        fromViewController.presentViewController(documentPicker, animated: true, completion: nil)
+                if let from_view_controller = from_view_controller {
+                        from_view_controller.presentViewController(documentPicker, animated: true, completion: nil)
                 }
         }
 
         func documentMenuWasCancelled(documentMenu: UIDocumentMenuViewController) {
-                cleanUp()
+                clean_up()
         }
 
 
         func documentPicker(controller: UIDocumentPickerViewController, didPickDocumentAtURL url: NSURL) {
                 if let (file_name, content) = file_fetch_and_remove(url: url) {
-                        if let importedFileHandler = importedFileHandler {
-                                importedFileHandler(file_name: file_name, content: content)
+                        if let imported_file_handler = imported_file_handler {
+                                imported_file_handler(file_name: file_name, content: content)
                         }
                 }
-                cleanUp()
+                clean_up()
         }
 
         func documentPickerWasCancelled(controller: UIDocumentPickerViewController) {
-                cleanUp()
+                clean_up()
         }
 
-        func cleanUp() {
-                importedFileHandler = nil
-                fromViewController = nil
+        func clean_up() {
+                imported_file_handler = nil
+                from_view_controller = nil
         }
 }

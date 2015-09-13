@@ -66,7 +66,7 @@ class ImportData: Component, UITableViewDataSource, UITableViewDelegate {
         }
 
         func import_button_action() {
-                documentPickerImport.importFile(fromViewController: self, sourceView: import_button, importedFileHandler: { (file_name: String, data: NSData) -> Void in
+                document_picker_import.import_file(from_view_controller: self, source_view: import_button, imported_file_handler: { (file_name: String, data: NSData) -> Void in
                         state.insert_file(name: file_name, type: "imported", data: data)
                         self.render()
                         self.table_view.reloadData()

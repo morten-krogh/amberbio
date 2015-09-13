@@ -138,8 +138,8 @@ class ExportProjects: Component, UITableViewDataSource, UITableViewDelegate, MFM
 
         func export_action() {
                 let file_name = create_file_name()
-                let file_data = create_export_database()
-                documentPickerExport.exportResultFile(fileName: file_name, fileData: file_data, fromViewController: self, sourceView: self.view)
+                let file_content = create_export_database()
+                document_picker_export.export_result_file(file_name: file_name, file_content: file_content, from_view_controller: self, source_view: self.view)
         }
 
         func select_all_action() {
