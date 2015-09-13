@@ -72,16 +72,6 @@ func draw_arrow_horizontal(context context: CGContext, point: CGPoint, length: C
 
 class Drawing {
 
-//        class func maxWidth(names names: [String], font: UIFont) -> CGFloat {
-//                var maximum = 0 as CGFloat
-//                for name in names {
-//                        let attributedString = Astring(string: name, attributes: [NSFontAttributeName: font])
-//                        let width = ceil(attributedString.size().width)
-//                        maximum = max(maximum, width)
-//                }
-//                return maximum
-//        }
-
         class func drawCellWithAttributedString(context context: CGContext, rect: CGRect, lineWidth: CGFloat, attributedString: Astring?, backgroundColor: UIColor?, horizontalCell: Bool, marginHorizontal: CGFloat, marginVertical: CGFloat, circleColor: UIColor?, circleRadius: CGFloat, topLine: Bool, rightLine: Bool, bottomLine: Bool, leftLine: Bool) {
                 CGContextSaveGState(context)
                 CGContextSetLineWidth(context, lineWidth)
@@ -137,10 +127,6 @@ class Drawing {
                 CGContextRestoreGState(context)
         }
 
-        class func drawCell(context ctx: CGContext, originX: CGFloat, originY: CGFloat, width: CGFloat, height: CGFloat, lineWidth: CGFloat, topLine: Bool, rightLine: Bool, bottomLine: Bool, leftLine: Bool) {
-                drawCellWithName(context: ctx, originX: originX, originY: originY, width: width, height: height, lineWidth: lineWidth, name: nil, font: nil, horizontalName: nil, margin: nil, topLine: topLine, rightLine: rightLine, bottomLine: bottomLine, leftLine: leftLine)
-        }
-
         class func drawCellWithName(context ctx: CGContext, originX: CGFloat, originY: CGFloat, width: CGFloat, height: CGFloat, lineWidth: CGFloat, name: String?, font: UIFont?, horizontalName: Bool?, margin: CGFloat?, topLine: Bool, rightLine: Bool, bottomLine: Bool, leftLine: Bool) {
                 CGContextSaveGState(ctx)
                 CGContextSetLineWidth(ctx, lineWidth)
@@ -178,14 +164,12 @@ class Drawing {
                 CGContextRestoreGState(ctx)
         }
 
+        class func drawCell(context ctx: CGContext, originX: CGFloat, originY: CGFloat, width: CGFloat, height: CGFloat, lineWidth: CGFloat, topLine: Bool, rightLine: Bool, bottomLine: Bool, leftLine: Bool) {
+                drawCellWithName(context: ctx, originX: originX, originY: originY, width: width, height: height, lineWidth: lineWidth, name: nil, font: nil, horizontalName: nil, margin: nil, topLine: topLine, rightLine: rightLine, bottomLine: bottomLine, leftLine: leftLine)
+        }
+
         class func drawCellWithCenteredCircle(context context: CGContext, originX: CGFloat, originY: CGFloat, width: CGFloat, height: CGFloat, lineWidth: CGFloat, topLine: Bool, rightLine: Bool, bottomLine: Bool, leftLine: Bool, radius: CGFloat, color: UIColor) {
                 drawCell(context: context, originX: originX, originY: originY, width: width, height: height, lineWidth: lineWidth, topLine: topLine, rightLine: rightLine, bottomLine: bottomLine, leftLine: leftLine)
                 draw_circle(context: context, center_x: originX + 0.5 * width, center_y: originY + 0.5 * height, radius: radius, color: color)
         }
-
-
-
-
-
-
 }

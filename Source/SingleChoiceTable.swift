@@ -7,8 +7,8 @@ protocol SingleChoiceTableDelegate {
 
 class SingleChoiceTable: UIView, TiledScrollViewDelegate {
 
-        let font: UIFont = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
-        let lineWidth: CGFloat = 1.0
+        let font = font_body
+        let lineWidth = 1.0 as CGFloat
 
         override var frame: CGRect { didSet { propertiesDidChange() } }
 
@@ -101,6 +101,11 @@ class SingleChoiceTable: UIView, TiledScrollViewDelegate {
         func drawRowName(context context: CGContext, index: Int) {
                 let originY = colNamesHeight + CGFloat(index) * rowHeight
                 let name = rowNames[index]
+                let rect = CGRect(x: 0, y: originY, width: rowNamesWidth, height: rowHeight)
+                let astring = astring_font_size_color(string: name, font: font, font_size: nil, color: nil)
+
+//                Drawing.drawCellWithAttributedString(context: context, rect: rect, lineWidth: lineWidth, attributedString: astring, backgroundColor: nil, horizontalCell: true, marginHorizontal: 0, marginVertical: 0, circleColor: nil, circleRadius: 0, topLine: false, rightLine: true, bottomLine: index != rowNames.count - 1, leftLine: false)
+
                 Drawing.drawCellWithName(context: context, originX: 0, originY: originY, width: rowNamesWidth, height: rowHeight, lineWidth: lineWidth, name: name, font: font, horizontalName: true, margin: 0, topLine: false, rightLine: true, bottomLine: index != rowNames.count - 1, leftLine: false)
         }
 
