@@ -20,7 +20,10 @@
 		602708E91BA6EF6C00672D54 /* ovarian-values.txt in Resources */ = {isa = PBXBuildFile; fileRef = 602708D61BA6EE3700672D54 /* ovarian-values.txt */; settings = {ASSET_TAGS = (); }; };
 		602708EA1BA6EF7000672D54 /* ovarian-factors.txt in Resources */ = {isa = PBXBuildFile; fileRef = 602708D51BA6EE3700672D54 /* ovarian-factors.txt */; settings = {ASSET_TAGS = (); }; };
 		602708EB1BA6EF7500672D54 /* ovarian-annotations.txt in Resources */ = {isa = PBXBuildFile; fileRef = 602708D41BA6EE3700672D54 /* ovarian-annotations.txt */; settings = {ASSET_TAGS = (); }; };
-		602708F31BA6F94F00672D54 /* amberbio-main.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 602708F21BA6F94F00672D54 /* amberbio-main.sqlite */; settings = {ASSET_TAGS = (); }; };
+		602708FA1BA7479600672D54 /* breast-cancer-annotations.txt in Resources */ = {isa = PBXBuildFile; fileRef = 602708F41BA7478500672D54 /* breast-cancer-annotations.txt */; settings = {ASSET_TAGS = (); }; };
+		602708FB1BA7479B00672D54 /* breast-cancer-factors.txt in Resources */ = {isa = PBXBuildFile; fileRef = 602708F51BA7478500672D54 /* breast-cancer-factors.txt */; settings = {ASSET_TAGS = (); }; };
+		602708FC1BA747A000672D54 /* breast-cancer-values.txt in Resources */ = {isa = PBXBuildFile; fileRef = 602708F61BA7478500672D54 /* breast-cancer-values.txt */; settings = {ASSET_TAGS = (); }; };
+		602708FE1BA747D000672D54 /* amberbio-main.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 602708FD1BA747D000672D54 /* amberbio-main.sqlite */; settings = {ASSET_TAGS = (); }; };
 		60B400391BA1982900D8DD80 /* state_init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400381BA1982900D8DD80 /* state_init.swift */; settings = {ASSET_TAGS = (); }; };
 		60B4003B1BA1983900D8DD80 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B4003A1BA1983900D8DD80 /* State.swift */; settings = {ASSET_TAGS = (); }; };
 		60B400411BA19BED00D8DD80 /* AttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B4003D1BA19BED00D8DD80 /* AttributedString.swift */; settings = {ASSET_TAGS = (); }; };
@@ -223,7 +226,10 @@
 		602708DC1BA6EE5F00672D54 /* nci60-values.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "nci60-values.txt"; path = "demo-data/nci60/nci60-values.txt"; sourceTree = "<group>"; };
 		602708E01BA6EE7400672D54 /* iris-factors.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "iris-factors.txt"; path = "demo-data/iris/iris-factors.txt"; sourceTree = "<group>"; };
 		602708E11BA6EE7400672D54 /* iris-values.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "iris-values.txt"; path = "demo-data/iris/iris-values.txt"; sourceTree = "<group>"; };
-		602708F21BA6F94F00672D54 /* amberbio-main.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; name = "amberbio-main.sqlite"; path = "../../../Desktop/amberbio-main.sqlite"; sourceTree = "<group>"; };
+		602708F41BA7478500672D54 /* breast-cancer-annotations.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "breast-cancer-annotations.txt"; path = "demo-data/breast-cancer/breast-cancer-annotations.txt"; sourceTree = "<group>"; };
+		602708F51BA7478500672D54 /* breast-cancer-factors.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "breast-cancer-factors.txt"; path = "demo-data/breast-cancer/breast-cancer-factors.txt"; sourceTree = "<group>"; };
+		602708F61BA7478500672D54 /* breast-cancer-values.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "breast-cancer-values.txt"; path = "demo-data/breast-cancer/breast-cancer-values.txt"; sourceTree = "<group>"; };
+		602708FD1BA747D000672D54 /* amberbio-main.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; name = "amberbio-main.sqlite"; path = "../../../Desktop/amberbio-main.sqlite"; sourceTree = "<group>"; };
 		60B400381BA1982900D8DD80 /* state_init.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = state_init.swift; path = Source/state_init.swift; sourceTree = "<group>"; };
 		60B4003A1BA1983900D8DD80 /* State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = State.swift; path = Source/State.swift; sourceTree = "<group>"; };
 		60B4003D1BA19BED00D8DD80 /* AttributedString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AttributedString.swift; path = Source/AttributedString.swift; sourceTree = "<group>"; };
@@ -422,8 +428,8 @@
 		601003401BA18744008A1FF9 = {
 			isa = PBXGroup;
 			children = (
+				602708FD1BA747D000672D54 /* amberbio-main.sqlite */,
 				60B401681BA1B2ED00D8DD80 /* libsqlite3.dylib */,
-				602708F21BA6F94F00672D54 /* amberbio-main.sqlite */,
 				60B400361BA1980000D8DD80 /* Source */,
 				6010034B1BA18744008A1FF9 /* Amberbio */,
 				601003601BA18744008A1FF9 /* AmberbioTests */,
@@ -728,6 +734,9 @@
 		60B4019D1BA1C77200D8DD80 /* DemoData */ = {
 			isa = PBXGroup;
 			children = (
+				602708F41BA7478500672D54 /* breast-cancer-annotations.txt */,
+				602708F51BA7478500672D54 /* breast-cancer-factors.txt */,
+				602708F61BA7478500672D54 /* breast-cancer-values.txt */,
 				602708D41BA6EE3700672D54 /* ovarian-annotations.txt */,
 				602708D51BA6EE3700672D54 /* ovarian-factors.txt */,
 				602708D61BA6EE3700672D54 /* ovarian-values.txt */,
@@ -874,7 +883,7 @@
 				60B401721BA1BC1100D8DD80 /* manual.html in Resources */,
 				601003541BA18744008A1FF9 /* Assets.xcassets in Resources */,
 				60B4016C1BA1B60F00D8DD80 /* AmberbioLaunchScreen.storyboard in Resources */,
-				602708F31BA6F94F00672D54 /* amberbio-main.sqlite in Resources */,
+				602708FE1BA747D000672D54 /* amberbio-main.sqlite in Resources */,
 				60B401711BA1BC1100D8DD80 /* manual.css in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -901,9 +910,12 @@
 				60B401891BA1BEC400D8DD80 /* LaunchScreen.storyboard in Resources */,
 				60B401861BA1BEC400D8DD80 /* Assets.xcassets in Resources */,
 				602708E51BA6EF5B00672D54 /* nci60-factors.txt in Resources */,
+				602708FA1BA7479600672D54 /* breast-cancer-annotations.txt in Resources */,
+				602708FB1BA7479B00672D54 /* breast-cancer-factors.txt in Resources */,
 				60B401841BA1BEC400D8DD80 /* Main.storyboard in Resources */,
 				602708E81BA6EF6800672D54 /* iris-factors.txt in Resources */,
 				602708E61BA6EF5F00672D54 /* nci60-annotations.txt in Resources */,
+				602708FC1BA747A000672D54 /* breast-cancer-values.txt in Resources */,
 				602708E41BA6EF5800672D54 /* nci60-values.txt in Resources */,
 				602708E91BA6EF6C00672D54 /* ovarian-values.txt in Resources */,
 				602708EB1BA6EF7500672D54 /* ovarian-annotations.txt in Resources */,
