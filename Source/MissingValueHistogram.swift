@@ -6,7 +6,7 @@ protocol MissingValueHistogramDelegate: class {
 
 class MissingValueHistogram: TiledScrollViewDelegate {
 
-        var delegate: MissingValueHistogramDelegate?
+        weak var delegate: MissingValueHistogramDelegate?
 
         var content_size = CGSize.zero
         var maximum_zoom_scale = 1 as CGFloat

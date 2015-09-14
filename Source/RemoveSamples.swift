@@ -206,11 +206,11 @@ func create_remove_samples_data_set(selected_samples selected_samples: Set<Int>)
                         let project_note_text = "Creation of data set \"\(data_set_name)\" by removal of \(remove_text)."
                         state.insert_project_note(project_note_text: project_note_text, project_note_type: "auto", project_note_user_name: state.get_user_name(), project_id: state.project_id)
 
-                        state.set_active_data_set(data_set_id: data_set_id)
 
                         let data_set_selection_state = DataSetSelectionState()
                         state.navigate(page_state: data_set_selection_state)
                         state.render_type = RenderType.full_page
+                        state.set_active_data_set(data_set_id: data_set_id)
                         state.render()
                 })
         })

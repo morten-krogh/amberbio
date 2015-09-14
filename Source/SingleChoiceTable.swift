@@ -1,6 +1,6 @@
 import UIKit
 
-protocol SingleChoiceTableDelegate {
+protocol SingleChoiceTableDelegate: class {
         func single_choice_table(singleChoiceTable: SingleChoiceTable, didSelectColNameWithIndex: Int) -> Void
         func single_choice_table(singleChoiceTable: SingleChoiceTable, didSelectCellWithRowIndex: Int, andColIndex: Int) -> Void
 }
@@ -15,7 +15,7 @@ class SingleChoiceTable: UIView, TiledScrollViewDelegate {
         var rowNames: [String] = [] { didSet { propertiesDidChange() } }
         var colNames: [String] = [] { didSet { propertiesDidChange() } }
         var choices: [Int] = [] { didSet { propertiesDidChange() } }      // choices.count == rowNames.count. Each choice is in [0, colNames.count - 1]
-        var delegate: SingleChoiceTableDelegate?
+        weak var delegate: SingleChoiceTableDelegate?
 
         let tiledScrollView = TiledScrollView(frame: CGRect.zero)
 

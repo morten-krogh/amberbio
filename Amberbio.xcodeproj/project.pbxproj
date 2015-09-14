@@ -295,7 +295,6 @@
 		60B4008E1BA19C7900D8DD80 /* MoleculeRange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MoleculeRange.swift; path = Source/MoleculeRange.swift; sourceTree = "<group>"; };
 		60B4008F1BA19C7900D8DD80 /* MultipleMoleculePlot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MultipleMoleculePlot.swift; path = Source/MultipleMoleculePlot.swift; sourceTree = "<group>"; };
 		60B400901BA19C7900D8DD80 /* MultiSegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MultiSegmentedControl.swift; path = Source/MultiSegmentedControl.swift; sourceTree = "<group>"; };
-		60B400911BA19C7900D8DD80 /* NameColorTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NameColorTableView.swift; path = Source/NameColorTableView.swift; sourceTree = "<group>"; };
 		60B400921BA19C7900D8DD80 /* NameDateTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NameDateTableViewCell.swift; path = Source/NameDateTableViewCell.swift; sourceTree = "<group>"; };
 		60B400931BA19C7900D8DD80 /* NormalDistribution.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NormalDistribution.swift; path = Source/NormalDistribution.swift; sourceTree = "<group>"; };
 		60B400941BA19C7900D8DD80 /* PageState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PageState.swift; path = Source/PageState.swift; sourceTree = "<group>"; };
@@ -552,7 +551,6 @@
 				60B4008A1BA19C7900D8DD80 /* MissingValueHistogram.swift */,
 				60B4008E1BA19C7900D8DD80 /* MoleculeRange.swift */,
 				60B400901BA19C7900D8DD80 /* MultiSegmentedControl.swift */,
-				60B400911BA19C7900D8DD80 /* NameColorTableView.swift */,
 				60B4009A1BA19C7900D8DD80 /* PairTable.swift */,
 				60B400A21BA19C7900D8DD80 /* PCA2dPlot.swift */,
 				60B400A31BA19C7900D8DD80 /* PCA3Plot.swift */,

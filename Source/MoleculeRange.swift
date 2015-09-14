@@ -1,6 +1,6 @@
 import UIKit
 
-protocol MoleculeRangeDelegate {
+protocol MoleculeRangeDelegate: class {
         func molecule_range_select() -> ()
         func molecule_range_cancel() -> ()
         func molecule_range_create_data_set(index1 index1: Int, index2: Int) -> ()
@@ -16,7 +16,7 @@ class MoleculeRange: UIView {
         let cancel_button = UIButton(type: UIButtonType.System)
         let create_dataset_button = UIButton(type: UIButtonType.System)
 
-        let delegate: MoleculeRangeDelegate
+        weak var delegate: MoleculeRangeDelegate?
 
         init(delegate: MoleculeRangeDelegate) {
                 self.delegate = delegate
@@ -24,11 +24,13 @@ class MoleculeRange: UIView {
 
                 info_label.textAlignment = .Center
 
-                cancel_button.setAttributedTitle(astring_font_size_color(string: "cancel", font_size: 18), forState: UIControlState.Normal)
+                cancel_button.setAttributedTitle(astring_font_size_color(string: "cancel", font_size: 18), forState: .Normal)
                 cancel_button.addTarget(self, action: "cancel_action", forControlEvents: UIControlEvents.TouchUpInside)
                 cancel_button.sizeToFit()
 
-                create_dataset_button.setAttributedTitle(astring_font_size_color(string: "create", font_size: 18), forState: UIControlState.Normal)
+                create_dataset_button.setAttributedTitle(astring_font_size_color(string: "create", font_size: 18), forState: .Normal)
+                create_dataset_button.setAttributedTitle(astring_font_size_color(string: "create", font: nil, font_size: 18, color: color_disabled), forState: .Disabled)
+
                 create_dataset_button.addTarget(self, action: "create_data_set_action", forControlEvents: UIControlEvents.TouchUpInside)
                 create_dataset_button.sizeToFit()
 
@@ -83,14 +85,14 @@ class MoleculeRange: UIView {
         func cancel_action() {
                 selected_index_1 = nil
                 selected_index_2 = nil
-                delegate.molecule_range_cancel()
+                delegate?.molecule_range_cancel()
         }
 
         func create_data_set_action() {
                 if let index1 = selected_index_1, let index2 = selected_index_2 {
                         let min_index = min(index1, index2)
                         let max_index = max(index1, index2)
-                        delegate.molecule_range_create_data_set(index1: min_index, index2: max_index)
+                        delegate?.molecule_range_create_data_set(index1: min_index, index2: max_index)
                 }
         }
 

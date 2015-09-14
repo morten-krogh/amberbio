@@ -20,9 +20,6 @@ protocol SpreadSheetDelegate: class {
 
 class SpreadSheet: UIView, UIScrollViewDelegate, SpreadSheetCellsDelegate {
 
-        let marginHorizontal = 20 as CGFloat
-        let marginVertical = 20 as CGFloat
-
         weak var delegate: SpreadSheetDelegate?
 
         let header_scroll_view = UIScrollView()

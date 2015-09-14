@@ -306,11 +306,10 @@ func create_remove_molecules_data_set(maximum_missing_values maximum_missing_val
                         let data_set_id = state.insert_data_set(data_set_name: data_set_name, project_id: state.project_id, values: new_values, sample_ids: state.sample_ids, molecule_indices: new_molecule_indices)
                         state.insert_project_note(project_note_text: project_note_text, project_note_type: "auto", project_note_user_name: state.get_user_name(), project_id: state.project_id)
 
-                        state.set_active_data_set(data_set_id: data_set_id)
-
                         let data_set_selection_state = DataSetSelectionState()
                         state.navigate(page_state: data_set_selection_state)
                         state.render_type = RenderType.full_page
+                        state.set_active_data_set(data_set_id: data_set_id)
                         state.render()
                 })
         })

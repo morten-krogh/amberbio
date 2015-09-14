@@ -7,7 +7,7 @@ protocol PCA2dDelegate: class {
 
 class PCA2dPlot: TiledScrollViewDelegate {
 
-        var delegate: PCA2dDelegate?
+        weak var delegate: PCA2dDelegate?
 
         let width = 300 as CGFloat
         var content_size = CGSize(width: 300, height: 300)

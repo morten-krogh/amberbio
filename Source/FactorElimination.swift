@@ -133,10 +133,9 @@ func create_factor_elimination_data_set(factor_index factor_index: Int) {
                         let data_set_id = state.insert_data_set(data_set_name: data_set_name, project_id: state.project_id, values: values_eliminated, sample_ids: state.sample_ids, molecule_indices: state.molecule_indices)
                         state.insert_project_note(project_note_text: project_note_text, project_note_type: "auto", project_note_user_name: state.get_user_name(), project_id: state.project_id)
 
-                        state.set_active_data_set(data_set_id: data_set_id)
-
                         let data_set_selection_state = DataSetSelectionState()
                         state.navigate(page_state: data_set_selection_state)
+                        state.set_active_data_set(data_set_id: data_set_id)
                         state.render_type = RenderType.full_page
                         state.render()
                 })
