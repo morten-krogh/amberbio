@@ -79,12 +79,12 @@ class PValueHistogramDelegate: TiledScrollViewDelegate {
                 let zero_point = CGPoint(x: zero_x, y: zero_y)
 
                 let y_axis_end = CGPoint(x: zero_x, y: margin)
-                draw_line(context: context, start_point: zero_point, end_point: y_axis_end)
-                draw_arrow_vertical(context: context, point: y_axis_end, length: 10)
+                drawing_draw_line(context: context, start_point: zero_point, end_point: y_axis_end)
+                drawing_draw_arrow_vertical(context: context, point: y_axis_end, length: 10)
 
                 let x_axis_end = CGPoint(x: width - margin, y: zero_y)
-                draw_line(context: context, start_point: zero_point, end_point: x_axis_end)
-                draw_arrow_horizontal(context: context, point: x_axis_end, length: 10)
+                drawing_draw_line(context: context, start_point: zero_point, end_point: x_axis_end)
+                drawing_draw_arrow_horizontal(context: context, point: x_axis_end, length: 10)
 
                 let max_bin_height = zero_y - 3 * margin
                 let bin_spacing = (width - 3 * margin - zero_x) / CGFloat(number_of_bins)
@@ -112,7 +112,7 @@ class PValueHistogramDelegate: TiledScrollViewDelegate {
                         let initial_x = zero_x + CGFloat(i * 2) * width_of_segment
                         let segment_start_point = CGPoint(x: initial_x, y: stipulated_line_y)
                         let segment_end_point = CGPoint(x: initial_x + width_of_segment, y: stipulated_line_y)
-                        draw_line(context: context, start_point: segment_start_point, end_point: segment_end_point)
+                        drawing_draw_line(context: context, start_point: segment_start_point, end_point: segment_end_point)
                 }
 
 

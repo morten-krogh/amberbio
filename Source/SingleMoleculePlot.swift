@@ -119,8 +119,8 @@ class SingleMoleculePlot: TiledScrollViewDelegate {
         func draw_y_axis(context context: CGContext) {
                 let start_point = CGPoint(x: y_axis_margin_left, y: plot_height - y_axis_margin_bottom)
                 let end_point = CGPoint(x: y_axis_margin_left, y: y_axis_margin_top)
-                draw_line(context: context, start_point: start_point, end_point: end_point)
-                draw_arrow_vertical(context: context, point: end_point, length: 10)
+                drawing_draw_line(context: context, start_point: start_point, end_point: end_point)
+                drawing_draw_arrow_vertical(context: context, point: end_point, length: 10)
         }
 
         func y_value_to_y_cord(y_value y_value: Double) -> CGFloat {
@@ -133,7 +133,7 @@ class SingleMoleculePlot: TiledScrollViewDelegate {
                 let y_coord = y_value_to_y_cord(y_value: y_value)
                 let start_point = CGPoint(x: y_axis_margin_left - protrusion, y: y_coord)
                 let end_point = CGPoint(x: y_axis_margin_left + protrusion, y: y_coord)
-                draw_line(context: context, start_point: start_point, end_point: end_point)
+                drawing_draw_line(context: context, start_point: start_point, end_point: end_point)
 
                 let astring: Astring
                 var is_integer = abs(y_value - floor(y_value)) <= 0.01 * abs(y_value)
@@ -153,7 +153,7 @@ class SingleMoleculePlot: TiledScrollViewDelegate {
                 let y_cord = y_value_to_y_cord(y_value: 0)
                 let start_point = CGPoint(x: y_axis_margin_left, y: y_cord)
                 let end_point = CGPoint(x: content_size.width - margin_right, y: y_cord)
-                draw_line(context: context, start_point: start_point, end_point: end_point)
+                drawing_draw_line(context: context, start_point: start_point, end_point: end_point)
         }
 
         func index_to_x_coord(index index: Int) -> CGFloat {
@@ -197,7 +197,7 @@ class SingleMoleculePlot: TiledScrollViewDelegate {
                         if !value.isNaN {
                                 let color = colors[index][i]
                                 let y_coord = y_value_to_y_cord(y_value: value)
-                                draw_circle(context: context, center_x: x_coord, center_y: y_coord, radius: circle_radius, color: color)
+                                drawing_draw_circle(context: context, center_x: x_coord, center_y: y_coord, radius: circle_radius, color: color)
                         }
                 }
         }

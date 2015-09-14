@@ -86,13 +86,13 @@ class LinearRegressionDrawer: TiledScrollViewDelegate {
         func draw_x_axis(context context: CGContext) {
                 let start_point = value_to_point(x_value: plot_minimum_x_value, y_value: 0)
                 let end_point = value_to_point(x_value: plot_maximum_x_value, y_value: 0)
-                draw_line(context: context, start_point: start_point, end_point: end_point)
+                drawing_draw_line(context: context, start_point: start_point, end_point: end_point)
 
                 let arrow_size = 6 as CGFloat
                 var arrow_point = CGPoint(x: end_point.x - arrow_size, y: end_point.y - 0.8 * arrow_size)
-                draw_line(context: context, start_point: end_point, end_point: arrow_point)
+                drawing_draw_line(context: context, start_point: end_point, end_point: arrow_point)
                 arrow_point = CGPoint(x: end_point.x - arrow_size, y: end_point.y + 0.8 * arrow_size)
-                draw_line(context: context, start_point: end_point, end_point: arrow_point)
+                drawing_draw_line(context: context, start_point: end_point, end_point: arrow_point)
 
                 let astring = astring_font_size_color(string: x_axis_title, font: font_footnote, font_size: axis_title_font_size)
                 let text_origin = CGPoint(x: end_point.x - astring.size().width + margin, y: end_point.y + 10)
@@ -106,7 +106,7 @@ class LinearRegressionDrawer: TiledScrollViewDelegate {
 
                         let start_point = CGPoint(x: point.x, y: point.y + 5)
                         let end_point = CGPoint(x: point.x, y: point.y - 5)
-                        draw_line(context: context, start_point: start_point, end_point: end_point)
+                        drawing_draw_line(context: context, start_point: start_point, end_point: end_point)
 
                         let value_as_string = decimal_string(number: tick_value, fraction_digits: 1)
                         let astring = astring_font_size_color(string: value_as_string, font: font_footnote, font_size: tick_font_size)
@@ -118,12 +118,12 @@ class LinearRegressionDrawer: TiledScrollViewDelegate {
         func draw_y_axis(context context: CGContext) {
                 let start_point = value_to_point(x_value: 0, y_value: plot_minimum_y_value)
                 let end_point = value_to_point(x_value: 0, y_value: plot_maximum_y_value)
-                draw_line(context: context, start_point: start_point, end_point: end_point)
+                drawing_draw_line(context: context, start_point: start_point, end_point: end_point)
                 let arrow_size = 6 as CGFloat
                 var arrow_point = CGPoint(x: end_point.x - arrow_size, y: end_point.y + 0.8 * arrow_size)
-                draw_line(context: context, start_point: end_point, end_point: arrow_point)
+                drawing_draw_line(context: context, start_point: end_point, end_point: arrow_point)
                 arrow_point = CGPoint(x: end_point.x + arrow_size, y: end_point.y + 0.8 * arrow_size)
-                draw_line(context: context, start_point: end_point, end_point: arrow_point)
+                drawing_draw_line(context: context, start_point: end_point, end_point: arrow_point)
 
 
                 for tick_value in y_tick_values {
@@ -134,7 +134,7 @@ class LinearRegressionDrawer: TiledScrollViewDelegate {
 
                         let start_point = CGPoint(x: point.x - 5, y: point.y)
                         let end_point = CGPoint(x: point.x + 5, y: point.y)
-                        draw_line(context: context, start_point: start_point, end_point: end_point)
+                        drawing_draw_line(context: context, start_point: start_point, end_point: end_point)
 
                         let value_as_string = decimal_string(number: tick_value, fraction_digits: 1)
                         let astring = astring_font_size_color(string: value_as_string, font: font_footnote, font_size: tick_font_size)
@@ -145,7 +145,7 @@ class LinearRegressionDrawer: TiledScrollViewDelegate {
 
         func draw_linear_regression_circle(context context: CGContext, x_value: Double, y_value: Double) {
                 let point = value_to_point(x_value: x_value, y_value: y_value)
-                draw_circle(context: context, center_x: point.x, center_y: point.y, radius: circle_radius, color: circle_color)
+                drawing_draw_circle(context: context, center_x: point.x, center_y: point.y, radius: circle_radius, color: circle_color)
         }
 
         func draw_linear_regression_line(context context: CGContext) {
@@ -154,7 +154,7 @@ class LinearRegressionDrawer: TiledScrollViewDelegate {
                         let start_point = value_to_point(x_value: plot_minimum_x_value, y_value: y_value_0)
                         let y_value_1 = intercept + slope * plot_maximum_x_value
                         let end_point = value_to_point(x_value: plot_maximum_x_value, y_value: y_value_1)
-                        draw_line(context: context, start_point: start_point, end_point: end_point)
+                        drawing_draw_line(context: context, start_point: start_point, end_point: end_point)
                 }
         }
 

@@ -31,7 +31,7 @@ func drawing_draw_attributed_text(context context: CGContext, attributed_text: A
         CGContextRestoreGState(context)
 }
 
-func draw_circle(context ctx: CGContext, center_x: CGFloat, center_y: CGFloat, radius: CGFloat, color: UIColor) {
+func drawing_draw_circle(context ctx: CGContext, center_x: CGFloat, center_y: CGFloat, radius: CGFloat, color: UIColor) {
         CGContextSaveGState(ctx)
         CGContextSetLineWidth(ctx, 0)
         CGContextSetFillColorWithColor(ctx, color.CGColor)
@@ -42,7 +42,7 @@ func draw_circle(context ctx: CGContext, center_x: CGFloat, center_y: CGFloat, r
         CGContextRestoreGState(ctx)
 }
 
-func draw_line(context context: CGContext, start_point: CGPoint, end_point: CGPoint) {
+func drawing_draw_line(context context: CGContext, start_point: CGPoint, end_point: CGPoint) {
         CGContextSaveGState(context)
         CGContextBeginPath(context)
         CGContextMoveToPoint(context, start_point.x, start_point.y)
@@ -51,21 +51,21 @@ func draw_line(context context: CGContext, start_point: CGPoint, end_point: CGPo
         CGContextRestoreGState(context)
 }
 
-func draw_arrow_vertical(context context: CGContext, point: CGPoint, length: CGFloat) {
+func drawing_draw_arrow_vertical(context context: CGContext, point: CGPoint, length: CGFloat) {
         let offSetX = length
         let offSetY = length
-        draw_line(context: context, start_point: point, end_point: CGPoint(x: point.x - offSetX , y: point.y + offSetY))
-        draw_line(context: context, start_point: point, end_point: CGPoint(x: point.x + offSetX , y: point.y + offSetY))
+        drawing_draw_line(context: context, start_point: point, end_point: CGPoint(x: point.x - offSetX , y: point.y + offSetY))
+        drawing_draw_line(context: context, start_point: point, end_point: CGPoint(x: point.x + offSetX , y: point.y + offSetY))
 }
 
-func draw_arrow_horizontal(context context: CGContext, point: CGPoint, length: CGFloat) {
+func drawing_draw_arrow_horizontal(context context: CGContext, point: CGPoint, length: CGFloat) {
         let offSetX = length
         let offSetY = length
-        draw_line(context: context, start_point: point, end_point: CGPoint(x: point.x - offSetX , y: point.y - offSetY))
-        draw_line(context: context, start_point: point, end_point: CGPoint(x: point.x - offSetX , y: point.y + offSetY))
+        drawing_draw_line(context: context, start_point: point, end_point: CGPoint(x: point.x - offSetX , y: point.y - offSetY))
+        drawing_draw_line(context: context, start_point: point, end_point: CGPoint(x: point.x - offSetX , y: point.y + offSetY))
 }
 
-func draw_cell_with_attributed_text(context context: CGContext, rect: CGRect, line_width: CGFloat, attributed_text: Astring?, background_color: UIColor?, horizontal_cell: Bool, margin_horizontal: CGFloat, margin_vertical: CGFloat, text_centered: Bool, circle_color: UIColor?, circle_radius: CGFloat, top_line: Bool, right_line: Bool, bottom_line: Bool, left_line: Bool) {
+func drawing_draw_cell_with_attributed_text(context context: CGContext, rect: CGRect, line_width: CGFloat, attributed_text: Astring?, background_color: UIColor?, horizontal_cell: Bool, margin_horizontal: CGFloat, margin_vertical: CGFloat, text_centered: Bool, circle_color: UIColor?, circle_radius: CGFloat, top_line: Bool, right_line: Bool, bottom_line: Bool, left_line: Bool) {
         CGContextSaveGState(context)
         CGContextSetLineWidth(context, line_width)
         if let background_color = background_color {
@@ -116,7 +116,7 @@ func draw_cell_with_attributed_text(context context: CGContext, rect: CGRect, li
         if let circle_color = circle_color {
                 let center_x = CGRectGetMaxX(rect) - margin_horizontal - circle_radius
                 let center_y = CGRectGetMidY(rect)
-                draw_circle(context: context, center_x: center_x, center_y: center_y, radius: circle_radius, color: circle_color)
+                drawing_draw_circle(context: context, center_x: center_x, center_y: center_y, radius: circle_radius, color: circle_color)
         }
 
         CGContextRestoreGState(context)
@@ -125,10 +125,10 @@ func draw_cell_with_attributed_text(context context: CGContext, rect: CGRect, li
 func drawing_draw_cell(context context: CGContext, origin_x: CGFloat, origin_y: CGFloat, width: CGFloat, height: CGFloat, line_width: CGFloat, top_line: Bool, right_line: Bool, bottom_line: Bool, left_line: Bool) {
         let rect = CGRect(x: origin_x, y: origin_y, width: width, height: height)
 
-        draw_cell_with_attributed_text(context: context, rect: rect, line_width: line_width, attributed_text: nil, background_color: nil, horizontal_cell: true, margin_horizontal: 0, margin_vertical: 0, text_centered: true, circle_color: nil, circle_radius: 0, top_line: top_line, right_line: right_line, bottom_line: bottom_line, left_line: left_line)
+        drawing_draw_cell_with_attributed_text(context: context, rect: rect, line_width: line_width, attributed_text: nil, background_color: nil, horizontal_cell: true, margin_horizontal: 0, margin_vertical: 0, text_centered: true, circle_color: nil, circle_radius: 0, top_line: top_line, right_line: right_line, bottom_line: bottom_line, left_line: left_line)
 }
 
 func drawing_draw_cell_with_centered_circle(context context: CGContext, origin_x: CGFloat, origin_y: CGFloat, width: CGFloat, height: CGFloat, line_width: CGFloat, top_line: Bool, right_line: Bool, bottom_line: Bool, left_line: Bool, radius: CGFloat, color: UIColor) {
         drawing_draw_cell(context: context, origin_x: origin_x, origin_y: origin_y, width: width, height: height, line_width: line_width, top_line: top_line, right_line: right_line, bottom_line: bottom_line, left_line: left_line)
-        draw_circle(context: context, center_x: origin_x + 0.5 * width, center_y: origin_y + 0.5 * height, radius: radius, color: color)
+        drawing_draw_circle(context: context, center_x: origin_x + 0.5 * width, center_y: origin_y + 0.5 * height, radius: radius, color: color)
 }

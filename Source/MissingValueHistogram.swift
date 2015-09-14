@@ -70,15 +70,15 @@ class MissingValueHistogram: TiledScrollViewDelegate {
                 drawing_draw_attributed_text(context: context, attributed_text: astring_missing_values, origin: CGPoint(x: margin, y: margin), horizontal: true)
 
                 let endPointYAxis = CGPoint(x: originCoordinateSystem.x, y: margin)
-                draw_line(context: context, start_point: originCoordinateSystem, end_point: endPointYAxis)
-                draw_arrow_vertical(context: context, point: endPointYAxis, length: 10)
+                drawing_draw_line(context: context, start_point: originCoordinateSystem, end_point: endPointYAxis)
+                drawing_draw_arrow_vertical(context: context, point: endPointYAxis, length: 10)
 
                 let protrusion = 3 as CGFloat
                 var tickPoint = originCoordinateSystem
                 var tickNumber = 0
                 for  i in 0 ..< numberOfTicks + 1 {
                         if i > 0 {
-                                draw_line(context: context, start_point: CGPoint(x: tickPoint.x - protrusion, y: tickPoint.y), end_point: CGPoint(x: tickPoint.x + protrusion, y: tickPoint.y))
+                                drawing_draw_line(context: context, start_point: CGPoint(x: tickPoint.x - protrusion, y: tickPoint.y), end_point: CGPoint(x: tickPoint.x + protrusion, y: tickPoint.y))
                         }
                         let attributedString = astring_body(string: "\(tickNumber)")
                         let tickNumberPoint = CGPoint(x: tickPoint.x - 2 * protrusion - attributedString.size().width, y: tickPoint.y - attributedString.size().height / 2)
@@ -89,8 +89,8 @@ class MissingValueHistogram: TiledScrollViewDelegate {
                 }
 
                 let endPointXAxis = CGPoint(x: originCoordinateSystem.x + lineWidth + (CGFloat(labels.count) + 1) * (widthOfBar + distanceBetweenTicks), y: originCoordinateSystem.y)
-                draw_line(context: context, start_point: originCoordinateSystem, end_point: endPointXAxis)
-                draw_arrow_horizontal(context: context, point: endPointXAxis, length: 10)
+                drawing_draw_line(context: context, start_point: originCoordinateSystem, end_point: endPointXAxis)
+                drawing_draw_arrow_horizontal(context: context, point: endPointXAxis, length: 10)
 
                 for i in 0 ..< labels.count {
                         let lowerLeftCornerOfRect = CGPoint(x: originCoordinateSystem.x + distanceBetweenTicks + CGFloat(i) * (widthOfBar + distanceBetweenTicks), y: originCoordinateSystem.y)

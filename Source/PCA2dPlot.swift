@@ -119,12 +119,12 @@ class PCA2dPlot: TiledScrollViewDelegate {
 
                 let start_point = CGPoint(x: point_x_min, y: point_y)
                 let end_point = CGPoint(x: point_x_max, y: point_y)
-                draw_line(context: context, start_point: start_point, end_point: end_point)
+                drawing_draw_line(context: context, start_point: start_point, end_point: end_point)
                 let arrow_size = 6 as CGFloat
                 var arrow_point = CGPoint(x: end_point.x - arrow_size, y: end_point.y - 0.8 * arrow_size)
-                draw_line(context: context, start_point: end_point, end_point: arrow_point)
+                drawing_draw_line(context: context, start_point: end_point, end_point: arrow_point)
                 arrow_point = CGPoint(x: end_point.x - arrow_size, y: end_point.y + 0.8 * arrow_size)
-                draw_line(context: context, start_point: end_point, end_point: arrow_point)
+                drawing_draw_line(context: context, start_point: end_point, end_point: arrow_point)
 
                 if let axis_titles = axis_titles {
                         let title = axis_titles[0]
@@ -141,7 +141,7 @@ class PCA2dPlot: TiledScrollViewDelegate {
 
                         let start_point = CGPoint(x: point_x, y: point_y + 5)
                         let end_point = CGPoint(x: point_x, y: point_y - 5)
-                        draw_line(context: context, start_point: start_point, end_point: end_point)
+                        drawing_draw_line(context: context, start_point: start_point, end_point: end_point)
 
                         let value_as_string = decimal_string(number: tick_value, fraction_digits: 1)
                         let astring = astring_font_size_color(string: value_as_string, font: font_footnote, font_size: 4)
@@ -163,12 +163,12 @@ class PCA2dPlot: TiledScrollViewDelegate {
 
                 let start_point = CGPoint(x: point_x, y: point_y_max)
                 let end_point = CGPoint(x: point_x, y: point_y_min)
-                draw_line(context: context, start_point: start_point, end_point: end_point)
+                drawing_draw_line(context: context, start_point: start_point, end_point: end_point)
                 let arrow_size = 6 as CGFloat
                 var arrow_point = CGPoint(x: end_point.x - arrow_size, y: end_point.y + 0.8 * arrow_size)
-                draw_line(context: context, start_point: end_point, end_point: arrow_point)
+                drawing_draw_line(context: context, start_point: end_point, end_point: arrow_point)
                 arrow_point = CGPoint(x: end_point.x + arrow_size, y: end_point.y + 0.8 * arrow_size)
-                draw_line(context: context, start_point: end_point, end_point: arrow_point)
+                drawing_draw_line(context: context, start_point: end_point, end_point: arrow_point)
 
                 if let axis_titles = axis_titles {
                         let title = axis_titles[1]
@@ -185,7 +185,7 @@ class PCA2dPlot: TiledScrollViewDelegate {
 
                         let start_point = CGPoint(x: point_x - 5, y: point_y)
                         let end_point = CGPoint(x: point_x + 5, y: point_y)
-                        draw_line(context: context, start_point: start_point, end_point: end_point)
+                        drawing_draw_line(context: context, start_point: start_point, end_point: end_point)
 
                         let value_as_string = decimal_string(number: tick_value, fraction_digits: 1)
                         let astring = astring_font_size_color(string: value_as_string, font: font_footnote, font_size: 4)
@@ -197,7 +197,7 @@ class PCA2dPlot: TiledScrollViewDelegate {
         func draw_pca_circle(context context: CGContext, index: Int, rect: CGRect) {
                 let point = points[index]
                 let color = colors[index]
-                draw_circle(context: context, center_x: point.x, center_y: point.y, radius: circle_radius, color: color)
+                drawing_draw_circle(context: context, center_x: point.x, center_y: point.y, radius: circle_radius, color: color)
         }
 
         func draw_name(context context: CGContext, name: String, index: Int, rect: CGRect) {
