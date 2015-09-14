@@ -102,13 +102,13 @@ func draw_cell_with_attributed_text(context context: CGContext, rect: CGRect, li
         if let attributed_text = attributed_text {
                 let size = attributed_text.size()
                 var origin: CGPoint
-                let rectMidX = rect.origin.x + (rect.size.width - (circle_color == nil ? 0 : (margin_horizontal + 2.0 * circle_radius))) / 2.0
+                let rect_mid_x = rect.origin.x + (rect.size.width - (circle_color == nil ? 0 : (margin_horizontal + 2.0 * circle_radius))) / 2.0
                 if horizontal_cell {
-                        let origin_x = text_centered ? rectMidX - size.width / 2.0 : rect.origin.x
+                        let origin_x = text_centered ? rect_mid_x - size.width / 2.0 : rect.origin.x
                         origin = CGPoint(x: origin_x, y: CGRectGetMidY(rect) - size.height / 2.0)
                 } else {
                         let origin_y = text_centered ? CGRectGetMidY(rect) - size.width / 2.0 : rect.origin.y
-                        origin = CGPoint(x: rectMidX + size.height / 2.0, y: origin_y)
+                        origin = CGPoint(x: rect_mid_x + size.height / 2.0, y: origin_y)
                 }
                 draw_attributed_text(context: context, attributed_text: attributed_text, origin: origin, horizontal: horizontal_cell)
         }

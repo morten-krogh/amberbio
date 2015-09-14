@@ -266,7 +266,11 @@ class SpreadSheetCells: UIView {
                 let bottom_line = row != row_heights.count - 1
                 let margin_horizontal = (row_heights[row] - astring.size().height) / 2
                 let margin_vertical = (column_widths[col] - astring.size().width) / 2
-                Drawing.drawCellWithAttributedString(context: context, rect: rect, lineWidth: line_width, attributedString: astring, backgroundColor: backgroundColor, horizontalCell: true, marginHorizontal: margin_horizontal, marginVertical: margin_vertical, circleColor: nil, circleRadius: 0, topLine: false, rightLine: right_line, bottomLine: bottom_line, leftLine: false)
+
+                draw_cell_with_attributed_text(context: context, rect: rect, line_width: line_width, attributed_text: astring, background_color: backgroundColor, horizontal_cell: true, margin_horizontal: margin_horizontal, margin_vertical: margin_vertical, text_centered: true, circle_color: nil, circle_radius: 0, top_line: false, right_line: right_line, bottom_line: bottom_line, left_line: false)
+
+
+//                Drawing.drawCellWithAttributedString(context: context, rect: rect, lineWidth: line_width, attributedString: astring, backgroundColor: backgroundColor, horizontalCell: true, marginHorizontal: margin_horizontal, marginVertical: margin_vertical, circleColor: nil, circleRadius: 0, topLine: false, rightLine: right_line, bottomLine: bottom_line, leftLine: false)
         }
 
         func draw_bottom_line(context context: CGContext) {

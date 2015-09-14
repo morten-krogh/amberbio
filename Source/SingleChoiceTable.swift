@@ -105,17 +105,15 @@ class SingleChoiceTable: UIView, TiledScrollViewDelegate {
                 let astring = astring_font_size_color(string: name, font: font, font_size: nil, color: nil)
 
                 draw_cell_with_attributed_text(context: context, rect: rect, line_width: lineWidth, attributed_text: astring, background_color: nil, horizontal_cell: true, margin_horizontal: 0, margin_vertical: 0, text_centered: false, circle_color: nil, circle_radius: 0, top_line: false, right_line: true, bottom_line: index != rowNames.count - 1, left_line: false)
-
-
-//                Drawing.drawCellWithAttributedString(context: context, rect: rect, lineWidth: lineWidth, attributedString: astring, backgroundColor: nil, horizontalCell: true, marginHorizontal: 0, marginVertical: 0, circleColor: nil, circleRadius: 0, topLine: false, rightLine: true, bottomLine: index != rowNames.count - 1, leftLine: false)
-
-//                Drawing.drawCellWithName(context: context, originX: 0, originY: originY, width: rowNamesWidth, height: rowHeight, lineWidth: lineWidth, name: name, font: font, horizontalName: true, margin: 0, topLine: false, rightLine: true, bottomLine: index != rowNames.count - 1, leftLine: false)
         }
 
         func drawColName(context context: CGContext, index: Int) {
-                let originX = rowNamesWidth + CGFloat(index) * rowWidth
+                let origin_x = rowNamesWidth + CGFloat(index) * rowWidth
                 let name = colNames[index]
-                Drawing.drawCellWithName(context: context, originX: originX, originY: 0, width: rowWidth, height: colNamesHeight, lineWidth: lineWidth, name: name, font: font, horizontalName: false, margin: 0, topLine: false, rightLine: index != colNames.count - 1, bottomLine: true, leftLine: false)
+                let rect = CGRect(x: origin_x, y: 0, width: rowWidth, height: colNamesHeight)
+                let astring = astring_font_size_color(string: name, font: font, font_size: nil, color: nil)
+
+                draw_cell_with_attributed_text(context: context, rect: rect, line_width: lineWidth, attributed_text: astring, background_color: nil, horizontal_cell: false, margin_horizontal: 0, margin_vertical: 0, text_centered: false, circle_color: nil, circle_radius: 0, top_line: false, right_line: index != colNames.count - 1, bottom_line: true, left_line: false)
         }
 
         func drawCell(context context: CGContext, row: Int, col: Int, choice: Bool) {
