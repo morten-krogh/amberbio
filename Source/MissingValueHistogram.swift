@@ -26,8 +26,6 @@ class MissingValueHistogram: TiledScrollViewDelegate {
 
         let middle_margin = 50 as CGFloat
         let lineMargin = 20 as CGFloat
-        let font = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
-        let fontFootnote = UIFont.preferredFontForTextStyle(UIFontTextStyleFootnote)
 
         var numberOfTicks: Int!
         var originCoordinateSystem = CGPoint.zero
@@ -68,7 +66,8 @@ class MissingValueHistogram: TiledScrollViewDelegate {
                 CGContextSetLineWidth(context, lineWidth)
                 CGContextSetStrokeColorWithColor(context, UIColor.blackColor().CGColor)
 
-                draw_text(context: context, text: "Missing\nValues", font: fontFootnote, origin: CGPoint(x: margin, y: margin), horizontal: true)
+                let astring_missing_values = astring_footnote(string: "missing\nvalues")
+                drawing_draw_attributed_text(context: context, attributed_text: astring_missing_values, origin: CGPoint(x: margin, y: margin), horizontal: true)
 
                 let endPointYAxis = CGPoint(x: originCoordinateSystem.x, y: margin)
                 draw_line(context: context, start_point: originCoordinateSystem, end_point: endPointYAxis)
@@ -83,7 +82,8 @@ class MissingValueHistogram: TiledScrollViewDelegate {
                         }
                         let attributedString = astring_body(string: "\(tickNumber)")
                         let tickNumberPoint = CGPoint(x: tickPoint.x - 2 * protrusion - attributedString.size().width, y: tickPoint.y - attributedString.size().height / 2)
-                        draw_text(context: context, text: "\(tickNumber)", font: font, origin: tickNumberPoint, horizontal: true)
+                        let astring_tick_number = astring_body(string: "\(tickNumber)")
+                        drawing_draw_attributed_text(context: context, attributed_text: astring_tick_number, origin: tickNumberPoint, horizontal: true)
                         tickPoint.y -= distanceBetweenTicks
                         tickNumber = tickNumber == 0 ? 1 : 2 * tickNumber
                 }
@@ -104,13 +104,13 @@ class MissingValueHistogram: TiledScrollViewDelegate {
                         CGContextFillPath(context)
                         CGContextRestoreGState(context)
 
-                        let attributedValue = Astring(string: String(value), attributes: [NSFontAttributeName: fontFootnote])
-                        let originValue = CGPoint(x: lowerLeftCornerOfRect.x + (widthOfBar - attributedValue.size().width) / 2, y: lowerLeftCornerOfRect.y + 0.2 * heightValueText)
-                        draw_text(context: context, text: String(value), font: fontFootnote, origin: originValue, horizontal: true)
+                        let astring = astring_font_size_color(string: "\(value)", font: font_footnote, font_size: nil, color: nil)
+                        let origin_value = CGPoint(x: lowerLeftCornerOfRect.x + (widthOfBar - astring.size().width) / 2, y: lowerLeftCornerOfRect.y + 0.2 * heightValueText)
+                        drawing_draw_attributed_text(context: context, attributed_text: astring, origin: origin_value, horizontal: true)
 
                         let label = labels[i]
                         let originLabel = CGPoint(x: lowerLeftCornerOfRect.x + (widthOfBar + label.size().height) / 2, y: lowerLeftCornerOfRect.y + heightValueText)
-                        draw_attributed_text(context: context, attributed_text: label, origin: originLabel, horizontal: false)
+                        drawing_draw_attributed_text(context: context, attributed_text: label, origin: originLabel, horizontal: false)
                 }
         }
 

@@ -96,7 +96,7 @@ class LinearRegressionDrawer: TiledScrollViewDelegate {
 
                 let astring = astring_font_size_color(string: x_axis_title, font: font_footnote, font_size: axis_title_font_size)
                 let text_origin = CGPoint(x: end_point.x - astring.size().width + margin, y: end_point.y + 10)
-                draw_attributed_text(context: context, attributed_text: astring, origin: text_origin, horizontal: true)
+                drawing_draw_attributed_text(context: context, attributed_text: astring, origin: text_origin, horizontal: true)
 
                 for tick_value in tick_values {
                         let point = value_to_point(x_value: tick_value, y_value: 0)
@@ -111,7 +111,7 @@ class LinearRegressionDrawer: TiledScrollViewDelegate {
                         let value_as_string = decimal_string(number: tick_value, fraction_digits: 1)
                         let astring = astring_font_size_color(string: value_as_string, font: font_footnote, font_size: tick_font_size)
                         let text_origin = CGPoint(x: point.x - astring.size().width / 2, y: point.y + 10)
-                        draw_attributed_text(context: context, attributed_text: astring, origin: text_origin, horizontal: true)
+                        drawing_draw_attributed_text(context: context, attributed_text: astring, origin: text_origin, horizontal: true)
                 }
         }
 
@@ -139,7 +139,7 @@ class LinearRegressionDrawer: TiledScrollViewDelegate {
                         let value_as_string = decimal_string(number: tick_value, fraction_digits: 1)
                         let astring = astring_font_size_color(string: value_as_string, font: font_footnote, font_size: tick_font_size)
                         let text_origin = CGPoint(x: point.x - 10 - astring.size().width, y: point.y - astring.size().height / 2)
-                        draw_attributed_text(context: context, attributed_text: astring, origin: text_origin, horizontal: true)
+                        drawing_draw_attributed_text(context: context, attributed_text: astring, origin: text_origin, horizontal: true)
                 }
         }
 

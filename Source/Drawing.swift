@@ -1,6 +1,6 @@
 import UIKit
 
-func draw_max_width(names names: [String], font: UIFont) -> CGFloat {
+func drawing_max_width(names names: [String], font: UIFont) -> CGFloat {
         var maximum = 0 as CGFloat
         for name in names {
                 let attributed_string = astring_font_size_color(string: name, font: font, font_size: nil, color: nil)
@@ -10,12 +10,12 @@ func draw_max_width(names names: [String], font: UIFont) -> CGFloat {
         return maximum
 }
 
-func draw_text(context context: CGContext, text: String, font: UIFont, origin: CGPoint, horizontal: Bool) {
+func drawing_draw_text(context context: CGContext, text: String, font: UIFont, origin: CGPoint, horizontal: Bool) {
         let attributed_text = astring_font_size_color(string: text, font: font, font_size: nil, color: nil)
-        draw_attributed_text(context: context, attributed_text: attributed_text, origin: origin, horizontal: horizontal)
+        drawing_draw_attributed_text(context: context, attributed_text: attributed_text, origin: origin, horizontal: horizontal)
 }
 
-func draw_attributed_text(context context: CGContext, attributed_text: Astring, origin: CGPoint, horizontal: Bool) {
+func drawing_draw_attributed_text(context context: CGContext, attributed_text: Astring, origin: CGPoint, horizontal: Bool) {
         CGContextSaveGState(context)
         UIGraphicsPushContext(context)
         if horizontal {
@@ -110,7 +110,7 @@ func draw_cell_with_attributed_text(context context: CGContext, rect: CGRect, li
                         let origin_y = text_centered ? CGRectGetMidY(rect) - size.width / 2.0 : rect.origin.y
                         origin = CGPoint(x: rect_mid_x + size.height / 2.0, y: origin_y)
                 }
-                draw_attributed_text(context: context, attributed_text: attributed_text, origin: origin, horizontal: horizontal_cell)
+                drawing_draw_attributed_text(context: context, attributed_text: attributed_text, origin: origin, horizontal: horizontal_cell)
         }
 
         if let circle_color = circle_color {
@@ -128,60 +128,7 @@ func drawing_draw_cell(context context: CGContext, origin_x: CGFloat, origin_y: 
         draw_cell_with_attributed_text(context: context, rect: rect, line_width: line_width, attributed_text: nil, background_color: nil, horizontal_cell: true, margin_horizontal: 0, margin_vertical: 0, text_centered: true, circle_color: nil, circle_radius: 0, top_line: top_line, right_line: right_line, bottom_line: bottom_line, left_line: left_line)
 }
 
-
-
-
-
-
-
-
-
-
-class Drawing {
-
-        class func drawCellWithName(context ctx: CGContext, originX: CGFloat, originY: CGFloat, width: CGFloat, height: CGFloat, lineWidth: CGFloat, name: String?, font: UIFont?, horizontalName: Bool?, margin: CGFloat?, topLine: Bool, rightLine: Bool, bottomLine: Bool, leftLine: Bool) {
-                CGContextSaveGState(ctx)
-                CGContextSetLineWidth(ctx, lineWidth)
-                CGContextSetStrokeColorWithColor(ctx, UIColor.blackColor().CGColor)
-                CGContextBeginPath(ctx)
-                if topLine {
-                        CGContextMoveToPoint(ctx, originX, originY)
-                        CGContextAddLineToPoint(ctx, originX + width, originY)
-                }
-                if rightLine {
-                        CGContextMoveToPoint(ctx, originX + width, originY)
-                        CGContextAddLineToPoint(ctx, originX + width, originY + height)
-                }
-                if bottomLine {
-                        CGContextMoveToPoint(ctx, originX, originY + height)
-                        CGContextAddLineToPoint(ctx, originX + width, originY + height)
-                }
-                if leftLine {
-                        CGContextMoveToPoint(ctx, originX, originY)
-                        CGContextAddLineToPoint(ctx, originX, originY + height)
-                }
-                CGContextStrokePath(ctx)
-
-                if let name = name {
-                        if horizontalName! {
-                                let originNameX = originX + margin!
-                                let originNameY = originY + height / 2.0 - font!.lineHeight / 2.0
-                                draw_text(context: ctx, text: name, font: font!, origin: CGPoint(x: originNameX, y: originNameY), horizontal: true)
-                        } else {
-                                let originNameX = originX + width / 2.0 + font!.lineHeight / 2.0
-                                let originNameY = originY + margin!
-                                draw_text(context: ctx, text: name, font: font!, origin: CGPoint(x: originNameX, y: originNameY), horizontal: false)
-                        }
-                }
-                CGContextRestoreGState(ctx)
-        }
-
-        class func drawCell(context ctx: CGContext, originX: CGFloat, originY: CGFloat, width: CGFloat, height: CGFloat, lineWidth: CGFloat, topLine: Bool, rightLine: Bool, bottomLine: Bool, leftLine: Bool) {
-                drawCellWithName(context: ctx, originX: originX, originY: originY, width: width, height: height, lineWidth: lineWidth, name: nil, font: nil, horizontalName: nil, margin: nil, topLine: topLine, rightLine: rightLine, bottomLine: bottomLine, leftLine: leftLine)
-        }
-
-        class func drawCellWithCenteredCircle(context context: CGContext, originX: CGFloat, originY: CGFloat, width: CGFloat, height: CGFloat, lineWidth: CGFloat, topLine: Bool, rightLine: Bool, bottomLine: Bool, leftLine: Bool, radius: CGFloat, color: UIColor) {
-                drawCell(context: context, originX: originX, originY: originY, width: width, height: height, lineWidth: lineWidth, topLine: topLine, rightLine: rightLine, bottomLine: bottomLine, leftLine: leftLine)
-                draw_circle(context: context, center_x: originX + 0.5 * width, center_y: originY + 0.5 * height, radius: radius, color: color)
-        }
+func drawing_draw_cell_with_centered_circle(context context: CGContext, origin_x: CGFloat, origin_y: CGFloat, width: CGFloat, height: CGFloat, line_width: CGFloat, top_line: Bool, right_line: Bool, bottom_line: Bool, left_line: Bool, radius: CGFloat, color: UIColor) {
+        drawing_draw_cell(context: context, origin_x: origin_x, origin_y: origin_y, width: width, height: height, line_width: line_width, top_line: top_line, right_line: right_line, bottom_line: bottom_line, left_line: left_line)
+        draw_circle(context: context, center_x: origin_x + 0.5 * width, center_y: origin_y + 0.5 * height, radius: radius, color: color)
 }

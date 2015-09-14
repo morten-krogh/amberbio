@@ -146,7 +146,7 @@ class SingleMoleculePlot: TiledScrollViewDelegate {
                 }
 
                 let text_origin = CGPoint(x: tick_margin_left, y: y_coord - astring.size().height / 2)
-                draw_attributed_text(context: context, attributed_text: astring, origin: text_origin, horizontal: true)
+                drawing_draw_attributed_text(context: context, attributed_text: astring, origin: text_origin, horizontal: true)
         }
 
         func draw_x_axis(context context: CGContext) {
@@ -170,7 +170,7 @@ class SingleMoleculePlot: TiledScrollViewDelegate {
                 let astring = astring_footnote(string: names[index])
                 let x_coord = index_to_x_coord(index: index)
                 let origin = CGPoint(x: x_coord - astring.size().width / 2, y: plot_height - y_axis_margin_bottom + margin_middle)
-                draw_attributed_text(context: context, attributed_text: astring, origin: origin, horizontal: true)
+                drawing_draw_attributed_text(context: context, attributed_text: astring, origin: origin, horizontal: true)
         }
 
         func draw_present(context context: CGContext, index: Int) {
@@ -179,7 +179,7 @@ class SingleMoleculePlot: TiledScrollViewDelegate {
                 let astring = astring_footnote(string: string)
                 let x_coord = index_to_x_coord(index: index)
                 let origin = CGPoint(x: x_coord - astring.size().width / 2, y: plot_height - y_axis_margin_bottom + 2 * margin_middle + height_present_missing + 3)
-                draw_attributed_text(context: context, attributed_text: astring, origin: origin, horizontal: true)
+                drawing_draw_attributed_text(context: context, attributed_text: astring, origin: origin, horizontal: true)
         }
 
         func draw_missing(context context: CGContext, index: Int) {
@@ -187,7 +187,7 @@ class SingleMoleculePlot: TiledScrollViewDelegate {
                 let astring = astring_footnote(string: string)
                 let x_coord = index_to_x_coord(index: index)
                 let origin = CGPoint(x: x_coord - astring.size().width / 2, y: plot_height - y_axis_margin_bottom + 3 * margin_middle + 2 * height_present_missing)
-                draw_attributed_text(context: context, attributed_text: astring, origin: origin, horizontal: true)
+                drawing_draw_attributed_text(context: context, attributed_text: astring, origin: origin, horizontal: true)
         }
 
         func draw_values(context context: CGContext, index: Int) {

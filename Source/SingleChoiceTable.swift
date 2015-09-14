@@ -26,8 +26,8 @@ class SingleChoiceTable: UIView, TiledScrollViewDelegate {
         let margin = 10 as CGFloat
         let rowWidth = 50 as CGFloat
         let rowHeight = 50 as CGFloat
-        let circleRadius = 18 as CGFloat
-        let circleColor = UIColor(red: 0.5, green: 0.9, blue: 0.5, alpha: 1)
+        let circle_radius = 18 as CGFloat
+        let circle_color = circle_color_green
         var rowNamesWidth = 0 as CGFloat
         var colNamesHeight = 0 as CGFloat
 
@@ -52,8 +52,8 @@ class SingleChoiceTable: UIView, TiledScrollViewDelegate {
         func propertiesDidChange() {
                 if rowNames.count > 0 && colNames.count > 0 && choices.count == rowNames.count {
                         tiledScrollView.frame = bounds
-                        rowNamesWidth = draw_max_width(names: rowNames, font: font) + margin
-                        colNamesHeight = draw_max_width(names: colNames, font: font) + margin
+                        rowNamesWidth = drawing_max_width(names: rowNames, font: font) + margin
+                        colNamesHeight = drawing_max_width(names: colNames, font: font) + margin
                         content_size.width = rowNamesWidth + CGFloat(colNames.count) * rowWidth
                         content_size.height = colNamesHeight + CGFloat(rowNames.count) * rowHeight
                         tiledScrollView.delegate = self
@@ -120,7 +120,7 @@ class SingleChoiceTable: UIView, TiledScrollViewDelegate {
                 let origin_x = rowNamesWidth + CGFloat(col) * rowWidth
                 let origin_y = colNamesHeight + CGFloat(row) * rowHeight
                 if choice {
-                        Drawing.drawCellWithCenteredCircle(context: context, originX: origin_x, originY: origin_y, width: rowWidth, height: rowHeight, lineWidth: lineWidth, topLine: false, rightLine: col != colNames.count - 1, bottomLine: row != rowNames.count - 1, leftLine: false, radius: circleRadius, color: circleColor)
+                        drawing_draw_cell_with_centered_circle(context: context, origin_x: origin_x, origin_y: origin_y, width: rowWidth, height: rowHeight, line_width: lineWidth, top_line: false, right_line: col != colNames.count - 1, bottom_line: row != rowNames.count - 1, left_line: false, radius: circle_radius, color: circle_color)
                 } else {
                         drawing_draw_cell(context: context, origin_x: origin_x, origin_y: origin_y, width: rowWidth, height: rowHeight, line_width: lineWidth, top_line: false, right_line: col != colNames.count - 1, bottom_line: row != rowNames.count - 1, left_line: false)
                 }

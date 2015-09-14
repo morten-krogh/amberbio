@@ -178,7 +178,7 @@ class HierarchicalClusteringDrawer: TiledScrollViewDelegate {
                         let astring = astring_body(string: sample_names[i])
                         height = max(height, astring.size().width)
                         let text_position_x = margin_dendrogram + sample_width * CGFloat(i) + (sample_width + astring.size().height) / 2
-                        draw_attributed_text(context: context, attributed_text: astring, origin: CGPoint(x: text_position_x, y: position_y), horizontal: false)
+                        drawing_draw_attributed_text(context: context, attributed_text: astring, origin: CGPoint(x: text_position_x, y: position_y), horizontal: false)
                 }
                 return height
         }
@@ -247,7 +247,7 @@ class HierarchicalClusteringDrawer: TiledScrollViewDelegate {
 
                 let astring = astring_body(string: "Color Key")
                 let position_astring = (color_key_width - astring.size().width) / 2
-                draw_attributed_text(context: context, attributed_text: astring, origin: CGPoint(x: position_astring, y: cell_position_y), horizontal: true)
+                drawing_draw_attributed_text(context: context, attributed_text: astring, origin: CGPoint(x: position_astring, y: cell_position_y), horizontal: true)
                 cell_position_y += astring.size().height + 20
 
                 for i in 0 ..< color_key.color_palette.count {
@@ -270,7 +270,7 @@ class HierarchicalClusteringDrawer: TiledScrollViewDelegate {
                 for i in 0 ..< color_key.break_points.count {
                         let astring = decimal_astring(number: color_key.break_points[i], fraction_digits: 1)
                         let text_position_x = margin_left + space_per_color * CGFloat(i) + astring.size().height / 2
-                        draw_attributed_text(context: context, attributed_text: astring, origin: CGPoint(x: text_position_x, y: cell_position_y), horizontal: false)
+                        drawing_draw_attributed_text(context: context, attributed_text: astring, origin: CGPoint(x: text_position_x, y: cell_position_y), horizontal: false)
                 }
         }
 
