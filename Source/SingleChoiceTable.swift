@@ -8,7 +8,7 @@ protocol SingleChoiceTableDelegate {
 class SingleChoiceTable: UIView, TiledScrollViewDelegate {
 
         let font = font_body
-        let lineWidth = 1.0 as CGFloat
+        let line_width = 1.0 as CGFloat
 
         override var frame: CGRect { didSet { propertiesDidChange() } }
 
@@ -79,7 +79,7 @@ class SingleChoiceTable: UIView, TiledScrollViewDelegate {
                 let (lowerRightRow, lowerRightCol) = row_col_for_point(point: CGPoint(x: CGRectGetMaxX(rect), y: CGRectGetMaxY(rect)))
 
                 if upperLeftRow == 0 && upperLeftCol == 0 {
-                        drawing_draw_cell(context: context, origin_x: 0, origin_y: 0, width: rowNamesWidth, height: colNamesHeight, line_width: lineWidth, top_line: false, right_line: true, bottom_line: true, left_line: false)
+                        drawing_draw_cell(context: context, origin_x: 0, origin_y: 0, width: rowNamesWidth, height: colNamesHeight, line_width: line_width, top_line: false, right_line: true, bottom_line: true, left_line: false)
                 }
                 if upperLeftCol >= 0 {
                         for row in max(0, upperLeftRow - 1)..<min(lowerRightRow, rowNames.count) {
@@ -104,7 +104,7 @@ class SingleChoiceTable: UIView, TiledScrollViewDelegate {
                 let rect = CGRect(x: 0, y: originY, width: rowNamesWidth, height: rowHeight)
                 let astring = astring_font_size_color(string: name, font: font, font_size: nil, color: nil)
 
-                drawing_draw_cell_with_attributed_text(context: context, rect: rect, line_width: lineWidth, attributed_text: astring, background_color: nil, horizontal_cell: true, margin_horizontal: 0, margin_vertical: 0, text_centered: false, circle_color: nil, circle_radius: 0, top_line: false, right_line: true, bottom_line: index != rowNames.count - 1, left_line: false)
+                drawing_draw_cell_with_attributed_text(context: context, rect: rect, line_width: line_width, attributed_text: astring, background_color: nil, horizontal_cell: true, margin_horizontal: 0, margin_vertical: 0, text_centered: false, circle_color: nil, circle_radius: 0, top_line: false, right_line: true, bottom_line: index != rowNames.count - 1, left_line: false)
         }
 
         func drawColName(context context: CGContext, index: Int) {
@@ -113,16 +113,16 @@ class SingleChoiceTable: UIView, TiledScrollViewDelegate {
                 let rect = CGRect(x: origin_x, y: 0, width: rowWidth, height: colNamesHeight)
                 let astring = astring_font_size_color(string: name, font: font, font_size: nil, color: nil)
 
-                drawing_draw_cell_with_attributed_text(context: context, rect: rect, line_width: lineWidth, attributed_text: astring, background_color: nil, horizontal_cell: false, margin_horizontal: 0, margin_vertical: 0, text_centered: false, circle_color: nil, circle_radius: 0, top_line: false, right_line: index != colNames.count - 1, bottom_line: true, left_line: false)
+                drawing_draw_cell_with_attributed_text(context: context, rect: rect, line_width: line_width, attributed_text: astring, background_color: nil, horizontal_cell: false, margin_horizontal: 0, margin_vertical: 0, text_centered: false, circle_color: nil, circle_radius: 0, top_line: false, right_line: index != colNames.count - 1, bottom_line: true, left_line: false)
         }
 
         func drawCell(context context: CGContext, row: Int, col: Int, choice: Bool) {
                 let origin_x = rowNamesWidth + CGFloat(col) * rowWidth
                 let origin_y = colNamesHeight + CGFloat(row) * rowHeight
                 if choice {
-                        drawing_draw_cell_with_centered_circle(context: context, origin_x: origin_x, origin_y: origin_y, width: rowWidth, height: rowHeight, line_width: lineWidth, top_line: false, right_line: col != colNames.count - 1, bottom_line: row != rowNames.count - 1, left_line: false, radius: circle_radius, color: circle_color)
+                        drawing_draw_cell_with_centered_circle(context: context, origin_x: origin_x, origin_y: origin_y, width: rowWidth, height: rowHeight, line_width: line_width, top_line: false, right_line: col != colNames.count - 1, bottom_line: row != rowNames.count - 1, left_line: false, radius: circle_radius, color: circle_color)
                 } else {
-                        drawing_draw_cell(context: context, origin_x: origin_x, origin_y: origin_y, width: rowWidth, height: rowHeight, line_width: lineWidth, top_line: false, right_line: col != colNames.count - 1, bottom_line: row != rowNames.count - 1, left_line: false)
+                        drawing_draw_cell(context: context, origin_x: origin_x, origin_y: origin_y, width: rowWidth, height: rowHeight, line_width: line_width, top_line: false, right_line: col != colNames.count - 1, bottom_line: row != rowNames.count - 1, left_line: false)
                 }
         }
 

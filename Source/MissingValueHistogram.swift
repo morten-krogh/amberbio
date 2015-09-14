@@ -16,7 +16,7 @@ class MissingValueHistogram: TiledScrollViewDelegate {
         let values: [Int]
         let colors: [UIColor]
 
-        let lineWidth = 1 as CGFloat
+        let line_width = 1 as CGFloat
         let margin = 2 as CGFloat
         let distanceBetweenTicks = 30 as CGFloat
         let heightValueText = 30 as CGFloat
@@ -48,11 +48,11 @@ class MissingValueHistogram: TiledScrollViewDelegate {
 
                 let maxLabelWidth = labels.reduce(0 as CGFloat, combine: { max($0, $1.size().width) })
 
-                let height = originCoordinateSystem.y + lineWidth + heightValueText + maxLabelWidth + margin
+                let height = originCoordinateSystem.y + line_width + heightValueText + maxLabelWidth + margin
 
                 originCoordinateSystem.x = margin + astring_footnote(string: "Missing   ").size().width + margin
 
-                let width = originCoordinateSystem.x + lineWidth + (CGFloat(labels.count) + 1) * (widthOfBar + distanceBetweenTicks) + margin
+                let width = originCoordinateSystem.x + line_width + (CGFloat(labels.count) + 1) * (widthOfBar + distanceBetweenTicks) + margin
 
                 content_size = CGSize(width: width, height: height)
         }
@@ -63,7 +63,7 @@ class MissingValueHistogram: TiledScrollViewDelegate {
 
         func draw_histogram(context context: CGContext, rect: CGRect) {
 
-                CGContextSetLineWidth(context, lineWidth)
+                CGContextSetLineWidth(context, line_width)
                 CGContextSetStrokeColorWithColor(context, UIColor.blackColor().CGColor)
 
                 let astring_missing_values = astring_footnote(string: "missing\nvalues")
@@ -88,7 +88,7 @@ class MissingValueHistogram: TiledScrollViewDelegate {
                         tickNumber = tickNumber == 0 ? 1 : 2 * tickNumber
                 }
 
-                let endPointXAxis = CGPoint(x: originCoordinateSystem.x + lineWidth + (CGFloat(labels.count) + 1) * (widthOfBar + distanceBetweenTicks), y: originCoordinateSystem.y)
+                let endPointXAxis = CGPoint(x: originCoordinateSystem.x + line_width + (CGFloat(labels.count) + 1) * (widthOfBar + distanceBetweenTicks), y: originCoordinateSystem.y)
                 drawing_draw_line(context: context, start_point: originCoordinateSystem, end_point: endPointXAxis)
                 drawing_draw_arrow_horizontal(context: context, point: endPointXAxis, length: 10)
 
