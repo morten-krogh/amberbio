@@ -121,7 +121,7 @@ class TableOfAttributedStrings: TiledScrollViewDelegate {
                         circle_color = circle_colors[row][col]
                 }
 
-                Drawing.drawCellWithAttributedString(context: context, rect: rect, lineWidth: line_width, attributedString: attributed_strings[row][col], backgroundColor: backgroundColor, horizontalCell: horizontalCell, marginHorizontal: margin_horizontal, marginVertical: margin_vertical, circleColor: circle_color, circleRadius: circle_radius, topLine: false, rightLine: col != number_of_columns - 1, bottomLine: row != number_of_rows - 1, leftLine: false)
+                draw_cell_with_attributed_text(context: context, rect: rect, line_width: line_width, attributed_text: attributed_strings[row][col], background_color: backgroundColor, horizontal_cell: horizontalCell, margin_horizontal: margin_horizontal, margin_vertical: margin_vertical, text_centered: true, circle_color: circle_color, circle_radius: circle_radius, top_line: false, right_line: col != number_of_columns - 1, bottom_line: row != number_of_rows - 1, left_line: false)
         }
 
         func scroll_view_did_end_zooming(zoom_scale zoom_scale: CGFloat) {}

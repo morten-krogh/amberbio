@@ -79,7 +79,7 @@ class SingleChoiceTable: UIView, TiledScrollViewDelegate {
                 let (lowerRightRow, lowerRightCol) = row_col_for_point(point: CGPoint(x: CGRectGetMaxX(rect), y: CGRectGetMaxY(rect)))
 
                 if upperLeftRow == 0 && upperLeftCol == 0 {
-                        Drawing.drawCell(context: context, originX: 0, originY: 0, width: rowNamesWidth, height: colNamesHeight, lineWidth: lineWidth, topLine: false, rightLine: true, bottomLine: true, leftLine: false)
+                        drawing_draw_cell(context: context, origin_x: 0, origin_y: 0, width: rowNamesWidth, height: colNamesHeight, line_width: lineWidth, top_line: false, right_line: true, bottom_line: true, left_line: false)
                 }
                 if upperLeftCol >= 0 {
                         for row in max(0, upperLeftRow - 1)..<min(lowerRightRow, rowNames.count) {
@@ -117,12 +117,12 @@ class SingleChoiceTable: UIView, TiledScrollViewDelegate {
         }
 
         func drawCell(context context: CGContext, row: Int, col: Int, choice: Bool) {
-                let originX = rowNamesWidth + CGFloat(col) * rowWidth
-                let originY = colNamesHeight + CGFloat(row) * rowHeight
+                let origin_x = rowNamesWidth + CGFloat(col) * rowWidth
+                let origin_y = colNamesHeight + CGFloat(row) * rowHeight
                 if choice {
-                        Drawing.drawCellWithCenteredCircle(context: context, originX: originX, originY: originY, width: rowWidth, height: rowHeight, lineWidth: lineWidth, topLine: false, rightLine: col != colNames.count - 1, bottomLine: row != rowNames.count - 1, leftLine: false, radius: circleRadius, color: circleColor)
+                        Drawing.drawCellWithCenteredCircle(context: context, originX: origin_x, originY: origin_y, width: rowWidth, height: rowHeight, lineWidth: lineWidth, topLine: false, rightLine: col != colNames.count - 1, bottomLine: row != rowNames.count - 1, leftLine: false, radius: circleRadius, color: circleColor)
                 } else {
-                        Drawing.drawCell(context: context, originX: originX, originY: originY, width: rowWidth, height: rowHeight, lineWidth: lineWidth, topLine: false, rightLine: col != colNames.count - 1, bottomLine: row != rowNames.count - 1, leftLine: false)
+                        drawing_draw_cell(context: context, origin_x: origin_x, origin_y: origin_y, width: rowWidth, height: rowHeight, line_width: lineWidth, top_line: false, right_line: col != colNames.count - 1, bottom_line: row != rowNames.count - 1, left_line: false)
                 }
         }
 

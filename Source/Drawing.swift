@@ -122,6 +122,13 @@ func draw_cell_with_attributed_text(context context: CGContext, rect: CGRect, li
         CGContextRestoreGState(context)
 }
 
+func drawing_draw_cell(context context: CGContext, origin_x: CGFloat, origin_y: CGFloat, width: CGFloat, height: CGFloat, line_width: CGFloat, top_line: Bool, right_line: Bool, bottom_line: Bool, left_line: Bool) {
+        let rect = CGRect(x: origin_x, y: origin_y, width: width, height: height)
+
+        draw_cell_with_attributed_text(context: context, rect: rect, line_width: line_width, attributed_text: nil, background_color: nil, horizontal_cell: true, margin_horizontal: 0, margin_vertical: 0, text_centered: true, circle_color: nil, circle_radius: 0, top_line: top_line, right_line: right_line, bottom_line: bottom_line, left_line: left_line)
+}
+
+
 
 
 
@@ -131,61 +138,6 @@ func draw_cell_with_attributed_text(context context: CGContext, rect: CGRect, li
 
 
 class Drawing {
-
-        class func drawCellWithAttributedString(context context: CGContext, rect: CGRect, lineWidth: CGFloat, attributedString: Astring?, backgroundColor: UIColor?, horizontalCell: Bool, marginHorizontal: CGFloat, marginVertical: CGFloat, circleColor: UIColor?, circleRadius: CGFloat, topLine: Bool, rightLine: Bool, bottomLine: Bool, leftLine: Bool) {
-                CGContextSaveGState(context)
-                CGContextSetLineWidth(context, lineWidth)
-                if let backgroundColor = backgroundColor {
-                        CGContextSetFillColorWithColor(context, backgroundColor.CGColor)
-                        CGContextBeginPath(context)
-                        CGContextMoveToPoint(context, rect.origin.x, rect.origin.y)
-                        CGContextAddLineToPoint(context, rect.origin.x + rect.size.width, rect.origin.y)
-                        CGContextAddLineToPoint(context, rect.origin.x + rect.size.width, rect.origin.y + rect.size.height)
-                        CGContextAddLineToPoint(context, rect.origin.x, rect.origin.y + rect.size.height)
-                        CGContextClosePath(context)
-                        CGContextFillPath(context)
-                }
-
-                CGContextSetStrokeColorWithColor(context, UIColor.blackColor().CGColor)
-                CGContextBeginPath(context)
-                if topLine {
-                        CGContextMoveToPoint(context, rect.origin.x, rect.origin.y)
-                        CGContextAddLineToPoint(context, rect.origin.x + rect.size.width, rect.origin.y)
-                }
-                if rightLine {
-                        CGContextMoveToPoint(context, rect.origin.x + rect.size.width, rect.origin.y)
-                        CGContextAddLineToPoint(context, rect.origin.x + rect.size.width, rect.origin.y + rect.size.height)
-                }
-                if bottomLine {
-                        CGContextMoveToPoint(context, rect.origin.x, rect.origin.y + rect.size.height)
-                        CGContextAddLineToPoint(context, rect.origin.x + rect.size.width, rect.origin.y + rect.size.height)
-                }
-                if leftLine {
-                        CGContextMoveToPoint(context, rect.origin.x, rect.origin.y)
-                        CGContextAddLineToPoint(context, rect.origin.x, rect.origin.y + rect.size.height)
-                }
-                CGContextStrokePath(context)
-
-                if let attributedString = attributedString {
-                        let size = attributedString.size()
-                        var origin: CGPoint
-                        let rectMidX = rect.origin.x + (rect.size.width - (circleColor == nil ? 0 : (marginHorizontal + 2.0 * circleRadius))) / 2.0
-                        if horizontalCell {
-                                origin = CGPoint(x: rectMidX - size.width / 2.0, y: CGRectGetMidY(rect) - size.height / 2.0)
-                        } else {
-                                origin = CGPoint(x: rectMidX + size.height / 2.0, y: CGRectGetMidY(rect) - size.width / 2.0)
-                        }
-                        draw_attributed_text(context: context, attributed_text: attributedString, origin: origin, horizontal: horizontalCell)
-                }
-
-                if let circleColor = circleColor {
-                        let centerX = CGRectGetMaxX(rect) - marginHorizontal - circleRadius
-                        let centerY = CGRectGetMidY(rect)
-                        draw_circle(context: context, center_x: centerX, center_y: centerY, radius: circleRadius, color: circleColor)
-                }
-
-                CGContextRestoreGState(context)
-        }
 
         class func drawCellWithName(context ctx: CGContext, originX: CGFloat, originY: CGFloat, width: CGFloat, height: CGFloat, lineWidth: CGFloat, name: String?, font: UIFont?, horizontalName: Bool?, margin: CGFloat?, topLine: Bool, rightLine: Bool, bottomLine: Bool, leftLine: Bool) {
                 CGContextSaveGState(ctx)
