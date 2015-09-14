@@ -23,7 +23,6 @@ age = factor_data_reduced[, 18]
 factors = cbind(sample_names, patient_id, tumor_type, recurrence_site, er_status, pr_status, time_to_recurrence, age)
 colnames(factors) = c("sample names", "patient", "tumor type", "recurrence site", "ER status", "PR status", "time to recurrence", "age")
 
-write.table(t(factors), file = "breast-cancer-factors.txt", col.names = F, quote = F, sep = "\t")
 
 samples_in_values = c(40, 38, 12, 30, 42, 14, 32, 44, 16, 46, 18, 34, 50, 48, 20, 53, 55, 25, 37, 26, 57, 58, 29)
 
@@ -31,10 +30,16 @@ values = value_data[3:1446, samples_in_values]
 colnames(values) = sample_names
 rownames(values) = value_data[3:1446, 1]
 
+
 annotations = value_data[3:1446, c(2,11)]
 colnames(annotations) = c("peptide count", "description")
 rownames(annotations) = value_data[3:1446, 1]
 
+
+
+write.table(annotations, file = "breast-cancer-annotations.txt", col.names = NA, quote = F, sep = "\t")
+write.table(values, file = "breast-cancer-values.txt", col.names = NA, quote = F, sep = "\t")
+write.table(t(factors), file = "breast-cancer-factors.txt", col.names = F, quote = F, sep = "\t")
 
 
 
