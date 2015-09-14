@@ -3,7 +3,7 @@ import UIKit
 class ColorPicker: UIControl {
 
         var color = UIColor(red: 0.2, green: 0.4, blue: 0.6, alpha: 1)
-        var reset_color = UIColor(red: 0.2, green: 0.4, blue: 0.6, alpha: 1.0)
+        var reset_color = UIColor(red: 0.2, green: 0.4, blue: 0.6, alpha: 1)
 
         let reset_button = UIButton(type: UIButtonType.System)
         let done_button = UIButton(type: UIButtonType.System)
