@@ -168,20 +168,20 @@ func import_data(database database: Database, stem: String, project_name: String
         var molecule_annotation_names = [] as [String]
         var molecule_annotation_values_array = [] as [[String]]
 
-        let data = NSData(contentsOfFile: NSBundle.mainBundle().pathForResource("\(stem)_values", ofType: "txt")!)!
+        let data = NSData(contentsOfFile: NSBundle.mainBundle().pathForResource("\(stem)-values", ofType: "txt")!)!
 
         let parsed_project_data = parse_project_file(data: data)
         sample_names = parsed_project_data.sample_names!
         molecule_names = parsed_project_data.molecule_names!
         values = parsed_project_data.values!
 
-        if let file_content = NSBundle.mainBundle().pathForResource("\(stem)_annotations", ofType: "txt"), let data = NSData(contentsOfFile: file_content) {
+        if let file_content = NSBundle.mainBundle().pathForResource("\(stem)-annotations", ofType: "txt"), let data = NSData(contentsOfFile: file_content) {
                 let parsed_annotation_data = parse_annotation_file(data: data, molecule_names: molecule_names, current_annotation_names: [])
                 molecule_annotation_names = parsed_annotation_data.annotation_names
                 molecule_annotation_values_array = parsed_annotation_data.annotation_values
         }
 
-        if let file_content = NSBundle.mainBundle().pathForResource("\(stem)_factors", ofType: "txt"), let data = NSData(contentsOfFile: file_content) {
+        if let file_content = NSBundle.mainBundle().pathForResource("\(stem)-factors", ofType: "txt"), let data = NSData(contentsOfFile: file_content) {
                 let parsed_factor_data = parse_factor_file(data: data, current_sample_names: sample_names, current_factor_names: [])
                 factor_names = parsed_factor_data.factor_names
                 level_names_of_samples_array = parsed_factor_data.sample_levels
@@ -274,4 +274,8 @@ func database_populate(database database: Database) {
 //        import_data(database: database, stem: "paired", project_name: "paired")
 //        import_data(database: database, stem: "xintela", project_name: "xintela", include_factors: false)
 //        import_data(database: database, stem: "xintela_special", project_name: "xintela_special", include_factors: false, include_annotations: false)
+
+        import_data(database: database, stem: "nci60", project_name: "NCI60 cell lines")
+
+
 }

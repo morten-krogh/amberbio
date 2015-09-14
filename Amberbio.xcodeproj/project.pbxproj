@@ -11,21 +11,16 @@
 		601003541BA18744008A1FF9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 601003531BA18744008A1FF9 /* Assets.xcassets */; };
 		601003621BA18744008A1FF9 /* AmberbioTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601003611BA18744008A1FF9 /* AmberbioTests.swift */; };
 		6010036D1BA18744008A1FF9 /* AmberbioUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6010036C1BA18744008A1FF9 /* AmberbioUITests.swift */; };
-		602708B81BA1CA3100672D54 /* iris_factors.txt in Resources */ = {isa = PBXBuildFile; fileRef = 602708B41BA1C98900672D54 /* iris_factors.txt */; settings = {ASSET_TAGS = (); }; };
-		602708B91BA1CA3500672D54 /* iris_values.txt in Resources */ = {isa = PBXBuildFile; fileRef = 602708B51BA1C98900672D54 /* iris_values.txt */; settings = {ASSET_TAGS = (); }; };
-		602708C81BA2B67500672D54 /* amberbio-main.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 602708C71BA2B67500672D54 /* amberbio-main.sqlite */; settings = {ASSET_TAGS = (); }; };
 		602708CA1BA2CA0300672D54 /* SelectAllTableViewHeaderFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602708C91BA2CA0300672D54 /* SelectAllTableViewHeaderFooterView.swift */; settings = {ASSET_TAGS = (); }; };
-		602708D11BA31CDC00672D54 /* ovarian_annotations.txt in Resources */ = {isa = PBXBuildFile; fileRef = 602708CB1BA3195900672D54 /* ovarian_annotations.txt */; settings = {ASSET_TAGS = (); }; };
-		602708D21BA31CDF00672D54 /* ovarian_factors.txt in Resources */ = {isa = PBXBuildFile; fileRef = 602708CC1BA3195900672D54 /* ovarian_factors.txt */; settings = {ASSET_TAGS = (); }; };
-		602708D31BA31CE300672D54 /* ovarian_values.txt in Resources */ = {isa = PBXBuildFile; fileRef = 602708CD1BA3195900672D54 /* ovarian_values.txt */; settings = {ASSET_TAGS = (); }; };
-		602708D71BA6EE3700672D54 /* ovarian-annotations.txt in Resources */ = {isa = PBXBuildFile; fileRef = 602708D41BA6EE3700672D54 /* ovarian-annotations.txt */; settings = {ASSET_TAGS = (); }; };
-		602708D81BA6EE3700672D54 /* ovarian-factors.txt in Resources */ = {isa = PBXBuildFile; fileRef = 602708D51BA6EE3700672D54 /* ovarian-factors.txt */; settings = {ASSET_TAGS = (); }; };
-		602708D91BA6EE3700672D54 /* ovarian-values.txt in Resources */ = {isa = PBXBuildFile; fileRef = 602708D61BA6EE3700672D54 /* ovarian-values.txt */; settings = {ASSET_TAGS = (); }; };
-		602708DD1BA6EE5F00672D54 /* nci60-annotations.txt in Resources */ = {isa = PBXBuildFile; fileRef = 602708DA1BA6EE5F00672D54 /* nci60-annotations.txt */; settings = {ASSET_TAGS = (); }; };
-		602708DE1BA6EE5F00672D54 /* nci60-factors.txt in Resources */ = {isa = PBXBuildFile; fileRef = 602708DB1BA6EE5F00672D54 /* nci60-factors.txt */; settings = {ASSET_TAGS = (); }; };
-		602708DF1BA6EE5F00672D54 /* nci60-values.txt in Resources */ = {isa = PBXBuildFile; fileRef = 602708DC1BA6EE5F00672D54 /* nci60-values.txt */; settings = {ASSET_TAGS = (); }; };
-		602708E21BA6EE7400672D54 /* iris-factors.txt in Resources */ = {isa = PBXBuildFile; fileRef = 602708E01BA6EE7400672D54 /* iris-factors.txt */; settings = {ASSET_TAGS = (); }; };
-		602708E31BA6EE7400672D54 /* iris-values.txt in Resources */ = {isa = PBXBuildFile; fileRef = 602708E11BA6EE7400672D54 /* iris-values.txt */; settings = {ASSET_TAGS = (); }; };
+		602708E41BA6EF5800672D54 /* nci60-values.txt in Resources */ = {isa = PBXBuildFile; fileRef = 602708DC1BA6EE5F00672D54 /* nci60-values.txt */; settings = {ASSET_TAGS = (); }; };
+		602708E51BA6EF5B00672D54 /* nci60-factors.txt in Resources */ = {isa = PBXBuildFile; fileRef = 602708DB1BA6EE5F00672D54 /* nci60-factors.txt */; settings = {ASSET_TAGS = (); }; };
+		602708E61BA6EF5F00672D54 /* nci60-annotations.txt in Resources */ = {isa = PBXBuildFile; fileRef = 602708DA1BA6EE5F00672D54 /* nci60-annotations.txt */; settings = {ASSET_TAGS = (); }; };
+		602708E71BA6EF6400672D54 /* iris-values.txt in Resources */ = {isa = PBXBuildFile; fileRef = 602708E11BA6EE7400672D54 /* iris-values.txt */; settings = {ASSET_TAGS = (); }; };
+		602708E81BA6EF6800672D54 /* iris-factors.txt in Resources */ = {isa = PBXBuildFile; fileRef = 602708E01BA6EE7400672D54 /* iris-factors.txt */; settings = {ASSET_TAGS = (); }; };
+		602708E91BA6EF6C00672D54 /* ovarian-values.txt in Resources */ = {isa = PBXBuildFile; fileRef = 602708D61BA6EE3700672D54 /* ovarian-values.txt */; settings = {ASSET_TAGS = (); }; };
+		602708EA1BA6EF7000672D54 /* ovarian-factors.txt in Resources */ = {isa = PBXBuildFile; fileRef = 602708D51BA6EE3700672D54 /* ovarian-factors.txt */; settings = {ASSET_TAGS = (); }; };
+		602708EB1BA6EF7500672D54 /* ovarian-annotations.txt in Resources */ = {isa = PBXBuildFile; fileRef = 602708D41BA6EE3700672D54 /* ovarian-annotations.txt */; settings = {ASSET_TAGS = (); }; };
+		602708ED1BA6EFF800672D54 /* amberbio-main.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 602708EC1BA6EFF800672D54 /* amberbio-main.sqlite */; settings = {ASSET_TAGS = (); }; };
 		60B400391BA1982900D8DD80 /* state_init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400381BA1982900D8DD80 /* state_init.swift */; settings = {ASSET_TAGS = (); }; };
 		60B4003B1BA1983900D8DD80 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B4003A1BA1983900D8DD80 /* State.swift */; settings = {ASSET_TAGS = (); }; };
 		60B400411BA19BED00D8DD80 /* AttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B4003D1BA19BED00D8DD80 /* AttributedString.swift */; settings = {ASSET_TAGS = (); }; };
@@ -219,13 +214,7 @@
 		601003681BA18744008A1FF9 /* AmberbioUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AmberbioUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6010036C1BA18744008A1FF9 /* AmberbioUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmberbioUITests.swift; sourceTree = "<group>"; };
 		6010036E1BA18744008A1FF9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		602708B41BA1C98900672D54 /* iris_factors.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = iris_factors.txt; path = "demo-data/iris/iris_factors.txt"; sourceTree = "<group>"; };
-		602708B51BA1C98900672D54 /* iris_values.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = iris_values.txt; path = "demo-data/iris/iris_values.txt"; sourceTree = "<group>"; };
-		602708C71BA2B67500672D54 /* amberbio-main.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; name = "amberbio-main.sqlite"; path = "../../../Desktop/amberbio-main.sqlite"; sourceTree = "<group>"; };
 		602708C91BA2CA0300672D54 /* SelectAllTableViewHeaderFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectAllTableViewHeaderFooterView.swift; sourceTree = "<group>"; };
-		602708CB1BA3195900672D54 /* ovarian_annotations.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ovarian_annotations.txt; path = "demo-data/ovarian/ovarian_annotations.txt"; sourceTree = "<group>"; };
-		602708CC1BA3195900672D54 /* ovarian_factors.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ovarian_factors.txt; path = "demo-data/ovarian/ovarian_factors.txt"; sourceTree = "<group>"; };
-		602708CD1BA3195900672D54 /* ovarian_values.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ovarian_values.txt; path = "demo-data/ovarian/ovarian_values.txt"; sourceTree = "<group>"; };
 		602708D41BA6EE3700672D54 /* ovarian-annotations.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "ovarian-annotations.txt"; path = "demo-data/ovarian/ovarian-annotations.txt"; sourceTree = "<group>"; };
 		602708D51BA6EE3700672D54 /* ovarian-factors.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "ovarian-factors.txt"; path = "demo-data/ovarian/ovarian-factors.txt"; sourceTree = "<group>"; };
 		602708D61BA6EE3700672D54 /* ovarian-values.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "ovarian-values.txt"; path = "demo-data/ovarian/ovarian-values.txt"; sourceTree = "<group>"; };
@@ -234,6 +223,7 @@
 		602708DC1BA6EE5F00672D54 /* nci60-values.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "nci60-values.txt"; path = "demo-data/nci60/nci60-values.txt"; sourceTree = "<group>"; };
 		602708E01BA6EE7400672D54 /* iris-factors.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "iris-factors.txt"; path = "demo-data/iris/iris-factors.txt"; sourceTree = "<group>"; };
 		602708E11BA6EE7400672D54 /* iris-values.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "iris-values.txt"; path = "demo-data/iris/iris-values.txt"; sourceTree = "<group>"; };
+		602708EC1BA6EFF800672D54 /* amberbio-main.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; name = "amberbio-main.sqlite"; path = "../../../Desktop/amberbio-main.sqlite"; sourceTree = "<group>"; };
 		60B400381BA1982900D8DD80 /* state_init.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = state_init.swift; path = Source/state_init.swift; sourceTree = "<group>"; };
 		60B4003A1BA1983900D8DD80 /* State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = State.swift; path = Source/State.swift; sourceTree = "<group>"; };
 		60B4003D1BA19BED00D8DD80 /* AttributedString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AttributedString.swift; path = Source/AttributedString.swift; sourceTree = "<group>"; };
@@ -432,7 +422,7 @@
 		601003401BA18744008A1FF9 = {
 			isa = PBXGroup;
 			children = (
-				602708C71BA2B67500672D54 /* amberbio-main.sqlite */,
+				602708EC1BA6EFF800672D54 /* amberbio-main.sqlite */,
 				60B401681BA1B2ED00D8DD80 /* libsqlite3.dylib */,
 				60B400361BA1980000D8DD80 /* Source */,
 				6010034B1BA18744008A1FF9 /* Amberbio */,
@@ -738,14 +728,9 @@
 		60B4019D1BA1C77200D8DD80 /* DemoData */ = {
 			isa = PBXGroup;
 			children = (
-				602708B41BA1C98900672D54 /* iris_factors.txt */,
 				602708D41BA6EE3700672D54 /* ovarian-annotations.txt */,
 				602708D51BA6EE3700672D54 /* ovarian-factors.txt */,
 				602708D61BA6EE3700672D54 /* ovarian-values.txt */,
-				602708B51BA1C98900672D54 /* iris_values.txt */,
-				602708CB1BA3195900672D54 /* ovarian_annotations.txt */,
-				602708CC1BA3195900672D54 /* ovarian_factors.txt */,
-				602708CD1BA3195900672D54 /* ovarian_values.txt */,
 				602708E01BA6EE7400672D54 /* iris-factors.txt */,
 				602708E11BA6EE7400672D54 /* iris-values.txt */,
 				602708DA1BA6EE5F00672D54 /* nci60-annotations.txt */,
@@ -886,18 +871,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				602708E21BA6EE7400672D54 /* iris-factors.txt in Resources */,
 				60B401721BA1BC1100D8DD80 /* manual.html in Resources */,
-				602708D81BA6EE3700672D54 /* ovarian-factors.txt in Resources */,
-				602708DE1BA6EE5F00672D54 /* nci60-factors.txt in Resources */,
 				601003541BA18744008A1FF9 /* Assets.xcassets in Resources */,
 				60B4016C1BA1B60F00D8DD80 /* AmberbioLaunchScreen.storyboard in Resources */,
-				602708E31BA6EE7400672D54 /* iris-values.txt in Resources */,
-				602708C81BA2B67500672D54 /* amberbio-main.sqlite in Resources */,
-				602708D91BA6EE3700672D54 /* ovarian-values.txt in Resources */,
-				602708DF1BA6EE5F00672D54 /* nci60-values.txt in Resources */,
-				602708D71BA6EE3700672D54 /* ovarian-annotations.txt in Resources */,
-				602708DD1BA6EE5F00672D54 /* nci60-annotations.txt in Resources */,
+				602708ED1BA6EFF800672D54 /* amberbio-main.sqlite in Resources */,
 				60B401711BA1BC1100D8DD80 /* manual.css in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -920,14 +897,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				602708D21BA31CDF00672D54 /* ovarian_factors.txt in Resources */,
+				602708EA1BA6EF7000672D54 /* ovarian-factors.txt in Resources */,
 				60B401891BA1BEC400D8DD80 /* LaunchScreen.storyboard in Resources */,
-				602708B91BA1CA3500672D54 /* iris_values.txt in Resources */,
-				602708D11BA31CDC00672D54 /* ovarian_annotations.txt in Resources */,
 				60B401861BA1BEC400D8DD80 /* Assets.xcassets in Resources */,
-				602708B81BA1CA3100672D54 /* iris_factors.txt in Resources */,
+				602708E51BA6EF5B00672D54 /* nci60-factors.txt in Resources */,
 				60B401841BA1BEC400D8DD80 /* Main.storyboard in Resources */,
-				602708D31BA31CE300672D54 /* ovarian_values.txt in Resources */,
+				602708E81BA6EF6800672D54 /* iris-factors.txt in Resources */,
+				602708E61BA6EF5F00672D54 /* nci60-annotations.txt in Resources */,
+				602708E41BA6EF5800672D54 /* nci60-values.txt in Resources */,
+				602708E91BA6EF6C00672D54 /* ovarian-values.txt in Resources */,
+				602708EB1BA6EF7500672D54 /* ovarian-annotations.txt in Resources */,
+				602708E71BA6EF6400672D54 /* iris-values.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
