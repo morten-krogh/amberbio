@@ -1,10 +1,10 @@
 value_data = read.delim("Primary_vs_DistMetastases.csv", as.is = T, sep=",")
 factor_data = read.delim("PatientData_140120.csv", as.is = T)
 
-factor_subset = c(8:18, 21:22, 25:26, 30:32, 41:44, 47:50, 55:56)
+factor_subset = c(8:10, 12:15, 17:18, 21:22, 26, 30:32, 42:44, 48:50, 55:56)
 factor_data_reduced = factor_data[factor_subset, ]
 
-sample_names = paste("sample-", 1:28, sep = "")
+sample_names = paste("sample-", 1:23, sep = "")
 
 patient_id = factor_data_reduced[, 1]
 tumor_type = factor_data_reduced[, 5]
@@ -23,8 +23,22 @@ age = factor_data_reduced[, 18]
 factors = cbind(sample_names, patient_id, tumor_type, recurrence_site, er_status, pr_status, time_to_recurrence, age)
 colnames(factors) = c("sample names", "patient", "tumor type", "recurrence site", "ER status", "PR status", "time to recurrence", "age")
 
-
-
 write.table(t(factors), file = "breast-cancer-factors.txt", col.names = F, quote = F, sep = "\t")
+
+samples_in_values = c(40, 38, 12, 30, 42, 14, 32, 44, 16, 46, 18, 34, 50, 48, 20, 53, 55, 25, 37, 26, 57, 58, 29)
+
+values = value_data[3:1446, samples_in_values]
+colnames(values) = sample_names
+rownames(values) = value_data[3:1446, 1]
+
+annotations = value_data[3:1446, c(2,11)]
+colnames(annotations) = c("peptide count", "description")
+rownames(annotations) = value_data[3:1446, 1]
+
+
+
+
+
+
 
 
