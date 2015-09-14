@@ -22,6 +22,8 @@ let circle_color_gray = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1)
 let color_brewer_diverging_11_RdYlGn = ["a50026", "d73027", "f46d43", "fdae61", "fee08b", "ffffbf", "d9ef8b", "a6d96a", "66bd63", "1a9850", "006837"]
 let color_brewer_qualitative_8_pastel1 = ["fbb4ae", "b3cde3", "ccebc5", "decbe4", "fed9a6", "ffffcc", "e5d8bd", "fddaec"]
 let color_brewer_qualitative_9_Set1  = ["e41a1c", "377eb8", "4daf4a", "984ea3", "ff7f00", "ffff33", "a65628", "f781bf", "999999"]
+let color_brewer_qualitative_12_Set3 = ["8dd3c7", "ffffb3", "bebada", "fb8072", "80b1d3", "fdb462", "b3de69", "fccde5", "d9d9d9", "bc80bd", "ccebc5", "ffed6f"]
+
 
 
 func color_two_digit_hex(value value: Int) -> String {
@@ -87,6 +89,8 @@ func color_palette(number_of_colors number_of_colors: Int) -> [UIColor] {
 func color_palette_hex(number_of_colors number_of_colors: Int) -> [String] {
         if number_of_colors <= color_brewer_qualitative_9_Set1.count {
                 return [String](color_brewer_qualitative_9_Set1[0 ..< number_of_colors])
+        } else if number_of_colors <= color_brewer_qualitative_12_Set3.count {
+                return [String](color_brewer_qualitative_12_Set3[0 ..< number_of_colors])
         } else {
                 let colors = color_palette(number_of_colors: number_of_colors)
                 return colors.map(color_to_hex_format)

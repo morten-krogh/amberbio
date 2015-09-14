@@ -1,2 +1,0 @@
-	average A	average B	average C	average D
-Cancer stage	benign	benign	malignant	malignant
