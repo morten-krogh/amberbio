@@ -99,9 +99,9 @@ class SingleChoiceTable: UIView, TiledScrollViewDelegate {
         }
 
         func drawRowName(context context: CGContext, index: Int) {
-                let originY = colNamesHeight + CGFloat(index) * rowHeight
+                let origin_y = colNamesHeight + CGFloat(index) * rowHeight
                 let name = rowNames[index]
-                let rect = CGRect(x: 0, y: originY, width: rowNamesWidth, height: rowHeight)
+                let rect = CGRect(x: 0, y: origin_y, width: rowNamesWidth, height: rowHeight)
                 let astring = astring_font_size_color(string: name, font: font, font_size: nil, color: nil)
 
                 drawing_draw_cell_with_attributed_text(context: context, rect: rect, line_width: line_width, attributed_text: astring, background_color: nil, horizontal_cell: true, margin_horizontal: 0, margin_vertical: 0, text_centered: false, circle_color: nil, circle_radius: 0, top_line: false, right_line: true, bottom_line: index != rowNames.count - 1, left_line: false)

@@ -87,35 +87,35 @@ class EditFactor: Component, UITextFieldDelegate, SingleChoiceTableDelegate {
                 let top_margin = 20 as CGFloat
                 let margin = 20 as CGFloat
 
-                var originY = top_margin
+                var origin_y = top_margin
 
                 cancel_button.sizeToFit()
-                cancel_button.frame.origin = CGPoint(x: margin, y: originY)
+                cancel_button.frame.origin = CGPoint(x: margin, y: origin_y)
 
                 done_button.sizeToFit()
-                done_button.frame.origin = CGPoint(x: width - margin - done_button.frame.width, y: originY)
+                done_button.frame.origin = CGPoint(x: width - margin - done_button.frame.width, y: origin_y)
 
                 let factorNameHeight = 30 as CGFloat
-                factor_name_text_field.frame = CGRect(x: cancel_button.frame.width + 2.0 * margin, y: originY, width: width - cancel_button.frame.width - done_button.frame.width - 4.0 * margin, height: factorNameHeight)
-                originY += factorNameHeight + margin
+                factor_name_text_field.frame = CGRect(x: cancel_button.frame.width + 2.0 * margin, y: origin_y, width: width - cancel_button.frame.width - done_button.frame.width - 4.0 * margin, height: factorNameHeight)
+                origin_y += factorNameHeight + margin
                 let levelHeight = 30 as CGFloat
                 add_level_button.sizeToFit()
-                add_level_button.frame = CGRect(x: margin, y: originY, width: add_level_button.frame.width, height: levelHeight)
+                add_level_button.frame = CGRect(x: margin, y: origin_y, width: add_level_button.frame.width, height: levelHeight)
 
                 message_label.sizeToFit()
-                let message_labelOriginX = (width - margin - add_level_button.frame.width - message_label.frame.width) / 2.0 + margin + add_level_button.frame.width
-                message_label.frame = CGRect(x: message_labelOriginX, y: originY, width: message_label.frame.width, height: levelHeight)
+                let message_label_origin_x = (width - margin - add_level_button.frame.width - message_label.frame.width) / 2.0 + margin + add_level_button.frame.width
+                message_label.frame = CGRect(x: message_label_origin_x, y: origin_y, width: message_label.frame.width, height: levelHeight)
 
                 delete_level_button.sizeToFit()
-                let delete_level_buttonOriginX = width - margin - delete_level_button.frame.width
-                delete_level_button.frame = CGRect(x: delete_level_buttonOriginX, y: originY, width: delete_level_button.frame.width, height: levelHeight)
+                let delete_level_button_origin_x = width - margin - delete_level_button.frame.width
+                delete_level_button.frame = CGRect(x: delete_level_button_origin_x, y: origin_y, width: delete_level_button.frame.width, height: levelHeight)
 
-                let edit_level_text_fieldOriginX = add_level_button.frame.width + 2 * margin
-                let edit_level_text_fieldWidth = width - delete_level_button.frame.width - 2 * margin - edit_level_text_fieldOriginX
-                edit_level_text_field.frame = CGRect(x: edit_level_text_fieldOriginX, y: originY, width: edit_level_text_fieldWidth, height: levelHeight)
+                let edit_level_text_field_origin_x = add_level_button.frame.width + 2 * margin
+                let edit_level_text_fieldWidth = width - delete_level_button.frame.width - 2 * margin - edit_level_text_field_origin_x
+                edit_level_text_field.frame = CGRect(x: edit_level_text_field_origin_x, y: origin_y, width: edit_level_text_fieldWidth, height: levelHeight)
 
-                originY += levelHeight + 2 * margin
-                single_choice_table.frame = CGRect(x: 0, y: originY, width: width, height: view.frame.height - originY)
+                origin_y += levelHeight + 2 * margin
+                single_choice_table.frame = CGRect(x: 0, y: origin_y, width: width, height: view.frame.height - origin_y)
         }
 
         override func render() {

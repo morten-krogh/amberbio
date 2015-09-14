@@ -69,8 +69,7 @@ class ColorSelectionPicker: Component {
         override func render() {
                 color_selection_picker_state = state.page_state as! ColorSelectionPickerState
 
-                color_picker.defaultColor = color_selection_picker_state.reset_color
-                color_picker.color = color_selection_picker_state.color
+                color_picker.update(color: color_selection_picker_state.color, reset_color: color_selection_picker_state.reset_color)
 
                 let text = "Select a color for \(color_selection_picker_state.level_name) in \(color_selection_picker_state.factor_name)"
 
