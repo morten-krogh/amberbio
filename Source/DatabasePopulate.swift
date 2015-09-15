@@ -277,6 +277,5 @@ func database_populate(database database: Database) {
 
 //        import_data(database: database, stem: "nci60", project_name: "NCI60 cell lines")
         import_data(database: database, stem: "breast-cancer", project_name: "Breast cancer")
-
-
+        import_data(database: database, stem: "brain-stem-cells", project_name: "Brain stem cells")
 }

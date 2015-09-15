@@ -61,6 +61,8 @@ class SingleMoleculePlot: TiledScrollViewDelegate {
                 if minimum.isInfinite {
                         minimum = 0
                         maximum = 10
+                } else if maximum - minimum < 1e-10 {
+                        maximum += 1
                 }
 
                 self.present_values = present_values
