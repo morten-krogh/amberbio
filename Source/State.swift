@@ -52,10 +52,13 @@ class State {
 
         var full_page_scroll_offset = 0 as CGFloat
 
-        init(database: Database, initial_active_data_set_id: Int) {
+        init(database: Database) {
                 self.database = database
-                let active_data_set_id = initial_active_data_set_id != 0 ? initial_active_data_set_id : get_active_data_set_id()
+                let active_data_set_id = get_active_data_set_id()
                 data_set_id = -1
+                if active_data_set_id == 0 && home_selected_index_path == nil, let (section, row) = home_page_name_to_section_row["data_set_selection"] {
+                                home_selected_index_path = NSIndexPath(forRow: row, inSection: section)
+                }
                 set_active_data_set(data_set_id: active_data_set_id)
         }
 

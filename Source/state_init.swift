@@ -3,9 +3,9 @@ import Foundation
 var state: State!
 let database_file_name = "amberbio-main.sqlite"
 let database_url = file_app_directory_url(file_name: database_file_name)
-let reset_database = true
 
-let initial_active_data_set_id = 1
+let reset_database = false
+//let initial_active_data_set_id = 1
 let initial_page_state = HomeState()
 
 func state_init() {
@@ -25,6 +25,6 @@ func state_init() {
 
         let database = sqlite_open(database_path: database_url.path!)!
 
-        state = State(database: database, initial_active_data_set_id: initial_active_data_set_id)
+        state = State(database: database)
         state.set_page_state(page_state: initial_page_state)
 }
