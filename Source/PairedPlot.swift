@@ -124,6 +124,7 @@ class PairedPlot: Component {
                         single_molecule_plot.minimum_zoom_scale = min(zoom_horizontal, zoom_vertical)
 
                         tiled_scroll_view.frame = single_molecule_rect
+                        tiled_scroll_view.scroll_view.zoomScale = single_molecule_plot.minimum_zoom_scale
                 }
         }
 
