@@ -142,7 +142,12 @@ class SingleMoleculePlot: TiledScrollViewDelegate {
                 is_integer = is_integer || abs(y_value - ceil(y_value)) <= 0.01 * abs(y_value)
 
                 if is_integer {
-                        astring = astring_body(string: "\(Int(round(y_value)))")
+                        let integer_value = Int(round(y_value))
+                        if abs(integer_value) <= 1000 {
+                                astring = astring_body(string: "\(integer_value)")
+                        } else {
+                                astring = scientific_format_astring(number: Double(integer_value) , decimals: 0)
+                        }
                 } else {
                         astring = decimal_astring(number: y_value, fraction_digits: 2)
                 }
