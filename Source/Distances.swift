@@ -21,21 +21,19 @@ func distance_euclidean(values1 values1: [Double], values2: [Double]) -> Double 
 }
 
 func calculate_correlation(values1 values1: [Double], values2: [Double]) -> Double {
-        var sum1 = 0 as Double
-        var sum2 = 0 as Double
+        let values1_mean_subtracted = stat_subtract_mean(values: values1)
+        let values2_mean_subtracted = stat_subtract_mean(values: values2)
+
         var sum_of_squares1 = 0 as Double
         var sum_of_squares2 = 0 as Double
         var sum_of_products = 0 as Double
         for i in 0 ..< values1.count {
-                sum1 += values1[i]
-                sum2 += values2[i]
-                sum_of_squares1 += values1[i] * values1[i]
-                sum_of_squares2 += values2[i] * values2[i]
-                sum_of_products += values1[i] * values2[i]
+                sum_of_squares1 += values1_mean_subtracted[i] * values1_mean_subtracted[i]
+                sum_of_squares2 += values2_mean_subtracted[i] * values2_mean_subtracted[i]
+                sum_of_products += values1_mean_subtracted[i] * values2_mean_subtracted[i]
         }
-        let N = Double(values1.count)
-        let correlation_numerator = sum_of_products - sum1 * sum2 / N
-        let correlation_denominator = sqrt( (sum_of_squares1 - sum1 * sum1 / N) * (sum_of_squares2 - sum2 * sum2 / N) )
+        let correlation_numerator = sum_of_products
+        let correlation_denominator = sqrt(sum_of_squares1) * sqrt(sum_of_squares2)
         if correlation_denominator > 0 {
                 return correlation_numerator / correlation_denominator
         } else {
