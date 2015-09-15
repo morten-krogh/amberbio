@@ -9,9 +9,11 @@ class HierarchicalClusteringPlotState: PageState {
         var order_of_molecules = "correlation"
         var selected_factors = [Bool](count: state.factor_ids.count, repeatedValue: true)
         var selected_samples = [Bool](count: state.number_of_samples, repeatedValue: true)
+        var molecule_title_number = 0
+
         var hierarchical_clustering_drawer: HierarchicalClusteringDrawer?
 
-        init(distance_measure: String, linkage: String, value_correction: String, molecules_shown: String, order_of_molecules: String, selected_factors: [Bool], selected_samples: [Bool]) {
+        init(distance_measure: String, linkage: String, value_correction: String, molecules_shown: String, order_of_molecules: String, selected_factors: [Bool], selected_samples: [Bool], molecule_title_number: Int) {
                 super.init()
                 name = "hierarchical_clustering_plot"
                 title = astring_body(string: "Hierarchical Clustering")
@@ -23,6 +25,7 @@ class HierarchicalClusteringPlotState: PageState {
                 self.order_of_molecules = order_of_molecules
                 self.selected_factors = selected_factors
                 self.selected_samples = selected_samples
+                self.molecule_title_number = molecule_title_number
 
                 pdf_enabled = true
                 full_screen = true
@@ -81,8 +84,9 @@ class HierarchicalClusteringPlotState: PageState {
 
                         var plot_molecule_names = [] as [String]
                         var plot_values = [] as [[Double]]
+                        let molecule_titles = molecule_title_number == 0 ? state.molecule_names : state.molecule_annotation_values[molecule_title_number - 1]
                         for molecule_index in plot_molecule_indices {
-                                plot_molecule_names.append(state.molecule_names[molecule_index])
+                                plot_molecule_names.append(molecule_titles[molecule_index])
                                 let offset = molecule_index * state.sample_ids.count
                                 var molecule_values = [] as [Double]
                                 for sample_index in ordered_sample_indices {
@@ -158,7 +162,7 @@ class HierarchicalClusteringPlot: Component {
                         let height = view.frame.height
                         let min_zoom_width = min(1, width / hierarchical_clustering_drawer.content_size.width)
                         let min_zoom_height = min(1, height / hierarchical_clustering_drawer.content_size.height)
-                        let min_zoom = min(max(min_zoom_width, 0.2 * min_zoom_height), max(min_zoom_height, 0.2 * min_zoom_width))
+                        let min_zoom = min(max(min_zoom_width, 0.4 * min_zoom_height), max(min_zoom_height, 0.4 * min_zoom_width))
                         hierarchical_clustering_drawer.minimum_zoom_scale = min_zoom
                 }
         }

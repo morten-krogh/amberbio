@@ -9,6 +9,7 @@ class HierarchicalClusteringSelectionState: PageState {
         var order_of_molecules = "correlation"
         var selected_factors = [Bool](count: state.factor_ids.count, repeatedValue: true)
         var selected_samples = [Bool](count: state.number_of_samples, repeatedValue: true)
+        var molecule_title_number = 0
 
         override init() {
                 super.init()
@@ -73,15 +74,15 @@ class HierarchicalClusteringSelection: Component, UITableViewDataSource, UITable
         }
 
         func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-                return 7
+                return 8
         }
 
         func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-                return section == 6 ? select_all_header_footer_view_height : centered_header_footer_view_height - 30
+                return section == 7 ? select_all_header_footer_view_height : centered_header_footer_view_height - 30
         }
 
         func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-                if section < 6 {
+                if section < 7 {
                         let header = tableView.dequeueReusableHeaderFooterViewWithIdentifier("centered-header") as! CenteredHeaderFooterView
                         let text: String
                         switch section {
@@ -95,6 +96,8 @@ class HierarchicalClusteringSelection: Component, UITableViewDataSource, UITable
                                 text = "Molecules shown"
                         case 4:
                                 text = "Order of molecules"
+                        case 5:
+                                text = "Molecule titles"
                         default:
                                 text = "Factors to include"
                         }
@@ -134,6 +137,8 @@ class HierarchicalClusteringSelection: Component, UITableViewDataSource, UITable
                 case 4:
                         return 2
                 case 5:
+                        return 1 + state.molecule_annotation_names.count
+                case 6:
                         return state.factor_ids.count
                 default:
                         return state.sample_ids.count
@@ -169,10 +174,13 @@ class HierarchicalClusteringSelection: Component, UITableViewDataSource, UITable
                         let molecules_shown = hierarchical_clustering_selection_state.molecules_shown
                         selected = (row == 0 && molecules_shown == "none") || (row == 1 && molecules_shown == "present") || (row == 2 && molecules_shown == "all")
                 case 4:
-                        text = ["Correlation", "Orignal"][row]
+                        text = ["Correlation", "Original"][row]
                         let order_of_molecules = hierarchical_clustering_selection_state.order_of_molecules
                         selected = (row == 0 && order_of_molecules == "correlation") || (row == 1 && order_of_molecules == "original")
                 case 5:
+                        text = (["Molecule name"] + state.molecule_annotation_names)[row]
+                        selected = row == hierarchical_clustering_selection_state.molecule_title_number
+                case 6:
                         text = state.factor_names[row]
                         selected = hierarchical_clustering_selection_state.selected_factors[row]
                 default:
@@ -204,6 +212,8 @@ class HierarchicalClusteringSelection: Component, UITableViewDataSource, UITable
                 case 4:
                         hierarchical_clustering_selection_state.order_of_molecules = row == 0 ? "correlation" : "original"
                 case 5:
+                        hierarchical_clustering_selection_state.molecule_title_number = row
+                case 6:
                         hierarchical_clustering_selection_state.selected_factors[row] = !hierarchical_clustering_selection_state.selected_factors[row]
                 default:
                         hierarchical_clustering_selection_state.selected_samples[row] = !hierarchical_clustering_selection_state.selected_samples[row]
@@ -241,7 +251,7 @@ class HierarchicalClusteringSelection: Component, UITableViewDataSource, UITable
         }
 
         func create_plot_action() {
-                let hierarchical_clustering_plot_state = HierarchicalClusteringPlotState(distance_measure: hierarchical_clustering_selection_state.distance_measure, linkage: hierarchical_clustering_selection_state.linkage, value_correction: hierarchical_clustering_selection_state.value_correction, molecules_shown: hierarchical_clustering_selection_state.molecules_shown, order_of_molecules: hierarchical_clustering_selection_state.order_of_molecules, selected_factors: hierarchical_clustering_selection_state.selected_factors, selected_samples: hierarchical_clustering_selection_state.selected_samples)
+                let hierarchical_clustering_plot_state = HierarchicalClusteringPlotState(distance_measure: hierarchical_clustering_selection_state.distance_measure, linkage: hierarchical_clustering_selection_state.linkage, value_correction: hierarchical_clustering_selection_state.value_correction, molecules_shown: hierarchical_clustering_selection_state.molecules_shown, order_of_molecules: hierarchical_clustering_selection_state.order_of_molecules, selected_factors: hierarchical_clustering_selection_state.selected_factors, selected_samples: hierarchical_clustering_selection_state.selected_samples, molecule_title_number: hierarchical_clustering_selection_state.molecule_title_number)
                 state.navigate(page_state: hierarchical_clustering_plot_state)
                 state.render()
         }
