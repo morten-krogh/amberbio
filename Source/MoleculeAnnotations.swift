@@ -6,7 +6,7 @@ class MoleculeAnnotationsState: PageState {
                 super.init()
                 name = "molecule_annotations"
                 title = astring_body(string: "Molecule Annotations")
-                info = "Tap a molecule annotation name to edit it.\n\nSwipe a molecule annotation name to delete it.\n\nThe annotation values for the individual molecules can not be edited. They must be imported."
+                info = "Tap a molecule annotation name to edit the name.\n\nSwipe a molecule annotation name to delete it.\n\nThe annotation values for the individual molecules can not be edited. They must be imported."
         }
 }
 

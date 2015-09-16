@@ -12,7 +12,7 @@ class RemoveMoleculesState: PageState {
                 super.init()
                 name = "remove_molecules"
                 title = astring_body(string: "Remove molecules")
-                info = "Create a new data set with fewer molecules by tapping the button.\n\nSet the maximum number of missing values and the minimum variance.\n\n Molecules with fewer missing values and larger variances than the threshold are included in the new data set."
+                info = "Create a new data set with fewer molecules.\n\nSet the maximum number of missing values and the minimum standard deviation.\n\nMolecules with fewer missing values and larger standard deviation than the threshold are included in the new data set."
 
                 missing_values_per_molecule = [Int](count: state.number_of_molecules, repeatedValue: 0)
                 std_dev_per_molecule = [Double](count: state.number_of_molecules, repeatedValue: 0)
