@@ -28,7 +28,7 @@ class PairedPlotState: PageState {
                 super.init()
                 name = "paired_plot"
                 title = astring_body(string: "Paired test plot")
-                info = "Samples with the same level of the pairing factor are plotted together.\n\nSelect and deselect comparison levels on the control."
+                info = "Samples with the same level of the pairing factor are plotted together.\n\nSelect and deselect comparison levels on the top bar."
 
                 self.molecule_number = molecule_number
                 self.next_molecule_numbers = next_molecule_numbers

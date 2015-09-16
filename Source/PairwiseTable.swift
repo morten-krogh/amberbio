@@ -32,7 +32,7 @@ class PairwiseTableState: PageState {
                 super.init()
                 name = "pairwise_table"
                 title = astring_body(string: "Pairwise test table")
-                info = "Table of pairwise tests.\n\nSee the manual for a description of the tests.\n\nTap a row to see a plot of the molecule values.\n\nThe fold-change column is only applicable if the values are log2 tranformed."
+                info = "Table of pairwise tests.\n\nSee the manual for a description of the tests.\n\nTap a row to see a plot of the molecule values.\n\nThe fold-change column is only applicable if the values are log2 tranformed.\n\nSelect is used to create a new data set with a range of molecules, e.g., the top 100 molecules."
                 self.factor_id = factor_id
                 self.level_id_pairs = level_id_pairs
 

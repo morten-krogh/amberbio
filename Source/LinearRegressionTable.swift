@@ -22,7 +22,7 @@ class LinearRegressionTableState: PageState {
                 super.init()
                 name = "linear_regression_table"
                 title = astring_body(string: "Linear regression table")
-                info = "Table of linear regressions.\n\nThe p-value tests the null hypothesis that the slope is zero.\n\nA low p-value means that there is a linear trend with a non-zero slope.\n\nSee the manual for a full description.\n\nTap a row to see a linear plot of the molecule values."
+                info = "Table of linear regressions.\n\nThe p-value tests the null hypothesis that the slope is zero.\n\nA low p-value means that there is a linear trend with a non-zero slope.\n\nSee the manual for a full description.\n\nTap a row to see a linear plot of the molecule values.\n\nSelect is used to create a new data set with a range of molecules, e.g., the top 100 molecules."
                 self.factor_id = factor_id
 
                 txt_enabled = true

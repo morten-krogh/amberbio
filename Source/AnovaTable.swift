@@ -25,7 +25,7 @@ class AnovaTableState: PageState {
         init(factor_id: Int, level_ids: [Int]) {
                 super.init()
                 name = "anova_table"
-                info = "Sort the table by tapping a header with an arrow.\n\nTap a row to see a plot of the values for that molecule."
+                info = "Sort the table by tapping a header with an arrow.\n\nTap a row to see a plot of the values for that molecule.\n\nSelect is used to create a new data set with a range of molecules, e.g., the top 100 molecules."
                 self.factor_id = factor_id
                 self.level_ids = level_ids
                 let factor_index = state.factor_ids.indexOf(factor_id)!

@@ -34,7 +34,7 @@ class PairedTableState: PageState {
                 super.init()
                 name = "paired_table"
                 title = astring_body(string: "Paired test table")
-                info = "Table of paired tests.\n\nSee the manual for a description of the tests.\n\nTap a row to see a plot of the values for a molecule."
+                info = "Table of paired tests.\n\nSee the manual for a description of the tests.\n\nTap a row to see a plot of the values for a molecule.\n\nSelect is used to create a new data set with a range of molecules, e.g., the top 100 molecules."
                 self.pairing_factor_id = pairing_factor_id
                 self.comparison_factor_id = comparison_factor_id
                 self.level_id_pairs = level_id_pairs
