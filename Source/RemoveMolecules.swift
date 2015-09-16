@@ -104,7 +104,7 @@ class RemoveMolecules: Component, UITextFieldDelegate {
                 super.viewWillLayoutSubviews()
 
                 let margin = 20 as CGFloat
-                let text_field_width = 70 as CGFloat
+                let text_field_width = 120 as CGFloat
                 let text_field_height = missing_values_field.sizeThatFits(CGSize.zero).height
 
                 let width = view.frame.width
