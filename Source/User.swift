@@ -6,7 +6,7 @@ class UserState: PageState {
                 super.init()
                 name = "user"
                 title = astring_body(string: "User")
-                info = "The user name is optional and is only used as a tag for the results of the analysis. The user name is most useful in the collaborative projects.\n\nThe emails are also optional and are used as suggested emails when a result file is mailed from the app."
+                info = "The name is optional and is only used as a tag for the results of the analysis. The user name is most useful in the collaborative projects.\n\nThe emails are also optional and are used as suggested emails when a result file is mailed from the app."
         }
 }
 
@@ -30,7 +30,7 @@ class User: Component, UITextFieldDelegate, UITextViewDelegate {
 
                 view.backgroundColor = UIColor.whiteColor()
 
-                user_name_label.text = "User name"
+                user_name_label.text = "Name"
                 user_name_label.font = font_headline
                 user_name_label.textAlignment = NSTextAlignment.Center
 
@@ -42,7 +42,7 @@ class User: Component, UITextFieldDelegate, UITextViewDelegate {
                 user_name_field.layer.masksToBounds = true
                 user_name_field.delegate = self
 
-                user_name_info.text = "The user name is optional and is only used to facilitate collaboration by marking your result files with your name."
+                user_name_info.text = "The name is optional and is only used to facilitate collaboration by marking your result files with your name."
                 user_name_info.clipsToBounds = true
                 user_name_info.textAlignment = NSTextAlignment.Left
                 user_name_info.editable = false

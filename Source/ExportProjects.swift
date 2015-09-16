@@ -7,7 +7,7 @@ class ExportProjectsState: PageState {
                 super.init()
                 name = "export_projects"
                 title = astring_body(string: "Export Projects")
-                info = "Select any number of projects for export to a file.\n\nSend the file by email or export it to a cloud storage.\n\nThe exported file can be imported into any device running this app.\n\n"
+                info = "Select any number of projects for export to a file.\n\nSend the file by email or export it to a cloud storage.\n\nThe exported file can be imported into any device running this app.\n\nExported files are used for backup and for transfer of projects to other devices."
         }
 }
 
