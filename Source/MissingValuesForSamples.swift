@@ -8,6 +8,7 @@ class MissingValuesForSamplesState: PageState {
         var ordered_labels = [] as [Astring]
         var colors = [] as [UIColor]
         var selected_order = 0
+        var maximum_zoom_scale = 1 as CGFloat
         var minimum_zoom_scale = 1 as CGFloat
         var zoom_scale = 1 as CGFloat
 
@@ -15,7 +16,7 @@ class MissingValuesForSamplesState: PageState {
                 super.init()
                 name = "missing_values_for_samples"
                 title = astring_body(string: "Missing values per sample")
-                info = "The number of missing values per sample in the active data set.\n\nThe ordering of the samples can be changed by tapping the segmented control."
+                info = "The number of missing values per sample in the active data set.\n\nThe ordering of the samples can be changed by tapping the top bar."
 
                 pdf_enabled = true
                 full_screen = true
@@ -141,14 +142,18 @@ class MissingValuesForSamples: Component, MissingValueHistogramDelegate {
 
                         histogram_rect = CGRect(x: side_margin, y: segmented_rect.height, width: view.frame.width - 2 * side_margin, height: view.frame.height - segmented_rect.height)
 
-                        let zoom_horizontal = max(0.02, min(1, histogram_rect.width / histogram.content_size.width))
-                        let zoom_vertical = max(0.02, min(1, histogram_rect.height / histogram.content_size.height))
+                        let zoom_ratio_width = histogram_rect.width / histogram.content_size.width
+                        let zoom_ratio_height = histogram_rect.height / histogram.content_size.height
 
-                        let minimum_zoom_scale = min(zoom_horizontal, zoom_vertical)
+                        let maximum_zoom_scale = max(1, min(zoom_ratio_width, zoom_ratio_height))
+                        let minimum_zoom_scale = max(0.2, min(1, min(zoom_ratio_width, zoom_ratio_height)))
+
+                        missing_values_for_samples_state.maximum_zoom_scale = maximum_zoom_scale
                         missing_values_for_samples_state.minimum_zoom_scale = minimum_zoom_scale
-                        missing_values_for_samples_state.zoom_scale = minimum_zoom_scale
+                        missing_values_for_samples_state.zoom_scale = maximum_zoom_scale > 1 ? (1 + maximum_zoom_scale) / 2 : minimum_zoom_scale
 
-                        histogram.minimum_zoom_scale = missing_values_for_samples_state.minimum_zoom_scale
+                        histogram.maximum_zoom_scale = maximum_zoom_scale
+                        histogram.minimum_zoom_scale = minimum_zoom_scale
                         tiled_scroll_view_histogram.frame = histogram_rect
                         tiled_scroll_view_histogram.scroll_view.zoomScale = missing_values_for_samples_state.zoom_scale
                 }
@@ -187,6 +192,7 @@ class MissingValuesForSamples: Component, MissingValueHistogramDelegate {
         func setup_histogram() {
                 histogram = MissingValueHistogram(labels: missing_values_for_samples_state.ordered_labels, values: missing_values_for_samples_state.ordered_missing_values, colors: missing_values_for_samples_state.colors)
                 histogram?.delegate = self
+                histogram?.maximum_zoom_scale = missing_values_for_samples_state.maximum_zoom_scale
                 histogram?.minimum_zoom_scale = missing_values_for_samples_state.minimum_zoom_scale
                 tiled_scroll_view_histogram.delegate = histogram!
                 tiled_scroll_view_histogram.scroll_view.zoomScale = missing_values_for_samples_state.zoom_scale
