@@ -8,7 +8,7 @@ class LogarithmTransformState: PageState {
                 super.init()
                 name = "logarithm_transform"
                 title = astring_body(string: "Logarithm transform")
-                info = "The logarithm transform creates a new data set by taking the base 2 logarithm of each value shifted by an offset.\n\nValues that are not positive after adding the offset are set to missing values.\n\nChoose an offset of 0 if in doubt\nThe analysis in this app works best with log transformed data."
+                info = "The logarithm transform creates a new data set by taking the base 2 logarithm of each value shifted by an offset.\n\nValues that are not positive after adding the offset are set to missing values.\n\nChoose an offset of 0 if in doubt.\n\nThe analysis in this app works best with log transformed data."
         }
 }
 

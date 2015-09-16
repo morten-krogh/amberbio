@@ -6,7 +6,7 @@ class FactorEliminationState: PageState {
                 super.init()
                 name = "factor_elimination"
                 title = astring_body(string: "Factor elimination")
-                info = "Select a factor by tapping.\n\nCreate a new data set by tapping the create data set button.\n\nThe created data set eliminates the selected factor. For each molecule, the mean values of the samples across levels are forced to be equal.\n\nFacor elimination can be used to correct for a systematic difference such as experimental batch."
+                info = "Select a factor by tapping.\n\nCreate a new data set by tapping \"create new data set\".\n\nThe created data set has no variation from the elimianted factor.\n\nFor each molecule, the mean values of the samples across levels are forced to be equal.\n\nFactor elimination can be used to correct for systematic differences such as experimental batches."
         }
 }
 
