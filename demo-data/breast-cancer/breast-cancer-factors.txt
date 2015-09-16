@@ -1,8 +1,6 @@
 sample names	sample-1	sample-2	sample-3	sample-4	sample-5	sample-6	sample-7	sample-8	sample-9	sample-10	sample-11	sample-12	sample-13	sample-14	sample-15	sample-16	sample-17	sample-18	sample-19	sample-20	sample-21	sample-22	sample-23	sample-24
 patient	R1	R1	R2	R2	R3	R3	R4	R4	R5	R5	R6	R6	R7	R7	R8	R8	R9	R9	R10	R10	R11	R11	R12	R12
 tumor type	primary	recurrence	primary	recurrence	primary	recurrence	recurrence	primary	primary	recurrence	primary	recurrence	recurrence	primary	recurrence	primary	recurrence	primary	recurrence	primary	primary	recurrence	recurrence	primary
-recurrence site	Axilla	Axilla	Axilla	Axilla	Axilla	Axilla	Axilla	Axilla	Axilla	Axilla	Axilla	Axilla	Axilla	Axilla	Axilla	Axilla	Axilla	Axilla	Axilla	Axilla	Axilla	Axilla	Axilla	Axilla
 ER status	positive	positive	positive	positive	negative	negative	positive	positive	positive	positive	negative	negative	positive	positive	negative	negative	positive	positive	negative	negative	negative	negative	positive	positive
 PR status	positive	positive	negative	negative	negative	negative	positive	positive	positive	positive	negative	negative	positive	positive	negative	negative	positive	positive	negative	negative	negative	negative	negative	negative
-time to recurrence	NA	NA	0	0	0.2491444216	0.2491444216	NA	NA	0.0355920602	0.0355920602	NA	NA	0	0	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA
-age	79.1403148528	79.1403148528	61.8945927447	61.8945927447	70.7515400411	70.7515400411	66.6338124572	66.6338124572	65.2101300479	65.2101300479	62.1848049281	62.1848049281	48.3668720055	48.3668720055	47.2005475702	47.2005475702	47.3894592745	47.3894592745	46.0643394935	46.0643394935	34.4722792608	34.4722792608	24.9281314168	24.9281314168
+age	79	79	61	61	70	70	66	66	65	65	62	62	48	48	47	47	47	47	46	46	34	34	24	24

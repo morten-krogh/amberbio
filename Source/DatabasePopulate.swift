@@ -200,7 +200,7 @@ func database_populate(database database: Database) {
         insert_project_note(database: database, project_note_text: iris_project_note_text, project_note_type: "auto", project_note_user_name: "Demo", project_id: iris_project_id)
 
         let brain_stem_cells_project_id = import_data(database: database, stem: "brain-stem-cells", project_name: "Brain stem cells")
-        let brain_stem_cell_project_note_text = "The brain stem cells project is published 
+        let brain_stem_cell_project_note_text = "The brain stem cells project is published" 
 
 
 

@@ -30,13 +30,30 @@ func math_round_to_power_of_ten(number number: Double) -> Double {
 func math_tick_values_positive(number number: Double) -> [Double] {
         let power_of_ten = math_round_to_power_of_ten(number: number)
         var tick_values = [] as [Double]
-        for i in 1 ..< 10 {
-                let value = Double(i) * power_of_ten
-                if value < number {
-                        tick_values.append(value)
-                } else {
-                        break
-                }
+        if power_of_ten == 0 {
+                return tick_values
+        }
+        let max_ratio = number / power_of_ten
+        let ratios: [Int]
+        if max_ratio < 2 {
+                ratios = [1]
+        } else if max_ratio < 3 {
+                ratios = [1, 2]
+        } else if max_ratio < 4 {
+                ratios = [1, 2, 3]
+        } else if max_ratio < 5 {
+                ratios = [2, 4]
+        } else if max_ratio < 6 {
+                ratios = [2, 4]
+        } else if max_ratio < 8 {
+                ratios = [3, 6]
+        } else {
+                ratios = [4, 8]
+        }
+
+        for ratio in ratios {
+                let value = Double(ratio) * power_of_ten
+                tick_values.append(value)
         }
         return tick_values
 }
