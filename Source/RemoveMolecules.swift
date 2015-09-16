@@ -197,8 +197,9 @@ class RemoveMolecules: Component, UITextFieldDelegate {
         }
 
         func render_minimum_std_dev() {
-                if remove_molecules_state.minimum_std_dev != string_to_double(string: std_dev_field.text ?? "") {
-                        std_dev_field.text = decimal_string(number: remove_molecules_state.minimum_std_dev , fraction_digits: 2)
+                let std_dev_string = decimal_string(number: remove_molecules_state.minimum_std_dev , fraction_digits: 2)
+                if std_dev_field.text != std_dev_string {
+                        std_dev_field.text = std_dev_string
                 }
 
                 let slider_value = remove_molecules_state.minimum_std_dev / remove_molecules_state.highest_std_dev
