@@ -7,7 +7,7 @@ class DataSetSelectionState: PageState {
                 name = "data_set_selection"
                 let color = state.active_data_set ? UIColor.blackColor() : UIColor.redColor()
                 set_title(color: color)
-                info = "Activate a data set by tapping.\n\nAll analysis is done with the active data set."
+                info = "The active data set is the data set on which all analysis is done.\n\nActivate a data set by tapping.\n\nThe axtive data set is colored green."
         }
 
         func set_title(color color: UIColor) {

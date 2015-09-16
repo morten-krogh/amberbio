@@ -7,7 +7,7 @@ class ResultFilesState: PageState {
                 super.init()
                 name = "result_files"
                 title = astring_body(string: "Result Files")
-                info = "The result files for the project sorted according to data set.\n\nDelete a result file by swiping.\n\nA result file can be exported from the app by email, by exporting it to another app that is capable of receiving it or by opening it in another app.\n\nExport would typically be to a cloud storage provider."
+                info = "The result files for the project sorted according to data set.\n\nDelete a result file by swiping.\n\nA result file can be sent by email, exported to a cloud storage, or opened in another app."
         }
 }
 

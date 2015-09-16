@@ -6,7 +6,7 @@ class ProjectNotesState: PageState {
                 super.init()
                 name = "project_notes"
                 title = astring_body(string: "Project Notes")
-                info = "Notes for the active project.\n\nAdd a note by tapping the add button. Delete a note by swiping to the left.\n\nNotes created automatically by the app are blue.\n\nNotes created by the user are green."
+                info = "Notes for the active project.\n\nAdd a note by tapping \"New note\".\n\nDelete a note by swiping to the left.\n\nNotes created automatically by the app are blue.\n\nNotes created by the user are green.\n\nEdit a user note by tapping it."
         }
 }
 
