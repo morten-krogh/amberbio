@@ -8,7 +8,7 @@ class AnovaFactorSelectionState: PageState {
                 super.init()
                 name = "anova_factor_selection"
                 title = astring_body(string: "Anova")
-                info = "Tap a factor to obtain a table of Anova tests for the molecules.\n\nSelect and deselect the levels of the factor that should be included by tapping.\n\nThere must be at least two selected levels."
+                info = "Tap a factor(blue) to obtain a table of Anova tests all molecules.\n\nSelect and deselect the levels of the factor that should be included by tapping.\n\nThere must be at least two selected levels."
 
                 for level_ids_for_factor in state.level_ids_by_factor {
                         for level_id in level_ids_for_factor {

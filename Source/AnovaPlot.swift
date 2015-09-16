@@ -18,7 +18,7 @@ class AnovaPlotState: PageState {
                 super.init()
                 name = "anova_plot"
                 title = astring_body(string: "Single molecule plot")
-                info = "Plot of the values for a single molecule.\n\nTap a level on the segmented control to include and exclude levels.\n\nTap next or previous to see other molecules."
+                info = "Plot of the values for a single molecule.\n\nTap a level on the top bar to include and exclude levels.\n\nTap next or previous to see other molecules."
                 self.molecule_number = molecule_number
                 self.next_molecule_numbers = next_molecule_numbers
                 self.previous_molecule_numbers = previous_molecule_numbers

@@ -10,7 +10,7 @@ class SingleMoleculePlotTableState: PageState {
                 super.init()
                 name = "single_molecule_plot_table"
                 title = astring_body(string: "Single Molecule Plots")
-                info = "Scroll to see the plots for the molecules.\n\nChange the grouping in the plots by tapping the top bar."
+                info = "Plots of the values for all molecules.\n\nScroll through the molecules.\n\nChange the grouping in the plots by tapping the top bar."
 
                 potential_rows_full = [Int](0 ..< state.molecule_names.count)
                 filtered_search_rows = potential_rows_full

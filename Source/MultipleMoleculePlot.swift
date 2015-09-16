@@ -28,7 +28,7 @@ class MultipleMoleculePlotState: PageState {
                 super.init()
                 name = "multiple_molecule_plot"
                 title = astring_body(string: "Multiple molecule plot")
-                info = "Tap the plot to show and hide the control panel on narrow screens.\n\nThe colors represent levels for the selected factor.\n\nSelect the molecules to show in the plot.\n\nThe molecules are sorted according to variance with the most variable molecules on top.\n\nThe number after a molecule is the standard deviation of the sample for that molecule.\n\nValues in the plot are zero centered."
+                info = "A simultaneous plot of two or three molecules.\n\nSelect the molecules to show in the plot.\n\nTap the plot to show and hide the control panel on narrow screens.\n\nThe colors represent levels for the selected factor.\n\nThe molecules are sorted according to variance with the most variable molecules on top.\n\nValues in the plot are zero centered."
                 full_screen = true
                 prepared = false
         }
