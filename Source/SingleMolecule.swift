@@ -15,7 +15,7 @@ class SingleMoleculeState: PageState {
                 super.init()
                 name = "single_molecule"
                 title = astring_body(string: "Single molecule plot")
-                info = "A plot of the values for a single molecule in the active data set.\n\nThe molecule name is written in text.\n\nIf a factor is chosen, the anova p-value for that factor is shown."
+                info = "A plot of the values for a single molecule in the active data set.\n\nThe molecule name is written in text.\n\nIf a factor is chosen, the anova p-value for that factor is shown.\n\nThe next and previous buttons step through the molecules in the order of the table on the previous page."
                 self.molecule_number = molecule_number
                 self.next_molecule_numbers = next_molecule_numbers
                 self.previous_molecule_numbers = previous_molecule_numbers
