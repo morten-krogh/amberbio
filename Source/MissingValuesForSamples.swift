@@ -146,7 +146,7 @@ class MissingValuesForSamples: Component, MissingValueHistogramDelegate {
                         let zoom_ratio_height = histogram_rect.height / histogram.content_size.height
 
                         let maximum_zoom_scale = max(1, min(zoom_ratio_width, zoom_ratio_height))
-                        let minimum_zoom_scale = max(0.2, min(1, min(zoom_ratio_width, zoom_ratio_height)))
+                        let minimum_zoom_scale = max(0.4, min(1, min(zoom_ratio_width, zoom_ratio_height)))
 
                         missing_values_for_samples_state.maximum_zoom_scale = maximum_zoom_scale
                         missing_values_for_samples_state.minimum_zoom_scale = minimum_zoom_scale
