@@ -4,7 +4,7 @@ var state: State!
 let database_file_name = "amberbio-main.sqlite"
 let database_url = file_app_directory_url(file_name: database_file_name)
 
-let reset_database = true
+let reset_database = false
 //let initial_active_data_set_id = 1
 let initial_page_state = HomeState()
 

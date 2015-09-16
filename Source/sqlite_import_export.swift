@@ -203,7 +203,7 @@ func sqlite_update_project(source_database source_database: Database, source_pro
                 statement = "select data_set_guid, data_set_name, data_set_date_of_creation, data_set_data_id, data_set_sample_ids, data_set_molecule_indices from data_set where data_set_id = :integer0"
                 query = Query(statement: statement, bind_integers: [source_data_set_id], result_types: ["text", "text", "text", "integer", "data", "data"])
                 sqlite_execute(database: source_database, query: query)
-                let (data_set_guid, data_set_name, data_set_date_of_creation, source_data_set_data_id, source_data_set_sample_ids_data, data_set_molecule_indices_data) = (query.result_texts[0][0], query.result_texts[1][0], query.result_texts[2][0], query.result_integers[1][0], query.result_datas[0][0], query.result_datas[1][0])
+                let (data_set_guid, data_set_name, data_set_date_of_creation, source_data_set_data_id, source_data_set_sample_ids_data, data_set_molecule_indices_data) = (query.result_texts[0][0], query.result_texts[1][0], query.result_texts[2][0], query.result_integers[0][0], query.result_datas[0][0], query.result_datas[1][0])
 
                 statement = "select data_set_bytes from data_set_data where data_set_data_id = :integer0"
                 query = Query(statement: statement, bind_integers: [source_data_set_data_id], result_types: ["data"])

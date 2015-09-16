@@ -6,7 +6,7 @@ class ManualState: PageState {
                 super.init()
                 name = "manual"
                 title = astring_body(string: "Manual")
-                info = "The manual provides a detailed explanation of the app.\n\nEvery page has its own info text which can be accessed by tapping the info button."
+                info = "The manual provides an explanation of aspects of the app that are not evident from the user interface.\n\nEvery page has its own info text which can be accessed by tapping the info button."
         }
 }
 

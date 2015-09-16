@@ -6,7 +6,7 @@ class ImportDataState: PageState {
                 super.init()
                 name = "import_data"
                 title = astring_body(string: "Import Data")
-                info = "Imported files contain measurement values, sample names, factors, and molecule names and annotations.\n\nThe \"import new file\" button is used to import files from cloud based services.\n\nFiles can be imported from the Email app by opening an attachment with the Amberbio App.\n\nDelete a file by swiping to the left.\n\nSee the manual for a description of the file formats"
+                info = "Imported files contain measurement values, sample names, factors, molecule names and molecule annotations.\n\nTap a file to see the options.\n\nThe \"import new file\" button is used to import files from cloud based services.\n\nFiles can be imported from the Email app by opening an attachment with the Amberbio App.\n\nDelete a file by swiping to the left.\n\nSee the manual for a description of the file formats"
         }
 }
 
