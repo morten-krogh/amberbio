@@ -14,8 +14,6 @@ class Manual: Component {
 
         let web_view = UIWebView()
 
-        var html = ""
-
         override func loadView() {
                 view = web_view
                 view.backgroundColor = UIColor.whiteColor()
