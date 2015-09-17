@@ -6,13 +6,13 @@ class EditFactorsState: PageState {
                 super.init()
                 name = "edit_factors"
                 title = astring_body(string: "Edit Factors")
-                info = "Tap a factor to edit.\n\nDelete a factor by swiping.\n\nAdd a new factor by tapping the plus sign."
+                info = "Tap a factor to edit.\n\nDelete a factor by swiping.\n\nAdd a new factor by tapping \"New factor\"."
         }
 }
 
 class EditFactors: Component, UITableViewDataSource, UITableViewDelegate {
 
-        let add_factor_button = UIButton(type: UIButtonType.ContactAdd)
+        let add_factor_button = UIButton(type: UIButtonType.System)
         let table_view = UITableView()
 
         var reload = true
@@ -20,6 +20,7 @@ class EditFactors: Component, UITableViewDataSource, UITableViewDelegate {
         override func viewDidLoad() {
                 super.viewDidLoad()
 
+                add_factor_button.setAttributedTitle(astring_body(string: "New factor"), forState: .Normal)
                 add_factor_button.addTarget(self, action: "add_factor_action", forControlEvents: .TouchUpInside)
 
                 table_view.registerClass(CenteredTableViewCell.self, forCellReuseIdentifier: "cell")
@@ -35,15 +36,13 @@ class EditFactors: Component, UITableViewDataSource, UITableViewDelegate {
         override func viewWillLayoutSubviews() {
                 super.viewWillLayoutSubviews()
 
-                let margin = 20 as CGFloat
-                let top_margin = 20 as CGFloat
-                let middle_margin = 10 as CGFloat
+                let width = view.frame.width
 
                 add_factor_button.sizeToFit()
-                add_factor_button.frame.origin = CGPoint(x: margin, y: top_margin)
+                add_factor_button.frame.origin = CGPoint(x: (width - add_factor_button.frame.width) / 2, y: 20)
 
-                let origin_y = CGRectGetMaxY(add_factor_button.frame) + middle_margin
-                table_view.frame = CGRect(x: 0, y: origin_y, width: view.frame.width, height: view.frame.height - origin_y)
+                let origin_y = CGRectGetMaxY(add_factor_button.frame) + 25
+                table_view.frame = CGRect(x: 0, y: origin_y, width: width, height: view.frame.height - origin_y)
         }
 
         override func render() {
