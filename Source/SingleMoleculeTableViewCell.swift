@@ -55,10 +55,6 @@ class SingleMoleculeTableViewCell: UITableViewCell {
 
                 let info_label_rect = info_label.sizeThatFits(CGSize(width: inset_width - 2 * margin, height: 0))
                 info_label.frame.size = info_label_rect
-
-//                info_label.frame = CGRect(x: margin, y: top_margin, width: inset_width - 2 * margin, height: <#T##CGFloat#>)
-//                info_label.sizeToFit()
-
                 info_label.center = CGPoint(x: inset_view.frame.width / 2.0, y: top_margin + info_label.frame.height / 2.0)
 
                 var origin_y = CGRectGetMaxY(info_label.frame)
