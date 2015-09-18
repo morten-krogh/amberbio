@@ -120,6 +120,8 @@ class Home: Component, UICollectionViewDataSource, UICollectionViewDelegate, UIC
                 case (6, 3):
                         return RemoveSamplesState()
                 case (6, 4):
+                        return RemoveMoleculesState()
+                case (6, 5):
                         return FilterMoleculesState()
                 case (7, 0):
                         return EditProjectState()
