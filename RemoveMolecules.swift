@@ -78,6 +78,7 @@ class RemoveMolecules: Component, UITableViewDataSource, UITableViewDelegate, UI
                 view.addSubview(table_view)
 
                 let tap_recognizer = UITapGestureRecognizer(target: self, action: "tap_action")
+                tap_recognizer.cancelsTouchesInView = false
                 view.addGestureRecognizer(tap_recognizer)
         }
 
