@@ -1,6 +1,6 @@
 import UIKit
 
-class RemoveMoleculesState: PageState {
+class FilterMoleculesState: PageState {
 
         var maximum_missing_values = 0
         var minimum_std_dev = 0 as Double
@@ -10,8 +10,8 @@ class RemoveMoleculesState: PageState {
 
         override init() {
                 super.init()
-                name = "remove_molecules"
-                title = astring_body(string: "Remove molecules")
+                name = "filter_molecules"
+                title = astring_body(string: "Filter molecules")
                 info = "Create a new data set with fewer molecules.\n\nSet the maximum number of missing values and the minimum standard deviation.\n\nMolecules with fewer missing values and larger standard deviation than the threshold are included in the new data set."
 
                 missing_values_per_molecule = [Int](count: state.number_of_molecules, repeatedValue: 0)
@@ -25,9 +25,9 @@ class RemoveMoleculesState: PageState {
         }
 }
 
-class RemoveMolecules: Component, UITextFieldDelegate {
+class FilterMolecules: Component, UITextFieldDelegate {
 
-        var remove_molecules_state: RemoveMoleculesState!
+        var filter_molecules_state: FilterMoleculesState!
         var number_of_remaining_molecules = 0
 
         let scroll_view = UIScrollView()
@@ -152,13 +152,13 @@ class RemoveMolecules: Component, UITextFieldDelegate {
         }
 
         override func render() {
-                remove_molecules_state = state.page_state as! RemoveMoleculesState
+                filter_molecules_state = state.page_state as! FilterMoleculesState
 
                 missing_values_low_value_label.attributedText = astring_body(string: "0")
                 missing_values_high_value_label.attributedText = astring_body(string: "\(state.number_of_samples)")
 
                 std_dev_low_label.attributedText = astring_body(string: "0")
-                std_dev_high_label.attributedText = decimal_astring(number: remove_molecules_state.highest_std_dev, fraction_digits: 2)
+                std_dev_high_label.attributedText = decimal_astring(number: filter_molecules_state.highest_std_dev, fraction_digits: 2)
 
                 render_after_change()
         }
@@ -190,19 +190,19 @@ class RemoveMolecules: Component, UITextFieldDelegate {
         }
 
         func render_maximum_number_of_missing_values() {
-                missing_values_field.text = "\(remove_molecules_state.maximum_missing_values)"
-                if remove_molecules_state.maximum_missing_values != Int(round(Double(state.number_of_samples) * Double(missing_values_slider.value))) {
-                        missing_values_slider.value = Float(remove_molecules_state.maximum_missing_values) / Float(state.number_of_samples)
+                missing_values_field.text = "\(filter_molecules_state.maximum_missing_values)"
+                if filter_molecules_state.maximum_missing_values != Int(round(Double(state.number_of_samples) * Double(missing_values_slider.value))) {
+                        missing_values_slider.value = Float(filter_molecules_state.maximum_missing_values) / Float(state.number_of_samples)
                 }
         }
 
         func render_minimum_std_dev() {
-                let std_dev_string = decimal_string(number: remove_molecules_state.minimum_std_dev , fraction_digits: 2)
+                let std_dev_string = decimal_string(number: filter_molecules_state.minimum_std_dev , fraction_digits: 2)
                 if std_dev_field.text != std_dev_string {
                         std_dev_field.text = std_dev_string
                 }
 
-                let slider_value = remove_molecules_state.minimum_std_dev / remove_molecules_state.highest_std_dev
+                let slider_value = filter_molecules_state.minimum_std_dev / filter_molecules_state.highest_std_dev
                 if abs(slider_value - Double(std_dev_slider.value)) >= 0.001 {
                         std_dev_slider.value = Float(slider_value)
                 }
@@ -211,11 +211,11 @@ class RemoveMolecules: Component, UITextFieldDelegate {
         func calculate_number_of_remaining_molecules() {
                 number_of_remaining_molecules = 0
                 for i in 0 ..< state.number_of_molecules {
-                        if remove_molecules_state.missing_values_per_molecule[i] > remove_molecules_state.maximum_missing_values {
+                        if filter_molecules_state.missing_values_per_molecule[i] > filter_molecules_state.maximum_missing_values {
                                 continue
                         }
-                        let std_dev = remove_molecules_state.std_dev_per_molecule[i]
-                        if std_dev >= remove_molecules_state.minimum_std_dev {
+                        let std_dev = filter_molecules_state.std_dev_per_molecule[i]
+                        if std_dev >= filter_molecules_state.minimum_std_dev {
                                 number_of_remaining_molecules++
                         }
                 }
@@ -229,38 +229,38 @@ class RemoveMolecules: Component, UITextFieldDelegate {
         func textFieldDidEndEditing(textField: UITextField) {
                 if textField == missing_values_field {
                         if let number = Int(missing_values_field.text ?? "") where number >= 0 && number <= state.number_of_samples {
-                                remove_molecules_state.maximum_missing_values = number
+                                filter_molecules_state.maximum_missing_values = number
                         } else {
-                                remove_molecules_state.maximum_missing_values = state.number_of_samples
+                                filter_molecules_state.maximum_missing_values = state.number_of_samples
                         }
                 } else {
                         if let number = string_to_double(string: std_dev_field.text ?? "") {
                                 if number < 0 {
-                                        remove_molecules_state.minimum_std_dev = 0
-                                } else if number > remove_molecules_state.highest_std_dev {
-                                        remove_molecules_state.minimum_std_dev = remove_molecules_state.highest_std_dev
+                                        filter_molecules_state.minimum_std_dev = 0
+                                } else if number > filter_molecules_state.highest_std_dev {
+                                        filter_molecules_state.minimum_std_dev = filter_molecules_state.highest_std_dev
                                 } else {
-                                        remove_molecules_state.minimum_std_dev = number
+                                        filter_molecules_state.minimum_std_dev = number
                                 }
                         } else {
-                                remove_molecules_state.minimum_std_dev = 0
+                                filter_molecules_state.minimum_std_dev = 0
                         }
                 }
                 render_after_change()
         }
 
         func missing_values_slider_action() {
-                remove_molecules_state.maximum_missing_values = Int(round(Double(missing_values_slider.value) * Double(state.number_of_samples)))
+                filter_molecules_state.maximum_missing_values = Int(round(Double(missing_values_slider.value) * Double(state.number_of_samples)))
                 render_after_change()
         }
 
         func std_dev_slider_action() {
-                remove_molecules_state.minimum_std_dev = Double(std_dev_slider.value) * remove_molecules_state.highest_std_dev
+                filter_molecules_state.minimum_std_dev = Double(std_dev_slider.value) * filter_molecules_state.highest_std_dev
                 render_after_change()
         }
 
         func create_data_set_action() {
-                create_remove_molecules_data_set(maximum_missing_values: remove_molecules_state.maximum_missing_values, minimum_std_dev: remove_molecules_state.minimum_std_dev, missing_values_per_molecule: remove_molecules_state.missing_values_per_molecule, std_dev_per_molecule: remove_molecules_state.std_dev_per_molecule, number_of_remaining_molecules: number_of_remaining_molecules)
+                create_filter_molecules_data_set(maximum_missing_values: filter_molecules_state.maximum_missing_values, minimum_std_dev: filter_molecules_state.minimum_std_dev, missing_values_per_molecule: filter_molecules_state.missing_values_per_molecule, std_dev_per_molecule: filter_molecules_state.std_dev_per_molecule, number_of_remaining_molecules: number_of_remaining_molecules)
         }
 
         func tap_action(tap_gesture_recognizer: UITapGestureRecognizer) {
@@ -269,7 +269,7 @@ class RemoveMolecules: Component, UITextFieldDelegate {
         }
 }
 
-func create_remove_molecules_data_set(maximum_missing_values maximum_missing_values: Int, minimum_std_dev: Double, missing_values_per_molecule: [Int], std_dev_per_molecule: [Double], number_of_remaining_molecules: Int) {
+func create_filter_molecules_data_set(maximum_missing_values maximum_missing_values: Int, minimum_std_dev: Double, missing_values_per_molecule: [Int], std_dev_per_molecule: [Double], number_of_remaining_molecules: Int) {
 
         state.render_type = RenderType.progress_indicator
         state.progress_indicator_info =  "The data set is created"

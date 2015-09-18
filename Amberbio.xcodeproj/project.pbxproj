@@ -129,7 +129,7 @@
 		60B401391BA19C7900D8DD80 /* Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400AE1BA19C7900D8DD80 /* Query.swift */; settings = {ASSET_TAGS = (); }; };
 		60B4013A1BA19C7900D8DD80 /* Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400AF1BA19C7900D8DD80 /* Random.swift */; settings = {ASSET_TAGS = (); }; };
 		60B4013B1BA19C7900D8DD80 /* remove_molecules.c in Sources */ = {isa = PBXBuildFile; fileRef = 60B400B01BA19C7900D8DD80 /* remove_molecules.c */; settings = {ASSET_TAGS = (); }; };
-		60B4013C1BA19C7900D8DD80 /* RemoveMolecules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400B21BA19C7900D8DD80 /* RemoveMolecules.swift */; settings = {ASSET_TAGS = (); }; };
+		60B4013C1BA19C7900D8DD80 /* FilterMolecules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400B21BA19C7900D8DD80 /* FilterMolecules.swift */; settings = {ASSET_TAGS = (); }; };
 		60B4013D1BA19C7900D8DD80 /* RemoveSamples.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400B31BA19C7900D8DD80 /* RemoveSamples.swift */; settings = {ASSET_TAGS = (); }; };
 		60B4013E1BA19C7900D8DD80 /* ResultFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400B41BA19C7900D8DD80 /* ResultFiles.swift */; settings = {ASSET_TAGS = (); }; };
 		60B4013F1BA19C7900D8DD80 /* RootComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400B51BA19C7900D8DD80 /* RootComponent.swift */; settings = {ASSET_TAGS = (); }; };
@@ -342,7 +342,7 @@
 		60B400AF1BA19C7900D8DD80 /* Random.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Random.swift; path = Source/Random.swift; sourceTree = "<group>"; };
 		60B400B01BA19C7900D8DD80 /* remove_molecules.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = remove_molecules.c; path = Source/remove_molecules.c; sourceTree = "<group>"; };
 		60B400B11BA19C7900D8DD80 /* remove_molecules.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = remove_molecules.h; path = Source/remove_molecules.h; sourceTree = "<group>"; };
-		60B400B21BA19C7900D8DD80 /* RemoveMolecules.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RemoveMolecules.swift; path = Source/RemoveMolecules.swift; sourceTree = "<group>"; };
+		60B400B21BA19C7900D8DD80 /* FilterMolecules.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FilterMolecules.swift; path = Source/FilterMolecules.swift; sourceTree = "<group>"; };
 		60B400B31BA19C7900D8DD80 /* RemoveSamples.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RemoveSamples.swift; path = Source/RemoveSamples.swift; sourceTree = "<group>"; };
 		60B400B41BA19C7900D8DD80 /* ResultFiles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ResultFiles.swift; path = Source/ResultFiles.swift; sourceTree = "<group>"; };
 		60B400B51BA19C7900D8DD80 /* RootComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RootComponent.swift; path = Source/RootComponent.swift; sourceTree = "<group>"; };
@@ -540,7 +540,7 @@
 				60B400AA1BA19C7900D8DD80 /* ProgressIndicator.swift */,
 				60B400AB1BA19C7900D8DD80 /* ProjectNotes.swift */,
 				60B400AC1BA19C7900D8DD80 /* PValueHistogram.swift */,
-				60B400B21BA19C7900D8DD80 /* RemoveMolecules.swift */,
+				60B400B21BA19C7900D8DD80 /* FilterMolecules.swift */,
 				60B400B31BA19C7900D8DD80 /* RemoveSamples.swift */,
 				60B400B41BA19C7900D8DD80 /* ResultFiles.swift */,
 				60B400B51BA19C7900D8DD80 /* RootComponent.swift */,
@@ -1009,7 +1009,7 @@
 				60B401281BA19C7900D8DD80 /* PairwiseLevel.swift in Sources */,
 				60B4015C1BA19C7900D8DD80 /* User.swift in Sources */,
 				60B401251BA19C7900D8DD80 /* PairedTable.swift in Sources */,
-				60B4013C1BA19C7900D8DD80 /* RemoveMolecules.swift in Sources */,
+				60B4013C1BA19C7900D8DD80 /* FilterMolecules.swift in Sources */,
 				60B4014B1BA19C7900D8DD80 /* SpreadSheet.swift in Sources */,
 				60B401391BA19C7900D8DD80 /* Query.swift in Sources */,
 				60B400421BA19BED00D8DD80 /* NumberFormat.swift in Sources */,
