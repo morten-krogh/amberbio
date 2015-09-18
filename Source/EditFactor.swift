@@ -322,10 +322,36 @@ class EditFactor: Component, UITextFieldDelegate, SingleChoiceTableDelegate {
 
                 prune_levels()
 
+                var project_note_text = ""
                 if let factor_id = factor_id {
                         state.update_factor(factor_id: factor_id, factor_name: factor_name, temp_level_id_to_name: temp_level_id_to_name, temp_level_id_to_level_id: temp_level_id_to_level_id, sample_id_to_temp_level_id: sample_id_to_temp_level_id)
+
+                        var change_text = ""
+                        if let factor_index = state.factor_ids.indexOf(factor_id) {
+                                for i in 0 ..< state.sample_ids.count {
+                                        let sample_id = state.sample_ids[i]
+                                        let level_id = sample_id_to_level_id[sample_id]!
+                                        let temp_level_id = sample_id_to_temp_level_id[sample_id]!
+                                        let level_index = state.level_ids_by_factor[factor_index].indexOf(level_id)!
+                                        let level_name = state.level_names_by_factor[factor_index][level_index]
+                                        let temp_level_name = temp_level_id_to_name[temp_level_id]!
+                                        if level_name != temp_level_name {
+                                                let sample_name = state.sample_names[i]
+                                                change_text += "\(sample_name) was changed from \(level_name) to \(temp_level_name)\n"
+                                        }
+                                }
+                        }
+
+                        if !change_text.isEmpty {
+                                project_note_text = "Factor \(factor_name) was edited.\n\n" + change_text
+                        }
                 } else {
                         state.insert_factor(factor_name: factor_name, temp_level_id_to_name: temp_level_id_to_name, sample_id_to_temp_level_id: sample_id_to_temp_level_id)
+                        project_note_text = "New factor added with name: \(factor_name)"
+                }
+
+                if !project_note_text.isEmpty {
+                        state.insert_project_note(project_note_text: project_note_text, project_note_type: "auto", project_note_user_name: state.get_user_name(), project_id: state.project_id)
                 }
 
                 return nil
