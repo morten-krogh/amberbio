@@ -189,6 +189,7 @@
 		60B4019A1BA1C38800D8DD80 /* parse_values.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400A01BA19C7900D8DD80 /* parse_values.swift */; settings = {ASSET_TAGS = (); }; };
 		60B4019B1BA1C3F100D8DD80 /* parse_values.c in Sources */ = {isa = PBXBuildFile; fileRef = 60B4009E1BA19C7900D8DD80 /* parse_values.c */; settings = {ASSET_TAGS = (); }; };
 		60B4019C1BA1C48600D8DD80 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 60B401681BA1B2ED00D8DD80 /* libsqlite3.dylib */; };
+		60E06B9E1BAC3D2F00B05223 /* RemoveMolecules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E06B9D1BAC3D2F00B05223 /* RemoveMolecules.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -393,6 +394,7 @@
 		60B401851BA1BEC400D8DD80 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		60B401881BA1BEC400D8DD80 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		60B4018A1BA1BEC400D8DD80 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		60E06B9D1BAC3D2F00B05223 /* RemoveMolecules.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoveMolecules.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -541,6 +543,7 @@
 				60B400AA1BA19C7900D8DD80 /* ProgressIndicator.swift */,
 				60B400AB1BA19C7900D8DD80 /* ProjectNotes.swift */,
 				60B400AC1BA19C7900D8DD80 /* PValueHistogram.swift */,
+				60E06B9D1BAC3D2F00B05223 /* RemoveMolecules.swift */,
 				60B400B31BA19C7900D8DD80 /* RemoveSamples.swift */,
 				60B400B41BA19C7900D8DD80 /* ResultFiles.swift */,
 				60B400B51BA19C7900D8DD80 /* RootComponent.swift */,
@@ -975,6 +978,7 @@
 				60B401631BA1A1D200D8DD80 /* ColorPicker.swift in Sources */,
 				60B401171BA19C7900D8DD80 /* MissingValues.swift in Sources */,
 				60B400F51BA19C7900D8DD80 /* EditProject.swift in Sources */,
+				60E06B9E1BAC3D2F00B05223 /* RemoveMolecules.swift in Sources */,
 				60B400FD1BA19C7900D8DD80 /* FactorSummaryDetail.swift in Sources */,
 				60B401011BA19C7900D8DD80 /* FullPage.swift in Sources */,
 				60B400F01BA19C7900D8DD80 /* DocumentPickerExport.swift in Sources */,

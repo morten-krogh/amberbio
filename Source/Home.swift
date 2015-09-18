@@ -27,7 +27,8 @@ let home_page_name_to_section_row = [
         "sample_normalization": (6, 1),
         "factor_elimination": (6, 2),
         "remove_samples": (6, 3),
-        "filter_molecules": (6, 4),
+        "remove_molecules": (6, 4),
+        "filter_molecules": (6, 5),
         "edit_project": (7, 0),
         "sample_names": (7, 1),
         "molecule_annotations": (7, 2),
@@ -58,7 +59,7 @@ class Home: Component, UICollectionViewDataSource, UICollectionViewDelegate, UIC
                 ["Data Set Table", "Data Set Summary", "Factor\nChart", "Factor Association", "Factor Summary", "Missing Values for Samples", "Single Molecule Plots", "Multiple Molecule Plot"],
                 ["Anova", "Pairwise Test", "Paired Test", "Linear Regression"],
                 ["Hierarchical Clustering", "PCA"],
-                ["Logarithm Transform", "Sample Normalization", "Factor Elimination", "Remove Samples", "Filter Molecules"],
+                ["Logarithm Transform", "Sample Normalization", "Factor Elimination", "Remove Samples", "Remove Molecules", "Filter Molecules"],
                 ["Edit Project", "Sample Names", "Molecule Annotations", "Color Selection", "Edit Factors"]
         ]
 

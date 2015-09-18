@@ -9,7 +9,7 @@ class RemoveSamplesState: PageState {
                 super.init()
                 name = "remove_samples"
                 title = astring_body(string: "Remove samples")
-                info = "Create a new data set with fewer samples.\n\nThe highlighted samples will be removed.\n\nHighlight and dehighlight samples by tapping.\n\nThe number of missing values for a sample name is written in gray after the sample name"
+                info = "Create a new data set with fewer samples.\n\nThe highlighted samples will be removed.\n\nHighlight and dehighlight samples by tapping.\n\nThe number of missing values for a sample name is written in gray after the sample name."
                 missing_values = missing_values_for_columns(matrix: state.values, number_of_rows: state.number_of_molecules, number_of_columns: state.number_of_samples)
         }
 }
