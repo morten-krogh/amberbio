@@ -313,22 +313,22 @@ class PCA: Component, UITableViewDataSource, UITableViewDelegate, PCA2dDelegate,
                         let header = tableView.dequeueReusableHeaderFooterViewWithIdentifier("centered-header") as! CenteredHeaderFooterView
                         switch section {
                         case 0:
-                                header.update_normal(text: "Number of dimensions")
+                                header.update_normal(text: "Dimension")
                         case 1:
                                 header.update_normal(text: "Plot symbol")
                         case 2:
                                 header.update_normal(text: "Plot symbol size")
                         case 3:
-                                header.update_normal(text: "Select a factor for colors")
+                                header.update_normal(text: "Factor for colors")
                         case 4:
                                 header.update_normal(text: "Color scheme")
                         default:
-                                header.update_normal(text: "Select \(pca_state.dimension) components")
+                                header.update_normal(text: "Components")
                         }
                         return header
                 } else {
                         let header = tableView.dequeueReusableHeaderFooterViewWithIdentifier("select-all-header") as! SelectAllHeaderFooterView
-                        let text = "Select samples"
+                        let text = "Samples"
                         header.update(text: text, tag: 0, delegate: self)
                         return header
                 }
