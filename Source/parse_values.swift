@@ -213,7 +213,7 @@ func parse_separator_separated_string(string string: String, separator: Characte
                         current_index = current_index.advancedBy(1)
                         previous_index = current_index
                         charIsCarriageReturn = true
-                case "\n":
+                case "\n", "\r\n":
                         if !charIsCarriageReturn {
                                 let cell = trim(string: string.substringWithRange(previous_index ..< current_index))
                                 current_row.append(cell)
