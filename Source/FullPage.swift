@@ -185,7 +185,7 @@ class FullPage: Component, UIScrollViewDelegate, UISearchBarDelegate {
                                 page = FactorElimination()
                         case "remove_samples":
                                 page = RemoveSamples()
-                        case "remove_molecules":
+                        case "filter_molecules":
                                 page = FilterMolecules()
                         case "single_molecule_plot_table":
                                 page = SingleMoleculePlotTable()

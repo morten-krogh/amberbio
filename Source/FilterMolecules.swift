@@ -17,6 +17,7 @@ class FilterMoleculesState: PageState {
                 missing_values_per_molecule = [Int](count: state.number_of_molecules, repeatedValue: 0)
                 std_dev_per_molecule = [Double](count: state.number_of_molecules, repeatedValue: 0)
                 calculate_missing_values_and_std_devs(state.values, state.number_of_molecules, state.number_of_samples, &missing_values_per_molecule, &std_dev_per_molecule)
+                maximum_missing_values = state.number_of_samples
                 highest_std_dev = std_dev_per_molecule.maxElement() ?? 1
                 if isnan(highest_std_dev) || highest_std_dev == 0 {
                         highest_std_dev = 1
@@ -296,7 +297,7 @@ func create_filter_molecules_data_set(maximum_missing_values maximum_missing_val
                         state.progress_indicator_step(total: state.number_of_molecules, index: i, min: 0, max: 90, step_size: 1_000)
                 }
 
-                let data_set_name = "Data set with removed molecules"
+                let data_set_name = "Data set with filtered molecules"
 
                 let number_of_removed_molecules = state.number_of_molecules - number_of_remaining_molecules
                 let remove_text = number_of_removed_molecules == 1 ? "one molecule" : "\(number_of_removed_molecules) molecules"
