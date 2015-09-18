@@ -36,6 +36,13 @@ func color_cgfloat_to_int(value value: CGFloat) -> Int {
         return Int(round(value * 255.0))
 }
 
+func color_hex_to_int(hex hex: String) -> Int {
+        let scanner = NSScanner(string: hex)
+        var i = 0 as UInt32
+        scanner.scanHexInt(&i)
+        return Int(i)
+}
+
 func color_hex_to_cgfloat(hex hex: String) -> CGFloat {
         let scanner = NSScanner(string: hex)
         var i = 0 as UInt32
@@ -77,13 +84,25 @@ func color_rgb_to_hex(red red: Int, green: Int, blue: Int) -> String {
         return color_two_digit_hex(value: red) + color_two_digit_hex(value: green) + color_two_digit_hex(value: blue)
 }
 
+func color_hex_to_rgb(hex hex: String) -> (red: Int, green: Int, blue: Int) {
+        let red = color_hex_to_int(hex: hex.substringWithRange(hex.startIndex ..< hex.startIndex.advancedBy(2)))
+        let green = color_hex_to_int(hex: hex.substringWithRange(hex.startIndex.advancedBy(2) ..< hex.startIndex.advancedBy(4)))
+        let blue = color_hex_to_int(hex: hex.substringWithRange(hex.startIndex.advancedBy(4) ..< hex.startIndex.advancedBy(6)))
+        return (red, green, blue)
+}
+
+func color_average(hex1 hex1: String, hex2: String, weight: Double) -> String {
+        let (red1, green1, blue1) = color_hex_to_rgb(hex: hex1)
+        let (red2, green2, blue2) = color_hex_to_rgb(hex: hex2)
+        let red = Int(round(weight * Double(red1) + (1 - weight) * Double(red2)))
+        let green = Int(round(weight * Double(green1) + (1 - weight) * Double(green2)))
+        let blue = Int(round(weight * Double(blue1) + (1 - weight) * Double(blue2)))
+        return color_two_digit_hex(value: red) + color_two_digit_hex(value: green) + color_two_digit_hex(value: blue)
+}
+
 func color_palette(number_of_colors number_of_colors: Int) -> [UIColor] {
-        var colors: [UIColor] = []
-        for i in 0...number_of_colors {
-                let hue: CGFloat = CGFloat(i) / CGFloat(number_of_colors)
-                colors.append(UIColor(hue: hue, saturation: 1.0, brightness: 1.0, alpha: 1.0))
-        }
-        return colors
+        let palette = color_palette_hex(number_of_colors: number_of_colors)
+        return palette.map { color_from_hex(hex: $0) }
 }
 
 func color_palette_hex(number_of_colors number_of_colors: Int) -> [String] {
@@ -94,7 +113,17 @@ func color_palette_hex(number_of_colors number_of_colors: Int) -> [String] {
         } else if number_of_colors <= color_brewer_qualitative_12_Set3.count {
                 return [String](color_brewer_qualitative_12_Set3[0 ..< number_of_colors])
         } else {
-                let colors = color_palette(number_of_colors: number_of_colors)
-                return colors.map(color_to_hex_format)
+                var colors = [] as [String]
+                for i in 0 ..< number_of_colors {
+                        let position = Double(i * 11) / Double(number_of_colors - 1)
+                        let lower = floor(position)
+                        let higher = ceil(position)
+                        let weight = higher - position
+                        let lower_color = color_brewer_qualitative_12_Set3[Int(lower)]
+                        let higher_color = color_brewer_qualitative_12_Set3[Int(higher)]
+                        let color = color_average(hex1: lower_color, hex2: higher_color, weight: weight)
+                        colors.append(color)
+                }
+                return colors
         }
 }
