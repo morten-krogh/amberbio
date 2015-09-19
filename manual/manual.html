@@ -13,9 +13,8 @@
 
 <h2>Overview</h2>
 <div class="content">
-<p>The Amberbio app allows scientists to analyze and visualize data sets, in particular biomedical data, on mobile devices. All calculations and data storage is performed directly on the device. Most functionality of the app should be evident from the user interface and it is not necessary to read the manual to use the app.
+<p>The Amberbio app allows scientists to analyze and visualize data sets, in particular biomedical data, on mobile devices. All calculations are performed directly on the device and all data is stored locally. The functionality should be evident from the user interface and it is not necessary to read the manual to use the app.
 The manual gives a high level overview of the app and explains some important details that are not clear from the user interface such as some mathematical details.
-The manual does not mention all features of the app.
 </p>
 <p>
 This manual can also be found on the web at <a href="http://www.amberbio.com">Amberbio</a>.</p>
@@ -55,14 +54,14 @@ This manual can also be found on the web at <a href="http://www.amberbio.com">Am
 <h2 id="price"><a href="#table-of-contents">Price</a></h2>
 <div class="content">
 <p>
-The app is a paid app. The current price, which can change, can be found on the app store. There is no fee or subscription needed to use the app. Updates to the app are free to download.
+The app is a paid app. The current price can be found on the App Store. There are no in app purchases or adds. Updates are free.
 </p>
 </div>
 
 <h2 id=""><a href="#table-of-contents">Feedback</a></h2>
 <div class="content">
         <p>
-        We welcome any kind of feedback. We can be reached at <a href="mailto:info@amberbio.com?subject=app feedback">info@amberbio.com</a>
+        We continously work to improve the app and welcome any kind of feedback. We can be reached at <a href="mailto:info@amberbio.com?subject=app feedback">info@amberbio.com</a>
         </p>
 </div>
 
@@ -75,7 +74,7 @@ All data is stored locally on the device. All calculations are performed locally
 
 <h2 id="navigation"><a href="#table-of-contents">Navigation</a></h2>
 <div class="content">
-<p>The app has a home page that is reachable by tapping the home icon in the upper left corner. Navigation is done from the home page by tapping the icons or by the back and forward buttons.</p>
+<p>The app has a home page that is reached by tapping the home icon in the upper left corner. Navigation is done from the home page by tapping the icons or by the back and forward buttons.</p>
 </div>
 
 <h2 id="projects-and-data-sets"><a href="#table-of-contents">Projects and data sets</a></h2>
@@ -84,7 +83,7 @@ All data is stored locally on the device. All calculations are performed locally
 A project is always created with a data set called "the original data set". Other data sets within a project are created inside the app by for example normalization or sample removal.</p>
 
 <p>In the app, the columns of a data sets are called samples and the rows are called molecules. The values in the table
-represent an intensity, or some other quantity, for a sample-molecule combination. Data sets could represent biological information such as gene expression, protein abundances, microRNA expressions, peptide abundances, metabolite concentrations for example. Data set do not need to be related to biology even though the terminology used comes from biology.</p>
+represent an intensity, or some other quantity, for a sample-molecule combination. Data sets could represent biological information such as gene expression, protein abundances, microRNA expressions, peptide abundances, metabolite concentrations for example. Data sets do not need to be related to biology even though the terminology used comes from biology.</p>
 
 <p>A project also contains grouping information about the samples. A grouping is called a factor. A factor has one or more levels. An example of a factor is "Gender" with levels "male" and "female". Naturally, factors are shared for all data sets within a project.</p>
 
@@ -93,9 +92,7 @@ represent an intensity, or some other quantity, for a sample-molecule combinatio
 
 <h2 id="the-active-data-set"><a href="#table-of-contents">The active data set</a></h2>
 <div class="content">
-<p>The active data set is the data set on which analysis is performed. Switching between data sets is done on the page <span class="page">
-Data Set Selection</span>. When a data set is selected as active, the project to which it belongs becomes the active project. When a new data
-set is created, the app makes the new data set active and jumps to the page <span class="page">Data Set Selection</span> </p>
+<p>The app has the notion of an active data set and an active project. All analysis is performed on the active data set. Editing and adding factors and molecule annotations are done in the active project. Selection of the active data set is done on the page <span class="page">Data Set Selection</span>. The active project is the project to which the active data set belongs. There is usually an active data set and project. However, if the active project is deleted, there is no active data set until a new one is selected. When a new data set is created, the app automatically makes the new data set active and jumps to the page <span class="page">Data Set Selection</span></p>
 </div>
 
 <h2 id="import-of-data"><a href="#table-of-contents">Import of data</a></h2>
