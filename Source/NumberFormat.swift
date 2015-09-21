@@ -94,3 +94,17 @@ func scientific_format_astring(number number: Double, decimals: Int) -> Astring 
         
         return result
 }
+
+func number_format_tick_value(value value: Double, font_size: CGFloat) -> Astring {
+
+        if abs(value) > 1000 || abs(value) < 0.001 {
+                let astring = scientific_format_astring(number: value, decimals: 1)
+                let full_range = NSRange(location: 0, length: astring.length)
+                let font = UIFont(name: font_body.fontName, size: font_size)!
+                astring.addAttribute(NSFontAttributeName, value: font, range: full_range)
+                return astring
+        } else {
+                let value_string = decimal_string(number: value, fraction_digits: 1)
+                return astring_font_size_color(string: value_string, font: font_body, font_size: font_size, color: nil)
+        }
+}

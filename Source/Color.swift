@@ -16,6 +16,7 @@ let color_blue_selectable_header = UIColor(red: 0.2, green: 0.2 + 0.8 * 0.478431
 let color_green_selected = UIColor(red: 0.84, green: 0.9373, blue: 0.8180, alpha: 1)
 let color_gray_unselected = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1)
 
+let color_blue_circle_color = UIColor(red: CGFloat(8.0 / 255.0), green: CGFloat(81.0 / 255.0), blue: CGFloat(156.0 / 255.0), alpha: 1)
 let circle_color_green = UIColor(red: 0.5, green: 0.9, blue: 0.5, alpha: 1)
 let circle_color_gray = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1)
 

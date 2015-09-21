@@ -4,9 +4,12 @@ class LinearRegressionDrawer: TiledScrollViewDelegate {
 
         let width = 500 as CGFloat
         let height = 500 as CGFloat
-        let margin = 40 as CGFloat
-        let axis_title_font_size = 16 as CGFloat
-        let tick_font_size = 14 as CGFloat
+        let left_margin = 50 as CGFloat
+        let right_margin = 20 as CGFloat
+        let bottom_margin = 40 as CGFloat
+        let top_margin = 3 as CGFloat
+        let axis_title_font_size = 12 as CGFloat
+        let tick_font_size = 10 as CGFloat
         var content_size = CGSize.zero
 
         var x_values = [] as [Double]
@@ -26,8 +29,8 @@ class LinearRegressionDrawer: TiledScrollViewDelegate {
         var maximum_zoom_scale = 1 as CGFloat
         var minimum_zoom_scale = 1 as CGFloat
 
-        let circle_radius = 10 as CGFloat
-        let circle_color = UIColor.blueColor()
+        let circle_radius = 4 as CGFloat
+        let circle_color = color_blue_circle_color
 
         var y_tick_values = [] as [Double]
 
@@ -67,8 +70,8 @@ class LinearRegressionDrawer: TiledScrollViewDelegate {
         }
 
         func value_to_point(x_value x_value: Double, y_value: Double) -> CGPoint {
-                let x = margin + (width - 2 * margin) * CGFloat(x_value - plot_minimum_x_value) / CGFloat(plot_maximum_x_value - plot_minimum_x_value)
-                let y = height - margin - (height - 2 * margin) * CGFloat(y_value - plot_minimum_y_value) / CGFloat(plot_maximum_y_value - plot_minimum_y_value)
+                let x = left_margin + (width - left_margin - right_margin) * CGFloat(x_value - plot_minimum_x_value) / CGFloat(plot_maximum_x_value - plot_minimum_x_value)
+                let y = height - bottom_margin - (height - bottom_margin - top_margin) * CGFloat(y_value - plot_minimum_y_value) / CGFloat(plot_maximum_y_value - plot_minimum_y_value)
                 return CGPoint(x: x, y: y)
         }
 
@@ -95,9 +98,10 @@ class LinearRegressionDrawer: TiledScrollViewDelegate {
                 drawing_draw_line(context: context, start_point: end_point, end_point: arrow_point)
 
                 let astring = astring_font_size_color(string: x_axis_title, font: font_footnote, font_size: axis_title_font_size)
-                let text_origin = CGPoint(x: end_point.x - astring.size().width + margin, y: end_point.y + 10)
+                let text_origin = CGPoint(x: end_point.x - astring.size().width + right_margin - 3, y: end_point.y + 10)
                 drawing_draw_attributed_text(context: context, attributed_text: astring, origin: text_origin, horizontal: true)
 
+                var last_text_position = -CGFloat.infinity
                 for tick_value in tick_values {
                         let point = value_to_point(x_value: tick_value, y_value: 0)
                         if point.x < 30 || point.x > (width - 30) {
@@ -106,12 +110,15 @@ class LinearRegressionDrawer: TiledScrollViewDelegate {
 
                         let start_point = CGPoint(x: point.x, y: point.y + 5)
                         let end_point = CGPoint(x: point.x, y: point.y - 5)
-                        drawing_draw_line(context: context, start_point: start_point, end_point: end_point)
 
                         let value_as_string = decimal_string(number: tick_value, fraction_digits: 1)
                         let astring = astring_font_size_color(string: value_as_string, font: font_footnote, font_size: tick_font_size)
-                        let text_origin = CGPoint(x: point.x - astring.size().width / 2, y: point.y + 10)
-                        drawing_draw_attributed_text(context: context, attributed_text: astring, origin: text_origin, horizontal: true)
+                        if point.x - astring.size().width / 2 > last_text_position {
+                                drawing_draw_line(context: context, start_point: start_point, end_point: end_point)
+                                let text_origin = CGPoint(x: point.x - astring.size().width / 2, y: point.y + 10)
+                                drawing_draw_attributed_text(context: context, attributed_text: astring, origin: text_origin, horizontal: true)
+                                last_text_position = point.x + astring.size().width / 2
+                        }
                 }
         }
 
@@ -125,7 +132,6 @@ class LinearRegressionDrawer: TiledScrollViewDelegate {
                 arrow_point = CGPoint(x: end_point.x + arrow_size, y: end_point.y + 0.8 * arrow_size)
                 drawing_draw_line(context: context, start_point: end_point, end_point: arrow_point)
 
-
                 for tick_value in y_tick_values {
                         let point = value_to_point(x_value: 0, y_value: tick_value)
                         if tick_value > plot_maximum_y_value || tick_value < plot_minimum_y_value || point.y < 30 || point.y > (height - 30) {
@@ -136,8 +142,7 @@ class LinearRegressionDrawer: TiledScrollViewDelegate {
                         let end_point = CGPoint(x: point.x + 5, y: point.y)
                         drawing_draw_line(context: context, start_point: start_point, end_point: end_point)
 
-                        let value_as_string = decimal_string(number: tick_value, fraction_digits: 1)
-                        let astring = astring_font_size_color(string: value_as_string, font: font_footnote, font_size: tick_font_size)
+                        let astring = number_format_tick_value(value: tick_value, font_size: tick_font_size)
                         let text_origin = CGPoint(x: point.x - 10 - astring.size().width, y: point.y - astring.size().height / 2)
                         drawing_draw_attributed_text(context: context, attributed_text: astring, origin: text_origin, horizontal: true)
                 }

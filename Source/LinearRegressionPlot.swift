@@ -119,8 +119,9 @@ class LinearRegressionPlot: Component {
 
                 let width = view.frame.width
 
-                let top_margin = 20 as CGFloat
+                let top_margin = 3 as CGFloat
                 let side_margin = 20 as CGFloat
+                let drawer_side_margin = 2 as CGFloat
 
                 var origin_y = 20 as CGFloat
 
@@ -138,15 +139,21 @@ class LinearRegressionPlot: Component {
                 origin_y += max(CGRectGetMaxY(info_label.frame), CGRectGetMaxY(next_button.frame), CGRectGetMaxY(previous_button.frame)) + top_margin
 
                 if let linear_regression_drawer = linear_regression_drawer {
-                        let linear_regression_rect = CGRect(x: side_margin, y: origin_y, width: width - 2 * side_margin, height: view.frame.height - origin_y)
+                        let linear_regression_rect = CGRect(x: drawer_side_margin, y: origin_y, width: width - 2 * drawer_side_margin, height: view.frame.height - origin_y)
 
-                        let zoom_horizontal = max(0.2, min(1, linear_regression_rect.width / linear_regression_drawer.content_size.width))
-                        let zoom_vertical = max(0.2, min(1, linear_regression_rect.height / linear_regression_drawer.content_size.height))
+                        let zoom_ratio_width = linear_regression_rect.width / linear_regression_drawer.content_size.width
+                        let zoom_ratio_height = linear_regression_rect.height / linear_regression_drawer.content_size.height
 
-                        linear_regression_drawer.minimum_zoom_scale = min(zoom_horizontal, zoom_vertical)
+                        let maximum_zoom_scale = max(1, min(zoom_ratio_width, zoom_ratio_height))
+                        let minimum_zoom_scale = max(0.4, min(1, min(zoom_ratio_width, zoom_ratio_height)))
+
+                        let zoom_scale = maximum_zoom_scale > 1 ? maximum_zoom_scale : minimum_zoom_scale
+
+                        linear_regression_drawer.maximum_zoom_scale = maximum_zoom_scale
+                        linear_regression_drawer.minimum_zoom_scale = minimum_zoom_scale
 
                         tiled_scroll_view.frame = linear_regression_rect
-                        tiled_scroll_view.scroll_view.zoomScale = linear_regression_drawer.minimum_zoom_scale
+                        tiled_scroll_view.scroll_view.zoomScale = zoom_scale
                 }
         }
 
