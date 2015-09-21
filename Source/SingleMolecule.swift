@@ -134,7 +134,7 @@ class SingleMolecule: Component {
 
                 if single_molecule_state.selected_factor_id == 0 {
                         single_plot_names = state.sample_names
-                        single_plot_colors = [[UIColor]](count: state.number_of_samples, repeatedValue: [UIColor.blueColor()])
+                        single_plot_colors = [[UIColor]](count: state.number_of_samples, repeatedValue: [color_blue_circle_color])
                         single_plot_values = values_for_molecule.map({ [$0] })
                         let info_string = "\(state.molecule_names[single_molecule_state.molecule_number])"
                         info_label.attributedText = astring_font_size_color(string: info_string, font_size: 17)

@@ -152,7 +152,7 @@ class SingleMoleculePlotTable: Component, UISearchBarDelegate, UITableViewDataSo
                 if index == 0 {
                         factor_name = nil
                         single_plot_names = state.sample_names
-                        single_plot_colors = [[UIColor]](count: state.sample_ids.count, repeatedValue: [UIColor.blueColor()])
+                        single_plot_colors = [[UIColor]](count: state.sample_ids.count, repeatedValue: [color_blue_circle_color])
                 } else {
                         single_plot_names = []
                         single_plot_colors = []

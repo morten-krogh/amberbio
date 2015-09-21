@@ -37,7 +37,7 @@ class PCA2dPlot: TiledScrollViewDelegate {
                 self.points_x = points_x
                 self.points_y = points_y
                 self.names = names
-                self.colors = colors == nil ? [UIColor](count: points_x.count, repeatedValue: UIColor.blueColor()) : colors!
+                self.colors = colors == nil ? [UIColor](count: points_x.count, repeatedValue: color_blue_circle_color) : colors!
                 self.axis_titles = axis_titles
 
                 (min_x, max_x) = math_min_max(numbers: points_x)

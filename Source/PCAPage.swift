@@ -68,7 +68,7 @@ class PCAState: PageState {
                 } else {
                         level_names = []
                         level_colors = []
-                        selected_sample_colors = [UIColor](count: selected_sample_indices.count, repeatedValue: UIColor.blueColor())
+                        selected_sample_colors = [UIColor](count: selected_sample_indices.count, repeatedValue: color_blue_circle_color)
                 }
         }
 
