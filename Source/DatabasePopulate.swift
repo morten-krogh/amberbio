@@ -101,8 +101,6 @@ func insert_factor(database database: Database, project_id: Int, sample_ids: [In
         let level_names_unsorted = [String](level_name_set)
         let level_names = sort_level_names(level_names: level_names_unsorted)
 
-        print(level_names)
-
         let colors = color_palette_hex(number_of_colors: level_names.count)
 
         let factor_id = insert_factor(database: database, factor_name: factor_name, project_id: project_id)
