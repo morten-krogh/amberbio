@@ -117,7 +117,7 @@ class DataSetSelection: Component, UITableViewDataSource, UITableViewDelegate {
                 } else {
                         cell.update_unselected(name: name, date: date)
                 }
-                
+
                 return cell
         }
 
