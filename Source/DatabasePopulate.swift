@@ -93,16 +93,15 @@ func insert_sample_level(database database: Database, sample_id: Int, level_id: 
 }
 
 func insert_factor(database database: Database, project_id: Int, sample_ids: [Int], factor_name: String, level_names_of_samples: [String]) -> Int {
-        var level_names = [] as [String]
-        var index_of_level_name = [:] as [String: Int]
-        var level_set = [] as Set<String>
+        var level_name_set = [] as Set<String>
         for level_name in level_names_of_samples {
-                if !level_set.contains(level_name) {
-                        index_of_level_name[level_name] = level_names.count
-                        level_names.append(level_name)
-                        level_set.insert(level_name)
-                }
+                level_name_set.insert(level_name)
         }
+
+        let level_names_unsorted = [String](level_name_set)
+        let level_names = sort_level_names(level_names: level_names_unsorted)
+
+        print(level_names)
 
         let colors = color_palette_hex(number_of_colors: level_names.count)
 
@@ -115,7 +114,7 @@ func insert_factor(database database: Database, project_id: Int, sample_ids: [In
         }
 
         for i in 0 ..< sample_ids.count {
-                let level_index = index_of_level_name[level_names_of_samples[i]]!
+                let level_index = level_names.indexOf(level_names_of_samples[i])!
                 let level_id = level_ids[level_index]
                 insert_sample_level(database: database, sample_id: sample_ids[i], level_id: level_id)
         }
