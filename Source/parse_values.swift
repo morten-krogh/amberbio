@@ -166,7 +166,7 @@ func parse_data(data data: NSData) -> (table: [[String]]?, error: String?) {
         if let string = NSString(data: data, encoding: NSUTF8StringEncoding) as? String {
                 if let separator = parse_find_separator(string: string) {
                         let table = parse_separator_separated_string(string: string, separator: separator)
-                        return extract_rectangular_table(table: table)
+                        return parse_extract_rectangular_table(table: table)
                 } else {
                         return (nil, "no separator")
                 }
@@ -240,7 +240,7 @@ func parse_separator_separated_string(string string: String, separator: Characte
         return result
 }
 
-func extract_rectangular_table(table table: [[String]]) -> (table: [[String]]?, error: String?) {
+func parse_extract_rectangular_table(table table: [[String]]) -> (table: [[String]]?, error: String?) {
         var result = [] as [[String]]
 
         func is_row_empty (row row: [String]) -> Bool {
