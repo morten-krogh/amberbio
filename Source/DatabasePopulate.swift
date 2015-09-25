@@ -205,8 +205,6 @@ func database_populate(database database: Database) {
         import_data(database: database, stem: "breast-cancer", project_name: "Breast cancer")
 
         let diabetes_project_id = import_data(database: database, stem: "diabetes", project_name: "Diabetes")
-
-
-
-
+        let diabetes_project_note_text = "The diabetes data set is an unpublished data set. The data set contains samples from 12 mice. Protein abundances in the samples were measured using mass spectrometry."
+        insert_project_note(database: database, project_note_text: diabetes_project_note_text, project_note_type: "auto", project_note_user_name: "Demo", project_id: diabetes_project_id)
 }
