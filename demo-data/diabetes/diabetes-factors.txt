@@ -1,0 +1,8 @@
+Animal,Mouse 3,Mouse 4,Mouse 6,Mouse 9,Mouse 10,Mouse 12,Mouse 27,Mouse 15,Mouse 20,Mouse 24,Mouse 30,Mouse 32
+Disease state,Healthy,Healthy,Healthy,Healthy,Healthy,Healthy,Diabetic,Diabetic,Diabetic,Diabetic,Diabetic,Diabetic
+Perfusion,0,0,0.5,0,1,0.75,0.75,0,1,1,1,1
+Tissue color,D,D,L,D,L,L,L,D,D,D,D,L
+HbA1c%,3.6,3.7,3.7,3.8,4.0,3.7,7.6,8.1,7.8,7.5,7.3,7.3	
+
+
+

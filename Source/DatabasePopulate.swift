@@ -202,18 +202,11 @@ func database_populate(database database: Database) {
         let brain_stem_cells_project_id = import_data(database: database, stem: "brain-stem-cells", project_name: "Brain stem cells")
         let brain_stem_cell_project_note_text = "The brain stem cells project is published" 
 
-
-
-
-        //        import_data(database: database, stem: "brca", project_name: "brca srm")
-//        import_data(database: database, stem: "sox", project_name: "sox cell lines")
-//        import_data(database: database, stem: "ovarian", project_name: "Ovarian cancer")
-//        import_data(database: database, stem: "mouse_brain", project_name: "mouse brain")
-//        import_data(database: database, stem: "paired", project_name: "paired")
-//        import_data(database: database, stem: "xintela", project_name: "xintela", include_factors: false)
-//        import_data(database: database, stem: "xintela_special", project_name: "xintela_special", include_factors: false, include_annotations: false)
-
-//        import_data(database: database, stem: "nci60", project_name: "NCI60 cell lines")
         import_data(database: database, stem: "breast-cancer", project_name: "Breast cancer")
+
+        let diabetes_project_id = import_data(database: database, stem: "diabetes", project_name: "Diabetes")
+
+
+
 
 }
