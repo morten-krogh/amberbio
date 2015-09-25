@@ -133,16 +133,15 @@ class DataSetSelection: Component, UITableViewDataSource, UITableViewDelegate {
                 }
 
                 if data_set_id != state.data_set_id {
-                        state.render_type = RenderType.activity_indicator
-                        state.activity_indicator_info = "The data set is prepared"
-                        state.render()
+                        let cell = tableView.cellForRowAtIndexPath(indexPath) as! NameDateTableViewCell!
+                        let date = date_from_sqlite_timestamp(timestamp: data_set_dates_of_creation[indexPath.section][indexPath.row])
+                        cell.update_selected(name: "Loading", date: date)
 
                         let serial_queue = dispatch_queue_create("data set selection", DISPATCH_QUEUE_SERIAL)
 
                         dispatch_async(serial_queue, {
                                 dispatch_async(dispatch_get_main_queue(), {
                                         state.set_active_data_set(data_set_id: data_set_id)
-                                        state.render_type = RenderType.full_page
                                         state.render()
                                 })
                         })

@@ -17,10 +17,10 @@ class NameDateTableViewCell: UITableViewCell {
                 inset_view.layer.cornerRadius = 20
 
                 name_label.textAlignment = .Center
-                name_label.font = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
+                name_label.font = font_body
 
                 date_label.textAlignment = .Center
-                date_label.font = UIFont.preferredFontForTextStyle(UIFontTextStyleFootnote)
+                date_label.font = font_footnote
                 date_label.textColor = UIColor.lightGrayColor()
 
                 contentView.addSubview(inset_view)
@@ -48,6 +48,7 @@ class NameDateTableViewCell: UITableViewCell {
                 name_label.text = name
                 date_label.text = date_formatted_string(date: date)
                 inset_view.backgroundColor = background_color
+                setNeedsLayout()
         }
 
         func update_selected(name name: String, date: NSDate) {
