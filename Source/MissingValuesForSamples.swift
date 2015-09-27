@@ -43,7 +43,7 @@ class MissingValuesForSamplesState: PageState {
         func order_original() {
                 ordered_missing_values = missing_values
                 ordered_labels = state.sample_names.map { Astring(string: $0) }
-                colors = [UIColor](count: state.sample_names.count, repeatedValue: UIColor.blueColor())
+                colors = [UIColor](count: state.sample_names.count, repeatedValue: color_blue)
         }
 
         func order_decreasing() {
@@ -57,7 +57,7 @@ class MissingValuesForSamplesState: PageState {
                         ordered_sample_names.append(state.sample_names[index])
                 }
                 ordered_labels = ordered_sample_names.map { Astring(string: $0) }
-                colors = [UIColor](count: state.sample_names.count, repeatedValue: UIColor.blueColor())
+                colors = [UIColor](count: state.sample_names.count, repeatedValue: color_blue)
         }
 
         func order_by_factor(factor_id factor_id: Int) {
