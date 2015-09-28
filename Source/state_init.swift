@@ -13,9 +13,9 @@ func state_init() {
 
         let database_file_exists = file_exists(url: database_url)
 
-        if reset_database && database_file_exists {
-                try! NSFileManager.defaultManager().removeItemAtURL(database_url)
-        }
+//        if reset_database && database_file_exists {
+//                try! NSFileManager.defaultManager().removeItemAtURL(database_url)
+//        }
 
         if reset_database || !database_file_exists {
                 if let bundle_database_url = NSBundle.mainBundle().resourceURL?.URLByAppendingPathComponent(database_file_name) {
