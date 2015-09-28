@@ -189,15 +189,17 @@ func import_data(database database: Database, stem: String, project_name: String
 
 func database_populate(database database: Database) {
 
-        set_user_name(database: database, user_name: "Morten Krogh")
-        set_email(database: database, email: "m@amberbio.com")
-
         let iris_project_id = import_data(database: database, stem: "iris", project_name: "Iris flowers")
         let iris_project_note_text = "The iris data set is a classic data set that is often used in machine learning. Four features were measured for 150 iris flowers. The 150 flowers belonged to three species, Iris setosa, Iris virginica and Iris versicolor, with 50 flowers from each species. The four measured features were the length and the width of the sepals and petals in centimetres. The data set is availabel at http://archive.ics.uci.edu/ml/datasets/Iris"
         insert_project_note(database: database, project_note_text: iris_project_note_text, project_note_type: "auto", project_note_user_name: "Demo", project_id: iris_project_id)
 
+        let breast_cancer_project_id = import_data(database: database, stem: "breast-cancer", project_name: "Breast cancer")
+        let breast_cancer_project_note_text = "The data set contains mass spectrometry measurements of proteins in breast cancer tumors. This data set is a subset of the data from the paper \"Changes in glycoprotein expression between primary breast tumour and synchronous lymph node metastases or asynchronous distant metastases. Clin Proteomics. 2015 May 12;12(1):13\". For each breast cancer patient, a primary tumor and an axillary tumor were subject to analysis making the data set suitable for a paired test."
+        insert_project_note(database: database, project_note_text: breast_cancer_project_note_text, project_note_type: "auto", project_note_user_name: "Demo", project_id: breast_cancer_project_id)
+
         let brain_stem_cells_project_id = import_data(database: database, stem: "brain-stem-cells", project_name: "Brain stem cells")
-        let brain_stem_cell_project_note_text = "The brain stem cells project is published" 
+        let brain_stem_cell_project_note_text = "The data set consists of the counts of microRNAs from brain stem cells. The counts were measured using high throughput sequencing."
+        insert_project_note(database: database, project_note_text: brain_stem_cell_project_note_text, project_note_type: "auto", project_note_user_name: "Demo", project_id: brain_stem_cells_project_id)
 
         import_data(database: database, stem: "breast-cancer", project_name: "Breast cancer")
 
