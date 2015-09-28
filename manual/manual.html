@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="description" content="Nosy Bee provides web surveys, statistical analysis och result reports.">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<title>Amberbio</title>
+        <link rel="icon" type="image/png" href="/favicon.png" />
+	<link rel="stylesheet" href="/css/index.css" type="text/css">
+	<script>
+	document.createElement('header');
+	document.createElement('nav');
+	document.createElement('article');
+	document.createElement('section');
+	</script>
+</head>
+
+<body>
+<header id="home" class="header">
+
+  <a href="/">
+	<svg viewBox="0 0 1024 1024">
+
+		<line x1="300" y1="100" x2="700" y2="100" style="stroke:rgb(0,0,0);stroke-width:10" />	
+		<line x1="300" y1="100" x2="300" y2="300" style="stroke:rgb(0,0,0);stroke-width:10" />	
+		<line x1="200" y1="300" x2="400" y2="300" style="stroke:rgb(0,0,0);stroke-width:10" />	
+		<line x1="200" y1="300" x2="200" y2="500" style="stroke:rgb(0,0,0);stroke-width:10" />	
+		<line x1="400" y1="300" x2="400" y2="500" style="stroke:rgb(0,0,0);stroke-width:10" />	
+		<line x1="700" y1="100" x2="700" y2="300" style="stroke:rgb(0,0,0);stroke-width:10" />	
+		<line x1="600" y1="300" x2="800" y2="300" style="stroke:rgb(0,0,0);stroke-width:10" />	
+		<line x1="600" y1="300" x2="600" y2="500" style="stroke:rgb(0,0,0);stroke-width:10" />	
+		<line x1="800" y1="300" x2="800" y2="500" style="stroke:rgb(0,0,0);stroke-width:10" />	
+
+		<rect x="100" y="500" width="200" height="200" style="fill:rgb(215,25,28);stroke-width:0;stroke:rgb(0,0,0)"></rect>
+		<rect x="100" y="700" width="200" height="200" style="fill:rgb(26,150,65);stroke-width:0;stroke:rgb(0,0,0)"></rect>
+		<rect x="300" y="500" width="200" height="200" style="fill:rgb(253,174,97);stroke-width:0;stroke:rgb(0,0,0)"></rect>
+		<rect x="300" y="700" width="200" height="200" style="fill:rgb(166,217,106);stroke-width:0;stroke:rgb(0,0,0)"></rect>
+		<rect x="500" y="500" width="200" height="200" style="fill:rgb(166,217,106);stroke-width:0;stroke:rgb(0,0,0)"></rect>
+		<rect x="500" y="700" width="200" height="200" style="fill:rgb(253,174,97);stroke-width:0;stroke:rgb(0,0,0)"></rect>
+		<rect x="700" y="500" width="200" height="200" style="fill:rgb(26,150,106);stroke-width:0;stroke:rgb(0,0,0)"></rect>
+		<rect x="700" y="700" width="200" height="200" style="fill:rgb(215,25,28);stroke-width:0;stroke:rgb(0,0,0)"></rect>
+	</svg>
+  </a>
+
+	<a class="logo-text" href="/">Amberbio</a>
+	<nav class="header-nav">
+		<a href="/#features">Features</a>
+		<a href="/screen-shots">Screen shots</a>
+		<a href="/manual">Manual</a>
+		<a href="/#support">Support</a>
+		<a href="/#feedback">Feedback</a>
+		<a href="/consulting">Consulting</a>
+		<a href="/#about">About us</a>
+		<a href="/#contact">Contact</a>
+	</nav>
+	
+	<div style="clear: both; height : 0px;"></div>
+</header>
+
+<article>
+  <section>
+    <h1>Manual for the Amberbio app</h1>
+
+    <p>
+      The Amberbio app allows scientists to analyze and visualize data sets, in particular biological data, on mobile devices. All calculations are performed directly on the device and all data is stored locally. The functionality should be evident from the user interface and it is not necessary to read the manual to use the app. The manual gives a high level overview of the app and explains some important details that are not clear from the user interface such as some mathematical details.
+    </p>
+    <p>
+      This manual is available in the app and on the web at <a href="http://www.amberbio.com/manual">www.amberbio.com/manual</a>.
+    </p>
+  </section>
+
+  <section>
+    <h1 id="table-of-contents">Table of contents</h1>
+
+    <div class="table-of-content-link">
+      <a href="#version">Version</a>
+    </div>
+
+    <div class="table-of-content-link">
+      <a href="#privacy">Privacy</a>
+    </div>
+
+    <div class="table-of-content-link">
+      <a href="#navigation">Navigation</a>
+    </div>
+
+    <div class="table-of-content-link">
+      <a href="#projects-and-data-sets">Projects and data sets</a>
+    </div>
+    
+    <div class="table-of-content-link">
+      <a href="#the-active-data-set">The active data set</a>
+    </div>
+
+    <div class="table-of-content-link">
+      <a href="#import-of-data">Import of data</a>
+    </div>
+
+    <div class="table-of-content-link">
+      <a href="#import-of-files">Import of files</a>
+    </div>
+
+    <div class="table-of-content-link">
+      <a href="#parsing-import-files">Parsing import files</a>
+    </div>
+
+    <div class="table-of-content-link">
+      <a href="#file-format-of-txt-files">File format of txt files</a>
+    </div>
+
+    <div class="table-of-content-link">
+      <a href="#result-files">Result files</a>
+    </div>
+
+    <div class="table-of-content-link">
+      <a href="#backup-and-sharing-of-projects">Backup and sharing of projects</a>
+    </div>
+
+    <div class="table-of-content-link">
+      <a href="#name-and-emails">Name and emails</a>
+    </div>
+
+    <div class="table-of-content-link">
+      <a href="#anova">Anova</a>
+    </div>
+
+    <div class="table-of-content-link">
+      <a href="#pairwise-test">Pairwise test</a>
+    </div>
+
+    <div class="table-of-content-link">
+      <a href="#paired-test">Paired test</a>
+    </div>
+
+    <div class="table-of-content-link">
+      <a href="#linear-regression">Linear regression</a>
+    </div>
+
+    <div class="table-of-content-link">
+      <a  href="#multiple-hypothesis-testing">Multiple hypothesis testing</a>
+    </div>
+  </section>
+
+  <section id="version">
+    <h1><a href="#table-of-contents">Version</a></h1>
+    <p>
+      Version 1 of the Amberbio app.
+    </p>
+  </section>
+
+  <section id="privacy">
+    <h1><a href="#table-of-contents">Privacy</a></h1>
+    <p>
+      All data is stored locally on the device. All calculations are performed locally. Amber Biosciences does not have any access to user data.
+    </p>
+  </section>
+
+  <section id="navigation">
+    <h1><a href="#table-of-contents">Navigation</a></h1>
+    <p>
+      The app has a home page that is reached by tapping the home icon in the upper left corner. Navigation is done from the home page by tapping the icons or by the back and forward buttons.
+    </p>
+  </section>
+
+  <section id="projects-and-data-sets">
+    <h1><a href="#table-of-contents">Projects and data sets</a></h1>
+    <p>
+      The app handles projects and data sets. A data set is a set of values organized in a table with rows and columns. A project is a collection of one or more data sets.
+A project is always created with a data set called "The original data set". 
+Other data sets within a project are created by the app using various methods such as normalization or sample removal.
+    </p>
+    
+    <p>
+      The columns of a data set are called samples and the rows are called molecules. The values in the table
+represent an intensity, or some other quantity, for a sample-molecule pair. Data sets could represent biological information such as gene expression, protein abundances, microRNA expressions, peptide abundances, or metabolite concentrations. Data sets do not need to be of biological nature even though the app uses terminology from biology.
+    </p>
+   
+    <p>
+      A project also contains factor, or grouping, information about the samples. A factor has one or more levels. An example of a factor is "Gender" with levels "male" and "female". Naturally, factors are shared for all data sets within a project.
+    </p>
+
+    <p>
+      A project can also contain extra information about the molecules. This information is called molecule annotations. An example could be the molecule annotation "Chromosome" where each molecule has a value such as "chromosome 21".
+    </p>
+  </section>
+
+  <section id="the-active-data-set">
+    <h1><a href="#table-of-contents">The active data set</a></h1>
+    <p>
+      Analysis is performed on the active data set. Selection of the active data set is done on the
+      page <span class="app-page">Data Set Selection</span>.  The active project is the project to
+      which the active data set belongs. Editing and adding factors and molecule annotations are
+      done in the active project.
+    </p>
+
+    <p>
+     There is almost always an active data set and project. The only exceptions are when the app
+     starts the first time and when the active project is deleted. When a new data set is created,
+     the app automatically makes the new data set active and jumps to the
+     page <span class="app-page">Data Set Selection</span>
+    </p>
+  </section>
+
+  <section id="import-of-data">
+    <h1><a href="#table-of-contents">Import of data</a></h1>
+    <p>
+      Data import is used to create new projects and to add factor and molecule annotation
+      information to projects. Import of data is a two step process. First, a file is imported into
+      the app. Second, the file is read and parsed and the data is imported into a database kept by
+      the app.
+    </p>
+
+    <p>
+      Import of data is handled by the page <span class="app-page">Import data</span>. All imported
+files can be seen on this page.  The app keeps all imported files until they are deleted by the
+user.
+    </p>
+  </section>
+
+  <section id="import-of-files">
+    <h1><a href="#table-of-contents">Import of files</a></h1>
+    <p>
+      The app can import files with extension "txt" or "sqlite". The "txt" files represent tables of
+      data supplied by the user. The "sqlite" is a database file that has been exported from the app
+      at an earlier time. The "sqlite" files are used for backup and transfer of projects from one
+      device to another.
+    </p>
+
+    <p>
+      Files can be imported in two ways; either by "opening" the file in another app or by import from a cloud storage.
+    </p>
+
+    <p>
+      Importing a file by "opening" it in another app is done by tapping the file in the other app
+      and selecting the Amberbio app. A typical use case is to send a file as an email attachment to
+      the user's own email account and then opening the email in the Mail app on the device.
+    </p>
+
+    <p>
+      Files can be imported from a cloud storage such as iCloud Drive, Dropbox, Box, or Google
+      Drive. The import is done by tapping "Import new file" on the
+      page <span class="app-page">Import data</span>. The corresponding cloud storage app must
+      itself be installed on the device.
+    </p>
+  </section>
+
+  <section id="parsing-import-files">
+    <h1><a href="#table-of-contents">Parsing import files</a></h1>
+    <p>
+      Imported files are shown on the page <span class="app-page">Import data</span>. By tapping a
+      file, the file can be parsed and read into the database of the app. Files with extension
+      "sqlite" are read automatically into projects. Files with extension "txt" file can be used to
+      create a new project, to import factors to the active project, or to import molecule
+      annotations to the active project.
+    </p>
+  </section>
+
+  <section id="file-format-of-txt-files">
+    <h1><a href="#table-of-contents">File format of txt files</a></h1>
+    <p>
+      The "txt" files contain tables of values. The rows are separated by newline characters("\n" or
+      "\r\n") and the cells are separated by tabs or commas. The file extension should be "txt" in
+      any case. The app tries to find the separator by first searching for tabs. If there are tabs,
+      the app tries to read the file as a tab separated file. If there are no tabs, it tries to read
+      the file as a comma separated file. There must not be tabs within the content of the cells
+      themselves and if there are commas within the cells, the file must be tab separated. The three
+      types of "txt" files are described below.
+    </p>
+
+    <p>
+      The first file type contains the measurement values. This file is used to create a new
+      project. It contains samples in the columns and molecules in the rows. The first row contains
+      the sample names. The first column contains the molecule names. The values are written in the
+      cells.
+    </p>
+
+    <p>
+      The decimal point is "." as in "12.98".
+      Missing values must be written as nothing(empty string), NA, na, NaN, NAN, or nan. The upper
+      left cell can contain anything. An example value table is shown below.
+    </p>
+
+    <table>
+      <tr>
+        <td>Anything</td>
+        <td>Sample 1</td>
+        <td>Sample 2</td>
+      </tr>
+      <tr>
+        <td>Molecule 1</td>
+        <td>6.7</td>
+        <td>NA</td>
+      </tr>
+      <tr>
+        <td>Molecule 2</td>
+        <td>-0.45</td>
+        <td>NaN</td>
+      </tr>
+      <tr>
+        <td>Molecule 3</td>
+        <td>50</td>
+        <td>-12</td>
+      </tr>
+    </table>
+
+    <p>
+      The second file type contains factors for the samples. Factors can be imported into a project
+      at any time and is not part of the initial creation of the project. The first row contains
+      sample names. The first column contains factor names. The values are the levels for the factor
+      and sample. The upper left field can be anything. The factor names must be distinct and the
+      sample names can come in any order. All samples of the project must be present. Extra samples
+      will be ignored. An example factor table is shown below
+    </p>
+
+    <table>
+      <tr>
+        <td>Anything</td>
+        <td>Sample 1</td>
+        <td>Sample 2</td>
+      </tr>
+      <tr>
+        <td>Gender</td>
+        <td>Male</td>
+        <td>Female</td>
+      </tr>
+      <tr>
+        <td>Disease</td>
+        <td>Cancer</td>
+        <td>Alzheimer</td>
+      </tr>
+      <tr>
+        <td>Age</td>
+        <td>55</td>
+        <td>78</td>
+      </tr>
+    </table>
+
+    <p>
+      The third file type contains molecule annotations and it can be imported at any time and is
+      not part of the creation of the project. The first row contains the name of the molecule
+      annotation. The first column must contain all the molecule names. The order of the rows is
+      arbitrary and extra molecules are ignored. An example molecule annotation table is shown below
+    </p>
+
+    <table>
+      <tr>
+        <td>Anything</td>
+        <td>Unigene</td>
+        <td>Chromosome</td>
+      </tr>
+      <tr>
+        <td>Molecule 7</td>
+        <td>Hs.551713</td>
+        <td>18</td>
+      </tr>
+      <tr>
+        <td>Molecule 3</td>
+        <td>Hs.518267</td>
+        <td>3</td>
+      </tr>
+      <tr>
+        <td>Molecule 2</td>
+        <td>Hs.300701</td>
+        <td>6</td>
+      </tr>
+      <tr>
+        <td>Molecule 1</td>
+        <td>Hs.691131</td>
+        <td>10</td>
+      </tr>
+    </table>
+  </section>
+
+  <section id="result-files">
+    <h1><a href="#table-of-contents">Result files</a></h1>
+    <p>
+      Result files are created by the app. The result files are figures and tables and have the file
+      extension "txt", "pdf", or "png".  The result files are kept on the page
+      <span class="app-page">Result files</span>. The result files can be sent by email, opened in
+      another app, or exported to a cloud storage.
+    </p>
+  </section>
+
+  <section id="backup-and-sharing-of-projects">
+    <h1><a href="#table-of-contents">Backup and sharing of projects</a></h1>
+    <p>
+      Projects can be exported to a database file on the page <span class="app-page">Export
+      projects</span>. The database file has the extension "sqlite". The file can be used for backup
+      and transfer of projects to other devices. The file can be sent by email or exported to a
+      cloud storage.
+    </p>
+  </section>
+
+  <section id="name-and-emails">
+    <h1><a href="#table-of-contents">Name and emails</a></h1>
+    <p>
+      On the page <span class="app-page">User</span>, a name and a list of emails can be
+      typed. There are no user accounts in the app. The name is only used for comments in the result
+      files and the project notes. The emails are used as suggested emails when a file is sent by
+      email from the app. The actual destination emails can always be changed before sending the
+      email.
+    </p>
+  </section>
+
+  <section id="anova">
+    <h1><a href="#table-of-contents">Anova</a></h1>
+    <p>
+      The Anova test is performed on the selected levels of a factor. The selected levels are
+      highlighted, and the anova test is performed by tapping the blue factor name. For each
+      molecule a standard Anova test is performed by removing samples with missing values,
+      calculating the F-statistic as the ratio of between-groups variation divided by the
+      within-groups variation. The p-value is the upper tail of the cumulative F-distribution.
+    </p>
+  </section>
+
+  <section id="pairwise-test">
+    <h1><a href="#table-of-contents">Pairwise test</a></h1>
+    <p>
+      After selecting a factor, any number of pairwise tests between two levels can be selected in
+      the table. The pairwise test will be performed on all pairs and presented in a table. The
+      t-test is a standard student t-test with equal variance. The p-value from the Wilcoxon test,
+      which is the same as the Mann-Whitney test, is calculated as an exact value for small sample
+      size and by the Normal distribution approximation for large sample sizes.  The p-values are
+      two-sided.
+    </p>
+  </section>
+
+  <section id="paired-test">
+    <h1><a href="#table-of-contents">Paired test</a></h1>
+    <p>
+      A pairing factor must be selected. A pairing factor must have levels that exactly two samples
+      belongs to. Levels with any other number of associated samples are ignored. Two samples with
+      the same level of the pairing factor is a pair. An example of a pairing factor is "Patient"
+      and the levels are the patient ids or names. for each patient, two samples are measured.
+    </p>
+
+    <p>
+      The comparison factor is the factor for which the levels will be compared. An example of a
+      comparison factor is "Time" with the levels "morning" and "evening". In this case, a pairwise
+      test will be performed between evening and morning for each patient.
+    </p>
+
+    <p>
+      The t-test is performed by subtracting the values of the paired samples in the two selected
+      comparison levels. The p-value is two-sided and tests the null hypothesis that the difference
+      between the comparison levels is zero.
+    </p>
+  </section>
+
+  <section id="linear-regression">
+    <h1><a href="#table-of-contents">Linear regression</a></h1>
+    <p>
+      For the selected factor, the levels with a numeric interpretation are chosen. A level can be
+      converted to a number if it starts with, or is, a numeric values, such as "5 days" or
+      "12.3". For each molecule, the sample with a numeric level and a non-missing value are used
+      for the linear regression. The intercept and slope are calculated by least square
+      regression. 
+    </p>
+
+    <p>
+      The p-value is an Anova p-value and tests the null-hypothesis that the slope is zero, i.e. low
+      p-values imply that there is a trend with a non-zero slope. The Anova test is performed by
+      calculating a F-statistic as the ratio where the numerator is the variation between the line
+      and a simple mean value, and the denominator is the residual variation from the fitted line. A
+      large F-statistic, and correspondingly low p-value, implies that the line is a much better fit
+      than a single mean value.
+    </p>
+  </section>
+
+  <section id="multiple-hypothesis-testing">
+    <h1><a href="#table-of-contents">Multiple hypothesis testing</a></h1>
+    <p>
+      Multiple hypothesis testing is performed using the Benjamini-Hochberg false discovery rate
+      method. The columns named false discovery rate contains the q-values of the molecules.
+    </p>
+
+    <p>
+      A histogram of the p-values can be seen by tapping "histogram". High frequencies for the low
+      p-values imply a significant difference between the groups.
+    </p>
+  </section>
+
+</article>
+</body>
+</html>
