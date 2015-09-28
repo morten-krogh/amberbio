@@ -1,0 +1,330 @@
+body {
+    color : rgb(80,80,80);     
+}
+
+.header {
+    background-color : rgb(224,243,248);
+}
+
+a {
+    color : rgb(26,150,65);
+}
+
+a:hover {
+    color : rgb(253,174,97);
+}
+
+h1, h1 > a, .logo-text {
+    color : rgb(49,54,149);
+}
+
+section > div > h2 {
+    color : rgb(69,117,180);
+}
+
+.logo-text:hover, .app-page {
+    color : rgb(215,25,28);
+}
+
+body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size : 18px;
+    margin : 0;
+    line-height : normal;
+}
+
+svg {
+    width : 100px;
+    height : 100px;
+    margin-left : -10px;
+}
+
+.logo-text {
+    position : relative;
+    left : 30px;	
+    bottom : 15px;
+    font-weight : 300;
+    font-size : 50px;
+}
+
+.iphone-framed-1 {
+    display : inline-block;
+}
+
+.iphone-framed-2 {
+    display : inline-block;
+}
+
+.header {
+    display : block;
+    height : auto;
+}
+
+.header-nav a {
+    float : left;
+}
+
+.tagline {
+    font-size : 20px;
+    line-height : 1.2;
+    margin : 15px 0;
+}
+
+.services {
+    overflow : hidden;
+}
+
+.column {
+    display : inline-block;
+    vertical-align : top;
+    margin-bottom : 30px;
+}
+
+article {
+    display : block;
+    padding : 5px 0;
+}
+
+article > hgroup {
+    padding-left : 50px;
+}
+
+section {
+    display : block;
+    overflow : hidden;
+}
+
+.address {
+    margin-bottom: 4em;
+}
+
+a {
+    text-decoration : none;
+    cursor : pointer;
+}
+
+h1 {
+    font-family: 'Helvetica Neue Bold', Helvetica, Arial, sans-serif;
+    font-size: 27px;
+    font-weight: bold;
+}
+
+section > div > h2 {
+    font-family: 'Helvetica Neue Bold', Helvetica, Arial, sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.person-photo {
+    width : 150px;
+}
+
+.figure {
+    width : 90%;
+    max-width : 1200px;
+    margin: 100px auto 0 auto;
+}
+
+table {
+    margin : 4em auto 2em auto;
+    text-align : left;
+    border: 1px solid black;
+    border-spacing : 4.5em;
+    border-collapse : collapse;
+}
+
+td, th {
+    border: 1px solid black;
+    padding : 15px;
+}
+
+.table-of-content-link {
+    margin : 10px auto 0 20px;
+    text-decoration: none;
+    font-size: 110%;
+}
+
+.container {
+    margin : 10px auto;
+}
+
+.carousel {
+    margin : 0 auto;
+}
+
+.item  {
+    background-color : white;
+    margin-bottom : 100px;
+}
+
+.carousel-caption {
+    bottom: -100px;
+    color : black;
+}
+
+.carousel-indicators li {
+    background-color: rgba(70,70,70,.25);
+}
+
+.carousel-indicators .active {
+    background-color : rgb(26,150,65);
+}
+
+.carousel-control.left, .carousel-control.right {
+    background-image : none; 
+    color : rgb(26,150,65);
+}
+
+.carousel-inner > .item > img {
+    border : thick solid black;
+    border-radius : 10px;
+    width: 70%;
+    margin: auto;
+}
+
+@media only screen and (min-width : 320px) {
+
+    .header {
+	padding : 10px 15px 10px 15px;
+    }
+
+    .header-nav a {
+	margin : 0 20px 3px 0;
+    }
+    
+    .iphone-framed-1 {
+        width : 30%	
+    }
+
+    .iphone-framed-2 {
+       	width : 53%;  
+    }
+
+    section {
+    	max-width : 800px;
+       	margin : 10px 5px 20px 5px;
+    }
+    
+   .column {
+	width : 99%;
+	margin-right : 0;
+    }
+
+    .container {
+        padding : 30px 0 30px 0;
+    }    
+
+    .carousel {
+       	width : 100%;
+    }
+
+    .carousel-indicators {
+	bottom: -100px;
+    }
+
+    .carousel-inner {
+	margin-bottom : 90px;
+    }
+}
+
+@media only screen and (min-width : 480px) {
+
+    .header {
+	padding : 10px 25px 10px 25px;
+    }
+
+    .header-nav a {
+	margin-right : 10px;
+    }
+    
+    section {
+       	margin : 20px 25px 30px 25px;
+    }
+
+    .carousel-indicators {
+	bottom: -70px;
+    }
+
+    .carousel-inner {
+	margin-bottom : 60px;
+    }
+}
+
+@media only screen and (min-width : 768px) {
+
+    .header {
+	padding : 15px 25px 10px 25px;
+    }
+
+    .header-nav a {
+	margin-right : 2.1%;
+    }
+    
+    section {
+       	margin : 20px 25px 30px 25px;
+    }
+
+    .column {
+	width : 43%;
+	margin-right : 6%;
+    }
+
+    .carousel {
+       	width : 95%;
+    }
+
+    .carousel-indicators {
+	bottom: -30px;
+    }
+}
+
+@media only screen and (min-width : 992px) {
+
+    .header {
+	padding : 20px 40px 10px 40px;
+    }
+
+    .header-nav a {
+	margin-right : 40px;
+    }
+    
+    .column {
+	width : 24%;
+	margin-right : 6%;
+    }
+    
+    section {
+       	margin : 20px 40px 10px 40px;
+    }
+
+    .carousel {
+       	width : 85%;
+    }
+
+    .carousel-indicators {
+	bottom: -30px;
+    }
+}
+
+@media only screen and (min-width : 1200px) {
+
+    .header-nav a {
+	margin-right : 60px;
+    }
+
+    .iphone-framed-1 {
+	width : 350px;
+    }
+
+    .iphone-framed-2 {
+	width : 580px;
+    }
+    
+    .carousel {
+       	width : 75%;
+    }
+
+    .carousel-indicators {
+	bottom: -30px;
+    }
+}
