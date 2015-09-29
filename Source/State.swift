@@ -289,7 +289,7 @@ class State {
                 let statement = "select user_name from user where user_id = 1"
                 let query = Query(statement: statement, result_types: ["text"])
                 sqlite_execute(database: database, query: query)
-                return query.result_texts[0][0]
+                return query.result_texts[0].isEmpty ? "" : query.result_texts[0][0]
         }
 
         func set_user_name(user_name user_name: String) {
