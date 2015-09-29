@@ -1,29 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<meta charset="utf-8" />
-	<meta name="description" content="Nosy Bee provides web surveys, statistical analysis och result reports.">
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	<title>Amberbio</title>
-        <link rel="icon" type="image/png" href="/favicon.png" />
-	<link rel="stylesheet" href="index.css" type="text/css">
-	<script>
-	document.createElement('article');
-	document.createElement('section');
-	</script>
-
-        <style>
-                h1, h1 > a {
-                        color : rgb(69,117,180);
-                }
-        </style>
-
+        <meta charset="utf-8" />
+        <meta name="description" content="Nosy Bee provides web surveys, statistical analysis och result reports.">
+                <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+                        <title>Amberbio</title>
+                        <link rel="icon" type="image/png" href="/favicon.png" />
+                        <link rel="stylesheet" href="index.css" type="text/css">
+                                <script>
+                                        document.createElement('article');
+                                        document.createElement('section');
+                                </script>
 </head>
 
-<body>
-
 <article>
-  <section>
+  <section-manual>
     <h1>Manual for the Amberbio app</h1>
 
     <p>
@@ -32,9 +24,9 @@
     <p>
       This manual is available in the app and on the web at <a href="http://www.amberbio.com/manual">www.amberbio.com/manual</a>.
     </p>
-  </section>
+  </section-manual>
 
-  <section>
+  <section-manual>
     <h1 id="table-of-contents">Table of contents</h1>
 
     <div class="table-of-content-link">
@@ -104,30 +96,30 @@
     <div class="table-of-content-link">
       <a  href="#multiple-hypothesis-testing">Multiple hypothesis testing</a>
     </div>
-  </section>
+  </section-manual>
 
-  <section id="version">
+  <section-manual id="version">
     <h1><a href="#table-of-contents">Version</a></h1>
     <p>
       Version 1 of the Amberbio app.
     </p>
-  </section>
+  </section-manual>
 
-  <section id="privacy">
+  <section-manual id="privacy">
     <h1><a href="#table-of-contents">Privacy</a></h1>
     <p>
       All data is stored locally on the device. All calculations are performed locally. Amber Biosciences does not have any access to user data.
     </p>
-  </section>
+  </section-manual>
 
-  <section id="navigation">
+  <section-manual id="navigation">
     <h1><a href="#table-of-contents">Navigation</a></h1>
     <p>
       The app has a home page that is reached by tapping the home icon in the upper left corner. Navigation is done from the home page by tapping the icons or by the back and forward buttons.
     </p>
-  </section>
+  </section-manual>
 
-  <section id="projects-and-data-sets">
+  <section-manual id="projects-and-data-sets">
     <h1><a href="#table-of-contents">Projects and data sets</a></h1>
     <p>
       The app handles projects and data sets. A data set is a set of values organized in a table with rows and columns. A project is a collection of one or more data sets.
@@ -147,9 +139,9 @@ represent an intensity, or some other quantity, for a sample-molecule pair. Data
     <p>
       A project can also contain extra information about the molecules. This information is called molecule annotations. An example could be the molecule annotation "Chromosome" where each molecule has a value such as "chromosome 21".
     </p>
-  </section>
+  </section-manual>
 
-  <section id="the-active-data-set">
+  <section-manual id="the-active-data-set">
     <h1><a href="#table-of-contents">The active data set</a></h1>
     <p>
       Analysis is performed on the active data set. Selection of the active data set is done on the
@@ -164,9 +156,9 @@ represent an intensity, or some other quantity, for a sample-molecule pair. Data
      the app automatically makes the new data set active and jumps to the
      page <span class="app-page">Data Set Selection</span>
     </p>
-  </section>
+  </section-manual>
 
-  <section id="import-of-data">
+  <section-manual id="import-of-data">
     <h1><a href="#table-of-contents">Import of data</a></h1>
     <p>
       Data import is used to create new projects and to add factor and molecule annotation
@@ -180,9 +172,9 @@ represent an intensity, or some other quantity, for a sample-molecule pair. Data
 files can be seen on this page.  The app keeps all imported files until they are deleted by the
 user.
     </p>
-  </section>
+  </section-manual>
 
-  <section id="import-of-files">
+  <section-manual id="import-of-files">
     <h1><a href="#table-of-contents">Import of files</a></h1>
     <p>
       The app can import files with extension "txt" or "sqlite". The "txt" files represent tables of
@@ -197,8 +189,8 @@ user.
 
     <p>
       Importing a file by "opening" it in another app is done by tapping the file in the other app
-      and selecting the Amberbio app. A typical use case is to send a file as an email attachment to
-      the user's own email account and then opening the email in the Mail app on the device.
+      and selecting the Amberbio app. A typical use case is to open an email attachment by tapping
+      the attachment in the Mail app.
     </p>
 
     <p>
@@ -207,9 +199,9 @@ user.
       page <span class="app-page">Import data</span>. The corresponding cloud storage app must
       itself be installed on the device.
     </p>
-  </section>
+  </section-manual>
 
-  <section id="parsing-import-files">
+  <section-manual id="parsing-import-files">
     <h1><a href="#table-of-contents">Parsing import files</a></h1>
     <p>
       Imported files are shown on the page <span class="app-page">Import data</span>. By tapping a
@@ -218,18 +210,18 @@ user.
       create a new project, to import factors to the active project, or to import molecule
       annotations to the active project.
     </p>
-  </section>
+  </section-manual>
 
-  <section id="file-format-of-txt-files">
+  <section-manual id="file-format-of-txt-files">
     <h1><a href="#table-of-contents">File format of txt files</a></h1>
     <p>
       The "txt" files contain tables of values. The rows are separated by newline characters("\n" or
       "\r\n") and the cells are separated by tabs or commas. The file extension should be "txt" in
       any case. The app tries to find the separator by first searching for tabs. If there are tabs,
       the app tries to read the file as a tab separated file. If there are no tabs, it tries to read
-      the file as a comma separated file. There must not be tabs within the content of the cells
-      themselves and if there are commas within the cells, the file must be tab separated. The three
-      types of "txt" files are described below.
+      the file as a comma separated file. Tabs are not allowed within the cells. If there are commas
+      within the cells, the file must be tab separated. The three types of "txt" files are described
+      below.
     </p>
 
     <p>
@@ -270,11 +262,11 @@ user.
 
     <p>
       The second file type contains factors for the samples. Factors can be imported into a project
-      at any time and is not part of the initial creation of the project. The first row contains
-      sample names. The first column contains factor names. The values are the levels for the factor
-      and sample. The upper left field can be anything. The factor names must be distinct and the
-      sample names can come in any order. All samples of the project must be present. Extra samples
-      will be ignored. An example factor table is shown below
+      at any time and are not part of the initial creation of the project. The first row of the
+      factor file contains sample names. The first column contains factor names. The values are the
+      levels for the factor and sample. The upper left field can be anything. The factor names must
+      be distinct and the sample names can come in any order. All samples of the project must be
+      present. Extra samples will be ignored. An example factor table is shown below
     </p>
 
     <table>
@@ -334,9 +326,9 @@ user.
         <td>10</td>
       </tr>
     </table>
-  </section>
+  </section-manual>
 
-  <section id="result-files">
+  <section-manual id="result-files">
     <h1><a href="#table-of-contents">Result files</a></h1>
     <p>
       Result files are created by the app. The result files are figures and tables and have the file
@@ -344,9 +336,9 @@ user.
       <span class="app-page">Result files</span>. The result files can be sent by email, opened in
       another app, or exported to a cloud storage.
     </p>
-  </section>
+  </section-manual>
 
-  <section id="backup-and-sharing-of-projects">
+  <section-manual id="backup-and-sharing-of-projects">
     <h1><a href="#table-of-contents">Backup and sharing of projects</a></h1>
     <p>
       Projects can be exported to a database file on the page <span class="app-page">Export
@@ -354,9 +346,9 @@ user.
       and transfer of projects to other devices. The file can be sent by email or exported to a
       cloud storage.
     </p>
-  </section>
+  </section-manual>
 
-  <section id="name-and-emails">
+  <section-manual id="name-and-emails">
     <h1><a href="#table-of-contents">Name and emails</a></h1>
     <p>
       On the page <span class="app-page">User</span>, a name and a list of emails can be
@@ -365,9 +357,9 @@ user.
       email from the app. The actual destination emails can always be changed before sending the
       email.
     </p>
-  </section>
+  </section-manual>
 
-  <section id="anova">
+  <section-manual id="anova">
     <h1><a href="#table-of-contents">Anova</a></h1>
     <p>
       The Anova test is performed on the selected levels of a factor. The selected levels are
@@ -376,9 +368,9 @@ user.
       calculating the F-statistic as the ratio of between-groups variation divided by the
       within-groups variation. The p-value is the upper tail of the cumulative F-distribution.
     </p>
-  </section>
+  </section-manual>
 
-  <section id="pairwise-test">
+  <section-manual id="pairwise-test">
     <h1><a href="#table-of-contents">Pairwise test</a></h1>
     <p>
       After selecting a factor, any number of pairwise tests between two levels can be selected in
@@ -388,21 +380,23 @@ user.
       size and by the Normal distribution approximation for large sample sizes.  The p-values are
       two-sided.
     </p>
-  </section>
+  </section-manual>
 
-  <section id="paired-test">
+  <section-manual id="paired-test">
     <h1><a href="#table-of-contents">Paired test</a></h1>
     <p>
-      A pairing factor must be selected. A pairing factor must have levels that exactly two samples
-      belongs to. Levels with any other number of associated samples are ignored. Two samples with
-      the same level of the pairing factor is a pair. An example of a pairing factor is "Patient"
-      and the levels are the patient ids or names. for each patient, two samples are measured.
+      A pairing factor must be selected. Samples with the same level for the pairing factor can be
+      paired.  An example of a pairing factor is "Patient" and the levels are the patient ids or
+      names. For each patient, two or more samples are measured.
     </p>
 
     <p>
-      The comparison factor is the factor for which the levels will be compared. An example of a
-      comparison factor is "Time" with the levels "morning" and "evening". In this case, a pairwise
-      test will be performed between evening and morning for each patient.
+      The comparison factor is the factor for which the levels will be compared. When two levels of
+      the comparison factor are compared, the pairs of samples are defined as follows. For each
+      pairing factor level, there must be exactly one sample for each of the two comparison levels
+      with that particular pairing factor level. An example of a comparison factor is "Time" with
+      the levels "morning" and "evening". In this case, a pairwise test will be performed between
+      the evening and morning samples for each patient.
     </p>
 
     <p>
@@ -410,9 +404,9 @@ user.
       comparison levels. The p-value is two-sided and tests the null hypothesis that the difference
       between the comparison levels is zero.
     </p>
-  </section>
+  </section-manual>
 
-  <section id="linear-regression">
+  <section-manual id="linear-regression">
     <h1><a href="#table-of-contents">Linear regression</a></h1>
     <p>
       For the selected factor, the levels with a numeric interpretation are chosen. A level can be
@@ -430,9 +424,9 @@ user.
       large F-statistic, and correspondingly low p-value, implies that the line is a much better fit
       than a single mean value.
     </p>
-  </section>
+  </section-manual>
 
-  <section id="multiple-hypothesis-testing">
+  <section-manual id="multiple-hypothesis-testing">
     <h1><a href="#table-of-contents">Multiple hypothesis testing</a></h1>
     <p>
       Multiple hypothesis testing is performed using the Benjamini-Hochberg false discovery rate
@@ -443,7 +437,7 @@ user.
       A histogram of the p-values can be seen by tapping "histogram". High frequencies for the low
       p-values imply a significant difference between the groups.
     </p>
-  </section>
+  </section-manual>
 
 </article>
 </body>

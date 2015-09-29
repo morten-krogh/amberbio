@@ -19,6 +19,11 @@ class Manual: Component {
                 view.backgroundColor = UIColor.whiteColor()
         }
 
+        override func viewWillLayoutSubviews() {
+                super.viewWillLayoutSubviews()
+                render()
+        }
+
         override func render() {
                 if let path = NSBundle.mainBundle().pathForResource("manual", ofType: "html") {
                         let url = NSURL(fileURLWithPath: path)
