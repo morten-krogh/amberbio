@@ -1,0 +1,26 @@
+The Amberbio app allows scientists to analyze and visualize biological data sets on mobile
+devices. The app performs calculations and visualizations directly on the device. 
+The data is always available and can be visualized and analyzed in real time.
+
+Various types of data can be analyzed in the app including protein, microRNA, and gene expression
+data. In general, data consisting of measurements for molecules across a set of samples can be analyzed.
+Even non-biological data sets can be analyzed.
+
+The app can perform several statistical tests such as t-tests, Mann-Whitney tests, ANOVA tests,
+paired t-tests, and linear regression tests.
+
+The app can perform unsupervised classifications such as 2D and 3D principal component analysis,
+hierarchical clustering, and heat maps.
+
+Data can be visualized in various ways giving the user a better understanding of the data.
+
+Various customizable color figures can be produced. The figures can be exported to either pdf or png files.
+
+New derived data sets can be produced by normalization, logarithmic transformation, sample
+removal, molecule removal, or selection of molecules.
+
+The app can display tables of molecules. The tables are sortable and searchable, and can be exported to txt files.
+
+Import and export of data and figures can take place through email and cloud storage
+providers. Projects can be exported to a database file that can be used for backup and transfer of
+data to ther devices. These database files facilitate sharing of projects between collaborators.
