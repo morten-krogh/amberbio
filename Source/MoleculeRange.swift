@@ -82,9 +82,13 @@ class MoleculeRange: UIView {
                 info_label.textAlignment = .Center
         }
 
-        func cancel_action() {
+        func reset() {
                 selected_index_1 = nil
                 selected_index_2 = nil
+        }
+
+        func cancel_action() {
+                reset()
                 delegate?.molecule_range_cancel()
         }
 
@@ -94,6 +98,7 @@ class MoleculeRange: UIView {
                         let max_index = max(index1, index2)
                         delegate?.molecule_range_create_data_set(index1: min_index, index2: max_index)
                 }
+                reset()
         }
 
         func select_index(index index: Int) {

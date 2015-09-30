@@ -95,6 +95,7 @@ class FullPage: Component, UIScrollViewDelegate, UISearchBarDelegate {
                 title_label.render()
 
                 if page_name != displayed_page_name {
+                        molecule_range.reset()
                         page.finish()
                         remove_child_view_controller(child: page)
 
