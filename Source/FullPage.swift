@@ -255,6 +255,7 @@ class FullPage: Component, UIScrollViewDelegate, UISearchBarDelegate {
                         histogram_button.hidden = true
                         select_button.hidden = true
                 } else {
+                        molecule_range.reset()
                         molecule_range.hidden = true
                         search_bar.hidden = !state.page_state.search_enabled
                         pdf_button.hidden = !state.page_state.pdf_enabled
