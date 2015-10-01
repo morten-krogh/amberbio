@@ -198,7 +198,7 @@ func database_populate(database database: Database) {
         insert_project_note(database: database, project_note_text: breast_cancer_project_note_text, project_note_type: "auto", project_note_user_name: "Demo", project_id: breast_cancer_project_id)
 
         let brain_stem_cells_project_id = import_data(database: database, stem: "brain-stem-cells", project_name: "Brain stem cells")
-        let brain_stem_cell_project_note_text = "The data set consists of the counts of microRNAs from brain stem cells. The counts were measured using high throughput sequencing."
+        let brain_stem_cell_project_note_text = "The data set consists of the counts of microRNAs from brain stem cells. The counts were measured using high throughput sequencing. The data set is available in GEO with id GSE68189. The data set is published in the paper \"Comprehensive analysis of microRNA expression in regionalized human neural progenitor cells reveals microRNA-10 as a caudalizing factor, Development. 2015 Sep 15;142(18):3166-77.\""
         insert_project_note(database: database, project_note_text: brain_stem_cell_project_note_text, project_note_type: "auto", project_note_user_name: "Demo", project_id: brain_stem_cells_project_id)
 
         let diabetes_project_id = import_data(database: database, stem: "diabetes", project_name: "Diabetes")
