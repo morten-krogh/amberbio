@@ -125,10 +125,11 @@ class KNNFactorSelection: Component, UITableViewDataSource, UITableViewDelegate 
                         if selected_level_ids_in_section.count < 2 {
                                 alert(title: "Too few selected levels", message: "At least two levels must be selected", view_controller: self)
                         } else {
-                                let selected_factor_id = state.factor_ids[section]
-                                let selected_level_ids_for_factor = state.level_ids_by_factor[section].filter { self.knn_factor_selection_state.selected_level_ids.contains($0) }
-//                                let anova_table_state = AnovaTableState(factor_id: selected_factor_id, level_ids: selected_level_ids_for_factor)
-//                                state.navigate(page_state: anova_table_state)
+                                let selected_level_indices = [Int](0 ..< state.level_ids_by_factor[section].count).filter {
+                                        self.knn_factor_selection_state.selected_level_ids.contains(state.level_ids_by_factor[section][$0])
+                                }
+                                let knn_validation_selection_state = KNNValidationSelectionState(selected_factor_index: section, selected_level_indices: selected_level_indices)
+                                state.navigate(page_state: knn_validation_selection_state)
                                 state.render()
                         }
                 }
