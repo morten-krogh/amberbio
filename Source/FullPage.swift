@@ -204,6 +204,8 @@ class FullPage: Component, UIScrollViewDelegate, UISearchBarDelegate {
                                 page = PCA()
                         case "knn_factor_selection":
                                 page = KNNFactorSelection()
+                        case "knn_validation_selection":
+                                page = KNNValidationSelection()
 
                         default:
                                 print("Remember to update render in FullPage for \(page_name)")
