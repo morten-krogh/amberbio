@@ -202,6 +202,8 @@ class FullPage: Component, UIScrollViewDelegate, UISearchBarDelegate {
                                 page = HierarchicalClusteringPlot()
                         case "pca":
                                 page = PCA()
+                        case "knn_factor_selection":
+                                page = KNNFactorSelection()
 
                         default:
                                 print("Remember to update render in FullPage for \(page_name)")

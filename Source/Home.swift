@@ -50,7 +50,7 @@ class Home: Component, UICollectionViewDataSource, UICollectionViewDelegate, UIC
         let cell_width = 105 as CGFloat
         let cell_height = 60 as CGFloat
 
-        let header_names = ["Info", "Import/export", "Projects and data sets", "Visualize data set", "Statistical tests", "Unsupervised classification", "Create new data sets", "Edit project"]
+        let header_names = ["Info", "Import/export", "Projects and data sets", "Visualize data set", "Statistical tests", "Unsupervised classification", "Supervised classification", "Create new data sets", "Edit project"]
 
         let page_titles = [
                 ["Manual", "Feedback", "User"],
@@ -59,6 +59,7 @@ class Home: Component, UICollectionViewDataSource, UICollectionViewDelegate, UIC
                 ["Data Set Table", "Data Set Summary", "Factor\nChart", "Factor Association", "Factor Summary", "Missing Values for Samples", "Single Molecule Plots", "Multiple Molecule Plot"],
                 ["Anova", "Pairwise Test", "Paired Test", "Linear Regression"],
                 ["Hierarchical Clustering", "PCA"],
+                ["k nearest neighbor"],
                 ["Logarithm Transform", "Sample Normalization", "Factor Elimination", "Remove Samples", "Remove Molecules", "Filter Molecules"],
                 ["Edit Project", "Sample Names", "Molecule Annotations", "Color Selection", "Edit Factors"]
         ]
@@ -112,26 +113,28 @@ class Home: Component, UICollectionViewDataSource, UICollectionViewDelegate, UIC
                 case (5, 1):
                         return PCAState()
                 case (6, 0):
-                        return LogarithmTransformState()
-                case (6, 1):
-                        return SampleNormalizationState()
-                case (6, 2):
-                        return FactorEliminationState()
-                case (6, 3):
-                        return RemoveSamplesState()
-                case (6, 4):
-                        return RemoveMoleculesState()
-                case (6, 5):
-                        return FilterMoleculesState()
+                        return KNNFactorSelectionState()
                 case (7, 0):
-                        return EditProjectState()
+                        return LogarithmTransformState()
                 case (7, 1):
-                        return SamplesNamesState()
+                        return SampleNormalizationState()
                 case (7, 2):
-                        return MoleculeAnnotationsState()
+                        return FactorEliminationState()
                 case (7, 3):
-                        return ColorSelectionLevelState()
+                        return RemoveSamplesState()
                 case (7, 4):
+                        return RemoveMoleculesState()
+                case (7, 5):
+                        return FilterMoleculesState()
+                case (8, 0):
+                        return EditProjectState()
+                case (8, 1):
+                        return SamplesNamesState()
+                case (8, 2):
+                        return MoleculeAnnotationsState()
+                case (8, 3):
+                        return ColorSelectionLevelState()
+                case (8, 4):
                         return EditFactorsState()
 
                 default:
@@ -286,7 +289,7 @@ class HomeCellView: UICollectionViewCell {
                 let attributed_text = astring_font_size_color(string: title, font: font_body, font_size: 16, color: nil)
                 label.attributedText = attributed_text
                 label.textAlignment = .Center
-                color_normal = color_from_hex(hex: color_brewer_qualitative_8_pastel1[section])
+                color_normal = color_from_hex(hex: color_brewer_qualitative_9_pastel1[section])
                 contentView.backgroundColor = color_normal
                 if border {
                         contentView.layer.borderWidth = 2

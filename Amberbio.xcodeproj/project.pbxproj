@@ -26,6 +26,7 @@
 		602708FC1BA747A000672D54 /* breast-cancer-values.txt in Resources */ = {isa = PBXBuildFile; fileRef = 602708F61BA7478500672D54 /* breast-cancer-values.txt */; settings = {ASSET_TAGS = (); }; };
 		602709031BA8054400672D54 /* brain-stem-cells-factors.txt in Resources */ = {isa = PBXBuildFile; fileRef = 602708FF1BA804EA00672D54 /* brain-stem-cells-factors.txt */; settings = {ASSET_TAGS = (); }; };
 		602709041BA8054800672D54 /* brain-stem-cells-values.txt in Resources */ = {isa = PBXBuildFile; fileRef = 602709001BA804EA00672D54 /* brain-stem-cells-values.txt */; settings = {ASSET_TAGS = (); }; };
+		6099D23C1BBED42400F176BD /* KNNFactorSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6099D23B1BBED42300F176BD /* KNNFactorSelection.swift */; settings = {ASSET_TAGS = (); }; };
 		60B400391BA1982900D8DD80 /* state_init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400381BA1982900D8DD80 /* state_init.swift */; settings = {ASSET_TAGS = (); }; };
 		60B4003B1BA1983900D8DD80 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B4003A1BA1983900D8DD80 /* State.swift */; settings = {ASSET_TAGS = (); }; };
 		60B400411BA19BED00D8DD80 /* AttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B4003D1BA19BED00D8DD80 /* AttributedString.swift */; settings = {ASSET_TAGS = (); }; };
@@ -232,6 +233,7 @@
 		602708F61BA7478500672D54 /* breast-cancer-values.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "breast-cancer-values.txt"; path = "demo-data/breast-cancer/breast-cancer-values.txt"; sourceTree = "<group>"; };
 		602708FF1BA804EA00672D54 /* brain-stem-cells-factors.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "brain-stem-cells-factors.txt"; path = "demo-data/brain-stem-cells/brain-stem-cells-factors.txt"; sourceTree = "<group>"; };
 		602709001BA804EA00672D54 /* brain-stem-cells-values.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "brain-stem-cells-values.txt"; path = "demo-data/brain-stem-cells/brain-stem-cells-values.txt"; sourceTree = "<group>"; };
+		6099D23B1BBED42300F176BD /* KNNFactorSelection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KNNFactorSelection.swift; sourceTree = "<group>"; };
 		60B400381BA1982900D8DD80 /* state_init.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = state_init.swift; path = Source/state_init.swift; sourceTree = "<group>"; };
 		60B4003A1BA1983900D8DD80 /* State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = State.swift; path = Source/State.swift; sourceTree = "<group>"; };
 		60B4003D1BA19BED00D8DD80 /* AttributedString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AttributedString.swift; path = Source/AttributedString.swift; sourceTree = "<group>"; };
@@ -518,6 +520,7 @@
 				60B4007A1BA19C7900D8DD80 /* HomeButton.swift */,
 				60B4007C1BA19C7900D8DD80 /* ImportData.swift */,
 				60B4007D1BA19C7900D8DD80 /* InfoButton.swift */,
+				6099D23B1BBED42300F176BD /* KNNFactorSelection.swift */,
 				60B400821BA19C7900D8DD80 /* LinearRegressionPlot.swift */,
 				60B400831BA19C7900D8DD80 /* LinearRegressionSelection.swift */,
 				60B400841BA19C7900D8DD80 /* LinearRegressionTable.swift */,
@@ -960,6 +963,7 @@
 				60B401531BA19C7900D8DD80 /* Statistics.swift in Sources */,
 				60B400FE1BA19C7900D8DD80 /* Feedback.swift in Sources */,
 				60B401591BA19C7900D8DD80 /* TiledScrollView.swift in Sources */,
+				6099D23C1BBED42400F176BD /* KNNFactorSelection.swift in Sources */,
 				60B401231BA19C7900D8DD80 /* PairedPairingFactor.swift in Sources */,
 				60B401561BA19C7900D8DD80 /* TextFieldHeaderFooterView.swift in Sources */,
 				60B400EF1BA19C7900D8DD80 /* DocumentInteractionOpen.swift in Sources */,
