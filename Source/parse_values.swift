@@ -289,7 +289,19 @@ func string_to_double (string string: String) -> Double? {
         let scanner = NSScanner(string: string)
         var result = 0.0
         let success = scanner.scanDouble(&result)
-        return success && scanner.atEnd ? result : nil
+        if success && scanner.atEnd {
+                return result
+        }
+
+        let comma_scanner = NSScanner(string: string)
+        comma_scanner.locale = NSLocale(localeIdentifier: "eu")
+        var comma_result = 0.0
+        let comma_success = comma_scanner.scanDouble(&comma_result)
+        if comma_success && comma_scanner.atEnd {
+                return comma_result
+        }
+
+        return nil
 }
 
 func trim(string string: String) -> String {
