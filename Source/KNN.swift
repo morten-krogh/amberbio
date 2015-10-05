@@ -24,6 +24,8 @@ class KNN {
         var selected_sample_indices = [] as Set<Int>
         var number_of_training_samples_per_comparison_level_id = [:] as [Int: Int]
 
+        var k = 1
+
         init(comparison_factor_id: Int, comparison_level_ids: [Int]) {
                 self.comparison_factor_id = comparison_factor_id
                 self.comparison_level_ids = comparison_level_ids
