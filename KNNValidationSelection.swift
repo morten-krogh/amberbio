@@ -2,15 +2,11 @@ import UIKit
 
 class KNNValidationSelectionState: PageState {
 
-        var selected_factor_index = 0
-        var selected_level_indices = [] as [Int]
+        let knn: KNN
 
-        init(selected_factor_index: Int, selected_level_indices: [Int]) {
+        init(knn: KNN) {
+                self.knn = knn
                 super.init()
-
-                self.selected_factor_index = selected_factor_index
-                self.selected_level_indices = selected_level_indices
-
                 name = "knn_validation_selection"
                 title = astring_body(string: "k nearest neighbor classification")
                 info = "Select the type of training and testing."
