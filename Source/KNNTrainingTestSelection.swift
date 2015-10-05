@@ -166,10 +166,10 @@ class KNNTrainingTestSelection: Component, UITableViewDataSource, UITableViewDel
 
         func header_tap_action(sender: UITapGestureRecognizer) {
                 let knn = knn_training_test_selection_state.knn
-                let selectable = knn.selected_sample_indices.count > 0 && knn.selected_sample_indices.count < knn.sample_indices.count
-
-                if selectable {
-                        print("continue")
+                if knn.selected_sample_indices.count > 0 && knn.selected_sample_indices.count < knn.sample_indices.count {
+                        let page_state = KNNKSelectionState(knn: knn)
+                        state.navigate(page_state: page_state)
+                        state.render()
                 }
         }
         
