@@ -78,7 +78,7 @@ class KNN {
         func calculate_training_set() {
                 training_sample_indices = []
                 for level_id in comparison_level_ids {
-                        number_of_samples_per_comparison_level_id[level_id] = 0
+                        number_of_training_samples_per_comparison_level_id[level_id] = 0
                 }
 
                 for i in 0 ..< sample_indices.count {
@@ -101,7 +101,7 @@ class KNN {
                         if selected {
                                 training_sample_indices.insert(sample_index)
                                 let level_id = sample_comparison_level_id[i]
-                                number_of_samples_per_comparison_level_id[level_id]?++
+                                number_of_training_samples_per_comparison_level_id[level_id]?++
                         }
                 }
         }

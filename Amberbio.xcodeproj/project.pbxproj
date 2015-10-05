@@ -670,6 +670,7 @@
 				60B400651BA19C7900D8DD80 /* Drawing.swift */,
 				60B400691BA19C7900D8DD80 /* Email.swift */,
 				60B400721BA19C7900D8DD80 /* Files.swift */,
+				60D5CE351BC2545400B0D88A /* KNN.swift */,
 				60B4007E1BA19C7900D8DD80 /* Layout.swift */,
 				60B400A01BA19C7900D8DD80 /* parse_values.swift */,
 				60B400A41BA19C7900D8DD80 /* PCAaxis.swift */,
@@ -679,7 +680,6 @@
 				60B4003E1BA19BED00D8DD80 /* NumberFormat.swift */,
 				60B4003F1BA19BED00D8DD80 /* Serialize.swift */,
 				60014BC61BB5CB82001A79B1 /* Sort.swift */,
-				60D5CE351BC2545400B0D88A /* KNN.swift */,
 			);
 			name = Functions;
 			sourceTree = "<group>";

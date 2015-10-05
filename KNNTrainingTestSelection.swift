@@ -29,14 +29,14 @@ class KNNTrainingTestSelection: Component, UITableViewDataSource, UITableViewDel
                 table_view.registerClass(CenteredHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: "header")
                 table_view.registerClass(UITableViewHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: "footer")
                 table_view.registerClass(CenteredTableViewCell.self, forCellReuseIdentifier: "cell")
-                table_view.dataSource = self
-                table_view.delegate = self
                 table_view.backgroundColor = UIColor.whiteColor()
                 table_view.separatorStyle = .None
         }
 
         override func render() {
                 knn_training_test_selection_state = state.page_state as! KNNTrainingTestSelectionState
+                table_view.dataSource = self
+                table_view.delegate = self
                 table_view.reloadData()
         }
 
@@ -89,7 +89,7 @@ class KNNTrainingTestSelection: Component, UITableViewDataSource, UITableViewDel
 
         func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
                 if section == 0 {
-                        return 0
+                        return knn_training_test_selection_state.knn.comparison_level_ids.count
                 } else {
                         return state.level_ids_by_factor[section].count
                 }
@@ -102,6 +102,19 @@ class KNNTrainingTestSelection: Component, UITableViewDataSource, UITableViewDel
         func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
                 let cell = tableView.dequeueReusableCellWithIdentifier("cell") as! CenteredTableViewCell
 
+                let knn = knn_training_test_selection_state.knn
+                if indexPath.section == 0 {
+                        let row = indexPath.row
+                        let level_id = knn.comparison_level_ids[row]
+                        let level_name = knn.comparison_level_names[row]
+                        let number_of_samples = knn.number_of_samples_per_comparison_level_id[level_id]!
+                        let number_of_training_samples = knn.number_of_training_samples_per_comparison_level_id[level_id]!
+
+                        let text = level_name + "," + "\(number_of_samples)" + "," + "\(number_of_training_samples))"
+
+                        cell.update_unselected(text: text)
+
+                }
 //                let level_id = state.level_ids_by_factor[indexPath.section][indexPath.row]
 //                let level_name = state.level_names_by_factor[indexPath.section][indexPath.row]
 //
