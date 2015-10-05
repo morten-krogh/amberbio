@@ -18,7 +18,7 @@
 		601003541BA18744008A1FF9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 601003531BA18744008A1FF9 /* Assets.xcassets */; };
 		601003621BA18744008A1FF9 /* AmberbioTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601003611BA18744008A1FF9 /* AmberbioTests.swift */; };
 		6010036D1BA18744008A1FF9 /* AmberbioUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6010036C1BA18744008A1FF9 /* AmberbioUITests.swift */; };
-		602708CA1BA2CA0300672D54 /* SelectAllTableViewHeaderFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602708C91BA2CA0300672D54 /* SelectAllTableViewHeaderFooterView.swift */; settings = {ASSET_TAGS = (); }; };
+		602708CA1BA2CA0300672D54 /* SelectAllHeaderFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602708C91BA2CA0300672D54 /* SelectAllHeaderFooterView.swift */; settings = {ASSET_TAGS = (); }; };
 		602708E71BA6EF6400672D54 /* iris-values.txt in Resources */ = {isa = PBXBuildFile; fileRef = 602708E11BA6EE7400672D54 /* iris-values.txt */; settings = {ASSET_TAGS = (); }; };
 		602708E81BA6EF6800672D54 /* iris-factors.txt in Resources */ = {isa = PBXBuildFile; fileRef = 602708E01BA6EE7400672D54 /* iris-factors.txt */; settings = {ASSET_TAGS = (); }; };
 		602708FA1BA7479600672D54 /* breast-cancer-annotations.txt in Resources */ = {isa = PBXBuildFile; fileRef = 602708F41BA7478500672D54 /* breast-cancer-annotations.txt */; settings = {ASSET_TAGS = (); }; };
@@ -228,7 +228,7 @@
 		601003681BA18744008A1FF9 /* AmberbioUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AmberbioUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6010036C1BA18744008A1FF9 /* AmberbioUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmberbioUITests.swift; sourceTree = "<group>"; };
 		6010036E1BA18744008A1FF9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		602708C91BA2CA0300672D54 /* SelectAllTableViewHeaderFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectAllTableViewHeaderFooterView.swift; sourceTree = "<group>"; };
+		602708C91BA2CA0300672D54 /* SelectAllHeaderFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectAllHeaderFooterView.swift; sourceTree = "<group>"; };
 		602708E01BA6EE7400672D54 /* iris-factors.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "iris-factors.txt"; path = "demo-data/iris/iris-factors.txt"; sourceTree = "<group>"; };
 		602708E11BA6EE7400672D54 /* iris-values.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "iris-values.txt"; path = "demo-data/iris/iris-values.txt"; sourceTree = "<group>"; };
 		602708F41BA7478500672D54 /* breast-cancer-annotations.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "breast-cancer-annotations.txt"; path = "demo-data/breast-cancer/breast-cancer-annotations.txt"; sourceTree = "<group>"; };
@@ -605,7 +605,7 @@
 				60B400C01BA19C7900D8DD80 /* SliderTableViewCell.swift */,
 				60B400CC1BA19C7900D8DD80 /* TextFieldHeaderFooterView.swift */,
 				60B400CD1BA19C7900D8DD80 /* TextFieldTableViewCell.swift */,
-				602708C91BA2CA0300672D54 /* SelectAllTableViewHeaderFooterView.swift */,
+				602708C91BA2CA0300672D54 /* SelectAllHeaderFooterView.swift */,
 			);
 			name = TableViews;
 			sourceTree = "<group>";
@@ -1009,7 +1009,7 @@
 				60B4015B1BA19C7900D8DD80 /* Txt.swift in Sources */,
 				60B400DB1BA19C7900D8DD80 /* AnovaTable.swift in Sources */,
 				60B401361BA19C7900D8DD80 /* ProjectNotes.swift in Sources */,
-				602708CA1BA2CA0300672D54 /* SelectAllTableViewHeaderFooterView.swift in Sources */,
+				602708CA1BA2CA0300672D54 /* SelectAllHeaderFooterView.swift in Sources */,
 				60B401351BA19C7900D8DD80 /* ProgressIndicator.swift in Sources */,
 				60B400E71BA19C7900D8DD80 /* ContingencyTable.swift in Sources */,
 				60B4013E1BA19C7900D8DD80 /* ResultFiles.swift in Sources */,

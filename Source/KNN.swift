@@ -102,17 +102,18 @@ class KNN {
                                 let level_id = sample_comparison_level_id[i]
                                 number_of_training_samples_per_comparison_level_id[level_id]?++
                         }
-//                        for i in 0 ..< state.factor_ids.count {
-//                                if selected {
-//                                        break
-//                                }
-//                                if state.factor_ids[i] == comparison_factor_id {
-//                                        continue
-//                                }
-//                                let level_id = state.level_ids_by_factor_and_sample[i][sample_index]
-//                                selected = selected_level_ids.contains(level_id)
-//                        }
-//
                 }
+        }
+
+        func select_all_samples() {
+                for sample_index in sample_indices {
+                        selected_sample_indices.insert(sample_index)
+                }
+                calculate_training_set()
+        }
+
+        func deselect_all_samples() {
+                selected_sample_indices = []
+                calculate_training_set()
         }
 }
