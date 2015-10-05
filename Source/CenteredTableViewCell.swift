@@ -78,6 +78,11 @@ class CenteredTableViewCell: UITableViewCell {
                 inset_view.backgroundColor = background_color
         }
 
+        func update_multiline(text: String) {
+                update_selectable_arrow(text: text)
+                text_label.numberOfLines = 2
+        }
+
         func update_selectable_arrow(attributed_text attributed_text: Astring) {
                 update(attributed_text: attributed_text, background_color: color_blue_selectable, symbol: .Arrow)
         }

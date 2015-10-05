@@ -9,7 +9,7 @@ class KNNTrainingTestSelectionState: PageState {
                 super.init()
                 name = "knn_training_test_selection"
                 title = astring_body(string: "k nearest neighbor classification")
-                info = "Select the samples for the training set.\n\nSelecting a level from a factor leads to inclusion of all samples with that level in the training set."
+                info = "Select the samples for the training set.\n\nThe numbers in parenthesis represent the total number of samples and the number of samples currently in the training set respectively for that level.\n\nSelecting a level from a factor leads to inclusion of all samples with that level.\n\nDeselecting a level removes all samples with that level from the training set."
         }
 }
 
@@ -117,7 +117,7 @@ class KNNTrainingTestSelection: Component, UITableViewDataSource, UITableViewDel
                         let number_of_samples = knn.number_of_samples_per_comparison_level_id[level_id]!
                         let number_of_training_samples = knn.number_of_training_samples_per_comparison_level_id[level_id]!
 
-                        let text = level_name + "," + "\(number_of_samples)" + "," + "\(number_of_training_samples))"
+                        let text = level_name + " (" + "\(number_of_samples)" + ", " + "\(number_of_training_samples))"
 
                         cell.update_unselected(text: text)
 
@@ -127,7 +127,7 @@ class KNNTrainingTestSelection: Component, UITableViewDataSource, UITableViewDel
                         let level_name = knn.sample_comparison_level_names[row]
                         let training_set_sample = knn.selected_sample_indices.contains(sample_index)
                         
-                        let text = sample_name + "," + level_name
+                        let text = sample_name + " (" + level_name + ")"
                         
                         if training_set_sample {
                                 cell.update_selected_checkmark(text: text)
