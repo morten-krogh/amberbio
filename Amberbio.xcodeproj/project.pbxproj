@@ -190,6 +190,7 @@
 		60B4019B1BA1C3F100D8DD80 /* parse_values.c in Sources */ = {isa = PBXBuildFile; fileRef = 60B4009E1BA19C7900D8DD80 /* parse_values.c */; settings = {ASSET_TAGS = (); }; };
 		60B4019C1BA1C48600D8DD80 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 60B401681BA1B2ED00D8DD80 /* libsqlite3.dylib */; };
 		60D5CE361BC2545400B0D88A /* KNN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D5CE351BC2545400B0D88A /* KNN.swift */; settings = {ASSET_TAGS = (); }; };
+		60D5CE381BC26CD100B0D88A /* KNNTrainingTestSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D5CE371BC26CD100B0D88A /* KNNTrainingTestSelection.swift */; settings = {ASSET_TAGS = (); }; };
 		60E06B9E1BAC3D2F00B05223 /* RemoveMolecules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E06B9D1BAC3D2F00B05223 /* RemoveMolecules.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
@@ -395,6 +396,7 @@
 		60B401881BA1BEC400D8DD80 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		60B4018A1BA1BEC400D8DD80 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		60D5CE351BC2545400B0D88A /* KNN.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KNN.swift; sourceTree = "<group>"; };
+		60D5CE371BC26CD100B0D88A /* KNNTrainingTestSelection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KNNTrainingTestSelection.swift; sourceTree = "<group>"; };
 		60E06B9D1BAC3D2F00B05223 /* RemoveMolecules.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoveMolecules.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -525,6 +527,7 @@
 				60B4007C1BA19C7900D8DD80 /* ImportData.swift */,
 				60B4007D1BA19C7900D8DD80 /* InfoButton.swift */,
 				6099D23B1BBED42300F176BD /* KNNFactorSelection.swift */,
+				60D5CE371BC26CD100B0D88A /* KNNTrainingTestSelection.swift */,
 				6099D23D1BBEDF6500F176BD /* KNNValidationSelection.swift */,
 				60B400821BA19C7900D8DD80 /* LinearRegressionPlot.swift */,
 				60B400831BA19C7900D8DD80 /* LinearRegressionSelection.swift */,
@@ -1026,6 +1029,7 @@
 				60B400EB1BA19C7900D8DD80 /* DataSetTable.swift in Sources */,
 				60B400DE1BA19C7900D8DD80 /* CenteredHeaderFooterView.swift in Sources */,
 				60B401331BA19C7900D8DD80 /* PieChart.swift in Sources */,
+				60D5CE381BC26CD100B0D88A /* KNNTrainingTestSelection.swift in Sources */,
 				60B401061BA19C7900D8DD80 /* Home.swift in Sources */,
 				60B400F11BA19C7900D8DD80 /* DocumentPickerImport.swift in Sources */,
 				60B401441BA19C7900D8DD80 /* SegmentedControlTableViewCell.swift in Sources */,
