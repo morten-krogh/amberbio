@@ -10,6 +10,7 @@ class KNN {
         var sample_indices = [] as [Int]
         var sample_names = [] as [String]
         var sample_comparison_level_id = [] as [Int]
+        var sample_comparison_level_names = [] as [String]
         var number_of_samples_per_comparison_level_id = [:] as [Int: Int]
 
         enum ValidationMethod {
@@ -40,10 +41,12 @@ class KNN {
                 }
                 for i in 0 ..< state.sample_ids.count {
                         let level_id = state.level_ids_by_factor_and_sample[comparison_factor_index][i]
+                        let level_name = state.level_names_by_factor_and_sample[comparison_factor_index][i]
                         if comparison_level_ids.indexOf(level_id) != nil {
                                 sample_indices.append(i)
                                 sample_names.append(state.sample_names[i])
                                 sample_comparison_level_id.append(level_id)
+                                sample_comparison_level_names.append(level_name)
                                 number_of_samples_per_comparison_level_id[level_id]?++
                         }
 
