@@ -189,6 +189,7 @@
 		60B4019A1BA1C38800D8DD80 /* parse_values.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400A01BA19C7900D8DD80 /* parse_values.swift */; settings = {ASSET_TAGS = (); }; };
 		60B4019B1BA1C3F100D8DD80 /* parse_values.c in Sources */ = {isa = PBXBuildFile; fileRef = 60B4009E1BA19C7900D8DD80 /* parse_values.c */; settings = {ASSET_TAGS = (); }; };
 		60B4019C1BA1C48600D8DD80 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 60B401681BA1B2ED00D8DD80 /* libsqlite3.dylib */; };
+		60D5CE361BC2545400B0D88A /* KNN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D5CE351BC2545400B0D88A /* KNN.swift */; settings = {ASSET_TAGS = (); }; };
 		60E06B9E1BAC3D2F00B05223 /* RemoveMolecules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E06B9D1BAC3D2F00B05223 /* RemoveMolecules.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
@@ -393,6 +394,7 @@
 		60B401851BA1BEC400D8DD80 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		60B401881BA1BEC400D8DD80 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		60B4018A1BA1BEC400D8DD80 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		60D5CE351BC2545400B0D88A /* KNN.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KNN.swift; sourceTree = "<group>"; };
 		60E06B9D1BAC3D2F00B05223 /* RemoveMolecules.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoveMolecules.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -674,6 +676,7 @@
 				60B4003E1BA19BED00D8DD80 /* NumberFormat.swift */,
 				60B4003F1BA19BED00D8DD80 /* Serialize.swift */,
 				60014BC61BB5CB82001A79B1 /* Sort.swift */,
+				60D5CE351BC2545400B0D88A /* KNN.swift */,
 			);
 			name = Functions;
 			sourceTree = "<group>";
@@ -950,6 +953,7 @@
 				60B400FA1BA19C7900D8DD80 /* FactorContingencyTable.swift in Sources */,
 				60B401221BA19C7900D8DD80 /* PairedLevel.swift in Sources */,
 				60B400EC1BA19C7900D8DD80 /* Date.swift in Sources */,
+				60D5CE361BC2545400B0D88A /* KNN.swift in Sources */,
 				60B4014F1BA19C7900D8DD80 /* sqlite_info.swift in Sources */,
 				60B401541BA19C7900D8DD80 /* TableOfAttributedStrings.swift in Sources */,
 				60B4013F1BA19C7900D8DD80 /* RootComponent.swift in Sources */,

@@ -86,6 +86,6 @@ class KNNValidationSelection: Component, UITableViewDataSource, UITableViewDeleg
         }
 
         func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-         
+
         }
 }
