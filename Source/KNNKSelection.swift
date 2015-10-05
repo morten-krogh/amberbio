@@ -13,16 +13,21 @@ class KNNKSelectionState: PageState {
         }
 }
 
-class KNNKSelection: Component {
+class KNNKSelection: Component, UITextFieldDelegate {
 
         var knn_k_selection_state: KNNKSelectionState!
 
+        let classify_button = UIButton(type: .System)
         let info_label = UILabel()
         let k_label = UILabel()
         let text_field = UITextField()
 
         override func viewDidLoad() {
                 super.viewDidLoad()
+
+                classify_button.setAttributedTitle(astring_body(string: "Classify"), forState: .Normal)
+                classify_button.addTarget(self, action: "classify_action", forControlEvents: UIControlEvents.TouchUpInside)
+                view.addSubview(classify_button)
 
                 info_label.text = "Select the number of nearest neighbors"
                 info_label.font = font_body
@@ -39,9 +44,12 @@ class KNNKSelection: Component {
                 text_field.autocorrectionType = UITextAutocorrectionType.No
                 text_field.borderStyle = UITextBorderStyle.Bezel
                 text_field.layer.masksToBounds = true
-//                text_field.delegate = self
+                text_field.delegate = self
 
                 view.addSubview(text_field)
+
+                let tap_recognizer = UITapGestureRecognizer(target: self, action: "tap_action")
+                view.addGestureRecognizer(tap_recognizer)
         }
 
         override func viewWillLayoutSubviews() {
@@ -50,6 +58,10 @@ class KNNKSelection: Component {
                 let width = view.frame.width
 
                 var origin_y = 40 as CGFloat
+
+                classify_button.sizeToFit()
+                classify_button.center = CGPoint(x: width / 2, y: origin_y)
+                origin_y = CGRectGetMaxY(classify_button.frame) + 20
 
                 info_label.sizeToFit()
                 info_label.center = CGPoint(x: width / 2, y: origin_y + info_label.frame.height / 2)
@@ -76,6 +88,46 @@ class KNNKSelection: Component {
                 text_field.text = "\(knn_k_selection_state.knn.k)"
         }
 
+        func textFieldDidEndEditing(textField: UITextField) {
+                correct_text_field()
+                let k = Int(textField.text!)!
+                knn_k_selection_state.knn.k = k
+        }
 
+        func textFieldShouldReturn(textField: UITextField) -> Bool {
+                textField.resignFirstResponder()
+                return true
+        }
 
+        func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+                if range.length != 0 && string.isEmpty {
+                        return true
+                }
+
+                return Int(string) != nil
+        }
+
+        func correct_text_field() {
+                let text = text_field.text ?? ""
+                if let number = Int(text) {
+                        if number < 1 {
+                                text_field.text = "1"
+                        } else if number > knn_k_selection_state.knn.selected_sample_indices.count {
+                                text_field.text = "\(knn_k_selection_state.knn.selected_sample_indices.count)"
+                        }
+                } else {
+                        text_field.text = "1"
+                }
+        }
+
+        func classify_action() {
+                text_field.resignFirstResponder()
+
+                print(knn_k_selection_state.knn.k)
+
+        }
+
+        func tap_action() {
+                text_field.resignFirstResponder()
+        }
 }
