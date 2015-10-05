@@ -7,7 +7,7 @@ class KNNTrainingTestSelectionState: PageState {
         init(knn: KNN) {
                 self.knn = knn
                 super.init()
-                name = "knn_training_test_selection
+                name = "knn_training_test_selection"
                 title = astring_body(string: "k nearest neighbor classification")
                 info = "Select the samples for the training set.\n\nSelecting a level from a factor leads to inclusion of all samples with that level in the training set."
         }
