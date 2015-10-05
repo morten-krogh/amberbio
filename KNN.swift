@@ -2,10 +2,27 @@ import Foundation
 
 class KNN {
 
-        let comparison_factor_id: Int
-        let comparison_level_ids: [Int]
-        let comparison_factor_name: String
-        let comparison_level_names: [String]
+        var comparison_factor_id = 0
+        var comparison_level_ids = [] as [Int]
+        var comparison_factor_name = ""
+        var comparison_level_names = [] as [String]
+
+        var sample_indices = [] as [Int]
+        var sample_names = [] as [String]
+        var sample_comparison_level_id = [] as [Int]
+        var number_of_samples_per_comparison_level_id = [:] as [Int: Int]
+
+        enum ValidationMethod {
+                case TrainingTest
+                case LeaveOneOut
+                case KFoldCrossValidation
+        }
+        var validation_method = ValidationMethod.TrainingTest
+
+        var selected_level_ids = [] as Set<Int>
+        var selected_sample_indices = [] as Set<Int>
+        var training_sample_indices = [] as Set<Int>
+        var number_of_training_samples_per_comparison_level_id = [:] as [Int: Int]
 
         init(comparison_factor_id: Int, comparison_level_ids: [Int]) {
                 self.comparison_factor_id = comparison_factor_id
@@ -13,17 +30,11 @@ class KNN {
 
                 let comparison_factor_index = state.factor_ids.indexOf(comparison_factor_id)!
                 comparison_factor_name = state.factor_names[comparison_factor_index]
-                var level_names = [] as [String]
                 for level_id in comparison_level_ids {
                         let level_index = state.level_ids_by_factor[comparison_factor_index].indexOf(level_id)!
-                        level_names.append(state.level_names_by_factor[comparison_factor_index][level_index])
+                        comparison_level_names.append(state.level_names_by_factor[comparison_factor_index][level_index])
                 }
-                comparison_level_names = level_names
 
-                var sample_indices = [] as [Int]
-                var sample_names = [] as [String]
-                var sample_comparison_level_id = [] as [Int]
-                var number_of_samples_per_comparison_level_id = [:] as [Int: Int]
                 for level_id in comparison_level_ids {
                         number_of_samples_per_comparison_level_id[level_id] = 0
                 }
@@ -37,15 +48,63 @@ class KNN {
                         }
 
                 }
-
-
-
-
-
         }
 
+        func validation_training_test() {
+                validation_method = ValidationMethod.TrainingTest
+                selected_level_ids = []
+                selected_sample_indices = []
+                calculate_training_set()
+        }
 
+        func toggle_level(level_id level_id: Int) {
+                if selected_level_ids.contains(level_id) {
+                        selected_level_ids.remove(level_id)
+                } else {
+                        selected_level_ids.insert(level_id)
+                }
+                calculate_training_set()
+        }
 
+        func toggle_sample(sample_index sample_index: Int) {
+                if selected_sample_indices.contains(sample_index) {
+                        selected_sample_indices.remove(sample_index)
+                } else {
+                        selected_sample_indices.insert(sample_index)
+                }
+                calculate_training_set()
+        }
+
+        func calculate_training_set() {
+                training_sample_indices = []
+                for level_id in comparison_level_ids {
+                        number_of_samples_per_comparison_level_id[level_id] = 0
+                }
+
+                for i in 0 ..< sample_indices.count {
+                        let sample_index = sample_indices[i]
+                        var selected = false
+
+                        selected = selected_sample_indices.contains(sample_index)
+
+                        for i in 0 ..< state.factor_ids.count {
+                                if selected {
+                                        break
+                                }
+                                if state.factor_ids[i] == comparison_factor_id {
+                                        continue
+                                }
+                                let level_id = state.level_ids_by_factor_and_sample[i][sample_index]
+                                selected = selected_level_ids.contains(level_id)
+                        }
+
+                        if selected {
+                                training_sample_indices.insert(sample_index)
+                                let level_id = sample_comparison_level_id[i]
+                                number_of_samples_per_comparison_level_id[level_id]?++
+                        }
+                }
+        }
 
 
 
