@@ -198,7 +198,6 @@ func parse_separator_separated_string(string string: String, separator: Characte
         var current_row = [] as [String]
         var previous_index = string.startIndex
         var current_index = string.startIndex
-        var charIsCarriageReturn = false
         while current_index < string.endIndex {
                 switch string[current_index] {
                 case separator:
@@ -206,23 +205,17 @@ func parse_separator_separated_string(string string: String, separator: Characte
                         current_row.append(cell)
                         current_index = current_index.advancedBy(1)
                         previous_index = current_index
-                        charIsCarriageReturn = false
-                case "\r":
+                case "\r", "\n", "\r\n":
+                        let ch = string[current_index]
                         let cell = trim(string: string.substringWithRange(previous_index ..< current_index))
                         current_row.append(cell)
-                        current_index = current_index.advancedBy(1)
-                        previous_index = current_index
-                        charIsCarriageReturn = true
-                case "\n", "\r\n":
-                        if !charIsCarriageReturn {
-                                let cell = trim(string: string.substringWithRange(previous_index ..< current_index))
-                                current_row.append(cell)
-                        }
                         result.append(current_row)
                         current_row = []
                         current_index = current_index.advancedBy(1)
+                        if ch == "\r" && current_index < string.endIndex && string[current_index] == "\n" {
+                                current_index = current_index.advancedBy(1)
+                        }
                         previous_index = current_index
-                        charIsCarriageReturn = false
                 default:
                         current_index = current_index.advancedBy(1)
                 }
