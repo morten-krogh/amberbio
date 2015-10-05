@@ -9,7 +9,7 @@ class KNNValidationSelectionState: PageState {
                 super.init()
                 name = "knn_validation_selection"
                 title = astring_body(string: "k nearest neighbor classification")
-                info = "Select the type of training and testing."
+                info = "Select the type of validation."
         }
 }
 
