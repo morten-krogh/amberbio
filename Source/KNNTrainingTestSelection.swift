@@ -113,7 +113,7 @@ class KNNTrainingTestSelection: Component, UITableViewDataSource, UITableViewDel
                         let sample_index = knn.sample_indices[row]
                         let sample_name = knn.sample_names[row]
                         let level_name = knn.sample_comparison_level_names[row]
-                        let training_set_sample = knn.training_sample_indices.contains(sample_index)
+                        let training_set_sample = knn.selected_sample_indices.contains(sample_index)
                         
                         let text = sample_name + "," + level_name
                         
@@ -147,7 +147,7 @@ class KNNTrainingTestSelection: Component, UITableViewDataSource, UITableViewDel
                 } else if section > 1 {
                         let factor_index = section_to_factor_index(section: section)
                         let level_id = state.level_ids_by_factor[factor_index][row]
-                        knn.toggle_level(level_id: level_id)
+                        knn.toggle_level(factor_index: factor_index, level_id: level_id)
                         render()
                 }
         }

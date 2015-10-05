@@ -22,7 +22,6 @@ class KNN {
 
         var selected_level_ids = [] as Set<Int>
         var selected_sample_indices = [] as Set<Int>
-        var training_sample_indices = [] as Set<Int>
         var number_of_training_samples_per_comparison_level_id = [:] as [Int: Int]
 
         init(comparison_factor_id: Int, comparison_level_ids: [Int]) {
@@ -60,11 +59,24 @@ class KNN {
                 calculate_training_set()
         }
 
-        func toggle_level(level_id level_id: Int) {
+        func toggle_level(factor_index factor_index: Int, level_id: Int) {
+                var sample_indices_for_level = [] as [Int]
+                for sample_index in sample_indices {
+                        if state.level_ids_by_factor_and_sample[factor_index][sample_index] == level_id {
+                                sample_indices_for_level.append(sample_index)
+                        }
+                }
+
                 if selected_level_ids.contains(level_id) {
                         selected_level_ids.remove(level_id)
+                        for sample_index in sample_indices_for_level {
+                                selected_sample_indices.remove(sample_index)
+                        }
                 } else {
                         selected_level_ids.insert(level_id)
+                        for sample_index in sample_indices_for_level {
+                                selected_sample_indices.insert(sample_index)
+                        }
                 }
                 calculate_training_set()
         }
@@ -79,35 +91,28 @@ class KNN {
         }
 
         func calculate_training_set() {
-                training_sample_indices = []
                 for level_id in comparison_level_ids {
                         number_of_training_samples_per_comparison_level_id[level_id] = 0
                 }
 
                 for i in 0 ..< sample_indices.count {
                         let sample_index = sample_indices[i]
-                        var selected = false
 
-                        selected = selected_sample_indices.contains(sample_index)
-
-                        for i in 0 ..< state.factor_ids.count {
-                                if selected {
-                                        break
-                                }
-                                if state.factor_ids[i] == comparison_factor_id {
-                                        continue
-                                }
-                                let level_id = state.level_ids_by_factor_and_sample[i][sample_index]
-                                selected = selected_level_ids.contains(level_id)
-                        }
-
-                        if selected {
-                                training_sample_indices.insert(sample_index)
+                        if selected_sample_indices.contains(sample_index) {
                                 let level_id = sample_comparison_level_id[i]
                                 number_of_training_samples_per_comparison_level_id[level_id]?++
                         }
+//                        for i in 0 ..< state.factor_ids.count {
+//                                if selected {
+//                                        break
+//                                }
+//                                if state.factor_ids[i] == comparison_factor_id {
+//                                        continue
+//                                }
+//                                let level_id = state.level_ids_by_factor_and_sample[i][sample_index]
+//                                selected = selected_level_ids.contains(level_id)
+//                        }
+//
                 }
         }
-
-
 }
