@@ -53,7 +53,13 @@ class KNNTrainingTestSelection: Component, UITableViewDataSource, UITableViewDel
         func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
                 if section == 0 {
                         let header = tableView.dequeueReusableHeaderFooterViewWithIdentifier("tappable-header") as! CenteredHeaderFooterView
-                        header.update_selectable_arrow(text: "Continue")
+                        let knn = knn_training_test_selection_state.knn
+                        let selectable = knn.selected_sample_indices.count > 0 && knn.selected_sample_indices.count < knn.sample_indices.count
+                        if selectable {
+                                header.update_selectable_arrow(text: "Continue")
+                        } else {
+                                header.update_unselected(text: "Continue")
+                        }
                         if header.tap_recognizer == nil {
                                 header.addTapGestureRecognizer(target: self, action: "header_tap_action:")
                         }
@@ -159,23 +165,12 @@ class KNNTrainingTestSelection: Component, UITableViewDataSource, UITableViewDel
         }
 
         func header_tap_action(sender: UITapGestureRecognizer) {
-//                if let section = sender.view?.tag {
-//                        var selected_level_ids_in_section = [] as [Int]
-//                        for level_id in state.level_ids_by_factor[section] {
-//                                if knn_factor_selection_state.selected_level_ids.contains(level_id) {
-//                                        selected_level_ids_in_section.append(level_id)
-//                                }
-//                        }
-//
-//                        if selected_level_ids_in_section.count < 2 {
-//                                alert(title: "Too few selected levels", message: "At least two levels must be selected", view_controller: self)
-//                        } else {
-//                                let knn = KNN(comparison_factor_id: state.factor_ids[section], comparison_level_ids: selected_level_ids_in_section)
-//                                let knn_validation_selection_state = KNNValidationSelectionState(knn: knn)
-//                                state.navigate(page_state: knn_validation_selection_state)
-//                                state.render()
-//                        }
-//                }
+                let knn = knn_training_test_selection_state.knn
+                let selectable = knn.selected_sample_indices.count > 0 && knn.selected_sample_indices.count < knn.sample_indices.count
+
+                if selectable {
+                        print("continue")
+                }
         }
         
         func section_to_factor_index(section section: Int) -> Int {
