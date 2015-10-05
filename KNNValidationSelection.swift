@@ -82,6 +82,17 @@ class KNNValidationSelection: Component, UITableViewDataSource, UITableViewDeleg
         }
 
         func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+                switch indexPath.row {
+                case 0:
+                        knn_validation_selection_state.knn.validation_training_test()
+                        let page_state = KNNTrainingTestSelectionState(knn: knn_validation_selection_state.knn)
+                        state.navigate(page_state: page_state)
+                        state.render()
+                case 1:
+                        break
+                default:
+                        break
+                }
 
         }
 }

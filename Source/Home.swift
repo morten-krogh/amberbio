@@ -23,17 +23,18 @@ let home_page_name_to_section_row = [
         "linear_regression_selection": (4, 3),
         "hierarchical_clustering_selection": (5, 0),
         "pca": (5, 1),
-        "logarithm_transform": (6, 0),
-        "sample_normalization": (6, 1),
-        "factor_elimination": (6, 2),
-        "remove_samples": (6, 3),
-        "remove_molecules": (6, 4),
-        "filter_molecules": (6, 5),
-        "edit_project": (7, 0),
-        "sample_names": (7, 1),
-        "molecule_annotations": (7, 2),
-        "color_selection_level": (7, 3),
-        "edit_factors": (7, 4)] as [String: (section: Int, row: Int)]
+        "knn_factor_selection": (6, 0),
+        "logarithm_transform": (7, 0),
+        "sample_normalization": (7, 1),
+        "factor_elimination": (7, 2),
+        "remove_samples": (7, 3),
+        "remove_molecules": (7, 4),
+        "filter_molecules": (7, 5),
+        "edit_project": (8, 0),
+        "sample_names": (8, 1),
+        "molecule_annotations": (8, 2),
+        "color_selection_level": (8, 3),
+        "edit_factors": (8, 4)] as [String: (section: Int, row: Int)]
 
 class HomeState: PageState {
 
