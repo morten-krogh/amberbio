@@ -41,7 +41,7 @@ class KNNTrainingTestSelection: Component, UITableViewDataSource, UITableViewDel
         }
 
         func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-                return 1  + 1 // + state.factor_ids.count
+                return 1 + state.factor_ids.count
         }
 
         func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -55,23 +55,12 @@ class KNNTrainingTestSelection: Component, UITableViewDataSource, UITableViewDel
                         header.update_selectable_arrow(text: "Continue")
                 } else if section == 1 {
                         header.update_normal(text: "Select training samples")
+                } else {
+                        let factor_index = section_to_factor_index(section: section)
+                        let factor_name = state.factor_names[factor_index]
+                        header.update_normal(text: factor_name)
                 }
 
-
-//                for level_id in state.level_ids_by_factor[section] {
-//                        if knn_factor_selection_state.selected_level_ids.contains(level_id) {
-//                                number_of_selected_levels++
-//                        }
-//                }
-//
-//                let text = state.factor_names[section]
-//                if number_of_selected_levels >= 2 {
-//                        header.update_selectable_arrow(text: text)
-//                } else {
-//                        header.update_unselected(text: text)
-//                }
-//                header.tag = section
-//
 //                if header.tap_recognizer == nil {
 //                        header.addTapGestureRecognizer(target: self, action: "header_tap_action:")
 //                }
@@ -95,7 +84,8 @@ class KNNTrainingTestSelection: Component, UITableViewDataSource, UITableViewDel
                 } else if section == 1 {
                         return knn_training_test_selection_state.knn.sample_indices.count
                 } else {
-                        return state.level_ids_by_factor[section].count
+                        let factor_index = section_to_factor_index(section: section)
+                        return state.level_ids_by_factor[factor_index].count
                 }
         }
 
@@ -132,26 +122,34 @@ class KNNTrainingTestSelection: Component, UITableViewDataSource, UITableViewDel
                         } else {
                                 cell.update_unselected(text: text)
                         }
+                } else {
+                        let factor_index = section_to_factor_index(section: section)
+                        let level_id = state.level_ids_by_factor[factor_index][row]
+                        let level_name = state.level_names_by_factor[factor_index][row]
+                        if knn.selected_level_ids.contains(level_id) {
+                                cell.update_selected_checkmark(text: level_name)
+                        } else {
+                                cell.update_unselected(text: level_name)
+                        }
                 }
-//                let level_id = state.level_ids_by_factor[indexPath.section][indexPath.row]
-//                let level_name = state.level_names_by_factor[indexPath.section][indexPath.row]
-//
-//                if knn_factor_selection_state.selected_level_ids.contains(level_id) {
-//                        cell.update_selected_checkmark(text: level_name)
-//                } else {
-//                        cell.update_unselected(text: level_name)
-//                }
+
                 return cell
         }
 
         func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-//                let level_id = state.level_ids_by_factor[indexPath.section][indexPath.row]
-//                if knn_factor_selection_state.selected_level_ids.contains(level_id) {
-//                        knn_factor_selection_state.selected_level_ids.remove(level_id)
-//                } else {
-//                        knn_factor_selection_state.selected_level_ids.insert(level_id)
-//                }
-//                table_view.reloadData()
+                
+                let (section, row) = (indexPath.section, indexPath.row)
+                let knn = knn_training_test_selection_state.knn
+
+                if section == 1 {
+                        knn.toggle_sample(sample_index: row)
+                        render()
+                } else if section > 1 {
+                        let factor_index = section_to_factor_index(section: section)
+                        let level_id = state.level_ids_by_factor[factor_index][row]
+                        knn.toggle_level(level_id: level_id)
+                        render()
+                }
         }
 
         func header_tap_action(sender: UITapGestureRecognizer) {
@@ -173,4 +171,10 @@ class KNNTrainingTestSelection: Component, UITableViewDataSource, UITableViewDel
 //                        }
 //                }
         }
+        
+        func section_to_factor_index(section section: Int) -> Int {
+                let comparison_factor_index = state.factor_ids.indexOf(knn_training_test_selection_state.knn.comparison_factor_id)!
+                return section < comparison_factor_index + 2 ? section - 2 : section - 1
+        }
+        
 }
