@@ -6,3 +6,4 @@
 #import "remove_molecules.h"
 #import "distributions.h"
 #import "linear_regression.h"
+#import "knn.h"

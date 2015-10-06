@@ -26,6 +26,11 @@ class KNN {
 
         var k = 1
 
+        var test_sample_indices = [] as [Int]
+        var test_sample_names = [] as [String]
+        var test_sample_comparison_level_id = [] as [Int]
+        var test_sample_classified_labels = [] as [Int]
+
         init(comparison_factor_id: Int, comparison_level_ids: [Int]) {
                 self.comparison_factor_id = comparison_factor_id
                 self.comparison_level_ids = comparison_level_ids
@@ -117,5 +122,40 @@ class KNN {
         func deselect_all_samples() {
                 selected_sample_indices = []
                 calculate_training_set()
+        }
+
+        func classify() {
+
+        }
+
+        func classify_training_test() {
+                var training_sample_indices = [] as [Int]
+                var training_labels = [] as [Int]
+                test_sample_indices = []
+                test_sample_names = []
+                test_sample_comparison_level_id = []
+
+                for i in 0 ..< sample_indices.count {
+                        let sample_index = sample_indices[i]
+                        if selected_sample_indices.contains(sample_index) {
+                                training_sample_indices.append(sample_index)
+                                training_labels.append(sample_comparison_level_id[i])
+                        } else {
+                                test_sample_indices.append(sample_index)
+                                test_sample_names.append(sample_names[i])
+                                test_sample_comparison_level_id.append(sample_comparison_level_id[i])
+                        }
+                }
+
+                test_sample_classified_labels = [Int](count: test_sample_indices.count, repeatedValue: -1)
+
+//                knn_classify_training_test(<#T##values: UnsafePointer<Double>##UnsafePointer<Double>#>, <#T##number_of_molecules: Int##Int#>, <#T##number_of_samples: Int##Int#>, <#T##training_sample_indices: UnsafePointer<Int>##UnsafePointer<Int>#>, <#T##training_labels: UnsafePointer<Int>##UnsafePointer<Int>#>, <#T##number_of_training_samples: Int##Int#>, <#T##test_sample_indices: UnsafePointer<Int>##UnsafePointer<Int>#>, <#T##number_of_test_samples: Int##Int#>, <#T##k: Int##Int#>, <#T##test_labels: UnsafeMutablePointer<Int>##UnsafeMutablePointer<Int>#>)
+
+                
+
+
+
+
+
         }
 }
