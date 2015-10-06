@@ -29,6 +29,7 @@
 		605F52321BC2ED2D00033B91 /* KNNKSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605F52311BC2ED2D00033B91 /* KNNKSelection.swift */; settings = {ASSET_TAGS = (); }; };
 		605F52351BC3B37300033B91 /* knn.c in Sources */ = {isa = PBXBuildFile; fileRef = 605F52331BC3B37300033B91 /* knn.c */; settings = {ASSET_TAGS = (); }; };
 		605F52371BC3D9EF00033B91 /* KNNResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605F52361BC3D9EF00033B91 /* KNNResult.swift */; settings = {ASSET_TAGS = (); }; };
+		605F52391BC400EF00033B91 /* ClassificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605F52381BC400EF00033B91 /* ClassificationTableViewCell.swift */; settings = {ASSET_TAGS = (); }; };
 		6099D23C1BBED42400F176BD /* KNNFactorSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6099D23B1BBED42300F176BD /* KNNFactorSelection.swift */; settings = {ASSET_TAGS = (); }; };
 		6099D23E1BBEDF6500F176BD /* KNNValidationSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6099D23D1BBEDF6500F176BD /* KNNValidationSelection.swift */; settings = {ASSET_TAGS = (); }; };
 		60B400391BA1982900D8DD80 /* state_init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400381BA1982900D8DD80 /* state_init.swift */; settings = {ASSET_TAGS = (); }; };
@@ -243,6 +244,7 @@
 		605F52331BC3B37300033B91 /* knn.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = knn.c; path = Source/knn.c; sourceTree = "<group>"; };
 		605F52341BC3B37300033B91 /* knn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = knn.h; path = Source/knn.h; sourceTree = "<group>"; };
 		605F52361BC3D9EF00033B91 /* KNNResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KNNResult.swift; path = Source/KNNResult.swift; sourceTree = "<group>"; };
+		605F52381BC400EF00033B91 /* ClassificationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ClassificationTableViewCell.swift; path = Source/ClassificationTableViewCell.swift; sourceTree = "<group>"; };
 		6099D23B1BBED42300F176BD /* KNNFactorSelection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KNNFactorSelection.swift; path = Source/KNNFactorSelection.swift; sourceTree = "<group>"; };
 		6099D23D1BBEDF6500F176BD /* KNNValidationSelection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KNNValidationSelection.swift; path = Source/KNNValidationSelection.swift; sourceTree = "<group>"; };
 		60B400381BA1982900D8DD80 /* state_init.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = state_init.swift; path = Source/state_init.swift; sourceTree = "<group>"; };
@@ -607,6 +609,7 @@
 			children = (
 				60B400501BA19C7900D8DD80 /* CenteredHeaderFooterView.swift */,
 				60B400511BA19C7900D8DD80 /* CenteredTableViewCell.swift */,
+				605F52381BC400EF00033B91 /* ClassificationTableViewCell.swift */,
 				60B400921BA19C7900D8DD80 /* NameDateTableViewCell.swift */,
 				60B400B91BA19C7900D8DD80 /* SearchTableViewCell.swift */,
 				60B400BA1BA19C7900D8DD80 /* SegmentedControlTableViewCell.swift */,
@@ -1026,6 +1029,7 @@
 				605F52321BC2ED2D00033B91 /* KNNKSelection.swift in Sources */,
 				60B400E71BA19C7900D8DD80 /* ContingencyTable.swift in Sources */,
 				60B4013E1BA19C7900D8DD80 /* ResultFiles.swift in Sources */,
+				605F52391BC400EF00033B91 /* ClassificationTableViewCell.swift in Sources */,
 				60B400411BA19BED00D8DD80 /* AttributedString.swift in Sources */,
 				60B401281BA19C7900D8DD80 /* PairwiseLevel.swift in Sources */,
 				60B4015C1BA19C7900D8DD80 /* User.swift in Sources */,

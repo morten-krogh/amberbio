@@ -29,6 +29,8 @@ class KNNResult: Component {
                 table_view.registerClass(SelectAllHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: "select-all-header")
                 table_view.registerClass(UITableViewHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: "footer")
                 table_view.registerClass(CenteredTableViewCell.self, forCellReuseIdentifier: "cell")
+                table_view.registerClass(ClassificationTableViewCell.self, forCellReuseIdentifier: "classification cell")
+
                 table_view.backgroundColor = UIColor.whiteColor()
                 table_view.separatorStyle = .None
                 view.addSubview(table_view)
@@ -77,7 +79,7 @@ class KNNResultSamplesDelegate: NSObject, UITableViewDataSource, UITableViewDele
         }
 
         func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-                return 20
+                return 15
         }
 
         func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
@@ -91,11 +93,11 @@ class KNNResultSamplesDelegate: NSObject, UITableViewDataSource, UITableViewDele
         }
 
         func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-                return centered_table_view_cell_height
+                return classification_table_view_cell_height
         }
 
         func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-                let cell = tableView.dequeueReusableCellWithIdentifier("cell") as! CenteredTableViewCell
+                let cell = tableView.dequeueReusableCellWithIdentifier("classification cell") as! ClassificationTableViewCell
 
                 let sample_index = knn.test_sample_indices_per_level[indexPath.section][indexPath.row]
                 let sample_number = knn.test_sample_indices.indexOf(sample_index)!
@@ -110,10 +112,11 @@ class KNNResultSamplesDelegate: NSObject, UITableViewDataSource, UITableViewDele
                         label_name = knn.comparison_level_names[label_number]
                 }
 
-                let correct = level_id == label
-
-                let text = sample_name + "," + label_name + ", \(correct)"
-                cell.update_unselected(text: text)
+                if level_id == label {
+                        cell.update_success(text_1: sample_name, text_2: label_name)
+                } else {
+                        cell.update_failure(text_1: sample_name, text_2: label_name)
+                }
 
                 return cell
         }
