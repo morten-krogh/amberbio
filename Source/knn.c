@@ -92,8 +92,10 @@ long knn_majority_label(const double* distances, const long* labels, const long 
         return -1;
 }
 
-long knn_classify_training_test(const double* values, const long number_of_molecules, const long number_of_samples, const long* training_sample_indices, const long training_labels, const long number_of_training_samples, const long* test_sample_indices, const long number_of_test_samples, long* test_labels)
+long knn_classify_training_test(const double* values, const long number_of_molecules, const long number_of_samples, const long* training_sample_indices, const long* training_labels, const long number_of_training_samples, const long* test_sample_indices, const long number_of_test_samples, long k, long* test_labels)
 {
+        long majority = k % 2 == 0 ? k /2 + 1 : (k + 1) / 2;
+
         long sample_indices[number_of_training_samples + number_of_test_samples];
 
         for (long i = 0; i < number_of_training_samples; i++) {
@@ -117,26 +119,8 @@ long knn_classify_training_test(const double* values, const long number_of_molec
                 for (long j = 0; j < number_of_training_samples; j++) {
                         distances[j] = knn_distance_square(values, number_of_samples, molecule_indices, molecule_indices_length, training_sample_indices[j], test_sample_indices[i]);
                 }
-                long label = knn_majority_label(distances, training_labels, number_of_training_samples, k, majority);
-
-
-
+                test_labels[i] = knn_majority_label(distances, training_labels, number_of_training_samples, k, majority);
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        return 0;
 }
