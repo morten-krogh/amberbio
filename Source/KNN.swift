@@ -63,6 +63,17 @@ class KNN {
                 }
         }
 
+        func max_k() -> Int {
+                switch validation_method {
+                case .TrainingTest:
+                        return selected_sample_indices.count
+                case .LeaveOneOut:
+                        return sample_indices.count - 1
+                default:
+                        return sample_indices.count - Int(ceil(Double(sample_indices.count) / Double(k)))
+                }
+        }
+
         func validation_training_test() {
                 validation_method = ValidationMethod.TrainingTest
                 selected_level_ids = []

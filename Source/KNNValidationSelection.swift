@@ -44,13 +44,13 @@ class KNNValidationSelection: Component, UITableViewDataSource, UITableViewDeleg
         }
 
         func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-                return centered_header_footer_view_height
+                return centered_header_footer_view_height + 20
         }
 
         func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
                 let header = tableView.dequeueReusableHeaderFooterViewWithIdentifier("header") as! CenteredHeaderFooterView
 
-                header.update_normal(text: "Select the type of training and testing")
+                header.update_normal(text: "Select validation type")
 
                 return header
         }
@@ -60,7 +60,7 @@ class KNNValidationSelection: Component, UITableViewDataSource, UITableViewDeleg
         }
 
         func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-                return centered_table_view_cell_height
+                return centered_table_view_cell_height + 10
         }
 
         func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

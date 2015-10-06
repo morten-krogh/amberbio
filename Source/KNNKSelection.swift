@@ -114,8 +114,8 @@ class KNNKSelection: Component, UITextFieldDelegate {
                 if let number = Int(text) {
                         if number < 1 {
                                 text_field.text = "1"
-                        } else if number > knn_k_selection_state.knn.selected_sample_indices.count {
-                                text_field.text = "\(knn_k_selection_state.knn.selected_sample_indices.count)"
+                        } else if number > knn_k_selection_state.knn.max_k() {
+                                text_field.text = "\(knn_k_selection_state.knn.max_k())"
                         }
                 } else {
                         text_field.text = "1"
