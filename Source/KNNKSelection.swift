@@ -25,7 +25,7 @@ class KNNKSelection: Component, UITextFieldDelegate {
         override func viewDidLoad() {
                 super.viewDidLoad()
 
-                classify_button.setAttributedTitle(astring_body(string: "Classify"), forState: .Normal)
+                classify_button.setAttributedTitle(astring_font_size_color(string: "Classify", font: nil, font_size: 22, color: nil), forState: .Normal)
                 classify_button.addTarget(self, action: "classify_action", forControlEvents: UIControlEvents.TouchUpInside)
                 view.addSubview(classify_button)
 
@@ -56,17 +56,19 @@ class KNNKSelection: Component, UITextFieldDelegate {
                 super.viewWillLayoutSubviews()
 
                 let width = view.frame.width
+                let height = view.frame.height
 
-                var origin_y = 40 as CGFloat
+                let vertical_margin = height > 300 ? 25 : 20 as CGFloat
+                var origin_y = height > 300 ? 40 : 30 as CGFloat
 
                 classify_button.sizeToFit()
                 classify_button.center = CGPoint(x: width / 2, y: origin_y)
-                origin_y = CGRectGetMaxY(classify_button.frame) + 20
+                origin_y = CGRectGetMaxY(classify_button.frame) + vertical_margin
 
                 info_label.sizeToFit()
                 info_label.center = CGPoint(x: width / 2, y: origin_y + info_label.frame.height / 2)
 
-                origin_y = CGRectGetMaxY(info_label.frame) + 20
+                origin_y = CGRectGetMaxY(info_label.frame) + vertical_margin + 10
 
                 k_label.sizeToFit()
 
@@ -74,7 +76,7 @@ class KNNKSelection: Component, UITextFieldDelegate {
                 let text_field_height = 40 as CGFloat
                 let middle_margin = 10 as CGFloat
 
-                var origin_x = (width - k_label.frame.width - text_field_width - middle_margin) / 2
+                var origin_x = (width - text_field_width) / 2 - k_label.frame.width - middle_margin
                 k_label.frame.origin = CGPoint(x: origin_x, y: origin_y + (text_field_height - info_label.frame.height) / 2)
 
                 origin_x += k_label.frame.width + middle_margin
