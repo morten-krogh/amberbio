@@ -154,7 +154,8 @@ class KNNTrainingTestSelection: Component, UITableViewDataSource, UITableViewDel
                 let knn = knn_training_test_selection_state.knn
 
                 if section == 1 {
-                        knn.toggle_sample(sample_index: row)
+                        let sample_index = knn.sample_indices[row]
+                        knn.toggle_sample(sample_index: sample_index)
                         render()
                 } else if section > 1 {
                         let factor_index = section_to_factor_index(section: section)

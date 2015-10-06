@@ -122,7 +122,6 @@ long knn_classify_training_test(const double* values, const long number_of_molec
                 for (long j = 0; j < number_of_training_samples; j++) {
                         distances[j] = knn_distance_square(values, number_of_samples, molecule_indices, molecule_indices_length, training_sample_indices[j], test_sample_indices[i]);
                 }
-                printf("%f\n", distances[0]);
                 test_labels[i] = knn_majority_label(distances, training_labels, number_of_training_samples, k, majority);
         }
 
