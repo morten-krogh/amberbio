@@ -64,8 +64,8 @@ class KNNResult: Component {
                 let height = view.frame.height
                 let top_margin = 20 as CGFloat
 
-                let segmented_control_width = min(500, width - 20)
-                segmented_control.frame.size.width = max(segmented_control.frame.width, segmented_control_width)
+                let segmented_control_width = max(min(500, width - 20), 300)
+                segmented_control.frame.size.width = segmented_control_width
                 let segmented_rect = CGRect(x: 0, y: 0, width: width, height: segmented_control.frame.height + 2 * top_margin)
                 scroll_view_segmented_control.frame = layout_centered_frame(contentSize: segmented_control.frame.size, rect: segmented_rect)
                 scroll_view_segmented_control.contentSize = segmented_control.bounds.size
