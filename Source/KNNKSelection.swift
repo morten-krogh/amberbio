@@ -125,6 +125,9 @@ class KNNKSelection: Component, UITextFieldDelegate {
         func classify_action() {
                 text_field.resignFirstResponder()
                 knn_k_selection_state.knn.classify()
+                let page_state = KNNResultState(knn: knn_k_selection_state.knn)
+                state.navigate(page_state: page_state)
+                state.render()
         }
 
         func tap_action() {

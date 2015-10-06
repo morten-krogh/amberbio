@@ -94,6 +94,10 @@ long knn_majority_label(const double* distances, const long* labels, const long 
 
 long knn_classify_training_test(const double* values, const long number_of_molecules, const long number_of_samples, const long* training_sample_indices, const long* training_labels, const long number_of_training_samples, const long* test_sample_indices, const long number_of_test_samples, long k, long* test_labels)
 {
+        if (number_of_molecules < 1 || number_of_training_samples < 1 || number_of_test_samples < 1) {
+                return -1;
+        }
+
         long majority = k % 2 == 0 ? k /2 + 1 : (k + 1) / 2;
 
         long sample_indices[number_of_training_samples + number_of_test_samples];
