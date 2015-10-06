@@ -26,6 +26,8 @@ class KNN {
 
         var k = 1
 
+        var classification_success = true
+
         var test_sample_indices = [] as [Int]
         var test_sample_names = [] as [String]
         var test_sample_comparison_level_id = [] as [Int]
@@ -125,7 +127,12 @@ class KNN {
         }
 
         func classify() {
-
+                switch validation_method {
+                case .TrainingTest:
+                        classify_training_test()
+                default:
+                        break
+                }
         }
 
         func classify_training_test() {
@@ -149,8 +156,15 @@ class KNN {
 
                 test_sample_classified_labels = [Int](count: test_sample_indices.count, repeatedValue: -1)
 
-                knn_classify_training_test(state.values, state.number_of_molecules, state.number_of_samples, training_sample_indices, training_labels, training_sample_indices.count, test_sample_indices, test_sample_indices.count, k, &test_sample_classified_labels)
+                if k > training_sample_indices.count {
+                        k = training_sample_indices.count
+                } else if k < 1 {
+                        k = 1
+                }
 
+                let success = knn_classify_training_test(state.values, state.number_of_molecules, state.number_of_samples, training_sample_indices, training_labels, training_sample_indices.count, test_sample_indices, test_sample_indices.count, k, &test_sample_classified_labels)
+
+                classification_success = success == 0
 
                 
 

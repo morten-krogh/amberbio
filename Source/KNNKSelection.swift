@@ -122,9 +122,7 @@ class KNNKSelection: Component, UITextFieldDelegate {
 
         func classify_action() {
                 text_field.resignFirstResponder()
-
-                print(knn_k_selection_state.knn.k)
-
+                knn_k_selection_state.knn.classify()
         }
 
         func tap_action() {
