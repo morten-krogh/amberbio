@@ -36,9 +36,14 @@ double knn_distance_square(const double* values, const long number_of_samples, c
         return distance_square;
 }
 
+int knn_cmp_label(const void* a, const void* b)
+{
+                return (int)(*(long*)a - *(long*)b);
+}
+
 long knn_majority_label(const double* distances, const long* labels, const long number_of_samples, const long k, const long majority) {
 
-        long* short_list = malloc(k * sizeof(long));
+        long short_list[k];
         long max_index = 0;
         for (long i = 0; i < k; i++) {
                 short_list[i] = i;
@@ -48,16 +53,42 @@ long knn_majority_label(const double* distances, const long* labels, const long 
         }
 
         for (long i = k; i < number_of_samples; i++) {
-
-
-                
+                if (distances[i] < distances[max_index]) {
+                        short_list[max_index] = i;
+                }
+                max_index = i;
+                for (long j = 0; j < k; j++) {
+                        if (distances[j] > distances[max_index]) {
+                                max_index = j;
+                        }
+                }
         }
 
+        if (k == 1) {
+                return labels[short_list[0]];
+        }
 
+        long short_list_of_labels[k];
+        for (long i = 0; i < k; i++) {
+                short_list_of_labels[i] = labels[short_list[i]];
+        }
 
+        qsort(short_list_of_labels, k, sizeof(long), knn_cmp_label);
 
-
-        free(short_list);
+        long label = short_list_of_labels[0];
+        long counter = 1;
+        for (long i = 1; i < k; i++) {
+                if (short_list_of_labels[i] == label) {
+                        counter++;
+                        if (counter >= majority) {
+                                return label;
+                        }
+                } else {
+                        label = short_list_of_labels[i];
+                        counter = 1;
+                }
+        }
 
         return -1;
 }
+
