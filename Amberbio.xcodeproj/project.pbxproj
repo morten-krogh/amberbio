@@ -27,6 +27,7 @@
 		602709031BA8054400672D54 /* brain-stem-cells-factors.txt in Resources */ = {isa = PBXBuildFile; fileRef = 602708FF1BA804EA00672D54 /* brain-stem-cells-factors.txt */; settings = {ASSET_TAGS = (); }; };
 		602709041BA8054800672D54 /* brain-stem-cells-values.txt in Resources */ = {isa = PBXBuildFile; fileRef = 602709001BA804EA00672D54 /* brain-stem-cells-values.txt */; settings = {ASSET_TAGS = (); }; };
 		605F52321BC2ED2D00033B91 /* KNNKSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605F52311BC2ED2D00033B91 /* KNNKSelection.swift */; settings = {ASSET_TAGS = (); }; };
+		605F52351BC3B37300033B91 /* knn.c in Sources */ = {isa = PBXBuildFile; fileRef = 605F52331BC3B37300033B91 /* knn.c */; settings = {ASSET_TAGS = (); }; };
 		6099D23C1BBED42400F176BD /* KNNFactorSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6099D23B1BBED42300F176BD /* KNNFactorSelection.swift */; settings = {ASSET_TAGS = (); }; };
 		6099D23E1BBEDF6500F176BD /* KNNValidationSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6099D23D1BBEDF6500F176BD /* KNNValidationSelection.swift */; settings = {ASSET_TAGS = (); }; };
 		60B400391BA1982900D8DD80 /* state_init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400381BA1982900D8DD80 /* state_init.swift */; settings = {ASSET_TAGS = (); }; };
@@ -238,6 +239,8 @@
 		602708FF1BA804EA00672D54 /* brain-stem-cells-factors.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "brain-stem-cells-factors.txt"; path = "demo-data/brain-stem-cells/brain-stem-cells-factors.txt"; sourceTree = "<group>"; };
 		602709001BA804EA00672D54 /* brain-stem-cells-values.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "brain-stem-cells-values.txt"; path = "demo-data/brain-stem-cells/brain-stem-cells-values.txt"; sourceTree = "<group>"; };
 		605F52311BC2ED2D00033B91 /* KNNKSelection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KNNKSelection.swift; path = Source/KNNKSelection.swift; sourceTree = "<group>"; };
+		605F52331BC3B37300033B91 /* knn.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = knn.c; path = Source/knn.c; sourceTree = "<group>"; };
+		605F52341BC3B37300033B91 /* knn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = knn.h; path = Source/knn.h; sourceTree = "<group>"; };
 		6099D23B1BBED42300F176BD /* KNNFactorSelection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KNNFactorSelection.swift; path = Source/KNNFactorSelection.swift; sourceTree = "<group>"; };
 		6099D23D1BBEDF6500F176BD /* KNNValidationSelection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KNNValidationSelection.swift; path = Source/KNNValidationSelection.swift; sourceTree = "<group>"; };
 		60B400381BA1982900D8DD80 /* state_init.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = state_init.swift; path = Source/state_init.swift; sourceTree = "<group>"; };
@@ -704,16 +707,18 @@
 		60B4015F1BA19E7F00D8DD80 /* CFunctions */ = {
 			isa = PBXGroup;
 			children = (
-				60B4009F1BA19C7900D8DD80 /* parse_values.h */,
-				60B4009E1BA19C7900D8DD80 /* parse_values.c */,
-				60B400D41BA19C7900D8DD80 /* values.h */,
-				60B400D31BA19C7900D8DD80 /* values.c */,
-				60B400B11BA19C7900D8DD80 /* remove_molecules.h */,
-				60B400B01BA19C7900D8DD80 /* remove_molecules.c */,
 				60B400611BA19C7900D8DD80 /* distributions.h */,
 				60B400601BA19C7900D8DD80 /* distributions.c */,
+				605F52341BC3B37300033B91 /* knn.h */,
+				605F52331BC3B37300033B91 /* knn.c */,
 				60B400801BA19C7900D8DD80 /* linear_regression.h */,
 				60B4007F1BA19C7900D8DD80 /* linear_regression.c */,
+				60B4009F1BA19C7900D8DD80 /* parse_values.h */,
+				60B4009E1BA19C7900D8DD80 /* parse_values.c */,
+				60B400B11BA19C7900D8DD80 /* remove_molecules.h */,
+				60B400B01BA19C7900D8DD80 /* remove_molecules.c */,
+				60B400D41BA19C7900D8DD80 /* values.h */,
+				60B400D31BA19C7900D8DD80 /* values.c */,
 			);
 			name = CFunctions;
 			sourceTree = "<group>";
@@ -977,6 +982,7 @@
 				60B401531BA19C7900D8DD80 /* Statistics.swift in Sources */,
 				60B400FE1BA19C7900D8DD80 /* Feedback.swift in Sources */,
 				60B401591BA19C7900D8DD80 /* TiledScrollView.swift in Sources */,
+				605F52351BC3B37300033B91 /* knn.c in Sources */,
 				6099D23C1BBED42400F176BD /* KNNFactorSelection.swift in Sources */,
 				60B401231BA19C7900D8DD80 /* PairedPairingFactor.swift in Sources */,
 				60B401561BA19C7900D8DD80 /* TextFieldHeaderFooterView.swift in Sources */,
