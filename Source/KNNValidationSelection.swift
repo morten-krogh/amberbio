@@ -82,17 +82,20 @@ class KNNValidationSelection: Component, UITableViewDataSource, UITableViewDeleg
         }
 
         func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+                let knn = knn_validation_selection_state.knn
+                let page_state: PageState
                 switch indexPath.row {
                 case 0:
-                        knn_validation_selection_state.knn.validation_training_test()
-                        let page_state = KNNTrainingTestSelectionState(knn: knn_validation_selection_state.knn)
-                        state.navigate(page_state: page_state)
-                        state.render()
+                        knn.validation_training_test()
+                        page_state = KNNTrainingTestSelectionState(knn: knn)
                 case 1:
-                        break
+                        knn.validation_leave_one_out()
+                        page_state = KNNKSelectionState(knn: knn)
                 default:
-                        break
+                        knn.validation_k_fold_cross_validation(k_fold: 2)
+                        page_state = KNNKSelectionState(knn: knn)
                 }
-
+                state.navigate(page_state: page_state)
+                state.render()
         }
 }

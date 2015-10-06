@@ -26,6 +26,8 @@ class KNN {
 
         var k = 1
 
+        var k_fold = 2
+
         var classification_success = true
 
         var test_sample_indices = [] as [Int]
@@ -70,15 +72,30 @@ class KNN {
                 case .LeaveOneOut:
                         return sample_indices.count - 1
                 default:
-                        return sample_indices.count - Int(ceil(Double(sample_indices.count) / Double(k)))
+                        return sample_indices.count - Int(ceil(Double(sample_indices.count) / Double(k_fold)))
                 }
         }
 
         func validation_training_test() {
-                validation_method = ValidationMethod.TrainingTest
+                validation_method = .TrainingTest
                 selected_level_ids = []
                 selected_sample_indices = []
                 calculate_training_set()
+        }
+
+        func validation_leave_one_out() {
+                validation_method = .LeaveOneOut
+        }
+
+        func validation_k_fold_cross_validation(k_fold k_fold: Int) {
+                validation_method = .KFoldCrossValidation
+                if k_fold < 2 {
+                        self.k_fold = 2
+                } else if k_fold > sample_indices.count {
+                        self.k_fold = sample_indices.count
+                } else {
+                        self.k_fold = k_fold
+                }
         }
 
         func toggle_level(factor_index factor_index: Int, level_id: Int) {
