@@ -19,6 +19,8 @@ class KNNResult: Component {
 
         let table_view = UITableView()
 
+        var knn_result_samples_delegate: KNNResultSamplesDelegate?
+
         override func viewDidLoad() {
                 super.viewDidLoad()
 
@@ -42,7 +44,7 @@ class KNNResult: Component {
                 knn_result_state = state.page_state as! KNNResultState
                 let knn = knn_result_state.knn
 
-                let knn_result_samples_delegate = KNNResultSamplesDelegate(knn: knn)
+                knn_result_samples_delegate = KNNResultSamplesDelegate(knn: knn)
                 table_view.dataSource = knn_result_samples_delegate
                 table_view.delegate = knn_result_samples_delegate
                 table_view.reloadData()
@@ -85,7 +87,7 @@ class KNNResultSamplesDelegate: NSObject, UITableViewDataSource, UITableViewDele
         }
 
         func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-                return 0
+                return knn.test_sample_indices_per_level[section].count
         }
 
         func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -95,14 +97,24 @@ class KNNResultSamplesDelegate: NSObject, UITableViewDataSource, UITableViewDele
         func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
                 let cell = tableView.dequeueReusableCellWithIdentifier("cell") as! CenteredTableViewCell
 
-//                let level_id = state.level_ids_by_factor[indexPath.section][indexPath.row]
-//                let level_name = state.level_names_by_factor[indexPath.section][indexPath.row]
-//
-//                if knn_factor_selection_state.selected_level_ids.contains(level_id) {
-//                        cell.update_selected_checkmark(text: level_name)
-//                } else {
-//                        cell.update_unselected(text: level_name)
-//                }
+                let sample_index = knn.test_sample_indices_per_level[indexPath.section][indexPath.row]
+                let sample_number = knn.test_sample_indices.indexOf(sample_index)!
+                let sample_name = knn.test_sample_names[sample_number]
+                let level_id = knn.comparison_level_ids[indexPath.section]
+                let label = knn.test_sample_classified_labels[sample_number]
+                let label_name: String
+                if label == -1 {
+                        label_name = "unclassified"
+                } else {
+                        let label_number = knn.comparison_level_ids.indexOf(label)!
+                        label_name = knn.comparison_level_names[label_number]
+                }
+
+                let correct = level_id == label
+
+                let text = sample_name + "," + label_name + ", \(correct)"
+                cell.update_unselected(text: text)
+
                 return cell
         }
 }

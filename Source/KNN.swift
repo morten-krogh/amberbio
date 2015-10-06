@@ -33,6 +33,8 @@ class KNN {
         var test_sample_comparison_level_id = [] as [Int]
         var test_sample_classified_labels = [] as [Int]
 
+        var test_sample_indices_per_level = [] as [[Int]]
+
         init(comparison_factor_id: Int, comparison_level_ids: [Int]) {
                 self.comparison_factor_id = comparison_factor_id
                 self.comparison_level_ids = comparison_level_ids
@@ -133,6 +135,7 @@ class KNN {
                 default:
                         break
                 }
+                summarize()
         }
 
         func classify_training_test() {
@@ -165,12 +168,26 @@ class KNN {
                 let success = knn_classify_training_test(state.values, state.number_of_molecules, state.number_of_samples, training_sample_indices, training_labels, training_sample_indices.count, test_sample_indices, test_sample_indices.count, k, &test_sample_classified_labels)
 
                 classification_success = success == 0
+        }
 
-                
+        func test_sample_indices_for_level_label(level_id level_id: Int, label: Int) -> [Int] {
+                var sample_indices = [] as [Int]
+                for i in 0 ..< test_sample_indices.count {
+                        if test_sample_comparison_level_id[i] == level_id && test_sample_classified_labels[i] == label {
+                                sample_indices.append(test_sample_indices[i])
+                        }
+                }
+                return sample_indices
+        }
 
-
-
-
-
+        func summarize() {
+                test_sample_indices_per_level = []
+                for level_id in comparison_level_ids {
+                        var sample_indices_per_level = [] as [Int]
+                        for label in comparison_level_ids + [-1] {
+                                sample_indices_per_level += test_sample_indices_for_level_label(level_id: level_id, label: label)
+                        }
+                        test_sample_indices_per_level.append(sample_indices_per_level)
+                }
         }
 }

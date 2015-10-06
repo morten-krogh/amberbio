@@ -55,11 +55,10 @@ long knn_majority_label(const double* distances, const long* labels, const long 
         for (long i = k; i < number_of_samples; i++) {
                 if (distances[i] < distances[max_index]) {
                         short_list[max_index] = i;
-                }
-                max_index = i;
-                for (long j = 0; j < k; j++) {
-                        if (distances[j] > distances[max_index]) {
-                                max_index = j;
+                        for (long j = 0; j < k; j++) {
+                                if (distances[j] > distances[max_index]) {
+                                        max_index = j;
+                                }
                         }
                 }
         }
@@ -123,6 +122,7 @@ long knn_classify_training_test(const double* values, const long number_of_molec
                 for (long j = 0; j < number_of_training_samples; j++) {
                         distances[j] = knn_distance_square(values, number_of_samples, molecule_indices, molecule_indices_length, training_sample_indices[j], test_sample_indices[i]);
                 }
+                printf("%f\n", distances[0]);
                 test_labels[i] = knn_majority_label(distances, training_labels, number_of_training_samples, k, majority);
         }
 
