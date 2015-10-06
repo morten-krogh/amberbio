@@ -1,6 +1,6 @@
 import UIKit
 
-let classification_table_view_cell_height = 75 as CGFloat
+let classification_table_view_cell_height = 70 as CGFloat
 
 class ClassificationTableViewCell: UITableViewCell {
 
@@ -36,7 +36,7 @@ class ClassificationTableViewCell: UITableViewCell {
                 let width = inset_view.frame.width
 
                 let label_height_1 = 30 as CGFloat
-                let label_height_2 = 30 as CGFloat
+                let label_height_2 = 20 as CGFloat
 
                 var origin_y = 0 as CGFloat
                 text_label_1.frame = CGRect(x: 0, y: origin_y, width: width, height: label_height_1)

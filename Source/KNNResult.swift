@@ -4,12 +4,25 @@ class KNNResultState: PageState {
 
         let knn: KNN
 
+        var selected_segment_index = 0
+
+        let info_0 = "0"
+
+        let info_1 = "1"
+
+        let info_2 = "2"
+
         init(knn: KNN) {
                 self.knn = knn
                 super.init()
                 name = "knn_result"
                 title = astring_body(string: "k nearest neighbor classification")
-                info = ""
+                info = info_0
+        }
+
+        func set_selected_segment_index(index index: Int) {
+                selected_segment_index = index
+                info = index == 0 ? info_0 : (index == 1 ? info_1 : info_2)
         }
 }
 
@@ -17,12 +30,20 @@ class KNNResult: Component {
 
         var knn_result_state: KNNResultState!
 
+        let scroll_view_segmented_control = UIScrollView()
+        let segmented_control = UISegmentedControl(items: ["Summary", "Table", "Samples"])
+
         let table_view = UITableView()
 
         var knn_result_samples_delegate: KNNResultSamplesDelegate?
 
         override func viewDidLoad() {
                 super.viewDidLoad()
+
+                view.addSubview(scroll_view_segmented_control)
+
+                segmented_control.addTarget(self, action: "segmented_control_action", forControlEvents: UIControlEvents.ValueChanged)
+                scroll_view_segmented_control.addSubview(segmented_control)
 
                 table_view.registerClass(CenteredHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: "tappable-header")
                 table_view.registerClass(CenteredHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: "header")
@@ -39,17 +60,37 @@ class KNNResult: Component {
         override func viewWillLayoutSubviews() {
                 super.viewWillLayoutSubviews()
 
-                table_view.frame = view.bounds
+                let width = view.frame.width
+                let height = view.frame.height
+                let top_margin = 20 as CGFloat
+
+                let segmented_control_width = min(500, width - 20)
+                segmented_control.frame.size.width = max(segmented_control.frame.width, segmented_control_width)
+                let segmented_rect = CGRect(x: 0, y: 0, width: width, height: segmented_control.frame.height + 2 * top_margin)
+                scroll_view_segmented_control.frame = layout_centered_frame(contentSize: segmented_control.frame.size, rect: segmented_rect)
+                scroll_view_segmented_control.contentSize = segmented_control.bounds.size
+                segmented_control.frame.origin = CGPoint.zero
+
+                let origin_y = CGRectGetMaxY(scroll_view_segmented_control.frame)
+
+                table_view.frame = CGRect(x: 0, y: origin_y, width: width, height: height)
         }
 
         override func render() {
                 knn_result_state = state.page_state as! KNNResultState
                 let knn = knn_result_state.knn
 
+                segmented_control.selectedSegmentIndex = knn_result_state.selected_segment_index
+
                 knn_result_samples_delegate = KNNResultSamplesDelegate(knn: knn)
                 table_view.dataSource = knn_result_samples_delegate
                 table_view.delegate = knn_result_samples_delegate
                 table_view.reloadData()
+        }
+
+        func segmented_control_action() {
+                knn_result_state.set_selected_segment_index(index: segmented_control.selectedSegmentIndex)
+                render()
         }
 }
 
