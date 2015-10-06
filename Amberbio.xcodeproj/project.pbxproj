@@ -217,7 +217,7 @@
 		60014BC01BB5A8C7001A79B1 /* diabetes-factors.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "diabetes-factors.txt"; path = "demo-data/diabetes/diabetes-factors.txt"; sourceTree = "<group>"; };
 		60014BC11BB5A8C7001A79B1 /* diabetes-values.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "diabetes-values.txt"; path = "demo-data/diabetes/diabetes-values.txt"; sourceTree = "<group>"; };
 		60014BC41BB5AC7C001A79B1 /* amberbio-main.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; name = "amberbio-main.sqlite"; path = "database/amberbio-main.sqlite"; sourceTree = "<group>"; };
-		60014BC61BB5CB82001A79B1 /* Sort.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sort.swift; sourceTree = "<group>"; };
+		60014BC61BB5CB82001A79B1 /* Sort.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Sort.swift; path = Source/Sort.swift; sourceTree = "<group>"; };
 		60014BCD1BB968C6001A79B1 /* index.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = index.css; path = manual/index.css; sourceTree = "<group>"; };
 		60014BCF1BB96AD6001A79B1 /* manual.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = manual.html; path = manual/manual.html; sourceTree = "<group>"; };
 		601003491BA18744008A1FF9 /* Amberbio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Amberbio.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -230,7 +230,7 @@
 		601003681BA18744008A1FF9 /* AmberbioUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AmberbioUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6010036C1BA18744008A1FF9 /* AmberbioUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmberbioUITests.swift; sourceTree = "<group>"; };
 		6010036E1BA18744008A1FF9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		602708C91BA2CA0300672D54 /* SelectAllHeaderFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectAllHeaderFooterView.swift; sourceTree = "<group>"; };
+		602708C91BA2CA0300672D54 /* SelectAllHeaderFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SelectAllHeaderFooterView.swift; path = Source/SelectAllHeaderFooterView.swift; sourceTree = "<group>"; };
 		602708E01BA6EE7400672D54 /* iris-factors.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "iris-factors.txt"; path = "demo-data/iris/iris-factors.txt"; sourceTree = "<group>"; };
 		602708E11BA6EE7400672D54 /* iris-values.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "iris-values.txt"; path = "demo-data/iris/iris-values.txt"; sourceTree = "<group>"; };
 		602708F41BA7478500672D54 /* breast-cancer-annotations.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "breast-cancer-annotations.txt"; path = "demo-data/breast-cancer/breast-cancer-annotations.txt"; sourceTree = "<group>"; };
@@ -402,7 +402,7 @@
 		60B4018A1BA1BEC400D8DD80 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		60D5CE351BC2545400B0D88A /* KNN.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KNN.swift; path = Source/KNN.swift; sourceTree = "<group>"; };
 		60D5CE371BC26CD100B0D88A /* KNNTrainingTestSelection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KNNTrainingTestSelection.swift; path = Source/KNNTrainingTestSelection.swift; sourceTree = "<group>"; };
-		60E06B9D1BAC3D2F00B05223 /* RemoveMolecules.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoveMolecules.swift; sourceTree = "<group>"; };
+		60E06B9D1BAC3D2F00B05223 /* RemoveMolecules.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RemoveMolecules.swift; path = Source/RemoveMolecules.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */

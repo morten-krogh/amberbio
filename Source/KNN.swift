@@ -149,7 +149,8 @@ class KNN {
 
                 test_sample_classified_labels = [Int](count: test_sample_indices.count, repeatedValue: -1)
 
-//                knn_classify_training_test(<#T##values: UnsafePointer<Double>##UnsafePointer<Double>#>, <#T##number_of_molecules: Int##Int#>, <#T##number_of_samples: Int##Int#>, <#T##training_sample_indices: UnsafePointer<Int>##UnsafePointer<Int>#>, <#T##training_labels: UnsafePointer<Int>##UnsafePointer<Int>#>, <#T##number_of_training_samples: Int##Int#>, <#T##test_sample_indices: UnsafePointer<Int>##UnsafePointer<Int>#>, <#T##number_of_test_samples: Int##Int#>, <#T##k: Int##Int#>, <#T##test_labels: UnsafeMutablePointer<Int>##UnsafeMutablePointer<Int>#>)
+                knn_classify_training_test(state.values, state.number_of_molecules, state.number_of_samples, training_sample_indices, training_labels, training_sample_indices.count, test_sample_indices, test_sample_indices.count, k, &test_sample_classified_labels)
+
 
                 
 
