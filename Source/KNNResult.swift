@@ -30,7 +30,6 @@ class KNNResult: Component {
 
         var knn_result_state: KNNResultState!
 
-        let scroll_view_segmented_control = UIScrollView()
         let segmented_control = UISegmentedControl(items: ["Summary", "Table", "Samples"])
 
         let table_view = UITableView()
@@ -40,10 +39,8 @@ class KNNResult: Component {
         override func viewDidLoad() {
                 super.viewDidLoad()
 
-                view.addSubview(scroll_view_segmented_control)
-
                 segmented_control.addTarget(self, action: "segmented_control_action", forControlEvents: UIControlEvents.ValueChanged)
-                scroll_view_segmented_control.addSubview(segmented_control)
+                view.addSubview(segmented_control)
 
                 table_view.registerClass(CenteredHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: "tappable-header")
                 table_view.registerClass(CenteredHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: "header")
@@ -64,14 +61,10 @@ class KNNResult: Component {
                 let height = view.frame.height
                 let top_margin = 20 as CGFloat
 
-                let segmented_control_width = max(min(500, width - 20), 300)
-                segmented_control.frame.size.width = segmented_control_width
-                let segmented_rect = CGRect(x: 0, y: 0, width: width, height: segmented_control.frame.height + 2 * top_margin)
-                scroll_view_segmented_control.frame = layout_centered_frame(contentSize: segmented_control.frame.size, rect: segmented_rect)
-                scroll_view_segmented_control.contentSize = segmented_control.bounds.size
-                segmented_control.frame.origin = CGPoint.zero
+                let segmented_control_width = min(500, width - 40)
+                segmented_control.frame = CGRect(x: (width - segmented_control_width) / 2, y: top_margin, width: segmented_control_width, height: segmented_control.frame.height)
 
-                let origin_y = CGRectGetMaxY(scroll_view_segmented_control.frame)
+                let origin_y = CGRectGetMaxY(segmented_control.frame) + top_margin
 
                 table_view.frame = CGRect(x: 0, y: origin_y, width: width, height: height)
         }
