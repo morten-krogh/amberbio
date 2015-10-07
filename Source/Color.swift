@@ -30,6 +30,7 @@ let color_blue = color_from_hex(hex: color_brewer_qualitative_9_set1[1])
 
 let color_success = color_from_hex(hex: color_brewer_qualitative_9_pastel1[2])
 let color_failure = color_from_hex(hex: color_brewer_qualitative_9_pastel1[0])
+let color_additional = color_from_hex(hex: color_brewer_qualitative_9_pastel1[8])
 
 func color_two_digit_hex(value value: Int) -> String {
         let hex = String(value, radix: 16)

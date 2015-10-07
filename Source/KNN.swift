@@ -45,7 +45,7 @@ class KNN {
         var test_sample_level_ids = [] as [Int]
         var test_sample_classified_level_ids = [] as [Int]
 
-        var test_sample_indices_per_level = [] as [[Int]]
+//        var test_sample_indices_per_level = [] as [[Int]]
 
         init(comparison_factor_id: Int, comparison_level_ids: [Int]) {
                 self.comparison_factor_id = comparison_factor_id

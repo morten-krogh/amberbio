@@ -55,4 +55,11 @@ class ClassificationTableViewCell: UITableViewCell {
                 text_label_2.text = text_2
                 inset_view.backgroundColor = color_failure
         }
+
+        func update_additional(text_1 text_1: String, text_2: String) {
+                text_label_1.text = text_1
+                text_label_2.text = text_2
+                inset_view.backgroundColor = color_additional
+        }
+
 }
