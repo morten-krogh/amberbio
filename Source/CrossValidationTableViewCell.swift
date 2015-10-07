@@ -23,6 +23,8 @@ class CrossValidationTableViewCell: UITableViewCell {
                 text_label.textAlignment = .Center
                 inset_view.addSubview(text_label)
 
+                text_field.keyboardType = UIKeyboardType.NumbersAndPunctuation
+                text_field.autocorrectionType = UITextAutocorrectionType.No
                 text_field.backgroundColor = UIColor.whiteColor()
                 text_field.textAlignment = NSTextAlignment.Center
                 text_field.font = font_body

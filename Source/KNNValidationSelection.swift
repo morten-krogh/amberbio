@@ -36,6 +36,7 @@ class KNNValidationSelection: Component, UITableViewDataSource, UITableViewDeleg
                 table_view.separatorStyle = .None
 
                 let tap_recognizer = UITapGestureRecognizer(target: self, action: "tap_action")
+                tap_recognizer.cancelsTouchesInView = false
                 view.addGestureRecognizer(tap_recognizer)
         }
 
@@ -99,7 +100,7 @@ class KNNValidationSelection: Component, UITableViewDataSource, UITableViewDeleg
                         knn.validation_leave_one_out()
                         page_state = KNNKSelectionState(knn: knn)
                 default:
-                        knn.validation_k_fold_cross_validation(k_fold: 2)
+                        knn.validation_k_fold_cross_validation()
                         page_state = KNNKSelectionState(knn: knn)
                 }
                 state.navigate(page_state: page_state)
@@ -109,7 +110,7 @@ class KNNValidationSelection: Component, UITableViewDataSource, UITableViewDeleg
         func textFieldDidEndEditing(textField: UITextField) {
                 correct_text_field(text_field: textField)
                 let k_fold = Int(textField.text!)!
-                knn_validation_selection_state.knn.k_fold = k_fold
+                knn_validation_selection_state.knn.set_k_fold(k_fold: k_fold)
         }
 
         func textFieldShouldReturn(textField: UITextField) -> Bool {

@@ -80,6 +80,16 @@ class KNN {
                 return sample_indices.count
         }
 
+        func set_k_fold(k_fold k_fold: Int) {
+                if k_fold < 2 {
+                        self.k_fold = 2
+                } else if k_fold > sample_indices.count {
+                        self.k_fold = sample_indices.count
+                } else {
+                        self.k_fold = k_fold
+                }
+        }
+
         func validation_training_test() {
                 validation_method = .TrainingTest
                 selected_level_ids = []
@@ -91,15 +101,8 @@ class KNN {
                 validation_method = .LeaveOneOut
         }
 
-        func validation_k_fold_cross_validation(k_fold k_fold: Int) {
+        func validation_k_fold_cross_validation() {
                 validation_method = .KFoldCrossValidation
-                if k_fold < 2 {
-                        self.k_fold = 2
-                } else if k_fold > sample_indices.count {
-                        self.k_fold = sample_indices.count
-                } else {
-                        self.k_fold = k_fold
-                }
         }
 
         func toggle_level(factor_index factor_index: Int, level_id: Int) {
