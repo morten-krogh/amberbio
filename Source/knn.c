@@ -91,10 +91,10 @@ long knn_majority_label(const double* distances, const long* labels, const long 
         return -1;
 }
 
-long knn_classify_training_test(const double* values, const long number_of_molecules, const long number_of_samples, const long* training_sample_indices, const long* training_labels, const long number_of_training_samples, const long* test_sample_indices, const long number_of_test_samples, long k, long* test_labels)
+bool knn_classify_training_test(const double* values, const long number_of_molecules, const long number_of_samples, const long* training_sample_indices, const long* training_labels, const long number_of_training_samples, const long* test_sample_indices, const long number_of_test_samples, long k, long* test_labels)
 {
         if (number_of_molecules < 1 || number_of_training_samples < 1 || number_of_test_samples < 1) {
-                return 0;
+                return false;
         }
 
         long majority = k % 2 == 0 ? k /2 + 1 : (k + 1) / 2;
@@ -114,7 +114,7 @@ long knn_classify_training_test(const double* values, const long number_of_molec
         knn_molecules_without_missing_values(values, number_of_molecules, number_of_samples, sample_indices, number_of_training_samples + number_of_test_samples, molecule_indices, &molecule_indices_length);
 
         if (molecule_indices_length == 0) {
-                return 0;
+                return false;
         }
 
         for (long i = 0; i < number_of_test_samples; i++) {
@@ -125,5 +125,5 @@ long knn_classify_training_test(const double* values, const long number_of_molec
                 test_labels[i] = knn_majority_label(distances, training_labels, number_of_training_samples, k, majority);
         }
 
-        return 1;
+        return true;
 }

@@ -225,7 +225,7 @@ class KNN {
 
                 let success = knn_classify_training_test(state.values, state.number_of_molecules, state.number_of_samples, training_sample_indices, training_level_ids, training_sample_indices.count, classification_sample_indices, classification_sample_indices.count, k, &classification_level_ids)
 
-                if success == 1 {
+                if success {
                         classification_success = true
                         test_sample_classified_level_ids = [Int](classification_level_ids[0 ..< test_sample_indices.count])
                         additional_sample_classified_level_ids = [Int](classification_level_ids[test_sample_indices.count ..< classification_sample_indices.count])
