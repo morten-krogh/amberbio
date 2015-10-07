@@ -22,13 +22,14 @@ class KNN {
         var core_sample_names = [] as [String]
         var core_sample_level_ids = [] as [Int]
         var core_sample_level_names = [] as [String]
-        var core_number_of_samples_per_level_id = [:] as [Int: Int]
 
         var additional_sample_indices = [] as [Int]
-        var additional_sample_name = [] as [String]
+        var additional_sample_names = [] as [String]
         var additional_sample_level_ids = [] as [Int]
         var additional_sample_level_names = [] as [String]
         var additional_sample_classified_level_id = [] as [Int]
+
+        var number_of_samples_per_level_id = [:] as [Int: Int]
 
         var training_level_ids = [] as Set<Int>
         var training_sample_indices = [] as Set<Int>
@@ -51,9 +52,9 @@ class KNN {
                 let comparison_factor_index = state.factor_ids.indexOf(comparison_factor_id)!
                 comparison_factor_name = state.factor_names[comparison_factor_index]
 
-                for i in 0 ..< state.level_ids_by_factor[factor_index].count {
-                        let level_id = state.level_ids_by_factor[factor_index][i]
-                        let level_name = state.level_names_by_factor[factor_index][i]
+                for i in 0 ..< state.level_ids_by_factor[comparison_factor_index].count {
+                        let level_id = state.level_ids_by_factor[comparison_factor_index][i]
+                        let level_name = state.level_names_by_factor[comparison_factor_index][i]
                         if comparison_level_ids.indexOf(level_id) != nil {
                                 self.comparison_level_ids.append(level_id)
                                 comparison_level_names.append(level_name)
@@ -61,41 +62,28 @@ class KNN {
                                 additional_level_ids.append(level_id)
                                 additional_level_names.append(level_name)
                         }
+
+                        number_of_samples_per_level_id[level_id] = 0
                 }
 
                 for i in 0 ..< state.number_of_samples {
                         let sample_name = state.sample_names[i]
                         let level_id = state.level_ids_by_factor_and_sample[comparison_factor_index][i]
-                        
-
-
-                }
-
-
-                for level_id in comparison_level_ids {
-                        core_number_of_samples_per_comparison_level_id[level_id] = 0
-                }
-                for i in 0 ..< state.sample_ids.count {
-                        let level_id = state.level_ids_by_factor_and_sample[comparison_factor_index][i]
                         let level_name = state.level_names_by_factor_and_sample[comparison_factor_index][i]
                         if comparison_level_ids.indexOf(level_id) != nil {
                                 core_sample_indices.append(i)
-                                core_sample_names.append(state.sample_names[i])
-                                core_sample_comparison_level_id.append(level_id)
-                                core_sample_comparison_level_names.append(level_name)
-                                core_number_of_samples_per_comparison_level_id[level_id]?++
+                                core_sample_names.append(sample_name)
+                                core_sample_level_ids.append(level_id)
+                                core_sample_level_names.append(level_name)
+                        } else {
+                                additional_sample_indices.append(i)
+                                additional_sample_names.append(sample_name)
+                                additional_sample_level_ids.append(level_id)
+                                additional_sample_level_names.append(level_name)
+                                additional_sample_classified_level_id.append(0)
                         }
-
+                        number_of_samples_per_level_id[level_id]?++
                 }
-
-                for level_id in state.level_ids_by_factor[comparison_factor_index] {
-                        if comparison_level_ids.indexOf(level_id) == nil {
-                                additional_level_id_to_sample_indices[level_id] = []
-                        }
-                }
-
-
-
         }
 
         func max_k() -> Int {
@@ -178,7 +166,7 @@ class KNN {
                         let sample_index = core_sample_indices[i]
 
                         if training_sample_indices.contains(sample_index) {
-                                let level_id = core_sample_comparison_level_id[i]
+                                let level_id = core_sample_level_ids[i]
                                 training_number_of_samples_per_comparison_level_id[level_id]?++
                         }
                 }
@@ -217,11 +205,11 @@ class KNN {
                         let sample_index = core_sample_indices[i]
                         if training_sample_indices.contains(sample_index) {
                                 training_sample_indices.append(sample_index)
-                                training_labels.append(core_sample_comparison_level_id[i])
+                                training_labels.append(core_sample_level_ids[i])
                         } else {
                                 test_sample_indices.append(sample_index)
                                 test_sample_names.append(core_sample_names[i])
-                                test_sample_comparison_level_id.append(core_sample_comparison_level_id[i])
+                                test_sample_comparison_level_id.append(core_sample_level_ids[i])
                         }
                 }
 
