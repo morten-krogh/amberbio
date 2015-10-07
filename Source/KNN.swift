@@ -254,29 +254,38 @@ class KNN {
 
                 let minimum_size = core_sample_indices.count / k_fold
                 let remainder = core_sample_indices.count % k_fold
+                classification_success = true
                 var counter = 0
                 for i in 0 ..< k_fold {
                         let size = minimum_size + (i < remainder ? 1 : 0)
                         var training_sample_indices = [] as [Int]
                         var training_level_ids = [] as [Int]
                         var classification_sample_indices = [] as [Int]
-                        var classification_level_ids = [] as [Int]
-                        
+                        var classification_level_ids = [Int](count: size, repeatedValue: -1)
+                        for i in 0 ..< core_sample_indices.count {
+                                let j = shuffled_numbers[i]
+                                if i >= counter && i < counter + size {
+                                        classification_sample_indices.append(core_sample_indices[j])
+                                        test_sample_indices.append(core_sample_indices[j])
+                                        test_sample_names.append(core_sample_names[j])
+                                        test_sample_level_ids.append(core_sample_level_ids[j])
+                                } else {
+                                        training_sample_indices.append(core_sample_indices[j])
+                                        training_level_ids.append(core_sample_level_ids[j])
+                                }
+                        }
 
+                        let success = knn_classify_training_test(state.values, state.number_of_molecules, state.number_of_samples, training_sample_indices, training_level_ids, training_sample_indices.count, classification_sample_indices, size, k, &classification_level_ids)
+
+                        if success && classification_success {
+                                test_sample_classified_level_ids += classification_level_ids
+                        } else {
+                                classification_success = false
+                        }
+
+                        counter += size
                 }
-                
-
-
-
-
-
-
-
-
-
         }
-
-
 
 //        func test_sample_indices_for_level_label(level_id level_id: Int, label: Int) -> [Int] {
 //                var sample_indices = [] as [Int]
