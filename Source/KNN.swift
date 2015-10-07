@@ -286,26 +286,4 @@ class KNN {
                         counter += size
                 }
         }
-
-//        func test_sample_indices_for_level_label(level_id level_id: Int, label: Int) -> [Int] {
-//                var sample_indices = [] as [Int]
-//                for i in 0 ..< test_sample_indices.count {
-//                        if test_sample_comparison_level_id[i] == level_id && test_sample_classified_labels[i] == label {
-//                                sample_indices.append(test_sample_indices[i])
-//                        }
-//                }
-//                return sample_indices
-//                return []
-//        }
-
-//        func summarize() {
-//                test_sample_indices_per_level = []
-//                for level_id in comparison_level_ids {
-//                        var sample_indices_per_level = [] as [Int]
-//                        for label in comparison_level_ids + [-1] {
-//                                sample_indices_per_level += test_sample_indices_for_level_label(level_id: level_id, label: label)
-//                        }
-//                        test_sample_indices_per_level.append(sample_indices_per_level)
-//                }
-//        }
 }
