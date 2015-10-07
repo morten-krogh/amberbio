@@ -53,10 +53,10 @@ long knn_majority_label(const double* distances, const long* labels, const long 
         }
 
         for (long i = k; i < number_of_samples; i++) {
-                if (distances[i] < distances[max_index]) {
+                if (distances[i] < distances[short_list[max_index]]) {
                         short_list[max_index] = i;
                         for (long j = 0; j < k; j++) {
-                                if (distances[j] > distances[max_index]) {
+                                if (distances[short_list[j]] > distances[short_list[max_index]]) {
                                         max_index = j;
                                 }
                         }

@@ -15,7 +15,7 @@ class KNNTrainingSelectionState: PageState {
 
 class KNNTrainingSelection: Component, UITableViewDataSource, UITableViewDelegate, SelectAllHeaderFooterViewDelegate {
 
-        var knn_training_selection_state: KNNTrainingTestSelectionState!
+        var knn_training_selection_state: KNNTrainingSelectionState!
         var knn: KNN!
 
         let table_view = UITableView()
@@ -37,7 +37,7 @@ class KNNTrainingSelection: Component, UITableViewDataSource, UITableViewDelegat
         }
 
         override func render() {
-                knn_training_selection_state = state.page_state as! KNNTrainingTestSelectionState
+                knn_training_selection_state = state.page_state as! KNNTrainingSelectionState
                 knn = knn_training_selection_state.knn
                 table_view.dataSource = self
                 table_view.delegate = self

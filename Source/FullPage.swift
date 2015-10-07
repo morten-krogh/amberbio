@@ -207,7 +207,7 @@ class FullPage: Component, UIScrollViewDelegate, UISearchBarDelegate {
                         case "knn_validation_selection":
                                 page = KNNValidationSelection()
                         case "knn_training_selection":
-                                page = KNNTrainingTestSelection()
+                                page = KNNTrainingSelection()
                         case "knn_k_selection":
                                 page = KNNKSelection()
                         case "knn_result":

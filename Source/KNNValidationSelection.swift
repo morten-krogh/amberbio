@@ -95,7 +95,7 @@ class KNNValidationSelection: Component, UITableViewDataSource, UITableViewDeleg
                 switch indexPath.row {
                 case 0:
                         knn.validation_training_test()
-                        page_state = KNNTrainingTestSelectionState(knn: knn)
+                        page_state = KNNTrainingSelectionState(knn: knn)
                 case 1:
                         knn.validation_leave_one_out()
                         page_state = KNNKSelectionState(knn: knn)
