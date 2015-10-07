@@ -137,7 +137,7 @@ class KNNResultSamplesDelegate: NSObject, UITableViewDataSource, UITableViewDele
                 let sample_number = knn.test_sample_indices.indexOf(sample_index)!
                 let sample_name = knn.test_sample_names[sample_number]
                 let level_id = knn.comparison_level_ids[indexPath.section]
-                let label = knn.test_sample_classified_labels[sample_number]
+                let label = knn.test_sample_classified_level_ids[sample_number]
                 let label_name: String
                 if label == -1 {
                         label_name = "unclassified"

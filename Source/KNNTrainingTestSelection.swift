@@ -55,7 +55,7 @@ class KNNTrainingTestSelection: Component, UITableViewDataSource, UITableViewDel
         func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
                 if section == 0 {
                         let header = tableView.dequeueReusableHeaderFooterViewWithIdentifier("tappable-header") as! CenteredHeaderFooterView
-                        let selectable = knn.training_sample_indices.count > 0 && (knn.training_sample_indices.count < knn.core_sample_indices.count || knn.additional_sample_indices.count > 0)
+                        let selectable = knn.training_sample_index_set.count > 0 && (knn.training_sample_index_set.count < knn.core_sample_indices.count || knn.additional_sample_indices.count > 0)
                         if selectable {
                                 header.update_selectable_arrow(text: "Continue")
                         } else {
@@ -123,7 +123,7 @@ class KNNTrainingTestSelection: Component, UITableViewDataSource, UITableViewDel
                         let sample_index = knn.core_sample_indices[row]
                         let sample_name = knn.core_sample_names[row]
                         let level_name = knn.core_sample_level_names[row]
-                        let training_set_sample = knn.training_sample_indices.contains(sample_index)
+                        let training_set_sample = knn.training_sample_index_set.contains(sample_index)
                         
                         let text = sample_name + " (" + level_name + ")"
                         
@@ -136,7 +136,7 @@ class KNNTrainingTestSelection: Component, UITableViewDataSource, UITableViewDel
                         let factor_index = section_to_factor_index(section: section)
                         let level_id = state.level_ids_by_factor[factor_index][row]
                         let level_name = state.level_names_by_factor[factor_index][row]
-                        if knn.training_level_ids.contains(level_id) {
+                        if knn.training_level_id_set.contains(level_id) {
                                 cell.update_selected_checkmark(text: level_name)
                         } else {
                                 cell.update_unselected(text: level_name)
@@ -162,7 +162,7 @@ class KNNTrainingTestSelection: Component, UITableViewDataSource, UITableViewDel
         }
 
         func header_tap_action(sender: UITapGestureRecognizer) {
-                if knn.training_sample_indices.count > 0 && (knn.training_sample_indices.count < knn.core_sample_indices.count || knn.additional_sample_indices.count > 0) {
+                if knn.training_sample_index_set.count > 0 && (knn.training_sample_index_set.count < knn.core_sample_indices.count || knn.additional_sample_indices.count > 0) {
                         let page_state = KNNKSelectionState(knn: knn)
                         state.navigate(page_state: page_state)
                         state.render()

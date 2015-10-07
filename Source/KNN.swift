@@ -45,7 +45,7 @@ class KNN {
         var test_sample_level_ids = [] as [Int]
         var test_sample_classified_level_ids = [] as [Int]
 
-//        var test_sample_indices_per_level = [] as [[Int]]
+        var test_sample_indices_per_level = [] as [[Int]]
 
         init(comparison_factor_id: Int, comparison_level_ids: [Int]) {
                 self.comparison_factor_id = comparison_factor_id
@@ -196,36 +196,44 @@ class KNN {
         }
 
         func classify_training_test() {
-//                var training_
-//                var training_labels = [] as [Int]
-//                test_sample_indices = []
-//                test_sample_names = []
-//                test_sample_level_ids = []
-//                test_sample_classified_level_ids = []
-//
-//                for i in 0 ..< core_sample_indices.count {
-//                        let sample_index = core_sample_indices[i]
-//                        if training_sample_indices.contains(sample_index) {
-//                                training_sample_indices.append(sample_index)
-//                                training_labels.append(core_sample_level_ids[i])
-//                        } else {
-//                                test_sample_indices.append(sample_index)
-//                                test_sample_names.append(core_sample_names[i])
-//                                test_sample_comparison_level_id.append(core_sample_level_ids[i])
-//                        }
-//                }
-//
-//                test_sample_classified_labels = [Int](count: test_sample_indices.count, repeatedValue: -1)
-//
-//                if k > training_sample_indices.count {
-//                        k = training_sample_indices.count
-//                } else if k < 1 {
-//                        k = 1
-//                }
-//
-//                let success = knn_classify_training_test(state.values, state.number_of_molecules, state.number_of_samples, training_sample_indices, training_labels, training_sample_indices.count, test_sample_indices, test_sample_indices.count, k, &test_sample_classified_labels)
-//
-//                classification_success = success == 0
+                var training_sample_indices = [] as [Int]
+                var training_level_ids = [] as [Int]
+                test_sample_indices = []
+                test_sample_names = []
+                test_sample_level_ids = []
+
+                for i in 0 ..< core_sample_indices.count {
+                        let sample_index = core_sample_indices[i]
+                        if training_sample_index_set.contains(sample_index) {
+                                training_sample_indices.append(sample_index)
+                                training_level_ids.append(core_sample_level_ids[i])
+                        } else {
+                                test_sample_indices.append(sample_index)
+                                test_sample_names.append(core_sample_names[i])
+                                test_sample_level_ids.append(core_sample_level_ids[i])
+                        }
+                }
+
+                if k > training_sample_indices.count {
+                        k = training_sample_indices.count
+                } else if k < 1 {
+                        k = 1
+                }
+
+                let classification_sample_indices = test_sample_indices + additional_sample_indices
+                var classification_level_ids = [Int](count: classification_sample_indices.count, repeatedValue: -1)
+
+                let success = knn_classify_training_test(state.values, state.number_of_molecules, state.number_of_samples, training_sample_indices, training_level_ids, training_sample_indices.count, classification_sample_indices, classification_sample_indices.count, k, &classification_level_ids)
+
+                if success == 1 {
+                        classification_success = true
+                        test_sample_classified_level_ids = [Int](classification_level_ids[0 ..< test_sample_indices.count])
+                        additional_sample_classified_level_ids = [Int](classification_level_ids[test_sample_indices.count ..< classification_sample_indices.count])
+                } else {
+                        classification_success = false
+                        test_sample_classified_level_ids = [Int](count: test_sample_indices.count, repeatedValue: 0)
+                        additional_sample_classified_level_ids = [Int](count: additional_sample_indices.count, repeatedValue: 0)
+                }
         }
 
         func test_sample_indices_for_level_label(level_id level_id: Int, label: Int) -> [Int] {
