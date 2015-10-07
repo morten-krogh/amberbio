@@ -16,7 +16,7 @@ class KNNResultState: PageState {
                 self.knn = knn
                 super.init()
                 name = "knn_result"
-                title = astring_body(string: "k nearest neighbor classification")
+                title = astring_body(string: "k nearest neighbor classifier")
                 info = info_0
         }
 

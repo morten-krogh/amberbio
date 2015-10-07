@@ -7,7 +7,7 @@ class KNNFactorSelectionState: PageState {
         override init() {
                 super.init()
                 name = "knn_factor_selection"
-                title = astring_body(string: "k nearest neighbor classification")
+                title = astring_body(string: "k nearest neighbor classifier")
                 info = "Select and deselect the levels of the factor that should be classified.\n\nThere must be at least two selected levels.\n\nTap the factor name(blue) to continue."
         }
 }

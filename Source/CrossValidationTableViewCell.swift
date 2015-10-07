@@ -5,6 +5,7 @@ let cross_validation_table_view_cell_height = 120 as CGFloat
 class CrossValidationTableViewCell: UITableViewCell {
 
         let text_label = UILabel()
+        let k_fold_label = UILabel()
         let text_field = UITextField()
         let symbol_label = UILabel()
         let inset_view = UIView()
@@ -22,6 +23,9 @@ class CrossValidationTableViewCell: UITableViewCell {
                 text_label.font = font_body
                 text_label.textAlignment = .Center
                 inset_view.addSubview(text_label)
+
+                k_fold_label.attributedText = astring_font_size_color(string: "k = ", font: nil, font_size: 20, color: nil)
+                inset_view.addSubview(k_fold_label)
 
                 text_field.keyboardType = UIKeyboardType.NumbersAndPunctuation
                 text_field.autocorrectionType = UITextAutocorrectionType.No
@@ -59,7 +63,11 @@ class CrossValidationTableViewCell: UITableViewCell {
 
                 let origin_y = label_height + 10
                 let text_field_width = min(width - 200, 300)
-                text_field.frame = CGRect(x: text_field_width / 2, y: origin_y, width: text_field_width, height: text_field_height)
+
+                k_fold_label.sizeToFit()
+                k_fold_label.frame.origin = CGPoint(x: (width - text_field_width) / 2 - k_fold_label.frame.width - 5, y: origin_y + (text_field_height - k_fold_label.frame.height) / 2)
+
+                text_field.frame = CGRect(x: (width - text_field_width) / 2, y: origin_y, width: text_field_width, height: text_field_height)
         }
 
         func update(text text: String, k_fold: Int, tag: Int, delegate: UITextFieldDelegate) {

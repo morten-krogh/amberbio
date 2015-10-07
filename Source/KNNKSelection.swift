@@ -8,7 +8,7 @@ class KNNKSelectionState: PageState {
                 self.knn = knn
                 super.init()
                 name = "knn_k_selection"
-                title = astring_body(string: "k nearest neighbor classification")
+                title = astring_body(string: "k nearest neighbor classifier")
                 info = "Select the number of nearest neightbors, k.\n\nA test sample is classified to a level if the majority of the k nearest neighbors belong to the level.\n\nIf k is odd and there are two levels, all samples will be classified to a level.\n\nOtherwise, a sample can be classified as undecided."
         }
 }

@@ -8,7 +8,7 @@ class KNNValidationSelectionState: PageState {
                 self.knn = knn
                 super.init()
                 name = "knn_validation_selection"
-                title = astring_body(string: "k nearest neighbor classification")
+                title = astring_body(string: "k nearest neighbor classifier")
                 info = "Select the type of validation."
         }
 }
