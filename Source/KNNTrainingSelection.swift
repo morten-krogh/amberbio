@@ -1,21 +1,21 @@
 import UIKit
 
-class KNNTrainingTestSelectionState: PageState {
+class KNNTrainingSelectionState: PageState {
 
         let knn: KNN
 
         init(knn: KNN) {
                 self.knn = knn
                 super.init()
-                name = "knn_training_test_selection"
+                name = "knn_training_selection"
                 title = astring_body(string: "k nearest neighbor classifier")
                 info = "Select the samples for the training set.\n\nThe numbers in parenthesis represent the number of samples in the training set and the total number of samples respectively for that level.\n\nSelecting a level from a factor leads to inclusion of all samples with that level.\n\nDeselecting a level removes all samples with that level from the training set.\n\nThe test set consists of all the samples that are not in the training set.\n\nTo continue, both the training and test set must contain at least one sample."
         }
 }
 
-class KNNTrainingTestSelection: Component, UITableViewDataSource, UITableViewDelegate, SelectAllHeaderFooterViewDelegate {
+class KNNTrainingSelection: Component, UITableViewDataSource, UITableViewDelegate, SelectAllHeaderFooterViewDelegate {
 
-        var knn_training_test_selection_state: KNNTrainingTestSelectionState!
+        var knn_training_selection_state: KNNTrainingTestSelectionState!
         var knn: KNN!
 
         let table_view = UITableView()
@@ -37,8 +37,8 @@ class KNNTrainingTestSelection: Component, UITableViewDataSource, UITableViewDel
         }
 
         override func render() {
-                knn_training_test_selection_state = state.page_state as! KNNTrainingTestSelectionState
-                knn = knn_training_test_selection_state.knn
+                knn_training_selection_state = state.page_state as! KNNTrainingTestSelectionState
+                knn = knn_training_selection_state.knn
                 table_view.dataSource = self
                 table_view.delegate = self
                 table_view.reloadData()

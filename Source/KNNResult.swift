@@ -66,7 +66,7 @@ class KNNResult: Component {
 
                 let origin_y = CGRectGetMaxY(segmented_control.frame) + top_margin
 
-                table_view.frame = CGRect(x: 0, y: origin_y, width: width, height: height)
+                table_view.frame = CGRect(x: 0, y: origin_y, width: width, height: height - origin_y)
         }
 
         override func render() {
