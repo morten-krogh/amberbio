@@ -16,6 +16,7 @@ class KNNTrainingTestSelectionState: PageState {
 class KNNTrainingTestSelection: Component, UITableViewDataSource, UITableViewDelegate, SelectAllHeaderFooterViewDelegate {
 
         var knn_training_test_selection_state: KNNTrainingTestSelectionState!
+        var knn: KNN!
 
         let table_view = UITableView()
 
@@ -37,6 +38,7 @@ class KNNTrainingTestSelection: Component, UITableViewDataSource, UITableViewDel
 
         override func render() {
                 knn_training_test_selection_state = state.page_state as! KNNTrainingTestSelectionState
+                knn = knn_training_test_selection_state.knn
                 table_view.dataSource = self
                 table_view.delegate = self
                 table_view.reloadData()
@@ -53,8 +55,7 @@ class KNNTrainingTestSelection: Component, UITableViewDataSource, UITableViewDel
         func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
                 if section == 0 {
                         let header = tableView.dequeueReusableHeaderFooterViewWithIdentifier("tappable-header") as! CenteredHeaderFooterView
-                        let knn = knn_training_test_selection_state.knn
-                        let selectable = knn.training_sample_indices.count > 0 && knn.training_sample_indices.count < knn.core_sample_indices.count
+                        let selectable = knn.training_sample_indices.count > 0 && (knn.training_sample_indices.count < knn.core_sample_indices.count || knn.additional_sample_indices.count > 0)
                         if selectable {
                                 header.update_selectable_arrow(text: "Continue")
                         } else {
@@ -92,9 +93,9 @@ class KNNTrainingTestSelection: Component, UITableViewDataSource, UITableViewDel
 
         func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
                 if section == 0 {
-                        return knn_training_test_selection_state.knn.comparison_level_ids.count
+                        return knn.comparison_level_ids.count
                 } else if section == 1 {
-                        return knn_training_test_selection_state.knn.core_sample_indices.count
+                        return knn.core_sample_indices.count
                 } else {
                         let factor_index = section_to_factor_index(section: section)
                         return state.level_ids_by_factor[factor_index].count
@@ -109,7 +110,6 @@ class KNNTrainingTestSelection: Component, UITableViewDataSource, UITableViewDel
                 let cell = tableView.dequeueReusableCellWithIdentifier("cell") as! CenteredTableViewCell
 
                 let (section, row) = (indexPath.section, indexPath.row)
-                let knn = knn_training_test_selection_state.knn
 
                 if section == 0 {
                         let level_id = knn.comparison_level_ids[row]
@@ -149,9 +149,7 @@ class KNNTrainingTestSelection: Component, UITableViewDataSource, UITableViewDel
         }
 
         func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-                
                 let (section, row) = (indexPath.section, indexPath.row)
-                let knn = knn_training_test_selection_state.knn
 
                 if section == 1 {
                         let sample_index = knn.core_sample_indices[row]
@@ -166,7 +164,6 @@ class KNNTrainingTestSelection: Component, UITableViewDataSource, UITableViewDel
         }
 
         func header_tap_action(sender: UITapGestureRecognizer) {
-                let knn = knn_training_test_selection_state.knn
                 if knn.training_sample_indices.count > 0 && knn.training_sample_indices.count < knn.core_sample_indices.count {
                         let page_state = KNNKSelectionState(knn: knn)
                         state.navigate(page_state: page_state)
@@ -175,17 +172,17 @@ class KNNTrainingTestSelection: Component, UITableViewDataSource, UITableViewDel
         }
         
         func section_to_factor_index(section section: Int) -> Int {
-                let comparison_factor_index = state.factor_ids.indexOf(knn_training_test_selection_state.knn.comparison_factor_id)!
+                let comparison_factor_index = state.factor_ids.indexOf(knn.comparison_factor_id)!
                 return section < comparison_factor_index + 2 ? section - 2 : section - 1
         }
 
         func select_all_action(tag tag: Int) {
-                knn_training_test_selection_state.knn.select_all_samples()
+                knn.select_all_samples()
                 render()
         }
 
         func deselect_all_action(tag tag: Int) {
-                knn_training_test_selection_state.knn.deselect_all_samples()
+                knn.deselect_all_samples()
                 render()
         }
 }
