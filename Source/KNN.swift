@@ -45,8 +45,6 @@ class KNN {
         var test_sample_level_ids = [] as [Int]
         var test_sample_classified_level_ids = [] as [Int]
 
-//        var test_sample_indices_per_level = [] as [[Int]]
-
         init(comparison_factor_id: Int, comparison_level_ids: [Int]) {
                 self.comparison_factor_id = comparison_factor_id
                 let comparison_factor_index = state.factor_ids.indexOf(comparison_factor_id)!
@@ -189,10 +187,12 @@ class KNN {
                 switch validation_method {
                 case .TrainingTest:
                         classify_training_test()
+                case .LeaveOneOut:
+                        k_fold = core_sample_indices.count
+                        classify_k_fold_cross_validation()
                 default:
-                        break
+                        classify_k_fold_cross_validation()
                 }
-                summarize()
         }
 
         func classify_training_test() {
@@ -236,7 +236,49 @@ class KNN {
                 }
         }
 
-        func test_sample_indices_for_level_label(level_id level_id: Int, label: Int) -> [Int] {
+        func classify_k_fold_cross_validation() {
+                test_sample_indices = []
+                test_sample_names = []
+                test_sample_level_ids = []
+                test_sample_classified_level_ids = []
+
+                if core_sample_indices.count < 2 {
+                        classification_success = false
+
+                }
+
+                var shuffled_numbers = [Int](0 ..< core_sample_indices.count)
+                if k_fold < core_sample_indices.count {
+                                fisher_yates_shuffle(&shuffled_numbers, shuffled_numbers.count)
+                }
+
+                let minimum_size = core_sample_indices.count / k_fold
+                let remainder = core_sample_indices.count % k_fold
+                var counter = 0
+                for i in 0 ..< k_fold {
+                        let size = minimum_size + (i < remainder ? 1 : 0)
+                        var training_sample_indices = [] as [Int]
+                        var training_level_ids = [] as [Int]
+                        var classification_sample_indices = [] as [Int]
+                        var classification_level_ids = [] as [Int]
+                        
+
+                }
+                
+
+
+
+
+
+
+
+
+
+        }
+
+
+
+//        func test_sample_indices_for_level_label(level_id level_id: Int, label: Int) -> [Int] {
 //                var sample_indices = [] as [Int]
 //                for i in 0 ..< test_sample_indices.count {
 //                        if test_sample_comparison_level_id[i] == level_id && test_sample_classified_labels[i] == label {
@@ -244,10 +286,10 @@ class KNN {
 //                        }
 //                }
 //                return sample_indices
-                return []
-        }
+//                return []
+//        }
 
-        func summarize() {
+//        func summarize() {
 //                test_sample_indices_per_level = []
 //                for level_id in comparison_level_ids {
 //                        var sample_indices_per_level = [] as [Int]
@@ -256,5 +298,5 @@ class KNN {
 //                        }
 //                        test_sample_indices_per_level.append(sample_indices_per_level)
 //                }
-        }
+//        }
 }
