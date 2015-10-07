@@ -77,8 +77,6 @@ class KNNTrainingTestSelection: Component, UITableViewDataSource, UITableViewDel
                         header.update_normal(text: factor_name)
                         return header
                 }
-
-
         }
 
         func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
@@ -164,7 +162,7 @@ class KNNTrainingTestSelection: Component, UITableViewDataSource, UITableViewDel
         }
 
         func header_tap_action(sender: UITapGestureRecognizer) {
-                if knn.training_sample_indices.count > 0 && knn.training_sample_indices.count < knn.core_sample_indices.count {
+                if knn.training_sample_indices.count > 0 && (knn.training_sample_indices.count < knn.core_sample_indices.count || knn.additional_sample_indices.count > 0) {
                         let page_state = KNNKSelectionState(knn: knn)
                         state.navigate(page_state: page_state)
                         state.render()
