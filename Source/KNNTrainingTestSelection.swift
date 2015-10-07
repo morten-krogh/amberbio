@@ -114,7 +114,7 @@ class KNNTrainingTestSelection: Component, UITableViewDataSource, UITableViewDel
                 if section == 0 {
                         let level_id = knn.comparison_level_ids[row]
                         let level_name = knn.comparison_level_names[row]
-                        let number_of_samples = knn.core_number_of_samples_per_comparison_level_id[level_id]!
+                        let number_of_samples = knn.number_of_samples_per_level_id[level_id]!
                         let number_of_training_samples = knn.training_number_of_samples_per_comparison_level_id[level_id]!
 
                         let text = level_name + " (\(number_of_training_samples) of \(number_of_samples))"
@@ -124,7 +124,7 @@ class KNNTrainingTestSelection: Component, UITableViewDataSource, UITableViewDel
                 } else if section == 1 {
                         let sample_index = knn.core_sample_indices[row]
                         let sample_name = knn.core_sample_names[row]
-                        let level_name = knn.core_sample_comparison_level_names[row]
+                        let level_name = knn.core_sample_level_names[row]
                         let training_set_sample = knn.training_sample_indices.contains(sample_index)
                         
                         let text = sample_name + " (" + level_name + ")"
