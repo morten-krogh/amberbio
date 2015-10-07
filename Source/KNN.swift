@@ -76,6 +76,10 @@ class KNN {
                 }
         }
 
+        func max_k_fold() -> Int {
+                return sample_indices.count
+        }
+
         func validation_training_test() {
                 validation_method = .TrainingTest
                 selected_level_ids = []
