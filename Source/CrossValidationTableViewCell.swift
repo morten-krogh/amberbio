@@ -62,7 +62,7 @@ class CrossValidationTableViewCell: UITableViewCell {
                 text_label.frame = CGRect(x: symbol_label_margin, y: 0, width: width - 2 * symbol_label_margin, height: label_height)
 
                 let origin_y = label_height + 10
-                let text_field_width = min(width - 200, 300)
+                let text_field_width = min(width - 200, 150)
 
                 k_fold_label.sizeToFit()
                 k_fold_label.frame.origin = CGPoint(x: (width - text_field_width) / 2 - k_fold_label.frame.width - 5, y: origin_y + (text_field_height - k_fold_label.frame.height) / 2)

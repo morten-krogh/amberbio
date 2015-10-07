@@ -54,7 +54,7 @@ class KNNTrainingTestSelection: Component, UITableViewDataSource, UITableViewDel
                 if section == 0 {
                         let header = tableView.dequeueReusableHeaderFooterViewWithIdentifier("tappable-header") as! CenteredHeaderFooterView
                         let knn = knn_training_test_selection_state.knn
-                        let selectable = knn.selected_sample_indices.count > 0 && knn.selected_sample_indices.count < knn.sample_indices.count
+                        let selectable = knn.training_sample_indices.count > 0 && knn.training_sample_indices.count < knn.core_sample_indices.count
                         if selectable {
                                 header.update_selectable_arrow(text: "Continue")
                         } else {
@@ -94,7 +94,7 @@ class KNNTrainingTestSelection: Component, UITableViewDataSource, UITableViewDel
                 if section == 0 {
                         return knn_training_test_selection_state.knn.comparison_level_ids.count
                 } else if section == 1 {
-                        return knn_training_test_selection_state.knn.sample_indices.count
+                        return knn_training_test_selection_state.knn.core_sample_indices.count
                 } else {
                         let factor_index = section_to_factor_index(section: section)
                         return state.level_ids_by_factor[factor_index].count
@@ -114,18 +114,18 @@ class KNNTrainingTestSelection: Component, UITableViewDataSource, UITableViewDel
                 if section == 0 {
                         let level_id = knn.comparison_level_ids[row]
                         let level_name = knn.comparison_level_names[row]
-                        let number_of_samples = knn.number_of_samples_per_comparison_level_id[level_id]!
-                        let number_of_training_samples = knn.number_of_training_samples_per_comparison_level_id[level_id]!
+                        let number_of_samples = knn.core_number_of_samples_per_comparison_level_id[level_id]!
+                        let number_of_training_samples = knn.training_number_of_samples_per_comparison_level_id[level_id]!
 
                         let text = level_name + " (\(number_of_training_samples) of \(number_of_samples))"
 
                         cell.update_unselected(text: text)
 
                 } else if section == 1 {
-                        let sample_index = knn.sample_indices[row]
-                        let sample_name = knn.sample_names[row]
-                        let level_name = knn.sample_comparison_level_names[row]
-                        let training_set_sample = knn.selected_sample_indices.contains(sample_index)
+                        let sample_index = knn.core_sample_indices[row]
+                        let sample_name = knn.core_sample_names[row]
+                        let level_name = knn.core_sample_comparison_level_names[row]
+                        let training_set_sample = knn.training_sample_indices.contains(sample_index)
                         
                         let text = sample_name + " (" + level_name + ")"
                         
@@ -138,7 +138,7 @@ class KNNTrainingTestSelection: Component, UITableViewDataSource, UITableViewDel
                         let factor_index = section_to_factor_index(section: section)
                         let level_id = state.level_ids_by_factor[factor_index][row]
                         let level_name = state.level_names_by_factor[factor_index][row]
-                        if knn.selected_level_ids.contains(level_id) {
+                        if knn.training_level_ids.contains(level_id) {
                                 cell.update_selected_checkmark(text: level_name)
                         } else {
                                 cell.update_unselected(text: level_name)
@@ -154,7 +154,7 @@ class KNNTrainingTestSelection: Component, UITableViewDataSource, UITableViewDel
                 let knn = knn_training_test_selection_state.knn
 
                 if section == 1 {
-                        let sample_index = knn.sample_indices[row]
+                        let sample_index = knn.core_sample_indices[row]
                         knn.toggle_sample(sample_index: sample_index)
                         render()
                 } else if section > 1 {
@@ -167,7 +167,7 @@ class KNNTrainingTestSelection: Component, UITableViewDataSource, UITableViewDel
 
         func header_tap_action(sender: UITapGestureRecognizer) {
                 let knn = knn_training_test_selection_state.knn
-                if knn.selected_sample_indices.count > 0 && knn.selected_sample_indices.count < knn.sample_indices.count {
+                if knn.training_sample_indices.count > 0 && knn.training_sample_indices.count < knn.core_sample_indices.count {
                         let page_state = KNNKSelectionState(knn: knn)
                         state.navigate(page_state: page_state)
                         state.render()
