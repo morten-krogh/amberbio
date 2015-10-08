@@ -31,9 +31,9 @@ class KNNResultState: PageState {
                         set_selected_segment_index(index: 0)
 
                         if any_unclassified {
-                                info_1 = "The row names are the actual levels of the samples.\n\nThe column names are the predicted levels.\n\nA sample is unclassified if there is no majority level among the k neighbors.\n\nThe cells contain the number of samples belonging with a combination of actual and predicted levels."
+                                info_1 = "The row names are the actual levels of the samples.\n\nThe column names are the predicted levels.\n\nA sample is unclassified if there is no majority level among the k=\(knn.k) neighbors.\n\nThe cells contain the number of samples with a combination of actual and predicted levels."
                         } else {
-                                info_1 = "The row names are the actual levels of the samples.\n\nThe column names are the predicted levels.\n\nThe cells contain the number of samples belonging with a combination of actual and predicted levels."
+                                info_1 = "The row names are the actual levels of the samples.\n\nThe column names are the predicted levels.\n\nThe cells contain the number of samples with a combination of actual and predicted levels."
                         }
                 }
         }
@@ -173,8 +173,8 @@ class KNNResultSummaryDelegate: NSObject, UITableViewDataSource, UITableViewDele
                 }
         }
 
-        let training_test_headers = ["Type of classification", "Training samples", "Test samples", "Classified test samples", "Correctly classified test samples", "Incorrectly classified test samples", "Unclassified test samples", "Additional predicted samples"]
-        let cross_validation_headers = ["Type of classification", "Total samples", "Classified samples", "Correctly classified samples", "Incorrectly classified samples", "Unclassified samples"]
+        let training_test_headers = ["Type of classification", "Number of neighbors(k)", "Training samples", "Test samples", "Classified test samples", "Correctly classified test samples", "Incorrectly classified test samples", "Unclassified test samples", "Additional predicted samples"]
+        let cross_validation_headers = ["Type of classification", "Number of neighbors(k)", "Total samples", "Classified samples", "Correctly classified samples", "Incorrectly classified samples", "Unclassified samples"]
 
         func numberOfSectionsInTableView(tableView: UITableView) -> Int {
                 return knn.validation_method == .TrainingTest ? training_test_headers.count : cross_validation_headers.count
@@ -228,16 +228,18 @@ class KNNResultSummaryDelegate: NSObject, UITableViewDataSource, UITableViewDele
                         case 0:
                                 text = "Fixed training and test set"
                         case 1:
-                                text = String(knn.training_sample_index_set.count)
+                                text = String(knn.k)
                         case 2:
-                                text = String(knn.test_sample_indices.count)
+                                text = String(knn.training_sample_index_set.count)
                         case 3:
-                                text = String(classified_test_samples)
+                                text = String(knn.test_sample_indices.count)
                         case 4:
-                                text = String(correctly_classified_test_samples)
+                                text = String(classified_test_samples)
                         case 5:
-                                text = String(classified_test_samples - correctly_classified_test_samples)
+                                text = String(correctly_classified_test_samples)
                         case 6:
+                                text = String(classified_test_samples - correctly_classified_test_samples)
+                        case 7:
                                 text = String(knn.test_sample_indices.count - classified_test_samples)
                         default:
                                 text = String(knn.additional_sample_indices.count)
@@ -251,12 +253,14 @@ class KNNResultSummaryDelegate: NSObject, UITableViewDataSource, UITableViewDele
                                         text = "\(knn.k_fold)-fold cross validation"
                                 }
                         case 1:
-                                text = String(knn.test_sample_indices.count)
+                                text = String(knn.k)
                         case 2:
-                                text = String(classified_test_samples)
+                                text = String(knn.test_sample_indices.count)
                         case 3:
-                                text = String(correctly_classified_test_samples)
+                                text = String(classified_test_samples)
                         case 4:
+                                text = String(correctly_classified_test_samples)
+                        case 5:
                                 text = String(classified_test_samples - correctly_classified_test_samples)
                         default:
                                 text = String(knn.test_sample_indices.count - classified_test_samples)
@@ -424,7 +428,15 @@ func knn_result_table_of_attributed_strings(knn knn: KNN) -> (table_of_attribute
                                         number++
                                 }
                         }
-                        row.append(astring_body(string: String(number)))
+                        let astring: Astring
+                        if level_id == classified_level_id {
+                                astring = astring_font_size_color(string: String(number), font: font_headline, font_size: nil, color: nil)
+                        } else if number > 0 {
+                                astring = astring_font_size_color(string: String(number), font: nil, font_size: nil, color: color_text_failure)
+                        } else {
+                                astring = astring_body(string: String(number))
+                        }
+                        row.append(astring)
                         column_totals[j] += number
                         total += number
                 }

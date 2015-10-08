@@ -33,6 +33,11 @@ let color_failure = color_from_hex(hex: color_brewer_qualitative_9_pastel1[0])
 let color_additional = color_from_hex(hex: color_brewer_qualitative_9_pastel1[8])
 let color_normal = color_from_hex(hex: color_brewer_qualitative_9_pastel1[2])
 
+let color_text_success = UIColor.blueColor()
+let color_text_failure = UIColor.redColor()
+
+let color_significant = UIColor.redColor()
+
 func color_two_digit_hex(value value: Int) -> String {
         let hex = String(value, radix: 16)
         let prefix = hex.characters.count == 0 ? "00" : (hex.characters.count == 1 ? "0" : "")

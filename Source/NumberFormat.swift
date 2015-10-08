@@ -36,7 +36,7 @@ func astring_from_p_value(p_value p_value: Double, cutoff: Double = 0.05) -> Ast
         let full_range = NSRange(location: 0, length: result.length)
         result.addAttribute(NSFontAttributeName, value: font_body, range: full_range)
         if p_value <= cutoff {
-                result.addAttribute(NSForegroundColorAttributeName, value: UIColor.redColor(), range: full_range)
+                result.addAttribute(NSForegroundColorAttributeName, value: color_significant, range: full_range)
         }
 
         return result
