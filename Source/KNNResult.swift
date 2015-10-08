@@ -6,6 +6,8 @@ class KNNResultState: PageState {
 
         var selected_segment_index = 0
 
+        var knn_result_samples_delegate: KNNResultSamplesDelegate?
+
         let info_0 = "0"
 
         let info_1 = "1"
@@ -18,6 +20,10 @@ class KNNResultState: PageState {
                 name = "knn_result"
                 title = astring_body(string: "k nearest neighbor classifier")
                 info = "The result of the k nearest neighbor classification"
+
+                if knn.classification_success {
+                        knn_result_samples_delegate = KNNResultSamplesDelegate(knn: knn)
+                }
         }
 
         func set_selected_segment_index(index index: Int) {
@@ -36,7 +42,8 @@ class KNNResult: Component {
 
         let table_view = UITableView()
 
-        var knn_result_samples_delegate: KNNResultSamplesDelegate?
+        let tiled_scroll_view = TiledScrollView(frame: CGRect.zero)
+        var table_of_attributed_strings: TableOfAttributedStrings?
 
         override func viewDidLoad() {
                 super.viewDidLoad()
@@ -60,6 +67,8 @@ class KNNResult: Component {
                 table_view.backgroundColor = UIColor.whiteColor()
                 table_view.separatorStyle = .None
                 view.addSubview(table_view)
+
+                view.addSubview(tiled_scroll_view)
         }
 
         override func viewWillLayoutSubviews() {
@@ -85,16 +94,22 @@ class KNNResult: Component {
                 knn_result_state = state.page_state as! KNNResultState
                 let knn = knn_result_state.knn
 
-                classification_failure_label.hidden = knn.classification_success
-                segmented_control.hidden = !knn.classification_success
-                table_view.hidden = !knn.classification_success
+                classification_failure_label.hidden = true
+                segmented_control.hidden = true
+                table_view.hidden = true
+                tiled_scroll_view.hidden = true
 
-                if knn.classification_success {
-                        segmented_control.selectedSegmentIndex = knn_result_state.selected_segment_index
+                segmented_control.selectedSegmentIndex = knn_result_state.selected_segment_index
 
-                        knn_result_samples_delegate = KNNResultSamplesDelegate(knn: knn)
-                        table_view.dataSource = knn_result_samples_delegate
-                        table_view.delegate = knn_result_samples_delegate
+                if !knn.classification_success {
+                        classification_failure_label.hidden = false
+                } else if knn_result_state.selected_segment_index == 0 {
+
+                } else if knn_result_state.selected_segment_index == 1 {
+
+                } else {
+                        table_view.dataSource = knn_result_state.knn_result_samples_delegate
+                        table_view.delegate = knn_result_state.knn_result_samples_delegate
                         table_view.reloadData()
                 }
         }
