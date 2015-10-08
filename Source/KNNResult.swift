@@ -14,7 +14,7 @@ class KNNResultState: PageState {
 
         var info_1 = ""
 
-        let info_2 = "Information about the individual samples.\n\n.Samples are grouped according to their actual levels.\n\nGreen samples are correctly classified, red samples are incorrectly classified, and gray samples have levels disjoint from the classification levels."
+        let info_2 = "Information about the individual samples.\n\n.Samples are grouped according to their actual levels.\n\nGreen samples are correctly classified, red samples are incorrectly classified, and gray samples have levels unknown to the classifier."
 
         init(knn: KNN) {
                 self.knn = knn
