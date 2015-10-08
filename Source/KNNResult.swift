@@ -10,11 +10,11 @@ class KNNResultState: PageState {
         var knn_result_summary_delegate: KNNResultSummaryDelegate?
         var table_of_attributed_strings: TableOfAttributedStrings?
 
-        let info_0 = "0"
+        let info_0 = "A summary of the classification results.\n\nThe additional samples are samples that have levels different from the levels used in the classifier."
 
-        let info_1 = "1"
+        var info_1 = ""
 
-        let info_2 = "2"
+        let info_2 = "Information about the individual samples.\n\n.Samples are grouped according to their actual levels.\n\nGreen samples are correctly classified, red samples are incorrectly classified, and gray samples have levels disjoint from the classification levels."
 
         init(knn: KNN) {
                 self.knn = knn
@@ -26,7 +26,15 @@ class KNNResultState: PageState {
                 if knn.classification_success {
                         knn_result_samples_delegate = KNNResultSamplesDelegate(knn: knn)
                         knn_result_summary_delegate = KNNResultSummaryDelegate(knn: knn)
-                        table_of_attributed_strings = knn_result_table_of_attributed_strings(knn: knn)
+                        let (table_of_attributed_strings, any_unclassified) = knn_result_table_of_attributed_strings(knn: knn)
+                        self.table_of_attributed_strings = table_of_attributed_strings
+                        set_selected_segment_index(index: 0)
+
+                        if any_unclassified {
+                                info_1 = "The row names are the actual levels of the samples.\n\nThe column names are the predicted levels.\n\nA sample is unclassified if there is no majority level among the k neighbors.\n\nThe cells contain the number of samples belonging with a combination of actual and predicted levels."
+                        } else {
+                                info_1 = "The row names are the actual levels of the samples.\n\nThe column names are the predicted levels.\n\nThe cells contain the number of samples belonging with a combination of actual and predicted levels."
+                        }
                 }
         }
 
@@ -369,7 +377,7 @@ class KNNResultSamplesDelegate: NSObject, UITableViewDataSource, UITableViewDele
         }
 }
 
-func knn_result_table_of_attributed_strings(knn knn: KNN) -> TableOfAttributedStrings {
+func knn_result_table_of_attributed_strings(knn knn: KNN) -> (table_of_attributed_strings: TableOfAttributedStrings, any_unclassified: Bool) {
 
         var any_unclassified = false
         for classified_level_id in knn.test_sample_classified_level_ids {
@@ -460,5 +468,5 @@ func knn_result_table_of_attributed_strings(knn knn: KNN) -> TableOfAttributedSt
                 horizontal_cells[0][i + 1] = false
         }
 
-        return TableOfAttributedStrings(attributed_strings: attributed_strings, horizontal_cells: horizontal_cells, tap_action: nil)
+        return (TableOfAttributedStrings(attributed_strings: attributed_strings, horizontal_cells: horizontal_cells, tap_action: nil), any_unclassified)
 }
