@@ -8,6 +8,7 @@ class KNNResultState: PageState {
 
         var knn_result_samples_delegate: KNNResultSamplesDelegate?
         var knn_result_summary_delegate: KNNResultSummaryDelegate?
+        var table_of_attributed_strings: TableOfAttributedStrings?
 
         let info_0 = "0"
 
@@ -45,7 +46,6 @@ class KNNResult: Component {
         let table_view = UITableView()
 
         let tiled_scroll_view = TiledScrollView(frame: CGRect.zero)
-        var table_of_attributed_strings: TableOfAttributedStrings?
 
         override func viewDidLoad() {
                 super.viewDidLoad()
@@ -90,6 +90,20 @@ class KNNResult: Component {
                 let origin_y = CGRectGetMaxY(segmented_control.frame) + top_margin
 
                 table_view.frame = CGRect(x: 0, y: origin_y, width: width, height: height - origin_y)
+
+                if !tiled_scroll_view.hidden {
+                        tiled_scroll_view.frame = view.bounds
+                        if let table_of_atrributed_strings = knn_result_state.table_of_attributed_strings {
+                                let scale_x = width / table_of_atrributed_strings.content_size.width
+                                let scale_y = height / table_of_atrributed_strings.content_size.height
+                                let scale_min = min(1, scale_x, scale_y)
+                                let scale_max = max(1, scale_x, scale_y)
+                                table_of_atrributed_strings.minimum_zoom_scale = scale_min
+                                table_of_atrributed_strings.maximum_zoom_scale = scale_max
+                                tiled_scroll_view.delegate = table_of_atrributed_strings
+                                tiled_scroll_view.scroll_view.zoomScale = max(0.7, scale_min)
+                        }
+                }
         }
 
         override func render() {
@@ -149,7 +163,7 @@ class KNNResultSummaryDelegate: NSObject, UITableViewDataSource, UITableViewDele
         }
 
         let training_test_headers = ["Type of classification", "Training samples", "Test samples", "Classified test samples", "Correctly classified test samples", "Incorrectly classified test samples", "Unclassified test samples", "Additional predicted samples"]
-        let cross_validation_headers = ["Type of classification"]
+        let cross_validation_headers = ["Type of classification", "Total samples", "Classified samples", "Correctly classified samples", "Incorrectly classified samples", "Unclassified samples"]
 
         func numberOfSectionsInTableView(tableView: UITableView) -> Int {
                 return knn.validation_method == .TrainingTest ? training_test_headers.count : cross_validation_headers.count
@@ -218,7 +232,24 @@ class KNNResultSummaryDelegate: NSObject, UITableViewDataSource, UITableViewDele
                                 text = String(knn.additional_sample_indices.count)
                         }
                 } else {
-                        text = ""
+                        switch section {
+                        case 0:
+                                if knn.validation_method == .LeaveOneOut {
+                                        text = "Leave one out cross validation"
+                                } else {
+                                        text = "\(knn.k_fold)-fold cross validation"
+                                }
+                        case 1:
+                                text = String(knn.test_sample_indices.count)
+                        case 2:
+                                text = String(classified_test_samples)
+                        case 3:
+                                text = String(correctly_classified_test_samples)
+                        case 4:
+                                text = String(classified_test_samples - correctly_classified_test_samples)
+                        default:
+                                text = String(knn.test_sample_indices.count - classified_test_samples)
+                        }
                 }
 
                 cell.update_normal(text: text)
@@ -333,4 +364,83 @@ class KNNResultSamplesDelegate: NSObject, UITableViewDataSource, UITableViewDele
 
                 return cell
         }
+}
+
+func knn_result_table_of_attributed_strings(knn: KNN) -> TableOfAttributedStrings {
+
+        var any_unclassified = false
+        for classified_level_id in knn.test_sample_classified_level_ids {
+                if classified_level_id == -1 {
+                        any_unclassified = true
+                }
+        }
+        if knn.validation_method == .TrainingTest {
+                for classified_level_id in knn.additional_sample_classified_level_ids {
+                        if classified_level_id == -1 {
+                                any_unclassified = true
+                        }
+                }
+        }
+
+        let column_level_ids: [Int]
+        let column_level_names: [String]
+        if any_unclassified {
+                column_level_ids = knn.comparison_level_ids + [-1]
+                column_level_names = knn.comparison_level_names + ["unclassified"]
+        } else {
+                column_level_ids = knn.comparison_level_ids
+                column_level_names = knn.comparison_level_names
+        }
+
+        var attributed_strings = [] as [[Astring?]]
+        var header = [nil] as [Astring?]
+        for level_name in column_level_names {
+                header.append(astring_body(string: level_name))
+        }
+        header.append(nil)
+        attributed_strings.append(header)
+
+        var column_totals = [Int](count: column_level_ids.count, repeatedValue: 0)
+        for i in 0 ..< knn.comparison_level_ids.count {
+                let level_id = knn.comparison_level_ids[i]
+                var row = [astring_body(string: knn.comparison_level_names[i])] as [Astring?]
+                var total = 0
+                for j in 0 ..< column_level_ids.count {
+                        var number = 0
+                        let classified_level_id = column_level_ids[j]
+                        for k in 0 ..< knn.test_sample_indices.count {
+                                if knn.test_sample_level_ids[k] == level_id && knn.test_sample_classified_level_ids[k] == classified_level_id {
+                                        number++
+                                }
+                        }
+                        row.append(astring_body(string: String(number)))
+                        column_totals[j] += number
+                        total += number
+                }
+                row.append(astring_body(string: String(total)))
+                attributed_strings.append(row)
+        }
+
+        if knn.validation_method == .TrainingTest {
+
+
+                
+
+        }
+
+        var footer = [nil] as [Astring?]
+        for column_total in column_totals {
+                footer.append(astring_body(string: String(column_total)))
+        }
+        let grand_total = column_totals.reduce(0, combine: +)
+        footer.append(astring_body(string: String(grand_total)))
+        attributed_strings.append(footer)
+
+        let horizontal_row = [Bool](count: attributed_strings[0].count, repeatedValue: true)
+        var horizontal_cells = [[Bool]](count: attributed_strings.count, repeatedValue: horizontal_row)
+        for i in 0 ..< attributed_strings[0].count - 2 {
+                horizontal_cells[0][i + 1] = false
+        }
+
+        return TableOfAttributedStrings(attributed_strings: attributed_strings, horizontal_cells: horizontal_cells, tap_action: nil)
 }
