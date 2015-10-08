@@ -30,6 +30,8 @@ class KNNResult: Component {
 
         var knn_result_state: KNNResultState!
 
+        let classification_failure_label = UILabel()
+
         let segmented_control = UISegmentedControl(items: ["Summary", "Table", "Samples"])
 
         let table_view = UITableView()
@@ -38,6 +40,10 @@ class KNNResult: Component {
 
         override func viewDidLoad() {
                 super.viewDidLoad()
+
+                let classification_failure_text = "The classification could not be performed becuase there are no molecules without missing values"
+                classification_failure_label.attributedText = astring_font_size_color(string: classification_failure_text, font: nil, font_size: 20, color: nil)
+                view.addSubview(classification_failure_label)
 
                 segmented_control.addTarget(self, action: "segmented_control_action", forControlEvents: UIControlEvents.ValueChanged)
                 view.addSubview(segmented_control)
@@ -73,12 +79,18 @@ class KNNResult: Component {
                 knn_result_state = state.page_state as! KNNResultState
                 let knn = knn_result_state.knn
 
-                segmented_control.selectedSegmentIndex = knn_result_state.selected_segment_index
+                classification_failure_label.hidden = knn.classification_success
+                segmented_control.hidden = !knn.classification_success
+                table_view.hidden = !knn.classification_success
 
-                knn_result_samples_delegate = KNNResultSamplesDelegate(knn: knn)
-                table_view.dataSource = knn_result_samples_delegate
-                table_view.delegate = knn_result_samples_delegate
-                table_view.reloadData()
+                if knn.classification_success {
+                        segmented_control.selectedSegmentIndex = knn_result_state.selected_segment_index
+
+                        knn_result_samples_delegate = KNNResultSamplesDelegate(knn: knn)
+                        table_view.dataSource = knn_result_samples_delegate
+                        table_view.delegate = knn_result_samples_delegate
+                        table_view.reloadData()
+                }
         }
 
         func segmented_control_action() {
