@@ -2,12 +2,12 @@ import Foundation
 
 class KNN {
 
-        enum ValidationMethod {
+        enum KNNValidationMethod {
                 case TrainingTest
                 case LeaveOneOut
                 case KFoldCrossValidation
         }
-        var validation_method = ValidationMethod.TrainingTest
+        var validation_method = KNNValidationMethod.TrainingTest
 
         var comparison_factor_id = 0
         var comparison_factor_name = ""

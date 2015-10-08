@@ -7,6 +7,7 @@ class KNNResultState: PageState {
         var selected_segment_index = 0
 
         var knn_result_samples_delegate: KNNResultSamplesDelegate?
+        var knn_result_summary_delegate: KNNResultSummaryDelegate?
 
         let info_0 = "0"
 
@@ -23,6 +24,7 @@ class KNNResultState: PageState {
 
                 if knn.classification_success {
                         knn_result_samples_delegate = KNNResultSamplesDelegate(knn: knn)
+                        knn_result_summary_delegate = KNNResultSummaryDelegate(knn: knn)
                 }
         }
 
@@ -95,7 +97,7 @@ class KNNResult: Component {
                 let knn = knn_result_state.knn
 
                 classification_failure_label.hidden = true
-                segmented_control.hidden = true
+                segmented_control.hidden = false
                 table_view.hidden = true
                 tiled_scroll_view.hidden = true
 
@@ -103,11 +105,17 @@ class KNNResult: Component {
 
                 if !knn.classification_success {
                         classification_failure_label.hidden = false
+                        segmented_control.hidden = true
                 } else if knn_result_state.selected_segment_index == 0 {
-
+                        table_view.hidden = false
+                        table_view.dataSource = knn_result_state.knn_result_summary_delegate
+                        table_view.delegate = knn_result_state.knn_result_summary_delegate
+                        table_view.reloadData()
                 } else if knn_result_state.selected_segment_index == 1 {
+                        tiled_scroll_view.hidden = false
 
                 } else {
+                        table_view.hidden = false
                         table_view.dataSource = knn_result_state.knn_result_samples_delegate
                         table_view.delegate = knn_result_state.knn_result_samples_delegate
                         table_view.reloadData()
@@ -117,6 +125,84 @@ class KNNResult: Component {
         func segmented_control_action() {
                 knn_result_state.set_selected_segment_index(index: segmented_control.selectedSegmentIndex)
                 render()
+        }
+}
+
+class KNNResultSummaryDelegate: NSObject, UITableViewDataSource, UITableViewDelegate {
+
+        let knn: KNN
+
+        init(knn: KNN) {
+                self.knn = knn
+
+        }
+
+        let training_test_headers = ["Type of classification", "Training samples", "Test samples", "Classified test samples", "Correctly classified test samples", "Incorrectly classified test samples", "Unclassified test samples", "Additional predicted samples"]
+        let cross_validation_headers = ["Type of classification"]
+
+        func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+                return knn.validation_method == .TrainingTest ? training_test_headers.count : cross_validation_headers.count
+        }
+
+        func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+                return centered_header_footer_view_height
+        }
+
+        func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+                let header = tableView.dequeueReusableHeaderFooterViewWithIdentifier("header") as! CenteredHeaderFooterView
+
+                let text: String
+                if knn.validation_method == .TrainingTest {
+                        text = training_test_headers[section]
+                } else {
+                        text = cross_validation_headers[section]
+                }
+
+                header.update_normal(text: text)
+
+                return header
+        }
+
+        func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+                return 15
+        }
+
+        func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+                let footer = tableView.dequeueReusableHeaderFooterViewWithIdentifier("footer")
+                footer?.contentView.backgroundColor = UIColor.whiteColor()
+                return footer
+        }
+
+        func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+                return 1
+        }
+
+        func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+                return centered_table_view_cell_height
+        }
+
+        func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+                let cell = tableView.dequeueReusableCellWithIdentifier("cell") as! CenteredTableViewCell
+
+                let (section, _) = (indexPath.section, indexPath.row)
+
+                let text: String
+                if knn.validation_method == .TrainingTest {
+                        switch section {
+                        case 0:
+                                text = "Fixed training and test set"
+                        case 1:
+                                text = String(knn.training_sample_index_set.count)
+                        default:
+                                text = "\(knn.test_sample_indices.count)"
+                        }
+                } else {
+                        text = ""
+                }
+
+                cell.update_normal(text: text)
+
+                return cell
         }
 }
 

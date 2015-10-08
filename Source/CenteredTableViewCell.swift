@@ -115,4 +115,11 @@ class CenteredTableViewCell: UITableViewCell {
                 update_unselected(attributed_text: astring_body(string: text))
         }
 
+        func update_normal(attributed_text attributed_text: Astring) {
+                update(attributed_text: attributed_text, background_color: color_normal, symbol: .None)
+        }
+
+        func update_normal(text text: String) {
+                update_normal(attributed_text: astring_body(string: text))
+        }
 }
