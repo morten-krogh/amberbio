@@ -43,6 +43,8 @@ class KNNResult: Component {
 
                 let classification_failure_text = "The classification could not be performed becuase there are no molecules without missing values"
                 classification_failure_label.attributedText = astring_font_size_color(string: classification_failure_text, font: nil, font_size: 20, color: nil)
+                classification_failure_label.textAlignment = .Center
+                classification_failure_label.numberOfLines = 0
                 view.addSubview(classification_failure_label)
 
                 segmented_control.addTarget(self, action: "segmented_control_action", forControlEvents: UIControlEvents.ValueChanged)
@@ -66,6 +68,9 @@ class KNNResult: Component {
                 let width = view.frame.width
                 let height = view.frame.height
                 let top_margin = 20 as CGFloat
+
+                classification_failure_label.sizeToFit()
+                classification_failure_label.center = CGPoint(x: width / 2, y: top_margin + classification_failure_label.frame.height / 2)
 
                 let segmented_control_width = min(500, width - 40)
                 segmented_control.frame = CGRect(x: (width - segmented_control_width) / 2, y: top_margin, width: segmented_control_width, height: segmented_control.frame.height)
