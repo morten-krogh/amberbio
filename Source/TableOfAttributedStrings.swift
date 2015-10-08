@@ -5,6 +5,7 @@ class TableOfAttributedStrings: TiledScrollViewDelegate {
         var content_size = CGSize.zero
         var maximum_zoom_scale = 1 as CGFloat
         var minimum_zoom_scale = 1 as CGFloat
+        var zoom_scale = 1 as CGFloat
 
         var attributed_strings: [[Astring?]]
         let background_colors: [[UIColor?]]?
@@ -124,5 +125,7 @@ class TableOfAttributedStrings: TiledScrollViewDelegate {
                 drawing_draw_cell_with_attributed_text(context: context, rect: rect, line_width: line_width, attributed_text: attributed_strings[row][col], background_color: backgroundColor, horizontal_cell: horizontalCell, margin_horizontal: margin_horizontal, margin_vertical: margin_vertical, text_centered: true, circle_color: circle_color, circle_radius: circle_radius, top_line: false, right_line: col != number_of_columns - 1, bottom_line: row != number_of_rows - 1, left_line: false)
         }
 
-        func scroll_view_did_end_zooming(zoom_scale zoom_scale: CGFloat) {}
+        func scroll_view_did_end_zooming(zoom_scale zoom_scale: CGFloat) {
+                self.zoom_scale = zoom_scale
+        }
 }

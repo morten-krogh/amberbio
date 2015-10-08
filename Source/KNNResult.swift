@@ -26,6 +26,7 @@ class KNNResultState: PageState {
                 if knn.classification_success {
                         knn_result_samples_delegate = KNNResultSamplesDelegate(knn: knn)
                         knn_result_summary_delegate = KNNResultSummaryDelegate(knn: knn)
+                        table_of_attributed_strings = knn_result_table_of_attributed_strings(knn: knn)
                 }
         }
 
@@ -92,16 +93,17 @@ class KNNResult: Component {
                 table_view.frame = CGRect(x: 0, y: origin_y, width: width, height: height - origin_y)
 
                 if !tiled_scroll_view.hidden {
-                        tiled_scroll_view.frame = view.bounds
+                        tiled_scroll_view.frame = CGRect(x: 0, y: origin_y, width: width, height: height - origin_y)
                         if let table_of_atrributed_strings = knn_result_state.table_of_attributed_strings {
                                 let scale_x = width / table_of_atrributed_strings.content_size.width
-                                let scale_y = height / table_of_atrributed_strings.content_size.height
+                                let scale_y = (height - origin_y) / table_of_atrributed_strings.content_size.height
                                 let scale_min = min(1, scale_x, scale_y)
                                 let scale_max = max(1, scale_x, scale_y)
                                 table_of_atrributed_strings.minimum_zoom_scale = scale_min
                                 table_of_atrributed_strings.maximum_zoom_scale = scale_max
                                 tiled_scroll_view.delegate = table_of_atrributed_strings
-                                tiled_scroll_view.scroll_view.zoomScale = max(0.7, scale_min)
+//                                tiled_scroll_view.scroll_view.zoomScale = max(0.7, scale_min)
+                                tiled_scroll_view.scroll_view.zoomScale = table_of_atrributed_strings.zoom_scale
                         }
                 }
         }
@@ -127,13 +129,14 @@ class KNNResult: Component {
                         table_view.reloadData()
                 } else if knn_result_state.selected_segment_index == 1 {
                         tiled_scroll_view.hidden = false
-
                 } else {
                         table_view.hidden = false
                         table_view.dataSource = knn_result_state.knn_result_samples_delegate
                         table_view.delegate = knn_result_state.knn_result_samples_delegate
                         table_view.reloadData()
                 }
+
+                view.setNeedsLayout()
         }
 
         func segmented_control_action() {
@@ -366,7 +369,7 @@ class KNNResultSamplesDelegate: NSObject, UITableViewDataSource, UITableViewDele
         }
 }
 
-func knn_result_table_of_attributed_strings(knn: KNN) -> TableOfAttributedStrings {
+func knn_result_table_of_attributed_strings(knn knn: KNN) -> TableOfAttributedStrings {
 
         var any_unclassified = false
         for classified_level_id in knn.test_sample_classified_level_ids {
@@ -386,7 +389,7 @@ func knn_result_table_of_attributed_strings(knn: KNN) -> TableOfAttributedString
         let column_level_names: [String]
         if any_unclassified {
                 column_level_ids = knn.comparison_level_ids + [-1]
-                column_level_names = knn.comparison_level_names + ["unclassified"]
+                column_level_names = knn.comparison_level_names + ["Unclassified"]
         } else {
                 column_level_ids = knn.comparison_level_ids
                 column_level_names = knn.comparison_level_names
@@ -422,10 +425,25 @@ func knn_result_table_of_attributed_strings(knn: KNN) -> TableOfAttributedString
         }
 
         if knn.validation_method == .TrainingTest {
-
-
-                
-
+                for i in 0 ..< knn.additional_level_ids.count {
+                        let level_id = knn.additional_level_ids[i]
+                        var row = [astring_body(string: knn.additional_level_names[i])] as [Astring?]
+                        var total = 0
+                        for j in 0 ..< column_level_ids.count {
+                                var number = 0
+                                let classified_level_id = column_level_ids[j]
+                                for k in 0 ..< knn.additional_sample_indices.count {
+                                        if knn.additional_sample_level_ids[k] == level_id && knn.additional_sample_classified_level_ids[k] == classified_level_id {
+                                                number++
+                                        }
+                                }
+                                row.append(astring_body(string: String(number)))
+                                column_totals[j] += number
+                                total += number
+                        }
+                        row.append(astring_body(string: String(total)))
+                        attributed_strings.append(row)
+                }
         }
 
         var footer = [nil] as [Astring?]
