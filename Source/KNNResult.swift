@@ -132,9 +132,20 @@ class KNNResultSummaryDelegate: NSObject, UITableViewDataSource, UITableViewDele
 
         let knn: KNN
 
+        var classified_test_samples = 0
+        var correctly_classified_test_samples = 0
+
         init(knn: KNN) {
                 self.knn = knn
 
+                for i in 0 ..< knn.test_sample_indices.count {
+                        if knn.test_sample_classified_level_ids[i] > 0 {
+                                classified_test_samples++
+                                if knn.test_sample_level_ids[i] == knn.test_sample_classified_level_ids[i] {
+                                        correctly_classified_test_samples++
+                                }
+                        }
+                }
         }
 
         let training_test_headers = ["Type of classification", "Training samples", "Test samples", "Classified test samples", "Correctly classified test samples", "Incorrectly classified test samples", "Unclassified test samples", "Additional predicted samples"]
@@ -193,8 +204,18 @@ class KNNResultSummaryDelegate: NSObject, UITableViewDataSource, UITableViewDele
                                 text = "Fixed training and test set"
                         case 1:
                                 text = String(knn.training_sample_index_set.count)
+                        case 2:
+                                text = String(knn.test_sample_indices.count)
+                        case 3:
+                                text = String(classified_test_samples)
+                        case 4:
+                                text = String(correctly_classified_test_samples)
+                        case 5:
+                                text = String(classified_test_samples - correctly_classified_test_samples)
+                        case 6:
+                                text = String(knn.test_sample_indices.count - classified_test_samples)
                         default:
-                                text = "\(knn.test_sample_indices.count)"
+                                text = String(knn.additional_sample_indices.count)
                         }
                 } else {
                         text = ""
