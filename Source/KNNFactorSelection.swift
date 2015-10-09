@@ -8,7 +8,7 @@ class KNNFactorSelectionState: PageState {
                 super.init()
                 name = "knn_factor_selection"
                 title = astring_body(string: "k nearest neighbor classifier")
-                info = "Select and deselect the levels of the factor that should be classified.\n\nThere must be at least two selected levels.\n\nTap the factor name(blue) to continue."
+                info = "Select the factor levels for the classifier.\n\nAt least two levels must be selected.\n\nTap the factor name(blue) to continue."
         }
 }
 
@@ -39,7 +39,7 @@ class KNNFactorSelection: Component, UITableViewDataSource, UITableViewDelegate 
         }
 
         func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-                return state.factor_ids.count
+                return max(1, state.factor_ids.count)
         }
 
         func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -49,23 +49,27 @@ class KNNFactorSelection: Component, UITableViewDataSource, UITableViewDelegate 
         func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
                 let header = tableView.dequeueReusableHeaderFooterViewWithIdentifier("header") as! CenteredHeaderFooterView
 
-                var number_of_selected_levels = 0
-                for level_id in state.level_ids_by_factor[section] {
-                        if knn_factor_selection_state.selected_level_ids.contains(level_id) {
-                                number_of_selected_levels++
-                        }
-                }
-
-                let text = state.factor_names[section]
-                if number_of_selected_levels >= 2 {
-                        header.update_selectable_arrow(text: text)
+                if state.factor_ids.isEmpty {
+                        header.update_normal(text: "There are no factors")
                 } else {
-                        header.update_unselected(text: text)
-                }
-                header.tag = section
+                        var number_of_selected_levels = 0
+                        for level_id in state.level_ids_by_factor[section] {
+                                if knn_factor_selection_state.selected_level_ids.contains(level_id) {
+                                        number_of_selected_levels++
+                                }
+                        }
 
-                if header.tap_recognizer == nil {
-                        header.addTapGestureRecognizer(target: self, action: "header_tap_action:")
+                        let text = state.factor_names[section]
+                        if number_of_selected_levels >= 2 {
+                                header.update_selectable_arrow(text: text)
+                        } else {
+                                header.update_unselected(text: text)
+                        }
+                        header.tag = section
+
+                        if header.tap_recognizer == nil {
+                                header.addTapGestureRecognizer(target: self, action: "header_tap_action:")
+                        }
                 }
 
                 return header
@@ -82,7 +86,7 @@ class KNNFactorSelection: Component, UITableViewDataSource, UITableViewDelegate 
         }
 
         func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-                return state.level_ids_by_factor[section].count
+                return state.factor_ids.isEmpty ? 0 : state.level_ids_by_factor[section].count
         }
 
         func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
