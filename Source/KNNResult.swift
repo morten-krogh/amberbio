@@ -14,7 +14,7 @@ class KNNResultState: PageState {
 
         var info_1 = ""
 
-        let info_2 = "Information about the individual samples.\n\n.Samples are grouped according to their actual levels.\n\nGreen samples are correctly classified, red samples are incorrectly classified, and gray samples have levels unknown to the classifier."
+        let info_2 = "Information about the individual samples.\n\nSamples are grouped according to their actual levels.\n\nGreen samples are correctly classified, red samples are incorrectly classified, and gray samples have levels unknown to the classifier."
 
         init(knn: KNN) {
                 self.knn = knn
@@ -284,8 +284,8 @@ class KNNResultSamplesDelegate: NSObject, UITableViewDataSource, UITableViewDele
         init(knn: KNN) {
                 self.knn = knn
 
-                level_ids = knn.comparison_level_ids + knn.additional_level_ids
-                level_names = knn.comparison_level_names + knn.additional_level_names
+                level_ids = knn.comparison_level_ids
+                level_names = knn.comparison_level_names
 
                 for level_id in knn.comparison_level_ids {
                         var current_sample_names = [] as [String]
@@ -300,17 +300,22 @@ class KNNResultSamplesDelegate: NSObject, UITableViewDataSource, UITableViewDele
                         classified_level_ids.append(current_classified_level_ids)
                 }
 
-                for level_id in knn.additional_level_ids {
-                        var current_sample_names = [] as [String]
-                        var current_classified_level_ids = [] as [Int]
-                        for i in 0 ..< knn.additional_sample_indices.count {
-                                if knn.additional_sample_level_ids[i] == level_id {
-                                        current_sample_names.append(knn.additional_sample_names[i])
-                                        current_classified_level_ids.append(knn.additional_sample_classified_level_ids[i])
+                if knn.validation_method == .TrainingTest {
+                        level_ids += knn.additional_level_ids
+                        level_names += knn.additional_level_names
+
+                        for level_id in knn.additional_level_ids {
+                                var current_sample_names = [] as [String]
+                                var current_classified_level_ids = [] as [Int]
+                                for i in 0 ..< knn.additional_sample_indices.count {
+                                        if knn.additional_sample_level_ids[i] == level_id {
+                                                current_sample_names.append(knn.additional_sample_names[i])
+                                                current_classified_level_ids.append(knn.additional_sample_classified_level_ids[i])
+                                        }
                                 }
+                                sample_names.append(current_sample_names)
+                                classified_level_ids.append(current_classified_level_ids)
                         }
-                        sample_names.append(current_sample_names)
-                        classified_level_ids.append(current_classified_level_ids)
                 }
         }
 
