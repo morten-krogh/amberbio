@@ -19,10 +19,16 @@
     <h1>Manual for the Amberbio app</h1>
 
     <p>
-      The Amberbio app allows scientists to analyze and visualize data sets, in particular biological data, on mobile devices. All calculations are performed directly on the device and all data is stored locally. The functionality should be evident from the user interface and it is not necessary to read the manual to use the app. The manual gives a high level overview of the app and explains some important details that are not clear from the user interface such as some mathematical details.
+      The Amberbio app allows scientists to analyze and visualize data sets, in particular
+      biological data, on mobile devices. All calculations are performed directly on the device and
+      all data is stored locally. The functionality should be evident from the user interface and it
+      is not necessary to read the manual to use the app. The manual gives a high level overview of
+      the app and explains some important details that are not clear from the user interface such as
+      some mathematical details.
     </p>
     <p>
-      This manual is available in the app and on the web at <a href="http://www.amberbio.com/manual">www.amberbio.com/manual</a>.
+      This manual is available in the app and on the web
+      at <a href="http://www.amberbio.com/manual">www.amberbio.com/manual</a>.
     </p>
   </section-manual>
 
@@ -96,48 +102,63 @@
     <div class="table-of-content-link">
       <a  href="#multiple-hypothesis-testing">Multiple hypothesis testing</a>
     </div>
+
+    <div class="table-of-content-link">
+      <a  href="#knn">k nearest neighbor classification</a>
+    </div>
   </section-manual>
 
   <section-manual id="version">
     <h1><a href="#table-of-contents">Version</a></h1>
     <p>
-      Version 1 of the Amberbio app.
+      Version 2 of the Amberbio app.
     </p>
   </section-manual>
 
   <section-manual id="privacy">
     <h1><a href="#table-of-contents">Privacy</a></h1>
     <p>
-      All data is stored locally on the device. All calculations are performed locally. Amber Biosciences does not have any access to user data.
+      All data is stored locally on the device. All calculations are performed locally. Amber
+      Biosciences does not have any access to user data.
     </p>
   </section-manual>
 
   <section-manual id="navigation">
     <h1><a href="#table-of-contents">Navigation</a></h1>
     <p>
-      The app has a home page that is reached by tapping the home icon in the upper left corner. Navigation is done from the home page by tapping the icons or by the back and forward buttons.
+      The app has a home page that is reached by tapping the home icon in the upper left
+      corner. Navigation is done from the home page by tapping the icons or by the back and forward
+      buttons.
     </p>
   </section-manual>
 
   <section-manual id="projects-and-data-sets">
     <h1><a href="#table-of-contents">Projects and data sets</a></h1>
     <p>
-      The app handles projects and data sets. A data set is a set of values organized in a table with rows and columns. A project is a collection of one or more data sets.
-A project is always created with a data set called "The original data set". 
-Other data sets within a project are created by the app using various methods such as normalization or sample removal.
+      The app handles projects and data sets. A data set is a set of values organized in a table
+      with rows and columns. A project is a collection of one or more data sets.  A project is
+      always created with a data set called "The original data set".  Other data sets within a
+      project are created by the app using various methods such as normalization or sample removal.
     </p>
     
     <p>
-      The columns of a data set are called samples and the rows are called molecules. The values in the table
-represent an intensity, or some other quantity, for a sample-molecule pair. Data sets could represent biological information such as gene expression, protein abundances, microRNA expressions, peptide abundances, or metabolite concentrations. Data sets do not need to be of biological nature even though the app uses terminology from biology.
+      The columns of a data set are called samples and the rows are called molecules. The values in
+      the table represent an intensity, or some other quantity, for a sample-molecule pair. Data
+      sets could represent biological information such as gene expression, protein abundances,
+      microRNA expressions, peptide abundances, or metabolite concentrations. Data sets do not need
+      to be of biological nature even though the app uses terminology from biology.
     </p>
    
     <p>
-      A project also contains factor, or grouping, information about the samples. A factor has one or more levels. An example of a factor is "Gender" with levels "male" and "female". Naturally, factors are shared for all data sets within a project.
+      A project also contains factor, or grouping, information about the samples. A factor has one
+      or more levels. An example of a factor is "Gender" with levels "male" and "female". Naturally,
+      factors are shared for all data sets within a project.
     </p>
 
     <p>
-      A project can also contain extra information about the molecules. This information is called molecule annotations. An example could be the molecule annotation "Chromosome" where each molecule has a value such as "chromosome 21".
+      A project can also contain extra information about the molecules. This information is called
+      molecule annotations. An example could be the molecule annotation "Chromosome" where each
+      molecule has a value such as "chromosome 21".
     </p>
   </section-manual>
 
@@ -215,13 +236,12 @@ user.
   <section-manual id="file-format-of-txt-files">
     <h1><a href="#table-of-contents">File format of txt files</a></h1>
     <p>
-      The "txt" files contain tables of values. The rows are separated by newline characters("\n" or
-      "\r\n") and the cells are separated by tabs or commas. The file extension should be "txt" in
-      any case. The app tries to find the separator by first searching for tabs. If there are tabs,
-      the app tries to read the file as a tab separated file. If there are no tabs, it tries to read
-      the file as a comma separated file. Tabs are not allowed within the cells. If there are commas
-      within the cells, the file must be tab separated. The three types of "txt" files are described
-      below.
+      The "txt" files contain tables of values. The rows, or lines, are separated by "\n", "\r", or
+      "\r\n", and the cells are separated by "\t" or ",". The file extension should be "txt" in any
+      case. The app tries to find the separator by first searching for tabs. If there are tabs, the
+      app tries to read the file as a tab separated file. If there are no tabs, the file is read as
+      a comma separated file. Tabs are never allowed within the cells. If there are commas within the
+      cells, the file must be tab separated. The three types of "txt" files are described below.
     </p>
 
     <p>
@@ -232,9 +252,10 @@ user.
     </p>
 
     <p>
-      The decimal point is "." as in "12.98".
-      Missing values must be written as nothing(empty string), NA, na, NaN, NAN, or nan. The upper
-      left cell can contain anything. An example value table is shown below.
+      The decimal separator can be either point as in "12.98" or comma as in "12,98". If the decimal
+      separator is comma, the file must be tab separated. Missing values must be written as (the
+      empty string), NA, na, NaN, NAN, or nan. The upper left cell can contain anything. An example
+      value table with two missing values is shown below.
     </p>
 
     <table>
@@ -246,7 +267,7 @@ user.
       <tr>
         <td>Molecule 1</td>
         <td>6.7</td>
-        <td>NA</td>
+        <td></td>
       </tr>
       <tr>
         <td>Molecule 2</td>
@@ -264,7 +285,7 @@ user.
       The second file type contains factors for the samples. Factors can be imported into a project
       at any time and are not part of the initial creation of the project. The first row of the
       factor file contains sample names. The first column contains factor names. The values are the
-      levels for the factor and sample. The upper left field can be anything. The factor names must
+      levels for the factor and sample. The upper left cell can be anything. The factor names must
       be distinct and the sample names can come in any order. All samples of the project must be
       present. Extra samples will be ignored. An example factor table is shown below
     </p>
@@ -294,7 +315,7 @@ user.
 
     <p>
       The third file type contains molecule annotations and it can be imported at any time and is
-      not part of the creation of the project. The first row contains the name of the molecule
+      not part of the initial creation of the project. The first row contains the name of the molecule
       annotation. The first column must contain all the molecule names. The order of the rows is
       arbitrary and extra molecules are ignored. An example molecule annotation table is shown below
     </p>
@@ -439,6 +460,70 @@ user.
     </p>
   </section-manual>
 
+  <section-manual id="knn">
+    <h1><a href="#table-of-contents">k nearest neighbor classification</a></h1>
+    <p>
+      The k nearest neighbor classifier separates samples into two or more classes. The classes are
+      the levels of a factor. The first step in the classification is to select a factor and at
+      least two levels.
+    </p>
+
+    <p>
+      Given a training set and a test sample, the k training samples with the smallest distances to
+      the test sample are found. The levels of these k nearest samples are considered, and if there
+      is a single level that constitutes a majority of the k samples, that level is chosen as the
+      predicted level for the test sample. If no level obtains a majority alone, the test sample is
+      considered unclassified. If the classifier has only two levels and k is odd, there is always
+      one level with a majority. In other cases, samples might be unclassified.
+    </p>
+
+    <p>
+      The distance measure is euclidean distance. Only molecules without missing values in the
+      combined training set and test set are included in the distance calculation.
+    </p>
+
+    <p>
+      Three types of validation are available in the app; a fixed training set, leave-one-out cross
+      validation, and k-fold cross validation.
+    </p>
+
+    <p>
+      When a fixed training set is chosen, the classifier is tested on all remaining samples, both
+      those with actual levels matching the levels of the classifier and those with actual levels
+      different from the levels known to the classifier. The latter type of samples will always be
+      incorrectly classified. However, often it is still useful to know their predicted levels. For
+      instance, if the classifier has the levels "sick" and "healthy", it might be useful to
+      classify "borderline" samples into either "healthy" or "sick".
+    </p>
+
+    <p>
+      For leave-one-out cross validation, each sample is left out and tested with the remaining
+      samples as the training set. In that way, each sample obtains one classified level which can
+      be compared to the real level. Leave-one-out classification only uses the samples with levels
+      known to the classifier.
+    </p>
+
+    <p>
+      For k-fold cross validation, the samples are divided randomly into k subsets of almost
+      equal size; if the number of samples is not divisible by k, some subsets will be one sample
+      larger than other subsets.  Each subset is tested on a classifier trained by the remaining
+      samples. In that way, each sample obtains one classified level which can be compared to the
+      real level. Cross validation only uses the samples with levels that are known to the
+      classifier.
+    </p>
+
+    <p>
+      In the special case where k is equal to the number of samples, k-fold cross validation is
+      equal to leave-one-out cross validation. Please note that the k in k-fold cross validation is not
+      the same k as in k nearest neighbor. They are both called k for historical reasons.
+    </p>
+
+    <p>
+      In case of ambiguity in the k nearest neighbors due to ties in the distances, the classifier
+      makes an arbitrary, but non-random, choice. This situation practically never occurs in real
+      biological data.
+  </section-manual>
+  
 </article>
 </body>
 </html>
