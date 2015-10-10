@@ -110,7 +110,6 @@ class KNNResult: Component {
                                 table_of_atrributed_strings.minimum_zoom_scale = scale_min
                                 table_of_atrributed_strings.maximum_zoom_scale = scale_max
                                 tiled_scroll_view.delegate = table_of_atrributed_strings
-//                                tiled_scroll_view.scroll_view.zoomScale = max(0.7, scale_min)
                                 tiled_scroll_view.scroll_view.zoomScale = table_of_atrributed_strings.zoom_scale
                         }
                 }
