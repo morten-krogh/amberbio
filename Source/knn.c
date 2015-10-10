@@ -97,7 +97,7 @@ bool knn_classify_training_test(const double* values, const long number_of_molec
                 return false;
         }
 
-        long majority = k % 2 == 0 ? k /2 + 1 : (k + 1) / 2;
+        long majority = k % 2 == 0 ? k / 2 + 1 : (k + 1) / 2;
 
         long sample_indices[number_of_training_samples + number_of_test_samples];
 
