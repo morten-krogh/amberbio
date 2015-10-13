@@ -26,7 +26,7 @@ class SupervisedClassificationResultState: PageState {
                         case (.KNN, .TrainingTest):
                                 supervised_classification_result_summary_delegate = KNNTrainingTestResultSummaryDelegate(knn: supervised_classification as! KNN)
                         case (.KNN, _):
-                                supervised_classification_result_summary_delegate = KNNTrainingTestResultSummaryDelegate(knn: supervised_classification as! KNN)
+                                supervised_classification_result_summary_delegate = KNNCrossValidationResultSummaryDelegate(knn: supervised_classification as! KNN)
                         default:
                                 break
                         }
