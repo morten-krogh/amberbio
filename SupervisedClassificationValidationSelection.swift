@@ -35,8 +35,6 @@ class SupervisedClassificationValidationSelection: Component, UITableViewDataSou
                 table_view.registerClass(UITableViewHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: "footer")
                 table_view.registerClass(CenteredTableViewCell.self, forCellReuseIdentifier: "cell")
                 table_view.registerClass(CrossValidationTableViewCell.self, forCellReuseIdentifier: "text field cell")
-                table_view.dataSource = self
-                table_view.delegate = self
                 table_view.backgroundColor = UIColor.whiteColor()
                 table_view.separatorStyle = .None
 
@@ -47,6 +45,9 @@ class SupervisedClassificationValidationSelection: Component, UITableViewDataSou
 
         override func render() {
                 supervised_classification = (state.page_state as! SupervisedClassificationValidationSelectionState).supervised_classification
+                table_view.dataSource = self
+                table_view.delegate = self
+                table_view.reloadData()
         }
 
         func numberOfSectionsInTableView(tableView: UITableView) -> Int {

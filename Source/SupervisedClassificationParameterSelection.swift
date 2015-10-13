@@ -50,6 +50,7 @@ class SupervisedClassificationParameterSelection: Component, UITableViewDataSour
 
                 table_view.dataSource = self
                 table_view.delegate = self
+                table_view.reloadData()
         }
 
         func numberOfSectionsInTableView(tableView: UITableView) -> Int {

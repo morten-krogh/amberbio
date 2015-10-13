@@ -153,8 +153,8 @@ class SupervisedClassificationResult: Component {
                         segmented_control.hidden = true
                 } else if supervised_classification_result_state.selected_segment_index == 0 {
                         table_view.hidden = false
-//                        table_view.dataSource = knn_result_state.knn_result_summary_delegate
-//                        table_view.delegate = knn_result_state.knn_result_summary_delegate
+                        table_view.dataSource = supervised_classification_result_state.supervised_classification_result_summary_delegate
+                        table_view.delegate = supervised_classification_result_state.supervised_classification_result_summary_delegate
                         table_view.reloadData()
                 } else if supervised_classification_result_state.selected_segment_index == 1 {
                         tiled_scroll_view.hidden = false
