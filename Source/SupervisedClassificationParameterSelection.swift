@@ -165,18 +165,13 @@ class SupervisedClassificationParameterSelection: Component, UITableViewDataSour
         }
 
         func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-                switch indexPath.row {
-                case 0:
-                        let cell = tableView.dequeueReusableCellWithIdentifier("cell") as! CenteredTableViewCell
-                        let text = "Fixed training and test set"
-                        cell.update_selectable_arrow(text: text)
+                switch supervised_classification.supervised_classification_type {
+                case .KNN:
+                        let cell = tableView.dequeueReusableCellWithIdentifier("text field cell") as! CrossValidationTableViewCell
+                        let text = "k fold cross validation"
+                        cell.update(text: text, k_fold: supervised_classification.k_fold, tag: 0, delegate: self)
                         return cell
-                case 1:
-                        let cell = tableView.dequeueReusableCellWithIdentifier("cell") as! CenteredTableViewCell
-                        let text = "Leave one out cross validation"
-                        cell.update_selectable_arrow(text: text)
-                        return cell
-                default:
+                case .SVM:
                         let cell = tableView.dequeueReusableCellWithIdentifier("text field cell") as! CrossValidationTableViewCell
                         let text = "k fold cross validation"
                         cell.update(text: text, k_fold: supervised_classification.k_fold, tag: 0, delegate: self)
