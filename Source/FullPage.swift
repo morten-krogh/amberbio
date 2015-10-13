@@ -212,6 +212,8 @@ class FullPage: Component, UIScrollViewDelegate, UISearchBarDelegate {
                                 page = KNNKSelection()
                         case "knn_result":
                                 page = KNNResult()
+                        case "svm_factor_selection":
+                                page = SVMFactorSelection()
 
                         default:
                                 print("Remember to update render in FullPage for \(page_name)")
