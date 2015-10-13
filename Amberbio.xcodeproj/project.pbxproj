@@ -33,7 +33,7 @@
 		602709041BA8054800672D54 /* brain-stem-cells-values.txt in Resources */ = {isa = PBXBuildFile; fileRef = 602709001BA804EA00672D54 /* brain-stem-cells-values.txt */; settings = {ASSET_TAGS = (); }; };
 		605F52321BC2ED2D00033B91 /* SupervisedClassificationParameterSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605F52311BC2ED2D00033B91 /* SupervisedClassificationParameterSelection.swift */; settings = {ASSET_TAGS = (); }; };
 		605F52351BC3B37300033B91 /* knn.c in Sources */ = {isa = PBXBuildFile; fileRef = 605F52331BC3B37300033B91 /* knn.c */; settings = {ASSET_TAGS = (); }; };
-		605F52371BC3D9EF00033B91 /* KNNResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605F52361BC3D9EF00033B91 /* KNNResult.swift */; settings = {ASSET_TAGS = (); }; };
+		605F52371BC3D9EF00033B91 /* SupervisedClassificationResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605F52361BC3D9EF00033B91 /* SupervisedClassificationResult.swift */; settings = {ASSET_TAGS = (); }; };
 		605F52391BC400EF00033B91 /* ClassificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605F52381BC400EF00033B91 /* ClassificationTableViewCell.swift */; settings = {ASSET_TAGS = (); }; };
 		605F523B1BC502A700033B91 /* CrossValidationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605F523A1BC502A700033B91 /* CrossValidationTableViewCell.swift */; settings = {ASSET_TAGS = (); }; };
 		60B400391BA1982900D8DD80 /* state_init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400381BA1982900D8DD80 /* state_init.swift */; settings = {ASSET_TAGS = (); }; };
@@ -253,7 +253,7 @@
 		605F52311BC2ED2D00033B91 /* SupervisedClassificationParameterSelection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SupervisedClassificationParameterSelection.swift; path = Source/SupervisedClassificationParameterSelection.swift; sourceTree = "<group>"; };
 		605F52331BC3B37300033B91 /* knn.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = knn.c; path = Source/knn.c; sourceTree = "<group>"; };
 		605F52341BC3B37300033B91 /* knn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = knn.h; path = Source/knn.h; sourceTree = "<group>"; };
-		605F52361BC3D9EF00033B91 /* KNNResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KNNResult.swift; path = Source/KNNResult.swift; sourceTree = "<group>"; };
+		605F52361BC3D9EF00033B91 /* SupervisedClassificationResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SupervisedClassificationResult.swift; path = Source/SupervisedClassificationResult.swift; sourceTree = "<group>"; };
 		605F52381BC400EF00033B91 /* ClassificationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ClassificationTableViewCell.swift; path = Source/ClassificationTableViewCell.swift; sourceTree = "<group>"; };
 		605F523A1BC502A700033B91 /* CrossValidationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CrossValidationTableViewCell.swift; path = Source/CrossValidationTableViewCell.swift; sourceTree = "<group>"; };
 		60B400381BA1982900D8DD80 /* state_init.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = state_init.swift; path = Source/state_init.swift; sourceTree = "<group>"; };
@@ -546,7 +546,6 @@
 				60B4007A1BA19C7900D8DD80 /* HomeButton.swift */,
 				60B4007C1BA19C7900D8DD80 /* ImportData.swift */,
 				60B4007D1BA19C7900D8DD80 /* InfoButton.swift */,
-				605F52361BC3D9EF00033B91 /* KNNResult.swift */,
 				60B400821BA19C7900D8DD80 /* LinearRegressionPlot.swift */,
 				60B400831BA19C7900D8DD80 /* LinearRegressionSelection.swift */,
 				60B400841BA19C7900D8DD80 /* LinearRegressionTable.swift */,
@@ -577,6 +576,7 @@
 				60B400BE1BA19C7900D8DD80 /* SingleMoleculePlotTable.swift */,
 				601E57A21BCD0441002EEEB3 /* SupevisedClassificationFactorSelection.swift */,
 				605F52311BC2ED2D00033B91 /* SupervisedClassificationParameterSelection.swift */,
+				605F52361BC3D9EF00033B91 /* SupervisedClassificationResult.swift */,
 				60D5CE371BC26CD100B0D88A /* SupervisedClassificationTrainingSelection.swift */,
 				601E57A41BCD0A8F002EEEB3 /* SupervisedClassificationValidationSelection.swift */,
 				60B400D01BA19C7900D8DD80 /* Title.swift */,
@@ -1056,7 +1056,7 @@
 				60B400421BA19BED00D8DD80 /* NumberFormat.swift in Sources */,
 				60B4010B1BA19C7900D8DD80 /* Layout.swift in Sources */,
 				60B401661BA1A20400D8DD80 /* ColorGrid.swift in Sources */,
-				605F52371BC3D9EF00033B91 /* KNNResult.swift in Sources */,
+				605F52371BC3D9EF00033B91 /* SupervisedClassificationResult.swift in Sources */,
 				60B401431BA19C7900D8DD80 /* SearchTableViewCell.swift in Sources */,
 				60B400DF1BA19C7900D8DD80 /* CenteredTableViewCell.swift in Sources */,
 				60B401371BA19C7900D8DD80 /* PValueHistogram.swift in Sources */,

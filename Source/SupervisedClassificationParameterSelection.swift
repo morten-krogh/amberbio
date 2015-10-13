@@ -175,8 +175,12 @@ class SupervisedClassificationParameterSelection: Component, UITableViewDataSour
         func header_tap_action(sender: UITapGestureRecognizer) {
                 editing_text_field?.resignFirstResponder()
                 read_text_fields()
+                supervised_classification.classify()
+                
+
                 switch supervised_classification.supervised_classification_type {
                 case .KNN:
+                        supervised_classification.classify()
                         ////                knn_k_selection_state.knn.classify()
                         ////                let page_state = KNNResultState(knn: knn_k_selection_state.knn)
                         ////                state.navigate(page_state: page_state)

@@ -1,52 +1,66 @@
 import UIKit
 
-class KNNResultState: PageState {
+class SupervisedClassificationResultState: PageState {
 
-        let knn: KNN
+        let supervised_classification: SupervisedClassification
 
         var selected_segment_index = 0
-
         var knn_result_samples_delegate: KNNResultSamplesDelegate?
         var knn_result_summary_delegate: KNNResultSummaryDelegate?
         var table_of_attributed_strings: TableOfAttributedStrings?
+        var any_unclassified = false
 
-        let info_0 = "A summary of the classification results.\n\nThe additional samples are samples that have levels different from the levels used in the classifier."
-
-        var info_1 = ""
-
-        let info_2 = "Information about the individual samples.\n\nSamples are grouped according to their actual levels.\n\nGreen samples are correctly classified, red samples are incorrectly classified, and gray samples have levels unknown to the classifier."
-
-        init(knn: KNN) {
-                self.knn = knn
+        init(supervised_classification: SupervisedClassification) {
+                self.supervised_classification = supervised_classification
                 super.init()
-                name = "knn_result"
-                title = astring_body(string: "k nearest neighbor classifier")
-                info = "The result of the k nearest neighbor classification"
-
-                if knn.classification_success {
-                        knn_result_samples_delegate = KNNResultSamplesDelegate(knn: knn)
-                        knn_result_summary_delegate = KNNResultSummaryDelegate(knn: knn)
-                        let (table_of_attributed_strings, any_unclassified) = knn_result_table_of_attributed_strings(knn: knn)
-                        self.table_of_attributed_strings = table_of_attributed_strings
-                        set_selected_segment_index(index: 0)
-
-                        if any_unclassified {
-                                info_1 = "The row names are the actual levels of the samples.\n\nThe column names are the predicted levels.\n\nA sample is unclassified if there is no majority level among the k=\(knn.k) neighbors.\n\nThe cells contain the number of samples with a combination of actual and predicted levels."
-                        } else {
-                                info_1 = "The row names are the actual levels of the samples.\n\nThe column names are the predicted levels.\n\nThe cells contain the number of samples with a combination of actual and predicted levels."
-                        }
+                name = "supervised_classification_result"
+                switch supervised_classification.supervised_classification_type {
+                case .KNN:
+                        title = astring_body(string: "k nearest neighbor classifier")
+                case .SVM:
+                        title = astring_body(string: "support vector machine")
                 }
+
+                if supervised_classification.classification_success {
+//                        knn_result_samples_delegate = KNNResultSamplesDelegate(knn: knn)
+//                        knn_result_summary_delegate = KNNResultSummaryDelegate(knn: knn)
+//                        let (table_of_attributed_strings, any_unclassified) = knn_result_table_of_attributed_strings(knn: knn)
+//                        self.table_of_attributed_strings = table_of_attributed_strings
+//                        set_selected_segment_index(index: 0)
+                }
+
+                set_selected_segment_index(index: 0)
         }
 
         func set_selected_segment_index(index index: Int) {
                 selected_segment_index = index
-                info = index == 0 ? info_0 : (index == 1 ? info_1 : info_2)
+                set_info()
+        }
+
+        func set_info() {
+                switch supervised_classification.supervised_classification_type {
+                case .KNN:
+                        if !supervised_classification.classification_success {
+                                info = "The result of the k nearest neighbor classification"
+                        } else if selected_segment_index == 0 {
+                                info = "A summary of the classification results.\n\nThe additional samples are samples that have levels different from the levels used in the classifier."
+                        } else if selected_segment_index == 1 && any_unclassified {
+                                let k = (supervised_classification as! KNN).k
+                                info = "The row names are the actual levels of the samples.\n\nThe column names are the predicted levels.\n\nA sample is unclassified if there is no majority level among the k=\(k) neighbors.\n\nThe cells contain the number of samples with a combination of actual and predicted levels."
+                        } else if selected_segment_index == 1 {
+                                info = "The row names are the actual levels of the samples.\n\nThe column names are the predicted levels.\n\nThe cells contain the number of samples with a combination of actual and predicted levels."
+                        } else {
+                                info = "Information about the individual samples.\n\nSamples are grouped according to their actual levels.\n\nGreen samples are correctly classified, red samples are incorrectly classified, and gray samples have levels unknown to the classifier."
+                        }
+                case .SVM:
+                        info = ""
+                }
         }
 }
 
-class KNNResult: Component {
+class SupervisedClassificationResult: Component {
 
-        var knn_result_state: KNNResultState!
+        var supervised_classification_result_state: SupervisedClassificationResultState!
 
         let classification_failure_label = UILabel()
 
@@ -116,7 +130,7 @@ class KNNResult: Component {
         }
 
         override func render() {
-                knn_result_state = state.page_state as! KNNResultState
+                supervised_classification_result_state = state.page_state as! SupervisedClassificationResultState
                 let knn = knn_result_state.knn
 
                 classification_failure_label.hidden = true

@@ -175,19 +175,19 @@ class SupervisedClassification {
                 calculate_training_number_of_samples()
         }
         
-        //        func classify() {
-        //                switch validation_method {
-        //                case .TrainingTest:
-        //                        classify_training_test()
-        //                case .LeaveOneOut:
-        //                        k_fold = core_sample_indices.count
-        //                        classify_k_fold_cross_validation()
-        //                default:
-        //                        classify_k_fold_cross_validation()
-        //                }
-        //        }
-        //
-        //        func classify_training_test() {
+        func classify() {
+                switch validation_method {
+                case .TrainingTest:
+                        classify_training_test()
+                case .LeaveOneOut:
+                        k_fold = core_sample_indices.count
+                        classify_k_fold_cross_validation()
+                default:
+                        classify_k_fold_cross_validation()
+                }
+        }
+        
+        func classify_training_test() {
         //                var training_sample_indices = [] as [Int]
         //                var training_level_ids = [] as [Int]
         //                test_sample_indices = []
@@ -226,9 +226,9 @@ class SupervisedClassification {
         //                        test_sample_classified_level_ids = [Int](count: test_sample_indices.count, repeatedValue: 0)
         //                        additional_sample_classified_level_ids = [Int](count: additional_sample_indices.count, repeatedValue: 0)
         //                }
-        //        }
-        //
-        //        func classify_k_fold_cross_validation() {
+        }
+        
+        func classify_k_fold_cross_validation() {
         //                test_sample_indices = []
         //                test_sample_names = []
         //                test_sample_level_ids = []
@@ -277,5 +277,5 @@ class SupervisedClassification {
         //                        
         //                        counter += size
         //                }
-        //        }
+        }
 }
