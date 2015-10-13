@@ -35,8 +35,6 @@
 		605F52371BC3D9EF00033B91 /* KNNResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605F52361BC3D9EF00033B91 /* KNNResult.swift */; settings = {ASSET_TAGS = (); }; };
 		605F52391BC400EF00033B91 /* ClassificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605F52381BC400EF00033B91 /* ClassificationTableViewCell.swift */; settings = {ASSET_TAGS = (); }; };
 		605F523B1BC502A700033B91 /* CrossValidationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605F523A1BC502A700033B91 /* CrossValidationTableViewCell.swift */; settings = {ASSET_TAGS = (); }; };
-		6099D23C1BBED42400F176BD /* KNNFactorSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6099D23B1BBED42300F176BD /* KNNFactorSelection.swift */; settings = {ASSET_TAGS = (); }; };
-		6099D23E1BBEDF6500F176BD /* KNNValidationSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6099D23D1BBEDF6500F176BD /* KNNValidationSelection.swift */; settings = {ASSET_TAGS = (); }; };
 		60B400391BA1982900D8DD80 /* state_init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400381BA1982900D8DD80 /* state_init.swift */; settings = {ASSET_TAGS = (); }; };
 		60B4003B1BA1983900D8DD80 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B4003A1BA1983900D8DD80 /* State.swift */; settings = {ASSET_TAGS = (); }; };
 		60B400411BA19BED00D8DD80 /* AttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B4003D1BA19BED00D8DD80 /* AttributedString.swift */; settings = {ASSET_TAGS = (); }; };
@@ -256,8 +254,6 @@
 		605F52361BC3D9EF00033B91 /* KNNResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KNNResult.swift; path = Source/KNNResult.swift; sourceTree = "<group>"; };
 		605F52381BC400EF00033B91 /* ClassificationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ClassificationTableViewCell.swift; path = Source/ClassificationTableViewCell.swift; sourceTree = "<group>"; };
 		605F523A1BC502A700033B91 /* CrossValidationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CrossValidationTableViewCell.swift; path = Source/CrossValidationTableViewCell.swift; sourceTree = "<group>"; };
-		6099D23B1BBED42300F176BD /* KNNFactorSelection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KNNFactorSelection.swift; path = Source/KNNFactorSelection.swift; sourceTree = "<group>"; };
-		6099D23D1BBEDF6500F176BD /* KNNValidationSelection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KNNValidationSelection.swift; path = Source/KNNValidationSelection.swift; sourceTree = "<group>"; };
 		60B400381BA1982900D8DD80 /* state_init.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = state_init.swift; path = Source/state_init.swift; sourceTree = "<group>"; };
 		60B4003A1BA1983900D8DD80 /* State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = State.swift; path = Source/State.swift; sourceTree = "<group>"; };
 		60B4003D1BA19BED00D8DD80 /* AttributedString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AttributedString.swift; path = Source/AttributedString.swift; sourceTree = "<group>"; };
@@ -548,11 +544,9 @@
 				60B4007A1BA19C7900D8DD80 /* HomeButton.swift */,
 				60B4007C1BA19C7900D8DD80 /* ImportData.swift */,
 				60B4007D1BA19C7900D8DD80 /* InfoButton.swift */,
-				6099D23B1BBED42300F176BD /* KNNFactorSelection.swift */,
 				605F52311BC2ED2D00033B91 /* KNNKSelection.swift */,
 				605F52361BC3D9EF00033B91 /* KNNResult.swift */,
 				60D5CE371BC26CD100B0D88A /* KNNTrainingSelection.swift */,
-				6099D23D1BBEDF6500F176BD /* KNNValidationSelection.swift */,
 				60B400821BA19C7900D8DD80 /* LinearRegressionPlot.swift */,
 				60B400831BA19C7900D8DD80 /* LinearRegressionSelection.swift */,
 				60B400841BA19C7900D8DD80 /* LinearRegressionTable.swift */,
@@ -981,7 +975,6 @@
 				60B4014A1BA19C7900D8DD80 /* SliderTableViewCell.swift in Sources */,
 				60B400D91BA19C7900D8DD80 /* AnovaFactorSelection.swift in Sources */,
 				60B401671BA1A20400D8DD80 /* ColorSlider.swift in Sources */,
-				6099D23E1BBEDF6500F176BD /* KNNValidationSelection.swift in Sources */,
 				60B4011B1BA19C7900D8DD80 /* MultipleMoleculePlot.swift in Sources */,
 				60B4014E1BA19C7900D8DD80 /* sqlite_indices.swift in Sources */,
 				60B401031BA19C7900D8DD80 /* HierarchicalClusteringDrawer.swift in Sources */,
@@ -1009,7 +1002,6 @@
 				60B400FE1BA19C7900D8DD80 /* Feedback.swift in Sources */,
 				60B401591BA19C7900D8DD80 /* TiledScrollView.swift in Sources */,
 				605F52351BC3B37300033B91 /* knn.c in Sources */,
-				6099D23C1BBED42400F176BD /* KNNFactorSelection.swift in Sources */,
 				60B401231BA19C7900D8DD80 /* PairedPairingFactor.swift in Sources */,
 				60B401561BA19C7900D8DD80 /* TextFieldHeaderFooterView.swift in Sources */,
 				601E57A71BCD0B12002EEEB3 /* SupervisedClassification.swift in Sources */,
