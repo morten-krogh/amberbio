@@ -116,7 +116,7 @@ class SupervisedClassificationResult: Component {
 
                 if !tiled_scroll_view.hidden {
                         tiled_scroll_view.frame = CGRect(x: 0, y: origin_y, width: width, height: height - origin_y)
-                        if let table_of_atrributed_strings = knn_result_state.table_of_attributed_strings {
+                        if let table_of_atrributed_strings = supervised_classification_result_state.table_of_attributed_strings {
                                 let scale_x = width / table_of_atrributed_strings.content_size.width
                                 let scale_y = (height - origin_y) / table_of_atrributed_strings.content_size.height
                                 let scale_min = min(1, scale_x, scale_y)
@@ -131,29 +131,29 @@ class SupervisedClassificationResult: Component {
 
         override func render() {
                 supervised_classification_result_state = state.page_state as! SupervisedClassificationResultState
-                let knn = knn_result_state.knn
+                let supervised_classification = supervised_classification_result_state.supervised_classification
 
                 classification_failure_label.hidden = true
                 segmented_control.hidden = false
                 table_view.hidden = true
                 tiled_scroll_view.hidden = true
 
-                segmented_control.selectedSegmentIndex = knn_result_state.selected_segment_index
+                segmented_control.selectedSegmentIndex = supervised_classification_result_state.selected_segment_index
 
-                if !knn.classification_success {
+                if !supervised_classification.classification_success {
                         classification_failure_label.hidden = false
                         segmented_control.hidden = true
-                } else if knn_result_state.selected_segment_index == 0 {
+                } else if supervised_classification_result_state.selected_segment_index == 0 {
                         table_view.hidden = false
-                        table_view.dataSource = knn_result_state.knn_result_summary_delegate
-                        table_view.delegate = knn_result_state.knn_result_summary_delegate
+//                        table_view.dataSource = knn_result_state.knn_result_summary_delegate
+//                        table_view.delegate = knn_result_state.knn_result_summary_delegate
                         table_view.reloadData()
-                } else if knn_result_state.selected_segment_index == 1 {
+                } else if supervised_classification_result_state.selected_segment_index == 1 {
                         tiled_scroll_view.hidden = false
                 } else {
                         table_view.hidden = false
-                        table_view.dataSource = knn_result_state.knn_result_samples_delegate
-                        table_view.delegate = knn_result_state.knn_result_samples_delegate
+//                        table_view.dataSource = knn_result_state.knn_result_samples_delegate
+//                        table_view.delegate = knn_result_state.knn_result_samples_delegate
                         table_view.reloadData()
                 }
 
@@ -161,7 +161,7 @@ class SupervisedClassificationResult: Component {
         }
 
         func segmented_control_action() {
-                knn_result_state.set_selected_segment_index(index: segmented_control.selectedSegmentIndex)
+                supervised_classification_result_state.set_selected_segment_index(index: segmented_control.selectedSegmentIndex)
                 render()
         }
 }
