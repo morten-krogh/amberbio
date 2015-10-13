@@ -101,12 +101,10 @@ class SupervisedClassificationValidationSelection: Component, UITableViewDataSou
                         page_state = SupervisedClassificationTrainingSelectionState(supervised_classification: supervised_classification)
                 case 1:
                         supervised_classification.validation_leave_one_out()
-//                        page_state = KNNKSelectionState(knn: knn)
-                        page_state = SupervisedClassificationTrainingSelectionState(supervised_classification: supervised_classification)
+                        page_state = SupervisedClassificationParameterSelectionState(supervised_classification: supervised_classification)
                 default:
                         supervised_classification.validation_k_fold_cross_validation()
-//                        page_state = KNNKSelectionState(knn: knn)
-                        page_state = SupervisedClassificationTrainingSelectionState(supervised_classification: supervised_classification)
+                        page_state = SupervisedClassificationParameterSelectionState(supervised_classification: supervised_classification)
                 }
                 state.navigate(page_state: page_state)
                 state.render()

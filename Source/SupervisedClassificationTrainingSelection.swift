@@ -166,8 +166,8 @@ class SupervisedClassificationTrainingSelection: Component, UITableViewDataSourc
 
         func header_tap_action(sender: UITapGestureRecognizer) {
                 if supervised_classification.training_sample_index_set.count > 0 && (supervised_classification.training_sample_index_set.count < supervised_classification.core_sample_indices.count || supervised_classification.additional_sample_indices.count > 0) {
-//                        let page_state = KNNKSelectionState(supervised_classification: supervised_classification)
-//                        state.navigate(page_state: page_state)
+                        let page_state = SupervisedClassificationParameterSelectionState(supervised_classification: supervised_classification)
+                        state.navigate(page_state: page_state)
                         state.render()
                 }
         }

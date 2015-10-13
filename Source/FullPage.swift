@@ -208,8 +208,8 @@ class FullPage: Component, UIScrollViewDelegate, UISearchBarDelegate {
                                 page = SupervisedClassificationValidationSelection()
                         case "supervised_classification_training_selection":
                                 page = SupervisedClassificationTrainingSelection()
-                        case "knn_k_selection":
-                                page = KNNKSelection()
+                        case "supervised_classification_parameter_selection":
+                                page = SupervisedClassificationParameterSelection()
                         case "knn_result":
                                 page = KNNResult()
 

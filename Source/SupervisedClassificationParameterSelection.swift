@@ -1,21 +1,27 @@
 import UIKit
 
-class KNNKSelectionState: PageState {
+class SupervisedClassificationParameterSelectionState: PageState {
 
-        let knn: KNN
+        let supervised_classification: SupervisedClassification
 
-        init(knn: KNN) {
-                self.knn = knn
+        init(supervised_classification: SupervisedClassification) {
+                self.supervised_classification = supervised_classification
                 super.init()
-                name = "supervised_classification_paramter knn_k_selection"
-                title = astring_body(string: "k nearest neighbor classifier")
-                info = "Select the number of nearest neighbors, k.\n\nA test sample is classified to a level if the majority of the k nearest neighbors belong to the level.\n\nIf k is odd and there are two levels, all samples will be classified to a level.\n\nOtherwise, a sample can be unclassified."
+                name = "supervised_classification_parameter_selection"
+                switch supervised_classification.supervised_classification_type {
+                case .KNN:
+                        title = astring_body(string: "k nearest neighbor classifier")
+                        info = "Select the number of nearest neighbors, k.\n\nA test sample is classified to a level if the majority of the k nearest neighbors belong to the level.\n\nIf k is odd and there are two levels, all samples will be classified to a level.\n\nOtherwise, a sample can be unclassified."
+                case .SVM:
+                        title = astring_body(string: "support vector machine")
+                        info = "Select the parameters for the support vector machine."
+                }
         }
 }
 
-class KNNKSelection: Component, UITextFieldDelegate {
+class SupervisedClassificationParameterSelection: Component, UITextFieldDelegate {
 
-        var knn_k_selection_state: KNNKSelectionState!
+        var supervised_classification: SupervisedClassification!
 
         let classify_button = UIButton(type: .System)
         let info_label = UILabel()
@@ -85,15 +91,15 @@ class KNNKSelection: Component, UITextFieldDelegate {
         }
 
         override func render() {
-                knn_k_selection_state = state.page_state as! KNNKSelectionState
+                supervised_classification = (state.page_state as! SupervisedClassificationParameterSelectionState).supervised_classification
 
-                text_field.text = "\(knn_k_selection_state.knn.k)"
+//                text_field.text = "\(knn_k_selection_state.knn.k)"
         }
 
         func textFieldDidEndEditing(textField: UITextField) {
                 correct_text_field()
-                let k = Int(textField.text!)!
-                knn_k_selection_state.knn.k = k
+//                let k = Int(textField.text!)!
+//                knn_k_selection_state.knn.k = k
         }
 
         func textFieldShouldReturn(textField: UITextField) -> Bool {
@@ -114,8 +120,8 @@ class KNNKSelection: Component, UITextFieldDelegate {
                 if let number = Int(text) {
                         if number < 1 {
                                 text_field.text = "1"
-                        } else if number > knn_k_selection_state.knn.max_k() {
-                                text_field.text = "\(knn_k_selection_state.knn.max_k())"
+//                        } else if number > knn_k_selection_state.knn.max_k() {
+//                                text_field.text = "\(knn_k_selection_state.knn.max_k())"
                         }
                 } else {
                         text_field.text = "1"
@@ -124,9 +130,9 @@ class KNNKSelection: Component, UITextFieldDelegate {
 
         func classify_action() {
                 text_field.resignFirstResponder()
-                knn_k_selection_state.knn.classify()
-                let page_state = KNNResultState(knn: knn_k_selection_state.knn)
-                state.navigate(page_state: page_state)
+//                knn_k_selection_state.knn.classify()
+//                let page_state = KNNResultState(knn: knn_k_selection_state.knn)
+//                state.navigate(page_state: page_state)
                 state.render()
         }
 
