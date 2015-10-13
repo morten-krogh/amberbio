@@ -14,12 +14,11 @@ class SupervisedClassificationFactorSelectionState: PageState {
         init(supervised_classification_type: SupervisedClassificationType) {
                 self.supervised_classification_type = supervised_classification_type
                 super.init()
+                name = "supervised_classification_factor_selection"
                 switch supervised_classification_type {
                 case .KNN:
-                        name = "knn_factor_selection"
                         title = astring_body(string: "k nearest neighbor classifier")
                 case .SVM:
-                        name = "svm_factor_selection"
                         title = astring_body(string: "support vector machine")
                 }
                 info = "Select the factor levels for the classifier.\n\nAt least two levels must be selected.\n\nTap the factor name(blue) to continue."
@@ -143,16 +142,16 @@ class SupervisedClassificationFactorSelection: Component, UITableViewDataSource,
                         if selected_level_ids_in_section.count < 2 {
                                 alert(title: "Too few selected levels", message: "At least two levels must be selected", view_controller: self)
                         } else {
-                                let page_state: PageState
+                                let supervised_classification: SupervisedClassification
                                 switch supervised_classification_factor_selection_state.supervised_classification_type {
                                 case .KNN:
-                                        let knn = KNN(comparison_factor_id: state.factor_ids[section], comparison_level_ids: selected_level_ids_in_section)
-                                        page_state = KNNValidationSelectionState(knn: knn)
+                                        supervised_classification = KNN(comparison_factor_id: state.factor_ids[section], comparison_level_ids: selected_level_ids_in_section)
                                 case .SVM:
-                                        let svm = SVM(comparison_factor_id: state.factor_ids[section], comparison_level_ids: selected_level_ids_in_section)
-                                        page_state = SupervisedClassificationValidationSelectionState(supervised_classification: svm)
+                                        supervised_classification = SVM(comparison_factor_id: state.factor_ids[section], comparison_level_ids: selected_level_ids_in_section)
                                 }
-                                state.navigate(page_state: page_state)
+
+                                let supervised_classification_validation_selection_page_state = SupervisedClassificationValidationSelectionState(supervised_classification: supervised_classification)
+                                state.navigate(page_state: supervised_classification_validation_selection_page_state)
                                 state.render()
                         }
                 }

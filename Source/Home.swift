@@ -115,7 +115,7 @@ class Home: Component, UICollectionViewDataSource, UICollectionViewDelegate, UIC
                 case (5, 1):
                         return PCAState()
                 case (6, 0):
-                        return KNNFactorSelectionState()
+                        return SupervisedClassificationFactorSelectionState(supervised_classification_type: .KNN)
                 case (6, 1):
                         return SupervisedClassificationFactorSelectionState(supervised_classification_type: .SVM)
                 case (7, 0):

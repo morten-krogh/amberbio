@@ -202,8 +202,8 @@ class FullPage: Component, UIScrollViewDelegate, UISearchBarDelegate {
                                 page = HierarchicalClusteringPlot()
                         case "pca":
                                 page = PCA()
-                        case "knn_factor_selection":
-                                page = KNNFactorSelection()
+                        case "supervised_classification_factor_selection":
+                                page = SupervisedClassificationFactorSelection()
                         case "knn_validation_selection":
                                 page = KNNValidationSelection()
                         case "knn_training_selection":
@@ -212,8 +212,6 @@ class FullPage: Component, UIScrollViewDelegate, UISearchBarDelegate {
                                 page = KNNKSelection()
                         case "knn_result":
                                 page = KNNResult()
-                        case "svm_factor_selection":
-                                page = SupervisedClassificationFactorSelection()
                         case "supervised_classification_validation_selection":
                                 page = SupervisedClassificationValidationSelection()
 
