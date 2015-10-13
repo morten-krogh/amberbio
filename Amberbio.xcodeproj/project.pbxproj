@@ -30,7 +30,7 @@
 		602708FC1BA747A000672D54 /* breast-cancer-values.txt in Resources */ = {isa = PBXBuildFile; fileRef = 602708F61BA7478500672D54 /* breast-cancer-values.txt */; settings = {ASSET_TAGS = (); }; };
 		602709031BA8054400672D54 /* brain-stem-cells-factors.txt in Resources */ = {isa = PBXBuildFile; fileRef = 602708FF1BA804EA00672D54 /* brain-stem-cells-factors.txt */; settings = {ASSET_TAGS = (); }; };
 		602709041BA8054800672D54 /* brain-stem-cells-values.txt in Resources */ = {isa = PBXBuildFile; fileRef = 602709001BA804EA00672D54 /* brain-stem-cells-values.txt */; settings = {ASSET_TAGS = (); }; };
-		605F52321BC2ED2D00033B91 /* KNNKSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605F52311BC2ED2D00033B91 /* KNNKSelection.swift */; settings = {ASSET_TAGS = (); }; };
+		605F52321BC2ED2D00033B91 /* SupervisedClassificationParameterSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605F52311BC2ED2D00033B91 /* SupervisedClassificationParameterSelection.swift */; settings = {ASSET_TAGS = (); }; };
 		605F52351BC3B37300033B91 /* knn.c in Sources */ = {isa = PBXBuildFile; fileRef = 605F52331BC3B37300033B91 /* knn.c */; settings = {ASSET_TAGS = (); }; };
 		605F52371BC3D9EF00033B91 /* KNNResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605F52361BC3D9EF00033B91 /* KNNResult.swift */; settings = {ASSET_TAGS = (); }; };
 		605F52391BC400EF00033B91 /* ClassificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605F52381BC400EF00033B91 /* ClassificationTableViewCell.swift */; settings = {ASSET_TAGS = (); }; };
@@ -197,7 +197,7 @@
 		60B4019B1BA1C3F100D8DD80 /* parse_values.c in Sources */ = {isa = PBXBuildFile; fileRef = 60B4009E1BA19C7900D8DD80 /* parse_values.c */; settings = {ASSET_TAGS = (); }; };
 		60B4019C1BA1C48600D8DD80 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 60B401681BA1B2ED00D8DD80 /* libsqlite3.dylib */; };
 		60D5CE361BC2545400B0D88A /* KNN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D5CE351BC2545400B0D88A /* KNN.swift */; settings = {ASSET_TAGS = (); }; };
-		60D5CE381BC26CD100B0D88A /* KNNTrainingSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D5CE371BC26CD100B0D88A /* KNNTrainingSelection.swift */; settings = {ASSET_TAGS = (); }; };
+		60D5CE381BC26CD100B0D88A /* SupervisedClassificationTrainingSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D5CE371BC26CD100B0D88A /* SupervisedClassificationTrainingSelection.swift */; settings = {ASSET_TAGS = (); }; };
 		60DF228D1BC58E9E0038AAE1 /* random.c in Sources */ = {isa = PBXBuildFile; fileRef = 60DF228B1BC58E9E0038AAE1 /* random.c */; settings = {ASSET_TAGS = (); }; };
 		60E06B9E1BAC3D2F00B05223 /* RemoveMolecules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E06B9D1BAC3D2F00B05223 /* RemoveMolecules.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
@@ -248,7 +248,7 @@
 		602708F61BA7478500672D54 /* breast-cancer-values.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "breast-cancer-values.txt"; path = "demo-data/breast-cancer/breast-cancer-values.txt"; sourceTree = "<group>"; };
 		602708FF1BA804EA00672D54 /* brain-stem-cells-factors.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "brain-stem-cells-factors.txt"; path = "demo-data/brain-stem-cells/brain-stem-cells-factors.txt"; sourceTree = "<group>"; };
 		602709001BA804EA00672D54 /* brain-stem-cells-values.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "brain-stem-cells-values.txt"; path = "demo-data/brain-stem-cells/brain-stem-cells-values.txt"; sourceTree = "<group>"; };
-		605F52311BC2ED2D00033B91 /* KNNKSelection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KNNKSelection.swift; path = Source/KNNKSelection.swift; sourceTree = "<group>"; };
+		605F52311BC2ED2D00033B91 /* SupervisedClassificationParameterSelection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SupervisedClassificationParameterSelection.swift; path = Source/SupervisedClassificationParameterSelection.swift; sourceTree = "<group>"; };
 		605F52331BC3B37300033B91 /* knn.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = knn.c; path = Source/knn.c; sourceTree = "<group>"; };
 		605F52341BC3B37300033B91 /* knn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = knn.h; path = Source/knn.h; sourceTree = "<group>"; };
 		605F52361BC3D9EF00033B91 /* KNNResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KNNResult.swift; path = Source/KNNResult.swift; sourceTree = "<group>"; };
@@ -412,7 +412,7 @@
 		60B401881BA1BEC400D8DD80 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		60B4018A1BA1BEC400D8DD80 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		60D5CE351BC2545400B0D88A /* KNN.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KNN.swift; path = Source/KNN.swift; sourceTree = "<group>"; };
-		60D5CE371BC26CD100B0D88A /* KNNTrainingSelection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KNNTrainingSelection.swift; path = Source/KNNTrainingSelection.swift; sourceTree = "<group>"; };
+		60D5CE371BC26CD100B0D88A /* SupervisedClassificationTrainingSelection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SupervisedClassificationTrainingSelection.swift; path = Source/SupervisedClassificationTrainingSelection.swift; sourceTree = "<group>"; };
 		60DF228B1BC58E9E0038AAE1 /* random.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = random.c; path = Source/random.c; sourceTree = "<group>"; };
 		60DF228C1BC58E9E0038AAE1 /* random.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = random.h; path = Source/random.h; sourceTree = "<group>"; };
 		60E06B9D1BAC3D2F00B05223 /* RemoveMolecules.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RemoveMolecules.swift; path = Source/RemoveMolecules.swift; sourceTree = "<group>"; };
@@ -544,9 +544,7 @@
 				60B4007A1BA19C7900D8DD80 /* HomeButton.swift */,
 				60B4007C1BA19C7900D8DD80 /* ImportData.swift */,
 				60B4007D1BA19C7900D8DD80 /* InfoButton.swift */,
-				605F52311BC2ED2D00033B91 /* KNNKSelection.swift */,
 				605F52361BC3D9EF00033B91 /* KNNResult.swift */,
-				60D5CE371BC26CD100B0D88A /* KNNTrainingSelection.swift */,
 				60B400821BA19C7900D8DD80 /* LinearRegressionPlot.swift */,
 				60B400831BA19C7900D8DD80 /* LinearRegressionSelection.swift */,
 				60B400841BA19C7900D8DD80 /* LinearRegressionTable.swift */,
@@ -576,6 +574,8 @@
 				60B400BC1BA19C7900D8DD80 /* SingleMolecule.swift */,
 				60B400BE1BA19C7900D8DD80 /* SingleMoleculePlotTable.swift */,
 				601E57A21BCD0441002EEEB3 /* SupevisedClassificationFactorSelection.swift */,
+				605F52311BC2ED2D00033B91 /* SupervisedClassificationParameterSelection.swift */,
+				60D5CE371BC26CD100B0D88A /* SupervisedClassificationTrainingSelection.swift */,
 				601E57A41BCD0A8F002EEEB3 /* SupervisedClassificationValidationSelection.swift */,
 				60B400D01BA19C7900D8DD80 /* Title.swift */,
 				60B400D21BA19C7900D8DD80 /* User.swift */,
@@ -1039,7 +1039,7 @@
 				60B401361BA19C7900D8DD80 /* ProjectNotes.swift in Sources */,
 				602708CA1BA2CA0300672D54 /* SelectAllHeaderFooterView.swift in Sources */,
 				60B401351BA19C7900D8DD80 /* ProgressIndicator.swift in Sources */,
-				605F52321BC2ED2D00033B91 /* KNNKSelection.swift in Sources */,
+				605F52321BC2ED2D00033B91 /* SupervisedClassificationParameterSelection.swift in Sources */,
 				60B400E71BA19C7900D8DD80 /* ContingencyTable.swift in Sources */,
 				60B4013E1BA19C7900D8DD80 /* ResultFiles.swift in Sources */,
 				605F52391BC400EF00033B91 /* ClassificationTableViewCell.swift in Sources */,
@@ -1060,7 +1060,7 @@
 				60B400EB1BA19C7900D8DD80 /* DataSetTable.swift in Sources */,
 				60B400DE1BA19C7900D8DD80 /* CenteredHeaderFooterView.swift in Sources */,
 				60B401331BA19C7900D8DD80 /* PieChart.swift in Sources */,
-				60D5CE381BC26CD100B0D88A /* KNNTrainingSelection.swift in Sources */,
+				60D5CE381BC26CD100B0D88A /* SupervisedClassificationTrainingSelection.swift in Sources */,
 				60B401061BA19C7900D8DD80 /* Home.swift in Sources */,
 				60B400F11BA19C7900D8DD80 /* DocumentPickerImport.swift in Sources */,
 				60B401441BA19C7900D8DD80 /* SegmentedControlTableViewCell.swift in Sources */,

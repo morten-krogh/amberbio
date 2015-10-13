@@ -1,22 +1,26 @@
 import UIKit
 
-class KNNTrainingSelectionState: PageState {
+class SupervisedClassificationTrainingSelectionState: PageState {
 
-        let knn: KNN
+        let supervised_classification: SupervisedClassification
 
-        init(knn: KNN) {
-                self.knn = knn
+        init(supervised_classification: SupervisedClassification) {
+                self.supervised_classification = supervised_classification
                 super.init()
-                name = "knn_training_selection"
-                title = astring_body(string: "k nearest neighbor classifier")
+                name = "supervised_classification_training_selection"
+                switch supervised_classification.supervised_classification_type {
+                case .KNN:
+                        title = astring_body(string: "k nearest neighbor classifier")
+                case .SVM:
+                        title = astring_body(string: "support vector machine")
+                }
                 info = "Select the samples for the training set.\n\nThe numbers in parenthesis represent the number of samples in the training set and the total number of samples respectively for that level.\n\nSelecting a level from a factor leads to inclusion of all samples with that level.\n\nDeselecting a level removes all samples with that level from the training set.\n\nThe test set consists of all the samples that are not in the training set.\n\nTo continue, both the training and test set must contain at least one sample."
         }
 }
 
-class KNNTrainingSelection: Component, UITableViewDataSource, UITableViewDelegate, SelectAllHeaderFooterViewDelegate {
+class SupervisedClassificationTrainingSelection: Component, UITableViewDataSource, UITableViewDelegate, SelectAllHeaderFooterViewDelegate {
 
-        var knn_training_selection_state: KNNTrainingSelectionState!
-        var knn: KNN!
+        var supervised_classification: SupervisedClassification!
 
         let table_view = UITableView()
 
@@ -37,8 +41,7 @@ class KNNTrainingSelection: Component, UITableViewDataSource, UITableViewDelegat
         }
 
         override func render() {
-                knn_training_selection_state = state.page_state as! KNNTrainingSelectionState
-                knn = knn_training_selection_state.knn
+                supervised_classification = (state.page_state as! SupervisedClassificationTrainingSelectionState).supervised_classification
                 table_view.dataSource = self
                 table_view.delegate = self
                 table_view.reloadData()
@@ -55,7 +58,7 @@ class KNNTrainingSelection: Component, UITableViewDataSource, UITableViewDelegat
         func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
                 if section == 0 {
                         let header = tableView.dequeueReusableHeaderFooterViewWithIdentifier("tappable-header") as! CenteredHeaderFooterView
-                        let selectable = knn.training_sample_index_set.count > 0 && (knn.training_sample_index_set.count < knn.core_sample_indices.count || knn.additional_sample_indices.count > 0)
+                        let selectable = supervised_classification.training_sample_index_set.count > 0 && (supervised_classification.training_sample_index_set.count < supervised_classification.core_sample_indices.count || supervised_classification.additional_sample_indices.count > 0)
                         if selectable {
                                 header.update_selectable_arrow(text: "Continue")
                         } else {
@@ -91,9 +94,9 @@ class KNNTrainingSelection: Component, UITableViewDataSource, UITableViewDelegat
 
         func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
                 if section == 0 {
-                        return knn.comparison_level_ids.count
+                        return supervised_classification.comparison_level_ids.count
                 } else if section == 1 {
-                        return knn.core_sample_indices.count
+                        return supervised_classification.core_sample_indices.count
                 } else {
                         let factor_index = section_to_factor_index(section: section)
                         return state.level_ids_by_factor[factor_index].count
@@ -110,20 +113,20 @@ class KNNTrainingSelection: Component, UITableViewDataSource, UITableViewDelegat
                 let (section, row) = (indexPath.section, indexPath.row)
 
                 if section == 0 {
-                        let level_id = knn.comparison_level_ids[row]
-                        let level_name = knn.comparison_level_names[row]
-                        let number_of_samples = knn.number_of_samples_per_level_id[level_id]!
-                        let number_of_training_samples = knn.training_number_of_samples_per_comparison_level_id[level_id]!
+                        let level_id = supervised_classification.comparison_level_ids[row]
+                        let level_name = supervised_classification.comparison_level_names[row]
+                        let number_of_samples = supervised_classification.number_of_samples_per_level_id[level_id]!
+                        let number_of_training_samples = supervised_classification.training_number_of_samples_per_comparison_level_id[level_id]!
 
                         let text = level_name + " (\(number_of_training_samples) of \(number_of_samples))"
 
                         cell.update_unselected(text: text)
 
                 } else if section == 1 {
-                        let sample_index = knn.core_sample_indices[row]
-                        let sample_name = knn.core_sample_names[row]
-                        let level_name = knn.core_sample_level_names[row]
-                        let training_set_sample = knn.training_sample_index_set.contains(sample_index)
+                        let sample_index = supervised_classification.core_sample_indices[row]
+                        let sample_name = supervised_classification.core_sample_names[row]
+                        let level_name = supervised_classification.core_sample_level_names[row]
+                        let training_set_sample = supervised_classification.training_sample_index_set.contains(sample_index)
                         
                         let text = sample_name + " (" + level_name + ")"
                         
@@ -136,7 +139,7 @@ class KNNTrainingSelection: Component, UITableViewDataSource, UITableViewDelegat
                         let factor_index = section_to_factor_index(section: section)
                         let level_id = state.level_ids_by_factor[factor_index][row]
                         let level_name = state.level_names_by_factor[factor_index][row]
-                        if knn.training_level_id_set.contains(level_id) {
+                        if supervised_classification.training_level_id_set.contains(level_id) {
                                 cell.update_selected_checkmark(text: level_name)
                         } else {
                                 cell.update_unselected(text: level_name)
@@ -150,37 +153,37 @@ class KNNTrainingSelection: Component, UITableViewDataSource, UITableViewDelegat
                 let (section, row) = (indexPath.section, indexPath.row)
 
                 if section == 1 {
-                        let sample_index = knn.core_sample_indices[row]
-                        knn.toggle_sample(sample_index: sample_index)
+                        let sample_index = supervised_classification.core_sample_indices[row]
+                        supervised_classification.toggle_sample(sample_index: sample_index)
                         render()
                 } else if section > 1 {
                         let factor_index = section_to_factor_index(section: section)
                         let level_id = state.level_ids_by_factor[factor_index][row]
-                        knn.toggle_level(factor_index: factor_index, level_id: level_id)
+                        supervised_classification.toggle_level(factor_index: factor_index, level_id: level_id)
                         render()
                 }
         }
 
         func header_tap_action(sender: UITapGestureRecognizer) {
-                if knn.training_sample_index_set.count > 0 && (knn.training_sample_index_set.count < knn.core_sample_indices.count || knn.additional_sample_indices.count > 0) {
-                        let page_state = KNNKSelectionState(knn: knn)
-                        state.navigate(page_state: page_state)
+                if supervised_classification.training_sample_index_set.count > 0 && (supervised_classification.training_sample_index_set.count < supervised_classification.core_sample_indices.count || supervised_classification.additional_sample_indices.count > 0) {
+//                        let page_state = KNNKSelectionState(supervised_classification: supervised_classification)
+//                        state.navigate(page_state: page_state)
                         state.render()
                 }
         }
         
         func section_to_factor_index(section section: Int) -> Int {
-                let comparison_factor_index = state.factor_ids.indexOf(knn.comparison_factor_id)!
+                let comparison_factor_index = state.factor_ids.indexOf(supervised_classification.comparison_factor_id)!
                 return section < comparison_factor_index + 2 ? section - 2 : section - 1
         }
 
         func select_all_action(tag tag: Int) {
-                knn.select_all_samples()
+                supervised_classification.select_all_samples()
                 render()
         }
 
         func deselect_all_action(tag tag: Int) {
-                knn.deselect_all_samples()
+                supervised_classification.deselect_all_samples()
                 render()
         }
 }

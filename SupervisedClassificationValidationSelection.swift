@@ -94,19 +94,21 @@ class SupervisedClassificationValidationSelection: Component, UITableViewDataSou
         }
 
         func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-//                let page_state: PageState
-//                switch indexPath.row {
-//                case 0:
-//                        knn.validation_training_test()
-//                        page_state = KNNTrainingSelectionState(knn: knn)
-//                case 1:
-//                        knn.validation_leave_one_out()
+                let page_state: PageState
+                switch indexPath.row {
+                case 0:
+                        supervised_classification.validation_training_test()
+                        page_state = SupervisedClassificationTrainingSelectionState(supervised_classification: supervised_classification)
+                case 1:
+                        supervised_classification.validation_leave_one_out()
 //                        page_state = KNNKSelectionState(knn: knn)
-//                default:
-//                        knn.validation_k_fold_cross_validation()
+                        page_state = SupervisedClassificationTrainingSelectionState(supervised_classification: supervised_classification)
+                default:
+                        supervised_classification.validation_k_fold_cross_validation()
 //                        page_state = KNNKSelectionState(knn: knn)
-//                }
-//                state.navigate(page_state: page_state)
+                        page_state = SupervisedClassificationTrainingSelectionState(supervised_classification: supervised_classification)
+                }
+                state.navigate(page_state: page_state)
                 state.render()
         }
 
