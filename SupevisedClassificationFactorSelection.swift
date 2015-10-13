@@ -1,20 +1,31 @@
 import UIKit
 
-class SVMFactorSelectionState: PageState {
+enum SupervisedClassificationType {
+        case KNN
+        case SVM
+}
+
+class SupervisedClassificationFactorSelectionState: PageState {
 
         var selected_level_ids = [] as Set<Int>
 
-        override init() {
+        init(supervised_classification_type: SupervisedClassificationType) {
                 super.init()
-                name = "svm_factor_selection"
-                title = astring_body(string: "support vector machine")
+                switch supervised_classification_type {
+                case .KNN:
+                        name = "knn_factor_selection"
+                        title = astring_body(string: "k nearest neighbor classifier")
+                case .SVM:
+                        name = "svm_factor_selection"
+                        title = astring_body(string: "support vector machine")
+                }
                 info = "Select the factor levels for the classifier.\n\nAt least two levels must be selected.\n\nTap the factor name(blue) to continue."
         }
 }
 
-class SVMFactorSelection: Component, UITableViewDataSource, UITableViewDelegate {
+class SupervisedClassificationFactorSelection: Component, UITableViewDataSource, UITableViewDelegate {
 
-        var svm_factor_selection_state: SVMFactorSelectionState!
+        var supervised_classification_factor_selection_state: SupervisedClassificationFactorSelectionState!
 
         let table_view = UITableView()
 
@@ -35,7 +46,7 @@ class SVMFactorSelection: Component, UITableViewDataSource, UITableViewDelegate 
         }
 
         override func render() {
-                svm_factor_selection_state = state.page_state as! SVMFactorSelectionState
+                supervised_classification_factor_selection_state = state.page_state as! SupervisedClassificationFactorSelectionState
         }
 
         func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -54,7 +65,7 @@ class SVMFactorSelection: Component, UITableViewDataSource, UITableViewDelegate 
                 } else {
                         var number_of_selected_levels = 0
                         for level_id in state.level_ids_by_factor[section] {
-                                if svm_factor_selection_state.selected_level_ids.contains(level_id) {
+                                if supervised_classification_factor_selection_state.selected_level_ids.contains(level_id) {
                                         number_of_selected_levels++
                                 }
                         }
@@ -99,7 +110,7 @@ class SVMFactorSelection: Component, UITableViewDataSource, UITableViewDelegate 
                 let level_id = state.level_ids_by_factor[indexPath.section][indexPath.row]
                 let level_name = state.level_names_by_factor[indexPath.section][indexPath.row]
 
-                if svm_factor_selection_state.selected_level_ids.contains(level_id) {
+                if supervised_classification_factor_selection_state.selected_level_ids.contains(level_id) {
                         cell.update_selected_checkmark(text: level_name)
                 } else {
                         cell.update_unselected(text: level_name)
@@ -109,10 +120,10 @@ class SVMFactorSelection: Component, UITableViewDataSource, UITableViewDelegate 
 
         func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
                 let level_id = state.level_ids_by_factor[indexPath.section][indexPath.row]
-                if svm_factor_selection_state.selected_level_ids.contains(level_id) {
-                        svm_factor_selection_state.selected_level_ids.remove(level_id)
+                if supervised_classification_factor_selection_state.selected_level_ids.contains(level_id) {
+                        supervised_classification_factor_selection_state.selected_level_ids.remove(level_id)
                 } else {
-                        svm_factor_selection_state.selected_level_ids.insert(level_id)
+                        supervised_classification_factor_selection_state.selected_level_ids.insert(level_id)
                 }
                 table_view.reloadData()
         }
@@ -121,7 +132,7 @@ class SVMFactorSelection: Component, UITableViewDataSource, UITableViewDelegate 
                 if let section = sender.view?.tag {
                         var selected_level_ids_in_section = [] as [Int]
                         for level_id in state.level_ids_by_factor[section] {
-                                if svm_factor_selection_state.selected_level_ids.contains(level_id) {
+                                if supervised_classification_factor_selection_state.selected_level_ids.contains(level_id) {
                                         selected_level_ids_in_section.append(level_id)
                                 }
                         }
@@ -129,7 +140,7 @@ class SVMFactorSelection: Component, UITableViewDataSource, UITableViewDelegate 
                         if selected_level_ids_in_section.count < 2 {
                                 alert(title: "Too few selected levels", message: "At least two levels must be selected", view_controller: self)
                         } else {
-                                let svm = SVM(comparison_factor_id: state.factor_ids[section], comparison_level_ids: selected_level_ids_in_section)
+//                                let svm = SVM(comparison_factor_id: state.factor_ids[section], comparison_level_ids: selected_level_ids_in_section)
 //                                let svm_validation_selection_state = SVMValidationSelectionState(knn: knn)
 //                                state.navigate(page_state: svm_validation_selection_state)
                                 state.render()
