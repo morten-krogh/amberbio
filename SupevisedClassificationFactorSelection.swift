@@ -7,9 +7,12 @@ enum SupervisedClassificationType {
 
 class SupervisedClassificationFactorSelectionState: PageState {
 
+        let supervised_classification_type: SupervisedClassificationType
+
         var selected_level_ids = [] as Set<Int>
 
         init(supervised_classification_type: SupervisedClassificationType) {
+                self.supervised_classification_type = supervised_classification_type
                 super.init()
                 switch supervised_classification_type {
                 case .KNN:
@@ -140,9 +143,16 @@ class SupervisedClassificationFactorSelection: Component, UITableViewDataSource,
                         if selected_level_ids_in_section.count < 2 {
                                 alert(title: "Too few selected levels", message: "At least two levels must be selected", view_controller: self)
                         } else {
-                                let svm = SVM(comparison_factor_id: state.factor_ids[section], comparison_level_ids: selected_level_ids_in_section)
-//                                let svm_validation_selection_state = SVMValidationSelectionState(knn: knn)
-//                                state.navigate(page_state: svm_validation_selection_state)
+                                let page_state: PageState
+                                switch supervised_classification_factor_selection_state.supervised_classification_type {
+                                case .KNN:
+                                        let knn = KNN(comparison_factor_id: state.factor_ids[section], comparison_level_ids: selected_level_ids_in_section)
+                                        page_state = KNNValidationSelectionState(knn: knn)
+                                case .SVM:
+                                        let svm = SVM(comparison_factor_id: state.factor_ids[section], comparison_level_ids: selected_level_ids_in_section)
+                                        page_state = SupervisedClassificationValidationSelectionState(supervised_classification: svm)
+                                }
+                                state.navigate(page_state: page_state)
                                 state.render()
                         }
                 }

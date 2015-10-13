@@ -2,6 +2,8 @@ import Foundation
 
 class SupervisedClassification {
 
+        let supervised_classification_type: SupervisedClassificationType
+
         enum SupervisedClassificationValidationMethod {
                 case TrainingTest
                 case LeaveOneOut
@@ -44,7 +46,8 @@ class SupervisedClassification {
         var test_sample_level_ids = [] as [Int]
         var test_sample_classified_level_ids = [] as [Int]
 
-        init(comparison_factor_id: Int, comparison_level_ids: [Int]) {
+        init(supervised_classification_type: SupervisedClassificationType, comparison_factor_id: Int, comparison_level_ids: [Int]) {
+                self.supervised_classification_type = supervised_classification_type
                 self.comparison_factor_id = comparison_factor_id
                 let comparison_factor_index = state.factor_ids.indexOf(comparison_factor_id)!
                 comparison_factor_name = state.factor_names[comparison_factor_index]

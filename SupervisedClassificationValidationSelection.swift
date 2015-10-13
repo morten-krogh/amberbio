@@ -2,20 +2,25 @@ import UIKit
 
 class SupervisedClassificationValidationSelectionState: PageState {
 
-        let knn: KNN
+        let supervised_classification: SupervisedClassification
 
-        init(knn: KNN) {
-                self.knn = knn
+        init(supervised_classification: SupervisedClassification) {
+                self.supervised_classification = supervised_classification
                 super.init()
-                name = "knn_validation_selection"
-                title = astring_body(string: "k nearest neighbor classifier")
+                name = "supervised_classification_validation_selection"
+                switch supervised_classification.supervised_classification_type {
+                case .KNN:
+                        title = astring_body(string: "k nearest neighbor classifier")
+                case .SVM:
+                        title = astring_body(string: "support vector machine")
+                }
                 info = "Select the type of validation."
         }
 }
 
 class SupervisedClassificationValidationSelection: Component, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
 
-        var knn_validation_selection_state: KNNValidationSelectionState!
+        var supervised_classification: SupervisedClassification!
 
         let table_view = UITableView()
 
@@ -41,7 +46,7 @@ class SupervisedClassificationValidationSelection: Component, UITableViewDataSou
         }
 
         override func render() {
-                knn_validation_selection_state = state.page_state as! KNNValidationSelectionState
+                supervised_classification = (state.page_state as! SupervisedClassificationValidationSelectionState).supervised_classification
         }
 
         func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -83,34 +88,32 @@ class SupervisedClassificationValidationSelection: Component, UITableViewDataSou
                 default:
                         let cell = tableView.dequeueReusableCellWithIdentifier("text field cell") as! CrossValidationTableViewCell
                         let text = "k fold cross validation"
-                        let k_fold = knn_validation_selection_state.knn.k_fold
-                        cell.update(text: text, k_fold: k_fold, tag: 0, delegate: self)
+                        cell.update(text: text, k_fold: supervised_classification.k_fold, tag: 0, delegate: self)
                         return cell
                 }
         }
 
         func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-                let knn = knn_validation_selection_state.knn
-                let page_state: PageState
-                switch indexPath.row {
-                case 0:
-                        knn.validation_training_test()
-                        page_state = KNNTrainingSelectionState(knn: knn)
-                case 1:
-                        knn.validation_leave_one_out()
-                        page_state = KNNKSelectionState(knn: knn)
-                default:
-                        knn.validation_k_fold_cross_validation()
-                        page_state = KNNKSelectionState(knn: knn)
-                }
-                state.navigate(page_state: page_state)
+//                let page_state: PageState
+//                switch indexPath.row {
+//                case 0:
+//                        knn.validation_training_test()
+//                        page_state = KNNTrainingSelectionState(knn: knn)
+//                case 1:
+//                        knn.validation_leave_one_out()
+//                        page_state = KNNKSelectionState(knn: knn)
+//                default:
+//                        knn.validation_k_fold_cross_validation()
+//                        page_state = KNNKSelectionState(knn: knn)
+//                }
+//                state.navigate(page_state: page_state)
                 state.render()
         }
 
         func textFieldDidEndEditing(textField: UITextField) {
                 correct_text_field(text_field: textField)
                 let k_fold = Int(textField.text!)!
-                knn_validation_selection_state.knn.set_k_fold(k_fold: k_fold)
+                supervised_classification.set_k_fold(k_fold: k_fold)
         }
 
         func textFieldShouldReturn(textField: UITextField) -> Bool {
@@ -131,8 +134,8 @@ class SupervisedClassificationValidationSelection: Component, UITableViewDataSou
                 if let number = Int(text) {
                         if number < 2 {
                                 text_field.text = "2"
-                        } else if number > knn_validation_selection_state.knn.max_k_fold() {
-                                text_field.text = "\(knn_validation_selection_state.knn.max_k_fold())"
+                        } else if number > supervised_classification.max_k_fold() {
+                                text_field.text = "\(supervised_classification.max_k_fold())"
                         }
                 } else {
                         text_field.text = "2"

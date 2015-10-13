@@ -18,10 +18,10 @@
 		601003541BA18744008A1FF9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 601003531BA18744008A1FF9 /* Assets.xcassets */; };
 		601003621BA18744008A1FF9 /* AmberbioTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601003611BA18744008A1FF9 /* AmberbioTests.swift */; };
 		6010036D1BA18744008A1FF9 /* AmberbioUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6010036C1BA18744008A1FF9 /* AmberbioUITests.swift */; };
-		601E57A11BCCFFBC002EEEB3 /* SVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601E57A01BCCFFBC002EEEB3 /* SVM.swift */; settings = {ASSET_TAGS = (); }; };
 		601E57A31BCD0441002EEEB3 /* SupevisedClassificationFactorSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601E57A21BCD0441002EEEB3 /* SupevisedClassificationFactorSelection.swift */; settings = {ASSET_TAGS = (); }; };
 		601E57A51BCD0A8F002EEEB3 /* SupervisedClassificationValidationSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601E57A41BCD0A8F002EEEB3 /* SupervisedClassificationValidationSelection.swift */; settings = {ASSET_TAGS = (); }; };
 		601E57A71BCD0B12002EEEB3 /* SupervisedClassification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601E57A61BCD0B12002EEEB3 /* SupervisedClassification.swift */; settings = {ASSET_TAGS = (); }; };
+		601E57A91BCD0F1C002EEEB3 /* SVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601E57A81BCD0F1C002EEEB3 /* SVM.swift */; settings = {ASSET_TAGS = (); }; };
 		602708CA1BA2CA0300672D54 /* SelectAllHeaderFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602708C91BA2CA0300672D54 /* SelectAllHeaderFooterView.swift */; settings = {ASSET_TAGS = (); }; };
 		602708E71BA6EF6400672D54 /* iris-values.txt in Resources */ = {isa = PBXBuildFile; fileRef = 602708E11BA6EE7400672D54 /* iris-values.txt */; settings = {ASSET_TAGS = (); }; };
 		602708E81BA6EF6800672D54 /* iris-factors.txt in Resources */ = {isa = PBXBuildFile; fileRef = 602708E01BA6EE7400672D54 /* iris-factors.txt */; settings = {ASSET_TAGS = (); }; };
@@ -238,10 +238,10 @@
 		601003681BA18744008A1FF9 /* AmberbioUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AmberbioUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6010036C1BA18744008A1FF9 /* AmberbioUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmberbioUITests.swift; sourceTree = "<group>"; };
 		6010036E1BA18744008A1FF9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		601E57A01BCCFFBC002EEEB3 /* SVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVM.swift; sourceTree = "<group>"; };
 		601E57A21BCD0441002EEEB3 /* SupevisedClassificationFactorSelection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SupevisedClassificationFactorSelection.swift; sourceTree = "<group>"; };
 		601E57A41BCD0A8F002EEEB3 /* SupervisedClassificationValidationSelection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SupervisedClassificationValidationSelection.swift; sourceTree = "<group>"; };
 		601E57A61BCD0B12002EEEB3 /* SupervisedClassification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SupervisedClassification.swift; sourceTree = "<group>"; };
+		601E57A81BCD0F1C002EEEB3 /* SVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVM.swift; sourceTree = "<group>"; };
 		602708C91BA2CA0300672D54 /* SelectAllHeaderFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SelectAllHeaderFooterView.swift; path = Source/SelectAllHeaderFooterView.swift; sourceTree = "<group>"; };
 		602708E01BA6EE7400672D54 /* iris-factors.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "iris-factors.txt"; path = "demo-data/iris/iris-factors.txt"; sourceTree = "<group>"; };
 		602708E11BA6EE7400672D54 /* iris-values.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "iris-values.txt"; path = "demo-data/iris/iris-values.txt"; sourceTree = "<group>"; };
@@ -709,7 +709,7 @@
 				60B4003F1BA19BED00D8DD80 /* Serialize.swift */,
 				60014BC61BB5CB82001A79B1 /* Sort.swift */,
 				601E57A61BCD0B12002EEEB3 /* SupervisedClassification.swift */,
-				601E57A01BCCFFBC002EEEB3 /* SVM.swift */,
+				601E57A81BCD0F1C002EEEB3 /* SVM.swift */,
 			);
 			name = Functions;
 			sourceTree = "<group>";
@@ -1105,9 +1105,9 @@
 				60B401241BA19C7900D8DD80 /* PairedPlot.swift in Sources */,
 				60B400E61BA19C7900D8DD80 /* Component.swift in Sources */,
 				60B4013D1BA19C7900D8DD80 /* RemoveSamples.swift in Sources */,
+				601E57A91BCD0F1C002EEEB3 /* SVM.swift in Sources */,
 				60B400391BA1982900D8DD80 /* state_init.swift in Sources */,
 				60B401401BA19C7900D8DD80 /* SampleNames.swift in Sources */,
-				601E57A11BCCFFBC002EEEB3 /* SVM.swift in Sources */,
 				60B400FF1BA19C7900D8DD80 /* Files.swift in Sources */,
 				60B4011E1BA19C7900D8DD80 /* NameDateTableViewCell.swift in Sources */,
 				60B401491BA19C7900D8DD80 /* SingleMoleculeTableViewCell.swift in Sources */,
