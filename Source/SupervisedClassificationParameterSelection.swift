@@ -25,6 +25,8 @@ class SupervisedClassificationParameterSelection: Component, UITableViewDataSour
 
         let table_view = UITableView()
 
+        var editing_text_field: UITextField?
+
         override func loadView() {
                 view = table_view
         }
@@ -39,8 +41,7 @@ class SupervisedClassificationParameterSelection: Component, UITableViewDataSour
 
                 table_view.registerClass(CenteredHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: "header")
                 table_view.registerClass(UITableViewHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: "footer")
-                table_view.registerClass(CenteredTableViewCell.self, forCellReuseIdentifier: "cell")
-                table_view.registerClass(CrossValidationTableViewCell.self, forCellReuseIdentifier: "text field cell")
+                table_view.registerClass(ParameterTableViewCell.self, forCellReuseIdentifier: "parameter cell")
                 table_view.backgroundColor = UIColor.whiteColor()
                 table_view.separatorStyle = .None
 
@@ -161,45 +162,41 @@ class SupervisedClassificationParameterSelection: Component, UITableViewDataSour
         }
 
         func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-                return indexPath.row < 2 ? centered_table_view_cell_height + 10 : cross_validation_table_view_cell_height
+                return parameter_table_view_cell_height
         }
 
         func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+                let cell = tableView.dequeueReusableCellWithIdentifier("parameter cell") as! ParameterTableViewCell
+
+                let (section, _) = (indexPath.section, indexPath.row)
+
+                let text: String
+                let short_text: String
+                let parameter: String
+
                 switch supervised_classification.supervised_classification_type {
                 case .KNN:
-                        let cell = tableView.dequeueReusableCellWithIdentifier("text field cell") as! CrossValidationTableViewCell
-                        let text = "k fold cross validation"
-                        cell.update(text: text, k_fold: supervised_classification.k_fold, tag: 0, delegate: self)
-                        return cell
+                        text = "Number of nearest neighbors"
+                        short_text = "k = "
+                        parameter = String((supervised_classification as! KNN).k)
                 case .SVM:
-                        let cell = tableView.dequeueReusableCellWithIdentifier("text field cell") as! CrossValidationTableViewCell
-                        let text = "k fold cross validation"
-                        cell.update(text: text, k_fold: supervised_classification.k_fold, tag: 0, delegate: self)
-                        return cell
+                        text = ""
+                        short_text = ""
+                        parameter = ""
                 }
+
+                cell.update(text: text, short_text: short_text, parameter: parameter, tag: section, delegate: self)
+
+                return cell
         }
 
-        func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-//                let page_state: PageState
-//                switch indexPath.row {
-//                case 0:
-//                        supervised_classification.validation_training_test()
-//                        page_state = SupervisedClassificationTrainingSelectionState(supervised_classification: supervised_classification)
-//                case 1:
-//                        supervised_classification.validation_leave_one_out()
-//                        page_state = SupervisedClassificationParameterSelectionState(supervised_classification: supervised_classification)
-//                default:
-//                        supervised_classification.validation_k_fold_cross_validation()
-//                        page_state = SupervisedClassificationParameterSelectionState(supervised_classification: supervised_classification)
-//                }
-//                state.navigate(page_state: page_state)
-//                state.render()
+        func textFieldDidBeginEditing(textField: UITextField) {
+                editing_text_field = textField
         }
 
         func textFieldDidEndEditing(textField: UITextField) {
-//                correct_text_field(text_field: textField)
-//                let k_fold = Int(textField.text!)!
-//                supervised_classification.set_k_fold(k_fold: k_fold)
+                read_text_fields()
+                editing_text_field = nil
         }
 
         func textFieldShouldReturn(textField: UITextField) -> Bool {
@@ -214,61 +211,54 @@ class SupervisedClassificationParameterSelection: Component, UITableViewDataSour
                 
                 return Int(string) != nil
         }
-        
+
+        func read_text_fields() {
+                switch supervised_classification.supervised_classification_type {
+                case .KNN:
+                        let knn = supervised_classification as! KNN
+                        let cell = table_view.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0)) as! ParameterTableViewCell
+                        let text_field = cell.text_field
+                        let text = text_field.text ?? ""
+                        if let number = Int(text) {
+                                if number < 1 {
+                                        text_field.text = "1"
+                                        knn.k = 1
+                                } else if number > knn.max_k() {
+                                        text_field.text = "\(knn.max_k())"
+                                        knn.k = knn.max_k()
+                                } else {
+                                        knn.k = number
+                                }
+                        } else {
+                                text_field.text = "1"
+                                knn.k = 1
+                        }
+                case .SVM:
+                        break
+                }
+        }
 
 
 
-
-
-
-//        func textFieldDidEndEditing(textField: UITextField) {
-//                correct_text_field()
-////                let k = Int(textField.text!)!
-////                knn_k_selection_state.knn.k = k
-//        }
-//
-//        func textFieldShouldReturn(textField: UITextField) -> Bool {
-//                textField.resignFirstResponder()
-//                return true
-//        }
-//
-//        func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-//                if range.length != 0 && string.isEmpty {
-//                        return true
-//                }
-//
-//                return Int(string) != nil
-//        }
-//
-//        func correct_text_field() {
-//                let text = text_field.text ?? ""
-//                if let number = Int(text) {
-//                        if number < 1 {
-//                                text_field.text = "1"
-////                        } else if number > knn_k_selection_state.knn.max_k() {
-////                                text_field.text = "\(knn_k_selection_state.knn.max_k())"
-//                        }
-//                } else {
-//                        text_field.text = "1"
-//                }
-//        }
-//
-//        func classify_action() {
-//                text_field.resignFirstResponder()
-////                knn_k_selection_state.knn.classify()
-////                let page_state = KNNResultState(knn: knn_k_selection_state.knn)
-////                state.navigate(page_state: page_state)
-//                state.render()
-//        }
 
 
         func header_tap_action(sender: UITapGestureRecognizer) {
-                if let section = sender.view?.tag {
-                        print(section)
+                editing_text_field?.resignFirstResponder()
+                read_text_fields()
+                switch supervised_classification.supervised_classification_type {
+                case .KNN:
+                        ////                knn_k_selection_state.knn.classify()
+                        ////                let page_state = KNNResultState(knn: knn_k_selection_state.knn)
+                        ////                state.navigate(page_state: page_state)
+                        //                state.render()
+                        break
+                case .SVM:
+//                        let section = sender.view?.tag ?? 0
+                        break
                 }
         }
 
         func tap_action() {
-//                text_field.resignFirstResponder()
+                editing_text_field?.resignFirstResponder()
         }
 }

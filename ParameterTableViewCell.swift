@@ -1,6 +1,6 @@
 import UIKit
 
-let paramter_table_view_cell_height = 70 as CGFloat
+let parameter_table_view_cell_height = 120 as CGFloat
 
 class ParameterTableViewCell: UITableViewCell {
 
