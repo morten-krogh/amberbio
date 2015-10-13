@@ -18,9 +18,10 @@
 		601003541BA18744008A1FF9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 601003531BA18744008A1FF9 /* Assets.xcassets */; };
 		601003621BA18744008A1FF9 /* AmberbioTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601003611BA18744008A1FF9 /* AmberbioTests.swift */; };
 		6010036D1BA18744008A1FF9 /* AmberbioUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6010036C1BA18744008A1FF9 /* AmberbioUITests.swift */; };
-		601E579F1BCCFBF0002EEEB3 /* SVMFactorSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601E579E1BCCFBF0002EEEB3 /* SVMFactorSelection.swift */; settings = {ASSET_TAGS = (); }; };
 		601E57A11BCCFFBC002EEEB3 /* SVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601E57A01BCCFFBC002EEEB3 /* SVM.swift */; settings = {ASSET_TAGS = (); }; };
 		601E57A31BCD0441002EEEB3 /* SupevisedClassificationFactorSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601E57A21BCD0441002EEEB3 /* SupevisedClassificationFactorSelection.swift */; settings = {ASSET_TAGS = (); }; };
+		601E57A51BCD0A8F002EEEB3 /* SupervisedClassificationValidationSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601E57A41BCD0A8F002EEEB3 /* SupervisedClassificationValidationSelection.swift */; settings = {ASSET_TAGS = (); }; };
+		601E57A71BCD0B12002EEEB3 /* SupervisedClassification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601E57A61BCD0B12002EEEB3 /* SupervisedClassification.swift */; settings = {ASSET_TAGS = (); }; };
 		602708CA1BA2CA0300672D54 /* SelectAllHeaderFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602708C91BA2CA0300672D54 /* SelectAllHeaderFooterView.swift */; settings = {ASSET_TAGS = (); }; };
 		602708E71BA6EF6400672D54 /* iris-values.txt in Resources */ = {isa = PBXBuildFile; fileRef = 602708E11BA6EE7400672D54 /* iris-values.txt */; settings = {ASSET_TAGS = (); }; };
 		602708E81BA6EF6800672D54 /* iris-factors.txt in Resources */ = {isa = PBXBuildFile; fileRef = 602708E01BA6EE7400672D54 /* iris-factors.txt */; settings = {ASSET_TAGS = (); }; };
@@ -237,9 +238,10 @@
 		601003681BA18744008A1FF9 /* AmberbioUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AmberbioUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6010036C1BA18744008A1FF9 /* AmberbioUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmberbioUITests.swift; sourceTree = "<group>"; };
 		6010036E1BA18744008A1FF9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		601E579E1BCCFBF0002EEEB3 /* SVMFactorSelection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVMFactorSelection.swift; sourceTree = "<group>"; };
 		601E57A01BCCFFBC002EEEB3 /* SVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVM.swift; sourceTree = "<group>"; };
 		601E57A21BCD0441002EEEB3 /* SupevisedClassificationFactorSelection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SupevisedClassificationFactorSelection.swift; sourceTree = "<group>"; };
+		601E57A41BCD0A8F002EEEB3 /* SupervisedClassificationValidationSelection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SupervisedClassificationValidationSelection.swift; sourceTree = "<group>"; };
+		601E57A61BCD0B12002EEEB3 /* SupervisedClassification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SupervisedClassification.swift; sourceTree = "<group>"; };
 		602708C91BA2CA0300672D54 /* SelectAllHeaderFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SelectAllHeaderFooterView.swift; path = Source/SelectAllHeaderFooterView.swift; sourceTree = "<group>"; };
 		602708E01BA6EE7400672D54 /* iris-factors.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "iris-factors.txt"; path = "demo-data/iris/iris-factors.txt"; sourceTree = "<group>"; };
 		602708E11BA6EE7400672D54 /* iris-values.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "iris-values.txt"; path = "demo-data/iris/iris-values.txt"; sourceTree = "<group>"; };
@@ -580,7 +582,7 @@
 				60B400BC1BA19C7900D8DD80 /* SingleMolecule.swift */,
 				60B400BE1BA19C7900D8DD80 /* SingleMoleculePlotTable.swift */,
 				601E57A21BCD0441002EEEB3 /* SupevisedClassificationFactorSelection.swift */,
-				601E579E1BCCFBF0002EEEB3 /* SVMFactorSelection.swift */,
+				601E57A41BCD0A8F002EEEB3 /* SupervisedClassificationValidationSelection.swift */,
 				60B400D01BA19C7900D8DD80 /* Title.swift */,
 				60B400D21BA19C7900D8DD80 /* User.swift */,
 			);
@@ -706,6 +708,7 @@
 				60B4003E1BA19BED00D8DD80 /* NumberFormat.swift */,
 				60B4003F1BA19BED00D8DD80 /* Serialize.swift */,
 				60014BC61BB5CB82001A79B1 /* Sort.swift */,
+				601E57A61BCD0B12002EEEB3 /* SupervisedClassification.swift */,
 				601E57A01BCCFFBC002EEEB3 /* SVM.swift */,
 			);
 			name = Functions;
@@ -1004,12 +1007,12 @@
 				60B400FC1BA19C7900D8DD80 /* FactorSummary.swift in Sources */,
 				60B401531BA19C7900D8DD80 /* Statistics.swift in Sources */,
 				60B400FE1BA19C7900D8DD80 /* Feedback.swift in Sources */,
-				601E579F1BCCFBF0002EEEB3 /* SVMFactorSelection.swift in Sources */,
 				60B401591BA19C7900D8DD80 /* TiledScrollView.swift in Sources */,
 				605F52351BC3B37300033B91 /* knn.c in Sources */,
 				6099D23C1BBED42400F176BD /* KNNFactorSelection.swift in Sources */,
 				60B401231BA19C7900D8DD80 /* PairedPairingFactor.swift in Sources */,
 				60B401561BA19C7900D8DD80 /* TextFieldHeaderFooterView.swift in Sources */,
+				601E57A71BCD0B12002EEEB3 /* SupervisedClassification.swift in Sources */,
 				60B400EF1BA19C7900D8DD80 /* DocumentInteractionOpen.swift in Sources */,
 				60B401631BA1A1D200D8DD80 /* ColorPicker.swift in Sources */,
 				60B401171BA19C7900D8DD80 /* MissingValues.swift in Sources */,
@@ -1084,6 +1087,7 @@
 				60B401411BA19C7900D8DD80 /* SampleNormalization.swift in Sources */,
 				60B401311BA19C7900D8DD80 /* Pdf.swift in Sources */,
 				60B401301BA19C7900D8DD80 /* PCAPage.swift in Sources */,
+				601E57A51BCD0A8F002EEEB3 /* SupervisedClassificationValidationSelection.swift in Sources */,
 				60B401271BA19C7900D8DD80 /* PairwiseFactor.swift in Sources */,
 				60B401021BA19C7900D8DD80 /* HierarchicalClustering.swift in Sources */,
 				60B400F81BA19C7900D8DD80 /* FactorAssociation.swift in Sources */,

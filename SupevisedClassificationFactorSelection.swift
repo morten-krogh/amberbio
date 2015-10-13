@@ -140,7 +140,7 @@ class SupervisedClassificationFactorSelection: Component, UITableViewDataSource,
                         if selected_level_ids_in_section.count < 2 {
                                 alert(title: "Too few selected levels", message: "At least two levels must be selected", view_controller: self)
                         } else {
-//                                let svm = SVM(comparison_factor_id: state.factor_ids[section], comparison_level_ids: selected_level_ids_in_section)
+                                let svm = SVM(comparison_factor_id: state.factor_ids[section], comparison_level_ids: selected_level_ids_in_section)
 //                                let svm_validation_selection_state = SVMValidationSelectionState(knn: knn)
 //                                state.navigate(page_state: svm_validation_selection_state)
                                 state.render()

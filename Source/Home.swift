@@ -117,7 +117,7 @@ class Home: Component, UICollectionViewDataSource, UICollectionViewDelegate, UIC
                 case (6, 0):
                         return KNNFactorSelectionState()
                 case (6, 1):
-                        return SVMFactorSelectionState()
+                        return SupervisedClassificationFactorSelectionState(supervised_classification_type: .SVM)
                 case (7, 0):
                         return LogarithmTransformState()
                 case (7, 1):

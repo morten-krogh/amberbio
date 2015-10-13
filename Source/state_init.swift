@@ -6,7 +6,7 @@ let database_url = file_app_directory_url(file_name: database_file_name)
 
 let reset_database = false
 //let initial_active_data_set_id = 1
-let initial_page_state = SVMFactorSelectionState()
+let initial_page_state = SupervisedClassificationFactorSelectionState(supervised_classification_type: .SVM)
 
 func state_init() {
         //        print(database_path)
