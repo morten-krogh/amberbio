@@ -202,6 +202,21 @@ class SupervisedClassificationResultSummaryDelegate: NSObject, UITableViewDataSo
                                 cells[5] = String(classified_test_samples - correctly_classified_test_samples)
                                 cells[6] = String(knn.test_sample_indices.count - classified_test_samples)
                         }
+                } else if supervised_classification.supervised_classification_type == .SVM {
+                        let svm = supervised_classification as! SVM
+                        if supervised_classification.validation_method == .TrainingTest {
+                                headers = ["Type of classification", "Kernel", "Training samples", "Test samples", "Classified test samples", "Correctly classified test samples", "Incorrectly classified test samples", "Unclassified test samples", "Additional predicted samples"]
+                                cells = [String](count: 9, repeatedValue: "")
+                                cells[0] = "Fixed training and test set"
+                                cells[1] = svm.kernel == .Linear ? "Linear" : "BRF"
+                                cells[2] = String(svm.training_sample_index_set.count)
+                                cells[3] = String(svm.test_sample_indices.count)
+                                cells[4] = String(classified_test_samples)
+                                cells[5] = String(correctly_classified_test_samples)
+                                cells[6] = String(classified_test_samples - correctly_classified_test_samples)
+                                cells[7] = String(svm.test_sample_indices.count - classified_test_samples)
+                                cells[8] = String(svm.additional_sample_indices.count)
+                        }
                 }
         }
 
