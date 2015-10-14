@@ -11,7 +11,6 @@ class SVM: SupervisedClassification {
         let C_default = 1.0
         var C = 1.0
 
-        var gamma_default = 1.0
         var gamma = 1.0
 
         init(comparison_factor_id: Int, comparison_level_ids: [Int]) {
@@ -20,6 +19,16 @@ class SVM: SupervisedClassification {
 
         }
 
+        func gamma_default() -> Double {
+                if molecule_indices.isEmpty {
+                        calculate_molecule_indices()
+                }
 
+                if molecule_indices.isEmpty {
+                        return 1.0
+                } else {
+                        return 1.0 / Double(molecule_indices.count)
+                }
+        }
 
 }

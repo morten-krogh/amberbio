@@ -47,6 +47,8 @@ class SupervisedClassification {
         var test_sample_level_ids = [] as [Int]
         var test_sample_classified_level_ids = [] as [Int]
 
+        var molecule_indices = [] as [Int]
+
         init(supervised_classification_type: SupervisedClassificationType, comparison_factor_id: Int, comparison_level_ids: [Int]) {
                 self.supervised_classification_type = supervised_classification_type
                 self.comparison_factor_id = comparison_factor_id
@@ -106,14 +108,17 @@ class SupervisedClassification {
                 training_level_id_set = []
                 training_sample_index_set = []
                 calculate_training_number_of_samples()
+                molecule_indices = []
         }
 
         func validation_leave_one_out() {
                 validation_method = .LeaveOneOut
+                molecule_indices = []
         }
 
         func validation_k_fold_cross_validation() {
                 validation_method = .KFoldCrossValidation
+                molecule_indices = []
         }
 
         func toggle_level(factor_index factor_index: Int, level_id: Int) {
@@ -187,95 +192,28 @@ class SupervisedClassification {
                 }
         }
         
-        func classify_training_test() {
-        //                var training_sample_indices = [] as [Int]
-        //                var training_level_ids = [] as [Int]
-        //                test_sample_indices = []
-        //                test_sample_names = []
-        //                test_sample_level_ids = []
-        //
-        //                for i in 0 ..< core_sample_indices.count {
-        //                        let sample_index = core_sample_indices[i]
-        //                        if training_sample_index_set.contains(sample_index) {
-        //                                training_sample_indices.append(sample_index)
-        //                                training_level_ids.append(core_sample_level_ids[i])
-        //                        } else {
-        //                                test_sample_indices.append(sample_index)
-        //                                test_sample_names.append(core_sample_names[i])
-        //                                test_sample_level_ids.append(core_sample_level_ids[i])
-        //                        }
-        //                }
-        //
-        //                if k > training_sample_indices.count {
-        //                        k = training_sample_indices.count
-        //                } else if k < 1 {
-        //                        k = 1
-        //                }
-        //
-        //                let classification_sample_indices = test_sample_indices + additional_sample_indices
-        //                var classification_level_ids = [Int](count: classification_sample_indices.count, repeatedValue: -1)
-        //
-        //                let success = knn_classify_training_test(state.values, state.number_of_molecules, state.number_of_samples, training_sample_indices, training_level_ids, training_sample_indices.count, classification_sample_indices, classification_sample_indices.count, k, &classification_level_ids)
-        //
-        //                if success {
-        //                        classification_success = true
-        //                        test_sample_classified_level_ids = [Int](classification_level_ids[0 ..< test_sample_indices.count])
-        //                        additional_sample_classified_level_ids = [Int](classification_level_ids[test_sample_indices.count ..< classification_sample_indices.count])
-        //                } else {
-        //                        classification_success = false
-        //                        test_sample_classified_level_ids = [Int](count: test_sample_indices.count, repeatedValue: 0)
-        //                        additional_sample_classified_level_ids = [Int](count: additional_sample_indices.count, repeatedValue: 0)
-        //                }
-        }
+        func classify_training_test() {}
         
-        func classify_k_fold_cross_validation() {
-        //                test_sample_indices = []
-        //                test_sample_names = []
-        //                test_sample_level_ids = []
-        //                test_sample_classified_level_ids = []
-        //
-        //                if core_sample_indices.count < 2 {
-        //                        classification_success = false
-        //
-        //                }
-        //
-        //                var shuffled_numbers = [Int](0 ..< core_sample_indices.count)
-        //                if k_fold < core_sample_indices.count {
-        //                        fisher_yates_shuffle(&shuffled_numbers, shuffled_numbers.count)
-        //                }
-        //
-        //                let minimum_size = core_sample_indices.count / k_fold
-        //                let remainder = core_sample_indices.count % k_fold
-        //                classification_success = true
-        //                var counter = 0
-        //                for i in 0 ..< k_fold {
-        //                        let size = minimum_size + (i < remainder ? 1 : 0)
-        //                        var training_sample_indices = [] as [Int]
-        //                        var training_level_ids = [] as [Int]
-        //                        var classification_sample_indices = [] as [Int]
-        //                        var classification_level_ids = [Int](count: size, repeatedValue: -1)
-        //                        for i in 0 ..< core_sample_indices.count {
-        //                                let j = shuffled_numbers[i]
-        //                                if i >= counter && i < counter + size {
-        //                                        classification_sample_indices.append(core_sample_indices[j])
-        //                                        test_sample_indices.append(core_sample_indices[j])
-        //                                        test_sample_names.append(core_sample_names[j])
-        //                                        test_sample_level_ids.append(core_sample_level_ids[j])
-        //                                } else {
-        //                                        training_sample_indices.append(core_sample_indices[j])
-        //                                        training_level_ids.append(core_sample_level_ids[j])
-        //                                }
-        //                        }
-        //
-        //                        let success = knn_classify_training_test(state.values, state.number_of_molecules, state.number_of_samples, training_sample_indices, training_level_ids, training_sample_indices.count, classification_sample_indices, size, k, &classification_level_ids)
-        //                        
-        //                        if success && classification_success {
-        //                                test_sample_classified_level_ids += classification_level_ids
-        //                        } else {
-        //                                classification_success = false
-        //                        }
-        //                        
-        //                        counter += size
-        //                }
+        func classify_k_fold_cross_validation() {}
+
+        func calculate_molecule_indices() {
+                let sample_indices: [Int]
+                if validation_method == .TrainingTest {
+                        sample_indices = [Int](0 ..< state.number_of_samples)
+                } else {
+                        sample_indices = core_sample_indices
+                }
+
+                var number_of_present_molecules = 0
+                var is_present_molecule = [Int](count: state.number_of_molecules, repeatedValue: 0)
+
+                calculate_molecules_without_missing_values(state.values, state.number_of_molecules, state.number_of_samples, sample_indices, sample_indices.count, &number_of_present_molecules, &is_present_molecule)
+
+                molecule_indices = []
+                for i in 0 ..< is_present_molecule.count {
+                        if is_present_molecule[i] == 1 {
+                                molecule_indices.append(i)
+                        }
+                }
         }
 }

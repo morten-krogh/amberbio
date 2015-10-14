@@ -189,14 +189,23 @@ class SupervisedClassificationParameterSelection: Component, UITableViewDataSour
                         }
                 case .SVM:
                         let svm = supervised_classification as! SVM
-                        let cell = table_view.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0)) as! ParameterTableViewCell
-                        let text_field = cell.text_field
-                        let text = text_field.text ?? ""
+                        var cell = table_view.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0)) as! ParameterTableViewCell
+                        var text_field = cell.text_field
+                        var text = text_field.text ?? ""
                         if let number = string_to_double(string: text) where number > 0 {
                                 svm.C = number
                         } else {
                                 text_field.text = String(svm.C_default)
                                 svm.C = svm.C_default
+                        }
+                        cell = table_view.cellForRowAtIndexPath(NSIndexPath(forRow: 1, inSection: 0)) as! ParameterTableViewCell
+                        text_field = cell.text_field
+                        text = text_field.text ?? ""
+                        if let number = string_to_double(string: text) where number > 0 {
+                                svm.gamma = number
+                        } else {
+                                svm.gamma = svm.gamma_default()
+                                text_field.text = String(svm.gamma)
                         }
                 }
         }
