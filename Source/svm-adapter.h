@@ -13,4 +13,7 @@
 
 #include "svm.h"
 
+void svm_adapter_train_test_linear(const double* values, const long* molecule_indices, const long molecule_indices_length, const long number_of_samples, const long* training_sample_indices, const long* training_labels, const long number_of_training_samples, const long* test_sample_indices, const long number_of_test_samples, double C, long* test_labels);
+
+
 #endif /* svm_adapter_h */

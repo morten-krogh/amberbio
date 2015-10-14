@@ -67,21 +67,24 @@ class SVM: SupervisedClassification {
                         }
                 }
 
-                let classification_sample_indices = test_sample_indices + additional_sample_indices
-                var classification_level_ids = [Int](count: classification_sample_indices.count, repeatedValue: -1)
+                if molecule_indices.isEmpty {
+                        calculate_molecule_indices()
+                }
 
-//                let success = knn_classify_training_test(state.values, state.number_of_molecules, state.number_of_samples, training_sample_indices, training_level_ids, training_sample_indices.count, classification_sample_indices, classification_sample_indices.count, k, &classification_level_ids)
+                if molecule_indices.isEmpty {
+                        classification_success = false
+                        test_sample_classified_level_ids = [Int](count: test_sample_indices.count, repeatedValue: 0)
+                        additional_sample_classified_level_ids = [Int](count: additional_sample_indices.count, repeatedValue: 0)
+                } else {
+                        classification_success = true
 
-//                if success {
-//                        classification_success = true
-//                        test_sample_classified_level_ids = [Int](classification_level_ids[0 ..< test_sample_indices.count])
-//                        additional_sample_classified_level_ids = [Int](classification_level_ids[test_sample_indices.count ..< classification_sample_indices.count])
-//                } else {
-//                        classification_success = false
-//                        test_sample_classified_level_ids = [Int](count: test_sample_indices.count, repeatedValue: 0)
-//                        additional_sample_classified_level_ids = [Int](count: additional_sample_indices.count, repeatedValue: 0)
-//                }
+                        let classification_sample_indices = test_sample_indices + additional_sample_indices
+                        var classification_level_ids = [Int](count: classification_sample_indices.count, repeatedValue: -1)
+
+                        svm_adapter_train_test_linear(state.values, molecule_indices, molecule_indices.count, state.number_of_samples, training_sample_indices, training_level_ids, training_sample_indices.count, classification_sample_indices, classification_sample_indices.count, C, &classification_level_ids)
+
+                        test_sample_classified_level_ids = [Int](classification_level_ids[0 ..< test_sample_indices.count])
+                        additional_sample_classified_level_ids = [Int](classification_level_ids[test_sample_indices.count ..< classification_sample_indices.count])
+                }
         }
-
-
 }
