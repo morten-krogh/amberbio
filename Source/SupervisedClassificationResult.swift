@@ -6,7 +6,7 @@ class SupervisedClassificationResultState: PageState {
 
         var selected_segment_index = 0
         var supervised_classification_result_summary_delegate: SupervisedClassificationResultSummaryDelegate?
-//        var knn_result_samples_delegate: KNNResultSamplesDelegate?
+        var supervised_classification_result_samples_delegate: SupervisedClassificationResultSamplesDelegate?
         var table_of_attributed_strings: TableOfAttributedStrings?
         var any_unclassified = false
 
@@ -21,8 +21,8 @@ class SupervisedClassificationResultState: PageState {
                         title = astring_body(string: "support vector machine")
                 }
                 supervised_classification_result_summary_delegate = SupervisedClassificationResultSummaryDelegate(supervised_classification: supervised_classification)
+                supervised_classification_result_samples_delegate = SupervisedClassificationResultSamplesDelegate(supervised_classification: supervised_classification)
 
-//                        knn_result_samples_delegate = KNNResultSamplesDelegate(knn: knn)
 //                        let (table_of_attributed_strings, any_unclassified) = knn_result_table_of_attributed_strings(knn: knn)
 //                        self.table_of_attributed_strings = table_of_attributed_strings
 //                        set_selected_segment_index(index: 0)
@@ -150,8 +150,8 @@ class SupervisedClassificationResult: Component {
                         tiled_scroll_view.hidden = false
                 } else {
                         table_view.hidden = false
-//                        table_view.dataSource = knn_result_state.knn_result_samples_delegate
-//                        table_view.delegate = knn_result_state.knn_result_samples_delegate
+                        table_view.dataSource = supervised_classification_result_state.supervised_classification_result_samples_delegate
+                        table_view.delegate = supervised_classification_result_state.supervised_classification_result_samples_delegate
                         table_view.reloadData()
                 }
 
@@ -281,44 +281,44 @@ class SupervisedClassificationResultSummaryDelegate: NSObject, UITableViewDataSo
         }
 }
 
-class KNNResultSamplesDelegate: NSObject, UITableViewDataSource, UITableViewDelegate {
+class SupervisedClassificationResultSamplesDelegate: NSObject, UITableViewDataSource, UITableViewDelegate {
 
-        let knn: KNN
+        let supervised_classification: SupervisedClassification
         var level_ids = [] as [Int]
         var level_names = [] as [String]
         var sample_names = [] as [[String]]
         var classified_level_ids = [] as [[Int]]
 
-        init(knn: KNN) {
-                self.knn = knn
+        init(supervised_classification: SupervisedClassification) {
+                self.supervised_classification = supervised_classification
 
-                level_ids = knn.comparison_level_ids
-                level_names = knn.comparison_level_names
+                level_ids = supervised_classification.comparison_level_ids
+                level_names = supervised_classification.comparison_level_names
 
-                for level_id in knn.comparison_level_ids {
+                for level_id in supervised_classification.comparison_level_ids {
                         var current_sample_names = [] as [String]
                         var current_classified_level_ids = [] as [Int]
-                        for i in 0 ..< knn.test_sample_indices.count {
-                                if knn.test_sample_level_ids[i] == level_id {
-                                        current_sample_names.append(knn.test_sample_names[i])
-                                        current_classified_level_ids.append(knn.test_sample_classified_level_ids[i])
+                        for i in 0 ..< supervised_classification.test_sample_indices.count {
+                                if supervised_classification.test_sample_level_ids[i] == level_id {
+                                        current_sample_names.append(supervised_classification.test_sample_names[i])
+                                        current_classified_level_ids.append(supervised_classification.test_sample_classified_level_ids[i])
                                 }
                         }
                         sample_names.append(current_sample_names)
                         classified_level_ids.append(current_classified_level_ids)
                 }
 
-                if knn.validation_method == .TrainingTest {
-                        level_ids += knn.additional_level_ids
-                        level_names += knn.additional_level_names
+                if supervised_classification.validation_method == .TrainingTest {
+                        level_ids += supervised_classification.additional_level_ids
+                        level_names += supervised_classification.additional_level_names
 
-                        for level_id in knn.additional_level_ids {
+                        for level_id in supervised_classification.additional_level_ids {
                                 var current_sample_names = [] as [String]
                                 var current_classified_level_ids = [] as [Int]
-                                for i in 0 ..< knn.additional_sample_indices.count {
-                                        if knn.additional_sample_level_ids[i] == level_id {
-                                                current_sample_names.append(knn.additional_sample_names[i])
-                                                current_classified_level_ids.append(knn.additional_sample_classified_level_ids[i])
+                                for i in 0 ..< supervised_classification.additional_sample_indices.count {
+                                        if supervised_classification.additional_sample_level_ids[i] == level_id {
+                                                current_sample_names.append(supervised_classification.additional_sample_names[i])
+                                                current_classified_level_ids.append(supervised_classification.additional_sample_classified_level_ids[i])
                                         }
                                 }
                                 sample_names.append(current_sample_names)
@@ -374,13 +374,13 @@ class KNNResultSamplesDelegate: NSObject, UITableViewDataSource, UITableViewDele
 
                 let classified_level_name: String
                 if classified_level_id > 0 {
-                        let level_index = knn.comparison_level_ids.indexOf(classified_level_id)!
-                        classified_level_name = knn.comparison_level_names[level_index]
+                        let level_index = supervised_classification.comparison_level_ids.indexOf(classified_level_id)!
+                        classified_level_name = supervised_classification.comparison_level_names[level_index]
                 } else {
                         classified_level_name = "unclassified"
                 }
 
-                if section < knn.comparison_level_ids.count {
+                if section < supervised_classification.comparison_level_ids.count {
                         if level_id == classified_level_id {
                                 cell.update_success(text_1: sample_name, text_2: classified_level_name)
                         } else {
