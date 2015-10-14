@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "B2B4C15789E6337B266FB51E3239F85FA2B96EB9",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "B2B4C15789E6337B266FB51E3239F85FA2B96EB9" : 0,
+    "BACEABC50EB79DCC7EAEAF0F3E609A43D21B4B32" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "BCDB62C1-8152-4434-8F55-AEF806A73C57",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "B2B4C15789E6337B266FB51E3239F85FA2B96EB9" : "Amberbio\/",
+    "BACEABC50EB79DCC7EAEAF0F3E609A43D21B4B32" : "..\/..\/share\/libsvm"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Amberbio",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Amberbio.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "ida:Amberbio.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "B2B4C15789E6337B266FB51E3239F85FA2B96EB9"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/cjlin1\/libsvm.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "BACEABC50EB79DCC7EAEAF0F3E609A43D21B4B32"
+    }
+  ]
+}
