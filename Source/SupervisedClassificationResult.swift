@@ -20,22 +20,12 @@ class SupervisedClassificationResultState: PageState {
                 case .SVM:
                         title = astring_body(string: "support vector machine")
                 }
-
-                if supervised_classification.classification_success {
-                        switch (supervised_classification.supervised_classification_type, supervised_classification.validation_method) {
-                        case (.KNN, .TrainingTest):
-                                supervised_classification_result_summary_delegate = KNNTrainingTestResultSummaryDelegate(knn: supervised_classification as! KNN)
-                        case (.KNN, _):
-                                supervised_classification_result_summary_delegate = KNNCrossValidationResultSummaryDelegate(knn: supervised_classification as! KNN)
-                        default:
-                                break
-                        }
+                supervised_classification_result_summary_delegate = SupervisedClassificationResultSummaryDelegate(supervised_classification: supervised_classification)
 
 //                        knn_result_samples_delegate = KNNResultSamplesDelegate(knn: knn)
 //                        let (table_of_attributed_strings, any_unclassified) = knn_result_table_of_attributed_strings(knn: knn)
 //                        self.table_of_attributed_strings = table_of_attributed_strings
 //                        set_selected_segment_index(index: 0)
-                }
 
                 set_selected_segment_index(index: 0)
         }
@@ -185,7 +175,34 @@ class SupervisedClassificationResultSummaryDelegate: NSObject, UITableViewDataSo
                 self.supervised_classification = supervised_classification
                 super.init()
 
-                (classified_test_samples, correctly_classified_test_samples) = calculate_test_samples()
+                let (classified_test_samples, correctly_classified_test_samples) = calculate_test_samples()
+
+                if supervised_classification.supervised_classification_type == .KNN {
+                        let knn = supervised_classification as! KNN
+                        if supervised_classification.validation_method == .TrainingTest {
+                                headers = ["Type of classification", "Number of neighbors(k)", "Training samples", "Test samples", "Classified test samples", "Correctly classified test samples", "Incorrectly classified test samples", "Unclassified test samples", "Additional predicted samples"]
+                                cells = [String](count: 9, repeatedValue: "")
+                                cells[0] = "Fixed training and test set"
+                                cells[1] = String(knn.k)
+                                cells[2] = String(knn.training_sample_index_set.count)
+                                cells[3] = String(knn.test_sample_indices.count)
+                                cells[4] = String(classified_test_samples)
+                                cells[5] = String(correctly_classified_test_samples)
+                                cells[6] = String(classified_test_samples - correctly_classified_test_samples)
+                                cells[7] = String(knn.test_sample_indices.count - classified_test_samples)
+                                cells[8] = String(knn.additional_sample_indices.count)
+                        } else {
+                                headers = ["Type of classification", "Number of neighbors(k)", "Total samples", "Classified samples", "Correctly classified samples", "Incorrectly classified samples", "Unclassified samples"]
+                                cells = [String](count: 7, repeatedValue: "")
+                                cells[0] = knn.validation_method == .LeaveOneOut ? "Leave one out cross validation" : "\(knn.k_fold)-fold cross validation"
+                                cells[1] = String(knn.k)
+                                cells[2] = String(knn.test_sample_indices.count)
+                                cells[3] = String(classified_test_samples)
+                                cells[4] = String(correctly_classified_test_samples)
+                                cells[5] = String(classified_test_samples - correctly_classified_test_samples)
+                                cells[6] = String(knn.test_sample_indices.count - classified_test_samples)
+                        }
+                }
         }
 
         func calculate_test_samples() -> (classified_test_samples: Int, correctly_classified_test_samples: Int) {
@@ -246,44 +263,6 @@ class SupervisedClassificationResultSummaryDelegate: NSObject, UITableViewDataSo
                 cell.update_normal(text: text)
 
                 return cell
-        }
-}
-
-class KNNTrainingTestResultSummaryDelegate: SupervisedClassificationResultSummaryDelegate {
-
-        init(knn: KNN) {
-                super.init(supervised_classification: knn)
-
-                headers = ["Type of classification", "Number of neighbors(k)", "Training samples", "Test samples", "Classified test samples", "Correctly classified test samples", "Incorrectly classified test samples", "Unclassified test samples", "Additional predicted samples"]
-
-                cells = [String](count: 9, repeatedValue: "")
-                cells[0] = "Fixed training and test set"
-                cells[1] = String(knn.k)
-                cells[2] = String(knn.training_sample_index_set.count)
-                cells[3] = String(knn.test_sample_indices.count)
-                cells[4] = String(classified_test_samples)
-                cells[5] = String(correctly_classified_test_samples)
-                cells[6] = String(classified_test_samples - correctly_classified_test_samples)
-                cells[7] = String(knn.test_sample_indices.count - classified_test_samples)
-                cells[8] = String(knn.additional_sample_indices.count)
-        }
-}
-
-class KNNCrossValidationResultSummaryDelegate: SupervisedClassificationResultSummaryDelegate {
-
-        init(knn: KNN) {
-                super.init(supervised_classification: knn)
-
-                headers = ["Type of classification", "Number of neighbors(k)", "Total samples", "Classified samples", "Correctly classified samples", "Incorrectly classified samples", "Unclassified samples"]
-
-                cells = [String](count: 9, repeatedValue: "")
-                cells[0] = knn.validation_method == .LeaveOneOut ? "Leave one out cross validation" : "\(knn.k_fold)-fold cross validation"
-                cells[1] = String(knn.k)
-                cells[2] = String(knn.test_sample_indices.count)
-                cells[3] = String(classified_test_samples)
-                cells[4] = String(correctly_classified_test_samples)
-                cells[5] = String(classified_test_samples - correctly_classified_test_samples)
-                cells[6] = String(knn.test_sample_indices.count - classified_test_samples)
         }
 }
 
