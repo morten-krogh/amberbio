@@ -55,7 +55,7 @@ void svm_adapter_problem_free(struct svm_problem* problem)
         free(problem);
 }
 
-void svm_adapter_train_test(const double* values, const long* molecule_indices, const long molecule_indices_length, const long number_of_samples, const long* training_sample_indices, const long* training_labels, const long number_of_training_samples, const long* test_sample_indices, const long number_of_test_samples, long* test_labels, long kernel, double linear_C, double rbf_C, double rbf_gamma)
+void svm_adapter_train_test(const double* values, const long* molecule_indices, const long molecule_indices_length, const long number_of_samples, const long* training_sample_indices, const long* training_labels, const long number_of_training_samples, const long* test_sample_indices, const long number_of_test_samples, long* test_labels, double* test_decision_values, long kernel, double linear_C, double rbf_C, double rbf_gamma)
 {
         struct svm_problem* problem = svm_adapter_problem_create(values, molecule_indices, molecule_indices_length, number_of_samples, training_sample_indices, training_labels, number_of_training_samples);
 
@@ -91,8 +91,15 @@ void svm_adapter_train_test(const double* values, const long* molecule_indices, 
 
         for (long i = 0; i < number_of_test_samples; i++) {
                 struct svm_node* nodes = svm_adapter_nodes_create(values, molecule_indices, molecule_indices_length, number_of_samples, test_sample_indices[i]);
-                double label = svm_predict(model, nodes);
+                double label = 0;
+                double decision_value = 0;
+                if (model->nr_class == 2) {
+                        label = svm_predict_values(model, nodes, &decision_value);
+                } else {
+                        label = svm_predict(model, nodes);
+                }
                 test_labels[i] = (long)(label + 0.1);
+                test_decision_values[i] = decision_value;
                 free(nodes);
         }
 

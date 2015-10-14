@@ -73,17 +73,22 @@ class SVM: SupervisedClassification {
                 if molecule_indices.isEmpty {
                         classification_success = false
                         test_sample_classified_level_ids = [Int](count: test_sample_indices.count, repeatedValue: 0)
+                        test_sample_decision_values = [Double](count: test_sample_indices.count, repeatedValue: 0)
                         additional_sample_classified_level_ids = [Int](count: additional_sample_indices.count, repeatedValue: 0)
                 } else {
                         classification_success = true
 
                         let classification_sample_indices = test_sample_indices + additional_sample_indices
                         var classification_level_ids = [Int](count: classification_sample_indices.count, repeatedValue: -1)
+                        var classification_decision_values = [Double](count: classification_sample_indices.count, repeatedValue: 0)
 
-                        svm_adapter_train_test(state.values, molecule_indices, molecule_indices.count, state.number_of_samples, training_sample_indices, training_level_ids, training_sample_indices.count, classification_sample_indices, classification_sample_indices.count, &classification_level_ids, kernel.rawValue, linear_C, rbf_C, rbf_gamma)
+                        svm_adapter_train_test(state.values, molecule_indices, molecule_indices.count, state.number_of_samples, training_sample_indices, training_level_ids, training_sample_indices.count, classification_sample_indices, classification_sample_indices.count, &classification_level_ids, &classification_decision_values, kernel.rawValue, linear_C, rbf_C, rbf_gamma)
 
                         test_sample_classified_level_ids = [Int](classification_level_ids[0 ..< test_sample_indices.count])
+                        test_sample_decision_values = [Double](classification_decision_values[0 ..< test_sample_indices.count])
+
                         additional_sample_classified_level_ids = [Int](classification_level_ids[test_sample_indices.count ..< classification_sample_indices.count])
+                        additional_sample_decision_values = [Double](classification_decision_values[test_sample_indices.count ..< classification_sample_indices.count])
                 }
         }
 }

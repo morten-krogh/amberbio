@@ -31,6 +31,7 @@ class SupervisedClassification {
         var additional_sample_level_ids = [] as [Int]
         var additional_sample_level_names = [] as [String]
         var additional_sample_classified_level_ids = [] as [Int]
+        var additional_sample_decision_values = [] as [Double]
 
         var number_of_samples_per_level_id = [:] as [Int: Int]
 
@@ -46,6 +47,7 @@ class SupervisedClassification {
         var test_sample_names = [] as [String]
         var test_sample_level_ids = [] as [Int]
         var test_sample_classified_level_ids = [] as [Int]
+        var test_sample_decision_values = [] as [Double]
 
         var molecule_indices = [] as [Int]
 
@@ -84,6 +86,7 @@ class SupervisedClassification {
                                 additional_sample_level_ids.append(level_id)
                                 additional_sample_level_names.append(level_name)
                                 additional_sample_classified_level_ids.append(0)
+                                additional_sample_decision_values.append(0.0)
                         }
                         number_of_samples_per_level_id[level_id]?++
                 }
