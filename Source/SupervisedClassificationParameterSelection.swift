@@ -58,7 +58,7 @@ class SupervisedClassificationParameterSelection: Component, UITableViewDataSour
                 case .KNN:
                         return 1
                 case .SVM:
-                        return 0
+                        return 1
                 }
         }
 
@@ -74,7 +74,7 @@ class SupervisedClassificationParameterSelection: Component, UITableViewDataSour
                 case .KNN:
                         text = "Classify"
                 case .SVM:
-                        text = ""
+                        text = "Linear kernel"
                 }
 
                 header.update_selectable_arrow(text: text)
@@ -92,7 +92,7 @@ class SupervisedClassificationParameterSelection: Component, UITableViewDataSour
                 case .KNN:
                         return 1
                 case .SVM:
-                        return 0
+                        return 1
                 }
         }
 
@@ -115,9 +115,10 @@ class SupervisedClassificationParameterSelection: Component, UITableViewDataSour
                         short_text = "k = "
                         parameter = String((supervised_classification as! KNN).k)
                 case .SVM:
-                        text = ""
-                        short_text = ""
-                        parameter = ""
+                        let svm = supervised_classification as! SVM
+                        text = "C parameter"
+                        short_text = "C = "
+                        parameter = String(svm.C)
                 }
 
                 cell.update(text: text, short_text: short_text, parameter: parameter, tag: section, delegate: self)
@@ -143,8 +144,20 @@ class SupervisedClassificationParameterSelection: Component, UITableViewDataSour
                 if range.length != 0 && string.isEmpty {
                         return true
                 }
-                
-                return Int(string) != nil
+
+                let digits = NSCharacterSet.decimalDigitCharacterSet()
+
+                if supervised_classification.supervised_classification_type == .KNN {
+                        return Int(string) != nil
+                } else {
+                        for scalar in string.unicodeScalars {
+                                if !digits.longCharacterIsMember(scalar.value) && scalar != "." {
+                                        return false
+                                }
+                        }
+                }
+
+                return true
         }
 
         func read_text_fields() {
@@ -169,13 +182,27 @@ class SupervisedClassificationParameterSelection: Component, UITableViewDataSour
                                 knn.k = 1
                         }
                 case .SVM:
-                        break
+                        let svm = supervised_classification as! SVM
+                        let cell = table_view.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0)) as! ParameterTableViewCell
+                        let text_field = cell.text_field
+                        let text = text_field.text ?? ""
+                        if let number = string_to_double(string: text) where number > 0 {
+                                svm.C = number
+                        } else {
+                                text_field.text = "1.0"
+                                svm.C = 1.0
+                        }
                 }
         }
 
         func header_tap_action(sender: UITapGestureRecognizer) {
                 editing_text_field?.resignFirstResponder()
                 read_text_fields()
+                if supervised_classification.supervised_classification_type == .SVM, let section = sender.view?.superview?.tag {
+                        let svm = supervised_classification as! SVM
+                        svm.kernel = section == 0 ? .Linear : .RBF
+                }
+
                 supervised_classification.classify()
                 let page_state = SupervisedClassificationResultState(supervised_classification: supervised_classification)
                 state.navigate(page_state: page_state)
