@@ -42,7 +42,9 @@ class SVM: SupervisedClassification {
                 if molecule_indices.isEmpty {
                         return 1.0
                 } else {
-                        return 1.0 / Double(molecule_indices.count)
+                        let value = 1.0 / Double(molecule_indices.count)
+                        let str = decimal_string(number: value, significant_digits: 1)
+                        return string_to_double(string: str) ?? 1.0
                 }
         }
 }

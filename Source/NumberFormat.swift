@@ -1,5 +1,15 @@
 import UIKit
 
+func decimal_string(number number: Double, significant_digits: Int) -> String {
+        let number_formatter = NSNumberFormatter()
+        number_formatter.numberStyle = .DecimalStyle
+        number_formatter.maximumSignificantDigits = significant_digits
+//        number_formatter.minimumFractionDigits = fraction_digits
+//        number_formatter.maximumFractionDigits = fraction_digits
+        number_formatter.decimalSeparator = "."
+        return number_formatter.stringFromNumber(number) ?? ""
+}
+
 func decimal_string(number number: Double, fraction_digits: Int) -> String {
         let number_formatter = NSNumberFormatter()
         number_formatter.numberStyle = .DecimalStyle

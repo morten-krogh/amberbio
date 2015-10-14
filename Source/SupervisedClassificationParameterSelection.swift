@@ -198,7 +198,7 @@ class SupervisedClassificationParameterSelection: Component, UITableViewDataSour
                                 text_field.text = String(svm.C_default)
                                 svm.C = svm.C_default
                         }
-                        cell = table_view.cellForRowAtIndexPath(NSIndexPath(forRow: 1, inSection: 0)) as! ParameterTableViewCell
+                        cell = table_view.cellForRowAtIndexPath(NSIndexPath(forRow: 1, inSection: 1)) as! ParameterTableViewCell
                         text_field = cell.text_field
                         text = text_field.text ?? ""
                         if let number = string_to_double(string: text) where number > 0 {
