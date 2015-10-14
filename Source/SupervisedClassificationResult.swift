@@ -253,7 +253,7 @@ class SupervisedClassificationResultSummaryDelegate: NSObject, UITableViewDataSo
         }
 
         func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-                return 15
+                return 0
         }
 
         func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {

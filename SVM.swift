@@ -9,29 +9,28 @@ class SVM: SupervisedClassification {
         var kernel = SVMKernel.Linear
 
         let C_default = 1.0
-        var C = 1.0
+        var linear_C = 1.0
 
-        var gamma = 0.0
+        var rbf_C = 1.0
+        var rbf_gamma = 0.0
 
         init(comparison_factor_id: Int, comparison_level_ids: [Int]) {
                 super.init(supervised_classification_type: .SVM, comparison_factor_id: comparison_factor_id, comparison_level_ids: comparison_level_ids)
-
-
         }
 
         override func validation_training_test() {
                 super.validation_training_test()
-                gamma = gamma_default()
+                rbf_gamma = gamma_default()
         }
 
         override func validation_leave_one_out() {
                 super.validation_leave_one_out()
-                gamma = gamma_default()
+                rbf_gamma = gamma_default()
         }
 
         override func validation_k_fold_cross_validation() {
                 super.validation_k_fold_cross_validation()
-                gamma = gamma_default()
+                rbf_gamma = gamma_default()
         }
 
         func gamma_default() -> Double {
@@ -81,7 +80,7 @@ class SVM: SupervisedClassification {
                         let classification_sample_indices = test_sample_indices + additional_sample_indices
                         var classification_level_ids = [Int](count: classification_sample_indices.count, repeatedValue: -1)
 
-                        svm_adapter_train_test_linear(state.values, molecule_indices, molecule_indices.count, state.number_of_samples, training_sample_indices, training_level_ids, training_sample_indices.count, classification_sample_indices, classification_sample_indices.count, C, &classification_level_ids)
+                        svm_adapter_train_test_linear(state.values, molecule_indices, molecule_indices.count, state.number_of_samples, training_sample_indices, training_level_ids, training_sample_indices.count, classification_sample_indices, classification_sample_indices.count, linear_C, &classification_level_ids)
 
                         test_sample_classified_level_ids = [Int](classification_level_ids[0 ..< test_sample_indices.count])
                         additional_sample_classified_level_ids = [Int](classification_level_ids[test_sample_indices.count ..< classification_sample_indices.count])

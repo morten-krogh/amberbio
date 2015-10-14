@@ -116,14 +116,18 @@ class SupervisedClassificationParameterSelection: Component, UITableViewDataSour
                         parameter = String((supervised_classification as! KNN).k)
                 case .SVM:
                         let svm = supervised_classification as! SVM
-                        if row == 0 {
+                        if section == 0 {
                                 text = "C parameter"
                                 short_text = "C = "
-                                parameter = String(svm.C)
+                                parameter = String(svm.linear_C)
+                        } else if row == 0 {
+                                text = "C parameter"
+                                short_text = "C = "
+                                parameter = String(svm.rbf_C)
                         } else {
                                 text = "gamma parameter"
                                 short_text = "gamma = "
-                                parameter = String(svm.gamma)
+                                parameter = String(svm.rbf_gamma)
                         }
                 }
 
@@ -193,18 +197,27 @@ class SupervisedClassificationParameterSelection: Component, UITableViewDataSour
                         var text_field = cell.text_field
                         var text = text_field.text ?? ""
                         if let number = string_to_double(string: text) where number > 0 {
-                                svm.C = number
+                                svm.linear_C = number
                         } else {
                                 text_field.text = String(svm.C_default)
-                                svm.C = svm.C_default
+                                svm.linear_C = svm.C_default
+                        }
+                        cell = table_view.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 1)) as! ParameterTableViewCell
+                        text_field = cell.text_field
+                        text = text_field.text ?? ""
+                        if let number = string_to_double(string: text) where number > 0 {
+                                svm.rbf_C = number
+                        } else {
+                                text_field.text = String(svm.C_default)
+                                svm.rbf_C = svm.C_default
                         }
                         cell = table_view.cellForRowAtIndexPath(NSIndexPath(forRow: 1, inSection: 1)) as! ParameterTableViewCell
                         text_field = cell.text_field
                         text = text_field.text ?? ""
                         if let number = string_to_double(string: text) where number > 0 {
-                                svm.gamma = number
+                                svm.rbf_gamma = number
                         } else {
-                                text_field.text = String(svm.gamma)
+                                text_field.text = String(svm.rbf_gamma)
                         }
                 }
         }
