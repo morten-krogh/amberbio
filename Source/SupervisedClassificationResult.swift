@@ -23,9 +23,9 @@ class SupervisedClassificationResultState: PageState {
                 supervised_classification_result_summary_delegate = SupervisedClassificationResultSummaryDelegate(supervised_classification: supervised_classification)
                 supervised_classification_result_samples_delegate = SupervisedClassificationResultSamplesDelegate(supervised_classification: supervised_classification)
 
-//                        let (table_of_attributed_strings, any_unclassified) = knn_result_table_of_attributed_strings(knn: knn)
-//                        self.table_of_attributed_strings = table_of_attributed_strings
-//                        set_selected_segment_index(index: 0)
+                let (table_of_attributed_strings, any_unclassified) = supervised_classification_result_table_of_attributed_strings(supervised_classification: supervised_classification)
+                self.table_of_attributed_strings = table_of_attributed_strings
+                self.any_unclassified = any_unclassified
 
                 set_selected_segment_index(index: 0)
         }
@@ -394,16 +394,16 @@ class SupervisedClassificationResultSamplesDelegate: NSObject, UITableViewDataSo
         }
 }
 
-func knn_result_table_of_attributed_strings(knn knn: KNN) -> (table_of_attributed_strings: TableOfAttributedStrings, any_unclassified: Bool) {
+func supervised_classification_result_table_of_attributed_strings(supervised_classification supervised_classification: SupervisedClassification) -> (table_of_attributed_strings: TableOfAttributedStrings, any_unclassified: Bool) {
 
         var any_unclassified = false
-        for classified_level_id in knn.test_sample_classified_level_ids {
+        for classified_level_id in supervised_classification.test_sample_classified_level_ids {
                 if classified_level_id == -1 {
                         any_unclassified = true
                 }
         }
-        if knn.validation_method == .TrainingTest {
-                for classified_level_id in knn.additional_sample_classified_level_ids {
+        if supervised_classification.validation_method == .TrainingTest {
+                for classified_level_id in supervised_classification.additional_sample_classified_level_ids {
                         if classified_level_id == -1 {
                                 any_unclassified = true
                         }
@@ -413,11 +413,11 @@ func knn_result_table_of_attributed_strings(knn knn: KNN) -> (table_of_attribute
         let column_level_ids: [Int]
         let column_level_names: [String]
         if any_unclassified {
-                column_level_ids = knn.comparison_level_ids + [-1]
-                column_level_names = knn.comparison_level_names + ["Unclassified"]
+                column_level_ids = supervised_classification.comparison_level_ids + [-1]
+                column_level_names = supervised_classification.comparison_level_names + ["Unclassified"]
         } else {
-                column_level_ids = knn.comparison_level_ids
-                column_level_names = knn.comparison_level_names
+                column_level_ids = supervised_classification.comparison_level_ids
+                column_level_names = supervised_classification.comparison_level_names
         }
 
         var attributed_strings = [] as [[Astring?]]
@@ -429,15 +429,15 @@ func knn_result_table_of_attributed_strings(knn knn: KNN) -> (table_of_attribute
         attributed_strings.append(header)
 
         var column_totals = [Int](count: column_level_ids.count, repeatedValue: 0)
-        for i in 0 ..< knn.comparison_level_ids.count {
-                let level_id = knn.comparison_level_ids[i]
-                var row = [astring_body(string: knn.comparison_level_names[i])] as [Astring?]
+        for i in 0 ..< supervised_classification.comparison_level_ids.count {
+                let level_id = supervised_classification.comparison_level_ids[i]
+                var row = [astring_body(string: supervised_classification.comparison_level_names[i])] as [Astring?]
                 var total = 0
                 for j in 0 ..< column_level_ids.count {
                         var number = 0
                         let classified_level_id = column_level_ids[j]
-                        for k in 0 ..< knn.test_sample_indices.count {
-                                if knn.test_sample_level_ids[k] == level_id && knn.test_sample_classified_level_ids[k] == classified_level_id {
+                        for k in 0 ..< supervised_classification.test_sample_indices.count {
+                                if supervised_classification.test_sample_level_ids[k] == level_id && supervised_classification.test_sample_classified_level_ids[k] == classified_level_id {
                                         number++
                                 }
                         }
@@ -457,16 +457,16 @@ func knn_result_table_of_attributed_strings(knn knn: KNN) -> (table_of_attribute
                 attributed_strings.append(row)
         }
 
-        if knn.validation_method == .TrainingTest {
-                for i in 0 ..< knn.additional_level_ids.count {
-                        let level_id = knn.additional_level_ids[i]
-                        var row = [astring_body(string: knn.additional_level_names[i])] as [Astring?]
+        if supervised_classification.validation_method == .TrainingTest {
+                for i in 0 ..< supervised_classification.additional_level_ids.count {
+                        let level_id = supervised_classification.additional_level_ids[i]
+                        var row = [astring_body(string: supervised_classification.additional_level_names[i])] as [Astring?]
                         var total = 0
                         for j in 0 ..< column_level_ids.count {
                                 var number = 0
                                 let classified_level_id = column_level_ids[j]
-                                for k in 0 ..< knn.additional_sample_indices.count {
-                                        if knn.additional_sample_level_ids[k] == level_id && knn.additional_sample_classified_level_ids[k] == classified_level_id {
+                                for k in 0 ..< supervised_classification.additional_sample_indices.count {
+                                        if supervised_classification.additional_sample_level_ids[k] == level_id && supervised_classification.additional_sample_classified_level_ids[k] == classified_level_id {
                                                 number++
                                         }
                                 }
