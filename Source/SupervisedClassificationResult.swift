@@ -379,7 +379,6 @@ class SupervisedClassificationResultSamplesDelegate: NSObject, UITableViewDataSo
                 let sample_name = sample_names[section][row]
                 let classified_level_id = classified_level_ids[section][row]
                 let decision_value = decision_values[section][row]
-                print("\(classified_level_id), \(decision_value)")
 
                 let text_2: String
                 if classified_level_id > 0 {
