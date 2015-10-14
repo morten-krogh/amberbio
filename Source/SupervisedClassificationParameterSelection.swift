@@ -58,7 +58,7 @@ class SupervisedClassificationParameterSelection: Component, UITableViewDataSour
                 case .KNN:
                         return 1
                 case .SVM:
-                        return 1
+                        return 2
                 }
         }
 
@@ -74,7 +74,7 @@ class SupervisedClassificationParameterSelection: Component, UITableViewDataSour
                 case .KNN:
                         text = "Classify"
                 case .SVM:
-                        text = "Linear kernel"
+                        text = section == 0 ? "Linear kernel" : "RBF kernel"
                 }
 
                 header.update_selectable_arrow(text: text)
@@ -92,7 +92,7 @@ class SupervisedClassificationParameterSelection: Component, UITableViewDataSour
                 case .KNN:
                         return 1
                 case .SVM:
-                        return 1
+                        return section == 0 ? 1 : 2
                 }
         }
 
@@ -103,7 +103,7 @@ class SupervisedClassificationParameterSelection: Component, UITableViewDataSour
         func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
                 let cell = tableView.dequeueReusableCellWithIdentifier("parameter cell") as! ParameterTableViewCell
 
-                let (section, _) = (indexPath.section, indexPath.row)
+                let (section, row) = (indexPath.section, indexPath.row)
 
                 let text: String
                 let short_text: String
@@ -116,9 +116,15 @@ class SupervisedClassificationParameterSelection: Component, UITableViewDataSour
                         parameter = String((supervised_classification as! KNN).k)
                 case .SVM:
                         let svm = supervised_classification as! SVM
-                        text = "C parameter"
-                        short_text = "C = "
-                        parameter = String(svm.C)
+                        if row == 0 {
+                                text = "C parameter"
+                                short_text = "C = "
+                                parameter = String(svm.C)
+                        } else {
+                                text = "gamma parameter"
+                                short_text = "gamma = "
+                                parameter = String(svm.gamma)
+                        }
                 }
 
                 cell.update(text: text, short_text: short_text, parameter: parameter, tag: section, delegate: self)
@@ -189,8 +195,8 @@ class SupervisedClassificationParameterSelection: Component, UITableViewDataSour
                         if let number = string_to_double(string: text) where number > 0 {
                                 svm.C = number
                         } else {
-                                text_field.text = "1.0"
-                                svm.C = 1.0
+                                text_field.text = String(svm.C_default)
+                                svm.C = svm.C_default
                         }
                 }
         }
