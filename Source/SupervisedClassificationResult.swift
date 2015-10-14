@@ -288,6 +288,7 @@ class SupervisedClassificationResultSamplesDelegate: NSObject, UITableViewDataSo
         var level_names = [] as [String]
         var sample_names = [] as [[String]]
         var classified_level_ids = [] as [[Int]]
+        var decision_values = [] as [[Double]]
 
         init(supervised_classification: SupervisedClassification) {
                 self.supervised_classification = supervised_classification
@@ -298,14 +299,17 @@ class SupervisedClassificationResultSamplesDelegate: NSObject, UITableViewDataSo
                 for level_id in supervised_classification.comparison_level_ids {
                         var current_sample_names = [] as [String]
                         var current_classified_level_ids = [] as [Int]
+                        var current_decision_values = [] as [Double]
                         for i in 0 ..< supervised_classification.test_sample_indices.count {
                                 if supervised_classification.test_sample_level_ids[i] == level_id {
                                         current_sample_names.append(supervised_classification.test_sample_names[i])
                                         current_classified_level_ids.append(supervised_classification.test_sample_classified_level_ids[i])
+                                        current_decision_values.append(supervised_classification.test_sample_decision_values[i])
                                 }
                         }
                         sample_names.append(current_sample_names)
                         classified_level_ids.append(current_classified_level_ids)
+                        decision_values.append(current_decision_values)
                 }
 
                 if supervised_classification.validation_method == .TrainingTest {
@@ -315,14 +319,17 @@ class SupervisedClassificationResultSamplesDelegate: NSObject, UITableViewDataSo
                         for level_id in supervised_classification.additional_level_ids {
                                 var current_sample_names = [] as [String]
                                 var current_classified_level_ids = [] as [Int]
+                                var current_decision_values = [] as [Double]
                                 for i in 0 ..< supervised_classification.additional_sample_indices.count {
                                         if supervised_classification.additional_sample_level_ids[i] == level_id {
                                                 current_sample_names.append(supervised_classification.additional_sample_names[i])
                                                 current_classified_level_ids.append(supervised_classification.additional_sample_classified_level_ids[i])
+                                                current_decision_values.append(supervised_classification.additional_sample_decision_values[i])
                                         }
                                 }
                                 sample_names.append(current_sample_names)
                                 classified_level_ids.append(current_classified_level_ids)
+                                decision_values.append(current_decision_values)
                         }
                 }
         }
@@ -371,23 +378,30 @@ class SupervisedClassificationResultSamplesDelegate: NSObject, UITableViewDataSo
 
                 let sample_name = sample_names[section][row]
                 let classified_level_id = classified_level_ids[section][row]
+                let decision_value = decision_values[section][row]
+                print("\(classified_level_id), \(decision_value)")
 
-                let classified_level_name: String
+                let text_2: String
                 if classified_level_id > 0 {
                         let level_index = supervised_classification.comparison_level_ids.indexOf(classified_level_id)!
-                        classified_level_name = supervised_classification.comparison_level_names[level_index]
+                        let classified_level_name = supervised_classification.comparison_level_names[level_index]
+                        if supervised_classification.comparison_level_ids.count == 2 {
+                                text_2 = classified_level_name + "(" + decimal_string(number: decision_value, significant_digits: 2) + ")"
+                        } else {
+                                text_2 = classified_level_name
+                        }
                 } else {
-                        classified_level_name = "unclassified"
+                        text_2 = "unclassified"
                 }
 
                 if section < supervised_classification.comparison_level_ids.count {
                         if level_id == classified_level_id {
-                                cell.update_success(text_1: sample_name, text_2: classified_level_name)
+                                cell.update_success(text_1: sample_name, text_2: text_2)
                         } else {
-                                cell.update_failure(text_1: sample_name, text_2: classified_level_name)
+                                cell.update_failure(text_1: sample_name, text_2: text_2)
                         }
                 } else {
-                        cell.update_additional(text_1: sample_name, text_2: classified_level_name)
+                        cell.update_additional(text_1: sample_name, text_2: text_2)
                 }
 
                 return cell
