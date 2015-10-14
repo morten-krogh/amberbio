@@ -9,6 +9,22 @@
 #include <stdlib.h>
 #include "svm-adapter.h"
 
+struct svm_node* svm_adapter_nodes_create(const double* values, const long* molecule_indices, const long molecule_indices_length, const long number_of_samples, const long sample_index)
+{
+        struct svm_node* nodes = malloc((molecule_indices_length + 1) * sizeof(struct svm_node));
+        for (long j = 0; j < molecule_indices_length; j++) {
+                long molecule_index = molecule_indices[j];
+                long offset = molecule_index * number_of_samples + sample_index;
+                double value = values[offset];
+                nodes[j].index = (int)j + 1;
+                nodes[j].value = value;
+        }
+        nodes[molecule_indices_length].index = -1;
+        nodes[molecule_indices_length].value = 0;
+
+        return nodes;
+}
+
 struct svm_problem* svm_adapter_problem_create(const double* values, const long* molecule_indices, const long molecule_indices_length, const long number_of_samples, const long* training_sample_indices, const long* training_labels, const long number_of_training_samples)
 {
         struct svm_problem *problem = malloc(sizeof(struct svm_problem));
@@ -23,16 +39,7 @@ struct svm_problem* svm_adapter_problem_create(const double* values, const long*
         problem->x = malloc(l * sizeof(struct svm_node*));
         for (int i = 0; i < l; i++) {
                 long sample_index = training_sample_indices[i];
-                problem->x[i] = malloc((molecule_indices_length + 1) * sizeof(struct svm_node));
-                for (long j = 0; j < molecule_indices_length; j++) {
-                        long molecule_index = molecule_indices[j];
-                        long offset = molecule_index * number_of_samples + sample_index;
-                        double value = values[offset];
-                        problem->x[i][j].index = (int)j + 1;
-                        problem->x[i][j].value = value;
-                }
-                problem->x[i][molecule_indices_length].index = -1;
-                problem->x[i][molecule_indices_length].value = 0;
+                problem->x[i] = svm_adapter_nodes_create(values, molecule_indices, molecule_indices_length, number_of_samples, sample_index);
         }
 
         return problem;
@@ -48,6 +55,11 @@ void svm_adapter_problem_free(struct svm_problem* problem)
         free(problem);
 }
 
+
+
+
+
+
 void svm_adapter_train_test_linear(const double* values, const long* molecule_indices, const long molecule_indices_length, const long number_of_samples, const long* training_sample_indices, const long* training_labels, const long number_of_training_samples, const long* test_sample_indices, const long number_of_test_samples, double C, long* test_labels)
 {
         struct svm_problem* problem = svm_adapter_problem_create(values, molecule_indices, molecule_indices_length, number_of_samples, training_sample_indices, training_labels, number_of_training_samples);
@@ -56,10 +68,17 @@ void svm_adapter_train_test_linear(const double* values, const long* molecule_in
 
         parameter.svm_type = C_SVC;
         parameter.kernel_type = LINEAR;
+        parameter.degree = 0;
+        parameter.gamma = 1;
+        parameter.coef0 = 1;
         parameter.cache_size = 10;
         parameter.eps = 0.001;
         parameter.C = C;
         parameter.nr_weight = 0;
+        parameter.nu = 0;
+        parameter.p = 0;
+        parameter.shrinking = 0;
+        parameter.probability = 0;
 
         const char* error_msg = svm_check_parameter(problem, &parameter);
 
@@ -67,10 +86,16 @@ void svm_adapter_train_test_linear(const double* values, const long* molecule_in
                 printf("%s\n", error_msg);
         }
 
-//        struct svm_model *svm_train(const struct svm_problem *prob, const struct svm_parameter *param);
+        struct svm_model* model = svm_train(problem, &parameter);
+
+        for (long i = 0; i < number_of_test_samples; i++) {
+                struct svm_node* nodes = svm_adapter_nodes_create(values, molecule_indices, molecule_indices_length, number_of_samples, test_sample_indices[i]);
+                double label = svm_predict(model, nodes);
+                test_labels[i] = (long)(label + 0.1);
+                free(nodes);
+        }
 
         svm_adapter_problem_free(problem);
 }
-
 
 
