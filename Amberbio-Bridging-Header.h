@@ -8,3 +8,4 @@
 #import "linear_regression.h"
 #import "knn.h"
 #import "random.h"
+#import "svm-adapter.h"

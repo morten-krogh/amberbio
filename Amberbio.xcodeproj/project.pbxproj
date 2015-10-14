@@ -23,6 +23,8 @@
 		601E57A71BCD0B12002EEEB3 /* SupervisedClassification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601E57A61BCD0B12002EEEB3 /* SupervisedClassification.swift */; settings = {ASSET_TAGS = (); }; };
 		601E57A91BCD0F1C002EEEB3 /* SVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601E57A81BCD0F1C002EEEB3 /* SVM.swift */; settings = {ASSET_TAGS = (); }; };
 		601E57AB1BCD53C4002EEEB3 /* ParameterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601E57AA1BCD53C4002EEEB3 /* ParameterTableViewCell.swift */; settings = {ASSET_TAGS = (); }; };
+		601E57AF1BCE64F2002EEEB3 /* svm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 601E57AD1BCE64F2002EEEB3 /* svm.cpp */; settings = {ASSET_TAGS = (); }; };
+		601E57B21BCE69AA002EEEB3 /* svm-adapter.c in Sources */ = {isa = PBXBuildFile; fileRef = 601E57B01BCE69AA002EEEB3 /* svm-adapter.c */; settings = {ASSET_TAGS = (); }; };
 		602708CA1BA2CA0300672D54 /* SelectAllHeaderFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602708C91BA2CA0300672D54 /* SelectAllHeaderFooterView.swift */; settings = {ASSET_TAGS = (); }; };
 		602708E71BA6EF6400672D54 /* iris-values.txt in Resources */ = {isa = PBXBuildFile; fileRef = 602708E11BA6EE7400672D54 /* iris-values.txt */; settings = {ASSET_TAGS = (); }; };
 		602708E81BA6EF6800672D54 /* iris-factors.txt in Resources */ = {isa = PBXBuildFile; fileRef = 602708E01BA6EE7400672D54 /* iris-factors.txt */; settings = {ASSET_TAGS = (); }; };
@@ -242,6 +244,10 @@
 		601E57A61BCD0B12002EEEB3 /* SupervisedClassification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SupervisedClassification.swift; sourceTree = "<group>"; };
 		601E57A81BCD0F1C002EEEB3 /* SVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVM.swift; sourceTree = "<group>"; };
 		601E57AA1BCD53C4002EEEB3 /* ParameterTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParameterTableViewCell.swift; sourceTree = "<group>"; };
+		601E57AD1BCE64F2002EEEB3 /* svm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = svm.cpp; path = ../../../share/libsvm/svm.cpp; sourceTree = "<group>"; };
+		601E57AE1BCE64F2002EEEB3 /* svm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = svm.h; path = ../../../share/libsvm/svm.h; sourceTree = "<group>"; };
+		601E57B01BCE69AA002EEEB3 /* svm-adapter.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = "svm-adapter.c"; path = "Source/svm-adapter.c"; sourceTree = "<group>"; };
+		601E57B11BCE69AA002EEEB3 /* svm-adapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "svm-adapter.h"; path = "Source/svm-adapter.h"; sourceTree = "<group>"; };
 		602708C91BA2CA0300672D54 /* SelectAllHeaderFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SelectAllHeaderFooterView.swift; path = Source/SelectAllHeaderFooterView.swift; sourceTree = "<group>"; };
 		602708E01BA6EE7400672D54 /* iris-factors.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "iris-factors.txt"; path = "demo-data/iris/iris-factors.txt"; sourceTree = "<group>"; };
 		602708E11BA6EE7400672D54 /* iris-values.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "iris-values.txt"; path = "demo-data/iris/iris-values.txt"; sourceTree = "<group>"; };
@@ -466,6 +472,7 @@
 				60B4017D1BA1BEC400D8DD80 /* AmberbioMakeDatabase */,
 				6010034A1BA18744008A1FF9 /* Products */,
 				60B4019D1BA1C77200D8DD80 /* DemoData */,
+				601E57AC1BCE6471002EEEB3 /* Libsvm */,
 			);
 			sourceTree = "<group>";
 		};
@@ -509,6 +516,15 @@
 				6010036E1BA18744008A1FF9 /* Info.plist */,
 			);
 			path = AmberbioUITests;
+			sourceTree = "<group>";
+		};
+		601E57AC1BCE6471002EEEB3 /* Libsvm */ = {
+			isa = PBXGroup;
+			children = (
+				601E57AE1BCE64F2002EEEB3 /* svm.h */,
+				601E57AD1BCE64F2002EEEB3 /* svm.cpp */,
+			);
+			name = Libsvm;
 			sourceTree = "<group>";
 		};
 		602708C11BA1EBDC00672D54 /* Components */ = {
@@ -742,6 +758,8 @@
 				60B400B01BA19C7900D8DD80 /* remove_molecules.c */,
 				60B400D41BA19C7900D8DD80 /* values.h */,
 				60B400D31BA19C7900D8DD80 /* values.c */,
+				601E57B11BCE69AA002EEEB3 /* svm-adapter.h */,
+				601E57B01BCE69AA002EEEB3 /* svm-adapter.c */,
 			);
 			name = CFunctions;
 			sourceTree = "<group>";
@@ -1044,7 +1062,9 @@
 				60B401351BA19C7900D8DD80 /* ProgressIndicator.swift in Sources */,
 				605F52321BC2ED2D00033B91 /* SupervisedClassificationParameterSelection.swift in Sources */,
 				60B400E71BA19C7900D8DD80 /* ContingencyTable.swift in Sources */,
+				601E57AF1BCE64F2002EEEB3 /* svm.cpp in Sources */,
 				60B4013E1BA19C7900D8DD80 /* ResultFiles.swift in Sources */,
+				601E57B21BCE69AA002EEEB3 /* svm-adapter.c in Sources */,
 				605F52391BC400EF00033B91 /* ClassificationTableViewCell.swift in Sources */,
 				60B400411BA19BED00D8DD80 /* AttributedString.swift in Sources */,
 				60B401281BA19C7900D8DD80 /* PairwiseLevel.swift in Sources */,
