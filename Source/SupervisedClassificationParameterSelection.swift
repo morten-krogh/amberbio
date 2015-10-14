@@ -204,7 +204,6 @@ class SupervisedClassificationParameterSelection: Component, UITableViewDataSour
                         if let number = string_to_double(string: text) where number > 0 {
                                 svm.gamma = number
                         } else {
-                                svm.gamma = svm.gamma_default()
                                 text_field.text = String(svm.gamma)
                         }
                 }
