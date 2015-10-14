@@ -91,4 +91,62 @@ class SVM: SupervisedClassification {
                         additional_sample_decision_values = [Double](classification_decision_values[test_sample_indices.count ..< classification_sample_indices.count])
                 }
         }
+
+        override func classify_k_fold_cross_validation() {
+                test_sample_indices = []
+                test_sample_names = []
+                test_sample_level_ids = []
+                test_sample_classified_level_ids = []
+                test_sample_decision_values = []
+
+                if core_sample_indices.count < 2 {
+                        classification_success = false
+                        return
+                }
+
+                if molecule_indices.isEmpty {
+                        calculate_molecule_indices()
+                }
+
+                if molecule_indices.isEmpty {
+                        classification_success = false
+                        return
+                }
+
+                var shuffled_numbers = [Int](0 ..< core_sample_indices.count)
+                if k_fold < core_sample_indices.count {
+                        fisher_yates_shuffle(&shuffled_numbers, shuffled_numbers.count)
+                }
+
+                let minimum_size = core_sample_indices.count / k_fold
+                let remainder = core_sample_indices.count % k_fold
+                var counter = 0
+                for i in 0 ..< k_fold {
+                        let size = minimum_size + (i < remainder ? 1 : 0)
+                        var training_sample_indices = [] as [Int]
+                        var training_level_ids = [] as [Int]
+                        var classification_sample_indices = [] as [Int]
+                        var classification_level_ids = [Int](count: size, repeatedValue: -1)
+                        var classification_decision_values = [Double](count: size, repeatedValue: 0)
+                        for i in 0 ..< core_sample_indices.count {
+                                let j = shuffled_numbers[i]
+                                if i >= counter && i < counter + size {
+                                        classification_sample_indices.append(core_sample_indices[j])
+                                        test_sample_indices.append(core_sample_indices[j])
+                                        test_sample_names.append(core_sample_names[j])
+                                        test_sample_level_ids.append(core_sample_level_ids[j])
+                                } else {
+                                        training_sample_indices.append(core_sample_indices[j])
+                                        training_level_ids.append(core_sample_level_ids[j])
+                                }
+                        }
+
+                        svm_adapter_train_test(state.values, molecule_indices, molecule_indices.count, state.number_of_samples, training_sample_indices, training_level_ids, training_sample_indices.count, classification_sample_indices, classification_sample_indices.count, &classification_level_ids, &classification_decision_values, kernel.rawValue, linear_C, rbf_C, rbf_gamma)
+
+                        test_sample_classified_level_ids += classification_level_ids
+                        test_sample_decision_values += classification_decision_values
+                        
+                        counter += size
+                }
+        }
 }
