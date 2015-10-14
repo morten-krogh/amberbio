@@ -208,7 +208,7 @@ class SupervisedClassificationResultSummaryDelegate: NSObject, UITableViewDataSo
                                 headers = ["Type of classification", "Kernel", "Training samples", "Test samples", "Classified test samples", "Correctly classified test samples", "Incorrectly classified test samples", "Unclassified test samples", "Additional predicted samples"]
                                 cells = [String](count: 9, repeatedValue: "")
                                 cells[0] = "Fixed training and test set"
-                                cells[1] = svm.kernel == .Linear ? "Linear" : "BRF"
+                                cells[1] = svm.kernel == .Linear ? "Linear" : "RBF"
                                 cells[2] = String(svm.training_sample_index_set.count)
                                 cells[3] = String(svm.test_sample_indices.count)
                                 cells[4] = String(classified_test_samples)
@@ -216,6 +216,14 @@ class SupervisedClassificationResultSummaryDelegate: NSObject, UITableViewDataSo
                                 cells[6] = String(classified_test_samples - correctly_classified_test_samples)
                                 cells[7] = String(svm.test_sample_indices.count - classified_test_samples)
                                 cells[8] = String(svm.additional_sample_indices.count)
+                        } else {
+                                headers = ["Type of classification", "Kernel", "Total samples", "Correctly classified samples", "Incorrectly classified samples"]
+                                cells = [String](count: 5, repeatedValue: "")
+                                cells[0] = svm.validation_method == .LeaveOneOut ? "Leave one out cross validation" : "\(svm.k_fold)-fold cross validation"
+                                cells[1] = svm.kernel == .Linear ? "Linear" : "RBF"
+                                cells[2] = String(svm.test_sample_indices.count)
+                                cells[3] = String(correctly_classified_test_samples)
+                                cells[4] = String(classified_test_samples - correctly_classified_test_samples)
                         }
                 }
         }
@@ -290,8 +298,12 @@ class SupervisedClassificationResultSamplesDelegate: NSObject, UITableViewDataSo
         var classified_level_ids = [] as [[Int]]
         var decision_values = [] as [[Double]]
 
+        var use_decision_values = true
+
         init(supervised_classification: SupervisedClassification) {
                 self.supervised_classification = supervised_classification
+
+                use_decision_values = supervised_classification.comparison_level_ids.count == 2 && supervised_classification.supervised_classification_type == .SVM
 
                 level_ids = supervised_classification.comparison_level_ids
                 level_names = supervised_classification.comparison_level_names
@@ -304,7 +316,9 @@ class SupervisedClassificationResultSamplesDelegate: NSObject, UITableViewDataSo
                                 if supervised_classification.test_sample_level_ids[i] == level_id {
                                         current_sample_names.append(supervised_classification.test_sample_names[i])
                                         current_classified_level_ids.append(supervised_classification.test_sample_classified_level_ids[i])
-                                        current_decision_values.append(supervised_classification.test_sample_decision_values[i])
+                                        if use_decision_values {
+                                                current_decision_values.append(supervised_classification.test_sample_decision_values[i])
+                                        }
                                 }
                         }
                         sample_names.append(current_sample_names)
@@ -378,13 +392,13 @@ class SupervisedClassificationResultSamplesDelegate: NSObject, UITableViewDataSo
 
                 let sample_name = sample_names[section][row]
                 let classified_level_id = classified_level_ids[section][row]
-                let decision_value = decision_values[section][row]
 
                 let text_2: String
                 if classified_level_id > 0 {
                         let level_index = supervised_classification.comparison_level_ids.indexOf(classified_level_id)!
                         let classified_level_name = supervised_classification.comparison_level_names[level_index]
-                        if supervised_classification.comparison_level_ids.count == 2 {
+                        if use_decision_values {
+                                let decision_value = decision_values[section][row]
                                 text_2 = classified_level_name + "(" + decimal_string(number: decision_value, significant_digits: 2) + ")"
                         } else {
                                 text_2 = classified_level_name

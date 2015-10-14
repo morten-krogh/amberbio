@@ -68,7 +68,6 @@ class KNN: SupervisedClassification {
 
                 if core_sample_indices.count < 2 {
                         classification_success = false
-
                 }
 
                 var shuffled_numbers = [Int](0 ..< core_sample_indices.count)
