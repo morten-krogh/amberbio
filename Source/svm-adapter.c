@@ -55,25 +55,26 @@ void svm_adapter_problem_free(struct svm_problem* problem)
         free(problem);
 }
 
-
-
-
-
-
-void svm_adapter_train_test_linear(const double* values, const long* molecule_indices, const long molecule_indices_length, const long number_of_samples, const long* training_sample_indices, const long* training_labels, const long number_of_training_samples, const long* test_sample_indices, const long number_of_test_samples, double C, long* test_labels)
+void svm_adapter_train_test(const double* values, const long* molecule_indices, const long molecule_indices_length, const long number_of_samples, const long* training_sample_indices, const long* training_labels, const long number_of_training_samples, const long* test_sample_indices, const long number_of_test_samples, long* test_labels, long kernel, double linear_C, double rbf_C, double rbf_gamma)
 {
         struct svm_problem* problem = svm_adapter_problem_create(values, molecule_indices, molecule_indices_length, number_of_samples, training_sample_indices, training_labels, number_of_training_samples);
 
         struct svm_parameter parameter;
 
         parameter.svm_type = C_SVC;
-        parameter.kernel_type = LINEAR;
+        if (kernel == 0) {
+                parameter.kernel_type = LINEAR;
+                parameter.C = linear_C;
+                parameter.gamma = 1.0;
+        } else {
+                parameter.kernel_type = RBF;
+                parameter.C = rbf_C;
+                parameter.gamma = rbf_gamma;
+        }
         parameter.degree = 0;
-        parameter.gamma = 1;
         parameter.coef0 = 1;
         parameter.cache_size = 10;
         parameter.eps = 0.001;
-        parameter.C = C;
         parameter.nr_weight = 0;
         parameter.nu = 0;
         parameter.p = 0;
@@ -95,7 +96,9 @@ void svm_adapter_train_test_linear(const double* values, const long* molecule_in
                 free(nodes);
         }
 
+        svm_free_and_destroy_model(&model);
         svm_adapter_problem_free(problem);
+
 }
 
 

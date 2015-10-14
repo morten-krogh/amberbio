@@ -225,7 +225,7 @@ class SupervisedClassificationParameterSelection: Component, UITableViewDataSour
         func header_tap_action(sender: UITapGestureRecognizer) {
                 editing_text_field?.resignFirstResponder()
                 read_text_fields()
-                if supervised_classification.supervised_classification_type == .SVM, let section = sender.view?.superview?.tag {
+                if supervised_classification.supervised_classification_type == .SVM, let section = sender.view?.tag {
                         let svm = supervised_classification as! SVM
                         svm.kernel = section == 0 ? .Linear : .RBF
                 }
