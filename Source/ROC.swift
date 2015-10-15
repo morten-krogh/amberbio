@@ -6,35 +6,36 @@ class ROC: TiledScrollViewDelegate {
         var maximum_zoom_scale = 1 as CGFloat
         var minimum_zoom_scale = 1 as CGFloat
 
-        var curve_values = [] as [(value_1: Double, value_2: Double)]
+        var curve_values = [] as [(Double, Double)]
+        var area = 0.0
 
         init(label_name_1: String, label_name_2: String, decision_values_1: [Double], decision_values_2: [Double]) {
-                // high decision values are in group 2
+                // group 2 is "positive". High decision values are in group 2. Lower left corner has all samples predicted in group 1.
 
-                let sorted_1 = decision_values_1.sort()
-                let sorted_2 = decision_values_2.sort()
+                let sorted_1 = decision_values_1.sort().reverse() as [Double]
+                let sorted_2 = decision_values_2.sort().reverse() as [Double]
 
                 curve_values = [(0, 0)]
+                area = 0.0
 
                 var (i1, i2) = (0, 0)
                 while i1 < sorted_1.count && i2 < sorted_2.count {
-                        if sorted_1[i1] <= sorted_2[i2] {
-                                var i = i1
-                                while i < sorted_1.count && sorted_1[i] <= sorted_2[i2] {
-                                        i++
-                                }
-                                let curve_value = (Double(i) / Double(sorted_1.count), Double(i2) / Double(sorted_2.count))
-                                curve_values.append(curve_value)
-                                i1 = i
-                        } else {
+                        if sorted_2[i2] >= sorted_1[i1] {
                                 var i = i2
-                                while i < sorted_2.count && sorted_1[i1] > sorted_2[i] {
+                                while i < sorted_2.count && sorted_2[i] >= sorted_1[i1] {
                                         i++
                                 }
-                                let curve_value = (Double(i1) / Double(sorted_1.count), Double(i) / Double(sorted_2.count))
-                                curve_values.append(curve_value)
                                 i2 = i
+                        } else {
+                                var i = i1
+                                while i < sorted_1.count && sorted_2[i2] < sorted_1[i] {
+                                        i++
+                                }
+                                i1 = i
                         }
+
+                        let curve_value = (Double(i1) / Double(sorted_1.count), Double(i2) / Double(sorted_2.count))
+                        curve_values.append(curve_value)
                 }
                 let curve_value = (1.0, 1.0)
                 curve_values.append(curve_value)
@@ -139,8 +140,8 @@ class ROC: TiledScrollViewDelegate {
                 for i in 0 ..< curve_values.count - 1 {
                         let start_value = curve_values[i]
                         let end_value = curve_values[i + 1]
-                        let start_point = value_to_point(value_1: start_value.value_1, value_2: start_value.value_2)
-                        let end_point = value_to_point(value_1: end_value.value_1, value_2: end_value.value_2)
+                        let start_point = value_to_point(value_1: start_value.0 , value_2: start_value.1)
+                        let end_point = value_to_point(value_1: end_value.0, value_2: end_value.1)
                         drawing_draw_line(context: context, start_point: start_point, end_point: end_point)
                 }
                 CGContextRestoreGState(context)

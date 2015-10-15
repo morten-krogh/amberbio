@@ -18,7 +18,7 @@ class ViewController: UIViewController {
                 super.viewDidLoad()
 
                 let decision_values_1 = [1.2, 3, 4]
-                let decision_values_2 = [2, 3.5]
+                let decision_values_2 = [2, 3.5, 5, 6, 7, 3.6]
 
                 roc = ROC(label_name_1: "label 1", label_name_2: "label 2", decision_values_1: decision_values_1, decision_values_2: decision_values_2)
                 tiled_scroll_view.delegate = roc
