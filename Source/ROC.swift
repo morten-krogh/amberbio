@@ -15,49 +15,53 @@ class ROC: TiledScrollViewDelegate {
         init(label_name_1: String, label_name_2: String, decision_values_1: [Double], decision_values_2: [Double]) {
                 // group 2 is "positive". High decision values are in group 2. Lower left corner has all samples predicted in group 1.
 
-                let sorted_1 = decision_values_1.sort().reverse() as [Double]
-                let sorted_2 = decision_values_2.sort().reverse() as [Double]
-
-                curve_values = [(0, 0)]
-                area = 0.0
-
-                var (i1, i2) = (0, 0)
-                var unit_area = 0
-                while i1 < sorted_1.count || i2 < sorted_2.count {
-                        if i2 < sorted_2.count && (i1 == sorted_1.count || sorted_2[i2] >= sorted_1[i1]) {
-                                var i = i2
-                                while i < sorted_2.count && (i1 == sorted_1.count || sorted_2[i] >= sorted_1[i1]) {
-                                        i++
-                                }
-                                i2 = i
-                        } else {
-                                var i = i1
-                                while i < sorted_1.count && (i2 == sorted_2.count || sorted_2[i2] < sorted_1[i]) {
-                                        i++
-                                }
-                                unit_area += (i - i1) * i2
-                                i1 = i
-                        }
-
-                        let curve_value = (sorted_1.isEmpty ? 1 : Double(i1) / Double(sorted_1.count), sorted_2.isEmpty ? 1 : Double(i2) / Double(sorted_2.count))
-                        curve_values.append(curve_value)
-                }
-
                 title_label = astring_font_size_color(string: label_name_2, font: nil, font_size: 22, color: nil)
                 title_label.appendAttributedString(astring_font_size_color(string: " (pos)", font: nil, font_size: 16, color: nil))
                 title_label.appendAttributedString(astring_font_size_color(string: "  vs.  ", font: nil, font_size: 20, color: nil))
                 title_label.appendAttributedString(astring_font_size_color(string: label_name_1, font: nil, font_size: 22, color: nil))
                 title_label.appendAttributedString(astring_font_size_color(string: " (neg)", font: nil, font_size: 16, color: nil))
 
+                let sorted_1 = decision_values_1.sort().reverse() as [Double]
+                let sorted_2 = decision_values_2.sort().reverse() as [Double]
+
                 let title_area_str: String
-                if  sorted_1.isEmpty || sorted_2.isEmpty {
+
+                if sorted_1.isEmpty || sorted_2.isEmpty {
                         area = Double.NaN
                         title_area_str = "ROC area = NA"
                         curve_values = [(0, 0)]
                 } else {
+                        curve_values = [(0, 0)]
+                        area = 0
+
+                        var (i1, i2) = (0, 0)
+                        while i1 < sorted_1.count || i2 < sorted_2.count {
+                                if i2 < sorted_2.count && (i1 == sorted_1.count || sorted_2[i2] > sorted_1[i1]) {
+                                        while i2 < sorted_2.count && (i1 == sorted_1.count || sorted_2[i] > sorted_1[i1]) {
+                                                i2++
+                                        }
+                                } else i1 < sorted_1.count && (i2 == sorted_2.count || sorted_2[i2] < sorted_1[i]) {
+                                        while i1 < sorted_1.count && (i2 == sorted_2.count || sorted_2[i2] < sorted_1[i]) {
+                                                i1++
+                                        }
+                                } else {
+                                        let value = sorted_1[i1]
+                                        while sorted_1[i1] == value {
+                                                i1++
+                                        }
+                                        while sorted_2[i2] == value {
+                                                i2++
+                                        }
+                                }
+
+                                let curve_value = (Double(i1) / Double(sorted_1.count), Double(i2) / Double(sorted_2.count))
+                                curve_values.append(curve_value)
+                        }
+
                         area = Double(unit_area) / (Double(sorted_1.count) * Double(sorted_2.count))
                         title_area_str = "ROC area = " + decimal_string(number: area, fraction_digits: 2)
                 }
+
                 title_area = astring_font_size_color(string: title_area_str, font: nil, font_size: 21, color: nil)
         }
 

@@ -156,14 +156,7 @@ class SVM: SupervisedClassification {
                                 first_training_level_id = training_level_ids[0]
                         }
 
-                        print(test_sample_names)
-                        print(classification_decision_values)
-                        print(i)
-                        print(first_training_level_id)
-                        print(training_level_ids)
-
                         if comparison_level_ids.count == 2 && first_training_level_id != training_level_ids[0] {
-                                print("hej")
                                 test_sample_decision_values += classification_decision_values.map { -$0 }
                         } else {
                                 test_sample_decision_values += classification_decision_values
