@@ -28,6 +28,7 @@ class ROC: TiledScrollViewDelegate {
                 draw_axis_2_labels(context: context)
                 draw_axis_1_title(context: context)
                 draw_axis_2_title(context: context)
+                draw_diagonal(context: context)
         }
 
         func draw_box(context context: CGContext) {
@@ -79,19 +80,23 @@ class ROC: TiledScrollViewDelegate {
 
         func draw_axis_1_title(context context: CGContext) {
                 let point = value_to_point(value_1: 0.5, value_2: 0)
-                let astring = astring_font_size_color(string: "False positive rate", font: nil, font_size: 20, color: nil)
-                let point_text = CGPoint(x: point.x - astring.size().width / 2, y: point.y + tick_length + 1.8 * astring.size().height)
-                drawing_draw_attributed_text(context: context, attributed_text: astring, origin: point_text, horizontal: true)
+                let astring = astring_font_size_color(string: "False positive rate", font: nil, font_size: 21, color: nil)
+                let center = CGPoint(x: point.x, y: point.y + tick_length + 1.8 * astring.size().height)
+                drawing_draw_attributed_text(context: context, attributed_text: astring, center: center, angle: 0)
         }
 
         func draw_axis_2_title(context context: CGContext) {
                 let point = value_to_point(value_1: 0, value_2: 0.5)
-                let astring = astring_font_size_color(string: "True positive rate", font: nil, font_size: 20, color: nil)
-                let point_text = CGPoint(x: point.x - tick_length - 1.8 * astring.size().height, y: point.y - astring.size().width / 2)
-                drawing_draw_attributed_text(context: context, attributed_text: astring, origin: point_text, horizontal: false)
+                let astring = astring_font_size_color(string: "True positive rate", font: nil, font_size: 21, color: nil)
+                let center = CGPoint(x: point.x - tick_length - 2.3 * astring.size().height, y: point.y)
+                drawing_draw_attributed_text(context: context, attributed_text: astring, center: center, angle: -CGFloat(M_PI_2))
         }
 
+        func draw_diagonal(context context: CGContext) {
+                
 
+
+        }
 
 
         func value_to_point(value_1 value_1: Double, value_2: Double) -> CGPoint {

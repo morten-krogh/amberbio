@@ -31,6 +31,19 @@ func drawing_draw_attributed_text(context context: CGContext, attributed_text: A
         CGContextRestoreGState(context)
 }
 
+func drawing_draw_attributed_text(context context: CGContext, attributed_text: Astring, center: CGPoint, angle: CGFloat) {
+        let origin = CGPoint(x: center.x - attributed_text.size().width / 2, y: center.y - attributed_text.size().height / 2)
+        CGContextSaveGState(context)
+        UIGraphicsPushContext(context)
+        let translation = CGAffineTransformMakeTranslation(-center.x, -center.y)
+        let rotation = CGAffineTransformMakeRotation(angle)
+        let transform = CGAffineTransformConcat(CGAffineTransformConcat(translation, rotation), CGAffineTransformInvert(translation))
+        CGContextConcatCTM(context, transform)
+        attributed_text.drawAtPoint(origin)
+        UIGraphicsPopContext()
+        CGContextRestoreGState(context)
+}
+
 func drawing_draw_circle(context ctx: CGContext, center_x: CGFloat, center_y: CGFloat, radius: CGFloat, color: UIColor) {
         CGContextSaveGState(ctx)
         CGContextSetLineWidth(ctx, 0)
