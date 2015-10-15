@@ -19,26 +19,28 @@ class ROC: TiledScrollViewDelegate {
                 area = 0.0
 
                 var (i1, i2) = (0, 0)
-                while i1 < sorted_1.count && i2 < sorted_2.count {
-                        if sorted_2[i2] >= sorted_1[i1] {
+                var unit_area = 0
+                while i1 < sorted_1.count || i2 < sorted_2.count {
+                        if i2 < sorted_2.count && (i1 == sorted_1.count || sorted_2[i2] >= sorted_1[i1]) {
                                 var i = i2
-                                while i < sorted_2.count && sorted_2[i] >= sorted_1[i1] {
+                                while i < sorted_2.count && (i1 == sorted_1.count || sorted_2[i] >= sorted_1[i1]) {
                                         i++
                                 }
                                 i2 = i
                         } else {
                                 var i = i1
-                                while i < sorted_1.count && sorted_2[i2] < sorted_1[i] {
+                                while i < sorted_1.count && (i2 == sorted_2.count || sorted_2[i2] < sorted_1[i]) {
                                         i++
                                 }
+                                unit_area += (i - i1) * i2
                                 i1 = i
                         }
 
                         let curve_value = (Double(i1) / Double(sorted_1.count), Double(i2) / Double(sorted_2.count))
                         curve_values.append(curve_value)
                 }
-                let curve_value = (1.0, 1.0)
-                curve_values.append(curve_value)
+
+                area = Double(unit_area) / (Double(sorted_1.count) * Double(sorted_2.count))
         }
 
         let box_lower_left = CGPoint(x: 100, y: 600)
