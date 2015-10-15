@@ -2,7 +2,7 @@ import UIKit
 
 class ROC: TiledScrollViewDelegate {
 
-        var content_size = CGSize(width: 500, height: 700)
+        var content_size = CGSize(width: 620, height: 730)
         var maximum_zoom_scale = 1 as CGFloat
         var minimum_zoom_scale = 1 as CGFloat
 
@@ -42,18 +42,19 @@ class ROC: TiledScrollViewDelegate {
                         curve_values.append(curve_value)
                 }
 
-                let title_label_str = label_name_2 + "(pos) vs. " + label_name_1 + "(neg)"
-                title_label = astring_font_size_color(string: title_label_str, font: nil, font_size: 22, color: nil)
+                title_label = astring_font_size_color(string: label_name_2, font: nil, font_size: 22, color: nil)
+                title_label.appendAttributedString(astring_font_size_color(string: " (pos)", font: nil, font_size: 16, color: nil))
+                title_label.appendAttributedString(astring_font_size_color(string: "  vs.  ", font: nil, font_size: 20, color: nil))
+                title_label.appendAttributedString(astring_font_size_color(string: label_name_1, font: nil, font_size: 22, color: nil))
+                title_label.appendAttributedString(astring_font_size_color(string: " (neg)", font: nil, font_size: 16, color: nil))
 
                 area = Double(unit_area) / (Double(sorted_1.count) * Double(sorted_2.count))
                 let title_area_str = "ROC area = " + decimal_string(number: area, fraction_digits: 2)
                 title_area = astring_font_size_color(string: title_area_str, font: nil, font_size: 21, color: nil)
-
-
         }
 
-        let box_lower_left = CGPoint(x: 100, y: 600)
-        let box_upper_right = CGPoint(x: 490, y: 200)
+        let box_lower_left = CGPoint(x: 100, y: 630)
+        let box_upper_right = CGPoint(x: 600, y: 130)
         let tick_length = 20 as CGFloat
 
         func draw(context context: CGContext, rect: CGRect) {

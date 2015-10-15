@@ -743,6 +743,7 @@
 		60B4003C1BA19B0F00D8DD80 /* Functions */ = {
 			isa = PBXGroup;
 			children = (
+				60B4003D1BA19BED00D8DD80 /* AttributedString.swift */,
 				60B400541BA19C7900D8DD80 /* Color.swift */,
 				60B400551BA19C7900D8DD80 /* ColorKey.swift */,
 				60B4005E1BA19C7900D8DD80 /* Date.swift */,
@@ -758,7 +759,6 @@
 				60B400A41BA19C7900D8DD80 /* PCAaxis.swift */,
 				60B400A61BA19C7900D8DD80 /* Pdf.swift */,
 				60B400D11BA19C7900D8DD80 /* Txt.swift */,
-				60B4003D1BA19BED00D8DD80 /* AttributedString.swift */,
 				60B4003E1BA19BED00D8DD80 /* NumberFormat.swift */,
 				60B4003F1BA19BED00D8DD80 /* Serialize.swift */,
 				60014BC61BB5CB82001A79B1 /* Sort.swift */,
