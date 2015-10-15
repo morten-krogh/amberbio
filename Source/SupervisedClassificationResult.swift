@@ -57,6 +57,7 @@ class SupervisedClassificationResultState: PageState {
 
         func set_selected_segment_index(index index: Int) {
                 selected_segment_index = index
+                pdf_enabled = index == 3
                 set_info()
         }
 
@@ -201,7 +202,16 @@ class SupervisedClassificationResult: Component {
 
         func segmented_control_action() {
                 supervised_classification_result_state.set_selected_segment_index(index: segmented_control.selectedSegmentIndex)
-                render()
+                state.render()
+        }
+
+        func pdf_action () {
+                let file_name_stem = "svm-roc-curve"
+                let description = "ROC curve for support vector machine classifier"
+                if let roc = supervised_classification_result_state.roc {
+                        state.insert_pdf_result_file(file_name_stem: file_name_stem, description: description, content_size: roc.content_size, draw: roc.draw)
+                }
+                state.render()
         }
 }
 
