@@ -37,28 +37,29 @@ class ROC: TiledScrollViewDelegate {
                         var (i1, i2) = (0, 0)
                         while i1 < sorted_1.count || i2 < sorted_2.count {
                                 if i2 < sorted_2.count && (i1 == sorted_1.count || sorted_2[i2] > sorted_1[i1]) {
-                                        while i2 < sorted_2.count && (i1 == sorted_1.count || sorted_2[i] > sorted_1[i1]) {
+                                        while i2 < sorted_2.count && (i1 == sorted_1.count || sorted_2[i2] > sorted_1[i1]) {
                                                 i2++
                                         }
-                                } else i1 < sorted_1.count && (i2 == sorted_2.count || sorted_2[i2] < sorted_1[i]) {
-                                        while i1 < sorted_1.count && (i2 == sorted_2.count || sorted_2[i2] < sorted_1[i]) {
+                                } else if i1 < sorted_1.count && (i2 == sorted_2.count || sorted_2[i2] < sorted_1[i1]) {
+                                        while i1 < sorted_1.count && (i2 == sorted_2.count || sorted_2[i2] < sorted_1[i1]) {
                                                 i1++
                                         }
                                 } else {
                                         let value = sorted_1[i1]
-                                        while sorted_1[i1] == value {
+                                        while i1 < sorted_1.count && sorted_1[i1] == value {
                                                 i1++
                                         }
-                                        while sorted_2[i2] == value {
+                                        while i2 < sorted_2.count && sorted_2[i2] == value {
                                                 i2++
                                         }
                                 }
 
                                 let curve_value = (Double(i1) / Double(sorted_1.count), Double(i2) / Double(sorted_2.count))
+                                let curve_value_last = curve_values.last!
+                                area += (curve_value.0 - curve_value_last.0) * (curve_value.1 + curve_value_last.1) / 2
                                 curve_values.append(curve_value)
                         }
 
-                        area = Double(unit_area) / (Double(sorted_1.count) * Double(sorted_2.count))
                         title_area_str = "ROC area = " + decimal_string(number: area, fraction_digits: 2)
                 }
 
