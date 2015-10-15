@@ -93,9 +93,19 @@ class ROC: TiledScrollViewDelegate {
         }
 
         func draw_diagonal(context context: CGContext) {
-                
-
-
+                CGContextSaveGState(context)
+                CGContextSetStrokeColorWithColor(context, color_blue_circle_color.CGColor)
+                let number_of_segments = 40
+                let frac = 0.5
+                for i in 0 ... number_of_segments {
+                        let center_value = Double(i) / Double(number_of_segments)
+                        let start_value = max(0.0, center_value - frac / Double(2 * number_of_segments))
+                        let end_value = min(1.0, center_value + frac / Double(2 * number_of_segments))
+                        let start_point = value_to_point(value_1: start_value, value_2: start_value)
+                        let end_point = value_to_point(value_1: end_value, value_2: end_value)
+                        drawing_draw_line(context: context, start_point: start_point, end_point: end_point)
+                }
+                CGContextRestoreGState(context)
         }
 
 
