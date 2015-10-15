@@ -5,7 +5,7 @@ class ROC: TiledScrollViewDelegate {
         var content_size = CGSize(width: 620, height: 730)
         var maximum_zoom_scale = 1 as CGFloat
         var minimum_zoom_scale = 1 as CGFloat
-        var zoom_scale = 1 as CGFloat
+        var zoom_scale = 0.7 as CGFloat
 
         var curve_values = [] as [(Double, Double)]
         var area = 0.0

@@ -1,7 +1,7 @@
 import UIKit
 
 protocol TiledScrollViewDelegate: class {
-        var content_size: CGSize {get}
+        var content_size: CGSize {get set}
         var maximum_zoom_scale: CGFloat {get set}
         var minimum_zoom_scale: CGFloat {get set}
         func draw(context context: CGContext, rect: CGRect)
