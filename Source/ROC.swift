@@ -6,20 +6,43 @@ class ROC: TiledScrollViewDelegate {
         var maximum_zoom_scale = 1 as CGFloat
         var minimum_zoom_scale = 1 as CGFloat
 
+        var curve_values = [] as [(value_1: Double, value_2: Double)]
+
         init(label_name_1: String, label_name_2: String, decision_values_1: [Double], decision_values_2: [Double]) {
-                // high decision values are in group 1
+                // high decision values are in group 2
 
+                let sorted_1 = decision_values_1.sort()
+                let sorted_2 = decision_values_2.sort()
 
+                curve_values = [(0, 0)]
 
-
-
+                var (i1, i2) = (0, 0)
+                while i1 < sorted_1.count && i2 < sorted_2.count {
+                        if sorted_1[i1] <= sorted_2[i2] {
+                                var i = i1
+                                while i < sorted_1.count && sorted_1[i] <= sorted_2[i2] {
+                                        i++
+                                }
+                                let curve_value = (Double(i) / Double(sorted_1.count), Double(i2) / Double(sorted_2.count))
+                                curve_values.append(curve_value)
+                                i1 = i
+                        } else {
+                                var i = i2
+                                while i < sorted_2.count && sorted_1[i1] > sorted_2[i] {
+                                        i++
+                                }
+                                let curve_value = (Double(i1) / Double(sorted_1.count), Double(i) / Double(sorted_2.count))
+                                curve_values.append(curve_value)
+                                i2 = i
+                        }
+                }
+                let curve_value = (1.0, 1.0)
+                curve_values.append(curve_value)
         }
-
 
         let box_lower_left = CGPoint(x: 100, y: 600)
         let box_upper_right = CGPoint(x: 490, y: 200)
         let tick_length = 20 as CGFloat
-
 
         func draw(context context: CGContext, rect: CGRect) {
                 draw_box(context: context)
@@ -29,6 +52,7 @@ class ROC: TiledScrollViewDelegate {
                 draw_axis_1_title(context: context)
                 draw_axis_2_title(context: context)
                 draw_diagonal(context: context)
+                draw_curve(context: context)
         }
 
         func draw_box(context context: CGContext) {
@@ -94,7 +118,7 @@ class ROC: TiledScrollViewDelegate {
 
         func draw_diagonal(context context: CGContext) {
                 CGContextSaveGState(context)
-                CGContextSetStrokeColorWithColor(context, color_blue_circle_color.CGColor)
+                CGContextSetStrokeColorWithColor(context, color_blue.CGColor)
                 let number_of_segments = 40
                 let frac = 0.5
                 for i in 0 ... number_of_segments {
@@ -108,6 +132,19 @@ class ROC: TiledScrollViewDelegate {
                 CGContextRestoreGState(context)
         }
 
+        func draw_curve(context context: CGContext) {
+                CGContextSaveGState(context)
+                CGContextSetLineWidth(context, 2)
+                CGContextSetStrokeColorWithColor(context, color_red.CGColor)
+                for i in 0 ..< curve_values.count - 1 {
+                        let start_value = curve_values[i]
+                        let end_value = curve_values[i + 1]
+                        let start_point = value_to_point(value_1: start_value.value_1, value_2: start_value.value_2)
+                        let end_point = value_to_point(value_1: end_value.value_1, value_2: end_value.value_2)
+                        drawing_draw_line(context: context, start_point: start_point, end_point: end_point)
+                }
+                CGContextRestoreGState(context)
+        }
 
         func value_to_point(value_1 value_1: Double, value_2: Double) -> CGPoint {
                 let x = CGFloat(value_1) * (box_upper_right.x - box_lower_left.x) + box_lower_left.x
