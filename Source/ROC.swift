@@ -53,7 +53,7 @@ class ROC: TiledScrollViewDelegate {
                 if  sorted_1.isEmpty || sorted_2.isEmpty {
                         area = Double.NaN
                         title_area_str = "ROC area = NA"
-                        curve_values = []
+                        curve_values = [(0, 0)]
                 } else {
                         area = Double(unit_area) / (Double(sorted_1.count) * Double(sorted_2.count))
                         title_area_str = "ROC area = " + decimal_string(number: area, fraction_digits: 2)
