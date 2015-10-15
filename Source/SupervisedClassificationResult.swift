@@ -147,17 +147,22 @@ class SupervisedClassificationResult: Component {
                                 tiled_scroll_view_delegate = table_of_atrributed_strings
                                 zoom_scale = table_of_atrributed_strings.zoom_scale
                         } else if let roc = supervised_classification_result_state.roc {
+                                print("hej")
                                 tiled_scroll_view_delegate = roc
                                 zoom_scale = roc.zoom_scale
                         }
 
                         if let tiled_scroll_view_delegate = tiled_scroll_view_delegate {
+                                print("hej2")
                                 let scale_x = width / tiled_scroll_view_delegate.content_size.width
                                 let scale_y = (height - origin_y) / tiled_scroll_view_delegate.content_size.height
                                 let scale_min = min(1, scale_x, scale_y)
                                 let scale_max = max(1, scale_x, scale_y)
                                 tiled_scroll_view_delegate.minimum_zoom_scale = scale_min
                                 tiled_scroll_view_delegate.maximum_zoom_scale = scale_max
+                                print(scale_min)
+                                print(scale_max)
+                                print(zoom_scale)
                                 tiled_scroll_view.delegate = tiled_scroll_view_delegate
                                 tiled_scroll_view.scroll_view.zoomScale = zoom_scale
                         }
@@ -203,6 +208,7 @@ class SupervisedClassificationResult: Component {
         func segmented_control_action() {
                 supervised_classification_result_state.set_selected_segment_index(index: segmented_control.selectedSegmentIndex)
                 state.render()
+//                render()
         }
 
         func pdf_action () {

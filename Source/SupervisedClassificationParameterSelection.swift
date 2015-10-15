@@ -174,50 +174,54 @@ class SupervisedClassificationParameterSelection: Component, UITableViewDataSour
                 switch supervised_classification.supervised_classification_type {
                 case .KNN:
                         let knn = supervised_classification as! KNN
-                        let cell = table_view.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0)) as! ParameterTableViewCell
-                        let text_field = cell.text_field
-                        let text = text_field.text ?? ""
-                        if let number = Int(text) {
-                                if number < 1 {
+                        if let cell = table_view.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0)) as? ParameterTableViewCell {
+                                let text_field = cell.text_field
+                                let text = text_field.text ?? ""
+                                if let number = Int(text) {
+                                        if number < 1 {
+                                                text_field.text = "1"
+                                                knn.k = 1
+                                        } else if number > knn.max_k() {
+                                                text_field.text = "\(knn.max_k())"
+                                                knn.k = knn.max_k()
+                                        } else {
+                                                knn.k = number
+                                        }
+                                } else {
                                         text_field.text = "1"
                                         knn.k = 1
-                                } else if number > knn.max_k() {
-                                        text_field.text = "\(knn.max_k())"
-                                        knn.k = knn.max_k()
-                                } else {
-                                        knn.k = number
                                 }
-                        } else {
-                                text_field.text = "1"
-                                knn.k = 1
                         }
                 case .SVM:
                         let svm = supervised_classification as! SVM
-                        var cell = table_view.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0)) as! ParameterTableViewCell
-                        var text_field = cell.text_field
-                        var text = text_field.text ?? ""
-                        if let number = string_to_double(string: text) where number > 0 {
-                                svm.linear_C = number
-                        } else {
-                                text_field.text = String(svm.C_default)
-                                svm.linear_C = svm.C_default
+                        if let cell = table_view.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0)) as? ParameterTableViewCell {
+                                let text_field = cell.text_field
+                                let text = text_field.text ?? ""
+                                if let number = string_to_double(string: text) where number > 0 {
+                                        svm.linear_C = number
+                                } else {
+                                        text_field.text = String(svm.C_default)
+                                        svm.linear_C = svm.C_default
+                                }
                         }
-                        cell = table_view.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 1)) as! ParameterTableViewCell
-                        text_field = cell.text_field
-                        text = text_field.text ?? ""
-                        if let number = string_to_double(string: text) where number > 0 {
-                                svm.rbf_C = number
-                        } else {
-                                text_field.text = String(svm.C_default)
-                                svm.rbf_C = svm.C_default
+                        if let cell = table_view.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 1)) as? ParameterTableViewCell {
+                                let text_field = cell.text_field
+                                let text = text_field.text ?? ""
+                                if let number = string_to_double(string: text) where number > 0 {
+                                        svm.rbf_C = number
+                                } else {
+                                        text_field.text = String(svm.C_default)
+                                        svm.rbf_C = svm.C_default
+                                }
                         }
-                        cell = table_view.cellForRowAtIndexPath(NSIndexPath(forRow: 1, inSection: 1)) as! ParameterTableViewCell
-                        text_field = cell.text_field
-                        text = text_field.text ?? ""
-                        if let number = string_to_double(string: text) where number > 0 {
-                                svm.rbf_gamma = number
-                        } else {
-                                text_field.text = String(svm.rbf_gamma)
+                        if let cell = table_view.cellForRowAtIndexPath(NSIndexPath(forRow: 1, inSection: 1)) as? ParameterTableViewCell {
+                                let text_field = cell.text_field
+                                let text = text_field.text ?? ""
+                                if let number = string_to_double(string: text) where number > 0 {
+                                        svm.rbf_gamma = number
+                                } else {
+                                        text_field.text = String(svm.rbf_gamma)
+                                }
                         }
                 }
         }
