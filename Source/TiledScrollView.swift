@@ -2,8 +2,8 @@ import UIKit
 
 protocol TiledScrollViewDelegate: class {
         var content_size: CGSize {get}
-        var maximum_zoom_scale: CGFloat {get}
-        var minimum_zoom_scale: CGFloat {get}
+        var maximum_zoom_scale: CGFloat {get set}
+        var minimum_zoom_scale: CGFloat {get set}
         func draw(context context: CGContext, rect: CGRect)
         func scroll_view_did_end_zooming(zoom_scale zoom_scale: CGFloat)
         func tap_action(location location: CGPoint)

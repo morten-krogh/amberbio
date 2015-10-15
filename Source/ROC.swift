@@ -5,6 +5,7 @@ class ROC: TiledScrollViewDelegate {
         var content_size = CGSize(width: 620, height: 730)
         var maximum_zoom_scale = 1 as CGFloat
         var minimum_zoom_scale = 1 as CGFloat
+        var zoom_scale = 1 as CGFloat
 
         var curve_values = [] as [(Double, Double)]
         var area = 0.0
@@ -175,10 +176,9 @@ class ROC: TiledScrollViewDelegate {
                 return CGPoint(x: x, y: y)
         }
 
-
-
-        func scroll_view_did_end_zooming(zoom_scale zoom_scale: CGFloat) {}
-
+        func scroll_view_did_end_zooming(zoom_scale zoom_scale: CGFloat) {
+                self.zoom_scale = zoom_scale
+        }
 
         func tap_action(location location: CGPoint) {}
 }

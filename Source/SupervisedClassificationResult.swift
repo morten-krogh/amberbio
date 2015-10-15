@@ -8,6 +8,7 @@ class SupervisedClassificationResultState: PageState {
         var supervised_classification_result_summary_delegate: SupervisedClassificationResultSummaryDelegate?
         var supervised_classification_result_samples_delegate: SupervisedClassificationResultSamplesDelegate?
         var table_of_attributed_strings: TableOfAttributedStrings?
+        var roc: ROC?
         var any_unclassified = false
 
         init(supervised_classification: SupervisedClassification) {
@@ -26,6 +27,24 @@ class SupervisedClassificationResultState: PageState {
                 let (table_of_attributed_strings, any_unclassified) = supervised_classification_result_table_of_attributed_strings(supervised_classification: supervised_classification)
                 self.table_of_attributed_strings = table_of_attributed_strings
                 self.any_unclassified = any_unclassified
+
+                if supervised_classification.supervised_classification_type == .SVM && supervised_classification.comparison_level_ids.count == 2 {
+                        let label_name_1 = supervised_classification.comparison_level_names[0]
+                        let label_name_2 = supervised_classification.comparison_level_names[1]
+
+                        var decision_values_1 = [] as [Double]
+                        var decision_values_2 = [] as [Double]
+
+                        for i in 0 ..< supervised_classification.test_sample_decision_values.count {
+                                if supervised_classification.test_sample_level_ids[i] == supervised_classification.comparison_level_ids[0] {
+                                        decision_values_1.append(supervised_classification.test_sample_decision_values[i])
+                                } else {
+                                        decision_values_2.append(supervised_classification.test_sample_decision_values[i])
+                                }
+                        }
+
+                        roc = ROC(label_name_1: label_name_1, label_name_2: label_name_2, decision_values_1: decision_values_1, decision_values_2: decision_values_2)
+                }
 
                 set_selected_segment_index(index: 0)
         }
@@ -67,6 +86,7 @@ class SupervisedClassificationResult: Component {
         let table_view = UITableView()
 
         let tiled_scroll_view = TiledScrollView(frame: CGRect.zero)
+//        let tiled_scroll_view_roc = TiledScrollView(frame: CGRect.zero)
 
         override func viewDidLoad() {
                 super.viewDidLoad()
@@ -92,6 +112,7 @@ class SupervisedClassificationResult: Component {
                 view.addSubview(table_view)
 
                 view.addSubview(tiled_scroll_view)
+//                view.addSubview(tiled_scroll_view_roc)
         }
 
         override func viewWillLayoutSubviews() {
@@ -114,15 +135,26 @@ class SupervisedClassificationResult: Component {
 
                 if !tiled_scroll_view.hidden {
                         tiled_scroll_view.frame = CGRect(x: 0, y: origin_y, width: width, height: height - origin_y)
-                        if let table_of_atrributed_strings = supervised_classification_result_state.table_of_attributed_strings {
-                                let scale_x = width / table_of_atrributed_strings.content_size.width
-                                let scale_y = (height - origin_y) / table_of_atrributed_strings.content_size.height
+                        var tiled_scroll_view_delegate: TiledScrollViewDelegate?
+                        var zoom_scale = 1 as CGFloat
+
+                        if supervised_classification_result_state.selected_segment_index == 1, let table_of_atrributed_strings = supervised_classification_result_state.table_of_attributed_strings {
+                                tiled_scroll_view_delegate = table_of_atrributed_strings
+                                zoom_scale = table_of_atrributed_strings.zoom_scale
+                        } else if let roc = supervised_classification_result_state.roc {
+                                tiled_scroll_view_delegate = roc
+                                zoom_scale = roc.zoom_scale
+                        }
+
+                        if let tiled_scroll_view_delegate = tiled_scroll_view_delegate {
+                                let scale_x = width / tiled_scroll_view_delegate.content_size.width
+                                let scale_y = (height - origin_y) / tiled_scroll_view_delegate.content_size.height
                                 let scale_min = min(1, scale_x, scale_y)
                                 let scale_max = max(1, scale_x, scale_y)
-                                table_of_atrributed_strings.minimum_zoom_scale = scale_min
-                                table_of_atrributed_strings.maximum_zoom_scale = scale_max
-                                tiled_scroll_view.delegate = table_of_atrributed_strings
-                                tiled_scroll_view.scroll_view.zoomScale = table_of_atrributed_strings.zoom_scale
+                                tiled_scroll_view_delegate.minimum_zoom_scale = scale_min
+                                tiled_scroll_view_delegate.maximum_zoom_scale = scale_max
+                                tiled_scroll_view.scroll_view.zoomScale = zoom_scale
+                                tiled_scroll_view.delegate = tiled_scroll_view_delegate
                         }
                 }
         }
@@ -135,7 +167,11 @@ class SupervisedClassificationResult: Component {
                 segmented_control.hidden = false
                 table_view.hidden = true
                 tiled_scroll_view.hidden = true
+//                tiled_scroll_view_roc.hidden = true
 
+                if supervised_classification.supervised_classification_type == .SVM && supervised_classification.comparison_level_ids.count == 2 && segmented_control.numberOfSegments == 3 {
+                        segmented_control.insertSegmentWithTitle("ROC", atIndex: 3, animated: false)
+                }
                 segmented_control.selectedSegmentIndex = supervised_classification_result_state.selected_segment_index
 
                 if !supervised_classification.classification_success {
@@ -148,11 +184,13 @@ class SupervisedClassificationResult: Component {
                         table_view.reloadData()
                 } else if supervised_classification_result_state.selected_segment_index == 1 {
                         tiled_scroll_view.hidden = false
-                } else {
+                } else if supervised_classification_result_state.selected_segment_index == 2 {
                         table_view.hidden = false
                         table_view.dataSource = supervised_classification_result_state.supervised_classification_result_samples_delegate
                         table_view.delegate = supervised_classification_result_state.supervised_classification_result_samples_delegate
                         table_view.reloadData()
+                } else {
+                        tiled_scroll_view.hidden = false
                 }
 
                 view.setNeedsLayout()
