@@ -157,8 +157,8 @@ class SupervisedClassificationResult: Component {
                                 let scale_max = max(1, scale_x, scale_y)
                                 tiled_scroll_view_delegate.minimum_zoom_scale = scale_min
                                 tiled_scroll_view_delegate.maximum_zoom_scale = scale_max
-                                tiled_scroll_view.scroll_view.zoomScale = zoom_scale
                                 tiled_scroll_view.delegate = tiled_scroll_view_delegate
+                                tiled_scroll_view.scroll_view.zoomScale = zoom_scale
                         }
                 }
         }
