@@ -29,6 +29,8 @@ class SupervisedClassificationResultState: PageState {
                 self.any_unclassified = any_unclassified
 
                 if supervised_classification.supervised_classification_type == .SVM && supervised_classification.comparison_level_ids.count == 2 {
+                        let svm = supervised_classification as! SVM
+
                         let label_name_1 = supervised_classification.comparison_level_names[0]
                         let label_name_2 = supervised_classification.comparison_level_names[1]
 
@@ -43,7 +45,11 @@ class SupervisedClassificationResultState: PageState {
                                 }
                         }
 
-                        roc = ROC(label_name_1: label_name_1, label_name_2: label_name_2, decision_values_1: decision_values_1, decision_values_2: decision_values_2)
+                        if svm.first_training_level_id == svm.comparison_level_ids[0] {
+                                roc = ROC(label_name_1: label_name_2, label_name_2: label_name_1, decision_values_1: decision_values_2, decision_values_2: decision_values_1)
+                        } else {
+                                roc = ROC(label_name_1: label_name_1, label_name_2: label_name_2, decision_values_1: decision_values_1, decision_values_2: decision_values_2)
+                        }
                 }
 
                 set_selected_segment_index(index: 0)
@@ -90,7 +96,7 @@ class SupervisedClassificationResult: Component {
         override func viewDidLoad() {
                 super.viewDidLoad()
 
-                let classification_failure_text = "The classification could not be performed because there are no molecules without missing values"
+                let classification_failure_text = "The classification could not be performed because there are no molecules without missing values or too few samples"
                 classification_failure_label.attributedText = astring_font_size_color(string: classification_failure_text, font: nil, font_size: 20, color: nil)
                 classification_failure_label.textAlignment = .Center
                 classification_failure_label.numberOfLines = 0

@@ -14,6 +14,8 @@ class SVM: SupervisedClassification {
         var rbf_C = 1.0
         var rbf_gamma = 0.0
 
+        var first_training_level_id = 0
+
         init(comparison_factor_id: Int, comparison_level_ids: [Int]) {
                 super.init(supervised_classification_type: .SVM, comparison_factor_id: comparison_factor_id, comparison_level_ids: comparison_level_ids)
         }
@@ -65,6 +67,8 @@ class SVM: SupervisedClassification {
                                 test_sample_level_ids.append(core_sample_level_ids[i])
                         }
                 }
+
+                first_training_level_id = training_level_ids[0]
 
                 if molecule_indices.isEmpty {
                         calculate_molecule_indices()
@@ -140,6 +144,8 @@ class SVM: SupervisedClassification {
                                         training_level_ids.append(core_sample_level_ids[j])
                                 }
                         }
+
+                        first_training_level_id = training_level_ids[0]
 
                         svm_adapter_train_test(state.values, molecule_indices, molecule_indices.count, state.number_of_samples, training_sample_indices, training_level_ids, training_sample_indices.count, classification_sample_indices, classification_sample_indices.count, &classification_level_ids, &classification_decision_values, kernel.rawValue, linear_C, rbf_C, rbf_gamma)
 
