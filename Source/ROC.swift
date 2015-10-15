@@ -8,6 +8,8 @@ class ROC: TiledScrollViewDelegate {
 
         var curve_values = [] as [(Double, Double)]
         var area = 0.0
+        let title_label: Astring
+        let title_area: Astring
 
         init(label_name_1: String, label_name_2: String, decision_values_1: [Double], decision_values_2: [Double]) {
                 // group 2 is "positive". High decision values are in group 2. Lower left corner has all samples predicted in group 1.
@@ -40,7 +42,14 @@ class ROC: TiledScrollViewDelegate {
                         curve_values.append(curve_value)
                 }
 
+                let title_label_str = label_name_2 + "(pos) vs. " + label_name_1 + "(neg)"
+                title_label = astring_font_size_color(string: title_label_str, font: nil, font_size: 22, color: nil)
+
                 area = Double(unit_area) / (Double(sorted_1.count) * Double(sorted_2.count))
+                let title_area_str = "ROC area = " + decimal_string(number: area, fraction_digits: 2)
+                title_area = astring_font_size_color(string: title_area_str, font: nil, font_size: 21, color: nil)
+
+
         }
 
         let box_lower_left = CGPoint(x: 100, y: 600)
@@ -56,6 +65,7 @@ class ROC: TiledScrollViewDelegate {
                 draw_axis_2_title(context: context)
                 draw_diagonal(context: context)
                 draw_curve(context: context)
+                draw_title(context: context)
         }
 
         func draw_box(context context: CGContext) {
@@ -147,6 +157,15 @@ class ROC: TiledScrollViewDelegate {
                         drawing_draw_line(context: context, start_point: start_point, end_point: end_point)
                 }
                 CGContextRestoreGState(context)
+        }
+
+        func draw_title(context context: CGContext) {
+                let point = value_to_point(value_1: 0.5, value_2: 1)
+                var center = CGPoint(x: point.x, y: point.y - 100)
+                drawing_draw_attributed_text(context: context, attributed_text: title_label, center: center, angle: 0)
+
+                center.y += 50
+                drawing_draw_attributed_text(context: context, attributed_text: title_area, center: center, angle: 0)
         }
 
         func value_to_point(value_1 value_1: Double, value_2: Double) -> CGPoint {
