@@ -25,6 +25,7 @@
 		601E57AB1BCD53C4002EEEB3 /* ParameterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601E57AA1BCD53C4002EEEB3 /* ParameterTableViewCell.swift */; settings = {ASSET_TAGS = (); }; };
 		601E57AF1BCE64F2002EEEB3 /* svm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 601E57AD1BCE64F2002EEEB3 /* svm.cpp */; settings = {ASSET_TAGS = (); }; };
 		601E57B21BCE69AA002EEEB3 /* svm-adapter.c in Sources */ = {isa = PBXBuildFile; fileRef = 601E57B01BCE69AA002EEEB3 /* svm-adapter.c */; settings = {ASSET_TAGS = (); }; };
+		601E57B41BCF83E8002EEEB3 /* ROC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601E57B31BCF83E8002EEEB3 /* ROC.swift */; settings = {ASSET_TAGS = (); }; };
 		602708CA1BA2CA0300672D54 /* SelectAllHeaderFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602708C91BA2CA0300672D54 /* SelectAllHeaderFooterView.swift */; settings = {ASSET_TAGS = (); }; };
 		602708E71BA6EF6400672D54 /* iris-values.txt in Resources */ = {isa = PBXBuildFile; fileRef = 602708E11BA6EE7400672D54 /* iris-values.txt */; settings = {ASSET_TAGS = (); }; };
 		602708E81BA6EF6800672D54 /* iris-factors.txt in Resources */ = {isa = PBXBuildFile; fileRef = 602708E01BA6EE7400672D54 /* iris-factors.txt */; settings = {ASSET_TAGS = (); }; };
@@ -248,6 +249,7 @@
 		601E57AE1BCE64F2002EEEB3 /* svm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = svm.h; path = ../../../share/libsvm/svm.h; sourceTree = "<group>"; };
 		601E57B01BCE69AA002EEEB3 /* svm-adapter.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = "svm-adapter.c"; path = "Source/svm-adapter.c"; sourceTree = "<group>"; };
 		601E57B11BCE69AA002EEEB3 /* svm-adapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "svm-adapter.h"; path = "Source/svm-adapter.h"; sourceTree = "<group>"; };
+		601E57B31BCF83E8002EEEB3 /* ROC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ROC.swift; path = Source/ROC.swift; sourceTree = "<group>"; };
 		602708C91BA2CA0300672D54 /* SelectAllHeaderFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SelectAllHeaderFooterView.swift; path = Source/SelectAllHeaderFooterView.swift; sourceTree = "<group>"; };
 		602708E01BA6EE7400672D54 /* iris-factors.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "iris-factors.txt"; path = "demo-data/iris/iris-factors.txt"; sourceTree = "<group>"; };
 		602708E11BA6EE7400672D54 /* iris-values.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "iris-values.txt"; path = "demo-data/iris/iris-values.txt"; sourceTree = "<group>"; };
@@ -620,6 +622,7 @@
 				60B400A71BA19C7900D8DD80 /* PdfTxtButtons.swift */,
 				60B400A81BA19C7900D8DD80 /* PieChart.swift */,
 				60B400AD1BA19C7900D8DD80 /* PValueHistogramDelegate.swift */,
+				601E57B31BCF83E8002EEEB3 /* ROC.swift */,
 				60B400BD1BA19C7900D8DD80 /* SingleMoleculePlot.swift */,
 				60B400B81BA19C7900D8DD80 /* SearchBar.swift */,
 				60B400BB1BA19C7900D8DD80 /* SingleChoiceTable.swift */,
@@ -1085,6 +1088,7 @@
 				60B401331BA19C7900D8DD80 /* PieChart.swift in Sources */,
 				60D5CE381BC26CD100B0D88A /* SupervisedClassificationTrainingSelection.swift in Sources */,
 				60B401061BA19C7900D8DD80 /* Home.swift in Sources */,
+				601E57B41BCF83E8002EEEB3 /* ROC.swift in Sources */,
 				60B400F11BA19C7900D8DD80 /* DocumentPickerImport.swift in Sources */,
 				60B401441BA19C7900D8DD80 /* SegmentedControlTableViewCell.swift in Sources */,
 				60B401001BA19C7900D8DD80 /* Forward.swift in Sources */,
