@@ -39,7 +39,7 @@ class ROC: TiledScrollViewDelegate {
                                 i1 = i
                         }
 
-                        let curve_value = (Double(i1) / Double(sorted_1.count), Double(i2) / Double(sorted_2.count))
+                        let curve_value = (sorted_1.isEmpty ? 1 : Double(i1) / Double(sorted_1.count), sorted_2.isEmpty ? 1 : Double(i2) / Double(sorted_2.count))
                         curve_values.append(curve_value)
                 }
 
@@ -49,8 +49,15 @@ class ROC: TiledScrollViewDelegate {
                 title_label.appendAttributedString(astring_font_size_color(string: label_name_1, font: nil, font_size: 22, color: nil))
                 title_label.appendAttributedString(astring_font_size_color(string: " (neg)", font: nil, font_size: 16, color: nil))
 
-                area = Double(unit_area) / (Double(sorted_1.count) * Double(sorted_2.count))
-                let title_area_str = "ROC area = " + decimal_string(number: area, fraction_digits: 2)
+                let title_area_str: String
+                if  sorted_1.isEmpty || sorted_2.isEmpty {
+                        area = Double.NaN
+                        title_area_str = "ROC area = NA"
+                        curve_values = []
+                } else {
+                        area = Double(unit_area) / (Double(sorted_1.count) * Double(sorted_2.count))
+                        title_area_str = "ROC area = " + decimal_string(number: area, fraction_digits: 2)
+                }
                 title_area = astring_font_size_color(string: title_area_str, font: nil, font_size: 21, color: nil)
         }
 

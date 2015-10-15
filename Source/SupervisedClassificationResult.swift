@@ -86,7 +86,6 @@ class SupervisedClassificationResult: Component {
         let table_view = UITableView()
 
         let tiled_scroll_view = TiledScrollView(frame: CGRect.zero)
-//        let tiled_scroll_view_roc = TiledScrollView(frame: CGRect.zero)
 
         override func viewDidLoad() {
                 super.viewDidLoad()
@@ -112,7 +111,6 @@ class SupervisedClassificationResult: Component {
                 view.addSubview(table_view)
 
                 view.addSubview(tiled_scroll_view)
-//                view.addSubview(tiled_scroll_view_roc)
         }
 
         override func viewWillLayoutSubviews() {
@@ -167,7 +165,6 @@ class SupervisedClassificationResult: Component {
                 segmented_control.hidden = false
                 table_view.hidden = true
                 tiled_scroll_view.hidden = true
-//                tiled_scroll_view_roc.hidden = true
 
                 if supervised_classification.supervised_classification_type == .SVM && supervised_classification.comparison_level_ids.count == 2 && segmented_control.numberOfSegments == 3 {
                         segmented_control.insertSegmentWithTitle("ROC", atIndex: 3, animated: false)
