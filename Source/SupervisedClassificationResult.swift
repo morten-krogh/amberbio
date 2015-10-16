@@ -26,7 +26,11 @@ class SupervisedClassificationResultState: PageState {
                         title = astring_body(string: "support vector machine")
                 }
 
-                prepared = false
+                if state.number_of_molecules <= 5000 && state.number_of_samples < 200 && state.number_of_molecules * state.number_of_samples < 200000 {
+                        prepare()
+                } else {
+                        prepared = false
+                }
         }
 
         override func prepare() {
