@@ -38,9 +38,8 @@ class DrawView: UIView, UIScrollViewDelegate, DrawViewTiledLayerViewDelegate {
         override func layoutSubviews() {
                 super.layoutSubviews()
 
-                set_min_max_zoom_scales()
                 layout_scroll_view()
-
+                set_min_max_zoom_scales()
         }
 
         func layout_scroll_view() {

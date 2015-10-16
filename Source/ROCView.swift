@@ -9,6 +9,7 @@ class ROCView: DrawView {
 
         init() {
                 super.init(frame: CGRect.zero, tappable: false)
+                content_size = CGSize(width: 620, height: 730)
         }
 
         required init?(coder aDecoder: NSCoder) {
@@ -68,8 +69,6 @@ class ROCView: DrawView {
                         self.curve_values = curve_values
                 }
 
-
-                content_size = CGSize(width: 620, height: 730)
         }
 
         let box_lower_left = CGPoint(x: 100, y: 630)

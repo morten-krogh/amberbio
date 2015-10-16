@@ -175,8 +175,6 @@ class SupervisedClassificationResult: Component {
                 supervised_classification_result_state = state.page_state as! SupervisedClassificationResultState
                 let supervised_classification = supervised_classification_result_state.supervised_classification
 
-                roc_view.update(label_name_1: supervised_classification_result_state.roc_label_name_1, label_name_2: supervised_classification_result_state.roc_label_name_2, decision_values_1: supervised_classification_result_state.roc_decision_values_1, decision_values_2: supervised_classification_result_state.roc_decision_values_2)
-
                 classification_failure_label.hidden = true
                 segmented_control.hidden = false
                 table_view.hidden = true
@@ -204,6 +202,7 @@ class SupervisedClassificationResult: Component {
                         table_view.delegate = supervised_classification_result_state.supervised_classification_result_samples_delegate
                         table_view.reloadData()
                 } else {
+                        roc_view.update(label_name_1: supervised_classification_result_state.roc_label_name_1, label_name_2: supervised_classification_result_state.roc_label_name_2, decision_values_1: supervised_classification_result_state.roc_decision_values_1, decision_values_2: supervised_classification_result_state.roc_decision_values_2)
                         roc_view.hidden = false
                 }
 
