@@ -11,6 +11,7 @@ class DrawView: UIView, UIScrollViewDelegate, DrawViewTiledLayerViewDelegate {
         var maximum_zoom_scale = 1 as CGFloat
         var minimum_zoom_scale = 1 as CGFloat
         var zoom_scale = 1 as CGFloat
+        var initial_zoom = true
 
         let scroll_view = UIScrollView()
         var draw_view_tiled_layer_view: DrawViewTiledLayerView?
@@ -85,11 +86,12 @@ class DrawView: UIView, UIScrollViewDelegate, DrawViewTiledLayerViewDelegate {
                         scroll_view.maximumZoomScale = maximum_zoom_scale
                 }
 
-                if zoom_scale < minimum_zoom_scale {
+                if initial_zoom {
+                        initial_zoom = false
                         set_zoom_scale(zoom_scale: minimum_zoom_scale)
-                }
-
-                if zoom_scale > maximum_zoom_scale {
+                } else if zoom_scale < minimum_zoom_scale {
+                        set_zoom_scale(zoom_scale: minimum_zoom_scale)
+                } else if zoom_scale > maximum_zoom_scale {
                         set_zoom_scale(zoom_scale: maximum_zoom_scale)
                 }
         }
