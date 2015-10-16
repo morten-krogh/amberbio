@@ -50,6 +50,7 @@
 		6094CC001BCF9132002A5E2A /* AttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B4003D1BA19BED00D8DD80 /* AttributedString.swift */; settings = {ASSET_TAGS = (); }; };
 		6094CC011BCFAA7F002A5E2A /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400541BA19C7900D8DD80 /* Color.swift */; settings = {ASSET_TAGS = (); }; };
 		6094CC021BCFC544002A5E2A /* NumberFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B4003E1BA19BED00D8DD80 /* NumberFormat.swift */; settings = {ASSET_TAGS = (); }; };
+		6094CC041BD0DCF7002A5E2A /* DrawView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6094CC031BD0DCF7002A5E2A /* DrawView.swift */; settings = {ASSET_TAGS = (); }; };
 		60B400391BA1982900D8DD80 /* state_init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400381BA1982900D8DD80 /* state_init.swift */; settings = {ASSET_TAGS = (); }; };
 		60B4003B1BA1983900D8DD80 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B4003A1BA1983900D8DD80 /* State.swift */; settings = {ASSET_TAGS = (); }; };
 		60B400411BA19BED00D8DD80 /* AttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B4003D1BA19BED00D8DD80 /* AttributedString.swift */; settings = {ASSET_TAGS = (); }; };
@@ -281,6 +282,7 @@
 		6094CBF31BCF8DCF002A5E2A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6094CBF61BCF8DCF002A5E2A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6094CBF81BCF8DCF002A5E2A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6094CC031BD0DCF7002A5E2A /* DrawView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DrawView.swift; path = Source/DrawView.swift; sourceTree = "<group>"; };
 		60B400381BA1982900D8DD80 /* state_init.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = state_init.swift; path = Source/state_init.swift; sourceTree = "<group>"; };
 		60B4003A1BA1983900D8DD80 /* State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = State.swift; path = Source/State.swift; sourceTree = "<group>"; };
 		60B4003D1BA19BED00D8DD80 /* AttributedString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AttributedString.swift; path = Source/AttributedString.swift; sourceTree = "<group>"; };
@@ -637,6 +639,7 @@
 				60B401651BA1A20400D8DD80 /* ColorSlider.swift */,
 				60B401601BA1A1D200D8DD80 /* ColorCircle.swift */,
 				60B401611BA1A1D200D8DD80 /* ColorPicker.swift */,
+				6094CC031BD0DCF7002A5E2A /* DrawView.swift */,
 				60B400761BA19C7900D8DD80 /* HierarchicalClusteringDrawer.swift */,
 				60B400811BA19C7900D8DD80 /* LinearRegressionDrawer.swift */,
 				60B4008A1BA19C7900D8DD80 /* MissingValueHistogram.swift */,
@@ -1208,6 +1211,7 @@
 				60B401461BA19C7900D8DD80 /* SingleMolecule.swift in Sources */,
 				60B4015D1BA19C7900D8DD80 /* values.c in Sources */,
 				60B401421BA19C7900D8DD80 /* SearchBar.swift in Sources */,
+				6094CC041BD0DCF7002A5E2A /* DrawView.swift in Sources */,
 				60B401181BA19C7900D8DD80 /* MissingValuesForSamples.swift in Sources */,
 				601E57A31BCD0441002EEEB3 /* SupervisedClassificationFactorSelection.swift in Sources */,
 				60B4012C1BA19C7900D8DD80 /* PCA.swift in Sources */,
