@@ -2,19 +2,27 @@ import UIKit
 
 class ROC2: DrawView {
 
-        let curve_values: [(Double, Double)]
-        let area: Double
-        let title_label: Astring
-        let title_area: Astring
+        var curve_values = [] as [(Double, Double)]
+        var area = 0.0
+        var title_label: Astring?
+        var title_area: Astring?
 
-        init(label_name_1: String, label_name_2: String, decision_values_1: [Double], decision_values_2: [Double]) {
+        init() {
+                super.init(frame: CGRect.zero, tappable: false)
+        }
+
+        required init?(coder aDecoder: NSCoder) {
+            fatalError("init(coder:) has not been implemented")
+        }
+
+        func update(label_name_1 label_name_1: String, label_name_2: String, decision_values_1: [Double], decision_values_2: [Double]) {
                 // group 2 is "positive". High decision values are in group 2. Lower left corner has all samples predicted in group 1.
 
                 title_label = astring_font_size_color(string: label_name_2, font: nil, font_size: 22, color: nil)
-                title_label.appendAttributedString(astring_font_size_color(string: " (pos)", font: nil, font_size: 16, color: nil))
-                title_label.appendAttributedString(astring_font_size_color(string: "  vs.  ", font: nil, font_size: 20, color: nil))
-                title_label.appendAttributedString(astring_font_size_color(string: label_name_1, font: nil, font_size: 22, color: nil))
-                title_label.appendAttributedString(astring_font_size_color(string: " (neg)", font: nil, font_size: 16, color: nil))
+                title_label!.appendAttributedString(astring_font_size_color(string: " (pos)", font: nil, font_size: 16, color: nil))
+                title_label!.appendAttributedString(astring_font_size_color(string: "  vs.  ", font: nil, font_size: 20, color: nil))
+                title_label!.appendAttributedString(astring_font_size_color(string: label_name_1, font: nil, font_size: 22, color: nil))
+                title_label!.appendAttributedString(astring_font_size_color(string: " (neg)", font: nil, font_size: 16, color: nil))
 
                 let sorted_1 = decision_values_1.sort().reverse() as [Double]
                 let sorted_2 = decision_values_2.sort().reverse() as [Double]
@@ -60,13 +68,8 @@ class ROC2: DrawView {
                         self.curve_values = curve_values
                 }
 
-                super.init(frame: CGRect.zero, tappable: false)
 
                 content_size = CGSize(width: 620, height: 730)
-        }
-
-        required init?(coder aDecoder: NSCoder) {
-            fatalError("init(coder:) has not been implemented")
         }
 
         let box_lower_left = CGPoint(x: 100, y: 630)
@@ -179,10 +182,11 @@ class ROC2: DrawView {
         func draw_title(context context: CGContext) {
                 let point = value_to_point(value_1: 0.5, value_2: 1)
                 var center = CGPoint(x: point.x, y: point.y - 100)
-                drawing_draw_attributed_text(context: context, attributed_text: title_label, center: center, angle: 0)
-
-                center.y += 50
-                drawing_draw_attributed_text(context: context, attributed_text: title_area, center: center, angle: 0)
+                if let title_label = title_label, let title_area = title_area {
+                        drawing_draw_attributed_text(context: context, attributed_text: title_label, center: center, angle: 0)
+                        center.y += 50
+                        drawing_draw_attributed_text(context: context, attributed_text: title_area, center: center, angle: 0)
+                }
         }
 
         func value_to_point(value_1 value_1: Double, value_2: Double) -> CGPoint {

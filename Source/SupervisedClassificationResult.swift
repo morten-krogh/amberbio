@@ -8,8 +8,12 @@ class SupervisedClassificationResultState: PageState {
         var supervised_classification_result_summary_delegate: SupervisedClassificationResultSummaryDelegate?
         var supervised_classification_result_samples_delegate: SupervisedClassificationResultSamplesDelegate?
         var table_of_attributed_strings: TableOfAttributedStrings?
-        var roc: ROC?
         var any_unclassified = false
+
+        var roc_label_name_1 = ""
+        var roc_label_name_2 = ""
+        var roc_decision_values_1 = [] as [Double]
+        var roc_decision_values_2 = [] as [Double]
 
         init(supervised_classification: SupervisedClassification) {
                 self.supervised_classification = supervised_classification
@@ -31,24 +35,20 @@ class SupervisedClassificationResultState: PageState {
                 if supervised_classification.supervised_classification_type == .SVM && supervised_classification.comparison_level_ids.count == 2 {
                         let svm = supervised_classification as! SVM
 
-                        let label_name_1 = supervised_classification.comparison_level_names[0]
-                        let label_name_2 = supervised_classification.comparison_level_names[1]
+                        let (i0, i1) = svm.first_training_level_id == svm.comparison_level_ids[0] ? (1, 0) : (0, 1)
 
-                        var decision_values_1 = [] as [Double]
-                        var decision_values_2 = [] as [Double]
+                        roc_label_name_1 = supervised_classification.comparison_level_names[i0]
+                        roc_label_name_2 = supervised_classification.comparison_level_names[i1]
+
+                        roc_decision_values_1 = []
+                        roc_decision_values_2 = []
 
                         for i in 0 ..< supervised_classification.test_sample_decision_values.count {
-                                if supervised_classification.test_sample_level_ids[i] == supervised_classification.comparison_level_ids[0] {
-                                        decision_values_1.append(supervised_classification.test_sample_decision_values[i])
+                                if supervised_classification.test_sample_level_ids[i] == supervised_classification.comparison_level_ids[i0] {
+                                        roc_decision_values_1.append(supervised_classification.test_sample_decision_values[i])
                                 } else {
-                                        decision_values_2.append(supervised_classification.test_sample_decision_values[i])
+                                        roc_decision_values_2.append(supervised_classification.test_sample_decision_values[i])
                                 }
-                        }
-
-                        if svm.first_training_level_id == svm.comparison_level_ids[0] {
-                                roc = ROC(label_name_1: label_name_2, label_name_2: label_name_1, decision_values_1: decision_values_2, decision_values_2: decision_values_1)
-                        } else {
-                                roc = ROC(label_name_1: label_name_1, label_name_2: label_name_2, decision_values_1: decision_values_1, decision_values_2: decision_values_2)
                         }
                 }
 
@@ -95,6 +95,8 @@ class SupervisedClassificationResult: Component {
 
         let tiled_scroll_view = TiledScrollView(frame: CGRect.zero)
 
+        var roc: ROC2!
+
         override func viewDidLoad() {
                 super.viewDidLoad()
 
@@ -119,6 +121,9 @@ class SupervisedClassificationResult: Component {
                 view.addSubview(table_view)
 
                 view.addSubview(tiled_scroll_view)
+
+                roc = ROC2()
+                view.addSubview(roc)
         }
 
         override func viewWillLayoutSubviews() {
@@ -147,9 +152,6 @@ class SupervisedClassificationResult: Component {
                         if supervised_classification_result_state.selected_segment_index == 1, let table_of_atrributed_strings = supervised_classification_result_state.table_of_attributed_strings {
                                 tiled_scroll_view_delegate = table_of_atrributed_strings
                                 zoom_scale = table_of_atrributed_strings.zoom_scale
-                        } else if let roc = supervised_classification_result_state.roc {
-                                tiled_scroll_view_delegate = roc
-                                zoom_scale = roc.zoom_scale
                         }
 
                         if let tiled_scroll_view_delegate = tiled_scroll_view_delegate {
@@ -164,16 +166,21 @@ class SupervisedClassificationResult: Component {
                                 tiled_scroll_view.layoutScrollView()
                         }
                 }
+
+                roc.frame = CGRect(x: 0, y: origin_y, width: width, height: height - origin_y)
         }
 
         override func render() {
                 supervised_classification_result_state = state.page_state as! SupervisedClassificationResultState
                 let supervised_classification = supervised_classification_result_state.supervised_classification
 
+                roc.update(label_name_1: supervised_classification_result_state.roc_label_name_1, label_name_2: supervised_classification_result_state.roc_label_name_2, decision_values_1: supervised_classification_result_state.roc_decision_values_1, decision_values_2: supervised_classification_result_state.roc_decision_values_2)
+
                 classification_failure_label.hidden = true
                 segmented_control.hidden = false
                 table_view.hidden = true
                 tiled_scroll_view.hidden = true
+                roc.hidden = true
 
                 if supervised_classification.supervised_classification_type == .SVM && supervised_classification.comparison_level_ids.count == 2 && segmented_control.numberOfSegments == 3 {
                         segmented_control.insertSegmentWithTitle("ROC", atIndex: 3, animated: false)
@@ -196,7 +203,7 @@ class SupervisedClassificationResult: Component {
                         table_view.delegate = supervised_classification_result_state.supervised_classification_result_samples_delegate
                         table_view.reloadData()
                 } else {
-                        tiled_scroll_view.hidden = false
+                        roc.hidden = false
                 }
 
                 view.setNeedsLayout()
@@ -210,9 +217,7 @@ class SupervisedClassificationResult: Component {
         func pdf_action () {
                 let file_name_stem = "svm-roc-curve"
                 let description = "ROC curve for support vector machine classifier"
-                if let roc = supervised_classification_result_state.roc {
-                        state.insert_pdf_result_file(file_name_stem: file_name_stem, description: description, content_size: roc.content_size, draw: roc.draw)
-                }
+                state.insert_pdf_result_file(file_name_stem: file_name_stem, description: description, content_size: roc.content_size, draw: roc.draw)
                 state.render()
         }
 }
