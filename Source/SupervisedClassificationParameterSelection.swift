@@ -234,7 +234,8 @@ class SupervisedClassificationParameterSelection: Component, UITableViewDataSour
                         svm.kernel = section == 0 ? .Linear : .RBF
                 }
 
-                supervised_classification.classify()
+                state.render_type = RenderType.activity_indicator
+                state.render()
                 let page_state = SupervisedClassificationResultState(supervised_classification: supervised_classification)
                 state.navigate(page_state: page_state)
                 state.render()

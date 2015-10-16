@@ -25,6 +25,13 @@ class SupervisedClassificationResultState: PageState {
                 case .SVM:
                         title = astring_body(string: "support vector machine")
                 }
+
+                prepared = false
+        }
+
+        override func prepare() {
+                supervised_classification.classify()
+
                 supervised_classification_result_summary_delegate = SupervisedClassificationResultSummaryDelegate(supervised_classification: supervised_classification)
                 supervised_classification_result_samples_delegate = SupervisedClassificationResultSamplesDelegate(supervised_classification: supervised_classification)
 
@@ -53,6 +60,8 @@ class SupervisedClassificationResultState: PageState {
                 }
 
                 set_selected_segment_index(index: 0)
+
+                prepared = true
         }
 
         func set_selected_segment_index(index index: Int) {
