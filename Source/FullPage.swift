@@ -296,8 +296,13 @@ class FullPage: Component, UIScrollViewDelegate, UISearchBarDelegate {
                 back.view.frame = CGRect(x: 20, y: origin_y, width: 43, height: 35)
                 forward.view.frame = CGRect(x: width - 87, y: origin_y, width: 67, height: 35)
                 title_label.view.frame = CGRect(x: 87, y: origin_y, width: width - 174, height: 35)
-                
-                origin_y += 35
+
+                let number_of_buttons_enabled = (state.page_state.pdf_enabled ? 1 : 0) + (state.page_state.png_enabled ? 1 : 0) + (state.page_state.txt_enabled ? 1 : 0) + (state.page_state.histogram_enabled ? 1 : 0)
+                let raise_single_button = number_of_buttons_enabled == 1 && !state.page_state.search_enabled && !state.page_state.select_enabled
+
+                if !raise_single_button {
+                        origin_y += 35
+                }
                 
                 origin_x = width - 20
                 
@@ -342,8 +347,12 @@ class FullPage: Component, UIScrollViewDelegate, UISearchBarDelegate {
                         }
                 }
 
+                if raise_single_button {
+                        origin_y += 35
+                }
+
                 let row_of_buttons = state.page_state.select_enabled || state.page_state.pdf_enabled || state.page_state.png_enabled || state.page_state.txt_enabled || state.page_state.histogram_enabled || state.page_state.search_enabled
-                let header_height = origin_y + (row_of_buttons ? height_of_row : 3)
+                let header_height = origin_y + (row_of_buttons && !raise_single_button ? height_of_row : 3)
                 header_view.frame = CGRect(x: 0, y: 0, width: width, height: header_height)
 
                 let middle_margin = 50 as CGFloat
