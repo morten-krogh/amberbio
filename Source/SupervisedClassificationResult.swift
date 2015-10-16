@@ -229,9 +229,29 @@ class SupervisedClassificationResult: Component {
 
         func pdf_action () {
                 let file_name_stem = "svm-roc-curve"
-                let description = "ROC curve for support vector machine classifier"
-                state.insert_pdf_result_file(file_name_stem: file_name_stem, description: description, content_size: roc_view.content_size, draw: roc_view.draw)
-                state.render()
+                if let svm = supervised_classification_result_state.supervised_classification as? SVM {
+                        var description = "ROC curve for support vector machine classifier.\n"
+                        description += "The kernel is " + (svm.kernel == .Linear ? "linear" : "RBF") + ".\n"
+                        let C = svm.kernel == .Linear ? svm.linear_C : svm.rbf_C
+                        description += "The parameter C = \(C).\n"
+                        if svm.kernel == .RBF {
+                                description += "The parameter gamma = \(svm.rbf_gamma).\n"
+                        }
+
+                        description += "The validation method is "
+                        if svm.validation_method == .TrainingTest {
+                                description += "fixed training and test set.\n"
+                        } else if svm.validation_method == .LeaveOneOut {
+                                description += "leave-one-out cross validation.\n"
+                        } else {
+                                description += "\(svm.k_fold)-fold cross validation.\n"
+                        }
+
+                        description += "There are \(supervised_classification_result_state.roc_decision_values_1.count) samples in group \(supervised_classification_result_state.roc_label_name_1).\n"
+                        description += "There are \(supervised_classification_result_state.roc_decision_values_2.count) samples in group \(supervised_classification_result_state.roc_label_name_2).\n"
+                        state.insert_pdf_result_file(file_name_stem: file_name_stem, description: description, content_size: roc_view.content_size, draw: roc_view.draw)
+                        state.render()
+                }
         }
 }
 
