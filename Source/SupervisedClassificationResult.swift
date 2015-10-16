@@ -63,22 +63,23 @@ class SupervisedClassificationResultState: PageState {
         }
 
         func set_info() {
-                switch supervised_classification.supervised_classification_type {
-                case .KNN:
-                        if !supervised_classification.classification_success {
-                                info = "The result of the k nearest neighbor classification"
-                        } else if selected_segment_index == 0 {
-                                info = "A summary of the classification results.\n\nThe additional samples are samples that have levels different from the levels used in the classifier."
-                        } else if selected_segment_index == 1 && any_unclassified {
-                                let k = (supervised_classification as! KNN).k
-                                info = "The row names are the actual levels of the samples.\n\nThe column names are the predicted levels.\n\nA sample is unclassified if there is no majority level among the k=\(k) neighbors.\n\nThe cells contain the number of samples with a combination of actual and predicted levels."
-                        } else if selected_segment_index == 1 {
-                                info = "The row names are the actual levels of the samples.\n\nThe column names are the predicted levels.\n\nThe cells contain the number of samples with a combination of actual and predicted levels."
-                        } else {
-                                info = "Information about the individual samples.\n\nSamples are grouped according to their actual levels.\n\nGreen samples are correctly classified, red samples are incorrectly classified, and gray samples have levels unknown to the classifier."
-                        }
-                case .SVM:
-                        info = ""
+                let is_knn = supervised_classification.supervised_classification_type == .KNN
+
+                if !supervised_classification.classification_success && is_knn {
+                        info = "The result of the k nearest neighbor classification"
+                } else if !supervised_classification.classification_success {
+                        info = "The result of the support vector machine classification"
+                } else if selected_segment_index == 0 {
+                        info = "A summary of the classification results.\n\nThe additional samples are samples that have levels different from the levels used in the classifier."
+                } else if selected_segment_index == 1 && is_knn && any_unclassified {
+                        let k = (supervised_classification as! KNN).k
+                        info = "The row names are the actual levels of the samples.\n\nThe column names are the predicted levels.\n\nA sample is unclassified if there is no majority level among the k=\(k) neighbors.\n\nThe cells contain the number of samples with a combination of actual and predicted levels."
+                } else if selected_segment_index == 1  {
+                        info = "The row names are the actual levels of the samples.\n\nThe column names are the predicted levels.\n\nThe cells contain the number of samples with a combination of actual and predicted levels."
+                } else if selected_segment_index == 2 {
+                        info = "Information about the individual samples.\n\nSamples are grouped according to their actual levels.\n\nGreen samples are correctly classified, red samples are incorrectly classified, and gray samples have levels unknown to the classifier."
+                } else {
+                        info = "The receiver operating characteristic(ROC) curve.\n\nA ROC area of 1 implies perfect separation.\n\nA ROC area around 0.5, or below 0.5, means that the classification is unsuccessful.\n\nSee the manual for a full discussion."
                 }
         }
 }

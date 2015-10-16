@@ -14,7 +14,7 @@ class SupervisedClassificationTrainingSelectionState: PageState {
                 case .SVM:
                         title = astring_body(string: "support vector machine")
                 }
-                info = "Select the samples for the training set.\n\nThe numbers in parenthesis represent the number of samples in the training set and the total number of samples respectively for that level.\n\nSelecting a level from a factor leads to inclusion of all samples with that level.\n\nDeselecting a level removes all samples with that level from the training set.\n\nThe test set consists of all the samples that are not in the training set.\n\nTo continue, both the training and test set must contain at least one sample."
+                info = "Select the samples for the training set.\n\nThe numbers in parenthesis in the first section represent the number of samples in the training set and the total number of samples respectively for that level.\n\nSelecting a level from a factor leads to inclusion of all samples with that level.\n\nDeselecting a level removes all samples with that level from the training set.\n\nThe test set consists of all the samples that are not in the training set.\n\nThe training set must contain at least two samples.\n\nThe test set must contain at least one sample."
         }
 }
 
@@ -58,7 +58,7 @@ class SupervisedClassificationTrainingSelection: Component, UITableViewDataSourc
         func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
                 if section == 0 {
                         let header = tableView.dequeueReusableHeaderFooterViewWithIdentifier("tappable-header") as! CenteredHeaderFooterView
-                        let selectable = supervised_classification.training_sample_index_set.count > 0 && (supervised_classification.training_sample_index_set.count < supervised_classification.core_sample_indices.count || supervised_classification.additional_sample_indices.count > 0)
+                        let selectable = supervised_classification.training_sample_index_set.count > 1 && (supervised_classification.training_sample_index_set.count < supervised_classification.core_sample_indices.count || supervised_classification.additional_sample_indices.count > 0)
                         if selectable {
                                 header.update_selectable_arrow(text: "Continue")
                         } else {

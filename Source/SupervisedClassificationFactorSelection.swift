@@ -140,7 +140,7 @@ class SupervisedClassificationFactorSelection: Component, UITableViewDataSource,
                         }
 
                         if selected_level_ids_in_section.count < 2 {
-                                alert(title: "Too few selected levels", message: "At least two levels must be selected", view_controller: self)
+//                                alert(title: "Too few selected levels", message: "At least two levels must be selected", view_controller: self)
                         } else {
                                 let supervised_classification: SupervisedClassification
                                 switch supervised_classification_factor_selection_state.supervised_classification_type {

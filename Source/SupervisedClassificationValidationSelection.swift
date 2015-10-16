@@ -14,7 +14,7 @@ class SupervisedClassificationValidationSelectionState: PageState {
                 case .SVM:
                         title = astring_body(string: "support vector machine")
                 }
-                info = "Select the type of validation."
+                info = "Select the type of validation.\n\nLeave one out cross validation is a special case of k fold cross validation where k is equal to the number of samples."
         }
 }
 

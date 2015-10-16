@@ -14,7 +14,7 @@ class SupervisedClassificationParameterSelectionState: PageState {
                         info = "Select the number of nearest neighbors, k.\n\nA test sample is classified to a level if the majority of the k nearest neighbors belong to the level.\n\nIf k is odd and there are two levels, all samples will be classified to a level.\n\nOtherwise, a sample can be unclassified."
                 case .SVM:
                         title = astring_body(string: "support vector machine")
-                        info = "Select the parameters for the support vector machine."
+                        info = "Select the parameters for the support vector machine.\n\nSee the manual for an explanation of the paramters.\n\nIf there are many more molecules than samples, a linear kernel with the default parameter is usually the best choice.\n\nThe values in the data set should preferably be logarithmic values."
                 }
         }
 }
