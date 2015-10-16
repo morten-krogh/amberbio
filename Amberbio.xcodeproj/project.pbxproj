@@ -51,6 +51,7 @@
 		6094CC011BCFAA7F002A5E2A /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400541BA19C7900D8DD80 /* Color.swift */; settings = {ASSET_TAGS = (); }; };
 		6094CC021BCFC544002A5E2A /* NumberFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B4003E1BA19BED00D8DD80 /* NumberFormat.swift */; settings = {ASSET_TAGS = (); }; };
 		6094CC041BD0DCF7002A5E2A /* DrawView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6094CC031BD0DCF7002A5E2A /* DrawView.swift */; settings = {ASSET_TAGS = (); }; };
+		6094CC051BD0EAC9002A5E2A /* DrawView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6094CC031BD0DCF7002A5E2A /* DrawView.swift */; settings = {ASSET_TAGS = (); }; };
 		60B400391BA1982900D8DD80 /* state_init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400381BA1982900D8DD80 /* state_init.swift */; settings = {ASSET_TAGS = (); }; };
 		60B4003B1BA1983900D8DD80 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B4003A1BA1983900D8DD80 /* State.swift */; settings = {ASSET_TAGS = (); }; };
 		60B400411BA19BED00D8DD80 /* AttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B4003D1BA19BED00D8DD80 /* AttributedString.swift */; settings = {ASSET_TAGS = (); }; };
@@ -1254,6 +1255,7 @@
 				6094CC021BCFC544002A5E2A /* NumberFormat.swift in Sources */,
 				6094CBEF1BCF8DCF002A5E2A /* ViewController.swift in Sources */,
 				6094CBFC1BCF901F002A5E2A /* TiledScrollView.swift in Sources */,
+				6094CC051BD0EAC9002A5E2A /* DrawView.swift in Sources */,
 				6094CC011BCFAA7F002A5E2A /* Color.swift in Sources */,
 				6094CC001BCF9132002A5E2A /* AttributedString.swift in Sources */,
 				6094CBED1BCF8DCF002A5E2A /* AppDelegate.swift in Sources */,
