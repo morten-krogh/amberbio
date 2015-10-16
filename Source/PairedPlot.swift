@@ -53,7 +53,7 @@ class PairedPlotState: PageState {
                 comparison_level_id_for_samples = state.level_ids_by_factor_and_sample[comparison_factor_index]
                 comparison_level_color_for_samples = state.level_colors_by_factor_and_sample[comparison_factor_index]
 
-                full_screen = true
+                full_screen = .Conditional
                 pdf_enabled = true
         }
 }

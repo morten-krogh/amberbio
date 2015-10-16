@@ -28,7 +28,7 @@ class HierarchicalClusteringPlotState: PageState {
                 self.molecule_title_number = molecule_title_number
 
                 pdf_enabled = true
-                full_screen = true
+                full_screen = .Full
 
                 prepared = false
         }

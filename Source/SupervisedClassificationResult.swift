@@ -57,7 +57,7 @@ class SupervisedClassificationResultState: PageState {
 
         func set_selected_segment_index(index index: Int) {
                 selected_segment_index = index
-                full_screen = index == 3
+                full_screen = index == 3 ? .Conditional : .Partial
                 pdf_enabled = index == 3
                 set_info()
         }

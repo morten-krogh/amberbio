@@ -8,7 +8,7 @@ class FactorChartState: PageState {
                 title = astring_body(string: "Factor Chart")
                 info = "Chart of the samples and their factors.\n\nOnly samples in the active data set are included.\n\nThe original data set is guaranteed to have all samples in the project."
 
-                full_screen = true
+                full_screen = .Full
                 pdf_enabled = true
                 txt_enabled = true
         }

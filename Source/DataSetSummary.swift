@@ -18,8 +18,6 @@ class DataSetSummaryState: PageState {
                 title = astring_body(string: "Data set summary")
                 info = "A summary of the active data set."
 
-                full_screen = false
-
                 prepared = false
         }
 

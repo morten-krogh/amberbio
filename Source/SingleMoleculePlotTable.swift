@@ -16,7 +16,7 @@ class SingleMoleculePlotTableState: PageState {
                 filtered_search_rows = potential_rows_full
 
                 search_enabled = true
-                full_screen = true
+                full_screen = .Conditional
         }
 }
 

@@ -29,7 +29,7 @@ class MultipleMoleculePlotState: PageState {
                 name = "multiple_molecule_plot"
                 title = astring_body(string: "Multiple molecule plot")
                 info = "A simultaneous plot of two or three molecules.\n\nSelect the molecules to show in the plot.\n\nTap the plot to show and hide the control panel on narrow screens.\n\nThe colors represent levels for the selected factor.\n\nThe molecules are sorted according to variance with the most variable molecules on top.\n\nValues in the plot are zero centered."
-                full_screen = true
+                full_screen = .Full
                 prepared = false
         }
 

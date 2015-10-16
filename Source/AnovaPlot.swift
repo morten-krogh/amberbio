@@ -25,7 +25,7 @@ class AnovaPlotState: PageState {
                 self.factor_id = factor_id
                 self.selected_level_ids = selected_level_ids
 
-                full_screen = true
+                full_screen = .Conditional
                 pdf_enabled = true
         }
 }

@@ -44,7 +44,7 @@ class LinearRegressionPlotState: PageState {
                 self.intercepts = intercepts
                 current()
 
-                full_screen = true
+                full_screen = .Conditional
                 pdf_enabled = true
         }
 

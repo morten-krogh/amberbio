@@ -29,7 +29,7 @@ class PCAState: PageState {
                 title = astring_body(string: "PCA")
                 info = "Principal component analysis(PCA).\n\nTap the pca plot to show and hide the control panel on narrow screens.\n\nThe PCA is performed for the selected samples using the molecules that have no missing values for those samples.\n\nThe colors represent levels for the selected factor.\n\nSelect the number of dimensions and the principal components to show in the plot.\n\nThe number after a principal component(PC) is the fraction of the total variance explained by that component."
 
-                full_screen = true
+                full_screen = .Full
                 prepared = false
         }
 

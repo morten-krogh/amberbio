@@ -19,7 +19,7 @@ class MissingValuesForSamplesState: PageState {
                 info = "The number of missing values per sample in the active data set.\n\nThe ordering of the samples can be changed by tapping the top bar."
 
                 pdf_enabled = true
-                full_screen = true
+                full_screen = .Conditional
 
                 orderings = ["Decreasing", "Original"] + state.factor_names
                 missing_values = missing_values_for_columns(matrix: state.values, number_of_rows: state.number_of_molecules, number_of_columns: state.number_of_samples)

@@ -21,7 +21,7 @@ class SingleMoleculeState: PageState {
                 self.previous_molecule_numbers = previous_molecule_numbers
                 self.selected_factor_id = selected_factor_id
 
-                full_screen = true
+                full_screen = .Full
                 pdf_enabled = true
         }
 }
