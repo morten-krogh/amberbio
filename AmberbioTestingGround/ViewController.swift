@@ -51,12 +51,12 @@ class DrawViewExample: DrawView {
         }
 
         override func tap_action(recognizer: UITapGestureRecognizer) {
-                let location = recognizer.locationInView(draw_view_tiled_layer_view)
-                print(location)
+//                let location = recognizer.locationInView(draw_view_tiled_layer_view)
+//                print(location)
         }
 
         override func scrollViewDidEndZooming(scrollView: UIScrollView, withView view: UIView?, atScale scale: CGFloat) {
                 super.scrollViewDidEndZooming(scrollView, withView: view, atScale: scale)
-                print("hi \(scale)")
+//                print("hi \(scale)")
         }
 }
