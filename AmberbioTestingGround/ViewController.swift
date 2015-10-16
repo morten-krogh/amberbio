@@ -27,8 +27,8 @@ class ViewController: UIViewController {
 
 class DrawViewExample: DrawView {
 
-        override init(frame: CGRect) {
-                super.init(frame: frame)
+        init(frame: CGRect) {
+                super.init(frame: frame, tappable: true)
 
                 content_size = CGSize(width: 800, height: 500)
 //                scroll_view.contentSize = content_size
@@ -50,5 +50,13 @@ class DrawViewExample: DrawView {
 
         }
 
+        override func tap_action(recognizer: UITapGestureRecognizer) {
+                let location = recognizer.locationInView(draw_view_tiled_layer_view)
+                print(location)
+        }
 
+        override func scrollViewDidEndZooming(scrollView: UIScrollView, withView view: UIView?, atScale scale: CGFloat) {
+                super.scrollViewDidEndZooming(scrollView, withView: view, atScale: scale)
+                print("hi \(scale)")
+        }
 }

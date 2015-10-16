@@ -15,7 +15,7 @@ class DrawView: UIView, UIScrollViewDelegate, DrawViewTiledLayerViewDelegate {
         let scroll_view = UIScrollView()
         var draw_view_tiled_layer_view: DrawViewTiledLayerView?
 
-        override init(frame: CGRect) {
+        init(frame: CGRect, tappable: Bool) {
                 super.init(frame: frame)
 
                 draw_view_tiled_layer_view = DrawViewTiledLayerView(frame: CGRect.zero, delegate: self)
@@ -23,6 +23,11 @@ class DrawView: UIView, UIScrollViewDelegate, DrawViewTiledLayerViewDelegate {
 
                 scroll_view.delegate = self
                 addSubview(scroll_view)
+
+                if tappable {
+                        let tap_recognizer = UITapGestureRecognizer(target: self, action: "tap_action:")
+                        draw_view_tiled_layer_view?.addGestureRecognizer(tap_recognizer)
+                }
         }
 
         required init?(coder aDecoder: NSCoder) {
@@ -87,8 +92,6 @@ class DrawView: UIView, UIScrollViewDelegate, DrawViewTiledLayerViewDelegate {
                 if zoom_scale > maximum_zoom_scale {
                         set_zoom_scale(zoom_scale: maximum_zoom_scale)
                 }
-
-                print("scale_min = \(scale_min), scale_max = \(scale_max), zoom_scale = \(zoom_scale)")
         }
 
         func set_zoom_scale(zoom_scale zoom_scale: CGFloat) {
@@ -108,11 +111,13 @@ class DrawView: UIView, UIScrollViewDelegate, DrawViewTiledLayerViewDelegate {
         func scrollViewDidEndZooming(scrollView: UIScrollView, withView view: UIView?, atScale scale: CGFloat) {
                 zoom_scale = scrollView.zoomScale
                 layout_scroll_view()
-                print(zoom_scale)
         }
 
-
         func draw(context context: CGContext, rect: CGRect) {
+
+        }
+
+        func tap_action(recognizer: UITapGestureRecognizer) {
 
         }
 }
