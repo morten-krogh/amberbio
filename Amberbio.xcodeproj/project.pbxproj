@@ -258,8 +258,8 @@
 		601E57A61BCD0B12002EEEB3 /* SupervisedClassification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SupervisedClassification.swift; path = Source/SupervisedClassification.swift; sourceTree = "<group>"; };
 		601E57A81BCD0F1C002EEEB3 /* SVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SVM.swift; path = Source/SVM.swift; sourceTree = "<group>"; };
 		601E57AA1BCD53C4002EEEB3 /* ParameterTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ParameterTableViewCell.swift; path = Source/ParameterTableViewCell.swift; sourceTree = "<group>"; };
-		601E57AD1BCE64F2002EEEB3 /* svm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = svm.cpp; path = ../../../share/libsvm/svm.cpp; sourceTree = "<group>"; };
-		601E57AE1BCE64F2002EEEB3 /* svm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = svm.h; path = ../../../share/libsvm/svm.h; sourceTree = "<group>"; };
+		601E57AD1BCE64F2002EEEB3 /* svm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = svm.cpp; path = libsvm/svm.cpp; sourceTree = "<group>"; };
+		601E57AE1BCE64F2002EEEB3 /* svm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = svm.h; path = libsvm/svm.h; sourceTree = "<group>"; };
 		601E57B01BCE69AA002EEEB3 /* svm-adapter.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = "svm-adapter.c"; path = "Source/svm-adapter.c"; sourceTree = "<group>"; };
 		601E57B11BCE69AA002EEEB3 /* svm-adapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "svm-adapter.h"; path = "Source/svm-adapter.h"; sourceTree = "<group>"; };
 		601E57B31BCF83E8002EEEB3 /* ROC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ROC.swift; path = Source/ROC.swift; sourceTree = "<group>"; };
@@ -1602,6 +1602,7 @@
 				6094CBFA1BCF8DCF002A5E2A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		60B4018B1BA1BEC400D8DD80 /* Build configuration list for PBXNativeTarget "AmberbioMakeDatabase" */ = {
 			isa = XCConfigurationList;
