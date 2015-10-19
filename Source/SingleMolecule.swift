@@ -34,7 +34,8 @@ class SingleMolecule: Component {
         var segmented_control: UISegmentedControl?
         let next_button = UIButton(type: UIButtonType.System)
         let previous_button = UIButton(type: UIButtonType.System)
-        let info_label = UILabel()
+        let molecule_name_button = UIButton(type: .System)
+        let anova_label = UILabel()
 
         let tiled_scroll_view = TiledScrollView(frame: CGRect.zero)
         var single_molecule_plot: SingleMoleculePlot?
@@ -50,14 +51,14 @@ class SingleMolecule: Component {
                 previous_button.setAttributedTitle(astring_font_size_color(string: "previous", font_size: 20 as CGFloat), forState: .Normal)
                 previous_button.sizeToFit()
 
-                info_label.numberOfLines = 0
-                info_label.textAlignment = .Center
-
                 view.addSubview(scroll_view_segmented_control)
 
                 view.addSubview(next_button)
                 view.addSubview(previous_button)
-                view.addSubview(info_label)
+
+                molecule_name_button.addTarget(self, action: "molecule_name_action", forControlEvents: .TouchUpInside)
+                view.addSubview(molecule_name_button)
+                view.addSubview(anova_label)
 
                 view.addSubview(tiled_scroll_view)
         }
@@ -84,9 +85,21 @@ class SingleMolecule: Component {
 
                 next_button.frame = CGRect(x: width - side_margin - next_button.frame.width, y: origin_y - 6, width: next_button.frame.width, height: next_button.frame.height)
                 previous_button.frame = CGRect(x: side_margin, y: origin_y - 6, width: previous_button.frame.width, height: previous_button.frame.height)
-                info_label.frame = CGRect(x: 2 * side_margin + previous_button.frame.width, y: origin_y, width: width - 4 * side_margin - previous_button.frame.width - next_button.frame.width, height: info_label.frame.height)
 
-                origin_y += max(next_button.frame.height, info_label.frame.height) + top_margin
+                let molecule_name_max_width = width - 4 * side_margin - 2 * previous_button.frame.width
+                molecule_name_button.sizeToFit()
+                molecule_name_button.frame.size.width = min(molecule_name_button.frame.width, molecule_name_max_width)
+                molecule_name_button.frame.origin = CGPoint(x: (width - molecule_name_button.frame.width) / 2, y: origin_y - 5)
+
+                origin_y += molecule_name_button.frame.height + 0
+
+                if !anova_label.hidden {
+                        anova_label.sizeToFit()
+                        anova_label.frame.size.width = min(anova_label.frame.width, molecule_name_max_width)
+                        anova_label.frame.origin = CGPoint(x: (width - anova_label.frame.width) / 2, y: origin_y)
+
+                        origin_y += anova_label.frame.height + top_margin
+                }
 
                 if let single_molecule_plot = single_molecule_plot {
                         let single_molecule_rect = CGRect(x: side_margin, y: origin_y, width: width - 2 * side_margin, height: view.frame.height - origin_y)
@@ -132,12 +145,15 @@ class SingleMolecule: Component {
                 var single_plot_colors = [] as [[UIColor]]
                 var single_plot_values = [] as [[Double]]
 
+                let molecule_name = state.molecule_names[single_molecule_state.molecule_number]
+
                 if single_molecule_state.selected_factor_id == 0 {
                         single_plot_names = state.sample_names
                         single_plot_colors = [[UIColor]](count: state.number_of_samples, repeatedValue: [color_blue_circle_color])
                         single_plot_values = values_for_molecule.map({ [$0] })
-                        let info_string = "\(state.molecule_names[single_molecule_state.molecule_number])"
-                        info_label.attributedText = astring_font_size_color(string: info_string, font_size: 17)
+                        molecule_name_button.setAttributedTitle(astring_font_size_color(string: molecule_name, font: nil, font_size: 20, color: nil), forState: .Normal)
+                        anova_label.text = ""
+                        anova_label.hidden = true
                 } else {
                         let factor_index = state.factor_ids.indexOf(single_molecule_state.selected_factor_id)!
                         let level_ids = state.level_ids_by_factor_and_sample[factor_index]
@@ -163,19 +179,18 @@ class SingleMolecule: Component {
                         }
 
                         let p_value = Anova(values: values_for_molecule, offset: 0, indices_for_levels: indices_for_levels).p_value
-                        let info_astring = astring_font_size_color(string: "\(state.molecule_names[single_molecule_state.molecule_number])\nAnova: ", font_size: 17)
-                        info_astring.appendAttributedString(astring_from_p_value(p_value: p_value, cutoff: 0))
-                        let paragraph_style = NSMutableParagraphStyle()
-                        paragraph_style.lineSpacing = 6 as CGFloat
-                        paragraph_style.alignment = .Center
-                        info_astring.addAttribute(NSParagraphStyleAttributeName, value: paragraph_style, range: NSMakeRange(0, info_astring.length))
-                        info_label.attributedText = info_astring
-                }
 
-                info_label.sizeToFit()
+                        molecule_name_button.setAttributedTitle(astring_font_size_color(string: molecule_name, font: nil, font_size: 20, color: nil), forState: .Normal)
+                        let anova_astring = astring_font_size_color(string: "Anova: ", font_size: 17)
+                        anova_astring.appendAttributedString(astring_from_p_value(p_value: p_value, cutoff: 0))
+                        anova_label.attributedText = anova_astring
+                        anova_label.hidden = false
+                }
 
                 single_molecule_plot = SingleMoleculePlot(names: single_plot_names, colors: single_plot_colors, values: single_plot_values)
                 tiled_scroll_view.delegate = single_molecule_plot
+
+                view.setNeedsLayout()
         }
 
         func pdf_action() {
@@ -212,5 +227,9 @@ class SingleMolecule: Component {
                         single_molecule_state.selected_factor_id = new_selected_factor_id
                         state.render()
                 }
+        }
+
+        func molecule_name_action() {
+                state.molecule_web_search.open_url(molecule_index: single_molecule_state.molecule_number)
         }
 }
