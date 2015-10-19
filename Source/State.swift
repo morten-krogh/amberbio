@@ -52,6 +52,8 @@ class State {
 
         var full_page_scroll_offset = 0 as CGFloat
 
+        var molecule_web_search: MoleculeWebSearch!
+
         init(database: Database) {
                 self.database = database
                 let active_data_set_id = get_active_data_set_id()
@@ -60,6 +62,7 @@ class State {
                                 home_selected_index_path = NSIndexPath(forRow: row, inSection: section)
                 }
                 set_active_data_set(data_set_id: active_data_set_id)
+                molecule_web_search = MoleculeWebSearch()
         }
 
         func render() {

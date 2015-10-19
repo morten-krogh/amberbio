@@ -6,7 +6,7 @@ class MoleculeWebSearch {
                 "http://www.google.com/search?q="
         ]
 
-        var molecule
+//        var molecule
 
         var custom_urls = [] as [String]
 
@@ -18,7 +18,7 @@ class MoleculeWebSearch {
 
         }
 
-        func url(molecule_index molecule_index: Int) -> NSURL {
+        func url(molecule_index molecule_index: Int) -> NSURL? {
 
                 let molecule_name = state.molecule_names[molecule_index]
                 let url = system_urls[0] + molecule_name
@@ -26,10 +26,10 @@ class MoleculeWebSearch {
 
         }
 
-        func web_search(molecule_index molecule_index) {
-                
-
-
+        func open_url(molecule_index molecule_index: Int) {
+                if let url = url(molecule_index: molecule_index) {
+//                        UI
+//                        UIApplication.sharedApplication().openURL(url)
+                }
         }
-
 }

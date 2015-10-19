@@ -4,6 +4,7 @@ let single_molecule_table_view_cell_height = 500 as CGFloat
 
 class SingleMoleculeTableViewCell: UITableViewCell {
 
+        var molecule_index = 0
         var molecule_name = ""
         var factor_name: String?
         var annotation_names = [] as [String]
@@ -13,6 +14,7 @@ class SingleMoleculeTableViewCell: UITableViewCell {
 
         let info_label = UILabel()
         var pdf_txt_buttons: PdfTxtButtons!
+        let molecule_web_search_button = UIButton(type: .System)
 
         let tiled_scroll_view = TiledScrollView(frame: CGRect.zero)
         var single_molecule_plot: SingleMoleculePlot?
@@ -36,8 +38,11 @@ class SingleMoleculeTableViewCell: UITableViewCell {
                 pdf_txt_buttons = PdfTxtButtons(target: self, pdf_action: "pdf_action", txt_action: nil)
                 inset_view.addSubview(pdf_txt_buttons)
 
-                inset_view.addSubview(tiled_scroll_view)
+                molecule_web_search_button.setAttributedTitle(astring_body(string: "Web search"), forState: .Normal)
+                molecule_web_search_button.addTarget(self, action: "web_search_action", forControlEvents: .TouchUpInside)
+                inset_view.addSubview(molecule_web_search_button)
 
+                inset_view.addSubview(tiled_scroll_view)
         }
 
         required init(coder aDecoder: NSCoder) {fatalError("This initializer should not be called")}
@@ -115,5 +120,9 @@ class SingleMoleculeTableViewCell: UITableViewCell {
                 state.render()
                 
 
+        }
+
+        func web_search_action() {
+                state.molecule_web_search.open_url(molecule_index: molecule_index)
         }
 }
