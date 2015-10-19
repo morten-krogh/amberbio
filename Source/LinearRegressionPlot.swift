@@ -167,7 +167,7 @@ class LinearRegressionPlot: Component {
                 next_button.hidden = linear_regression_plot_state.next_molecule_numbers.isEmpty
                 previous_button.hidden = linear_regression_plot_state.previous_molecule_numbers.isEmpty
 
-                info_label.attributedText = astring_font_size_color(string: linear_regression_plot_state.molecule_name, font: nil, font_size: 20, color: color_blue)
+                info_label.attributedText = astring_font_size_color(string: linear_regression_plot_state.molecule_name, font: nil, font_size: 20, color: next_button.currentTitleColor)
 
                 linear_regression_drawer = LinearRegressionDrawer(x_values: linear_regression_plot_state.current_x_values, y_values: linear_regression_plot_state.current_y_values, tick_values: linear_regression_plot_state.tick_values, minimum_x_value: linear_regression_plot_state.minimum_x_value, maximum_x_value: linear_regression_plot_state.maximum_x_value, minimum_y_value: linear_regression_plot_state.minimum_y_value, maximum_y_value: linear_regression_plot_state.maximum_y_value, slope: linear_regression_plot_state.slope, intercept: linear_regression_plot_state.intercept, x_axis_title: linear_regression_plot_state.factor_name)
                 tiled_scroll_view.delegate = linear_regression_drawer
@@ -196,7 +196,6 @@ class LinearRegressionPlot: Component {
         }
 
         func molecule_name_action() {
-                print("hej")
-//                state.molecule_web_search.open_url(molecule_index: linear_regression_plot_state.molecule_number)
+                state.molecule_web_search.open_url(molecule_index: linear_regression_plot_state.molecule_number)
         }
 }
