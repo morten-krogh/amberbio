@@ -34,6 +34,7 @@
 		602708FC1BA747A000672D54 /* breast-cancer-values.txt in Resources */ = {isa = PBXBuildFile; fileRef = 602708F61BA7478500672D54 /* breast-cancer-values.txt */; settings = {ASSET_TAGS = (); }; };
 		602709031BA8054400672D54 /* brain-stem-cells-factors.txt in Resources */ = {isa = PBXBuildFile; fileRef = 602708FF1BA804EA00672D54 /* brain-stem-cells-factors.txt */; settings = {ASSET_TAGS = (); }; };
 		602709041BA8054800672D54 /* brain-stem-cells-values.txt in Resources */ = {isa = PBXBuildFile; fileRef = 602709001BA804EA00672D54 /* brain-stem-cells-values.txt */; settings = {ASSET_TAGS = (); }; };
+		602E0C721BD4D5F600BF0F17 /* MoleculeWebSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602E0C711BD4D5F600BF0F17 /* MoleculeWebSearch.swift */; settings = {ASSET_TAGS = (); }; };
 		605F52321BC2ED2D00033B91 /* SupervisedClassificationParameterSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605F52311BC2ED2D00033B91 /* SupervisedClassificationParameterSelection.swift */; settings = {ASSET_TAGS = (); }; };
 		605F52351BC3B37300033B91 /* knn.c in Sources */ = {isa = PBXBuildFile; fileRef = 605F52331BC3B37300033B91 /* knn.c */; settings = {ASSET_TAGS = (); }; };
 		605F52371BC3D9EF00033B91 /* SupervisedClassificationResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605F52361BC3D9EF00033B91 /* SupervisedClassificationResult.swift */; settings = {ASSET_TAGS = (); }; };
@@ -271,6 +272,7 @@
 		602708F61BA7478500672D54 /* breast-cancer-values.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "breast-cancer-values.txt"; path = "demo-data/breast-cancer/breast-cancer-values.txt"; sourceTree = "<group>"; };
 		602708FF1BA804EA00672D54 /* brain-stem-cells-factors.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "brain-stem-cells-factors.txt"; path = "demo-data/brain-stem-cells/brain-stem-cells-factors.txt"; sourceTree = "<group>"; };
 		602709001BA804EA00672D54 /* brain-stem-cells-values.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "brain-stem-cells-values.txt"; path = "demo-data/brain-stem-cells/brain-stem-cells-values.txt"; sourceTree = "<group>"; };
+		602E0C711BD4D5F600BF0F17 /* MoleculeWebSearch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoleculeWebSearch.swift; sourceTree = "<group>"; };
 		605F52311BC2ED2D00033B91 /* SupervisedClassificationParameterSelection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SupervisedClassificationParameterSelection.swift; path = Source/SupervisedClassificationParameterSelection.swift; sourceTree = "<group>"; };
 		605F52331BC3B37300033B91 /* knn.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = knn.c; path = Source/knn.c; sourceTree = "<group>"; };
 		605F52341BC3B37300033B91 /* knn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = knn.h; path = Source/knn.h; sourceTree = "<group>"; };
@@ -740,6 +742,7 @@
 				60B400381BA1982900D8DD80 /* state_init.swift */,
 				60B4003A1BA1983900D8DD80 /* State.swift */,
 				60B400941BA19C7900D8DD80 /* PageState.swift */,
+				602E0C711BD4D5F600BF0F17 /* MoleculeWebSearch.swift */,
 			);
 			name = State;
 			sourceTree = "<group>";
@@ -1070,6 +1073,7 @@
 				60B400E91BA19C7900D8DD80 /* DataSetSelection.swift in Sources */,
 				60B401041BA19C7900D8DD80 /* HierarchicalClusteringPlot.swift in Sources */,
 				60B4014A1BA19C7900D8DD80 /* SliderTableViewCell.swift in Sources */,
+				602E0C721BD4D5F600BF0F17 /* MoleculeWebSearch.swift in Sources */,
 				60B400D91BA19C7900D8DD80 /* AnovaFactorSelection.swift in Sources */,
 				60B401671BA1A20400D8DD80 /* ColorSlider.swift in Sources */,
 				60B4011B1BA19C7900D8DD80 /* MultipleMoleculePlot.swift in Sources */,
