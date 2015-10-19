@@ -34,7 +34,7 @@ class SingleMolecule: Component {
         var segmented_control: UISegmentedControl?
         let next_button = UIButton(type: UIButtonType.System)
         let previous_button = UIButton(type: UIButtonType.System)
-        let molecule_name_label = UILabel()
+        let molecule_name_button = Button()
         let anova_label = UILabel()
 
         let tiled_scroll_view = TiledScrollView(frame: CGRect.zero)
@@ -56,10 +56,8 @@ class SingleMolecule: Component {
                 view.addSubview(next_button)
                 view.addSubview(previous_button)
 
-                let tap_recognizer = UITapGestureRecognizer(target: self, action: "molecule_name_action")
-                molecule_name_label.addGestureRecognizer(tap_recognizer)
-                molecule_name_label.userInteractionEnabled = true
-                view.addSubview(molecule_name_label)
+                molecule_name_button.addTarget(self, action: "molecule_name_action", forControlEvents: .TouchUpInside)
+                view.addSubview(molecule_name_button)
                 view.addSubview(anova_label)
 
                 view.addSubview(tiled_scroll_view)
@@ -83,21 +81,25 @@ class SingleMolecule: Component {
                         origin_y += segmented_control.frame.height
                 }
 
-                origin_y += 9
+                origin_y += 20
 
-                next_button.frame = CGRect(x: width - side_margin - next_button.frame.width, y: origin_y, width: next_button.frame.width, height: next_button.frame.height)
-                previous_button.frame = CGRect(x: side_margin, y: origin_y, width: previous_button.frame.width, height: previous_button.frame.height)
+                molecule_name_button.sizeToFit()
 
-                let molecule_name_max_width = width - 4 * side_margin - 2 * previous_button.frame.width
-                molecule_name_label.sizeToFit()
-                molecule_name_label.frame.size.width = min(molecule_name_label.frame.width, molecule_name_max_width)
-                molecule_name_label.frame.origin = CGPoint(x: (width - molecule_name_label.frame.width) / 2, y: origin_y + 10)
+                next_button.sizeToFit()
+                let origin_y_next = origin_y + (molecule_name_button.frame.height - next_button.frame.height) / 2
+                next_button.frame.origin = CGPoint(x: width - side_margin - next_button.frame.width, y: origin_y_next)
 
-                origin_y += molecule_name_label.frame.height + 10
+                previous_button.sizeToFit()
+                let origin_y_previous = origin_y + (molecule_name_button.frame.height - previous_button.frame.height) / 2
+                previous_button.frame.origin = CGPoint(x: side_margin, y: origin_y_previous)
 
+                molecule_name_button.frame.size.width = min(molecule_name_button.frame.width, width - 4 * side_margin - 2 * previous_button.frame.width)
+                molecule_name_button.frame.origin = CGPoint(x: (width - molecule_name_button.frame.width) / 2, y: origin_y)
+
+                origin_y = max(CGRectGetMaxY(molecule_name_button.frame), CGRectGetMaxY(next_button.frame), CGRectGetMaxY(previous_button.frame)) + 8
+                
                 if !anova_label.hidden {
                         anova_label.sizeToFit()
-                        anova_label.frame.size.width = min(anova_label.frame.width, molecule_name_max_width)
                         anova_label.frame.origin = CGPoint(x: (width - anova_label.frame.width) / 2, y: origin_y)
 
                         origin_y += anova_label.frame.height + top_margin
@@ -149,7 +151,7 @@ class SingleMolecule: Component {
 
                 let molecule_name = state.molecule_names[single_molecule_state.molecule_number]
 
-                molecule_name_label.attributedText = astring_font_size_color(string: molecule_name, font: nil, font_size: 20, color: next_button.currentTitleColor)
+                molecule_name_button.update(text: molecule_name, font_size: 20)
 
                 if single_molecule_state.selected_factor_id == 0 {
                         single_plot_names = state.sample_names
