@@ -298,7 +298,7 @@ class FullPage: Component, UIScrollViewDelegate, UISearchBarDelegate {
                 title_label.view.frame = CGRect(x: 87, y: origin_y, width: width - 174, height: 35)
 
                 let number_of_buttons_enabled = (state.page_state.pdf_enabled ? 1 : 0) + (state.page_state.png_enabled ? 1 : 0) + (state.page_state.txt_enabled ? 1 : 0) + (state.page_state.histogram_enabled ? 1 : 0)
-                let raise_single_button = number_of_buttons_enabled == 1 && !state.page_state.search_enabled && !state.page_state.select_enabled
+                let raise_single_button = number_of_buttons_enabled == 1 && !state.page_state.search_enabled && !state.page_state.select_enabled && state.forward_pages.isEmpty
 
                 if !raise_single_button {
                         origin_y += 35

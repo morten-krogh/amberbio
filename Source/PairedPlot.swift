@@ -187,6 +187,8 @@ class PairedPlot: Component {
                 tiled_scroll_view.delegate = single_molecule_plot
 
                 info_label.attributedText = astring_font_size_color(string: molecule_name, font: nil, font_size: 20, color: next_button.currentTitleColor)
+
+                view.setNeedsLayout()
         }
 
         func pdf_action() {

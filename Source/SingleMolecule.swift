@@ -34,7 +34,7 @@ class SingleMolecule: Component {
         var segmented_control: UISegmentedControl?
         let next_button = UIButton(type: UIButtonType.System)
         let previous_button = UIButton(type: UIButtonType.System)
-        let molecule_name_button = UIButton(type: .System)
+        let molecule_name_label = UILabel()
         let anova_label = UILabel()
 
         let tiled_scroll_view = TiledScrollView(frame: CGRect.zero)
@@ -56,8 +56,10 @@ class SingleMolecule: Component {
                 view.addSubview(next_button)
                 view.addSubview(previous_button)
 
-                molecule_name_button.addTarget(self, action: "molecule_name_action", forControlEvents: .TouchUpInside)
-                view.addSubview(molecule_name_button)
+                let tap_recognizer = UITapGestureRecognizer(target: self, action: "molecule_name_action")
+                molecule_name_label.addGestureRecognizer(tap_recognizer)
+                molecule_name_label.userInteractionEnabled = true
+                view.addSubview(molecule_name_label)
                 view.addSubview(anova_label)
 
                 view.addSubview(tiled_scroll_view)
@@ -81,17 +83,17 @@ class SingleMolecule: Component {
                         origin_y += segmented_control.frame.height
                 }
 
-                origin_y += 15
+                origin_y += 9
 
-                next_button.frame = CGRect(x: width - side_margin - next_button.frame.width, y: origin_y - 6, width: next_button.frame.width, height: next_button.frame.height)
-                previous_button.frame = CGRect(x: side_margin, y: origin_y - 6, width: previous_button.frame.width, height: previous_button.frame.height)
+                next_button.frame = CGRect(x: width - side_margin - next_button.frame.width, y: origin_y, width: next_button.frame.width, height: next_button.frame.height)
+                previous_button.frame = CGRect(x: side_margin, y: origin_y, width: previous_button.frame.width, height: previous_button.frame.height)
 
                 let molecule_name_max_width = width - 4 * side_margin - 2 * previous_button.frame.width
-                molecule_name_button.sizeToFit()
-                molecule_name_button.frame.size.width = min(molecule_name_button.frame.width, molecule_name_max_width)
-                molecule_name_button.frame.origin = CGPoint(x: (width - molecule_name_button.frame.width) / 2, y: origin_y - 5)
+                molecule_name_label.sizeToFit()
+                molecule_name_label.frame.size.width = min(molecule_name_label.frame.width, molecule_name_max_width)
+                molecule_name_label.frame.origin = CGPoint(x: (width - molecule_name_label.frame.width) / 2, y: origin_y + 10)
 
-                origin_y += molecule_name_button.frame.height + 0
+                origin_y += molecule_name_label.frame.height + 10
 
                 if !anova_label.hidden {
                         anova_label.sizeToFit()
@@ -147,11 +149,12 @@ class SingleMolecule: Component {
 
                 let molecule_name = state.molecule_names[single_molecule_state.molecule_number]
 
+                molecule_name_label.attributedText = astring_font_size_color(string: molecule_name, font: nil, font_size: 20, color: next_button.currentTitleColor)
+
                 if single_molecule_state.selected_factor_id == 0 {
                         single_plot_names = state.sample_names
                         single_plot_colors = [[UIColor]](count: state.number_of_samples, repeatedValue: [color_blue_circle_color])
                         single_plot_values = values_for_molecule.map({ [$0] })
-                        molecule_name_button.setAttributedTitle(astring_font_size_color(string: molecule_name, font: nil, font_size: 20, color: nil), forState: .Normal)
                         anova_label.text = ""
                         anova_label.hidden = true
                 } else {
@@ -180,7 +183,6 @@ class SingleMolecule: Component {
 
                         let p_value = Anova(values: values_for_molecule, offset: 0, indices_for_levels: indices_for_levels).p_value
 
-                        molecule_name_button.setAttributedTitle(astring_font_size_color(string: molecule_name, font: nil, font_size: 20, color: nil), forState: .Normal)
                         let anova_astring = astring_font_size_color(string: "Anova: ", font_size: 17)
                         anova_astring.appendAttributedString(astring_from_p_value(p_value: p_value, cutoff: 0))
                         anova_label.attributedText = anova_astring
