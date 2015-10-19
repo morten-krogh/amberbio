@@ -105,6 +105,9 @@ class LinearRegressionPlot: Component {
                 previous_button.addTarget(self, action: "previous_action", forControlEvents: UIControlEvents.TouchUpInside)
                 previous_button.setAttributedTitle(astring_font_size_color(string: "previous", font_size: 20 as CGFloat), forState: .Normal)
 
+                let info_tap_recognizer = UITapGestureRecognizer(target: self, action: "molecule_name_action")
+                info_label.addGestureRecognizer(info_tap_recognizer)
+                info_label.userInteractionEnabled = true
                 info_label.textAlignment = .Center
 
                 view.addSubview(next_button)
@@ -126,7 +129,8 @@ class LinearRegressionPlot: Component {
                 var origin_y = 20 as CGFloat
 
                 info_label.sizeToFit()
-                info_label.frame = CGRect(x: 2 * side_margin + previous_button.frame.width, y: origin_y, width: width - 4 * side_margin - 2 * previous_button.frame.width, height: info_label.frame.height)
+                info_label.frame.size.width = min(info_label.frame.width, width - 4 * side_margin - 2 * previous_button.frame.width)
+                info_label.frame.origin = CGPoint(x: (width - info_label.frame.width) / 2, y: origin_y)
 
                 next_button.sizeToFit()
                 let origin_y_next = origin_y + (info_label.frame.height - next_button.frame.height) / 2
@@ -163,8 +167,7 @@ class LinearRegressionPlot: Component {
                 next_button.hidden = linear_regression_plot_state.next_molecule_numbers.isEmpty
                 previous_button.hidden = linear_regression_plot_state.previous_molecule_numbers.isEmpty
 
-                info_label.attributedText = astring_body(string: linear_regression_plot_state.molecule_name)
-                info_label.textAlignment = .Center
+                info_label.attributedText = astring_font_size_color(string: linear_regression_plot_state.molecule_name, font: nil, font_size: 20, color: color_blue)
 
                 linear_regression_drawer = LinearRegressionDrawer(x_values: linear_regression_plot_state.current_x_values, y_values: linear_regression_plot_state.current_y_values, tick_values: linear_regression_plot_state.tick_values, minimum_x_value: linear_regression_plot_state.minimum_x_value, maximum_x_value: linear_regression_plot_state.maximum_x_value, minimum_y_value: linear_regression_plot_state.minimum_y_value, maximum_y_value: linear_regression_plot_state.maximum_y_value, slope: linear_regression_plot_state.slope, intercept: linear_regression_plot_state.intercept, x_axis_title: linear_regression_plot_state.factor_name)
                 tiled_scroll_view.delegate = linear_regression_drawer
@@ -190,5 +193,10 @@ class LinearRegressionPlot: Component {
         func previous_action() {
                 linear_regression_plot_state.previous()
                 state.render()
+        }
+
+        func molecule_name_action() {
+                print("hej")
+//                state.molecule_web_search.open_url(molecule_index: linear_regression_plot_state.molecule_number)
         }
 }
