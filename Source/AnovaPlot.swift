@@ -176,7 +176,8 @@ class AnovaPlot: Component {
 
                 let (_, p_value) = stat_anova(values: single_plot_values)
 
-                molecule_name_button.setAttributedTitle(astring_font_size_color(string: molecule_name, font: nil, font_size: 20, color: nil), forState: .Normal)
+//                molecule_name_button.setAttributedTitle(astring_font_size_color(string: molecule_name, font: nil, font_size: 20, color: nil), forState: .Normal)
+                molecule_name_button.setTitle(molecule_name, forState: .Normal)
 
                 let anova_astring = astring_font_size_color(string: "Anova: ", font_size: 17)
                 anova_astring.appendAttributedString(astring_from_p_value(p_value: p_value, cutoff: 0))

@@ -53,6 +53,7 @@
 		6094CC021BCFC544002A5E2A /* NumberFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B4003E1BA19BED00D8DD80 /* NumberFormat.swift */; settings = {ASSET_TAGS = (); }; };
 		6094CC041BD0DCF7002A5E2A /* DrawView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6094CC031BD0DCF7002A5E2A /* DrawView.swift */; settings = {ASSET_TAGS = (); }; };
 		6094CC051BD0EAC9002A5E2A /* DrawView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6094CC031BD0DCF7002A5E2A /* DrawView.swift */; settings = {ASSET_TAGS = (); }; };
+		60A893E11BD52651004DAD2C /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A893E01BD52651004DAD2C /* Button.swift */; settings = {ASSET_TAGS = (); }; };
 		60B400391BA1982900D8DD80 /* state_init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400381BA1982900D8DD80 /* state_init.swift */; settings = {ASSET_TAGS = (); }; };
 		60B4003B1BA1983900D8DD80 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B4003A1BA1983900D8DD80 /* State.swift */; settings = {ASSET_TAGS = (); }; };
 		60B400411BA19BED00D8DD80 /* AttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B4003D1BA19BED00D8DD80 /* AttributedString.swift */; settings = {ASSET_TAGS = (); }; };
@@ -286,6 +287,7 @@
 		6094CBF61BCF8DCF002A5E2A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6094CBF81BCF8DCF002A5E2A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6094CC031BD0DCF7002A5E2A /* DrawView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DrawView.swift; path = Source/DrawView.swift; sourceTree = "<group>"; };
+		60A893E01BD52651004DAD2C /* Button.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		60B400381BA1982900D8DD80 /* state_init.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = state_init.swift; path = Source/state_init.swift; sourceTree = "<group>"; };
 		60B4003A1BA1983900D8DD80 /* State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = State.swift; path = Source/State.swift; sourceTree = "<group>"; };
 		60B4003D1BA19BED00D8DD80 /* AttributedString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AttributedString.swift; path = Source/AttributedString.swift; sourceTree = "<group>"; };
@@ -638,6 +640,7 @@
 			isa = PBXGroup;
 			children = (
 				60B400481BA19C7900D8DD80 /* Alert.swift */,
+				60A893E01BD52651004DAD2C /* Button.swift */,
 				60B401641BA1A20400D8DD80 /* ColorGrid.swift */,
 				60B401651BA1A20400D8DD80 /* ColorSlider.swift */,
 				60B401601BA1A1D200D8DD80 /* ColorCircle.swift */,
@@ -1166,6 +1169,7 @@
 				60D5CE381BC26CD100B0D88A /* SupervisedClassificationTrainingSelection.swift in Sources */,
 				60B401061BA19C7900D8DD80 /* Home.swift in Sources */,
 				601E57B41BCF83E8002EEEB3 /* ROCView.swift in Sources */,
+				60A893E11BD52651004DAD2C /* Button.swift in Sources */,
 				60B400F11BA19C7900D8DD80 /* DocumentPickerImport.swift in Sources */,
 				60B401441BA19C7900D8DD80 /* SegmentedControlTableViewCell.swift in Sources */,
 				60B401001BA19C7900D8DD80 /* Forward.swift in Sources */,
