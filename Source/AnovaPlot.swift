@@ -18,7 +18,7 @@ class AnovaPlotState: PageState {
                 super.init()
                 name = "anova_plot"
                 title = astring_body(string: "Single molecule plot")
-                info = "Plot of the values for a single molecule.\n\nTap a level on the top bar to include and exclude levels.\n\nTap next or previous to see other molecules."
+                info = "Plot of the values for a single molecule.\n\nTap a level on the top bar to include and exclude levels.\n\nTap next or previous to see other molecules.\n\nTap the molecule name to conduct a web search."
                 self.molecule_number = molecule_number
                 self.next_molecule_numbers = next_molecule_numbers
                 self.previous_molecule_numbers = previous_molecule_numbers
@@ -44,7 +44,8 @@ class AnovaPlot: Component {
         let multi_segmented_scroll_view = MultiSegmentedScrollView()
         let next_button = UIButton(type: UIButtonType.System)
         let previous_button = UIButton(type: UIButtonType.System)
-        let info_label = UILabel()
+        let molecule_name_button = UIButton(type: .System)
+        let anova_label = UILabel()
 
         let tiled_scroll_view = TiledScrollView(frame: CGRect.zero)
         var single_molecule_plot: SingleMoleculePlot?
@@ -60,15 +61,15 @@ class AnovaPlot: Component {
                 previous_button.setAttributedTitle(astring_font_size_color(string: "previous", font_size: 20 as CGFloat), forState: .Normal)
                 previous_button.sizeToFit()
 
-                info_label.textAlignment = .Center
-                info_label.numberOfLines = 0
-
                 multi_segmented_scroll_view.addTarget(self, action: "multi_segmented_action:", forControlEvents: .ValueChanged)
                 view.addSubview(multi_segmented_scroll_view)
 
                 view.addSubview(next_button)
                 view.addSubview(previous_button)
-                view.addSubview(info_label)
+
+                molecule_name_button.addTarget(self, action: "molecule_name_action", forControlEvents: .TouchUpInside)
+                view.addSubview(molecule_name_button)
+                view.addSubview(anova_label)
 
                 view.addSubview(tiled_scroll_view)
         }
@@ -88,10 +89,19 @@ class AnovaPlot: Component {
 
                 next_button.frame = CGRect(x: width - side_margin - next_button.frame.width, y: origin_y - 6, width: next_button.frame.width, height: next_button.frame.height)
                 previous_button.frame = CGRect(x: side_margin, y: origin_y - 6, width: previous_button.frame.width, height: previous_button.frame.height)
-                info_label.sizeToFit()
-                info_label.frame = CGRect(x: 2 * side_margin + previous_button.frame.width, y: origin_y, width: width - 4 * side_margin - 2 * previous_button.frame.width, height: info_label.frame.height)
 
-                origin_y += max(next_button.frame.height, info_label.frame.height) + top_margin
+                let molecule_name_max_width = width - 4 * side_margin - 2 * previous_button.frame.width
+                molecule_name_button.sizeToFit()
+                molecule_name_button.frame.size.width = min(molecule_name_button.frame.width, molecule_name_max_width)
+                molecule_name_button.frame.origin = CGPoint(x: (width - molecule_name_button.frame.width) / 2, y: origin_y - 5)
+
+                origin_y += molecule_name_button.frame.height + 5
+
+                anova_label.sizeToFit()
+                anova_label.frame.size.width = min(anova_label.frame.width, molecule_name_max_width)
+                anova_label.frame.origin = CGPoint(x: (width - anova_label.frame.width) / 2, y: origin_y)
+
+                origin_y += anova_label.frame.height + top_margin
 
                 if let single_molecule_plot = single_molecule_plot {
                         let single_molecule_rect = CGRect(x: side_margin, y: origin_y, width: width - 2 * side_margin, height: view.frame.height - origin_y)
@@ -166,13 +176,11 @@ class AnovaPlot: Component {
 
                 let (_, p_value) = stat_anova(values: single_plot_values)
 
-                let info_astring = astring_font_size_color(string: "\(molecule_name)\nAnova: ", font_size: 17)
-                info_astring.appendAttributedString(astring_from_p_value(p_value: p_value, cutoff: 0))
-                let paragraph_style = NSMutableParagraphStyle()
-                paragraph_style.lineSpacing = 6 as CGFloat
-                paragraph_style.alignment = .Center
-                info_astring.addAttribute(NSParagraphStyleAttributeName, value: paragraph_style, range: NSMakeRange(0, info_astring.length))
-                info_label.attributedText = info_astring
+                molecule_name_button.setAttributedTitle(astring_font_size_color(string: molecule_name, font: nil, font_size: 20, color: nil), forState: .Normal)
+
+                let anova_astring = astring_font_size_color(string: "Anova: ", font_size: 17)
+                anova_astring.appendAttributedString(astring_from_p_value(p_value: p_value, cutoff: 0))
+                anova_label.attributedText = anova_astring
 
                 view.setNeedsLayout()
         }
@@ -211,5 +219,9 @@ class AnovaPlot: Component {
         func multi_segmented_action(sender: MultiSegmentedScrollView) {
                 anova_plot_state.selected_level_ids = sender.selected_segments.map { self.level_ids[$0] }
                 state.render()
+        }
+
+        func molecule_name_action() {
+                state.molecule_web_search.open_url(molecule_index: anova_plot_state.molecule_number)
         }
 }
