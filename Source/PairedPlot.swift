@@ -68,7 +68,7 @@ class PairedPlot: Component {
         let multi_segmented_scroll_view = MultiSegmentedScrollView()
         let next_button = UIButton(type: UIButtonType.System)
         let previous_button = UIButton(type: UIButtonType.System)
-        let info_label = UILabel()
+        let molecule_name_button = Button()
 
         let tiled_scroll_view = TiledScrollView(frame: CGRect.zero)
         var single_molecule_plot: SingleMoleculePlot?
@@ -84,19 +84,14 @@ class PairedPlot: Component {
                 previous_button.setAttributedTitle(astring_font_size_color(string: "previous", font_size: 20 as CGFloat), forState: .Normal)
                 previous_button.sizeToFit()
 
-                info_label.textAlignment = .Center
-
                 multi_segmented_scroll_view.addTarget(self, action: "multi_segmented_action:", forControlEvents: .ValueChanged)
                 view.addSubview(multi_segmented_scroll_view)
 
                 view.addSubview(next_button)
                 view.addSubview(previous_button)
 
-                let info_tap_recognizer = UITapGestureRecognizer(target: self, action: "molecule_name_action")
-                info_label.addGestureRecognizer(info_tap_recognizer)
-                info_label.userInteractionEnabled = true
-                info_label.textAlignment = .Center
-                view.addSubview(info_label)
+                molecule_name_button.addTarget(self, action: "molecule_name_action", forControlEvents: .TouchUpInside)
+                view.addSubview(molecule_name_button)
 
                 view.addSubview(tiled_scroll_view)
         }
@@ -114,17 +109,20 @@ class PairedPlot: Component {
 
                 var origin_y = 90 as CGFloat
 
+                molecule_name_button.sizeToFit()
+
                 next_button.sizeToFit()
-                next_button.frame = CGRect(x: width - side_margin - next_button.frame.width, y: origin_y - 6, width: next_button.frame.width, height: next_button.frame.height)
+                let origin_y_next = origin_y + (molecule_name_button.frame.height - next_button.frame.height) / 2
+                next_button.frame.origin = CGPoint(x: width - side_margin - next_button.frame.width, y: origin_y_next)
 
                 previous_button.sizeToFit()
-                previous_button.frame = CGRect(x: side_margin, y: origin_y - 6, width: previous_button.frame.width, height: previous_button.frame.height)
+                let origin_y_previous = origin_y + (molecule_name_button.frame.height - previous_button.frame.height) / 2
+                previous_button.frame.origin = CGPoint(x: side_margin, y: origin_y_previous)
 
-                info_label.sizeToFit()
-                info_label.frame.size.width = min(info_label.frame.width, width - 4 * side_margin - 2 * previous_button.frame.width)
-                info_label.frame.origin = CGPoint(x: (width - info_label.frame.width) / 2, y: origin_y)
+                molecule_name_button.frame.size.width = min(molecule_name_button.frame.width, width - 4 * side_margin - 2 * previous_button.frame.width)
+                molecule_name_button.frame.origin = CGPoint(x: (width - molecule_name_button.frame.width) / 2, y: origin_y)
 
-                origin_y += max(next_button.frame.height, info_label.frame.height) + top_margin
+                origin_y = max(CGRectGetMaxY(molecule_name_button.frame), CGRectGetMaxY(next_button.frame), CGRectGetMaxY(previous_button.frame)) + 8
 
                 if let single_molecule_plot = single_molecule_plot {
                         let single_molecule_rect = CGRect(x: side_margin, y: origin_y, width: width - 2 * side_margin, height: view.frame.height - origin_y)
@@ -186,7 +184,7 @@ class PairedPlot: Component {
                 single_molecule_plot = SingleMoleculePlot(names: single_plot_names, colors: single_plot_colors, values: single_plot_values)
                 tiled_scroll_view.delegate = single_molecule_plot
 
-                info_label.attributedText = astring_font_size_color(string: molecule_name, font: nil, font_size: 20, color: next_button.currentTitleColor)
+                molecule_name_button.update(text: molecule_name, font_size: 20)
 
                 view.setNeedsLayout()
         }

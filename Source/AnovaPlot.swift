@@ -44,7 +44,7 @@ class AnovaPlot: Component {
         let multi_segmented_scroll_view = MultiSegmentedScrollView()
         let next_button = UIButton(type: UIButtonType.System)
         let previous_button = UIButton(type: UIButtonType.System)
-        let molecule_name_button = UIButton(type: .System)
+        let molecule_name_button = Button()
         let anova_label = UILabel()
 
         let tiled_scroll_view = TiledScrollView(frame: CGRect.zero)
@@ -85,20 +85,25 @@ class AnovaPlot: Component {
                 let segmented_rect = CGRect(x: 0, y: top_margin, width: width, height: 50)
                 multi_segmented_scroll_view.frame = segmented_rect
 
-                var origin_y = 80 as CGFloat
+                var origin_y = 70 as CGFloat
 
-                next_button.frame = CGRect(x: width - side_margin - next_button.frame.width, y: origin_y - 6, width: next_button.frame.width, height: next_button.frame.height)
-                previous_button.frame = CGRect(x: side_margin, y: origin_y - 6, width: previous_button.frame.width, height: previous_button.frame.height)
-
-                let molecule_name_max_width = width - 4 * side_margin - 2 * previous_button.frame.width
                 molecule_name_button.sizeToFit()
-                molecule_name_button.frame.size.width = min(molecule_name_button.frame.width, molecule_name_max_width)
-                molecule_name_button.frame.origin = CGPoint(x: (width - molecule_name_button.frame.width) / 2, y: origin_y - 5)
 
-                origin_y += molecule_name_button.frame.height + 5
+                next_button.sizeToFit()
+                let origin_y_next = origin_y + (molecule_name_button.frame.height - next_button.frame.height) / 2
+                next_button.frame.origin = CGPoint(x: width - side_margin - next_button.frame.width, y: origin_y_next)
+
+                previous_button.sizeToFit()
+                let origin_y_previous = origin_y + (molecule_name_button.frame.height - previous_button.frame.height) / 2
+                previous_button.frame.origin = CGPoint(x: side_margin, y: origin_y_previous)
+
+                molecule_name_button.frame.size.width = min(molecule_name_button.frame.width, width - 4 * side_margin - 2 * previous_button.frame.width)
+                molecule_name_button.frame.origin = CGPoint(x: (width - molecule_name_button.frame.width) / 2, y: origin_y)
+
+                origin_y = max(CGRectGetMaxY(molecule_name_button.frame), CGRectGetMaxY(next_button.frame), CGRectGetMaxY(previous_button.frame)) + 8
 
                 anova_label.sizeToFit()
-                anova_label.frame.size.width = min(anova_label.frame.width, molecule_name_max_width)
+                anova_label.frame.size.width = min(anova_label.frame.width, width - 4 * side_margin - 2 * previous_button.frame.width)
                 anova_label.frame.origin = CGPoint(x: (width - anova_label.frame.width) / 2, y: origin_y)
 
                 origin_y += anova_label.frame.height + top_margin
@@ -176,8 +181,7 @@ class AnovaPlot: Component {
 
                 let (_, p_value) = stat_anova(values: single_plot_values)
 
-//                molecule_name_button.setAttributedTitle(astring_font_size_color(string: molecule_name, font: nil, font_size: 20, color: nil), forState: .Normal)
-                molecule_name_button.setTitle(molecule_name, forState: .Normal)
+                molecule_name_button.update(text: molecule_name, font_size: 20)
 
                 let anova_astring = astring_font_size_color(string: "Anova: ", font_size: 17)
                 anova_astring.appendAttributedString(astring_from_p_value(p_value: p_value, cutoff: 0))
