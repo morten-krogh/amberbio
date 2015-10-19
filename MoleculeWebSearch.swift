@@ -1,4 +1,4 @@
-import Foundation
+import UIKit
 
 class MoleculeWebSearch {
 
@@ -19,17 +19,14 @@ class MoleculeWebSearch {
         }
 
         func url(molecule_index molecule_index: Int) -> NSURL? {
-
                 let molecule_name = state.molecule_names[molecule_index]
                 let url = system_urls[0] + molecule_name
                 return NSURL(string: url)
-
         }
 
         func open_url(molecule_index molecule_index: Int) {
                 if let url = url(molecule_index: molecule_index) {
-//                        UI
-//                        UIApplication.sharedApplication().openURL(url)
+                        UIApplication.sharedApplication().openURL(url)
                 }
         }
 }

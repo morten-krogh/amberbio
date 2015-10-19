@@ -134,7 +134,7 @@ class SingleMoleculePlotTable: Component, UISearchBarDelegate, UITableViewDataSo
                         }
                 }
                 
-                cell.update(molecule_name: molecule_name, factor_name: factor_name, annotation_names: state.molecule_annotation_names, molecule_annotation_values: molecule_annotation_values, single_plot_names: single_plot_names, single_plot_colors: single_plot_colors, single_plot_values: single_plot_values)
+                cell.update(molecule_index: index, molecule_name: molecule_name, factor_name: factor_name, annotation_names: state.molecule_annotation_names, molecule_annotation_values: molecule_annotation_values, single_plot_names: single_plot_names, single_plot_colors: single_plot_colors, single_plot_values: single_plot_values)
 
                 return cell
         }

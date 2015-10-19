@@ -32,13 +32,13 @@ class SingleMoleculeTableViewCell: UITableViewCell {
 
                 info_label.numberOfLines = 7
                 info_label.textAlignment = .Center
-                info_label.font = font_footnote
+                info_label.font = font_body
                 inset_view.addSubview(info_label)
 
                 pdf_txt_buttons = PdfTxtButtons(target: self, pdf_action: "pdf_action", txt_action: nil)
                 inset_view.addSubview(pdf_txt_buttons)
 
-                molecule_web_search_button.setAttributedTitle(astring_body(string: "Web search"), forState: .Normal)
+                molecule_web_search_button.setAttributedTitle(astring_font_size_color(string: "web", font: nil, font_size: 20 as CGFloat, color: nil), forState: .Normal)
                 molecule_web_search_button.addTarget(self, action: "web_search_action", forControlEvents: .TouchUpInside)
                 inset_view.addSubview(molecule_web_search_button)
 
@@ -64,8 +64,14 @@ class SingleMoleculeTableViewCell: UITableViewCell {
 
                 var origin_y = CGRectGetMaxY(info_label.frame)
 
+                molecule_web_search_button.sizeToFit()
+                let pdf_web_middle_margin = 40 as CGFloat
+                var origin_x = (inset_width - pdf_txt_buttons.contentSize.width - pdf_web_middle_margin - molecule_web_search_button.frame.width) / 2
+
                 pdf_txt_buttons.frame.size = pdf_txt_buttons.contentSize
-                pdf_txt_buttons.frame.origin = CGPoint(x: (inset_width - pdf_txt_buttons.contentSize.width) / 2, y: origin_y)
+                pdf_txt_buttons.frame.origin = CGPoint(x: origin_x, y: origin_y)
+                origin_x += pdf_txt_buttons.contentSize.width + pdf_web_middle_margin
+                molecule_web_search_button.frame.origin = CGPoint(x: origin_x, y: origin_y)
 
                 origin_y += pdf_txt_buttons.contentSize.height + 5
 
@@ -82,7 +88,8 @@ class SingleMoleculeTableViewCell: UITableViewCell {
                 }
         }
 
-        func update(molecule_name molecule_name: String, factor_name: String?, annotation_names: [String], molecule_annotation_values: [String], single_plot_names: [String], single_plot_colors: [[UIColor]], single_plot_values: [[Double]]) {
+        func update(molecule_index molecule_index: Int, molecule_name: String, factor_name: String?, annotation_names: [String], molecule_annotation_values: [String], single_plot_names: [String], single_plot_colors: [[UIColor]], single_plot_values: [[Double]]) {
+                self.molecule_index = molecule_index
                 self.molecule_name = molecule_name
                 self.factor_name = factor_name
                 self.annotation_names = annotation_names
