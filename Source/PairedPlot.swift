@@ -91,6 +91,11 @@ class PairedPlot: Component {
 
                 view.addSubview(next_button)
                 view.addSubview(previous_button)
+
+                let info_tap_recognizer = UITapGestureRecognizer(target: self, action: "molecule_name_action")
+                info_label.addGestureRecognizer(info_tap_recognizer)
+                info_label.userInteractionEnabled = true
+                info_label.textAlignment = .Center
                 view.addSubview(info_label)
 
                 view.addSubview(tiled_scroll_view)
@@ -109,9 +114,15 @@ class PairedPlot: Component {
 
                 var origin_y = 90 as CGFloat
 
+                next_button.sizeToFit()
                 next_button.frame = CGRect(x: width - side_margin - next_button.frame.width, y: origin_y - 6, width: next_button.frame.width, height: next_button.frame.height)
+
+                previous_button.sizeToFit()
                 previous_button.frame = CGRect(x: side_margin, y: origin_y - 6, width: previous_button.frame.width, height: previous_button.frame.height)
-                info_label.frame = CGRect(x: 2 * side_margin + previous_button.frame.width, y: origin_y, width: width - 4 * side_margin - 2 * previous_button.frame.width, height: info_label.frame.height)
+
+                info_label.sizeToFit()
+                info_label.frame.size.width = min(info_label.frame.width, width - 4 * side_margin - 2 * previous_button.frame.width)
+                info_label.frame.origin = CGPoint(x: (width - info_label.frame.width) / 2, y: origin_y)
 
                 origin_y += max(next_button.frame.height, info_label.frame.height) + top_margin
 
@@ -175,8 +186,7 @@ class PairedPlot: Component {
                 single_molecule_plot = SingleMoleculePlot(names: single_plot_names, colors: single_plot_colors, values: single_plot_values)
                 tiled_scroll_view.delegate = single_molecule_plot
 
-                info_label.attributedText = astring_body(string: molecule_name)
-                info_label.sizeToFit()
+                info_label.attributedText = astring_font_size_color(string: molecule_name, font: nil, font_size: 20, color: next_button.currentTitleColor)
         }
 
         func pdf_action() {
@@ -213,5 +223,9 @@ class PairedPlot: Component {
         func multi_segmented_action(sender: MultiSegmentedScrollView) {
                 paired_plot_state.selected_level_ids = sender.selected_segments.map { self.paired_plot_state.comparison_level_ids[$0] }
                 state.render()
+        }
+
+        func molecule_name_action() {
+                state.molecule_web_search.open_url(molecule_index: paired_plot_state.molecule_number)
         }
 }

@@ -128,10 +128,6 @@ class LinearRegressionPlot: Component {
 
                 var origin_y = 20 as CGFloat
 
-                info_label.sizeToFit()
-                info_label.frame.size.width = min(info_label.frame.width, width - 4 * side_margin - 2 * previous_button.frame.width)
-                info_label.frame.origin = CGPoint(x: (width - info_label.frame.width) / 2, y: origin_y)
-
                 next_button.sizeToFit()
                 let origin_y_next = origin_y + (info_label.frame.height - next_button.frame.height) / 2
                 next_button.frame.origin = CGPoint(x: width - side_margin - next_button.frame.width, y: origin_y_next)
@@ -139,6 +135,10 @@ class LinearRegressionPlot: Component {
                 previous_button.sizeToFit()
                 let origin_y_previous = origin_y + (info_label.frame.height - previous_button.frame.height) / 2
                 previous_button.frame.origin = CGPoint(x: side_margin, y: origin_y_previous)
+
+                info_label.sizeToFit()
+                info_label.frame.size.width = min(info_label.frame.width, width - 4 * side_margin - 2 * previous_button.frame.width)
+                info_label.frame.origin = CGPoint(x: (width - info_label.frame.width) / 2, y: origin_y)
 
                 origin_y += max(CGRectGetMaxY(info_label.frame), CGRectGetMaxY(next_button.frame), CGRectGetMaxY(previous_button.frame)) + top_margin
 
