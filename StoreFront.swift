@@ -46,6 +46,7 @@ class StoreFront: Component, UITableViewDataSource, UITableViewDelegate {
         override func render() {
                 request_products_pending_label.hidden = !state.store.request_products_pending
                 table_view.hidden = state.store.request_products_pending
+                table_view.reloadData()
         }
 
         func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -93,7 +94,7 @@ class StoreFront: Component, UITableViewDataSource, UITableViewDelegate {
                         cell.update_normal(text: text)
                 } else {
                         let product = state.store.purchased_products[row]
-                        let text = product.localizedTitle + ": " + "\(product.price)"
+                        let text = product.localizedTitle
                         cell.update_normal(text: text)
                 }
 
