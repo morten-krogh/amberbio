@@ -11,8 +11,15 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver {
         var request_products_pending = false
         var purchased_product_ids = [] as Set<String>
 
+        var products = [] as [SKProduct]
         var purchased_products = [] as [SKProduct]
         var unpurchased_products = [] as [SKProduct]
+
+        func conditional_render() {
+                if state.page_state.name == "store_front" {
+                        state.render()
+                }
+        }
 
         func request_products() {
                 let products_request = SKProductsRequest(productIdentifiers: Set<String>(store_product_ids))
@@ -23,17 +30,16 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver {
 
         func productsRequest(request: SKProductsRequest, didReceiveResponse response: SKProductsResponse) {
                 set_products(products: response.products)
-                for invalid_product_id in response.invalidProductIdentifiers {
-                        print("Invalid product id: \(invalid_product_id)")
-                }
+//                for invalid_product_id in response.invalidProductIdentifiers {
+//                        print("Invalid product id: \(invalid_product_id)")
+//                }
 
                 request_products_pending = false
-                if state.page_state.name == "store_front" {
-                        state.render()
-                }
+                conditional_render()
         }
 
         func set_products(products products: [SKProduct]) {
+                self.products = products
                 purchased_products = []
                 unpurchased_products = []
                 for product in products {
@@ -52,6 +58,7 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver {
         }
 
         func paymentQueue(queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
+                print("payment queue updated transactions")
                 for transaction in transactions {
                         print(transaction.payment.productIdentifier)
                         switch transaction.transactionState {
@@ -63,18 +70,17 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver {
                                 break
                         case .Failed:
                                 print("Failed")
-                                break
+                                SKPaymentQueue.defaultQueue().finishTransaction(transaction)
                         case .Purchased:
                                 print("Purchased")
+                                purchased_product_ids.insert(transaction.payment.productIdentifier)
                                 SKPaymentQueue.defaultQueue().finishTransaction(transaction)
+                                set_products(products: products)
+                                conditional_render()
                         case .Restored:
                                 print("Restored")
                                 break
                         }
-
-
-
-
                 }
         }
 

@@ -5,8 +5,8 @@ class StoreFrontState: PageState {
         override init() {
                 super.init()
                 name = "store_front"
-                title = astring_body(string: "Store")
-                info = "The store is used to purchase modules.\n\nA purchased module is unlocked forever on this device and other devices with the same Apple ID.\n\nTap the button \"Restore modules\" to unlock modules that have been purchased on another device or on as previous installation of this app."
+                title = astring_body(string: "Module store")
+                info = "The module store is used to purchase modules.\n\nA purchased module is unlocked forever on this device and other devices with the same Apple ID.\n\nTap the button \"Restore modules\" to unlock modules that have been purchased on another device or on as previous installation of this app."
 
                 state.store.request_products()
         }
@@ -81,7 +81,7 @@ class StoreFront: Component, UITableViewDataSource, UITableViewDelegate {
         }
 
         func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-                return indexPath.section == 0 ? store_product_table_view_cell_height : centered_table_view_cell_height
+                return indexPath.section == 0 ? store_product_table_view_cell_height : (centered_table_view_cell_height + 20)
         }
 
         func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -95,7 +95,7 @@ class StoreFront: Component, UITableViewDataSource, UITableViewDelegate {
                         let cell = tableView.dequeueReusableCellWithIdentifier("centered cell") as! CenteredTableViewCell
                         let product = state.store.purchased_products[row]
                         let text = product.localizedTitle
-                        cell.update_normal(text: text)
+                        cell.update_color(text: text, color: color_blue_selectable)
                         return cell
                 }
         }

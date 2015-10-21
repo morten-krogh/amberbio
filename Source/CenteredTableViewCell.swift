@@ -122,4 +122,8 @@ class CenteredTableViewCell: UITableViewCell {
         func update_normal(text text: String) {
                 update_normal(attributed_text: astring_body(string: text))
         }
+
+        func update_color(text text: String, color: UIColor) {
+                update(attributed_text: astring_body(string: text), background_color: color, symbol: .None)
+        }
 }
