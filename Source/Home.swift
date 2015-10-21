@@ -56,7 +56,7 @@ class Home: Component, UICollectionViewDataSource, UICollectionViewDelegate, UIC
         let header_names = ["Info", "Import/export", "Projects and data sets", "Visualize data set", "Statistical tests", "Unsupervised classification", "Supervised classification", "Create new data sets", "Edit project"]
 
         let page_titles = [
-                ["Store", "Manual", "Feedback", "User"],
+                ["Module\nStore", "Manual", "Feedback", "User"],
                 ["Import\nData", "Export Projects", "Result Files"],
                 ["Data Set Selection", "Project Notes" ],
                 ["Data Set Table", "Data Set Summary", "Factor\nChart", "Factor Association", "Factor Summary", "Missing Values for Samples", "Single Molecule Plots", "Multiple Molecule Plot"],

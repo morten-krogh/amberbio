@@ -57,6 +57,7 @@
 		60A893E31BD78D38004DAD2C /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60A893E21BD78D38004DAD2C /* StoreKit.framework */; };
 		60A893E61BD794FB004DAD2C /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A893E51BD794FB004DAD2C /* Store.swift */; settings = {ASSET_TAGS = (); }; };
 		60A893E81BD7CE6A004DAD2C /* StoreFront.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A893E71BD7CE6A004DAD2C /* StoreFront.swift */; settings = {ASSET_TAGS = (); }; };
+		60A893EA1BD7F29F004DAD2C /* StoreProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A893E91BD7F29F004DAD2C /* StoreProductTableViewCell.swift */; settings = {ASSET_TAGS = (); }; };
 		60B400391BA1982900D8DD80 /* state_init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400381BA1982900D8DD80 /* state_init.swift */; settings = {ASSET_TAGS = (); }; };
 		60B4003B1BA1983900D8DD80 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B4003A1BA1983900D8DD80 /* State.swift */; settings = {ASSET_TAGS = (); }; };
 		60B400411BA19BED00D8DD80 /* AttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B4003D1BA19BED00D8DD80 /* AttributedString.swift */; settings = {ASSET_TAGS = (); }; };
@@ -294,6 +295,7 @@
 		60A893E21BD78D38004DAD2C /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		60A893E51BD794FB004DAD2C /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		60A893E71BD7CE6A004DAD2C /* StoreFront.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreFront.swift; sourceTree = "<group>"; };
+		60A893E91BD7F29F004DAD2C /* StoreProductTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreProductTableViewCell.swift; sourceTree = "<group>"; };
 		60B400381BA1982900D8DD80 /* state_init.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = state_init.swift; path = Source/state_init.swift; sourceTree = "<group>"; };
 		60B4003A1BA1983900D8DD80 /* State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = State.swift; path = Source/State.swift; sourceTree = "<group>"; };
 		60B4003D1BA19BED00D8DD80 /* AttributedString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AttributedString.swift; path = Source/AttributedString.swift; sourceTree = "<group>"; };
@@ -694,6 +696,7 @@
 				60B400CC1BA19C7900D8DD80 /* TextFieldHeaderFooterView.swift */,
 				60B400CD1BA19C7900D8DD80 /* TextFieldTableViewCell.swift */,
 				602708C91BA2CA0300672D54 /* SelectAllHeaderFooterView.swift */,
+				60A893E91BD7F29F004DAD2C /* StoreProductTableViewCell.swift */,
 			);
 			name = TableViews;
 			sourceTree = "<group>";
@@ -1209,6 +1212,7 @@
 				60B401301BA19C7900D8DD80 /* PCAPage.swift in Sources */,
 				601E57A51BCD0A8F002EEEB3 /* SupervisedClassificationValidationSelection.swift in Sources */,
 				60B401271BA19C7900D8DD80 /* PairwiseFactor.swift in Sources */,
+				60A893EA1BD7F29F004DAD2C /* StoreProductTableViewCell.swift in Sources */,
 				60B401021BA19C7900D8DD80 /* HierarchicalClustering.swift in Sources */,
 				60B400F81BA19C7900D8DD80 /* FactorAssociation.swift in Sources */,
 				60B4014D1BA19C7900D8DD80 /* sqlite_import_export.swift in Sources */,
