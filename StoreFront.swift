@@ -7,16 +7,21 @@ class StoreFrontState: PageState {
                 name = "store_front"
                 title = astring_body(string: "Store")
                 info = "The store is used to purchase modules.\n\nA purchased module is unlocked forever on this device and other devices with the same Apple ID.\n\nTap the button \"Restore modules\" to unlock modules that have been purchased on another device or on as previous installation of this app."
+
+                state.store.request_products()
         }
 }
 
 class StoreFront: Component, UITableViewDataSource, UITableViewDelegate {
 
-        let info_label = UILabel()
+        let request_products_pending_label = UILabel()
         let table_view = UITableView()
 
         override func viewDidLoad() {
                 super.viewDidLoad()
+
+                request_products_pending_label.attributedText = astring_font_size_color(string: "The products are fetched from the server", font: nil, font_size: 20, color: nil)
+                view.addSubview(request_products_pending_label)
 
                 table_view.registerClass(CenteredHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: "centered header")
                 table_view.registerClass(CenteredTableViewCell.self, forCellReuseIdentifier: "centered cell")
@@ -32,18 +37,19 @@ class StoreFront: Component, UITableViewDataSource, UITableViewDelegate {
 
                 let width = view.frame.width
 
-                info_label.sizeToFit()
-                info_label.center = CGPoint(x: width / 2, y: 100)
+                request_products_pending_label.sizeToFit()
+                request_products_pending_label.center = CGPoint(x: width / 2, y: 100)
 
                 table_view.frame = view.bounds
         }
 
         override func render() {
-
+                request_products_pending_label.hidden = !state.store.request_products_pending
+                table_view.hidden = state.store.request_products_pending
         }
 
         func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-                return 1
+                return 2
         }
 
         func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -53,13 +59,27 @@ class StoreFront: Component, UITableViewDataSource, UITableViewDelegate {
         func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
                 let header = tableView.dequeueReusableHeaderFooterViewWithIdentifier("centered header") as! CenteredHeaderFooterView
 
-                header.update_normal(text: "Modules to purchase")
+                let text: String
+                if section == 0 {
+                        text = "Modules to purchase"
+                } else {
+                        text = "Purchased modules"
+                }
+                header.update_normal(text: text)
 
                 return header
         }
 
         func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-                return state.store.products.count
+                if section == 0 {
+                        return state.store.unpurchased_products.count
+                } else {
+                        return state.store.purchased_products.count
+                }
+        }
+
+        func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+                return centered_table_view_cell_height
         }
 
         func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -68,9 +88,12 @@ class StoreFront: Component, UITableViewDataSource, UITableViewDelegate {
                 let (section, row) = (indexPath.section, indexPath.row)
 
                 if section == 0 {
-                        let product = state.store.products[row]
+                        let product = state.store.unpurchased_products[row]
                         let text = product.localizedTitle + ": " + "\(product.price)"
-
+                        cell.update_normal(text: text)
+                } else {
+                        let product = state.store.purchased_products[row]
+                        let text = product.localizedTitle + ": " + "\(product.price)"
                         cell.update_normal(text: text)
                 }
 

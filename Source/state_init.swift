@@ -30,6 +30,4 @@ func state_init() {
         state.set_page_state(page_state: initial_page_state)
 
         SKPaymentQueue.defaultQueue().addTransactionObserver(state.store)
-
-        state.store.request_products()
 }
