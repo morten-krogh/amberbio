@@ -1,4 +1,5 @@
 import Foundation
+import StoreKit
 
 var state: State!
 let database_file_name = "amberbio-main.sqlite"
@@ -27,4 +28,8 @@ func state_init() {
 
         state = State(database: database)
         state.set_page_state(page_state: initial_page_state)
+
+        SKPaymentQueue.defaultQueue().addTransactionObserver(state.store)
+
+        state.store.fetch_products()
 }

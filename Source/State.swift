@@ -8,6 +8,7 @@ enum RenderType {
 
 class State {
         let database: Database
+        let store = Store()
 
         var rendering = false
         var render_type = RenderType.full_page
