@@ -54,6 +54,7 @@
 		6094CC041BD0DCF7002A5E2A /* DrawView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6094CC031BD0DCF7002A5E2A /* DrawView.swift */; settings = {ASSET_TAGS = (); }; };
 		6094CC051BD0EAC9002A5E2A /* DrawView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6094CC031BD0DCF7002A5E2A /* DrawView.swift */; settings = {ASSET_TAGS = (); }; };
 		60A893E11BD52651004DAD2C /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A893E01BD52651004DAD2C /* Button.swift */; settings = {ASSET_TAGS = (); }; };
+		60A893E31BD78D38004DAD2C /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60A893E21BD78D38004DAD2C /* StoreKit.framework */; };
 		60B400391BA1982900D8DD80 /* state_init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400381BA1982900D8DD80 /* state_init.swift */; settings = {ASSET_TAGS = (); }; };
 		60B4003B1BA1983900D8DD80 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B4003A1BA1983900D8DD80 /* State.swift */; settings = {ASSET_TAGS = (); }; };
 		60B400411BA19BED00D8DD80 /* AttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B4003D1BA19BED00D8DD80 /* AttributedString.swift */; settings = {ASSET_TAGS = (); }; };
@@ -288,6 +289,7 @@
 		6094CBF81BCF8DCF002A5E2A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6094CC031BD0DCF7002A5E2A /* DrawView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DrawView.swift; path = Source/DrawView.swift; sourceTree = "<group>"; };
 		60A893E01BD52651004DAD2C /* Button.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
+		60A893E21BD78D38004DAD2C /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		60B400381BA1982900D8DD80 /* state_init.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = state_init.swift; path = Source/state_init.swift; sourceTree = "<group>"; };
 		60B4003A1BA1983900D8DD80 /* State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = State.swift; path = Source/State.swift; sourceTree = "<group>"; };
 		60B4003D1BA19BED00D8DD80 /* AttributedString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AttributedString.swift; path = Source/AttributedString.swift; sourceTree = "<group>"; };
@@ -457,6 +459,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				60A893E31BD78D38004DAD2C /* StoreKit.framework in Frameworks */,
 				60B401691BA1B2ED00D8DD80 /* libsqlite3.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -496,6 +499,7 @@
 		601003401BA18744008A1FF9 = {
 			isa = PBXGroup;
 			children = (
+				60A893E21BD78D38004DAD2C /* StoreKit.framework */,
 				60014BC41BB5AC7C001A79B1 /* amberbio-main.sqlite */,
 				60B401681BA1B2ED00D8DD80 /* libsqlite3.dylib */,
 				60B400361BA1980000D8DD80 /* Source */,
@@ -722,11 +726,19 @@
 			path = AmberbioTestingGround;
 			sourceTree = "<group>";
 		};
+		60A893E41BD792DE004DAD2C /* Store */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Store;
+			sourceTree = "<group>";
+		};
 		60B400361BA1980000D8DD80 /* Source */ = {
 			isa = PBXGroup;
 			children = (
 				60B400371BA1981A00D8DD80 /* State */,
 				60B4015E1BA19D8900D8DD80 /* SQLite */,
+				60A893E41BD792DE004DAD2C /* Store */,
 				602708C11BA1EBDC00672D54 /* Components */,
 				602708C31BA20A0E00672D54 /* Views */,
 				602708C41BA20A7200672D54 /* TableViews */,
