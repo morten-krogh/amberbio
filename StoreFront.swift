@@ -24,6 +24,7 @@ class StoreFront: Component, UITableViewDataSource, UITableViewDelegate {
                 view.addSubview(request_products_pending_label)
 
                 table_view.registerClass(CenteredHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: "centered header")
+                table_view.registerClass(StoreProductTableViewCell.self, forCellReuseIdentifier: "store product cell")
                 table_view.registerClass(CenteredTableViewCell.self, forCellReuseIdentifier: "centered cell")
                 table_view.dataSource = self
                 table_view.delegate = self
@@ -80,25 +81,23 @@ class StoreFront: Component, UITableViewDataSource, UITableViewDelegate {
         }
 
         func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-                return centered_table_view_cell_height
+                return indexPath.section == 0 ? store_product_table_view_cell_height : centered_table_view_cell_height
         }
 
         func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-                let cell = tableView.dequeueReusableCellWithIdentifier("centered cell") as! CenteredTableViewCell
-
                 let (section, row) = (indexPath.section, indexPath.row)
 
                 if section == 0 {
-                        let product = state.store.unpurchased_products[row]
-                        let text = product.localizedTitle + ": " + "\(product.price)"
-                        cell.update_normal(text: text)
+                        let cell = tableView.dequeueReusableCellWithIdentifier("store product cell") as! StoreProductTableViewCell
+                        cell.update(product: state.store.unpurchased_products[row])
+                        return cell
                 } else {
+                        let cell = tableView.dequeueReusableCellWithIdentifier("centered cell") as! CenteredTableViewCell
                         let product = state.store.purchased_products[row]
                         let text = product.localizedTitle
                         cell.update_normal(text: text)
+                        return cell
                 }
-
-                return cell
         }
 
 

@@ -1,12 +1,16 @@
 import UIKit
 import StoreKit
 
-let store_product_table_view_cell_height = 100 as CGFloat
+let store_product_table_view_cell_height = 280 as CGFloat
 
 class StoreProductTableViewCell: UITableViewCell {
 
+        var product: SKProduct?
+
         let title_label = UILabel()
         let description_label = UILabel()
+        let price_label = UILabel()
+        let buy_button = UIButton(type: .System)
         let inset_view = UIView()
 
         override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
@@ -17,17 +21,26 @@ class StoreProductTableViewCell: UITableViewCell {
 
                 inset_view.clipsToBounds = true
                 inset_view.layer.cornerRadius = 10
+                inset_view.backgroundColor = color_blue_selectable
                 contentView.addSubview(inset_view)
 
-                title_label.font = font_body
+                title_label.font = font_headline
                 title_label.textAlignment = .Center
                 inset_view.addSubview(title_label)
 
                 description_label.font = font_body
-                description_label.textAlignment = .Center
+                description_label.textAlignment = .Left
                 description_label.numberOfLines = 0
-                inset_view.addSubview(title_label)
+                inset_view.addSubview(description_label)
 
+                price_label.font = font_headline
+                price_label.textAlignment = .Center
+                inset_view.addSubview(price_label)
+
+                let buy_text = astring_font_size_color(string: "Buy", font: nil, font_size: 22, color: nil)
+                buy_button.setAttributedTitle(buy_text, forState: .Normal)
+                buy_button.addTarget(self, action: "buy_action", forControlEvents: .TouchUpInside)
+                inset_view.addSubview(buy_button)
         }
 
         required init?(coder aDecoder: NSCoder) {
@@ -41,28 +54,39 @@ class StoreProductTableViewCell: UITableViewCell {
                 
                 let width = inset_view.frame.width
 
-                let label_height = 40 as CGFloat
-                let text_field_height = 40 as CGFloat
+                var origin_y = 10 as CGFloat
 
-                text_label.frame = CGRect(x: 0, y: 0, width: width, height: label_height)
+                title_label.frame = CGRect(x: 0, y: origin_y, width: width, height: 40)
+                origin_y += title_label.frame.height + 5
 
-                let origin_y = label_height + 10
-                let text_field_width = min(width - 200, 150)
+                description_label.frame = CGRect(x: 20, y: origin_y, width: width - 40, height: 120)
+                origin_y += description_label.frame.height + 10
 
-                short_label.sizeToFit()
-                short_label.frame.origin = CGPoint(x: (width - text_field_width) / 2 - short_label.frame.width - 5, y: origin_y + (text_field_height - short_label.frame.height) / 2)
+                price_label.frame = CGRect(x: 0, y: origin_y, width: width, height: 40)
+                origin_y += price_label.frame.height
 
-                text_field.frame = CGRect(x: (width - text_field_width) / 2, y: origin_y, width: text_field_width, height: text_field_height)
-                
-        
+                buy_button.sizeToFit()
+                buy_button.frame.origin = CGPoint(x: (width - buy_button.frame.width) / 2, y: origin_y)
         }
 
         func update(product product: SKProduct) {
-                
 
-                product.localizedTitle
-                product.localizedDescription
+                self.product = product
 
+                title_label.text = product.localizedTitle
+                description_label.text = product.localizedDescription
+
+                let number_formatter = NSNumberFormatter()
+                number_formatter.formatterBehavior = NSNumberFormatterBehavior.Behavior10_4
+                number_formatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
+                number_formatter.locale = product.priceLocale
+                let formatted_price = number_formatter.stringFromNumber(product.price)
+                price_label.text = formatted_price
         }
-        
+
+        func buy_action() {
+                if let product = product {
+                        state.store.buy(product: product)
+                }
+        }
 }

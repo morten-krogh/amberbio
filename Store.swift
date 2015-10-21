@@ -1,11 +1,3 @@
-//
-//  Store.swift
-//  Amberbio
-//
-//  Created by Morten Krogh on 21/10/15.
-//  Copyright © 2015 Morten Krogh. All rights reserved.
-//
-
 import Foundation
 import StoreKit
 
@@ -17,7 +9,7 @@ let store_product_ids = [
 class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver {
 
         var request_products_pending = false
-        var purchased_product_ids = ["com.amberbio.product.svm"] as Set<String>
+        var purchased_product_ids = [] as Set<String>
 
         var purchased_products = [] as [SKProduct]
         var unpurchased_products = [] as [SKProduct]
@@ -54,6 +46,10 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver {
                 }
         }
 
+        func buy(product product: SKProduct) {
+                let payment = SKMutablePayment(product: product)
+                SKPaymentQueue.defaultQueue().addPayment(payment)
+        }
 
         func paymentQueue(queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
 
