@@ -1,7 +1,7 @@
 import UIKit
 import StoreKit
 
-let store_product_table_view_cell_height = 280 as CGFloat
+let store_product_table_view_cell_height = 285 as CGFloat
 
 class StoreProductTableViewCell: UITableViewCell {
 
@@ -37,7 +37,7 @@ class StoreProductTableViewCell: UITableViewCell {
                 price_label.textAlignment = .Center
                 inset_view.addSubview(price_label)
 
-                let buy_text = astring_font_size_color(string: "Buy", font: nil, font_size: 22, color: nil)
+                let buy_text = astring_font_size_color(string: "Buy", font: nil, font_size: 24, color: nil)
                 buy_button.setAttributedTitle(buy_text, forState: .Normal)
                 buy_button.addTarget(self, action: "buy_action", forControlEvents: .TouchUpInside)
                 inset_view.addSubview(buy_button)
@@ -59,7 +59,8 @@ class StoreProductTableViewCell: UITableViewCell {
                 title_label.frame = CGRect(x: 0, y: origin_y, width: width, height: 40)
                 origin_y += title_label.frame.height + 5
 
-                description_label.frame = CGRect(x: 20, y: origin_y, width: width - 40, height: 120)
+                let description_width = min(width - 20, 500)
+                description_label.frame = CGRect(x: (width - description_width) / 2, y: origin_y, width: description_width, height: 120)
                 origin_y += description_label.frame.height + 10
 
                 price_label.frame = CGRect(x: 0, y: origin_y, width: width, height: 40)

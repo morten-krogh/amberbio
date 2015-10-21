@@ -52,7 +52,30 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver {
         }
 
         func paymentQueue(queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
+                for transaction in transactions {
+                        print(transaction.payment.productIdentifier)
+                        switch transaction.transactionState {
+                        case .Purchasing:
+                                print("purchasing")
+                                break
+                        case .Deferred:
+                                print("Deferred")
+                                break
+                        case .Failed:
+                                print("Failed")
+                                break
+                        case .Purchased:
+                                print("Purchased")
+                                SKPaymentQueue.defaultQueue().finishTransaction(transaction)
+                        case .Restored:
+                                print("Restored")
+                                break
+                        }
 
+
+
+
+                }
         }
 
 
