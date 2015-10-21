@@ -16,12 +16,15 @@ let store_product_ids = [
 
 class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver {
 
+        var request_products_pending = false
+
         var products = [] as [SKProduct]
 
-        func fetch_products() {
+        func request_products() {
                 let products_request = SKProductsRequest(productIdentifiers: Set<String>(store_product_ids))
                 products_request.delegate = self
                 products_request.start()
+                request_products_pending = true
         }
 
         func productsRequest(request: SKProductsRequest, didReceiveResponse response: SKProductsResponse) {
@@ -29,6 +32,7 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver {
                 for invalid_product_id in response.invalidProductIdentifiers {
                         print("Invalid product id: \(invalid_product_id)")
                 }
+                request_products_pending = false
         }
 
 

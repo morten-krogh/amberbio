@@ -4,7 +4,7 @@ class StoreFrontState: PageState {
 
         override init() {
                 super.init()
-                name = "store_Front"
+                name = "store_front"
                 title = astring_body(string: "Store")
                 info = "The store is used to purchase modules.\n\nA purchased module is unlocked forever on this device and other devices with the same Apple ID.\n\nTap the button \"Restore modules\" to unlock modules that have been purchased on another device or on as previous installation of this app."
         }
@@ -12,21 +12,34 @@ class StoreFrontState: PageState {
 
 class StoreFront: Component, UITableViewDataSource, UITableViewDelegate {
 
+        let info_label = UILabel()
         let table_view = UITableView()
-
-        override func loadView() {
-                view = table_view
-        }
 
         override func viewDidLoad() {
                 super.viewDidLoad()
 
                 table_view.registerClass(CenteredHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: "centered header")
-                table_view.registerClass(CenteredTableViewCell.self, forHeaderFooterViewReuseIdentifier: "centered cell")
+                table_view.registerClass(CenteredTableViewCell.self, forCellReuseIdentifier: "centered cell")
                 table_view.dataSource = self
                 table_view.delegate = self
                 table_view.backgroundColor = UIColor.whiteColor()
                 table_view.separatorStyle = .None
+                view.addSubview(table_view)
+        }
+
+        override func viewWillLayoutSubviews() {
+                super.viewWillLayoutSubviews()
+
+                let width = view.frame.width
+
+                info_label.sizeToFit()
+                info_label.center = CGPoint(x: width / 2, y: 100)
+
+                table_view.frame = view.bounds
+        }
+
+        override func render() {
+
         }
 
         func numberOfSectionsInTableView(tableView: UITableView) -> Int {

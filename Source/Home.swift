@@ -1,9 +1,10 @@
 import UIKit
 
 let home_page_name_to_section_row = [
-        "manual": (0, 0),
-        "feedback": (0, 1),
-        "user": (0, 2),
+        "store_front": (0, 0),
+        "manual": (0, 1),
+        "feedback": (0, 2),
+        "user": (0, 3),
         "import_data": (1, 0),
         "export_projects": (1, 1),
         "result_files": (1, 2),
@@ -55,7 +56,7 @@ class Home: Component, UICollectionViewDataSource, UICollectionViewDelegate, UIC
         let header_names = ["Info", "Import/export", "Projects and data sets", "Visualize data set", "Statistical tests", "Unsupervised classification", "Supervised classification", "Create new data sets", "Edit project"]
 
         let page_titles = [
-                ["Manual", "Feedback", "User"],
+                ["Store", "Manual", "Feedback", "User"],
                 ["Import\nData", "Export Projects", "Result Files"],
                 ["Data Set Selection", "Project Notes" ],
                 ["Data Set Table", "Data Set Summary", "Factor\nChart", "Factor Association", "Factor Summary", "Missing Values for Samples", "Single Molecule Plots", "Multiple Molecule Plot"],
@@ -66,15 +67,17 @@ class Home: Component, UICollectionViewDataSource, UICollectionViewDelegate, UIC
                 ["Edit Project", "Sample Names", "Molecule Annotations", "Color Selection", "Edit Factors"]
         ]
 
-        var view_Will_layout_subviews_was_called = false
+        var view_will_layout_subviews_was_called = false
 
         func section_row_to_page_state(section section: Int, row: Int) -> PageState {
                 switch (section, row) {
                 case (0, 0):
-                        return ManualState()
+                        return StoreFrontState()
                 case (0, 1):
-                        return FeedbackState()
+                        return ManualState()
                 case (0, 2):
+                        return FeedbackState()
+                case (0, 3):
                         return UserState()
                 case (1, 0):
                         return ImportDataState()
@@ -166,7 +169,7 @@ class Home: Component, UICollectionViewDataSource, UICollectionViewDelegate, UIC
 
         override func viewWillLayoutSubviews() {
                 super.viewWillLayoutSubviews()
-                view_Will_layout_subviews_was_called = true
+                view_will_layout_subviews_was_called = true
                 collection_view.frame = view.bounds
                 collection_view.contentOffset = state.home_content_offset
         }
@@ -229,10 +232,10 @@ class Home: Component, UICollectionViewDataSource, UICollectionViewDelegate, UIC
         }
 
         func scrollViewDidScroll(scrollView: UIScrollView) {
-                if !view_Will_layout_subviews_was_called {
+                if !view_will_layout_subviews_was_called {
                         state.home_content_offset = collection_view.contentOffset
                 } else {
-                        view_Will_layout_subviews_was_called = false
+                        view_will_layout_subviews_was_called = false
                 }
         }
 }
