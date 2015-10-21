@@ -55,11 +55,13 @@ class Button: UIControl {
         }
 
         func action_enabled() {
+                print("hej3")
                 color = color_home_button_enabled
                 update_label()
         }
 
         func action_higlighted () {
+                print("hej4")
                 color = color_home_button_highlighted
                 update_label()
         }

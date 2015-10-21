@@ -12,9 +12,8 @@ class SingleMoleculeTableViewCell: UITableViewCell {
 
         let inset_view = UIView()
 
-        let info_label = UILabel()
+        let molecule_name_button = UIButton(type: .System)
         var pdf_txt_buttons: PdfTxtButtons!
-        let molecule_web_search_button = UIButton(type: .System)
 
         let tiled_scroll_view = TiledScrollView(frame: CGRect.zero)
         var single_molecule_plot: SingleMoleculePlot?
@@ -30,17 +29,11 @@ class SingleMoleculeTableViewCell: UITableViewCell {
                 inset_view.layer.borderColor = UIColor(red: 0, green: 0, blue: 1, alpha: 1.0).CGColor
                 contentView.addSubview(inset_view)
 
-                info_label.numberOfLines = 7
-                info_label.textAlignment = .Center
-                info_label.font = font_body
-                inset_view.addSubview(info_label)
+                molecule_name_button.addTarget(self, action: "molecule_name_action", forControlEvents: .TouchUpInside)
+                inset_view.addSubview(molecule_name_button)
 
                 pdf_txt_buttons = PdfTxtButtons(target: self, pdf_action: "pdf_action", txt_action: nil)
                 inset_view.addSubview(pdf_txt_buttons)
-
-                molecule_web_search_button.setAttributedTitle(astring_font_size_color(string: "web", font: nil, font_size: 20 as CGFloat, color: nil), forState: .Normal)
-                molecule_web_search_button.addTarget(self, action: "web_search_action", forControlEvents: .TouchUpInside)
-                inset_view.addSubview(molecule_web_search_button)
 
                 inset_view.addSubview(tiled_scroll_view)
         }
@@ -58,20 +51,14 @@ class SingleMoleculeTableViewCell: UITableViewCell {
                 let top_margin = 5 as CGFloat
                 let margin = 20 as CGFloat
 
-                let info_label_rect = info_label.sizeThatFits(CGSize(width: inset_width - 2 * margin, height: 0))
-                info_label.frame.size = info_label_rect
-                info_label.center = CGPoint(x: inset_view.frame.width / 2.0, y: top_margin + info_label.frame.height / 2.0)
+                molecule_name_button.sizeToFit()
+                molecule_name_button.center = CGPoint(x: inset_view.frame.width / 2.0, y: top_margin + molecule_name_button.frame.height / 2.0)
 
-                var origin_y = CGRectGetMaxY(info_label.frame)
+                var origin_y = CGRectGetMaxY(molecule_name_button.frame) + 5
 
-                molecule_web_search_button.sizeToFit()
-                let pdf_web_middle_margin = 40 as CGFloat
-                var origin_x = (inset_width - pdf_txt_buttons.contentSize.width - pdf_web_middle_margin - molecule_web_search_button.frame.width) / 2
-
+                let origin_x = (inset_width - pdf_txt_buttons.contentSize.width) / 2
                 pdf_txt_buttons.frame.size = pdf_txt_buttons.contentSize
                 pdf_txt_buttons.frame.origin = CGPoint(x: origin_x, y: origin_y)
-                origin_x += pdf_txt_buttons.contentSize.width + pdf_web_middle_margin
-                molecule_web_search_button.frame.origin = CGPoint(x: origin_x, y: origin_y)
 
                 origin_y += pdf_txt_buttons.contentSize.height + 5
 
@@ -94,13 +81,8 @@ class SingleMoleculeTableViewCell: UITableViewCell {
                 self.factor_name = factor_name
                 self.annotation_names = annotation_names
                 self.molecule_annotation_values = molecule_annotation_values
-                var info = "Molecule name: \(molecule_name)"
-                for i in 0 ..< min(annotation_names.count, 3) {
-                        let annotation_name = annotation_names[i]
-                        let value = molecule_annotation_values[i]
-                        info += "\n\(annotation_name): \(value)"
-                }
-                info_label.text = info
+
+                molecule_name_button.setAttributedTitle(astring_font_size_color(string: molecule_name, font: nil, font_size: 20, color: nil), forState: .Normal)
 
                 single_molecule_plot = SingleMoleculePlot(names: single_plot_names, colors: single_plot_colors, values: single_plot_values)
                 tiled_scroll_view.delegate = single_molecule_plot
@@ -129,7 +111,7 @@ class SingleMoleculeTableViewCell: UITableViewCell {
 
         }
 
-        func web_search_action() {
+        func molecule_name_action() {
                 state.molecule_web_search.open_url(molecule_index: molecule_index)
         }
 }
