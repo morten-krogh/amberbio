@@ -102,6 +102,8 @@ class FullPage: Component, UIScrollViewDelegate, UISearchBarDelegate {
                         switch page_name {
                         case "home":
                                 page = Home()
+                        case "store_front":
+                                page = StoreFront()
                         case "manual":
                                 page = Manual()
                         case "feedback":
