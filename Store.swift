@@ -51,6 +51,10 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver {
                 SKPaymentQueue.defaultQueue().addPayment(payment)
         }
 
+        func restore() {
+
+        }
+
         func paymentQueue(queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
                 print("payment queue updated transactions")
                 for transaction in transactions {

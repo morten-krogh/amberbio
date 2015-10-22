@@ -25,7 +25,9 @@ class ModuleStore: Component, UITableViewDataSource, UITableViewDelegate {
 
                 table_view.registerClass(CenteredHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: "centered header")
                 table_view.registerClass(StoreProductTableViewCell.self, forCellReuseIdentifier: "store product cell")
+                table_view.registerClass(StoreProductTableViewCell.self, forCellReuseIdentifier: "restore cell")
                 table_view.registerClass(CenteredTableViewCell.self, forCellReuseIdentifier: "centered cell")
+
                 table_view.dataSource = self
                 table_view.delegate = self
                 table_view.backgroundColor = UIColor.whiteColor()
@@ -51,7 +53,7 @@ class ModuleStore: Component, UITableViewDataSource, UITableViewDelegate {
         }
 
         func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-                return 2
+                return 3
         }
 
         func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -64,8 +66,10 @@ class ModuleStore: Component, UITableViewDataSource, UITableViewDelegate {
                 let text: String
                 if section == 0 {
                         text = "Modules to purchase"
-                } else {
+                } else if section == 1 {
                         text = "Purchased modules"
+                } else {
+                        text = "Restore purchased modules"
                 }
                 header.update_normal(text: text)
 
@@ -75,8 +79,10 @@ class ModuleStore: Component, UITableViewDataSource, UITableViewDelegate {
         func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
                 if section == 0 {
                         return state.store.unpurchased_products.count
-                } else {
+                } else if section == 1 {
                         return state.store.purchased_products.count
+                } else {
+                        return 1
                 }
         }
 
@@ -91,11 +97,15 @@ class ModuleStore: Component, UITableViewDataSource, UITableViewDelegate {
                         let cell = tableView.dequeueReusableCellWithIdentifier("store product cell") as! StoreProductTableViewCell
                         cell.update(product: state.store.unpurchased_products[row])
                         return cell
-                } else {
+                } else if section == 1 {
                         let cell = tableView.dequeueReusableCellWithIdentifier("centered cell") as! CenteredTableViewCell
                         let product = state.store.purchased_products[row]
                         let text = product.localizedTitle
                         cell.update_selected_checkmark(text: text)
+                        return cell
+                } else {
+                        let cell = tableView.dequeueReusableCellWithIdentifier("restore cell") as!StoreRestoreTableViewCell
+
                         return cell
                 }
         }
