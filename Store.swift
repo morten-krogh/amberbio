@@ -82,6 +82,7 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver {
                                 SKPaymentQueue.defaultQueue().finishTransaction(transaction)
                         }
                 }
+                restoring_pending = false
                 conditional_render()
         }
 

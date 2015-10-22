@@ -52,11 +52,12 @@ class ModuleStore: Component, UITableViewDataSource, UITableViewDelegate {
                 if state.store.request_products_pending {
                         info_label.attributedText = astring_font_size_color(string: "The products are fetched from the server", font: nil, font_size: 20, color: nil)
                 } else if state.store.restoring_pending {
-                        info_label.attributedText = astring_font_size_color(string: "Restoring purchased modules", font: nil, font_size: 20, color: nil)
+                        info_label.attributedText = astring_font_size_color(string: "Restoring purchased modules", font: nil, font_size: 22, color: nil)
                 } else {
                         table_view.hidden = false
                         table_view.reloadData()
                 }
+                view.setNeedsLayout()
         }
 
         func numberOfSectionsInTableView(tableView: UITableView) -> Int {
