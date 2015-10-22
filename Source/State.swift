@@ -253,12 +253,14 @@ class State {
         }
 
         func verify_page() {
-                let page_names_without_active_data_set = ["home", "manual", "feedback", "user", "data_set_selection", "import_data", "export_projects"]
+                let page_names_without_active_data_set = ["home", "module_store", "manual", "feedback", "user", "data_set_selection", "import_data", "export_projects"]
 
                 if !active_data_set {
                         if page_names_without_active_data_set.indexOf(page_state.name) == nil {
                                 page_state = DataSetSelectionState()
                         }
+                } else if store.locked_page_names.contains(page_state.name) {
+                        page_state = ModuleStoreState()
                 }
         }
 

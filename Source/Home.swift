@@ -38,6 +38,20 @@ let home_page_name_to_section_row = [
         "color_selection_level": (8, 3),
         "edit_factors": (8, 4)] as [String: (section: Int, row: Int)]
 
+class HomeHelper {
+
+        var index_path_to_page_name = [:] as [NSIndexPath: String]
+
+        init() {
+                for (page_name, section_row) in home_page_name_to_section_row {
+                        let index_path = NSIndexPath(forRow: section_row.row, inSection: section_row.section)
+                        index_path_to_page_name[index_path] = page_name
+                }
+        }
+}
+
+let home_helper = HomeHelper()
+
 class HomeState: PageState {
 
         override init() {
@@ -197,7 +211,10 @@ class Home: Component, UICollectionViewDataSource, UICollectionViewDelegate, UIC
 
                 let title = page_titles[indexPath.section][indexPath.row]
                 let previously_selected = state.home_selected_index_path == indexPath
-                cell.update(title: title, section: indexPath.section, border: previously_selected)
+                let page_name = home_helper.index_path_to_page_name[indexPath]!
+                let locked = state.store.locked_page_names.contains(page_name)
+
+                cell.update(title: title, section: indexPath.section, border: previously_selected, locked: locked)
 
                 return cell
         }
@@ -272,11 +289,16 @@ class HomeCellView: UICollectionViewCell {
         var color_normal = UIColor.redColor()
 
         let label = UILabel()
+        let lock_label = UILabel()
 
         override init(frame: CGRect) {
                 super.init(frame: frame)
 
                 contentView.layer.cornerRadius = 10
+
+                lock_label.attributedText = astring_font_size_color(string: "\u{1F512}", font: nil, font_size: 30, color: nil)
+                lock_label.textAlignment = .Center
+                contentView.addSubview(lock_label)
 
                 label.numberOfLines = 0
                 label.textAlignment = .Center
@@ -289,10 +311,18 @@ class HomeCellView: UICollectionViewCell {
 
         override func layoutSubviews() {
                 super.layoutSubviews()
-                label.frame = bounds
+
+                if lock_label.hidden {
+                        label.frame = bounds
+                } else {
+                        lock_label.sizeToFit()
+                        let separator_x = bounds.width - lock_label.frame.width
+                        lock_label.frame.origin = CGPoint(x: separator_x, y: (bounds.height - lock_label.frame.height) / 2)
+                        label.frame = CGRect(x: 0, y: 0, width: separator_x, height: bounds.height)
+                }
         }
 
-        func update(title title: String, section: Int, border: Bool) {
+        func update(title title: String, section: Int, border: Bool, locked: Bool) {
                 let attributed_text = astring_font_size_color(string: title, font: font_body, font_size: 16, color: nil)
                 label.attributedText = attributed_text
                 label.textAlignment = .Center
@@ -305,6 +335,8 @@ class HomeCellView: UICollectionViewCell {
                         contentView.layer.borderWidth = 0
                         contentView.layer.borderColor = UIColor.whiteColor().CGColor
                 }
+                lock_label.hidden = !locked
+                setNeedsLayout()
         }
 
         func highlight() {
