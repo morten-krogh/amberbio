@@ -6,7 +6,7 @@ let store_product_ids = [
         "com.amberbio.product.knn",
         "com.amberbio.product.pca",
         "com.amberbio.product.anova",
-        "com.amberbio.product.bundle-1"
+        "com.amberbio.product.bundle_1"
 ]
 
 let store_initially_locked_page_names = [
@@ -21,7 +21,7 @@ let store_product_id_to_page_names = [
         "com.amberbio.product.knn" : ["knn_factor_selection"],
         "com.amberbio.product.pca" : ["pca"],
         "com.amberbio.product.anova" : ["anova_factor_selection"],
-        "com.amberbio.product.bundle-1": ["svm_factor_selection", "knn_factor_selection", "pca", "anova_factor_selection"]
+        "com.amberbio.product.bundle_1": ["svm_factor_selection", "knn_factor_selection", "pca", "anova_factor_selection"]
 ]
 
 class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver {
@@ -119,13 +119,11 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver {
                 purchased_modules = []
                 for product in products {
                         let product_id = product.productIdentifier
-                        if product_id != "com.amberbio.product.bundle-1" {
-                                if let page_name = store_product_id_to_page_names[product_id]?[0] {
-                                        if locked_page_names.contains(page_name) {
-                                                modules_to_purchase.append(product)
-                                        } else {
-                                                purchased_modules.append(product)
-                                        }
+                        if product_id != "com.amberbio.product.bundle_1", let page_name = store_product_id_to_page_names[product_id]?[0] {
+                                if locked_page_names.contains(page_name) {
+                                        modules_to_purchase.append(product)
+                                } else {
+                                        purchased_modules.append(product)
                                 }
                         } else {
                                 if locked_page_names.count >= 2 {

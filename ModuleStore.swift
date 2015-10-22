@@ -61,7 +61,7 @@ class ModuleStore: Component, UITableViewDataSource, UITableViewDelegate {
         }
 
         func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-                return 3
+                return 4
         }
 
         func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -75,6 +75,8 @@ class ModuleStore: Component, UITableViewDataSource, UITableViewDelegate {
                 if section == 0 {
                         text = "Modules to purchase"
                 } else if section == 1 {
+                        text = "Packages of modules to purchase"
+                } else if section == 2 {
                         text = "Purchased modules"
                 } else {
                         text = "Restore purchased modules"
@@ -86,9 +88,11 @@ class ModuleStore: Component, UITableViewDataSource, UITableViewDelegate {
 
         func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
                 if section == 0 {
-                        return state.store.unpurchased_products.count
+                        return state.store.modules_to_purchase.count
                 } else if section == 1 {
-                        return state.store.purchased_products.count
+                        return state.store.bundles_to_purchase.count
+                } else if section == 2 {
+                        return state.store.purchased_modules.count
                 } else {
                         return 1
                 }
@@ -96,9 +100,9 @@ class ModuleStore: Component, UITableViewDataSource, UITableViewDelegate {
 
         func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
                 switch indexPath.section {
-                case 0:
+                case 0, 1:
                         return store_product_table_view_cell_height
-                case 1:
+                case 2:
                         return centered_table_view_cell_height + 20
                 default:
                         return store_restore_table_view_cell_height
@@ -110,11 +114,15 @@ class ModuleStore: Component, UITableViewDataSource, UITableViewDelegate {
 
                 if section == 0 {
                         let cell = tableView.dequeueReusableCellWithIdentifier("product cell") as! StoreProductTableViewCell
-                        cell.update(product: state.store.unpurchased_products[row])
+                        cell.update(product: state.store.modules_to_purchase[row])
                         return cell
                 } else if section == 1 {
+                        let cell = tableView.dequeueReusableCellWithIdentifier("product cell") as! StoreProductTableViewCell
+                        cell.update(product: state.store.bundles_to_purchase[row])
+                        return cell
+                } else if section == 2 {
                         let cell = tableView.dequeueReusableCellWithIdentifier("centered cell") as! CenteredTableViewCell
-                        let product = state.store.purchased_products[row]
+                        let product = state.store.purchased_modules[row]
                         let astring = astring_body(string: product.localizedTitle)
                         cell.update(attributed_text: astring, background_color: color_from_hex(hex: color_brewer_qualitative_9_pastel1[2]), symbol: .Checkmark)
                         return cell
@@ -123,10 +131,4 @@ class ModuleStore: Component, UITableViewDataSource, UITableViewDelegate {
                         return cell
                 }
         }
-
-
-
-        
-
-
 }
