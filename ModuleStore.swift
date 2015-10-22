@@ -14,14 +14,13 @@ class ModuleStoreState: PageState {
 
 class ModuleStore: Component, UITableViewDataSource, UITableViewDelegate {
 
-        let request_products_pending_label = UILabel()
+        let info_label = UILabel()
         let table_view = UITableView()
 
         override func viewDidLoad() {
                 super.viewDidLoad()
 
-                request_products_pending_label.attributedText = astring_font_size_color(string: "The products are fetched from the server", font: nil, font_size: 20, color: nil)
-                view.addSubview(request_products_pending_label)
+                view.addSubview(info_label)
 
                 table_view.registerClass(CenteredHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: "centered header")
                 table_view.registerClass(StoreProductTableViewCell.self, forCellReuseIdentifier: "product cell")
@@ -40,16 +39,24 @@ class ModuleStore: Component, UITableViewDataSource, UITableViewDelegate {
 
                 let width = view.frame.width
 
-                request_products_pending_label.sizeToFit()
-                request_products_pending_label.center = CGPoint(x: width / 2, y: 100)
+                info_label.sizeToFit()
+                info_label.center = CGPoint(x: width / 2, y: 100)
 
                 table_view.frame = view.bounds
         }
 
         override func render() {
-                request_products_pending_label.hidden = !state.store.request_products_pending
-                table_view.hidden = state.store.request_products_pending
-                table_view.reloadData()
+                info_label.hidden = false
+                table_view.hidden = true
+
+                if state.store.request_products_pending {
+                        info_label.attributedText = astring_font_size_color(string: "The products are fetched from the server", font: nil, font_size: 20, color: nil)
+                } else if state.store.restoring_pending {
+                        info_label.attributedText = astring_font_size_color(string: "Restoring purchased modules", font: nil, font_size: 20, color: nil)
+                } else {
+                        table_view.hidden = false
+                        table_view.reloadData()
+                }
         }
 
         func numberOfSectionsInTableView(tableView: UITableView) -> Int {

@@ -15,6 +15,8 @@ let store_product_id_to_page_name = [
 class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver {
 
         var request_products_pending = false
+        var restoring_pending = false
+
         var purchased_product_ids = [] as Set<String>
 
         var products = [] as [SKProduct]
@@ -52,7 +54,9 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver {
         }
 
         func restore() {
-                
+                SKPaymentQueue.defaultQueue().restoreCompletedTransactions()
+                restoring_pending = true
+                conditional_render()
         }
 
         func paymentQueue(queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
@@ -72,12 +76,13 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver {
                         case .Purchased:
                                 purchased(product_id: transaction.payment.productIdentifier)
                                 SKPaymentQueue.defaultQueue().finishTransaction(transaction)
-                                conditional_render()
                         case .Restored:
                                 print("Restored")
-                                break
+                                purchased(product_id: transaction.payment.productIdentifier)
+                                SKPaymentQueue.defaultQueue().finishTransaction(transaction)
                         }
                 }
+                conditional_render()
         }
 
         func purchased(product_id product_id: String) {
