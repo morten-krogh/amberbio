@@ -31,6 +31,10 @@ func sqlite_end(database database: Database) {
         sqlite3_exec(database, "end transaction;", nil, nil, nil)
 }
 
+func sqlite_execute(database database: Database, statement: String) {
+        sqlite_execute(database: database, query: Query(statement: statement))
+}
+
 func sqlite_execute(database database: Database, queries: [Query]) {
         for query in queries {
                 sqlite_execute(database: database, query: query)

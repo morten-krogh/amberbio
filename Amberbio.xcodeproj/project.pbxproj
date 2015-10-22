@@ -180,7 +180,6 @@
 		60B4014B1BA19C7900D8DD80 /* SpreadSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400C11BA19C7900D8DD80 /* SpreadSheet.swift */; };
 		60B4014C1BA19C7900D8DD80 /* sqlite_execute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400C21BA19C7900D8DD80 /* sqlite_execute.swift */; };
 		60B4014D1BA19C7900D8DD80 /* sqlite_import_export.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400C31BA19C7900D8DD80 /* sqlite_import_export.swift */; };
-		60B4014E1BA19C7900D8DD80 /* sqlite_indices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400C41BA19C7900D8DD80 /* sqlite_indices.swift */; };
 		60B4014F1BA19C7900D8DD80 /* sqlite_info.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400C51BA19C7900D8DD80 /* sqlite_info.swift */; };
 		60B401501BA19C7900D8DD80 /* sqlite_tables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400C61BA19C7900D8DD80 /* sqlite_tables.swift */; };
 		60B401511BA19C7900D8DD80 /* sqlite_triggers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400C71BA19C7900D8DD80 /* sqlite_triggers.swift */; };
@@ -210,7 +209,6 @@
 		60B401901BA1BF5400D8DD80 /* sqlite_execute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400C21BA19C7900D8DD80 /* sqlite_execute.swift */; };
 		60B401911BA1C21B00D8DD80 /* Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400AE1BA19C7900D8DD80 /* Query.swift */; };
 		60B401921BA1C22600D8DD80 /* sqlite_tables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400C61BA19C7900D8DD80 /* sqlite_tables.swift */; };
-		60B401931BA1C23100D8DD80 /* sqlite_indices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400C41BA19C7900D8DD80 /* sqlite_indices.swift */; };
 		60B401941BA1C23700D8DD80 /* sqlite_triggers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400C71BA19C7900D8DD80 /* sqlite_triggers.swift */; };
 		60B401951BA1C2A200D8DD80 /* sqlite_info.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400C51BA19C7900D8DD80 /* sqlite_info.swift */; };
 		60B401961BA1C2B900D8DD80 /* Files.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400721BA19C7900D8DD80 /* Files.swift */; };
@@ -424,7 +422,6 @@
 		60B400C11BA19C7900D8DD80 /* SpreadSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SpreadSheet.swift; path = Source/SpreadSheet.swift; sourceTree = "<group>"; };
 		60B400C21BA19C7900D8DD80 /* sqlite_execute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = sqlite_execute.swift; path = Source/sqlite_execute.swift; sourceTree = "<group>"; };
 		60B400C31BA19C7900D8DD80 /* sqlite_import_export.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = sqlite_import_export.swift; path = Source/sqlite_import_export.swift; sourceTree = "<group>"; };
-		60B400C41BA19C7900D8DD80 /* sqlite_indices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = sqlite_indices.swift; path = Source/sqlite_indices.swift; sourceTree = "<group>"; };
 		60B400C51BA19C7900D8DD80 /* sqlite_info.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = sqlite_info.swift; path = Source/sqlite_info.swift; sourceTree = "<group>"; };
 		60B400C61BA19C7900D8DD80 /* sqlite_tables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = sqlite_tables.swift; path = Source/sqlite_tables.swift; sourceTree = "<group>"; };
 		60B400C71BA19C7900D8DD80 /* sqlite_triggers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = sqlite_triggers.swift; path = Source/sqlite_triggers.swift; sourceTree = "<group>"; };
@@ -808,7 +805,6 @@
 				60B400AE1BA19C7900D8DD80 /* Query.swift */,
 				60B400C21BA19C7900D8DD80 /* sqlite_execute.swift */,
 				60B400C61BA19C7900D8DD80 /* sqlite_tables.swift */,
-				60B400C41BA19C7900D8DD80 /* sqlite_indices.swift */,
 				60B400C71BA19C7900D8DD80 /* sqlite_triggers.swift */,
 				60B400C51BA19C7900D8DD80 /* sqlite_info.swift */,
 				60B400C31BA19C7900D8DD80 /* sqlite_import_export.swift */,
@@ -1104,7 +1100,6 @@
 				60B400D91BA19C7900D8DD80 /* AnovaFactorSelection.swift in Sources */,
 				60B401671BA1A20400D8DD80 /* ColorSlider.swift in Sources */,
 				60B4011B1BA19C7900D8DD80 /* MultipleMoleculePlot.swift in Sources */,
-				60B4014E1BA19C7900D8DD80 /* sqlite_indices.swift in Sources */,
 				60B401031BA19C7900D8DD80 /* HierarchicalClusteringDrawer.swift in Sources */,
 				60B400FB1BA19C7900D8DD80 /* FactorElimination.swift in Sources */,
 				60B4012D1BA19C7900D8DD80 /* PCA2dPlot.swift in Sources */,
@@ -1316,7 +1311,6 @@
 				60B401921BA1C22600D8DD80 /* sqlite_tables.swift in Sources */,
 				60B401991BA1C37100D8DD80 /* Color.swift in Sources */,
 				60B401971BA1C2DB00D8DD80 /* Random.swift in Sources */,
-				60B401931BA1C23100D8DD80 /* sqlite_indices.swift in Sources */,
 				60B401941BA1C23700D8DD80 /* sqlite_triggers.swift in Sources */,
 				60B401951BA1C2A200D8DD80 /* sqlite_info.swift in Sources */,
 			);
