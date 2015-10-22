@@ -24,8 +24,8 @@ class ModuleStore: Component, UITableViewDataSource, UITableViewDelegate {
                 view.addSubview(request_products_pending_label)
 
                 table_view.registerClass(CenteredHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: "centered header")
-                table_view.registerClass(StoreProductTableViewCell.self, forCellReuseIdentifier: "store product cell")
-                table_view.registerClass(StoreProductTableViewCell.self, forCellReuseIdentifier: "restore cell")
+                table_view.registerClass(StoreProductTableViewCell.self, forCellReuseIdentifier: "product cell")
+                table_view.registerClass(StoreRestoreTableViewCell.self, forCellReuseIdentifier: "restore cell")
                 table_view.registerClass(CenteredTableViewCell.self, forCellReuseIdentifier: "centered cell")
 
                 table_view.dataSource = self
@@ -87,14 +87,21 @@ class ModuleStore: Component, UITableViewDataSource, UITableViewDelegate {
         }
 
         func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-                return indexPath.section == 0 ? store_product_table_view_cell_height : (centered_table_view_cell_height + 20)
+                switch indexPath.section {
+                case 0:
+                        return store_product_table_view_cell_height
+                case 1:
+                        return centered_table_view_cell_height + 20
+                default:
+                        return store_restore_table_view_cell_height
+                }
         }
 
         func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
                 let (section, row) = (indexPath.section, indexPath.row)
 
                 if section == 0 {
-                        let cell = tableView.dequeueReusableCellWithIdentifier("store product cell") as! StoreProductTableViewCell
+                        let cell = tableView.dequeueReusableCellWithIdentifier("product cell") as! StoreProductTableViewCell
                         cell.update(product: state.store.unpurchased_products[row])
                         return cell
                 } else if section == 1 {
@@ -104,8 +111,7 @@ class ModuleStore: Component, UITableViewDataSource, UITableViewDelegate {
                         cell.update_selected_checkmark(text: text)
                         return cell
                 } else {
-                        let cell = tableView.dequeueReusableCellWithIdentifier("restore cell") as!StoreRestoreTableViewCell
-
+                        let cell = tableView.dequeueReusableCellWithIdentifier("restore cell") as! StoreRestoreTableViewCell
                         return cell
                 }
         }

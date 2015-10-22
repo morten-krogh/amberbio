@@ -52,7 +52,7 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver {
         }
 
         func restore() {
-
+                
         }
 
         func paymentQueue(queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
