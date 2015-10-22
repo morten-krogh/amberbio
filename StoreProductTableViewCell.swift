@@ -21,7 +21,6 @@ class StoreProductTableViewCell: UITableViewCell {
 
                 inset_view.clipsToBounds = true
                 inset_view.layer.cornerRadius = 10
-                inset_view.backgroundColor = color_from_hex(hex: color_brewer_qualitative_9_pastel1[5])
                 contentView.addSubview(inset_view)
 
                 title_label.font = font_headline
@@ -70,9 +69,11 @@ class StoreProductTableViewCell: UITableViewCell {
                 buy_button.frame.origin = CGPoint(x: (width - buy_button.frame.width) / 2, y: origin_y)
         }
 
-        func update(product product: SKProduct) {
+        func update(product product: SKProduct, color: UIColor) {
 
                 self.product = product
+
+                inset_view.backgroundColor = color
 
                 title_label.text = product.localizedTitle
                 description_label.text = product.localizedDescription

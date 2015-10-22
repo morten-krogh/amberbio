@@ -114,11 +114,11 @@ class ModuleStore: Component, UITableViewDataSource, UITableViewDelegate {
 
                 if section == 0 {
                         let cell = tableView.dequeueReusableCellWithIdentifier("product cell") as! StoreProductTableViewCell
-                        cell.update(product: state.store.modules_to_purchase[row])
+                        cell.update(product: state.store.modules_to_purchase[row], color: color_from_hex(hex: color_brewer_qualitative_9_pastel1[5]))
                         return cell
                 } else if section == 1 {
                         let cell = tableView.dequeueReusableCellWithIdentifier("product cell") as! StoreProductTableViewCell
-                        cell.update(product: state.store.bundles_to_purchase[row])
+                        cell.update(product: state.store.bundles_to_purchase[row], color: color_from_hex(hex: color_brewer_qualitative_9_pastel1[1]))
                         return cell
                 } else if section == 2 {
                         let cell = tableView.dequeueReusableCellWithIdentifier("centered cell") as! CenteredTableViewCell
