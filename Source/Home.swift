@@ -1,7 +1,7 @@
 import UIKit
 
 let home_page_name_to_section_row = [
-        "store_front": (0, 0),
+        "module_store": (0, 0),
         "manual": (0, 1),
         "feedback": (0, 2),
         "user": (0, 3),
@@ -72,7 +72,7 @@ class Home: Component, UICollectionViewDataSource, UICollectionViewDelegate, UIC
         func section_row_to_page_state(section section: Int, row: Int) -> PageState {
                 switch (section, row) {
                 case (0, 0):
-                        return StoreFrontState()
+                        return ModuleStoreState()
                 case (0, 1):
                         return ManualState()
                 case (0, 2):

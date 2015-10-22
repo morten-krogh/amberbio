@@ -6,17 +6,30 @@ let store_product_ids = [
         "com.amberbio.product.pca"
 ]
 
+let store_product_id_to_home_page_name = [
+        "com.amberbio.product.svm" : "smv_factor_selection"
+]
+
 class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver {
 
         var request_products_pending = false
-        var purchased_product_ids = [] as Set<String>
+        var purchased_product_ids = ["com.amberbio.product.svm"] as Set<String>
 
         var products = [] as [SKProduct]
         var purchased_products = [] as [SKProduct]
         var unpurchased_products = [] as [SKProduct]
 
+        var locked_home_page_names = [] as Set<String>
+
+        override init() {
+                super.init()
+                for (_, home_page_name) in store_product_id_to_home_page_name {
+                        locked_home_page_names.insert(home_page_name)
+                }
+        }
+
         func conditional_render() {
-                if state.page_state.name == "store_front" {
+                if state.page_state.name == "module_store" {
                         state.render()
                 }
         }

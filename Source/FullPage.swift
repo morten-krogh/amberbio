@@ -102,8 +102,8 @@ class FullPage: Component, UIScrollViewDelegate, UISearchBarDelegate {
                         switch page_name {
                         case "home":
                                 page = Home()
-                        case "store_front":
-                                page = StoreFront()
+                        case "module_store":
+                                page = ModuleStore()
                         case "manual":
                                 page = Manual()
                         case "feedback":
@@ -204,7 +204,7 @@ class FullPage: Component, UIScrollViewDelegate, UISearchBarDelegate {
                                 page = HierarchicalClusteringPlot()
                         case "pca":
                                 page = PCA()
-                        case "supervised_classification_factor_selection":
+                        case "knn_factor_selection", "svm_factor_selection":
                                 page = SupervisedClassificationFactorSelection()
                         case "supervised_classification_validation_selection":
                                 page = SupervisedClassificationValidationSelection()

@@ -1,10 +1,10 @@
 import UIKit
 
-class StoreFrontState: PageState {
+class ModuleStoreState: PageState {
 
         override init() {
                 super.init()
-                name = "store_front"
+                name = "module_store"
                 title = astring_body(string: "Module store")
                 info = "The module store is used to purchase modules.\n\nA purchased module is unlocked forever on this device and other devices with the same Apple ID.\n\nTap the button \"Restore modules\" to unlock modules that have been purchased on another device or on as previous installation of this app."
 
@@ -12,7 +12,7 @@ class StoreFrontState: PageState {
         }
 }
 
-class StoreFront: Component, UITableViewDataSource, UITableViewDelegate {
+class ModuleStore: Component, UITableViewDataSource, UITableViewDelegate {
 
         let request_products_pending_label = UILabel()
         let table_view = UITableView()
@@ -95,7 +95,7 @@ class StoreFront: Component, UITableViewDataSource, UITableViewDelegate {
                         let cell = tableView.dequeueReusableCellWithIdentifier("centered cell") as! CenteredTableViewCell
                         let product = state.store.purchased_products[row]
                         let text = product.localizedTitle
-                        cell.update_color(text: text, color: color_blue_selectable)
+                        cell.update_selected_checkmark(text: text)
                         return cell
                 }
         }

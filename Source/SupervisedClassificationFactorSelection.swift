@@ -14,11 +14,12 @@ class SupervisedClassificationFactorSelectionState: PageState {
         init(supervised_classification_type: SupervisedClassificationType) {
                 self.supervised_classification_type = supervised_classification_type
                 super.init()
-                name = "supervised_classification_factor_selection"
                 switch supervised_classification_type {
                 case .KNN:
+                        name = "knn_factor_selection"
                         title = astring_body(string: "k nearest neighbor classifier")
                 case .SVM:
+                        name = "svm_factor_selection"
                         title = astring_body(string: "support vector machine")
                 }
                 info = "Select the factor levels for the classifier.\n\nAt least two levels must be selected.\n\nTap the factor name(blue) to continue."

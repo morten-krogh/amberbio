@@ -56,7 +56,7 @@
 		60A893E11BD52651004DAD2C /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A893E01BD52651004DAD2C /* Button.swift */; settings = {ASSET_TAGS = (); }; };
 		60A893E31BD78D38004DAD2C /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60A893E21BD78D38004DAD2C /* StoreKit.framework */; };
 		60A893E61BD794FB004DAD2C /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A893E51BD794FB004DAD2C /* Store.swift */; settings = {ASSET_TAGS = (); }; };
-		60A893E81BD7CE6A004DAD2C /* StoreFront.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A893E71BD7CE6A004DAD2C /* StoreFront.swift */; settings = {ASSET_TAGS = (); }; };
+		60A893E81BD7CE6A004DAD2C /* ModuleStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A893E71BD7CE6A004DAD2C /* ModuleStore.swift */; settings = {ASSET_TAGS = (); }; };
 		60A893EA1BD7F29F004DAD2C /* StoreProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A893E91BD7F29F004DAD2C /* StoreProductTableViewCell.swift */; settings = {ASSET_TAGS = (); }; };
 		60B400391BA1982900D8DD80 /* state_init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400381BA1982900D8DD80 /* state_init.swift */; settings = {ASSET_TAGS = (); }; };
 		60B4003B1BA1983900D8DD80 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B4003A1BA1983900D8DD80 /* State.swift */; settings = {ASSET_TAGS = (); }; };
@@ -294,7 +294,7 @@
 		60A893E01BD52651004DAD2C /* Button.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		60A893E21BD78D38004DAD2C /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		60A893E51BD794FB004DAD2C /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
-		60A893E71BD7CE6A004DAD2C /* StoreFront.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreFront.swift; sourceTree = "<group>"; };
+		60A893E71BD7CE6A004DAD2C /* ModuleStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleStore.swift; sourceTree = "<group>"; };
 		60A893E91BD7F29F004DAD2C /* StoreProductTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreProductTableViewCell.swift; sourceTree = "<group>"; };
 		60B400381BA1982900D8DD80 /* state_init.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = state_init.swift; path = Source/state_init.swift; sourceTree = "<group>"; };
 		60B4003A1BA1983900D8DD80 /* State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = State.swift; path = Source/State.swift; sourceTree = "<group>"; };
@@ -613,6 +613,7 @@
 				60B400851BA19C7900D8DD80 /* LogarithmTransform.swift */,
 				60B400871BA19C7900D8DD80 /* Manual.swift */,
 				60B4008C1BA19C7900D8DD80 /* MissingValuesForSamples.swift */,
+				60A893E71BD7CE6A004DAD2C /* ModuleStore.swift */,
 				60B4008D1BA19C7900D8DD80 /* MoleculeAnnotations.swift */,
 				60B4008F1BA19C7900D8DD80 /* MultipleMoleculePlot.swift */,
 				60B400951BA19C7900D8DD80 /* PairedComparisonFactor.swift */,
@@ -635,7 +636,6 @@
 				60B400B71BA19C7900D8DD80 /* SampleNormalization.swift */,
 				60B400BC1BA19C7900D8DD80 /* SingleMolecule.swift */,
 				60B400BE1BA19C7900D8DD80 /* SingleMoleculePlotTable.swift */,
-				60A893E71BD7CE6A004DAD2C /* StoreFront.swift */,
 				601E57A21BCD0441002EEEB3 /* SupervisedClassificationFactorSelection.swift */,
 				605F52311BC2ED2D00033B91 /* SupervisedClassificationParameterSelection.swift */,
 				605F52361BC3D9EF00033B91 /* SupervisedClassificationResult.swift */,
@@ -1178,7 +1178,7 @@
 				60B4013C1BA19C7900D8DD80 /* FilterMolecules.swift in Sources */,
 				60B4014B1BA19C7900D8DD80 /* SpreadSheet.swift in Sources */,
 				60B401391BA19C7900D8DD80 /* Query.swift in Sources */,
-				60A893E81BD7CE6A004DAD2C /* StoreFront.swift in Sources */,
+				60A893E81BD7CE6A004DAD2C /* ModuleStore.swift in Sources */,
 				60B400421BA19BED00D8DD80 /* NumberFormat.swift in Sources */,
 				60B4010B1BA19C7900D8DD80 /* Layout.swift in Sources */,
 				60B401661BA1A20400D8DD80 /* ColorGrid.swift in Sources */,
