@@ -5,7 +5,8 @@ let store_product_ids = [
         "com.amberbio.product.svm",
         "com.amberbio.product.knn",
         "com.amberbio.product.pca",
-        "com.amberbio.product.anova"
+        "com.amberbio.product.anova",
+        "com.amberbio.product.bundle-1"
 ]
 
 let store_initially_locked_page_names = [
@@ -19,7 +20,8 @@ let store_product_id_to_page_names = [
         "com.amberbio.product.svm" : ["svm_factor_selection"],
         "com.amberbio.product.knn" : ["knn_factor_selection"],
         "com.amberbio.product.pca" : ["pca"],
-        "com.amberbio.product.anova" : ["anova_factor_selection"]
+        "com.amberbio.product.anova" : ["anova_factor_selection"],
+        "com.amberbio.product.bundle-1": ["svm_factor_selection", "knn_factor_selection", "pca", "anova_factor_selection"]
 ]
 
 class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver {
@@ -30,8 +32,9 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver {
         var purchased_product_ids = [] as Set<String>
 
         var products = [] as [SKProduct]
-        var purchased_products = [] as [SKProduct]
-        var unpurchased_products = [] as [SKProduct]
+        var modules_to_purchase = [] as [SKProduct]
+        var bundles_to_purchase = [] as [SKProduct]
+        var purchased_modules = [] as [SKProduct]
 
         var locked_page_names = [] as Set<String>
 
@@ -102,30 +105,31 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver {
         }
 
         func set_all() {
-                set_products(products: products)
-                set_locked_page_names()
-        }
-
-        func set_products(products products: [SKProduct]) {
-                self.products = products
-                purchased_products = []
-                unpurchased_products = []
-                for product in products {
-                        let product_id = product.productIdentifier
-                        if purchased_product_ids.contains(product_id) {
-                                purchased_products.append(product)
-                        } else {
-                                unpurchased_products.append(product)
-                        }
-                }
-        }
-
-        func set_locked_page_names() {
                 locked_page_names = Set<String>(store_initially_locked_page_names)
                 for product_id in purchased_product_ids {
                         if let page_names = store_product_id_to_page_names[product_id] {
                                 for page_name in page_names {
                                         locked_page_names.remove(page_name)
+                                }
+                        }
+                }
+
+                modules_to_purchase = []
+                bundles_to_purchase = []
+                purchased_modules = []
+                for product in products {
+                        let product_id = product.productIdentifier
+                        if product_id != "com.amberbio.product.bundle-1" {
+                                if let page_name = store_product_id_to_page_names[product_id]?[0] {
+                                        if locked_page_names.contains(page_name) {
+                                                modules_to_purchase.append(product)
+                                        } else {
+                                                purchased_modules.append(product)
+                                        }
+                                }
+                        } else {
+                                if locked_page_names.count >= 2 {
+                                        bundles_to_purchase.append(product)
                                 }
                         }
                 }
