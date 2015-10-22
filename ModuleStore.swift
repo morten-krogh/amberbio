@@ -115,8 +115,8 @@ class ModuleStore: Component, UITableViewDataSource, UITableViewDelegate {
                 } else if section == 1 {
                         let cell = tableView.dequeueReusableCellWithIdentifier("centered cell") as! CenteredTableViewCell
                         let product = state.store.purchased_products[row]
-                        let text = product.localizedTitle
-                        cell.update_selected_checkmark(text: text)
+                        let astring = astring_body(string: product.localizedTitle)
+                        cell.update(attributed_text: astring, background_color: color_from_hex(hex: color_brewer_qualitative_9_pastel1[2]), symbol: .Checkmark)
                         return cell
                 } else {
                         let cell = tableView.dequeueReusableCellWithIdentifier("restore cell") as! StoreRestoreTableViewCell

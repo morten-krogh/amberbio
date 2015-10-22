@@ -3,13 +3,23 @@ import StoreKit
 
 let store_product_ids = [
         "com.amberbio.product.svm",
-        "com.amberbio.product.pca"
+        "com.amberbio.product.knn",
+        "com.amberbio.product.pca",
+        "com.amberbio.product.anova"
 ]
 
-let store_product_id_to_page_name = [
-        "com.amberbio.product.svm" : "svm_factor_selection",
-        "com.amberbio.product.pca" : "pca",
-        "com.amberbio.product.pairwise-test" : "pairwise_factor"
+let store_initially_locked_page_names = [
+        "svm_factor_selection",
+        "knn_factor_selection",
+        "pca",
+        "anova_factor_selection"
+]
+
+let store_product_id_to_page_names = [
+        "com.amberbio.product.svm" : ["svm_factor_selection"],
+        "com.amberbio.product.knn" : ["knn_factor_selection"],
+        "com.amberbio.product.pca" : ["pca"],
+        "com.amberbio.product.anova" : ["anova_factor_selection"]
 ]
 
 class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver {
@@ -111,14 +121,15 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver {
         }
 
         func set_locked_page_names() {
-                locked_page_names.removeAll()
-                for (product_id, page_name) in store_product_id_to_page_name {
-                        if !purchased_product_ids.contains(product_id) {
-                                locked_page_names.insert(page_name)
+                locked_page_names = Set<String>(store_initially_locked_page_names)
+                for product_id in purchased_product_ids {
+                        if let page_names = store_product_id_to_page_names[product_id] {
+                                for page_name in page_names {
+                                        locked_page_names.remove(page_name)
+                                }
                         }
                 }
         }
-
 
         func conditional_render() {
                 if state.page_state.name == "module_store" {

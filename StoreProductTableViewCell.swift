@@ -21,7 +21,7 @@ class StoreProductTableViewCell: UITableViewCell {
 
                 inset_view.clipsToBounds = true
                 inset_view.layer.cornerRadius = 10
-                inset_view.backgroundColor = color_blue_selectable
+                inset_view.backgroundColor = color_from_hex(hex: color_brewer_qualitative_9_pastel1[5])
                 contentView.addSubview(inset_view)
 
                 title_label.font = font_headline
