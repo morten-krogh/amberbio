@@ -8,7 +8,7 @@ enum RenderType {
 
 class State {
         let database: Database
-        let store = Store()
+        let store: Store
 
         var rendering = false
         var render_type = RenderType.full_page
@@ -57,6 +57,7 @@ class State {
 
         init(database: Database) {
                 self.database = database
+                store = Store(database: database)
                 let active_data_set_id = get_active_data_set_id()
                 data_set_id = -1
                 if active_data_set_id == 0 && home_selected_index_path == nil, let (section, row) = home_page_name_to_section_row["data_set_selection"] {

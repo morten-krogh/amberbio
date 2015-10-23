@@ -1,5 +1,18 @@
 import Foundation
 
+func sqlite_get_store_product_ids(database database: Database) -> [String] {
+        let statement = "select store_product_product_id from store_product"
+        let query = Query(statement: statement, result_types: ["text"])
+        sqlite_execute(database: database, query: query)
+        return query.result_texts[0]
+}
+
+func sqlite_insert_store_product_id(database database: Database, store_product_id: String) {
+        let statement = "insert into store_product (store_product_product_id) values (:text0)"
+        let query = Query(statement: statement, bind_texts: [store_product_id])
+        sqlite_execute(database: database, query: query)
+}
+
 func sqlite_get_info(database database: Database) -> (version: Int, type: String)? {
         let statement = "select version, type from info"
         let query = Query(statement: statement, result_types: ["integer", "text"])

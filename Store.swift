@@ -26,6 +26,8 @@ let store_product_id_to_page_names = [
 
 class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver {
 
+        let database: Database
+
         var request_products_pending = false
         var restoring_pending = false
 
@@ -38,8 +40,10 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver {
 
         var locked_page_names = [] as Set<String>
 
-        override init() {
+        init(database: Database) {
+                self.database = database
                 super.init()
+                get_purchased_product_ids()
                 set_all()
         }
 
@@ -87,21 +91,15 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver {
                                 print("Failed")
                                 SKPaymentQueue.defaultQueue().finishTransaction(transaction)
                         case .Purchased:
-                                purchased(product_id: transaction.payment.productIdentifier)
+                                insert_purchased_product_id(product_id: transaction.payment.productIdentifier)
                                 SKPaymentQueue.defaultQueue().finishTransaction(transaction)
                         case .Restored:
-                                print("Restored")
-                                purchased(product_id: transaction.payment.productIdentifier)
+                                insert_purchased_product_id(product_id: transaction.payment.productIdentifier)
                                 SKPaymentQueue.defaultQueue().finishTransaction(transaction)
                         }
                 }
                 restoring_pending = false
                 conditional_render()
-        }
-
-        func purchased(product_id product_id: String) {
-                purchased_product_ids.insert(product_id)
-                set_all()
         }
 
         func set_all() {
@@ -131,6 +129,17 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver {
                                 }
                         }
                 }
+        }
+
+        func get_purchased_product_ids() {
+                let product_ids = sqlite_get_store_product_ids(database: database)
+                purchased_product_ids = Set<String>(product_ids)
+        }
+
+        func insert_purchased_product_id(product_id product_id: String) {
+                sqlite_insert_store_product_id(database: database, store_product_id: product_id)
+                purchased_product_ids.insert(product_id)
+                set_all()
         }
 
         func conditional_render() {
