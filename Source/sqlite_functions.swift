@@ -1,10 +1,16 @@
 import Foundation
 
-func sqlite_info(database database: Database) -> (version: Int, type: String)? {
+func sqlite_get_info(database database: Database) -> (version: Int, type: String)? {
         let statement = "select version, type from info"
         let query = Query(statement: statement, result_types: ["integer", "text"])
         sqlite_execute(database: database, query: query)
         return query.result_integers[0].isEmpty ? nil : (query.result_integers[0][0], query.result_texts[0][0])
+}
+
+func sqlite_set_info(database database: Database, version: Int, type: String) {
+        let statement = "insert or replace into info (info_id, version, type) values (1, :integer0, :text0)"
+        let query = Query(statement: statement, bind_texts: [type], bind_integers: [version])
+        sqlite_execute(database: database, query: query)
 }
 
 func sqlite_copy_project(source_database source_database: Database, destination_database: Database, source_project_id: Int) -> Int {
