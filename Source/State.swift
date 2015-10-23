@@ -121,7 +121,7 @@ class State {
         }
 
         func locked(page_name page_name: String) -> Bool {
-                return !demo_project() && store.locked_page_names.contains(page_name)
+                return active_data_set && !demo_project() && store.locked_page_names.contains(page_name)
         }
 
         func reset_data_set() {
@@ -370,7 +370,7 @@ class State {
                 let statement = "select project_id, project_guid, project_name from data_set natural join project where data_set_id = :integer0"
                 let query = Query(statement: statement, bind_integers: [data_set_id], result_types: ["integer", "text", "text"])
                 sqlite_execute(database: database, query: query)
-                return (query.result_integers[0][0], query.result_texts[1][0], query.result_texts[0][0])
+                return (query.result_integers[0][0], query.result_texts[0][0], query.result_texts[1][0])
         }
 
         func get_original_data_set_id(project_id project_id: Int) -> Int {

@@ -126,10 +126,10 @@ func insert_project_note(database database: Database, project_note_text: String,
         sqlite_execute(database: database, query: query)
 }
 
-func insert_project(database database: Database, project_name: String, data_set_name: String, values: [Double], sample_names: [String], molecule_names: [String], factor_names: [String], level_names_of_samples_array: [[String]], molecule_annotation_names: [String], molecule_annotation_values_array: [[String]], project_note_texts: [String], project_note_types: [String], project_note_user_names: [String]) -> Int {
+func insert_project(database database: Database, project_name: String, project_guid: String, data_set_name: String, values: [Double], sample_names: [String], molecule_names: [String], factor_names: [String], level_names_of_samples_array: [[String]], molecule_annotation_names: [String], molecule_annotation_values_array: [[String]], project_note_texts: [String], project_note_types: [String], project_note_user_names: [String]) -> Int {
 
-        let statement_project = "insert into project (project_guid, project_name) values ((select lower(hex(randomblob(10)))), :text0)"
-        let query_project = Query(statement: statement_project, bind_texts: [project_name])
+        let statement_project = "insert into project (project_guid, project_name) values (:text0, :text1)"
+        let query_project = Query(statement: statement_project, bind_texts: [project_guid, project_name])
         sqlite_execute(database: database, query: query_project)
         let project_id = sqlite_last_insert_rowid(database: database)
 
@@ -155,7 +155,7 @@ func insert_project(database database: Database, project_name: String, data_set_
         return project_id
 }
 
-func import_data(database database: Database, stem: String, project_name: String) -> Int {
+func import_data(database database: Database, stem: String, project_name: String, project_guid: String) -> Int {
 
         var values = [] as [Double]
         var sample_names = [] as [String]
@@ -184,24 +184,24 @@ func import_data(database database: Database, stem: String, project_name: String
                 level_names_of_samples_array = parsed_factor_data.sample_levels
         }
 
-        return insert_project(database: database, project_name: project_name, data_set_name: "Original data set", values: values, sample_names: sample_names, molecule_names: molecule_names, factor_names: factor_names, level_names_of_samples_array: level_names_of_samples_array, molecule_annotation_names: molecule_annotation_names, molecule_annotation_values_array: molecule_annotation_values_array, project_note_texts: [], project_note_types: [], project_note_user_names: [])
+        return insert_project(database: database, project_name: project_name, project_guid: project_guid, data_set_name: "Original data set", values: values, sample_names: sample_names, molecule_names: molecule_names, factor_names: factor_names, level_names_of_samples_array: level_names_of_samples_array, molecule_annotation_names: molecule_annotation_names, molecule_annotation_values_array: molecule_annotation_values_array, project_note_texts: [], project_note_types: [], project_note_user_names: [])
 }
 
 func database_populate(database database: Database) {
 
-        let iris_project_id = import_data(database: database, stem: "iris", project_name: "Iris flowers")
+        let iris_project_id = import_data(database: database, stem: "iris", project_name: "Iris flowers", project_guid: "demo-project-iris")
         let iris_project_note_text = "The iris data set is a classic data set that is often used in machine learning. Four features were measured for 150 iris flowers. The 150 flowers belonged to three species, Iris setosa, Iris virginica and Iris versicolor, with 50 flowers from each species. The four measured features were the length and the width of the sepals and petals in centimetres. The data set is availabel at http://archive.ics.uci.edu/ml/datasets/Iris"
         insert_project_note(database: database, project_note_text: iris_project_note_text, project_note_type: "auto", project_note_user_name: "Demo", project_id: iris_project_id)
 
-        let breast_cancer_project_id = import_data(database: database, stem: "breast-cancer", project_name: "Breast cancer")
+        let breast_cancer_project_id = import_data(database: database, stem: "breast-cancer", project_name: "Breast cancer", project_guid: "demo-project-breast-cancer")
         let breast_cancer_project_note_text = "The data set contains mass spectrometry measurements of proteins in breast cancer tumors. This data set is a subset of the data from the paper \"Changes in glycoprotein expression between primary breast tumour and synchronous lymph node metastases or asynchronous distant metastases. Clin Proteomics. 2015 May 12;12(1):13\". For each breast cancer patient, a primary tumor and an axillary tumor were subject to analysis making the data set suitable for a paired test."
         insert_project_note(database: database, project_note_text: breast_cancer_project_note_text, project_note_type: "auto", project_note_user_name: "Demo", project_id: breast_cancer_project_id)
 
-        let brain_stem_cells_project_id = import_data(database: database, stem: "brain-stem-cells", project_name: "Brain stem cells")
+        let brain_stem_cells_project_id = import_data(database: database, stem: "brain-stem-cells", project_name: "Brain stem cells", project_guid:  "demo-project-brain-stem-cells")
         let brain_stem_cell_project_note_text = "The data set consists of the counts of microRNAs from brain stem cells. The counts were measured using high throughput sequencing. The data set is available in GEO with id GSE68189. The data set is published in the paper \"Comprehensive analysis of microRNA expression in regionalized human neural progenitor cells reveals microRNA-10 as a caudalizing factor, Development. 2015 Sep 15;142(18):3166-77.\""
         insert_project_note(database: database, project_note_text: brain_stem_cell_project_note_text, project_note_type: "auto", project_note_user_name: "Demo", project_id: brain_stem_cells_project_id)
 
-        let diabetes_project_id = import_data(database: database, stem: "diabetes", project_name: "Diabetes")
+        let diabetes_project_id = import_data(database: database, stem: "diabetes", project_name: "Diabetes", project_guid: "demo-project-diabetes")
         let diabetes_project_note_text = "The diabetes data set is an unpublished data set. The data set contains samples from 12 mice. Protein abundances in the samples were measured using mass spectrometry."
         insert_project_note(database: database, project_note_text: diabetes_project_note_text, project_note_type: "auto", project_note_user_name: "Demo", project_id: diabetes_project_id)
 }

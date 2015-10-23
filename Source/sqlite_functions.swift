@@ -1,5 +1,11 @@
 import Foundation
 
+func sqlite_update_project_guid(database database: Database, project_id: Int, project_guid: String) {
+        let statement = "update project set project_guid = :text0 where project_id = :integer0"
+        let query = Query(statement: statement, bind_texts: [project_guid], bind_integers: [project_id])
+        sqlite_execute(database: database, query: query)
+}
+
 func sqlite_get_store_product_ids(database database: Database) -> [String] {
         let statement = "select store_product_product_id from store_product"
         let query = Query(statement: statement, result_types: ["text"])
