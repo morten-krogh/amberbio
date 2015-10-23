@@ -25,6 +25,7 @@ class State {
 
         var active_data_set = false
         var data_set_id = 0
+        var demo_data_set = true
         var data_set_name = ""
         var project_id = 0
         var project_name = ""
@@ -113,6 +114,10 @@ class State {
                                 self.data_set_id = 0
                         }
                 }
+        }
+
+        func locked(page_name page_name: String) -> Bool {
+                return !demo_data_set && store.locked_page_names.contains(page_name)
         }
 
         func reset_data_set() {

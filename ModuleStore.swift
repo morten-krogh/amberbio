@@ -40,9 +40,9 @@ class ModuleStore: Component, UITableViewDataSource, UITableViewDelegate {
 
                 let width = view.frame.width
 
-                info_label.frame = CGRect(x: 20, y: 100, width: width - 40, height: 100)
-//                info_label.sizeToFit()
-//                info_label.center = CGPoint(x: width / 2, y: 100)
+                let info_size = info_label.sizeThatFits(CGSize(width: width - 40, height: 0))
+                info_label.frame.size = info_size
+                info_label.center = CGPoint(x: width / 2, y: 100)
 
                 table_view.frame = view.bounds
         }

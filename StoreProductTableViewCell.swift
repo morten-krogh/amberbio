@@ -61,7 +61,6 @@ class StoreProductTableViewCell: UITableViewCell {
                 let description_width = min(width - 40, 500)
                 description_label.font = font_body
                 let description_size = description_label.sizeThatFits(CGSize(width: description_width, height: 0))
-                print(description_size)
                 if description_size.height > 120 {
                         description_label.font = font_footnote
                 }
