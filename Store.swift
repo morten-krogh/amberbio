@@ -54,6 +54,7 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver {
                 products_request.delegate = self
                 products_request.start()
                 request_products_pending = true
+                restoring_pending = false
         }
 
         func productsRequest(request: SKProductsRequest, didReceiveResponse response: SKProductsResponse) {
@@ -95,6 +96,18 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver {
                                 SKPaymentQueue.defaultQueue().finishTransaction(transaction)
                         }
                 }
+                restoring_pending = false
+                conditional_render()
+        }
+
+        func paymentQueueRestoreCompletedTransactionsFinished(queue: SKPaymentQueue) {
+                if restoring_pending {
+                        restoring_pending = false
+                        conditional_render()
+                }
+        }
+
+        func paymentQueue(queue: SKPaymentQueue, restoreCompletedTransactionsFailedWithError error: NSError) {
                 restoring_pending = false
                 conditional_render()
         }
