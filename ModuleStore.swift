@@ -73,13 +73,13 @@ class ModuleStore: Component, UITableViewDataSource, UITableViewDelegate {
 
                 let text: String
                 if section == 0 {
-                        text = "Modules to purchase"
+                        text = "Products to purchase"
                 } else if section == 1 {
-                        text = "Packages of modules to purchase"
+                        text = "Purchased products"
                 } else if section == 2 {
-                        text = "Purchased modules"
+                        text = "Restore purchased products"
                 } else {
-                        text = "Restore purchased modules"
+                        text = "Unlocked modules"
                 }
                 header.update_normal(text: text)
 
@@ -88,24 +88,26 @@ class ModuleStore: Component, UITableViewDataSource, UITableViewDelegate {
 
         func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
                 if section == 0 {
-                        return state.store.modules_to_purchase.count
+                        return state.store.products_to_purchase.count
                 } else if section == 1 {
-                        return state.store.bundles_to_purchase.count
+                        return state.store.purchased_products.count
                 } else if section == 2 {
-                        return state.store.purchased_modules.count
-                } else {
                         return 1
+                } else {
+                        return state.store.unlocked_modules.count
                 }
         }
 
         func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
                 switch indexPath.section {
-                case 0, 1:
+                case 0:
                         return store_product_table_view_cell_height
-                case 2:
+                case 1:
                         return centered_table_view_cell_height + 20
-                default:
+                case 2:
                         return store_restore_table_view_cell_height
+                default:
+                        return centered_table_view_cell_height + 20
                 }
         }
 
@@ -113,21 +115,26 @@ class ModuleStore: Component, UITableViewDataSource, UITableViewDelegate {
                 let (section, row) = (indexPath.section, indexPath.row)
 
                 if section == 0 {
+                        let color = color_from_hex(hex: color_brewer_qualitative_9_pastel1[5])
                         let cell = tableView.dequeueReusableCellWithIdentifier("product cell") as! StoreProductTableViewCell
-                        cell.update(product: state.store.modules_to_purchase[row], color: color_from_hex(hex: color_brewer_qualitative_9_pastel1[5]))
+                        cell.update(product: state.store.products_to_purchase[row], color: color)
                         return cell
                 } else if section == 1 {
-                        let cell = tableView.dequeueReusableCellWithIdentifier("product cell") as! StoreProductTableViewCell
-                        cell.update(product: state.store.bundles_to_purchase[row], color: color_from_hex(hex: color_brewer_qualitative_9_pastel1[1]))
+                        let color = color_from_hex(hex: color_brewer_qualitative_9_pastel1[1])
+                        let cell = tableView.dequeueReusableCellWithIdentifier("centered cell") as! CenteredTableViewCell
+                        let title = state.store.purchased_products[row].localizedTitle
+                        let astring = astring_body(string: title)
+                        cell.update(attributed_text: astring, background_color: color, symbol: .Checkmark)
                         return cell
                 } else if section == 2 {
-                        let cell = tableView.dequeueReusableCellWithIdentifier("centered cell") as! CenteredTableViewCell
-                        let product = state.store.purchased_modules[row]
-                        let astring = astring_body(string: product.localizedTitle)
-                        cell.update(attributed_text: astring, background_color: color_from_hex(hex: color_brewer_qualitative_9_pastel1[2]), symbol: .Checkmark)
+                        let cell = tableView.dequeueReusableCellWithIdentifier("restore cell") as! StoreRestoreTableViewCell
                         return cell
                 } else {
-                        let cell = tableView.dequeueReusableCellWithIdentifier("restore cell") as! StoreRestoreTableViewCell
+                        let color = color_from_hex(hex: color_brewer_qualitative_9_pastel1[2])
+                        let cell = tableView.dequeueReusableCellWithIdentifier("centered cell") as! CenteredTableViewCell
+                        let title = state.store.unlocked_modules[row]
+                        let astring = astring_body(string: title)
+                        cell.update(attributed_text: astring, background_color: color, symbol: .Checkmark)
                         return cell
                 }
         }
