@@ -20,6 +20,7 @@ class ModuleStore: Component, UITableViewDataSource, UITableViewDelegate {
         override func viewDidLoad() {
                 super.viewDidLoad()
 
+                info_label.numberOfLines = 0
                 view.addSubview(info_label)
 
                 table_view.registerClass(CenteredHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: "centered header")
@@ -39,8 +40,9 @@ class ModuleStore: Component, UITableViewDataSource, UITableViewDelegate {
 
                 let width = view.frame.width
 
-                info_label.sizeToFit()
-                info_label.center = CGPoint(x: width / 2, y: 100)
+                info_label.frame = CGRect(x: 20, y: 100, width: width - 40, height: 100)
+//                info_label.sizeToFit()
+//                info_label.center = CGPoint(x: width / 2, y: 100)
 
                 table_view.frame = view.bounds
         }
@@ -61,7 +63,7 @@ class ModuleStore: Component, UITableViewDataSource, UITableViewDelegate {
         }
 
         func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-                return 4
+                return 5
         }
 
         func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -78,6 +80,8 @@ class ModuleStore: Component, UITableViewDataSource, UITableViewDelegate {
                         text = "Purchased products"
                 } else if section == 2 {
                         text = "Restore purchased products"
+                } else if section == 3 {
+                        text = "Locked modules"
                 } else {
                         text = "Unlocked modules"
                 }
@@ -93,6 +97,8 @@ class ModuleStore: Component, UITableViewDataSource, UITableViewDelegate {
                         return state.store.purchased_products.count
                 } else if section == 2 {
                         return 1
+                } else if section == 3 {
+                        return state.store.locked_modules.count
                 } else {
                         return state.store.unlocked_modules.count
                 }
@@ -120,7 +126,7 @@ class ModuleStore: Component, UITableViewDataSource, UITableViewDelegate {
                         cell.update(product: state.store.products_to_purchase[row], color: color)
                         return cell
                 } else if section == 1 {
-                        let color = color_from_hex(hex: color_brewer_qualitative_9_pastel1[1])
+                        let color = color_from_hex(hex: color_brewer_qualitative_9_pastel1[2])
                         let cell = tableView.dequeueReusableCellWithIdentifier("centered cell") as! CenteredTableViewCell
                         let title = state.store.purchased_products[row].localizedTitle
                         let astring = astring_body(string: title)
@@ -128,6 +134,13 @@ class ModuleStore: Component, UITableViewDataSource, UITableViewDelegate {
                         return cell
                 } else if section == 2 {
                         let cell = tableView.dequeueReusableCellWithIdentifier("restore cell") as! StoreRestoreTableViewCell
+                        return cell
+                } else if section == 3 {
+                        let color = color_from_hex(hex: color_brewer_qualitative_9_pastel1[5])
+                        let cell = tableView.dequeueReusableCellWithIdentifier("centered cell") as! CenteredTableViewCell
+                        let title = state.store.locked_modules[row]
+                        let astring = astring_body(string: title)
+                        cell.update(attributed_text: astring, background_color: color, symbol: .None)
                         return cell
                 } else {
                         let color = color_from_hex(hex: color_brewer_qualitative_9_pastel1[2])

@@ -1,7 +1,7 @@
 import UIKit
 import StoreKit
 
-let store_product_table_view_cell_height = 285 as CGFloat
+let store_product_table_view_cell_height = 275 as CGFloat
 
 class StoreProductTableViewCell: UITableViewCell {
 
@@ -58,9 +58,16 @@ class StoreProductTableViewCell: UITableViewCell {
                 title_label.frame = CGRect(x: 0, y: origin_y, width: width, height: 40)
                 origin_y += title_label.frame.height + 5
 
-                let description_width = min(width - 20, 500)
+                let description_width = min(width - 40, 500)
+                description_label.font = font_body
+                let description_size = description_label.sizeThatFits(CGSize(width: description_width, height: 0))
+                print(description_size)
+                if description_size.height > 120 {
+                        description_label.font = font_footnote
+                }
+
                 description_label.frame = CGRect(x: (width - description_width) / 2, y: origin_y, width: description_width, height: 120)
-                origin_y += description_label.frame.height + 10
+                origin_y += description_label.frame.height
 
                 price_label.frame = CGRect(x: 0, y: origin_y, width: width, height: 40)
                 origin_y += price_label.frame.height

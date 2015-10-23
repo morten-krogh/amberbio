@@ -36,6 +36,8 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver {
         var products = [] as [SKProduct]
         var purchased_products = [] as [SKProduct]
         var products_to_purchase = [] as [SKProduct]
+
+        var locked_modules = [] as [String]
         var unlocked_modules = [] as [String]
 
         var locked_page_names = [] as Set<String>
@@ -133,6 +135,7 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver {
                         }
                 }
 
+                locked_modules = []
                 unlocked_modules = []
                 for product in products {
                         let product_id = product.productIdentifier
@@ -140,6 +143,8 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver {
                                 let page_name = store_product_id_to_page_names[product_id]![0]
                                 if !locked_page_names.contains(page_name) {
                                         unlocked_modules.append(product.localizedTitle)
+                                } else {
+                                        locked_modules.append(product.localizedTitle)
                                 }
                         }
                 }

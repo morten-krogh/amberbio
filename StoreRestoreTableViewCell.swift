@@ -1,10 +1,10 @@
 import UIKit
 
-let store_restore_table_view_cell_height = 300 as CGFloat
+let store_restore_table_view_cell_height = 200 as CGFloat
 
 class StoreRestoreTableViewCell: UITableViewCell {
 
-        let description_text = "If a module is purchased on one device, it can be transferred to another device with the same Apple ID. Likewise, if the app is deleted and reinstalled, previous purchased modules will be forgotten.\n\nAll purchased modules can be restored. The restoration process contacts Apple's servers and obtains a copy of all past purchases. There is nothing to lose by restoring, and it can be done multiple times."
+        let description_text = "Restore to make sure that all purchases with your Apple ID are known by the app on this device."
 
         let description_label = UILabel()
         let restore_button = UIButton(type: .System)
@@ -47,7 +47,7 @@ class StoreRestoreTableViewCell: UITableViewCell {
                 var origin_y = 10 as CGFloat
 
                 let description_width = min(width - 20, 500)
-                description_label.frame = CGRect(x: (width - description_width) / 2, y: origin_y, width: description_width, height: 200)
+                description_label.frame = CGRect(x: (width - description_width) / 2, y: origin_y, width: description_width, height: 100)
                 origin_y += description_label.frame.height + 10
 
                 restore_button.sizeToFit()
