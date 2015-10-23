@@ -37,9 +37,19 @@ let sqlite_create_index_statements = [
         "molecule_annotation_project_id": "create index molecule_annotation_project_id_index on molecule_annotation(project_id)"
 ]
 
-let sqlite_database_main_1_tables = ["info", "user", "email", "file_data", "file", "project", "project_note", "sample", "factor", "level", "sample_level", "data_set_data", "data_set", "file_data_set", "molecule_annotation", "active_data_set"]
+let sqlite_create_triggers_statements = [
+        "file_delete": "create trigger file_delete after delete on file begin delete from file_data where file_data_id = old.file_data_id; delete from file_data_set where file_id = old.file_id; end",
+        "project_delete": "create trigger project_delete after delete on project begin delete from data_set where project_id = old.project_id; delete from factor where project_id = old.project_id; delete from molecule_annotation where project_id = old.project_id; delete from project_note where project_id = old.project_id; end",
+        "data_set_delete": "create trigger data_set_delete after delete on data_set begin delete from data_set_data where data_set_data_id = old.data_set_data_id; delete from file_data_set where data_set_id = old.data_set_id; delete from active_data_set where data_set_id = old.data_set_id; end",
+        "file_data_set_delete": "create trigger file_data_set_delete after delete on file_data_set begin delete from file where file_id = old.file_id; end",
+        "factor_delete": "create trigger factor_delete after delete on factor begin delete from level where factor_id = old.factor_id; end",
+        "level_delete": "create trigger level_delete after delete on level begin delete from sample_level where level_id = old.level_id; end",
+        "sample_delete": "create trigger sample_delete after delete on sample begin delete from sample_level where sample_id = old.sample_id; end"
+]
 
+let sqlite_database_main_1_tables = ["info", "user", "email", "file_data", "file", "project", "project_note", "sample", "factor", "level", "sample_level", "data_set_data", "data_set", "file_data_set", "molecule_annotation", "active_data_set"]
 let sqlite_database_main_1_indices = ["file_type", "file_data_id", "data_set_project_id", "data_set_data_id", "file_data_set_file_id", "file_data_set_data_set_id", "factor_project_id", "level_factor_id", "sample_level_sample_id", "sample_level_level_id", "molecule_annotation_project_id"]
+let sqlite_database_main_1_triggers = ["file_delete", "project_delete", "data_set_delete", "file_data_set_delete", "factor_delete", "level_delete", "sample_delete"]
 
 func sqlite_database_main_1(database database: Database) {
         for table_name in sqlite_database_main_1_tables {
@@ -49,6 +59,11 @@ func sqlite_database_main_1(database database: Database) {
 
         for index_name in sqlite_database_main_1_indices {
                 let statement = sqlite_create_index_statements[index_name]!
+                sqlite_execute(database: database, statement: statement)
+        }
+
+        for trigger_name in sqlite_database_main_1_triggers {
+                let statement = sqlite_create_triggers_statements[trigger_name]!
                 sqlite_execute(database: database, statement: statement)
         }
 }
