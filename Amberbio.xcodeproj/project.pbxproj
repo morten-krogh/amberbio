@@ -499,8 +499,8 @@
 		601003401BA18744008A1FF9 = {
 			isa = PBXGroup;
 			children = (
-				60A893E21BD78D38004DAD2C /* StoreKit.framework */,
 				60014BC41BB5AC7C001A79B1 /* amberbio-main.sqlite */,
+				60A893E21BD78D38004DAD2C /* StoreKit.framework */,
 				60B401681BA1B2ED00D8DD80 /* libsqlite3.dylib */,
 				60B400361BA1980000D8DD80 /* Source */,
 				6010034B1BA18744008A1FF9 /* Amberbio */,
