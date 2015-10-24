@@ -39,8 +39,8 @@ func sqlite_copy_project(source_database source_database: Database, destination_
         sqlite_execute(database: source_database, query: query)
         let (project_guid, project_name, project_date_of_creation) = (query.result_texts[0][0], query.result_texts[1][0], query.result_texts[2][0])
 
-        statement = "insert into project (project_guid, project_name, project_date_of_creation) values (:text0, :text1, :text2)"
-        query = Query(statement: statement, bind_texts: [project_guid, project_name, project_date_of_creation])
+        statement = "insert into project (project_guid, project_type, project_name, project_date_of_creation) values (:text0, :text1, :text2, :text3)"
+        query = Query(statement: statement, bind_texts: [project_guid, "user", project_name, project_date_of_creation])
         sqlite_execute(database: destination_database, query: query)
         let destination_project_id = sqlite_last_insert_rowid(database: destination_database)
 

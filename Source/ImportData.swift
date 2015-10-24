@@ -150,6 +150,8 @@ class ImportData: Component, UITableViewDataSource, UITableViewDelegate {
                         let message = "The file must be exported from this app on some device and imported here without changes"
                         alert(title: "\(file_name) is invalid", message: message, view_controller: self)
                 }
+                sqlite_close(database: import_database)
+                file_remove(path: database_path)
         }
 
         func create_project(row row: Int) {

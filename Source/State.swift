@@ -28,6 +28,7 @@ class State {
         var data_set_name = ""
         var project_id = 0
         var project_guid = ""
+        var project_type = "user"
         var project_name = ""
         var original_data_set_id = 0
         var sample_ids = [] as [Int]
@@ -116,12 +117,8 @@ class State {
                 }
         }
 
-        func demo_project() -> Bool {
-                return project_guid.hasPrefix("demo-project")
-        }
-
         func locked(page_name page_name: String) -> Bool {
-                return active_data_set && !demo_project() && store.locked_page_names.contains(page_name)
+                return active_data_set && project_type == "user" && store.locked_page_names.contains(page_name)
         }
 
         func reset_data_set() {
@@ -132,6 +129,7 @@ class State {
                 data_set_name = ""
                 project_id = 0
                 project_guid = ""
+                project_type = "user"
                 project_name = ""
                 original_data_set_id = 0
                 sample_ids = [] as [Int]
@@ -173,7 +171,7 @@ class State {
                 active_data_set = true
                 self.data_set_id = data_set_id
                 data_set_name = get_data_set_name(data_set_id: data_set_id)
-                (project_id, project_guid, project_name) = get_project(data_set_id: data_set_id)
+                (project_id, project_guid, project_type, project_name) = get_project(data_set_id: data_set_id)
                 original_data_set_id = get_original_data_set_id(project_id: project_id)
                 (sample_ids, sample_names) = get_samples(data_set_id: data_set_id)
                 number_of_samples = sample_ids.count
@@ -366,11 +364,11 @@ class State {
                 return query.result_texts[0][0]
         }
 
-        func get_project(data_set_id data_set_id: Int) -> (project_id: Int, project_guid: String, project_name: String) {
-                let statement = "select project_id, project_guid, project_name from data_set natural join project where data_set_id = :integer0"
-                let query = Query(statement: statement, bind_integers: [data_set_id], result_types: ["integer", "text", "text"])
+        func get_project(data_set_id data_set_id: Int) -> (project_id: Int, project_guid: String, project_type: String, project_name: String) {
+                let statement = "select project_id, project_guid, project_type, project_name from data_set natural join project where data_set_id = :integer0"
+                let query = Query(statement: statement, bind_integers: [data_set_id], result_types: ["integer", "text", "text", "text"])
                 sqlite_execute(database: database, query: query)
-                return (query.result_integers[0][0], query.result_texts[0][0], query.result_texts[1][0])
+                return (query.result_integers[0][0], query.result_texts[0][0], query.result_texts[1][0], query.result_texts[2][0])
         }
 
         func get_original_data_set_id(project_id project_id: Int) -> Int {
@@ -412,8 +410,8 @@ class State {
         func insert_project(project_name project_name: String, data_set_name: String, values: [Double], sample_names: [String], molecule_names: [String]) -> Int {
                 sqlite_begin(database: database)
 
-                let statement_project = "insert into project (project_guid, project_name) values ((select lower(hex(randomblob(10)))), :text0)"
-                let query_project = Query(statement: statement_project, bind_texts: [project_name])
+                let statement_project = "insert into project (project_guid, project_type, project_name) values ((select lower(hex(randomblob(10)))), :text0, :text1)"
+                let query_project = Query(statement: statement_project, bind_texts: ["user", project_name])
                 sqlite_execute(database: database, query: query_project)
                 let project_id = sqlite_last_insert_rowid(database: database)
 

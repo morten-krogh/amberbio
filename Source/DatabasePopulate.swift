@@ -128,8 +128,8 @@ func insert_project_note(database database: Database, project_note_text: String,
 
 func insert_project(database database: Database, project_name: String, project_guid: String, data_set_name: String, values: [Double], sample_names: [String], molecule_names: [String], factor_names: [String], level_names_of_samples_array: [[String]], molecule_annotation_names: [String], molecule_annotation_values_array: [[String]], project_note_texts: [String], project_note_types: [String], project_note_user_names: [String]) -> Int {
 
-        let statement_project = "insert into project (project_guid, project_name) values (:text0, :text1)"
-        let query_project = Query(statement: statement_project, bind_texts: [project_guid, project_name])
+        let statement_project = "insert into project (project_guid, project_type, project_name) values (:text0, :text1, :text2)"
+        let query_project = Query(statement: statement_project, bind_texts: [project_guid, "demo", project_name])
         sqlite_execute(database: database, query: query_project)
         let project_id = sqlite_last_insert_rowid(database: database)
 
