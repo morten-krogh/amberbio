@@ -84,17 +84,6 @@ func sqlite_database_export_1(database database: Database) {
         sqlite_set_info(database: database, version: 1, type: database_export_info_type)
 }
 
-//func sqlite_database_main_migrate_1_2(database database: Database) {
-//        let tables = ["store_product"]
-//
-//        for table_name in tables {
-//                let statement = sqlite_create_table_statements[table_name]!
-//                sqlite_execute(database: database, statement: statement)
-//        }
-//
-//        sqlite_set_info(database: database, version: 2, type: database_main_info_type)
-//}
-
 func sqlite_database_main_migrate(database database: Database) {}
 
 func sqlite_database_main(database database: Database) {

@@ -28,8 +28,6 @@ func state_init() {
                 copy_database_from_bundle = true
         }
 
-        print(copy_database_from_bundle)
-
         if copy_database_from_bundle {
                 if let bundle_database_url = NSBundle.mainBundle().resourceURL?.URLByAppendingPathComponent(database_file_name) {
                         try! NSFileManager.defaultManager().copyItemAtURL(bundle_database_url, toURL: database_url)

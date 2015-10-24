@@ -6,7 +6,7 @@ class ModuleStoreState: PageState {
                 super.init()
                 name = "module_store"
                 title = astring_body(string: "Module store")
-                info = "The module store is used to purchase modules.\n\nA purchased module is unlocked forever on this device and other devices with the same Apple ID.\n\nTap the button \"Restore modules\" to unlock modules that have been purchased on another device or on as previous installation of this app."
+                info = "The module store is used to purchase modules.\n\nA purchased module is unlocked forever on this device and other devices with the same Apple ID.\n\nTap the button \"Restore\" to unlock modules that have been purchased on another device or on a previous installation of this app.\n\nAll modules cen be freely used for the demo data sets."
 
                 state.store.request_products()
         }

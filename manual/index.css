@@ -55,6 +55,10 @@ svg {
     display : inline-block;
 }
 
+.app-store-badge {
+    width : 200px;
+}
+
 .header {
     display : block;
     height : auto;
@@ -201,11 +205,13 @@ td, th {
     }
     
     .iphone-framed-1 {
-        width : 30%	
+        width : 15%;
+	max-width : 200px;
     }
 
     .iphone-framed-2 {
-       	width : 53%;  
+       	width : 35.3%;
+	max-width : 533px;
     }
 
     section, section-manual {
@@ -320,11 +326,11 @@ td, th {
     }
 
     .iphone-framed-1 {
-	width : 350px;
+#	width : 350px;
     }
 
     .iphone-framed-2 {
-	width : 580px;
+#	width : 580px;
     }
     
     .carousel {
@@ -334,4 +340,13 @@ td, th {
     .carousel-indicators {
 	bottom: -30px;
     }
+}
+
+.copyright-header {
+	   margin: 30px 50px 0 50px;
+}
+
+.copyright {
+	   margin: 30px 50px 50px 50px;
+	   font-size: 80%;
 }
