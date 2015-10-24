@@ -12,20 +12,30 @@ let initial_page_state = HomeState()
 func state_init() {
         //        print(database_path)
 
+        var copy_database_from_bundle = false
+
         let database_file_exists = file_exists(url: database_url)
 
-//        if reset_database && database_file_exists {
-//                try! NSFileManager.defaultManager().removeItemAtURL(database_url)
-//        }
+        if database_file_exists {
+                let database = sqlite_open(database_path: database_url.path!)!
+                let (version, _) = sqlite_get_info(database: database) ?? (1, "")
+                sqlite_close(database: database)
+                if reset_database || version == 1 {
+                        try! NSFileManager.defaultManager().removeItemAtURL(database_url)
+                        copy_database_from_bundle = true
+                }
+        } else {
+                copy_database_from_bundle = true
+        }
 
-        if reset_database || !database_file_exists {
+        if copy_database_from_bundle {
                 if let bundle_database_url = NSBundle.mainBundle().resourceURL?.URLByAppendingPathComponent(database_file_name) {
                         try! NSFileManager.defaultManager().copyItemAtURL(bundle_database_url, toURL: database_url)
                 }
         }
 
         let database = sqlite_open(database_path: database_url.path!)!
-        sqlite_database_main_migrate(database: database)
+//        sqlite_database_main_migrate(database: database)
 
         state = State(database: database)
         state.set_page_state(page_state: initial_page_state)
