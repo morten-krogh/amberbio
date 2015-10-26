@@ -55,6 +55,7 @@
 		6094CC021BCFC544002A5E2A /* NumberFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B4003E1BA19BED00D8DD80 /* NumberFormat.swift */; };
 		6094CC041BD0DCF7002A5E2A /* DrawView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6094CC031BD0DCF7002A5E2A /* DrawView.swift */; };
 		6094CC051BD0EAC9002A5E2A /* DrawView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6094CC031BD0DCF7002A5E2A /* DrawView.swift */; };
+		60A77A911BDE0D4800C8FBEE /* k_means_clustering.c in Sources */ = {isa = PBXBuildFile; fileRef = 60A77A8F1BDE0D4800C8FBEE /* k_means_clustering.c */; };
 		60A893E11BD52651004DAD2C /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A893E01BD52651004DAD2C /* Button.swift */; };
 		60A893E31BD78D38004DAD2C /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60A893E21BD78D38004DAD2C /* StoreKit.framework */; };
 		60A893E61BD794FB004DAD2C /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A893E51BD794FB004DAD2C /* Store.swift */; };
@@ -288,6 +289,8 @@
 		6094CBF61BCF8DCF002A5E2A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6094CBF81BCF8DCF002A5E2A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6094CC031BD0DCF7002A5E2A /* DrawView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DrawView.swift; path = Source/DrawView.swift; sourceTree = "<group>"; };
+		60A77A8F1BDE0D4800C8FBEE /* k_means_clustering.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = k_means_clustering.c; path = Source/k_means_clustering.c; sourceTree = "<group>"; };
+		60A77A901BDE0D4800C8FBEE /* k_means_clustering.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = k_means_clustering.h; path = Source/k_means_clustering.h; sourceTree = "<group>"; };
 		60A893E01BD52651004DAD2C /* Button.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		60A893E21BD78D38004DAD2C /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		60A893E51BD794FB004DAD2C /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
@@ -810,6 +813,8 @@
 			children = (
 				60B400611BA19C7900D8DD80 /* distributions.h */,
 				60B400601BA19C7900D8DD80 /* distributions.c */,
+				60A77A901BDE0D4800C8FBEE /* k_means_clustering.h */,
+				60A77A8F1BDE0D4800C8FBEE /* k_means_clustering.c */,
 				605F52341BC3B37300033B91 /* knn.h */,
 				605F52331BC3B37300033B91 /* knn.c */,
 				60B400801BA19C7900D8DD80 /* linear_regression.h */,
@@ -820,10 +825,10 @@
 				60DF228B1BC58E9E0038AAE1 /* random.c */,
 				60B400B11BA19C7900D8DD80 /* remove_molecules.h */,
 				60B400B01BA19C7900D8DD80 /* remove_molecules.c */,
-				60B400D41BA19C7900D8DD80 /* values.h */,
-				60B400D31BA19C7900D8DD80 /* values.c */,
 				601E57B11BCE69AA002EEEB3 /* svm-adapter.h */,
 				601E57B01BCE69AA002EEEB3 /* svm-adapter.c */,
+				60B400D41BA19C7900D8DD80 /* values.h */,
+				60B400D31BA19C7900D8DD80 /* values.c */,
 			);
 			name = CFunctions;
 			sourceTree = "<group>";
@@ -1211,6 +1216,7 @@
 				60B4012F1BA19C7900D8DD80 /* PCAaxis.swift in Sources */,
 				60B400F71BA19C7900D8DD80 /* ExportProjects.swift in Sources */,
 				60B4011C1BA19C7900D8DD80 /* MultiSegmentedControl.swift in Sources */,
+				60A77A911BDE0D4800C8FBEE /* k_means_clustering.c in Sources */,
 				60B401571BA19C7900D8DD80 /* TextFieldTableViewCell.swift in Sources */,
 				60B400E31BA19C7900D8DD80 /* ColorKey.swift in Sources */,
 				60B401471BA19C7900D8DD80 /* SingleMoleculePlot.swift in Sources */,

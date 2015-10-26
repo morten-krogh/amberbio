@@ -1,13 +1,5 @@
-//
-//  random.c
-//  Amberbio
-//
-//  Created by Morten Krogh on 07/10/15.
-//  Copyright © 2015 Morten Krogh. All rights reserved.
-//
-
 #include "random.h"
-#include "stdlib.h"
+#include <stdlib.h>
 
 void fisher_yates_shuffle(long* values, const long values_length)
 {
