@@ -136,7 +136,7 @@ void k_means_clustering(const double* values, const long* molecule_indices, cons
                 }
 //                printf("equal clusterings %li\n", equal_clusterings);
                 if (equal_clusterings) {
-                        printf("iter %li\n", iter);
+//                        printf("iter %li\n", iter);
                         break;
                 }
         }

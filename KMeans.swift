@@ -45,11 +45,10 @@ class KMeans {
 
         func cluster() {
                 if can_cluster && should_cluster {
+                        var cluster_for_sample_local = [Int](count: state.number_of_samples, repeatedValue: 0)
+                        var distance_square_local = 0.0
                         var distance_square = Double.infinity
                         for _ in 0 ..< 100 {
-                                var distance_square_local = 0.0
-                                var cluster_for_sample_local = [Int](count: state.number_of_samples, repeatedValue: 0)
-
                                 k_means_clustering(state.values, molecule_indices, molecule_indices.count, state.number_of_samples, k, max_iterations, &cluster_for_sample_local, &distance_square_local)
 
                                 if distance_square_local < distance_square {

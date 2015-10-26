@@ -106,8 +106,8 @@ class KMeansClusteringResult: Component, UICollectionViewDataSource, UICollectio
                         color = color_success
                 } else {
                         let factor_index = k_means.selected_row - 1
-                        level_name = state.level_names_by_factor_and_sample[factor_index][indexPath.row]
-                        color = color_from_hex(hex: state.level_colors_by_factor_and_sample[factor_index][indexPath.row])
+                        level_name = state.level_names_by_factor_and_sample[factor_index][sample_index]
+                        color = color_from_hex(hex: state.level_colors_by_factor_and_sample[factor_index][sample_index])
                 }
 
                 cell.update(text_1: sample_name, text_2: level_name, color: color)
