@@ -46,7 +46,7 @@ class KMeans {
         func cluster() {
                 if can_cluster && should_cluster {
                         var distance_square = 0.0
-//                        k_means_clustering(state.values, molecule_indices, molecule_indices.count, state.number_of_samples, k, max_iterations, &cluster_for_sample, &distance_square)
+                        k_means_clustering(state.values, molecule_indices, molecule_indices.count, state.number_of_samples, k, max_iterations, &cluster_for_sample, &distance_square)
 
                         cluster_for_sample[0] = 1
 
