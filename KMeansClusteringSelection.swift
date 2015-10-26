@@ -58,7 +58,7 @@ class KMeansClusteringSelection: Component, UITableViewDataSource, UITableViewDe
                         text = "Select a factor for coloring"
                 }
 
-                header.update_unselected(text: text)
+                header.update_normal(text: text)
 
                 return header
         }

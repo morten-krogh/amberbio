@@ -24,6 +24,7 @@ let home_page_name_to_section_row = [
         "linear_regression_selection": (4, 3),
         "hierarchical_clustering_selection": (5, 0),
         "pca": (5, 1),
+        "k_meanns_clustering_selection": (5, 2),
         "knn_factor_selection": (6, 0),
         "svm_factor_selection": (6, 1),
         "logarithm_transform": (7, 0),
@@ -75,7 +76,7 @@ class Home: Component, UICollectionViewDataSource, UICollectionViewDelegate, UIC
                 ["Data Set Selection", "Project Notes" ],
                 ["Data Set Table", "Data Set Summary", "Factor\nChart", "Factor Association", "Factor Summary", "Missing Values for Samples", "Single Molecule Plots", "Multiple Molecule Plot"],
                 ["Anova", "Pairwise Test", "Paired Test", "Linear Regression"],
-                ["Hierarchical Clustering", "PCA"],
+                ["Hierarchical Clustering", "PCA", "k means clustering"],
                 ["k nearest neighbor", "Support vector machine"],
                 ["Logarithm Transform", "Sample Normalization", "Factor Elimination", "Remove Samples", "Remove Molecules", "Filter Molecules"],
                 ["Edit Project", "Sample Names", "Molecule Annotations", "Color Selection", "Edit Factors"]
@@ -131,6 +132,8 @@ class Home: Component, UICollectionViewDataSource, UICollectionViewDelegate, UIC
                         return HierarchicalClusteringSelectionState()
                 case (5, 1):
                         return PCAState()
+                case (5, 2):
+                        return KMeansClusteringSelectionState()
                 case (6, 0):
                         return SupervisedClassificationFactorSelectionState(supervised_classification_type: .KNN)
                 case (6, 1):
