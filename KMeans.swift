@@ -45,10 +45,19 @@ class KMeans {
 
         func cluster() {
                 if can_cluster && should_cluster {
-                        var distance_square = 0.0
-                        k_means_clustering(state.values, molecule_indices, molecule_indices.count, state.number_of_samples, k, max_iterations, &cluster_for_sample, &distance_square)
+                        var distance_square = Double.infinity
+                        for _ in 0 ..< 100 {
+                                var distance_square_local = 0.0
+                                var cluster_for_sample_local = [Int](count: state.number_of_samples, repeatedValue: 0)
 
-                        cluster_for_sample[0] = 1
+                                k_means_clustering(state.values, molecule_indices, molecule_indices.count, state.number_of_samples, k, max_iterations, &cluster_for_sample_local, &distance_square_local)
+
+                                if distance_square_local < distance_square {
+                                        distance_square = distance_square_local
+                                        cluster_for_sample = cluster_for_sample_local
+                                }
+                        }
+                        print(sqrt(distance_square))
 
                         clusters = []
                         for i in 0 ..< k {
@@ -61,6 +70,6 @@ class KMeans {
                                 clusters.append(sample_indices)
                         }
                 }
-                should_cluster = false
+                should_cluster = !false // change
         }
 }
