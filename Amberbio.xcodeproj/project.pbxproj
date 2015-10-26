@@ -24,7 +24,7 @@
 		601E57A91BCD0F1C002EEEB3 /* SVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601E57A81BCD0F1C002EEEB3 /* SVM.swift */; };
 		601E57AB1BCD53C4002EEEB3 /* ParameterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601E57AA1BCD53C4002EEEB3 /* ParameterTableViewCell.swift */; };
 		601E57AF1BCE64F2002EEEB3 /* svm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 601E57AD1BCE64F2002EEEB3 /* svm.cpp */; };
-		601E57B21BCE69AA002EEEB3 /* svm-adapter.c in Sources */ = {isa = PBXBuildFile; fileRef = 601E57B01BCE69AA002EEEB3 /* svm-adapter.c */; };
+		601E57B21BCE69AA002EEEB3 /* svm_adapter.c in Sources */ = {isa = PBXBuildFile; fileRef = 601E57B01BCE69AA002EEEB3 /* svm_adapter.c */; };
 		601E57B41BCF83E8002EEEB3 /* ROCView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601E57B31BCF83E8002EEEB3 /* ROCView.swift */; };
 		602708CA1BA2CA0300672D54 /* SelectAllHeaderFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602708C91BA2CA0300672D54 /* SelectAllHeaderFooterView.swift */; };
 		602708E71BA6EF6400672D54 /* iris-values.txt in Resources */ = {isa = PBXBuildFile; fileRef = 602708E11BA6EE7400672D54 /* iris-values.txt */; };
@@ -263,8 +263,8 @@
 		601E57AA1BCD53C4002EEEB3 /* ParameterTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ParameterTableViewCell.swift; path = Source/ParameterTableViewCell.swift; sourceTree = "<group>"; };
 		601E57AD1BCE64F2002EEEB3 /* svm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = svm.cpp; path = libsvm/svm.cpp; sourceTree = "<group>"; };
 		601E57AE1BCE64F2002EEEB3 /* svm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = svm.h; path = libsvm/svm.h; sourceTree = "<group>"; };
-		601E57B01BCE69AA002EEEB3 /* svm-adapter.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = "svm-adapter.c"; path = "Source/svm-adapter.c"; sourceTree = "<group>"; };
-		601E57B11BCE69AA002EEEB3 /* svm-adapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "svm-adapter.h"; path = "Source/svm-adapter.h"; sourceTree = "<group>"; };
+		601E57B01BCE69AA002EEEB3 /* svm_adapter.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = svm_adapter.c; path = Source/svm_adapter.c; sourceTree = "<group>"; };
+		601E57B11BCE69AA002EEEB3 /* svm_adapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = svm_adapter.h; path = Source/svm_adapter.h; sourceTree = "<group>"; };
 		601E57B31BCF83E8002EEEB3 /* ROCView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ROCView.swift; path = Source/ROCView.swift; sourceTree = "<group>"; };
 		602708C91BA2CA0300672D54 /* SelectAllHeaderFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SelectAllHeaderFooterView.swift; path = Source/SelectAllHeaderFooterView.swift; sourceTree = "<group>"; };
 		602708E01BA6EE7400672D54 /* iris-factors.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "iris-factors.txt"; path = "demo-data/iris/iris-factors.txt"; sourceTree = "<group>"; };
@@ -825,8 +825,8 @@
 				60DF228B1BC58E9E0038AAE1 /* random.c */,
 				60B400B11BA19C7900D8DD80 /* remove_molecules.h */,
 				60B400B01BA19C7900D8DD80 /* remove_molecules.c */,
-				601E57B11BCE69AA002EEEB3 /* svm-adapter.h */,
-				601E57B01BCE69AA002EEEB3 /* svm-adapter.c */,
+				601E57B11BCE69AA002EEEB3 /* svm_adapter.h */,
+				601E57B01BCE69AA002EEEB3 /* svm_adapter.c */,
 				60B400D41BA19C7900D8DD80 /* values.h */,
 				60B400D31BA19C7900D8DD80 /* values.c */,
 			);
@@ -1163,7 +1163,7 @@
 				60B400E71BA19C7900D8DD80 /* ContingencyTable.swift in Sources */,
 				601E57AF1BCE64F2002EEEB3 /* svm.cpp in Sources */,
 				60B4013E1BA19C7900D8DD80 /* ResultFiles.swift in Sources */,
-				601E57B21BCE69AA002EEEB3 /* svm-adapter.c in Sources */,
+				601E57B21BCE69AA002EEEB3 /* svm_adapter.c in Sources */,
 				605F52391BC400EF00033B91 /* ClassificationTableViewCell.swift in Sources */,
 				60B400411BA19BED00D8DD80 /* AttributedString.swift in Sources */,
 				60B401281BA19C7900D8DD80 /* PairwiseLevel.swift in Sources */,

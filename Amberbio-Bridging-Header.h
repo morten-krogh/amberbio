@@ -8,4 +8,5 @@
 #import "linear_regression.h"
 #import "knn.h"
 #import "random.h"
-#import "svm-adapter.h"
+#import "svm_adapter.h"
+#import "k_means_clustering.h"
