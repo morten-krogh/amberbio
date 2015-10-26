@@ -37,11 +37,18 @@ class TwoLabelColorCellView: UICollectionViewCell {
         }
 
         func update(text_1 text_1: String, text_2: String?, color: UIColor) {
-                label_1.attributedText = astring_font_size_color(string: text_1, font: nil, font_size: 18, color: nil)
+                let max_width = two_label_color_cell_view_size.width - 15
+
+                let astring_1 = astring_font_size_color(string: text_1, font: nil, font_size: 18, color: nil)
+                let astring_1_adjusted = astring_max_width(astring: astring_1, max_width: max_width)
+
+                label_1.attributedText = astring_1_adjusted
                 label_1.textAlignment = .Center
 
                 if let text_2 = text_2 {
-                        label_2.attributedText = astring_font_size_color(string: text_2, font: nil, font_size: 16, color: nil)
+                        let astring_2 = astring_font_size_color(string: text_2, font: nil, font_size: 16, color: nil)
+                        let astring_2_adjusted = astring_max_width(astring: astring_2, max_width: max_width)
+                        label_2.attributedText = astring_2_adjusted
                         label_2.textAlignment = .Center
                         label_2.hidden = false
                 } else {

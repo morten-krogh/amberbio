@@ -11,6 +11,7 @@ class KMeansClusteringResultState: PageState {
                 title = astring_body(string: "k means clustering")
                 info = "Create a new factor from the clusters by tapping the button \"Create new factor\".\n\nEach cluster will become a level.\n\nEdit the new factor on the page \"Edit factors\" if necessary."
 
+                full_screen = .Conditional
                 prepared = false
         }
 
@@ -27,8 +28,6 @@ class KMeansClusteringResult: Component, UICollectionViewDataSource, UICollectio
 
         let create_new_factor_button = UIButton(type: .System)
         let collection_view = UICollectionView(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout())
-
-//        var collection_view: UICollectionView!
 
         override func viewDidLoad() {
                 super.viewDidLoad()

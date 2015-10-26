@@ -60,6 +60,15 @@ func astring_change_color(string string: Astring, color: UIColor) -> Astring {
         return mutable_string
 }
 
+func astring_change_font(string string: Astring, font: UIFont) -> Astring {
+        let mutable_string = Astring(attributedString: string)
+
+        let range = NSRange(0 ..< string.length)
+        mutable_string.addAttribute(NSFontAttributeName, value: font, range: range)
+
+        return mutable_string
+}
+
 func astring_shorten(string string: Astring, width: CGFloat) -> Astring {
 
         if string.size().width < width {
@@ -88,4 +97,17 @@ func astring_shorten_footnote(string string: Astring, width: CGFloat) -> Astring
         let position = min(number_of_chars, str.characters.count)
         let prefix = str.substringToIndex(str.startIndex.advancedBy(position))
         return astring_footnote(string: prefix)
+}
+
+func astring_max_width(astring astring: Astring, max_width: CGFloat) -> Astring {
+        let current_width = astring.size().width
+        if current_width > max_width {
+                let font = astring.attribute(NSFontAttributeName, atIndex: 0, effectiveRange: nil) as! UIFont
+                let font_size = font.pointSize
+                let new_font_size = font_size * max_width / current_width
+                let new_font = font.fontWithSize(new_font_size)
+                return astring_change_font(string: astring, font: new_font)
+        } else {
+                return astring
+        }
 }
