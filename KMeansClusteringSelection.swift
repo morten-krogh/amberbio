@@ -167,12 +167,11 @@ class KMeansClusteringSelection: Component, UITableViewDataSource, UITableViewDe
         }
 
         func header_tap_action(sender: UITapGestureRecognizer) {
-                print("perform clustering")
                 editing_text_field?.resignFirstResponder()
                 read_text_fields()
-//                let page_state = SupervisedClassificationResultState(supervised_classification: supervised_classification)
-//                state.navigate(page_state: page_state)
-//                state.render()
+                let page_state = KMeansClusteringResultState(k_means: k_means)
+                state.navigate(page_state: page_state)
+                state.render()
         }
         
         func tap_action() {
