@@ -51,7 +51,7 @@ class KMeans {
                         let time_interval = NSDate().timeIntervalSinceDate(date_0)
                         let number_of_iterations = time_interval > 0.02 ? 0 : (1 + Int(0.02 / (time_interval + 0.00001)))
 
-                        let number_of_queues = 5
+                        let number_of_queues = NSProcessInfo.processInfo().activeProcessorCount
                         var cluster_for_sample_queue = [[Int]](count: number_of_queues, repeatedValue: [Int](count: state.number_of_samples, repeatedValue: 0))
                         var distance_square_queue = [Double](count: number_of_queues, repeatedValue: Double.infinity)
 
