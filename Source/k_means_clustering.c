@@ -45,7 +45,7 @@ void k_means_clustering_resolve_empty_clusters(long* cluster_for_sample, const l
         } while (empty_cluster != -1);
 }
 
-void k_mean_clustering_find_centroids(const double* values, const long* molecule_indices, const long molecule_indices_length, const long number_of_samples, const long* cluster_for_sample, const long k, double* centroids)
+void k_means_clustering_find_centroids(const double* values, const long* molecule_indices, const long molecule_indices_length, const long number_of_samples, const long* cluster_for_sample, const long k, double* centroids)
 {
         for (long i = 0; i < molecule_indices_length * k; i++) {
                 centroids[i] = 0;
@@ -70,7 +70,7 @@ void k_mean_clustering_find_centroids(const double* values, const long* molecule
         }
 }
 
-void k_mean_clustering_assign_clusters(const double* values, const long* molecule_indices, const long molecule_indices_length, const long number_of_samples, const double* centroids, const long k, long* cluster_for_sample, double* distance_square_for_sample)
+void k_means_clustering_assign_clusters(const double* values, const long* molecule_indices, const long molecule_indices_length, const long number_of_samples, const double* centroids, const long k, long* cluster_for_sample, double* distance_square_for_sample)
 {
         for (long i = 0; i < number_of_samples; i++) {
                 distance_square_for_sample[i] = DBL_MAX;
@@ -90,6 +90,33 @@ void k_mean_clustering_assign_clusters(const double* values, const long* molecul
         }
 }
 
+void k_means_clustering(const double* values, const long* molecule_indices, const long molecule_indices_length, const long number_of_samples, const long k, const long max_iterations, long* cluster_for_sample, double* distance_square)
+{
+        long cluster_for_sample_1[k], cluster_for_sample_2[k];
+        double centroids[molecule_indices_length * k];
+        double distance_square_for_sample[number_of_samples];
 
+        k_means_clustering_initialize_clusters(cluster_for_sample_1, number_of_samples, k);
+        for (long iter = 0; iter < max_iterations; iter++) {
+                k_means_clustering_resolve_empty_clusters(cluster_for_sample_1, number_of_samples, k);
+                k_means_clustering_find_centroids(values, molecule_indices, molecule_indices_length, number_of_samples, cluster_for_sample_1, k, centroids);
+                k_means_clustering_assign_clusters(values, molecule_indices, molecule_indices_length, number_of_samples, centroids, k, cluster_for_sample_2, distance_square_for_sample);
+                long equal_clusterings = 1;
+                for (long i = 0; i < number_of_samples; i++) {
+                        if (cluster_for_sample_1[i] != cluster_for_sample_2[i]) {
+                                equal_clusterings = 0;
+                                cluster_for_sample_1[i] = cluster_for_sample_2[i];
+                        }
+                }
+                if (equal_clusterings) {
+                        break;
+                }
+        }
 
-
+        *distance_square = 0;
+        for (long i = 0; i < number_of_samples; i++) {
+                double dsq = distance_square_for_sample[i];
+                *distance_square += dsq * dsq;
+                cluster_for_sample[i] = cluster_for_sample_1[i];
+        }
+}
