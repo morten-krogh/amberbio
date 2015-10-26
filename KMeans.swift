@@ -45,18 +45,34 @@ class KMeans {
 
         func cluster() {
                 if can_cluster && should_cluster {
-                        var cluster_for_sample_local = [Int](count: state.number_of_samples, repeatedValue: 0)
-                        var distance_square_local = 0.0
-                        var distance_square = Double.infinity
-                        for _ in 0 ..< 100 {
-                                k_means_clustering(state.values, molecule_indices, molecule_indices.count, state.number_of_samples, k, max_iterations, &cluster_for_sample_local, &distance_square_local)
+                        var distance_square = 0.0
+                        let date_0 = NSDate()
+                        k_means_clustering(state.values, molecule_indices, molecule_indices.count, state.number_of_samples, k, max_iterations, &cluster_for_sample, &distance_square)
+                        let time_interval = NSDate().timeIntervalSinceDate(date_0)
+                        let number_of_iterations = time_interval > 0.02 ? 0 : (1 + Int(0.02 / (time_interval + 0.00001)))
 
-                                if distance_square_local < distance_square {
-                                        distance_square = distance_square_local
-                                        cluster_for_sample = cluster_for_sample_local
+                        let number_of_queues = 5
+                        var cluster_for_sample_queue = [[Int]](count: number_of_queues, repeatedValue: [Int](count: state.number_of_samples, repeatedValue: 0))
+                        var distance_square_queue = [Double](count: number_of_queues, repeatedValue: Double.infinity)
+
+                        dispatch_apply(number_of_queues, dispatch_get_global_queue(QOS_CLASS_USER_INTERACTIVE, 0), { (size_t iter) in
+                                for (var i = 0; i < number_of_iterations; i++) {
+                                        var distance_square_local = 0.0
+                                        var cluster_for_sample_local = [Int](count: state.number_of_samples, repeatedValue: 0)
+                                        k_means_clustering(state.values, self.molecule_indices, self.molecule_indices.count, state.number_of_samples, self.k, self.max_iterations, &cluster_for_sample_local, &distance_square_local)
+                                        if distance_square_local < distance_square_queue[iter] {
+                                                distance_square_queue[iter] = distance_square_local
+                                                cluster_for_sample_queue[iter] = cluster_for_sample_local
+                                        }
+                                }
+                        })
+
+                        for i in 0 ..< number_of_queues {
+                                if distance_square_queue[i] < distance_square {
+                                        distance_square = distance_square_queue[i]
+                                        cluster_for_sample = cluster_for_sample_queue[i]
                                 }
                         }
-                        print(sqrt(distance_square))
 
                         clusters = []
                         for i in 0 ..< k {
