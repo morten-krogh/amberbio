@@ -30,8 +30,8 @@ class KMeansClusteringResult: Component, UICollectionViewDataSource, UICollectio
                 view.addSubview(create_new_factor_button)
 
                 collection_view.backgroundColor = UIColor.whiteColor()
-                collection_view.registerClass(HomeCellView.self, forCellWithReuseIdentifier: "cell")
-                collection_view.registerClass(HomeHeaderView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "header")
+                collection_view.registerClass(HeaderView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "header")
+                collection_view.registerClass(TwoLabelColorCellView.self, forCellWithReuseIdentifier: "cell")
                 view.addSubview(collection_view)
         }
 
@@ -56,7 +56,7 @@ class KMeansClusteringResult: Component, UICollectionViewDataSource, UICollectio
         }
 
         func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-                return k_means.k
+                return k_means.clusters.count
         }
 
         func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
@@ -64,7 +64,7 @@ class KMeansClusteringResult: Component, UICollectionViewDataSource, UICollectio
         }
 
         func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
-                let header = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "header", forIndexPath: indexPath) as! HomeHeaderView
+                let header = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "header", forIndexPath: indexPath) as! HeaderView
 
                 let section = indexPath.section + 1
                 let title = "Cluster \(section)"
@@ -74,12 +74,30 @@ class KMeansClusteringResult: Component, UICollectionViewDataSource, UICollectio
         }
 
         func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-                return 0
+                return k_means.clusters[section].count
+        }
+
+        func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+                return two_label_color_cell_view_size
         }
 
         func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-                let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as! HomeCellView
+                let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as! TwoLabelColorCellView
 
+                let sample_index = k_means.clusters[indexPath.section][indexPath.row]
+                let sample_name = state.sample_names[sample_index]
+                let level_name: String
+                let color: UIColor
+                if k_means.selected_row == 0 {
+                        level_name = ""
+                        color = color_blue
+                } else {
+                        let factor_index = k_means.selected_row - 1
+                        level_name = state.level_names_by_factor_and_sample[factor_index][indexPath.row]
+                        color = color_from_hex(hex: state.level_colors_by_factor_and_sample[factor_index][indexPath.row])
+                }
+
+                cell.update(text_1: sample_name, text_2: level_name, color: color)
 
                 return cell
         }

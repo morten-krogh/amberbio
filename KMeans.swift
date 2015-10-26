@@ -13,6 +13,8 @@ class KMeans {
         var can_cluster = true
         var should_cluster = true
 
+        var clusters = [] as [[Int]]
+
         init() {
                 let sample_indices = [Int](0 ..< state.number_of_samples)
                 molecule_indices = [Int](0 ..< state.number_of_molecules)
@@ -24,6 +26,10 @@ class KMeans {
                 molecule_indices = [Int](molecule_indices[0 ..< molecule_indices_length])
 
                 cluster_for_sample = [Int](count: state.number_of_samples, repeatedValue: 0)
+
+                if max_k() >= 2 {
+                        k = 2
+                }
         }
 
         func set_k(k k: Int) {
@@ -41,6 +47,17 @@ class KMeans {
                 if can_cluster && should_cluster {
                         var distance_square = 0.0
                         k_means_clustering(state.values, molecule_indices, molecule_indices.count, state.number_of_samples, k, max_iterations, &cluster_for_sample, &distance_square)
+
+                        clusters = []
+                        for i in 0 ..< k {
+                                var sample_indices = [] as [Int]
+                                for j in 0 ..< cluster_for_sample.count {
+                                        if cluster_for_sample[j] == i {
+                                                sample_indices.append(j)
+                                        }
+                                }
+                                clusters.append(sample_indices)
+                        }
                 }
                 should_cluster = false
         }
