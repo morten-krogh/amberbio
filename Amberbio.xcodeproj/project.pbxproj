@@ -56,6 +56,8 @@
 		6094CC041BD0DCF7002A5E2A /* DrawView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6094CC031BD0DCF7002A5E2A /* DrawView.swift */; };
 		6094CC051BD0EAC9002A5E2A /* DrawView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6094CC031BD0DCF7002A5E2A /* DrawView.swift */; };
 		60A77A911BDE0D4800C8FBEE /* k_means_clustering.c in Sources */ = {isa = PBXBuildFile; fileRef = 60A77A8F1BDE0D4800C8FBEE /* k_means_clustering.c */; };
+		60A77A931BDE25BE00C8FBEE /* KMeansClusteringSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A77A921BDE25BE00C8FBEE /* KMeansClusteringSelection.swift */; };
+		60A77A951BDE283600C8FBEE /* KMeans.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A77A941BDE283600C8FBEE /* KMeans.swift */; };
 		60A893E11BD52651004DAD2C /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A893E01BD52651004DAD2C /* Button.swift */; };
 		60A893E31BD78D38004DAD2C /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60A893E21BD78D38004DAD2C /* StoreKit.framework */; };
 		60A893E61BD794FB004DAD2C /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A893E51BD794FB004DAD2C /* Store.swift */; };
@@ -291,6 +293,8 @@
 		6094CC031BD0DCF7002A5E2A /* DrawView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DrawView.swift; path = Source/DrawView.swift; sourceTree = "<group>"; };
 		60A77A8F1BDE0D4800C8FBEE /* k_means_clustering.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = k_means_clustering.c; path = Source/k_means_clustering.c; sourceTree = "<group>"; };
 		60A77A901BDE0D4800C8FBEE /* k_means_clustering.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = k_means_clustering.h; path = Source/k_means_clustering.h; sourceTree = "<group>"; };
+		60A77A921BDE25BE00C8FBEE /* KMeansClusteringSelection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KMeansClusteringSelection.swift; sourceTree = "<group>"; };
+		60A77A941BDE283600C8FBEE /* KMeans.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KMeans.swift; sourceTree = "<group>"; };
 		60A893E01BD52651004DAD2C /* Button.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		60A893E21BD78D38004DAD2C /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		60A893E51BD794FB004DAD2C /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
@@ -604,6 +608,7 @@
 				60B4007A1BA19C7900D8DD80 /* HomeButton.swift */,
 				60B4007C1BA19C7900D8DD80 /* ImportData.swift */,
 				60B4007D1BA19C7900D8DD80 /* InfoButton.swift */,
+				60A77A921BDE25BE00C8FBEE /* KMeansClusteringSelection.swift */,
 				60B400821BA19C7900D8DD80 /* LinearRegressionPlot.swift */,
 				60B400831BA19C7900D8DD80 /* LinearRegressionSelection.swift */,
 				60B400841BA19C7900D8DD80 /* LinearRegressionTable.swift */,
@@ -782,6 +787,7 @@
 				60B400651BA19C7900D8DD80 /* Drawing.swift */,
 				60B400691BA19C7900D8DD80 /* Email.swift */,
 				60B400721BA19C7900D8DD80 /* Files.swift */,
+				60A77A941BDE283600C8FBEE /* KMeans.swift */,
 				60D5CE351BC2545400B0D88A /* KNN.swift */,
 				60B4007E1BA19C7900D8DD80 /* Layout.swift */,
 				60B400A01BA19C7900D8DD80 /* parse_values.swift */,
@@ -1175,6 +1181,7 @@
 				60A893E81BD7CE6A004DAD2C /* ModuleStore.swift in Sources */,
 				60B400421BA19BED00D8DD80 /* NumberFormat.swift in Sources */,
 				60B4010B1BA19C7900D8DD80 /* Layout.swift in Sources */,
+				60A77A931BDE25BE00C8FBEE /* KMeansClusteringSelection.swift in Sources */,
 				60B401661BA1A20400D8DD80 /* ColorGrid.swift in Sources */,
 				605F52371BC3D9EF00033B91 /* SupervisedClassificationResult.swift in Sources */,
 				60B401431BA19C7900D8DD80 /* SearchTableViewCell.swift in Sources */,
@@ -1191,6 +1198,7 @@
 				60B400F11BA19C7900D8DD80 /* DocumentPickerImport.swift in Sources */,
 				60B401441BA19C7900D8DD80 /* SegmentedControlTableViewCell.swift in Sources */,
 				60B401001BA19C7900D8DD80 /* Forward.swift in Sources */,
+				60A77A951BDE283600C8FBEE /* KMeans.swift in Sources */,
 				60B400EA1BA19C7900D8DD80 /* DataSetSummary.swift in Sources */,
 				60B401141BA19C7900D8DD80 /* Math.swift in Sources */,
 				60B400EE1BA19C7900D8DD80 /* distributions.c in Sources */,

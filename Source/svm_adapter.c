@@ -1,13 +1,5 @@
-//
-//  svm-adapter.c
-//  Amberbio
-//
-//  Created by Morten Krogh on 14/10/15.
-//  Copyright © 2015 Morten Krogh. All rights reserved.
-//
-
 #include <stdlib.h>
-#include "svm-adapter.h"
+#include "svm_adapter.h"
 
 struct svm_node* svm_adapter_nodes_create(const double* values, const long* molecule_indices, const long molecule_indices_length, const long number_of_samples, const long sample_index)
 {
