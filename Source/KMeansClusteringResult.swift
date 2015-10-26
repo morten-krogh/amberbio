@@ -116,11 +116,13 @@ class KMeansClusteringResult: Component, UICollectionViewDataSource, UICollectio
         }
 
         func create_new_factor_action() {
-                let factor_id = 1
-
-//                state.
-
-
+                let factor_name = "\(k_means.k) k-mean-clusters"
+                var level_names_of_samples = [] as [String]
+                for cluster in k_means.cluster_for_sample {
+                        let level_name = "cluster \(cluster + 1)"
+                        level_names_of_samples.append(level_name)
+                }
+                let factor_id = state.insert_factor(project_id: state.project_id, factor_name: factor_name, level_names_of_samples: level_names_of_samples)
                 let page_state = FactorSummaryDetailState(factor_id: factor_id)
                 state.navigate(page_state: page_state)
                 state.render()
