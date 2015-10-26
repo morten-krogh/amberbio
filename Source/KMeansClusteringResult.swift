@@ -11,6 +11,7 @@ class KMeansClusteringResultState: PageState {
                 title = astring_body(string: "k means clustering")
                 info = "Create a new factor from the clusters by tapping the button \"Create new factor\".\n\nEach cluster will become a level.\n\nEdit the new factor on the page \"Edit factors\" if necessary."
 
+                png_enabled = true
                 full_screen = .Conditional
                 prepared = false
         }
@@ -124,6 +125,31 @@ class KMeansClusteringResult: Component, UICollectionViewDataSource, UICollectio
                 let factor_id = state.insert_factor(project_id: state.project_id, factor_name: factor_name, level_names_of_samples: level_names_of_samples)
                 let page_state = FactorSummaryDetailState(factor_id: factor_id)
                 state.navigate(page_state: page_state)
+                state.render()
+        }
+
+        func png_action() {
+                let frame = collection_view.frame
+                let super_view = collection_view.superview
+
+                let view = UIView(frame: CGRect(origin: CGPoint.zero, size: collection_view.contentSize))
+                collection_view.removeFromSuperview()
+                collection_view.frame = view.frame
+                view.addSubview(collection_view)
+
+                UIGraphicsBeginImageContext(collection_view.contentSize)
+                let context = UIGraphicsGetCurrentContext()!
+                collection_view.layer.renderInContext(context)
+                let image = UIGraphicsGetImageFromCurrentImageContext()
+                UIGraphicsEndImageContext()
+
+                collection_view.removeFromSuperview()
+                super_view?.addSubview(collection_view)
+                collection_view.frame = frame
+
+                if let data = UIImagePNGRepresentation(image) {
+                        state.insert_png_result_file(file_name_stem: "k-means-clustering", file_data: data)
+                }
                 state.render()
         }
 }
