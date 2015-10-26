@@ -85,6 +85,6 @@ class KMeans {
                                 clusters.append(sample_indices)
                         }
                 }
-                should_cluster = !false // change
+                should_cluster = false
         }
 }
