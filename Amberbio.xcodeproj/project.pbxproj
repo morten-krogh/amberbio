@@ -61,7 +61,7 @@
 		60A77A971BDE459D00C8FBEE /* KMeansClusteringResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A77A961BDE459D00C8FBEE /* KMeansClusteringResult.swift */; };
 		60A77A9A1BDE5B2E00C8FBEE /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A77A991BDE5B2E00C8FBEE /* HeaderView.swift */; };
 		60A77A9C1BDE5CB400C8FBEE /* HomeCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A77A9B1BDE5CB400C8FBEE /* HomeCellView.swift */; };
-		60A77A9E1BDE5D0300C8FBEE /* ClusterCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A77A9D1BDE5D0300C8FBEE /* ClusterCellView.swift */; };
+		60A77A9E1BDE5D0300C8FBEE /* TwoLabelColorCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A77A9D1BDE5D0300C8FBEE /* TwoLabelColorCellView.swift */; };
 		60A893E11BD52651004DAD2C /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A893E01BD52651004DAD2C /* Button.swift */; };
 		60A893E31BD78D38004DAD2C /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60A893E21BD78D38004DAD2C /* StoreKit.framework */; };
 		60A893E61BD794FB004DAD2C /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A893E51BD794FB004DAD2C /* Store.swift */; };
@@ -302,7 +302,7 @@
 		60A77A961BDE459D00C8FBEE /* KMeansClusteringResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KMeansClusteringResult.swift; path = Source/KMeansClusteringResult.swift; sourceTree = "<group>"; };
 		60A77A991BDE5B2E00C8FBEE /* HeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		60A77A9B1BDE5CB400C8FBEE /* HomeCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeCellView.swift; path = Source/HomeCellView.swift; sourceTree = "<group>"; };
-		60A77A9D1BDE5D0300C8FBEE /* ClusterCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClusterCellView.swift; sourceTree = "<group>"; };
+		60A77A9D1BDE5D0300C8FBEE /* TwoLabelColorCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwoLabelColorCellView.swift; sourceTree = "<group>"; };
 		60A893E01BD52651004DAD2C /* Button.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		60A893E21BD78D38004DAD2C /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		60A893E51BD794FB004DAD2C /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
@@ -751,7 +751,7 @@
 			children = (
 				60A77A991BDE5B2E00C8FBEE /* HeaderView.swift */,
 				60A77A9B1BDE5CB400C8FBEE /* HomeCellView.swift */,
-				60A77A9D1BDE5D0300C8FBEE /* ClusterCellView.swift */,
+				60A77A9D1BDE5D0300C8FBEE /* TwoLabelColorCellView.swift */,
 			);
 			name = CollectionViews;
 			sourceTree = "<group>";
@@ -1191,7 +1191,7 @@
 				601E57AF1BCE64F2002EEEB3 /* svm.cpp in Sources */,
 				60B4013E1BA19C7900D8DD80 /* ResultFiles.swift in Sources */,
 				601E57B21BCE69AA002EEEB3 /* svm_adapter.c in Sources */,
-				60A77A9E1BDE5D0300C8FBEE /* ClusterCellView.swift in Sources */,
+				60A77A9E1BDE5D0300C8FBEE /* TwoLabelColorCellView.swift in Sources */,
 				605F52391BC400EF00033B91 /* ClassificationTableViewCell.swift in Sources */,
 				60B400411BA19BED00D8DD80 /* AttributedString.swift in Sources */,
 				60B401281BA19C7900D8DD80 /* PairwiseLevel.swift in Sources */,

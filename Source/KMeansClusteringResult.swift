@@ -10,6 +10,14 @@ class KMeansClusteringResultState: PageState {
                 name = "k_means_clustering_result"
                 title = astring_body(string: "k means clustering")
                 info = "Create a new factor from the clusters by tapping the button \"Create new factor\".\n\nEach cluster will become a level.\n\nEdit the new factor on the page \"Edit factor\" if necessary."
+
+                prepared = false
+        }
+
+        override func prepare() {
+                k_means.cluster()
+
+                prepared = true
         }
 }
 
@@ -50,7 +58,7 @@ class KMeansClusteringResult: Component, UICollectionViewDataSource, UICollectio
         }
 
         override func render() {
-                 self.k_means = (state.page_state as! KMeansClusteringResultState).k_means
+                self.k_means = (state.page_state as! KMeansClusteringResultState).k_means
                 collection_view.dataSource = self
                 collection_view.delegate = self
         }
@@ -81,16 +89,21 @@ class KMeansClusteringResult: Component, UICollectionViewDataSource, UICollectio
                 return two_label_color_cell_view_size
         }
 
+        func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
+                return UIEdgeInsets(top: 0, left: 10, bottom: 10, right: 10)
+
+        }
+
         func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
                 let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as! TwoLabelColorCellView
 
                 let sample_index = k_means.clusters[indexPath.section][indexPath.row]
                 let sample_name = state.sample_names[sample_index]
-                let level_name: String
+                let level_name: String?
                 let color: UIColor
                 if k_means.selected_row == 0 {
-                        level_name = ""
-                        color = color_blue
+                        level_name = nil
+                        color = color_success
                 } else {
                         let factor_index = k_means.selected_row - 1
                         level_name = state.level_names_by_factor_and_sample[factor_index][indexPath.row]
@@ -101,11 +114,6 @@ class KMeansClusteringResult: Component, UICollectionViewDataSource, UICollectio
 
                 return cell
         }
-
-
-
-
-
 
         func create_new_factor_action() {
                 let factor_id = 1
