@@ -1,5 +1,6 @@
 #include "k_means_clustering.h"
 #include <stdlib.h>
+#include <float.h>
 
 void k_means_clustering_initialize_clusters(long* cluster_for_sample, const long number_of_samples, const long k)
 {
@@ -69,4 +70,26 @@ void k_mean_clustering_find_centroids(const double* values, const long* molecule
         }
 }
 
-void k_mean_clustering_assign_cluster
+void k_mean_clustering_assign_clusters(const double* values, const long* molecule_indices, const long molecule_indices_length, const long number_of_samples, const double* centroids, const long k, long* cluster_for_sample, double* distance_square_for_sample)
+{
+        for (long i = 0; i < number_of_samples; i++) {
+                distance_square_for_sample[i] = DBL_MAX;
+                for (long j = 0; j < k; j++) {
+                        double dist_sq = 0;
+                        for (long h = 0; h < molecule_indices_length; h++) {
+                                double value = values[molecule_indices[h] * number_of_samples + i];
+                                double centroid_value = centroids[h * k + j];
+                                double diff = value - centroid_value;
+                                dist_sq += diff * diff;
+                        }
+                        if (dist_sq < distance_square_for_sample[i]) {
+                                cluster_for_sample[i] = j;
+                                distance_square_for_sample[i] = dist_sq;
+                        }
+                }
+        }
+}
+
+
+
+
