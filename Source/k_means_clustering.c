@@ -44,3 +44,10 @@ void k_means_clustering_resolve_empty_clusters(long* cluster_for_sample, const l
         } while (empty_cluster != -1);
 }
 
+void k_mean_clustering_find_centroids(const double* values, const long* row_indices, const long row_indices_length, const long* col_indices, const long col_indices_length, const long* cluster_for_sample, const long k, double* centroids)
+{
+        
+
+
+
+}
