@@ -40,7 +40,7 @@ class KMeansClusteringSelection: Component, UITableViewDataSource, UITableViewDe
         }
 
         func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-                return 2
+                return 3
         }
 
         func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -50,21 +50,27 @@ class KMeansClusteringSelection: Component, UITableViewDataSource, UITableViewDe
         func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
                 let header = tableView.dequeueReusableHeaderFooterViewWithIdentifier("header") as! CenteredHeaderFooterView
 
-                let text: String
                 switch section {
                 case 0:
-                        text = "Select the number of clusters"
-                default:
-                        text = "Select a factor for coloring"
-                }
+                        let text = "Perform clustering"
+                        header.update_selectable_arrow(text: text)
 
-                header.update_normal(text: text)
+                        if header.tap_recognizer == nil {
+                                header.addTapGestureRecognizer(target: self, action: "header_tap_action:")
+                        }
+                case 0:
+                        let text = "Select the number of clusters"
+                        header.update_normal(text: text)
+                default:
+                        let text = "Select a factor for coloring"
+                        header.update_normal(text: text)
+                }
 
                 return header
         }
 
         func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-                return 20
+                return 10
         }
 
         func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
@@ -74,17 +80,17 @@ class KMeansClusteringSelection: Component, UITableViewDataSource, UITableViewDe
         }
 
         func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-                return section == 0 ? 1 : state.factor_ids.count + 1
+                return section == 0 ? 0 : (section == 1 ? 1 : state.factor_ids.count + 1)
         }
 
         func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-                return indexPath.section == 0 ? parameter_table_view_cell_height : centered_table_view_cell_height
+                return indexPath.section == 1 ? parameter_table_view_cell_height : centered_table_view_cell_height
         }
 
         func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
                 let (section, row) = (indexPath.section, indexPath.row)
 
-                if section == 0 {
+                if section == 1 {
                         let cell = tableView.dequeueReusableCellWithIdentifier("parameter cell") as! ParameterTableViewCell
 
                         let text = "Number of clusters"
@@ -111,30 +117,8 @@ class KMeansClusteringSelection: Component, UITableViewDataSource, UITableViewDe
                 }
         }
 
-//        func header_tap_action(sender: UITapGestureRecognizer) {
-//                if let section = sender.view?.tag {
-//                        var selected_level_ids_in_section = [] as [Int]
-//                        for level_id in state.level_ids_by_factor[section] {
-//                                if supervised_classification_factor_selection_state.selected_level_ids.contains(level_id) {
-//                                        selected_level_ids_in_section.append(level_id)
-//                                }
-//                        }
-//
-//                        if selected_level_ids_in_section.count < 2 {
-//                                //                                alert(title: "Too few selected levels", message: "At least two levels must be selected", view_controller: self)
-//                        } else {
-//                                let supervised_classification: SupervisedClassification
-//                                switch supervised_classification_factor_selection_state.supervised_classification_type {
-//                                case .KNN:
-//                                        supervised_classification = KNN(comparison_factor_id: state.factor_ids[section], comparison_level_ids: selected_level_ids_in_section)
-//                                case .SVM:
-//                                        supervised_classification = SVM(comparison_factor_id: state.factor_ids[section], comparison_level_ids: selected_level_ids_in_section)
-//                                }
-//
-//                                let supervised_classification_validation_selection_page_state = SupervisedClassificationValidationSelectionState(supervised_classification: supervised_classification)
-//                                state.navigate(page_state: supervised_classification_validation_selection_page_state)
-//                                state.render()
-//                        }
-//                }
-//        }
+        func header_tap_action(sender: UITapGestureRecognizer) {
+                print("perform clustering")
+
+        }
 }
