@@ -76,7 +76,7 @@ class KMeansClusteringSelection: Component, UITableViewDataSource, UITableViewDe
         }
 
         func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-                return 10
+                return section == 0 ? 0 : 10
         }
 
         func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
@@ -117,7 +117,7 @@ class KMeansClusteringSelection: Component, UITableViewDataSource, UITableViewDe
         }
 
         func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-                if indexPath.section == 1 {
+                if indexPath.section == 2 {
                         k_means.selected_row = indexPath.row
                         tableView.reloadData()
                 }
