@@ -13,10 +13,14 @@ class KMeansClusteringResultState: PageState {
         }
 }
 
-class KMeansClusteringResult: Component {
+class KMeansClusteringResult: Component, UICollectionViewDataSource, UICollectionViewDelegate {
+
+        var k_means: KMeans!
 
         let create_new_factor_button = UIButton(type: .System)
+        let collection_view = UICollectionView(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout())
 
+//        var collection_view: UICollectionView!
 
         override func viewDidLoad() {
                 super.viewDidLoad()
@@ -24,6 +28,11 @@ class KMeansClusteringResult: Component {
                 create_new_factor_button.setAttributedTitle(astring_body(string: "Create new factor"), forState: .Normal)
                 create_new_factor_button.addTarget(self, action: "create_new_factor_action", forControlEvents: .TouchUpInside)
                 view.addSubview(create_new_factor_button)
+
+                collection_view.backgroundColor = UIColor.whiteColor()
+                collection_view.registerClass(HomeCellView.self, forCellWithReuseIdentifier: "cell")
+                collection_view.registerClass(HomeHeaderView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "header")
+                view.addSubview(collection_view)
         }
 
         override func viewWillLayoutSubviews() {
@@ -37,10 +46,16 @@ class KMeansClusteringResult: Component {
 
                 let origin_y = CGRectGetMaxY(create_new_factor_button.frame) + 20
 
+                collection_view.frame = CGRect(x: 0, y: origin_y, width: width, height: height - origin_y)
         }
 
+        override func render() {
+                 self.k_means = (state.page_state as! KMeansClusteringResultState).k_means
+                collection_view.dataSource = self
+                collection_view.delegate = self
+        }
 
-
+        
 
 
 
