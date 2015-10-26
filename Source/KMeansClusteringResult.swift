@@ -118,6 +118,9 @@ class KMeansClusteringResult: Component, UICollectionViewDataSource, UICollectio
         func create_new_factor_action() {
                 let factor_id = 1
 
+//                state.
+
+
                 let page_state = FactorSummaryDetailState(factor_id: factor_id)
                 state.navigate(page_state: page_state)
                 state.render()
