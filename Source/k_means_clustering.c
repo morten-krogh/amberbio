@@ -44,10 +44,27 @@ void k_means_clustering_resolve_empty_clusters(long* cluster_for_sample, const l
         } while (empty_cluster != -1);
 }
 
-void k_mean_clustering_find_centroids(const double* values, const long* row_indices, const long row_indices_length, const long* col_indices, const long col_indices_length, const long* cluster_for_sample, const long k, double* centroids)
+void k_mean_clustering_find_centroids(const double* values, const long* molecule_indices, const long molecule_indices_length, const long* sample_indices, const long number_of_samples, const long* cluster_for_sample, const long k, double* centroids)
 {
-        
+        for (long i = 0; i < k * number_of_samples; i++) {
+                centroids[i] = 0;
+        }
 
-
-
+        for (long i = 0; i < k; i++) {
+                long size_of_cluster = 0;
+                for (long j = 0; j < number_of_samples; j++) {
+                        if (cluster_for_sample[j] == i) {
+                                size_of_cluster++;
+                                for (long h = 0; h < molecule_indices_length; h++) {
+                                        double value = values[molecule_indices[h]];
+                                        centroids[i * number_of_samples + h] += value;
+                                }
+                        }
+                }
+                if (size_of_cluster > 0) {
+                        for (long h = 0; h < molecule_indices_length; h++) {
+                                centroids[i * number_of_samples + h] /= size_of_cluster;
+                        }
+                }
+        }
 }
