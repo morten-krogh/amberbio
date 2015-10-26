@@ -5,7 +5,7 @@ class KMeans {
         let max_iterations = 100
 
         var k = 1
-        var selected_factor_id = -1
+        var selected_row = 0
 
         var molecule_indices = [] as [Int]
         var cluster_for_sample = [] as [Int]

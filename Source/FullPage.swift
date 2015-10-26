@@ -214,7 +214,8 @@ class FullPage: Component, UIScrollViewDelegate, UISearchBarDelegate {
                                 page = SupervisedClassificationParameterSelection()
                         case "supervised_classification_result":
                                 page = SupervisedClassificationResult()
-
+                        case "k_means_clustering_selection":
+                                page = KMeansClusteringSelection()
 
                         default:
                                 print("Remember to update render in FullPage for \(page_name)")
