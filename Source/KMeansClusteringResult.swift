@@ -15,6 +15,29 @@ class KMeansClusteringResultState: PageState {
 
 class KMeansClusteringResult: Component {
 
+        let create_new_factor_button = UIButton(type: .System)
+
+
+        override func viewDidLoad() {
+                super.viewDidLoad()
+
+                create_new_factor_button.setAttributedTitle(astring_body(string: "Create new factor"), forState: .Normal)
+                create_new_factor_button.addTarget(self, action: "create_new_factor_action", forControlEvents: .TouchUpInside)
+                view.addSubview(create_new_factor_button)
+        }
+
+        override func viewWillLayoutSubviews() {
+                super.viewWillLayoutSubviews()
+
+                let width = view.frame.width
+                let height = view.frame.height
+
+                create_new_factor_button.sizeToFit()
+                create_new_factor_button.frame.origin = CGPoint(x: (width - create_new_factor_button.frame.width) / 2, y: 20)
+
+                let origin_y = CGRectGetMaxY(create_new_factor_button.frame) + 20
+
+        }
 
 
 
@@ -24,7 +47,11 @@ class KMeansClusteringResult: Component {
 
 
 
+        func create_new_factor_action() {
+                let factor_id = 1
 
-
-
+                let page_state = FactorSummaryDetailState(factor_id: factor_id)
+                state.navigate(page_state: page_state)
+                state.render()
+        }
 }
