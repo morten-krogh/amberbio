@@ -55,7 +55,34 @@ class KMeansClusteringResult: Component, UICollectionViewDataSource, UICollectio
                 collection_view.delegate = self
         }
 
-        
+        func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+                return k_means.k
+        }
+
+        func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+                return CGSize(width: view.frame.width, height: 50)
+        }
+
+        func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+                let header = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "header", forIndexPath: indexPath) as! HomeHeaderView
+
+                let section = indexPath.section + 1
+                let title = "Cluster \(section)"
+                header.update(title: title)
+
+                return header
+        }
+
+        func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+                return 0
+        }
+
+        func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+                let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as! HomeCellView
+
+
+                return cell
+        }
 
 
 
