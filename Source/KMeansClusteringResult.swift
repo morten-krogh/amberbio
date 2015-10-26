@@ -9,7 +9,7 @@ class KMeansClusteringResultState: PageState {
                 super.init()
                 name = "k_means_clustering_result"
                 title = astring_body(string: "k means clustering")
-                info = "Create a new factor from the clusters by tapping the button \"Create new factor\".\n\nEach cluster will become a level.\n\nEdit the new factor on the page \"Edit factor\" if necessary."
+                info = "Create a new factor from the clusters by tapping the button \"Create new factor\".\n\nEach cluster will become a level.\n\nEdit the new factor on the page \"Edit factors\" if necessary."
 
                 prepared = false
         }
