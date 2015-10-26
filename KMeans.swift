@@ -28,6 +28,10 @@ class KMeans {
                 }
         }
 
+        func max_k() -> Int {
+                return state.number_of_samples
+        }
+
         func cluster() {
                 if should_cluster {
                         var distance_square = 0.0

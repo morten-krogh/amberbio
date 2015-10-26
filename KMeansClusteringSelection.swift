@@ -18,6 +18,8 @@ class KMeansClusteringSelection: Component, UITableViewDataSource, UITableViewDe
 
         let table_view = UITableView()
 
+        var editing_text_field: UITextField?
+
         override func loadView() {
                 view = table_view
         }
@@ -31,6 +33,10 @@ class KMeansClusteringSelection: Component, UITableViewDataSource, UITableViewDe
                 table_view.registerClass(ParameterTableViewCell.self, forCellReuseIdentifier: "parameter cell")
                 table_view.backgroundColor = UIColor.whiteColor()
                 table_view.separatorStyle = .None
+
+                let tap_recognizer = UITapGestureRecognizer(target: self, action: "tap_action")
+                tap_recognizer.cancelsTouchesInView = false
+                view.addGestureRecognizer(tap_recognizer)
         }
 
         override func render() {
@@ -117,8 +123,59 @@ class KMeansClusteringSelection: Component, UITableViewDataSource, UITableViewDe
                 }
         }
 
+        func textFieldDidBeginEditing(textField: UITextField) {
+                editing_text_field = textField
+        }
+
+        func textFieldDidEndEditing(textField: UITextField) {
+                read_text_fields()
+                editing_text_field = nil
+        }
+
+        func textFieldShouldReturn(textField: UITextField) -> Bool {
+                textField.resignFirstResponder()
+                return true
+        }
+
+        func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+                if range.length != 0 && string.isEmpty {
+                        return true
+                }
+
+                return Int(string) != nil
+        }
+
+        func read_text_fields() {
+                if let cell = table_view.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 1)) as? ParameterTableViewCell {
+                        let text_field = cell.text_field
+                        let text = text_field.text ?? ""
+                        if let number = Int(text) {
+                                if number < 1 {
+                                        text_field.text = "1"
+                                        k_means.set_k(k: 1)
+                                } else if number > k_means.max_k() {
+                                                text_field.text = "\(k_means.max_k())"
+                                                k_means.set_k(k: k_means.max_k())
+                                        } else {
+                                                k_means.set_k(k: number)
+                                        }
+                                } else {
+                                        text_field.text = "1"
+                                        k_means.set_k(k: 1)
+                                }
+                        }
+        }
+
         func header_tap_action(sender: UITapGestureRecognizer) {
                 print("perform clustering")
-
+                editing_text_field?.resignFirstResponder()
+                read_text_fields()
+//                let page_state = SupervisedClassificationResultState(supervised_classification: supervised_classification)
+//                state.navigate(page_state: page_state)
+//                state.render()
+        }
+        
+        func tap_action() {
+                editing_text_field?.resignFirstResponder()
         }
 }
