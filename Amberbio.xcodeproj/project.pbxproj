@@ -740,6 +740,13 @@
 			path = AmberbioTestingGround;
 			sourceTree = "<group>";
 		};
+		60A77A981BDE5AD500C8FBEE /* CollectionViews */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = CollectionViews;
+			sourceTree = "<group>";
+		};
 		60A893E41BD792DE004DAD2C /* Store */ = {
 			isa = PBXGroup;
 			children = (
@@ -756,6 +763,7 @@
 				60A893E41BD792DE004DAD2C /* Store */,
 				602708C11BA1EBDC00672D54 /* Components */,
 				602708C31BA20A0E00672D54 /* Views */,
+				60A77A981BDE5AD500C8FBEE /* CollectionViews */,
 				602708C41BA20A7200672D54 /* TableViews */,
 				602708C51BA20BCB00672D54 /* Math */,
 				60B4003C1BA19B0F00D8DD80 /* Functions */,
