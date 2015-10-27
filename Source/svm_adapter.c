@@ -1,5 +1,4 @@
-#include <stdlib.h>
-#include "svm_adapter.h"
+#include "c-functions.h"
 
 struct svm_node* svm_adapter_nodes_create(const double* values, const long* molecule_indices, const long molecule_indices_length, const long number_of_samples, const long sample_index)
 {

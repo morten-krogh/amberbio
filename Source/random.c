@@ -1,5 +1,4 @@
-#include "random.h"
-#include <stdlib.h>
+#include "c-functions.h"
 
 void fisher_yates_shuffle(long* values, const long values_length)
 {

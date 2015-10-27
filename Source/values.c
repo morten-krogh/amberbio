@@ -1,4 +1,4 @@
-#include "values.h"
+#include "c-functions.h"
 
 void calculate_molecule_centered_values(const double* values, const long number_of_molecules, const long number_of_samples, double* values_corrected)
 {

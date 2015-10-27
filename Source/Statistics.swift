@@ -104,7 +104,7 @@ func stat_t_test(values values: [Double]) -> (t_statistic: Double, p_value: Doub
         let degrees_of_freedom = values.count - 1
         let t_statistics = mean_value / (standard_deviation / sqrt(Double(values.count)))
         let quantile = abs(Double(t_statistics))
-        let p_value = Double(2.0 * t_distribution_upper_tail(degrees_of_freedom, quantile))
+        let p_value = Double(2.0 * distribution_t_upper_tail(degrees_of_freedom, quantile))
 
         return (t_statistics, p_value)
 }
@@ -142,7 +142,7 @@ func stat_t_test(values1 values1: [Double], values2: [Double]) -> (t_statistic: 
         let reciprocal_number = 1 / Double(values1.count) + 1 / Double(values2.count)
         let t_statistic = mean_difference / (sqrt(variance) * sqrt(reciprocal_number))
         let quantile = abs(Double(t_statistic))
-        let p_value = Double(2.0 * t_distribution_upper_tail(degrees_of_freedom, quantile))
+        let p_value = Double(2.0 * distribution_t_upper_tail(degrees_of_freedom, quantile))
 
         return (t_statistic, p_value)
 }
@@ -214,7 +214,7 @@ func stat_anova(values values: [[Double]]) -> (f_statistics: Double, p_value: Do
         }
 
         let f_statistic = mean_square_between / mean_square_within
-        let p_value = f_distribution_upper_tail(degrees_of_freedom_between, degrees_of_freedom_within, Double(f_statistic))
+        let p_value = distribution_f_upper_tail(degrees_of_freedom_between, degrees_of_freedom_within, Double(f_statistic))
 
         return (f_statistic, Double(p_value))
 }

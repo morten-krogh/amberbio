@@ -95,7 +95,7 @@
 		60B400EB1BA19C7900D8DD80 /* DataSetTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B4005D1BA19C7900D8DD80 /* DataSetTable.swift */; };
 		60B400EC1BA19C7900D8DD80 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B4005E1BA19C7900D8DD80 /* Date.swift */; };
 		60B400ED1BA19C7900D8DD80 /* Distances.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B4005F1BA19C7900D8DD80 /* Distances.swift */; };
-		60B400EE1BA19C7900D8DD80 /* distributions.c in Sources */ = {isa = PBXBuildFile; fileRef = 60B400601BA19C7900D8DD80 /* distributions.c */; };
+		60B400EE1BA19C7900D8DD80 /* distribution.c in Sources */ = {isa = PBXBuildFile; fileRef = 60B400601BA19C7900D8DD80 /* distribution.c */; };
 		60B400EF1BA19C7900D8DD80 /* DocumentInteractionOpen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400621BA19C7900D8DD80 /* DocumentInteractionOpen.swift */; };
 		60B400F01BA19C7900D8DD80 /* DocumentPickerExport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400631BA19C7900D8DD80 /* DocumentPickerExport.swift */; };
 		60B400F11BA19C7900D8DD80 /* DocumentPickerImport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400641BA19C7900D8DD80 /* DocumentPickerImport.swift */; };
@@ -270,7 +270,6 @@
 		601E57AD1BCE64F2002EEEB3 /* svm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = svm.cpp; path = libsvm/svm.cpp; sourceTree = "<group>"; };
 		601E57AE1BCE64F2002EEEB3 /* svm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = svm.h; path = libsvm/svm.h; sourceTree = "<group>"; };
 		601E57B01BCE69AA002EEEB3 /* svm_adapter.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = svm_adapter.c; path = Source/svm_adapter.c; sourceTree = "<group>"; };
-		601E57B11BCE69AA002EEEB3 /* svm_adapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = svm_adapter.h; path = Source/svm_adapter.h; sourceTree = "<group>"; };
 		601E57B31BCF83E8002EEEB3 /* ROCView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ROCView.swift; path = Source/ROCView.swift; sourceTree = "<group>"; };
 		602708C91BA2CA0300672D54 /* SelectAllHeaderFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SelectAllHeaderFooterView.swift; path = Source/SelectAllHeaderFooterView.swift; sourceTree = "<group>"; };
 		602708E01BA6EE7400672D54 /* iris-factors.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "iris-factors.txt"; path = "demo-data/iris/iris-factors.txt"; sourceTree = "<group>"; };
@@ -335,7 +334,7 @@
 		60B4005D1BA19C7900D8DD80 /* DataSetTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataSetTable.swift; path = Source/DataSetTable.swift; sourceTree = "<group>"; };
 		60B4005E1BA19C7900D8DD80 /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Date.swift; path = Source/Date.swift; sourceTree = "<group>"; };
 		60B4005F1BA19C7900D8DD80 /* Distances.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Distances.swift; path = Source/Distances.swift; sourceTree = "<group>"; };
-		60B400601BA19C7900D8DD80 /* distributions.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = distributions.c; path = Source/distributions.c; sourceTree = "<group>"; };
+		60B400601BA19C7900D8DD80 /* distribution.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = distribution.c; path = Source/distribution.c; sourceTree = "<group>"; };
 		60B400621BA19C7900D8DD80 /* DocumentInteractionOpen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DocumentInteractionOpen.swift; path = Source/DocumentInteractionOpen.swift; sourceTree = "<group>"; };
 		60B400631BA19C7900D8DD80 /* DocumentPickerExport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DocumentPickerExport.swift; path = Source/DocumentPickerExport.swift; sourceTree = "<group>"; };
 		60B400641BA19C7900D8DD80 /* DocumentPickerImport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DocumentPickerImport.swift; path = Source/DocumentPickerImport.swift; sourceTree = "<group>"; };
@@ -410,7 +409,6 @@
 		60B400AE1BA19C7900D8DD80 /* Query.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Query.swift; path = Source/Query.swift; sourceTree = "<group>"; };
 		60B400AF1BA19C7900D8DD80 /* Random.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Random.swift; path = Source/Random.swift; sourceTree = "<group>"; };
 		60B400B01BA19C7900D8DD80 /* remove_molecules.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = remove_molecules.c; path = Source/remove_molecules.c; sourceTree = "<group>"; };
-		60B400B11BA19C7900D8DD80 /* remove_molecules.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = remove_molecules.h; path = Source/remove_molecules.h; sourceTree = "<group>"; };
 		60B400B21BA19C7900D8DD80 /* FilterMolecules.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FilterMolecules.swift; path = Source/FilterMolecules.swift; sourceTree = "<group>"; };
 		60B400B31BA19C7900D8DD80 /* RemoveSamples.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RemoveSamples.swift; path = Source/RemoveSamples.swift; sourceTree = "<group>"; };
 		60B400B41BA19C7900D8DD80 /* ResultFiles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ResultFiles.swift; path = Source/ResultFiles.swift; sourceTree = "<group>"; };
@@ -440,7 +438,6 @@
 		60B400D11BA19C7900D8DD80 /* Txt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Txt.swift; path = Source/Txt.swift; sourceTree = "<group>"; };
 		60B400D21BA19C7900D8DD80 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = Source/User.swift; sourceTree = "<group>"; };
 		60B400D31BA19C7900D8DD80 /* values.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = values.c; path = Source/values.c; sourceTree = "<group>"; };
-		60B400D41BA19C7900D8DD80 /* values.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = values.h; path = Source/values.h; sourceTree = "<group>"; };
 		60B401601BA1A1D200D8DD80 /* ColorCircle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ColorCircle.swift; path = Source/ColorCircle.swift; sourceTree = "<group>"; };
 		60B401611BA1A1D200D8DD80 /* ColorPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ColorPicker.swift; path = Source/ColorPicker.swift; sourceTree = "<group>"; };
 		60B401641BA1A20400D8DD80 /* ColorGrid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ColorGrid.swift; path = Source/ColorGrid.swift; sourceTree = "<group>"; };
@@ -461,7 +458,6 @@
 		60D5CE351BC2545400B0D88A /* KNN.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KNN.swift; path = Source/KNN.swift; sourceTree = "<group>"; };
 		60D5CE371BC26CD100B0D88A /* SupervisedClassificationTrainingSelection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SupervisedClassificationTrainingSelection.swift; path = Source/SupervisedClassificationTrainingSelection.swift; sourceTree = "<group>"; };
 		60DF228B1BC58E9E0038AAE1 /* random.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = random.c; path = Source/random.c; sourceTree = "<group>"; };
-		60DF228C1BC58E9E0038AAE1 /* random.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = random.h; path = Source/random.h; sourceTree = "<group>"; };
 		60E06B9D1BAC3D2F00B05223 /* RemoveMolecules.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RemoveMolecules.swift; path = Source/RemoveMolecules.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -834,18 +830,14 @@
 			isa = PBXGroup;
 			children = (
 				60D2C3BC1BDFCA8F00C6C6EF /* c-functions.h */,
-				60B400601BA19C7900D8DD80 /* distributions.c */,
+				60B400601BA19C7900D8DD80 /* distribution.c */,
 				60A77A8F1BDE0D4800C8FBEE /* k_means_clustering.c */,
 				605F52331BC3B37300033B91 /* knn.c */,
 				60B4007F1BA19C7900D8DD80 /* linear_regression.c */,
 				60B4009E1BA19C7900D8DD80 /* parse_values.c */,
-				60DF228C1BC58E9E0038AAE1 /* random.h */,
 				60DF228B1BC58E9E0038AAE1 /* random.c */,
-				60B400B11BA19C7900D8DD80 /* remove_molecules.h */,
 				60B400B01BA19C7900D8DD80 /* remove_molecules.c */,
-				601E57B11BCE69AA002EEEB3 /* svm_adapter.h */,
 				601E57B01BCE69AA002EEEB3 /* svm_adapter.c */,
-				60B400D41BA19C7900D8DD80 /* values.h */,
 				60B400D31BA19C7900D8DD80 /* values.c */,
 			);
 			name = CFunctions;
@@ -1216,7 +1208,7 @@
 				60A77A971BDE459D00C8FBEE /* KMeansClusteringResult.swift in Sources */,
 				60B400EA1BA19C7900D8DD80 /* DataSetSummary.swift in Sources */,
 				60B401141BA19C7900D8DD80 /* Math.swift in Sources */,
-				60B400EE1BA19C7900D8DD80 /* distributions.c in Sources */,
+				60B400EE1BA19C7900D8DD80 /* distribution.c in Sources */,
 				60B401151BA19C7900D8DD80 /* MatrixUtil.swift in Sources */,
 				60B400E21BA19C7900D8DD80 /* Color.swift in Sources */,
 				60B400ED1BA19C7900D8DD80 /* Distances.swift in Sources */,

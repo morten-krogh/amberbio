@@ -1,6 +1,6 @@
 #include "c-functions.h"
 
-double beta(double a, double b)
+double distribution_beta(double a, double b)
 {
         /*
                 Beta(a, b) = Gamme(a) * Gamma(b) / Gamma(a + b)
@@ -14,7 +14,7 @@ double beta(double a, double b)
         return exp(lgamma_a + lgamma_b - lgamma_ab);
 }
 
-double incomplete_beta_continued_fraction(double a, double b, double x)
+double distribution_incomplete_beta_continued_fraction(double a, double b, double x)
 {
         double relative_error = 1e-10;
 
@@ -70,33 +70,31 @@ double incomplete_beta_continued_fraction(double a, double b, double x)
         return fraction;
 }
 
-double incomplete_beta(double a, double b, double x)
+double distribution_incomplete_beta(double a, double b, double x)
 {
         double factor = exp(a * log(x) + b * log(1 - x) - lgamma(a) - lgamma(b) + lgamma(a + b));
 
         if (x < (a + 1) / (a + b + 2)) {
-                return factor * incomplete_beta_continued_fraction(a, b, x) / a;
+                return factor * distribution_incomplete_beta_continued_fraction(a, b, x) / a;
         } else {
-                return 1 - factor * incomplete_beta_continued_fraction(b, a, 1 - x) / b;
+                return 1 - factor * distribution_incomplete_beta_continued_fraction(b, a, 1 - x) / b;
         }
 }
 
-double f_distribution_upper_tail(long degrees_of_freedom_upper, long degrees_of_freedom_lower, double quantile)
+double distribution_f_upper_tail(long degrees_of_freedom_upper, long degrees_of_freedom_lower, double quantile)
 {
         double a = degrees_of_freedom_lower / 2.0;
         double b = degrees_of_freedom_upper / 2.0;
         double x = degrees_of_freedom_lower / (degrees_of_freedom_upper * quantile + degrees_of_freedom_lower);
 
-        return incomplete_beta(a, b, x);
+        return distribution_incomplete_beta(a, b, x);
 }
 
-double t_distribution_upper_tail(long degrees_of_freedom, double quantile)
+double distribution_t_upper_tail(long degrees_of_freedom, double quantile)
 {
         double a = degrees_of_freedom / 2.0;
         double b = 0.5;
         double x = degrees_of_freedom / (quantile * quantile + degrees_of_freedom);
 
-        return 0.5 * incomplete_beta(a, b, x);
+        return 0.5 * distribution_incomplete_beta(a, b, x);
 }
-
-

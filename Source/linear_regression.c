@@ -48,7 +48,7 @@ void linear_regression(const double* x_values, const double* y_values, const lon
 
         if (model_residuals > 0) {
                 f_statistic = mean_residuals * model_degrees_of_freedom / model_residuals;
-                p = f_distribution_upper_tail(1, model_degrees_of_freedom, f_statistic);
+                p = distribution_f_upper_tail(1, model_degrees_of_freedom, f_statistic);
         } else if (model_degrees_of_freedom > 0 && mean_residuals > 0) {
                 p = 0;
         }
