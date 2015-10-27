@@ -11,6 +11,7 @@ class KMeansClusteringResultState: PageState {
                 title = astring_body(string: "k means clustering")
                 info = "Create a new factor from the clusters by tapping the button \"Create new factor\".\n\nEach cluster will become a level.\n\nEdit the new factor on the page \"Edit factors\" if necessary."
 
+                txt_enabled = true
                 png_enabled = true
                 full_screen = .Conditional
                 prepared = false
@@ -125,6 +126,22 @@ class KMeansClusteringResult: Component, UICollectionViewDataSource, UICollectio
                 let factor_id = state.insert_factor(project_id: state.project_id, factor_name: factor_name, level_names_of_samples: level_names_of_samples)
                 let page_state = FactorSummaryDetailState(factor_id: factor_id)
                 state.navigate(page_state: page_state)
+                state.render()
+        }
+
+        func txt_action() {
+                let file_name_stem = "\(k_means.k) k-mean-clusters"
+                let description = "Clusters from k-maens clustering with k = \(k_means.k)"
+                var table = [] as [[String]]
+                for cluster in 0 ..< k_means.clusters.count {
+                        var row = ["cluster \(cluster + 1)"]
+                        for sample_index in k_means.clusters[cluster] {
+                                let sample_name = state.sample_names[sample_index]
+                                row.append(sample_name)
+                        }
+                        table.append(row)
+                }
+                state.insert_txt_result_file(file_name_stem: file_name_stem, description: description, table: table)
                 state.render()
         }
 
