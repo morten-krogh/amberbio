@@ -45,6 +45,9 @@ class Sammon {
                         }
                 }
 
+                var distances = [Double](count: state.number_of_samples, repeatedValue: 0.0)
+
+                values_distances_euclidean(state.values, state.number_of_samples, molecule_indices, molecule_indices.count, &distances)
 
 
 
