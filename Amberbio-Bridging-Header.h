@@ -1,12 +1,11 @@
 
 #import <sqlite3.h>
 
-#import "parse_values.h"
+#import "c-functions.h"
+
 #import "values.h"
 #import "remove_molecules.h"
-#import "distributions.h"
-#import "linear_regression.h"
-#import "knn.h"
+
 #import "random.h"
 #import "svm_adapter.h"
-#import "k_means_clustering.h"
+

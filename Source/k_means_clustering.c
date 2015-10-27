@@ -1,6 +1,4 @@
-#include "k_means_clustering.h"
-#include <stdlib.h>
-#include <float.h>
+#include "c-functions.h"
 
 void k_means_clustering_initialize_clusters(long* cluster_for_sample, const long number_of_samples, const long k)
 {

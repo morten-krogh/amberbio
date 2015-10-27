@@ -1,6 +1,4 @@
-#include "knn.h"
-#include <stdlib.h>
-#include <math.h>
+#include "c-functions.h"
 
 void knn_molecules_without_missing_values(const double* values, const long number_of_molecules, const long number_of_samples, const long* sample_indices, const long sample_indices_length, long* molecule_indices, long* molecule_indices_length)
 {

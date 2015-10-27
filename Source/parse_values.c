@@ -1,8 +1,4 @@
-#include "parse_values.h"
-#include <stdio.h>
-#include <stdbool.h>
-#include <stdlib.h>
-#include <math.h>
+#include "c-functions.h"
 
 void c_parse_number_of_lines_and_longest_row_length(const char* data, long data_length, long* number_of_lines, long* max_row_length)
 {

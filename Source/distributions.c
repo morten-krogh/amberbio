@@ -1,4 +1,4 @@
-#include "distributions.h"
+#include "c-functions.h"
 
 double beta(double a, double b)
 {

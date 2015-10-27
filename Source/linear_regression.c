@@ -1,4 +1,4 @@
-#include "linear_regression.h"
+#include "c-functions.h"
 
 void linear_regression(const double* x_values, const double* y_values, const long number_of_values,double* intercept, double* slope, double* p_value)
 {
