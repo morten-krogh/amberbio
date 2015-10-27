@@ -362,7 +362,7 @@ class FullPage: Component, UIScrollViewDelegate, UISearchBarDelegate {
 
                 let middle_margin = 50 as CGFloat
 
-                let full_screen = state.page_state.full_screen == .Full || (state.page_state.full_screen == .Conditional && height < 1000)
+                let full_screen = state.page_state.full_screen == .Full || (state.page_state.full_screen == .Conditional && height < 700)
 
                 if full_screen {
                         page.view.frame = CGRect(x: 0, y: header_height, width: width, height: height - middle_margin)

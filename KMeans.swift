@@ -91,6 +91,16 @@ class KMeans {
                                 }
                                 clusters.append(sample_indices)
                         }
+
+                        clusters.sortInPlace({ (a: [Int], b: [Int]) in
+                                if a.count != b.count {
+                                        return a.count - b.count > 0
+                                } else if a.isEmpty {
+                                        return true
+                                } else {
+                                        return a[0] - b[0] < 0
+                                }
+                        })
                 }
                 should_cluster = false
         }
