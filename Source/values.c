@@ -1,6 +1,6 @@
 #include "c-functions.h"
 
-void calculate_missing_values_and_std_devs(const double* values, const long number_of_molecules, const long number_of_samples, long* missing_values_per_molecule, double* std_dev_per_molecule)
+void values_calculate_missing_values_and_std_devs(const double* values, const long number_of_molecules, const long number_of_samples, long* missing_values_per_molecule, double* std_dev_per_molecule)
 {
         for (long i = 0; i < number_of_molecules; i++) {
                 long offset = i * number_of_samples;
@@ -29,7 +29,7 @@ void calculate_missing_values_and_std_devs(const double* values, const long numb
         }
 }
 
-void calculate_molecule_centered_values(const double* values, const long number_of_molecules, const long number_of_samples, double* values_corrected)
+void values_calculate_molecule_centered_values(const double* values, const long number_of_molecules, const long number_of_samples, double* values_corrected)
 {
         for (long i = 0; i < number_of_molecules; i++) {
                 long offset = i * number_of_samples;
@@ -49,7 +49,7 @@ void calculate_molecule_centered_values(const double* values, const long number_
         }
 }
 
-void calculate_molecules_without_missing_values(const double* values, const long number_of_molecules, const long number_of_samples, const long* selected_sample_indices, const long number_of_selected_samples, long* number_of_present_molecules, long* is_present_molecule)
+void values_calculate_molecules_without_missing_values(const double* values, const long number_of_molecules, const long number_of_samples, const long* selected_sample_indices, const long number_of_selected_samples, long* number_of_present_molecules, long* is_present_molecule)
 {
         *number_of_present_molecules = 0;
         for (long i = 0; i < number_of_molecules; i++) {
@@ -70,7 +70,7 @@ void calculate_molecules_without_missing_values(const double* values, const long
         }
 }
 
-void calculate_factor_elimination(const double* values, const long number_of_molecules, const long number_of_samples, const long* sample_level, const long number_of_levels, double* values_eliminated)
+void values_calculate_factor_elimination(const double* values, const long number_of_molecules, const long number_of_samples, const long* sample_level, const long number_of_levels, double* values_eliminated)
 {
         long number_of_present_values[number_of_levels];
         double sum_of_present_values[number_of_levels];

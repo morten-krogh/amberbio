@@ -227,7 +227,7 @@ class HierarchicalClusteringSelection: Component, UITableViewDataSource, UITable
 
                 is_present_molecule = [Int](count: state.number_of_molecules, repeatedValue: 0)
 
-                calculate_molecules_without_missing_values(state.values, state.number_of_molecules, state.sample_ids.count, selected_sample_indices, selected_sample_indices.count, &number_of_present_molecules, &is_present_molecule)
+                values_calculate_molecules_without_missing_values(state.values, state.number_of_molecules, state.sample_ids.count, selected_sample_indices, selected_sample_indices.count, &number_of_present_molecules, &is_present_molecule)
 
                 number_of_molecules_label.text = "Molecules without missing values: \(number_of_present_molecules)"
 
