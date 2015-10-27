@@ -28,11 +28,18 @@ class KMeansClusteringResult: Component, UICollectionViewDataSource, UICollectio
 
         var k_means: KMeans!
 
+        let info_label = UILabel()
+
         let create_new_factor_button = UIButton(type: .System)
         let collection_view = UICollectionView(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout())
 
         override func viewDidLoad() {
                 super.viewDidLoad()
+
+                info_label.attributedText = astring_body(string: "Clustering can not be performed because there are no molecules without missing values.")
+                info_label.textAlignment = .Left
+                info_label.numberOfLines = 0
+                view.addSubview(info_label)
 
                 create_new_factor_button.setAttributedTitle(astring_body(string: "Create new factor"), forState: .Normal)
                 create_new_factor_button.addTarget(self, action: "create_new_factor_action", forControlEvents: .TouchUpInside)
@@ -50,6 +57,9 @@ class KMeansClusteringResult: Component, UICollectionViewDataSource, UICollectio
                 let width = view.frame.width
                 let height = view.frame.height
 
+                let info_label_size = info_label.sizeThatFits(CGSize(width: width - 40, height: 0))
+                info_label.frame = CGRect(x: (width - info_label_size.width) / 2, y: 100, width: info_label_size.width , height: info_label_size.height)
+
                 create_new_factor_button.sizeToFit()
                 create_new_factor_button.frame.origin = CGPoint(x: (width - create_new_factor_button.frame.width) / 2, y: 20)
 
@@ -59,9 +69,15 @@ class KMeansClusteringResult: Component, UICollectionViewDataSource, UICollectio
         }
 
         override func render() {
-                self.k_means = (state.page_state as! KMeansClusteringResultState).k_means
-                collection_view.dataSource = self
-                collection_view.delegate = self
+                k_means = (state.page_state as! KMeansClusteringResultState).k_means
+                info_label.hidden = k_means.can_cluster
+                create_new_factor_button.hidden = !k_means.can_cluster
+                collection_view.hidden = !k_means.can_cluster
+
+                if k_means.can_cluster {
+                        collection_view.dataSource = self
+                        collection_view.delegate = self
+                }
         }
 
         func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
