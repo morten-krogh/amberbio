@@ -1,5 +1,26 @@
 #include "c-functions.h"
 
+void values_molecules_without_missing_values(const double* values, const long number_of_molecules, const long number_of_samples, const long* sample_indices, const long sample_indices_length, long* molecule_indices, long* molecule_indices_length)
+{
+        long counter = 0;
+        for (long i = 0; i < number_of_molecules; i++) {
+                long offset = i * number_of_samples;
+                long missing = 0;
+                for (long j = 0; j < sample_indices_length; j++) {
+                        double value = values[offset + sample_indices[j]];
+                        if (isnan(value)) {
+                                missing = 1;
+                                break;
+                        }
+                }
+                if (missing == 0) {
+                        molecule_indices[counter] = i;
+                        counter++;
+                }
+        }
+        *molecule_indices_length = counter;
+}
+
 void values_calculate_missing_values_and_std_devs(const double* values, const long number_of_molecules, const long number_of_samples, long* missing_values_per_molecule, double* std_dev_per_molecule)
 {
         for (long i = 0; i < number_of_molecules; i++) {

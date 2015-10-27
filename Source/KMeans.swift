@@ -17,13 +17,9 @@ class KMeans {
 
         init() {
                 let sample_indices = [Int](0 ..< state.number_of_samples)
-                molecule_indices = [Int](0 ..< state.number_of_molecules)
-                var molecule_indices_length = state.number_of_molecules
+                molecule_indices = values_molecule_indices_without_missing_values(values: state.values, number_of_molecules: state.number_of_molecules, number_of_samples: state.number_of_samples, sample_indices: sample_indices)
 
-                knn_molecules_without_missing_values(state.values, state.number_of_molecules, state.number_of_samples, sample_indices, sample_indices.count, &molecule_indices, &molecule_indices_length)
-
-                can_cluster = molecule_indices_length != 0
-                molecule_indices = [Int](molecule_indices[0 ..< molecule_indices_length])
+                can_cluster = !molecule_indices.isEmpty
 
                 cluster_for_sample = [Int](count: state.number_of_samples, repeatedValue: 0)
 
