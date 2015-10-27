@@ -15,10 +15,6 @@ void k_means_clustering_resolve_empty_clusters(long* cluster_for_sample, const l
         long empty_cluster = -1;
 
         do {
-                for (long q = 0; q < number_of_samples; q++) {
-//                        printf("hej123 %li\n", cluster_for_sample[q]);
-                }
-
                 for (long i = 0; i < k; i++) {
                         size_of_cluster[i] = 0;
                 }
@@ -66,12 +62,9 @@ void k_means_clustering_find_centroids(const double* values, const long* molecul
                 }
                 if (size_of_cluster > 0) {
                         for (long h = 0; h < molecule_indices_length; h++) {
-//                                printf("centroid: %li %f\n", i, centroids[h * k + i]);
                                 centroids[h * k + i] /= size_of_cluster;
-//                                printf("centroid: %li %f\n", i, centroids[h * k + i]);
                         }
                 }
-//                printf("size %li, %li\n", i, size_of_cluster);
         }
 }
 
@@ -91,7 +84,6 @@ void k_means_clustering_assign_clusters(const double* values, const long* molecu
                                 cluster_for_sample[i] = j;
                                 distance_square_for_sample[i] = dist_sq;
                         }
-//                        printf("hej5 %li, %li, %f\n", i, j, dist_sq);
                 }
         }
 }
@@ -103,27 +95,13 @@ void k_means_clustering(const double* values, const long* molecule_indices, cons
         double distance_square_for_sample[number_of_samples];
 
         k_means_clustering_initialize_clusters(cluster_for_sample_1, number_of_samples, k);
-        for (long i = 0; i < number_of_samples; i++) {
-//                printf("initial %li\n", cluster_for_sample_1[i]);
-        }
 
         for (long iter = 0; iter < max_iterations; iter++) {
                 k_means_clustering_resolve_empty_clusters(cluster_for_sample_1, number_of_samples, k);
-                for (long i = 0; i < number_of_samples; i++) {
-//                        printf("cluster_sample_1 %li %li\n", i, cluster_for_sample_1[i]);
-                }
 
                 k_means_clustering_find_centroids(values, molecule_indices, molecule_indices_length, number_of_samples, cluster_for_sample_1, k, centroids);
-                for (long w = 0; w < k * molecule_indices_length; w++) {
-//                        printf("centroid, %li %f\n", w, centroids[w]);
-                }
 
                 k_means_clustering_assign_clusters(values, molecule_indices, molecule_indices_length, number_of_samples, centroids, k, cluster_for_sample_2, distance_square_for_sample);
-
-                for (long i = 0; i < number_of_samples; i++) {
-//                        printf("hej4 %li\n", cluster_for_sample_2[i]);
-                }
-
 
                 long equal_clusterings = 1;
                 for (long i = 0; i < number_of_samples; i++) {
@@ -132,9 +110,7 @@ void k_means_clustering(const double* values, const long* molecule_indices, cons
                                 cluster_for_sample_1[i] = cluster_for_sample_2[i];
                         }
                 }
-//                printf("equal clusterings %li\n", equal_clusterings);
                 if (equal_clusterings) {
-//                        printf("iter %li\n", iter);
                         break;
                 }
         }

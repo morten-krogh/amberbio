@@ -1,6 +1,6 @@
 #include "c-functions.h"
 
-void fisher_yates_shuffle(long* values, const long values_length)
+void random_fisher_yates_shuffle(long* values, const long values_length)
 {
         u_int32_t n = (u_int32_t) values_length;
         for (u_int32_t i = 0; i < n - 1; i++) {

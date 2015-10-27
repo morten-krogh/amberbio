@@ -47,7 +47,7 @@ void calculate_factor_elimination(const double* values, const long number_of_mol
 void calculate_missing_values_and_std_devs(const double* values, const long number_of_molecules, const long number_of_samples, long* missing_values_per_molecule, double* std_dev_per_molecule);
 
 
-void fisher_yates_shuffle(long* values, const long values_length);
+void random_fisher_yates_shuffle(long* values, const long values_length);
 
 #define c_functions_h
 
