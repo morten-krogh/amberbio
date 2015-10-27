@@ -49,13 +49,14 @@ class KMeans {
                         let date_0 = NSDate()
                         k_means_clustering(state.values, molecule_indices, molecule_indices.count, state.number_of_samples, k, max_iterations, &cluster_for_sample, &distance_square)
                         let time_interval = NSDate().timeIntervalSinceDate(date_0)
-                        let number_of_iterations = min(1000, time_interval > 0.2 ? 0 : (1 + Int(0.2 / (time_interval + 0.00001))))
+                        let number_of_iterations = min(1000, time_interval > 0.5 ? 0 : (1 + Int(0.5 / (time_interval + 0.00001))))
 
                         let number_of_processors = NSProcessInfo.processInfo().activeProcessorCount
                         var cluster_for_sample_queue = [[Int]](count: number_of_processors, repeatedValue: [Int](count: state.number_of_samples, repeatedValue: 0))
                         var distance_square_queue = [Double](count: number_of_processors, repeatedValue: Double.infinity)
 
                         dispatch_apply(number_of_processors, dispatch_get_global_queue(QOS_CLASS_USER_INTERACTIVE, 0), { (size_t iter) in
+                                var same_minimum = 0
                                 for (var i = 0; i < number_of_iterations; i++) {
                                         var distance_square_local = 0.0
                                         var cluster_for_sample_local = [Int](count: state.number_of_samples, repeatedValue: 0)
@@ -63,6 +64,12 @@ class KMeans {
                                         if distance_square_local < distance_square_queue[iter] {
                                                 distance_square_queue[iter] = distance_square_local
                                                 cluster_for_sample_queue[iter] = cluster_for_sample_local
+                                                same_minimum = 0
+                                        } else if distance_square_local == distance_square_queue[iter] {
+                                                same_minimum++
+                                                if same_minimum >= 5 {
+                                                        break
+                                                }
                                         }
                                 }
                         })
