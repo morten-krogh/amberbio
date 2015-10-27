@@ -27,13 +27,13 @@ bool knn_classify_training_test(const double* values, const long number_of_molec
 
 void linear_regression(const double* x_values, const double* y_values, const long number_of_values, double* intercept, double* slope, double* p_value);
 
-void c_parse_number_of_lines_and_longest_row_length(const char* data, long data_length, long* number_of_lines, long* max_row_length);
-void c_parse_newlines(const char* data, long data_length, long* newlines);
-long c_parse_number_of_tokens(const char* data, long start, long end);
-void c_parse_next_token(const char* data, long start, long end, char* token, long* token_length);
-long c_parse_number_of_empty_rows_at_top(const char* data, long data_length);
-long c_parse_number_of_empty_rows_at_bottom(const char* data, long data_length);
-long c_parse_doubles(const char* data, long start, long end, long skip, double* values, long value_start);
+//void c_parse_number_of_lines_and_longest_row_length(const char* data, long data_length, long* number_of_lines, long* max_row_length);
+//void c_parse_newlines(const char* data, long data_length, long* newlines);
+//long c_parse_number_of_tokens(const char* data, long start, long end);
+//void c_parse_next_token(const char* data, long start, long end, char* token, long* token_length);
+//long c_parse_number_of_empty_rows_at_top(const char* data, long data_length);
+//long c_parse_number_of_empty_rows_at_bottom(const char* data, long data_length);
+//long c_parse_doubles(const char* data, long start, long end, long skip, double* values, long value_start);
 
 
 void svm_adapter_train_test(const double* values, const long* molecule_indices, const long molecule_indices_length, const long number_of_samples, const long* training_sample_indices, const long* training_labels, const long number_of_training_samples, const long* test_sample_indices, const long number_of_test_samples, long* test_labels, double* test_decision_values, long kernel, double linear_C, double rbf_C, double rbf_gamma);
