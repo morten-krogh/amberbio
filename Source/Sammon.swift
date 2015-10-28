@@ -82,7 +82,7 @@ class Sammon: Component, UITableViewDataSource, UITableViewDelegate, PCA2dDelega
 
         let scroll_view = UIScrollView()
         let left_view = UIView()
-        let values_2d_plot = Values2DPlot()
+        var values_2d_plot: Values2DPlot!
         let pca3d_plot = PCA3dPlot(frame: CGRect.zero)
         let table_view = UITableView()
         let info_label = UILabel()
@@ -99,6 +99,7 @@ class Sammon: Component, UITableViewDataSource, UITableViewDelegate, PCA2dDelega
                 scroll_view.scrollEnabled = false
                 view.addSubview(scroll_view)
 
+                values_2d_plot = Values2DPlot(tap_action: tap_action)
                 scroll_view.addSubview(values_2d_plot)
                 scroll_view.addSubview(pca3d_plot)
 
