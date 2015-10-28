@@ -163,3 +163,37 @@ void values_distances_euclidean(const double* values, const long number_of_sampl
                 }
         }
 }
+
+void values_indices_of_k_largest(double* values, const long values_length, const long k, long* indices)
+{
+        for (long i = 0; i < k; i++) {
+                indices[i] = i;
+        }
+
+        if (k < values_length) return;
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}

@@ -73,7 +73,6 @@ class SammonState: PageState {
         func calculate_sammon_map() {
                 sammon_points = [Double](count: dimension * sample_indices.count, repeatedValue: 0.0)
                 number_of_molecules_without_missing_values = sammon_map(state.values, state.number_of_molecules, state.number_of_samples, sample_indices, sample_indices.count, dimension, &sammon_points)
-                print(number_of_molecules_without_missing_values)
         }
 }
 

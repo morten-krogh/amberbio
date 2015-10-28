@@ -7,6 +7,37 @@ long sammon_map(const double* values, const long number_of_molecules, const long
 
         values_molecules_without_missing_values(values, number_of_molecules, number_of_samples, sample_indices, sample_indices_length, molecule_indices, &molecule_indices_length);
 
+        if (molecule_indices_length <= dimension) {
+                for (long h = 0; h < molecule_indices_length; h++) {
+                        for (long j = 0; j < sample_indices_length; j++) {
+                                double value = values[molecule_indices[h] * number_of_samples + sample_indices[j]];
+                                sammon_points[h * sample_indices_length + j] = value;
+                        }
+                }
+
+                for (long h = molecule_indices_length; h < dimension; h++) {
+                        for (long j = 0; j < sample_indices_length; j++) {
+                                sammon_points[h * sample_indices_length + j] = 0.0;
+                        }
+                }
+
+                return molecule_indices_length;
+        }
+
+        double variances[molecule_indices_length];
+        for (long i = 0; i < molecule_indices_length; i++) {
+                double sum = 0.0;
+                double sum_of_squares = 0.0;
+                for (long j = 0; j < sample_indices_length; j++) {
+                        double value = values[molecule_indices[i] * number_of_samples + sample_indices[j]];
+                        sum += value;
+                        sum_of_squares += value * value;
+                }
+                variances[i] = sample_indices_length < 2 ? 0.0 : (sum_of_squares - sum * sum / sample_indices_length) / (sample_indices_length - 1);
+        }
+
+        
+        
 
 
 
