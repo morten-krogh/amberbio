@@ -2,11 +2,15 @@
 
 long sammon_map(const double* values, const long number_of_molecules, const long number_of_samples, const long* sample_indices, const long sample_indices_length, const long dimension, double* sammon_points)
 {
+        long molecule_indices[number_of_molecules];
+        long molecule_indices_length = 0;
+
+        values_molecules_without_missing_values(values, number_of_molecules, number_of_samples, sample_indices, sample_indices_length, molecule_indices, &molecule_indices_length);
 
 
 
 
-        return 0;
+        return molecule_indices_length;
 }
 
 
