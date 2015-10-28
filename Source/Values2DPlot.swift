@@ -2,6 +2,8 @@ import UIKit
 
 class Values2DPlot: DrawView {
 
+        var mutex = pthread_mutex_t()
+
         let width = 300 as CGFloat
 
         var circle_radius = 2 as CGFloat
@@ -24,6 +26,7 @@ class Values2DPlot: DrawView {
         var points = [] as [CGPoint]
 
         init() {
+                pthread_mutex_init(&mutex, nil)
                 super.init(frame: CGRect.zero, tappable: false)
                 content_size = CGSize(width: 300, height: 300)
         }
@@ -33,6 +36,8 @@ class Values2DPlot: DrawView {
         }
 
         func update(points_x points_x: [Double], points_y: [Double], names: [String]?, colors: [UIColor]?, axis_titles: [String]?, symbol_size: Double) {
+                pthread_mutex_lock(&mutex)
+
                 self.points_x = points_x
                 self.points_y = points_y
                 self.names = names
@@ -54,10 +59,10 @@ class Values2DPlot: DrawView {
                         value_to_geometry_multiplier = width / CGFloat(extent)
                 }
 
-                points = []
+                points = [CGPoint](count: points_x.count, repeatedValue: CGPoint.zero)
                 for i in 0 ..< points_x.count {
                         let point = value_to_point(value_x: points_x[i], value_y: points_y[i])
-                        points.append(point)
+                        points[i] = point
                 }
 
                 tick_values = []
@@ -73,6 +78,8 @@ class Values2DPlot: DrawView {
                 axis_title_font_size = CGFloat(2 + symbol_size * 4)
 
                 redraw()
+
+                pthread_mutex_unlock(&mutex)
         }
 
         func padding_min_max(min min: Double, max: Double) -> (min: Double, max: Double) {
@@ -87,6 +94,8 @@ class Values2DPlot: DrawView {
         }
 
         override func draw(context context: CGContext, rect: CGRect) {
+                pthread_mutex_lock(&mutex)
+
                 CGContextSaveGState(context)
                 CGContextSetLineWidth(context, 1)
                 CGContextSetStrokeColorWithColor(context, UIColor.blackColor().CGColor)
@@ -105,6 +114,8 @@ class Values2DPlot: DrawView {
                 }
 
                 CGContextRestoreGState(context)
+
+                pthread_mutex_unlock(&mutex)
         }
 
         func draw_x_axis(context context: CGContext) {
