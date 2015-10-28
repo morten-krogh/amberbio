@@ -1,4 +1,5 @@
 #ifndef c_functions_h
+#define c_functions_h
 
 #include <stdlib.h>
 #include <float.h>
@@ -30,10 +31,10 @@ void values_calculate_factor_elimination(const double* values, const long number
 void values_calculate_missing_values_and_std_devs(const double* values, const long number_of_molecules, const long number_of_samples, long* missing_values_per_molecule, double* std_dev_per_molecule);
 void values_distances_euclidean(const double* values, const long number_of_samples, const long* molecule_indeces, const long molecule_indices_length, double* distances);
 
-
 void random_fisher_yates_shuffle(long* values, const long values_length);
 
-#define c_functions_h
+long sammon_map(const double* values, const long number_of_molecules, const long number_of_samples, const long* sample_indices, const long sample_indices_length, const long dimension, double* sammon_points);
+
 
 
 #endif /* c_functions_h */

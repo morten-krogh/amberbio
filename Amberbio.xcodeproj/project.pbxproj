@@ -221,6 +221,7 @@
 		60B4019C1BA1C48600D8DD80 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 60B401681BA1B2ED00D8DD80 /* libsqlite3.dylib */; };
 		60D2C3BE1BDFDAAE00C6C6EF /* Values.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D2C3BD1BDFDAAE00C6C6EF /* Values.swift */; };
 		60D2C3C21BE0C80400C6C6EF /* Sammon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D2C3C11BE0C80400C6C6EF /* Sammon.swift */; };
+		60D2C3C41BE0D4ED00C6C6EF /* sammon.c in Sources */ = {isa = PBXBuildFile; fileRef = 60D2C3C31BE0D4ED00C6C6EF /* sammon.c */; };
 		60D5CE361BC2545400B0D88A /* KNN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D5CE351BC2545400B0D88A /* KNN.swift */; };
 		60D5CE381BC26CD100B0D88A /* SupervisedClassificationTrainingSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D5CE371BC26CD100B0D88A /* SupervisedClassificationTrainingSelection.swift */; };
 		60DF228D1BC58E9E0038AAE1 /* random.c in Sources */ = {isa = PBXBuildFile; fileRef = 60DF228B1BC58E9E0038AAE1 /* random.c */; };
@@ -454,6 +455,7 @@
 		60D2C3BC1BDFCA8F00C6C6EF /* c-functions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "c-functions.h"; path = "Source/c-functions.h"; sourceTree = "<group>"; };
 		60D2C3BD1BDFDAAE00C6C6EF /* Values.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Values.swift; path = Source/Values.swift; sourceTree = "<group>"; };
 		60D2C3C11BE0C80400C6C6EF /* Sammon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Sammon.swift; path = Source/Sammon.swift; sourceTree = "<group>"; };
+		60D2C3C31BE0D4ED00C6C6EF /* sammon.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = sammon.c; path = Source/sammon.c; sourceTree = "<group>"; };
 		60D5CE351BC2545400B0D88A /* KNN.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KNN.swift; path = Source/KNN.swift; sourceTree = "<group>"; };
 		60D5CE371BC26CD100B0D88A /* SupervisedClassificationTrainingSelection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SupervisedClassificationTrainingSelection.swift; path = Source/SupervisedClassificationTrainingSelection.swift; sourceTree = "<group>"; };
 		60DF228B1BC58E9E0038AAE1 /* random.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = random.c; path = Source/random.c; sourceTree = "<group>"; };
@@ -836,6 +838,7 @@
 				605F52331BC3B37300033B91 /* knn.c */,
 				60B4007F1BA19C7900D8DD80 /* linear_regression.c */,
 				60DF228B1BC58E9E0038AAE1 /* random.c */,
+				60D2C3C31BE0D4ED00C6C6EF /* sammon.c */,
 				601E57B01BCE69AA002EEEB3 /* svm_adapter.c */,
 				60B400D31BA19C7900D8DD80 /* values.c */,
 			);
@@ -1174,6 +1177,7 @@
 				601E57AF1BCE64F2002EEEB3 /* svm.cpp in Sources */,
 				60D2C3BE1BDFDAAE00C6C6EF /* Values.swift in Sources */,
 				60B4013E1BA19C7900D8DD80 /* ResultFiles.swift in Sources */,
+				60D2C3C41BE0D4ED00C6C6EF /* sammon.c in Sources */,
 				601E57B21BCE69AA002EEEB3 /* svm_adapter.c in Sources */,
 				60A77A9E1BDE5D0300C8FBEE /* TwoLabelColorCellView.swift in Sources */,
 				605F52391BC400EF00033B91 /* ClassificationTableViewCell.swift in Sources */,
