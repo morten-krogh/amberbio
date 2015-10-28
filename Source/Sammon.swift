@@ -76,7 +76,7 @@ class SammonState: PageState {
         }
 }
 
-class Sammon: Component, UITableViewDataSource, UITableViewDelegate, PCA2dDelegate, SelectAllHeaderFooterViewDelegate {
+class Sammon: Component, UITableViewDataSource, UITableViewDelegate, SelectAllHeaderFooterViewDelegate {
 
         var sammon_state: SammonState!
 
