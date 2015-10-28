@@ -81,10 +81,9 @@ class Sammon: Component, UITableViewDataSource, UITableViewDelegate, PCA2dDelega
         var sammon_state: SammonState!
 
         let scroll_view = UIScrollView()
-        let tiled_scroll_view = TiledScrollView()
         let left_view = UIView()
+        let values_2d_plot = Values2DPlot()
         let pca3d_plot = PCA3dPlot(frame: CGRect.zero)
-        var pca_2d_drawer: PCA2dPlot?
         let table_view = UITableView()
         let info_label = UILabel()
 
@@ -100,7 +99,7 @@ class Sammon: Component, UITableViewDataSource, UITableViewDelegate, PCA2dDelega
                 scroll_view.scrollEnabled = false
                 view.addSubview(scroll_view)
 
-                scroll_view.addSubview(tiled_scroll_view)
+                scroll_view.addSubview(values_2d_plot)
                 scroll_view.addSubview(pca3d_plot)
 
                 table_view.registerClass(CenteredHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: "centered-header")
@@ -146,13 +145,15 @@ class Sammon: Component, UITableViewDataSource, UITableViewDelegate, PCA2dDelega
 
                 left_view.frame = CGRect(x: 0, y: 0, width: width_left, height: height)
 
-                if let pca_2d_drawer = pca_2d_drawer {
-                        min_zoom = min(width_left, height) / pca_2d_drawer.content_size.height
-                        pca_2d_drawer.minimum_zoom_scale = max(1, min_zoom)
-                        pca_2d_drawer.maximum_zoom_scale = max(2, 20 * pca_2d_drawer.minimum_zoom_scale)
-                        tiled_scroll_view.frame = CGRect(x: 0, y: 0, width: width_left, height: height)
-                        tiled_scroll_view.scroll_view.zoomScale = sammon_state.zoom_scale_2d
-                }
+                values_2d_plot.frame = CGRect(x: 0, y: 0, width: width_left, height: height)
+
+//                if let pca_2d_drawer = pca_2d_drawer {
+//                        min_zoom = min(width_left, height) / pca_2d_drawer.content_size.height
+//                        pca_2d_drawer.minimum_zoom_scale = max(1, min_zoom)
+//                        pca_2d_drawer.maximum_zoom_scale = max(2, 20 * pca_2d_drawer.minimum_zoom_scale)
+//
+//                        tiled_scroll_view.scroll_view.zoomScale = sammon_state.zoom_scale_2d
+//                }
 
                 pca3d_plot.frame = CGRect(x: 0, y: 0, width: width_left, height: height)
 
@@ -183,7 +184,7 @@ class Sammon: Component, UITableViewDataSource, UITableViewDelegate, PCA2dDelega
 
         func render_after_sample_change() {
                 sammon_state.calculate_samples_and_levels()
-                tiled_scroll_view.hidden = true
+                values_2d_plot.hidden = true
                 pca3d_plot.hidden = true
                 info_label.hidden = false
                 info_label.attributedText = astring_body(string: "Calculating PCA")
@@ -219,18 +220,11 @@ class Sammon: Component, UITableViewDataSource, UITableViewDelegate, PCA2dDelega
                         let points_y = [Double](sammon_state.sammon_points[sammon_state.sample_indices.count ..< 2 * sammon_state.sample_indices.count])
                         let axis_titles = ["", ""]
                         let names = sammon_state.plot_symbol == "circles" ? (nil as [String]?) : sammon_state.sample_names
-                        let pca_2d_drawer = PCA2dPlot()
-                        pca_2d_drawer.delegate = self
-                        pca_2d_drawer.update(points_x: points_x, points_y: points_y, names: names, colors: sammon_state.sample_colors, axis_titles: axis_titles, symbol_size: sammon_state.symbol_size)
-                        pca_2d_drawer.minimum_zoom_scale = max(1, min_zoom)
-                        pca_2d_drawer.maximum_zoom_scale = 3 * pca_2d_drawer.minimum_zoom_scale
-                        self.pca_2d_drawer = pca_2d_drawer
-                        tiled_scroll_view.delegate = pca_2d_drawer
-                        tiled_scroll_view.scroll_view.zoomScale = sammon_state.zoom_scale_2d
-                        tiled_scroll_view.hidden = false
+                        values_2d_plot.update(points_x: points_x, points_y: points_y, names: names, colors: sammon_state.sample_colors, axis_titles: axis_titles, symbol_size: sammon_state.symbol_size)
+                        values_2d_plot.hidden = false
                         left_view.hidden = true
                 } else {
-                        tiled_scroll_view.hidden = true
+                        values_2d_plot.hidden = true
                         left_view.hidden = false
                         if sammon_state.sample_indices.count < 3 {
                                 info_label.attributedText = astring_body(string: "There are too few samples")
@@ -243,7 +237,7 @@ class Sammon: Component, UITableViewDataSource, UITableViewDelegate, PCA2dDelega
         }
 
         func update_3d_plot() {
-                tiled_scroll_view.hidden = true
+                values_2d_plot.hidden = true
                 if sammon_state.number_of_molecules_without_missing_values > 0 && sammon_state.sample_indices.count >= 3 {
                         let points_x = [Double](sammon_state.sammon_points[0 ..< sammon_state.sample_indices.count])
                         let points_y = [Double](sammon_state.sammon_points[sammon_state.sample_indices.count ..< 2 * sammon_state.sample_indices.count])
@@ -422,10 +416,8 @@ class Sammon: Component, UITableViewDataSource, UITableViewDelegate, PCA2dDelega
         func pdf_action() {
                 let file_name_stem = "sammon-map-2d"
                 let description = "2D Sammon map of samples."
-                if let pca_2d_drawer = pca_2d_drawer {
-                        state.insert_pdf_result_file(file_name_stem: file_name_stem, description: description, content_size: pca_2d_drawer.content_size, draw: pca_2d_drawer.draw)
-                        state.render()
-                }
+                state.insert_pdf_result_file(file_name_stem: file_name_stem, description: description, content_size: values_2d_plot.content_size, draw: values_2d_plot.draw)
+                state.render()
         }
         
         func png_action() {
