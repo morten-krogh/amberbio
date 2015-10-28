@@ -170,30 +170,38 @@ void values_indices_of_k_largest(double* values, const long values_length, const
                 indices[i] = i;
         }
 
-        if (k < values_length) return;
+        if (k <= 0 || values_length <= k) return;
 
-        
+        long minimum_index = 0;
+        double minimum_value = values[0];
+        for (long i = 0; i < k; i++) {
+                if (values[i] < minimum_value) {
+                        minimum_index = i;
+                        minimum_value = values[i];
+                }
+        }
 
+        for (long j = k; j < values_length; j++) {
+                if (values[j] > minimum_value) {
+                        indices[minimum_index] = j;
+                        minimum_index = 0;
+                        minimum_value = values[indices[0]];
+                        for (long i = 0; i < k; i++) {
+                                if (values[indices[i]] < minimum_value) {
+                                        minimum_index = i;
+                                        minimum_value = values[indices[i]];
+                                }
+                        }
+                }
+        }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        for (long i = 0; i < k - 1; i++) {
+                for (long j = i + 1; j < k; j++) {
+                        if (values[indices[i]] < values[indices[j]]) {
+                                long tmp = indices[i];
+                                indices[i] = indices[j];
+                                indices[j] = tmp;
+                        }
+                }
+        }
 }

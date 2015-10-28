@@ -36,8 +36,8 @@ long sammon_map(const double* values, const long number_of_molecules, const long
                 variances[i] = sample_indices_length < 2 ? 0.0 : (sum_of_squares - sum * sum / sample_indices_length) / (sample_indices_length - 1);
         }
 
-        
-        
+        long indices_of_largest_variances[dimension];
+        values_indices_of_k_largest(variances, molecule_indices_length, dimension, indices_of_largest_variances);
 
 
 
