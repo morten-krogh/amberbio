@@ -78,10 +78,10 @@ class Values2DPlot: DrawView {
         }
 
         var parameters: Parameters?
-        var mutex = pthread_mutex_t()
+        var mutex = pthread_rwlock_t()
 
         init() {
-                pthread_mutex_init(&mutex, nil)
+                pthread_rwlock_init(&mutex, nil)
                 super.init(frame: CGRect.zero, tappable: false)
                 content_size = CGSize(width: 300, height: 300)
         }
@@ -92,16 +92,16 @@ class Values2DPlot: DrawView {
 
         func update(points_x points_x: [Double], points_y: [Double], names: [String]?, colors: [UIColor]?, axis_titles: [String]?, symbol_size: Double) {
                 let parameters = Parameters(points_x: points_x, points_y: points_y, names: names, colors: colors, axis_titles: axis_titles, symbol_size: symbol_size)
-                pthread_mutex_lock(&mutex)
+                pthread_rwlock_wrlock(&mutex)
                 self.parameters = parameters
-                pthread_mutex_unlock(&mutex)
+                pthread_rwlock_unlock(&mutex)
                 redraw()
         }
 
         override func draw(context context: CGContext, rect: CGRect) {
-                pthread_mutex_lock(&mutex)
+                pthread_rwlock_rdlock(&mutex)
                 let par = self.parameters
-                pthread_mutex_unlock(&mutex)
+                pthread_rwlock_unlock(&mutex)
 
                 CGContextSaveGState(context)
                 CGContextSetLineWidth(context, 1)
