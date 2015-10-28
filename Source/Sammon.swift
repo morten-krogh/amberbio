@@ -152,14 +152,6 @@ class Sammon: Component, UITableViewDataSource, UITableViewDelegate, PCA2dDelega
 
                 values_2d_plot.frame = CGRect(x: 0, y: 0, width: width_left, height: height)
 
-//                if let pca_2d_drawer = pca_2d_drawer {
-//                        min_zoom = min(width_left, height) / pca_2d_drawer.content_size.height
-//                        pca_2d_drawer.minimum_zoom_scale = max(1, min_zoom)
-//                        pca_2d_drawer.maximum_zoom_scale = max(2, 20 * pca_2d_drawer.minimum_zoom_scale)
-//
-//                        tiled_scroll_view.scroll_view.zoomScale = sammon_state.zoom_scale_2d
-//                }
-
                 pca3d_plot.frame = CGRect(x: 0, y: 0, width: width_left, height: height)
 
                 let origin_y = 0 as CGFloat
@@ -225,6 +217,7 @@ class Sammon: Component, UITableViewDataSource, UITableViewDelegate, PCA2dDelega
                         let points_y = [Double](sammon_state.sammon_points[sammon_state.sample_indices.count ..< 2 * sammon_state.sample_indices.count])
                         let axis_titles = ["", ""]
                         let names = sammon_state.plot_symbol == "circles" ? (nil as [String]?) : sammon_state.sample_names
+
                         values_2d_plot.update(points_x: points_x, points_y: points_y, names: names, colors: sammon_state.sample_colors, axis_titles: axis_titles, symbol_size: sammon_state.symbol_size)
                         values_2d_plot.hidden = false
                         left_view.hidden = true

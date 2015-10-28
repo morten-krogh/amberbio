@@ -100,7 +100,7 @@ class Values2DPlot: DrawView {
                         }
                 } else {
                         for index in 0 ..< points.count {
-                                draw_pca_circle(context: context, index: index, rect: rect)
+                                draw_circle(context: context, index: index, rect: rect)
                         }
                 }
 
@@ -195,7 +195,7 @@ class Values2DPlot: DrawView {
                 }
         }
 
-        func draw_pca_circle(context context: CGContext, index: Int, rect: CGRect) {
+        func draw_circle(context context: CGContext, index: Int, rect: CGRect) {
                 let point = points[index]
                 let color = colors[index]
                 drawing_draw_circle(context: context, center_x: point.x, center_y: point.y, radius: circle_radius, color: color)
