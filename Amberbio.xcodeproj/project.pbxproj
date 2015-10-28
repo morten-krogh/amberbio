@@ -222,6 +222,7 @@
 		60D2C3BE1BDFDAAE00C6C6EF /* Values.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D2C3BD1BDFDAAE00C6C6EF /* Values.swift */; };
 		60D2C3C21BE0C80400C6C6EF /* Sammon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D2C3C11BE0C80400C6C6EF /* Sammon.swift */; };
 		60D2C3C41BE0D4ED00C6C6EF /* sammon.c in Sources */ = {isa = PBXBuildFile; fileRef = 60D2C3C31BE0D4ED00C6C6EF /* sammon.c */; };
+		60D2C3C61BE1072F00C6C6EF /* Values2DPlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D2C3C51BE1072F00C6C6EF /* Values2DPlot.swift */; };
 		60D5CE361BC2545400B0D88A /* KNN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D5CE351BC2545400B0D88A /* KNN.swift */; };
 		60D5CE381BC26CD100B0D88A /* SupervisedClassificationTrainingSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D5CE371BC26CD100B0D88A /* SupervisedClassificationTrainingSelection.swift */; };
 		60DF228D1BC58E9E0038AAE1 /* random.c in Sources */ = {isa = PBXBuildFile; fileRef = 60DF228B1BC58E9E0038AAE1 /* random.c */; };
@@ -456,6 +457,7 @@
 		60D2C3BD1BDFDAAE00C6C6EF /* Values.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Values.swift; path = Source/Values.swift; sourceTree = "<group>"; };
 		60D2C3C11BE0C80400C6C6EF /* Sammon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Sammon.swift; path = Source/Sammon.swift; sourceTree = "<group>"; };
 		60D2C3C31BE0D4ED00C6C6EF /* sammon.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = sammon.c; path = Source/sammon.c; sourceTree = "<group>"; };
+		60D2C3C51BE1072F00C6C6EF /* Values2DPlot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Values2DPlot.swift; path = Source/Values2DPlot.swift; sourceTree = "<group>"; };
 		60D5CE351BC2545400B0D88A /* KNN.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KNN.swift; path = Source/KNN.swift; sourceTree = "<group>"; };
 		60D5CE371BC26CD100B0D88A /* SupervisedClassificationTrainingSelection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SupervisedClassificationTrainingSelection.swift; path = Source/SupervisedClassificationTrainingSelection.swift; sourceTree = "<group>"; };
 		60DF228B1BC58E9E0038AAE1 /* random.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = random.c; path = Source/random.c; sourceTree = "<group>"; };
@@ -681,6 +683,7 @@
 				60B400CA1BA19C7900D8DD80 /* TableOfAttributedStrings.swift */,
 				60B400CE1BA19C7900D8DD80 /* TiledLayerView.swift */,
 				60B400CF1BA19C7900D8DD80 /* TiledScrollView.swift */,
+				60D2C3C51BE1072F00C6C6EF /* Values2DPlot.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -1164,6 +1167,7 @@
 				60B4010D1BA19C7900D8DD80 /* LinearRegressionDrawer.swift in Sources */,
 				60B4015A1BA19C7900D8DD80 /* Title.swift in Sources */,
 				60B401051BA19C7900D8DD80 /* HierarchicalClusteringSelection.swift in Sources */,
+				60D2C3C61BE1072F00C6C6EF /* Values2DPlot.swift in Sources */,
 				60B401131BA19C7900D8DD80 /* Manual.swift in Sources */,
 				60B401111BA19C7900D8DD80 /* LogarithmTransform.swift in Sources */,
 				60B401101BA19C7900D8DD80 /* LinearRegressionTable.swift in Sources */,
