@@ -39,6 +39,14 @@ long sammon_map(const double* values, const long number_of_molecules, const long
         long indices_of_largest_variances[dimension];
         values_indices_of_k_largest(variances, molecule_indices_length, dimension, indices_of_largest_variances);
 
+        for (long d = 0; d < dimension; d++) {
+                for (long j = 0; j < sample_indices_length; j++) {
+                        double value = values[molecule_indices[indices_of_largest_variances[d]] * number_of_samples + sample_indices[j]];
+                        sammon_points[d * sample_indices_length + j] = value;
+                }
+        }
+
+
 
 
         return molecule_indices_length;
