@@ -8,6 +8,7 @@ class DrawView: UIView, UIScrollViewDelegate, DrawViewTiledLayerViewDelegate {
                 }
         }
 
+        var maximum_zoom_scale_multiplier = 1 as CGFloat
         var maximum_zoom_scale = 1 as CGFloat
         var minimum_zoom_scale = 1 as CGFloat
         var zoom_scale = 1 as CGFloat
@@ -73,13 +74,13 @@ class DrawView: UIView, UIScrollViewDelegate, DrawViewTiledLayerViewDelegate {
                 let scale_x = width / content_size.width
                 let scale_y = height / content_size.height
 
-                let scale_min = min(1, scale_x, scale_y)
+                let scale_min = min(scale_x, scale_y)
                 if scale_min != minimum_zoom_scale {
                         minimum_zoom_scale = scale_min
                         scroll_view.minimumZoomScale = minimum_zoom_scale
                 }
 
-                let scale_max = max(1, scale_x, scale_y)
+                let scale_max = maximum_zoom_scale_multiplier * max(1, scale_x, scale_y)
                 if scale_max != maximum_zoom_scale {
                         maximum_zoom_scale = scale_max
                         scroll_view.maximumZoomScale = maximum_zoom_scale
@@ -120,6 +121,10 @@ class DrawView: UIView, UIScrollViewDelegate, DrawViewTiledLayerViewDelegate {
 
         func tap_action(recognizer: UITapGestureRecognizer) {
 
+        }
+
+        func redraw() {
+                draw_view_tiled_layer_view?.setNeedsDisplay()
         }
 }
 

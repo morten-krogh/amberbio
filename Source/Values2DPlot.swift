@@ -23,11 +23,8 @@ class Values2DPlot: DrawView {
 
         var points = [] as [CGPoint]
 
-        let tap_action: (() -> Void)?
-
-        init(tap_action: (() -> Void )?) {
-                self.tap_action = tap_action
-                super.init(frame: CGRect.zero, tappable: tap_action != nil)
+        init() {
+                super.init(frame: CGRect.zero, tappable: false)
                 content_size = CGSize(width: 300, height: 300)
         }
 
@@ -74,6 +71,8 @@ class Values2DPlot: DrawView {
                 circle_radius = CGFloat(0.5 + symbol_size * 6)
                 names_font_size = CGFloat(0.5 + symbol_size * 20)
                 axis_title_font_size = CGFloat(2 + symbol_size * 4)
+
+                redraw()
         }
 
         func padding_min_max(min min: Double, max: Double) -> (min: Double, max: Double) {
@@ -208,11 +207,5 @@ class Values2DPlot: DrawView {
                 let astring = astring_font_size_color(string: name, font: font_footnote, font_size: names_font_size, color: color)
                 let origin = CGPoint(x: point.x - astring.size().width / 2, y: point.y - astring.size().height / 2)
                 drawing_draw_attributed_text(context: context, attributed_text: astring, origin: origin, horizontal: true)
-        }
-
-        override func tap_action(recognizer: UITapGestureRecognizer) {
-                if let tap_action = tap_action {
-                        tap_action()
-                }
         }
 }

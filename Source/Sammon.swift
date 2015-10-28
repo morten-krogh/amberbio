@@ -82,7 +82,7 @@ class Sammon: Component, UITableViewDataSource, UITableViewDelegate, PCA2dDelega
 
         let scroll_view = UIScrollView()
         let left_view = UIView()
-        var values_2d_plot: Values2DPlot!
+        let values_2d_plot = Values2DPlot()
         let pca3d_plot = PCA3dPlot(frame: CGRect.zero)
         let table_view = UITableView()
         let info_label = UILabel()
@@ -99,7 +99,7 @@ class Sammon: Component, UITableViewDataSource, UITableViewDelegate, PCA2dDelega
                 scroll_view.scrollEnabled = false
                 view.addSubview(scroll_view)
 
-                values_2d_plot = Values2DPlot(tap_action: tap_action)
+                values_2d_plot.maximum_zoom_scale_multiplier = 5
                 scroll_view.addSubview(values_2d_plot)
                 scroll_view.addSubview(pca3d_plot)
 
@@ -123,6 +123,10 @@ class Sammon: Component, UITableViewDataSource, UITableViewDelegate, PCA2dDelega
                 let tap_recognizer_left_view = UITapGestureRecognizer(target: self, action: "tap_action")
                 tap_recognizer_left_view.numberOfTapsRequired = 1
                 left_view.addGestureRecognizer(tap_recognizer_left_view)
+
+                let tap_recognizer_2d = UITapGestureRecognizer(target: self, action: "tap_action")
+                tap_recognizer_2d.numberOfTapsRequired = 1
+                values_2d_plot.addGestureRecognizer(tap_recognizer_2d)
 
                 let tap_recognizer_3d = UITapGestureRecognizer(target: self, action: "tap_action")
                 tap_recognizer_3d.numberOfTapsRequired = 1
