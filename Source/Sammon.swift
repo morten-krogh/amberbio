@@ -204,11 +204,6 @@ class Sammon: Component, UITableViewDataSource, UITableViewDelegate, PCA2dDelega
                 update_pca_plot()
         }
 
-        func render_after_components_change() {
-                update_pca_plot()
-                table_view.reloadData()
-        }
-
         func update_pca_plot() {
                 if sammon_state.dimension == 2 {
                         update_2d_plot()
@@ -219,10 +214,10 @@ class Sammon: Component, UITableViewDataSource, UITableViewDelegate, PCA2dDelega
 
         func update_2d_plot() {
                 pca3d_plot.hidden = true
-                let axis_titles = ["", ""]
                 if sammon_state.number_of_molecules_without_missing_values > 0 && sammon_state.sample_indices.count >= 3 {
                         let points_x = [Double](sammon_state.sammon_points[0 ..< sammon_state.sample_indices.count])
                         let points_y = [Double](sammon_state.sammon_points[sammon_state.sample_indices.count ..< 2 * sammon_state.sample_indices.count])
+                        let axis_titles = ["", ""]
                         let names = sammon_state.plot_symbol == "circles" ? (nil as [String]?) : sammon_state.sample_names
                         let pca_2d_drawer = PCA2dPlot()
                         pca_2d_drawer.delegate = self
@@ -248,24 +243,27 @@ class Sammon: Component, UITableViewDataSource, UITableViewDelegate, PCA2dDelega
         }
 
         func update_3d_plot() {
-//                tiled_scroll_view.hidden = true
-//                if sammon_state.number_of_components >= 3 {
-//                        let ordered_components = sammon_state.selected_components.sort()
-//                        let axis_titles = ["PC\(ordered_components[0] + 1)", "PC\(ordered_components[1] + 1)", "PC\(ordered_components[2] + 1)"]
-//                        let points_x = sammon_state.component_matrix[ordered_components[0]]
-//                        let points_y = sammon_state.component_matrix[ordered_components[1]]
-//                        let points_z = sammon_state.component_matrix[ordered_components[2]]
-//                        let names = sammon_state.selected_sample_names
-//                        pca3d_plot.update(points_x: points_x, points_y: points_y, points_z: points_z, names: names, plot_symbol: sammon_state.plot_symbol, colors: sammon_state.selected_sample_colors, axis_titles: axis_titles, symbol_size: sammon_state.symbol_size)
-//                        pca3d_plot.hidden = false
-//                        left_view.hidden = true
-//                } else {
-//                        pca3d_plot.hidden = true
-//                        left_view.hidden = false
-//                        info_label.attributedText = astring_body(string: "There are less than 3 principal components")
-//                        info_label.textAlignment = .Center
-//                }
-//                view.setNeedsLayout()
+                tiled_scroll_view.hidden = true
+                if sammon_state.number_of_molecules_without_missing_values > 0 && sammon_state.sample_indices.count >= 3 {
+                        let points_x = [Double](sammon_state.sammon_points[0 ..< sammon_state.sample_indices.count])
+                        let points_y = [Double](sammon_state.sammon_points[sammon_state.sample_indices.count ..< 2 * sammon_state.sample_indices.count])
+                        let points_z = [Double](sammon_state.sammon_points[2 * sammon_state.sample_indices.count ..< 3 * sammon_state.sample_indices.count])
+                        let axis_titles = ["", "", ""]
+                        let names = sammon_state.sample_names
+                        pca3d_plot.update(points_x: points_x, points_y: points_y, points_z: points_z, names: names, plot_symbol: sammon_state.plot_symbol, colors: sammon_state.sample_colors, axis_titles: axis_titles, symbol_size: sammon_state.symbol_size)
+                        pca3d_plot.hidden = false
+                        left_view.hidden = true
+                } else {
+                        pca3d_plot.hidden = true
+                        left_view.hidden = false
+                        if sammon_state.sample_indices.count < 3 {
+                                info_label.attributedText = astring_body(string: "There are too few samples")
+                        } else {
+                                info_label.attributedText = astring_body(string: "There are no molecules without missing values")
+                        }
+                        info_label.textAlignment = .Center
+                }
+                view.setNeedsLayout()
         }
 
         func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -385,6 +383,7 @@ class Sammon: Component, UITableViewDataSource, UITableViewDelegate, PCA2dDelega
         func dimension_action(sender: UISegmentedControl) {
                 let dimension = sender.selectedSegmentIndex == 0 ? 2 : 3
                 sammon_state.set_dimension(dimension: dimension)
+                sammon_state.calculate_sammon_map()
                 state.render()
         }
 
