@@ -121,15 +121,12 @@ class Sammon: Component, UITableViewDataSource, UITableViewDelegate, PCA2dDelega
                 left_view.addSubview(info_label)
 
                 let tap_recognizer_left_view = UITapGestureRecognizer(target: self, action: "tap_action")
-                tap_recognizer_left_view.numberOfTapsRequired = 1
                 left_view.addGestureRecognizer(tap_recognizer_left_view)
 
                 let tap_recognizer_2d = UITapGestureRecognizer(target: self, action: "tap_action")
-                tap_recognizer_2d.numberOfTapsRequired = 1
                 values_2d_plot.addGestureRecognizer(tap_recognizer_2d)
 
                 let tap_recognizer_3d = UITapGestureRecognizer(target: self, action: "tap_action")
-                tap_recognizer_3d.numberOfTapsRequired = 1
                 pca3d_plot.addGestureRecognizer(tap_recognizer_3d)
         }
 

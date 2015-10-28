@@ -105,6 +105,9 @@ func gram_schmidt(vector vector: [Double], orthonormals: [[Double]], cutoff: Dou
 }
 
 func pca_next_component(matrix matrix: [[Double]], components: [[Double]], cutoff: Double) -> [Double]? {
+        if components.count >= matrix.count {
+                return nil
+        }
         var component = vector_random_unit(length: matrix.count)
         var iteration = 0
         while iteration < 100 {
