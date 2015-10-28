@@ -220,8 +220,7 @@ class Sammon: Component, UITableViewDataSource, UITableViewDelegate, PCA2dDelega
         }
 
         func render_after_sample_change() {
-                sammon_state.calculate_selected_sample_indices()
-                sammon_state.calculate_levels_and_colors()
+                sammon_state.calculate_samples_and_levels()
                 tiled_scroll_view.hidden = true
                 pca3d_plot.hidden = true
                 info_label.hidden = false
@@ -232,15 +231,15 @@ class Sammon: Component, UITableViewDataSource, UITableViewDelegate, PCA2dDelega
         }
 
         func render_after_sample_change_timer() {
-                sammon_state.calculate_pca_components()
+                sammon_state.calculate_sammon_map()
                 table_view.reloadData()
                 update_pca_plot()
         }
 
         func render_after_factor_change() {
-                sammon_state.calculate_levels_and_colors()
-                update_pca_plot()
+                sammon_state.calculate_samples_and_levels()
                 table_view.reloadData()
+                update_pca_plot()
         }
 
         func render_after_components_change() {
@@ -250,70 +249,70 @@ class Sammon: Component, UITableViewDataSource, UITableViewDelegate, PCA2dDelega
 
         func update_pca_plot() {
                 if sammon_state.dimension == 2 {
-                        update_pca2d_plot()
+                        update_2d_plot()
                 } else {
-                        update_pca3d_plot()
+                        update_3d_plot()
                 }
         }
 
-        func update_pca2d_plot() {
-                pca3d_plot.hidden = true
-                let ordered_components = sammon_state.selected_components.sort()
-                let axis_titles = ["PC\(ordered_components[0] + 1)", "PC\(ordered_components[1] + 1)"]
-                if sammon_state.number_of_components >= 2 {
-                        let points_x = sammon_state.component_matrix[ordered_components[0]]
-                        let points_y = sammon_state.component_matrix[ordered_components[1]]
-                        let names = sammon_state.plot_symbol == "circles" ? (nil as [String]?) : sammon_state.selected_sample_names
-                        let pca_2d_drawer = PCA2dPlot()
-                        pca_2d_drawer.delegate = self
-                        pca_2d_drawer.update(points_x: points_x, points_y: points_y, names: names, colors: sammon_state.selected_sample_colors, axis_titles: axis_titles, symbol_size: sammon_state.symbol_size)
-                        pca_2d_drawer.minimum_zoom_scale = max(1, min_zoom)
-                        pca_2d_drawer.maximum_zoom_scale = 3 * pca_2d_drawer.minimum_zoom_scale
-                        self.pca_2d_drawer = pca_2d_drawer
-                        tiled_scroll_view.delegate = pca_2d_drawer
-                        tiled_scroll_view.scroll_view.zoomScale = sammon_state.pca_2d_zoom_scale
-                        tiled_scroll_view.hidden = false
-                        left_view.hidden = true
-                } else {
-                        tiled_scroll_view.hidden = true
-                        left_view.hidden = false
-                        info_label.attributedText = astring_body(string: "There are less than 2 principal components")
-                        info_label.textAlignment = .Center
-                }
-                view.setNeedsLayout()
+        func update_2d_plot() {
+//                pca3d_plot.hidden = true
+//                let ordered_components = sammon_state.selected_components.sort()
+//                let axis_titles = ["PC\(ordered_components[0] + 1)", "PC\(ordered_components[1] + 1)"]
+//                if sammon_state.number_of_components >= 2 {
+//                        let points_x = sammon_state.component_matrix[ordered_components[0]]
+//                        let points_y = sammon_state.component_matrix[ordered_components[1]]
+//                        let names = sammon_state.plot_symbol == "circles" ? (nil as [String]?) : sammon_state.selected_sample_names
+//                        let pca_2d_drawer = PCA2dPlot()
+//                        pca_2d_drawer.delegate = self
+//                        pca_2d_drawer.update(points_x: points_x, points_y: points_y, names: names, colors: sammon_state.selected_sample_colors, axis_titles: axis_titles, symbol_size: sammon_state.symbol_size)
+//                        pca_2d_drawer.minimum_zoom_scale = max(1, min_zoom)
+//                        pca_2d_drawer.maximum_zoom_scale = 3 * pca_2d_drawer.minimum_zoom_scale
+//                        self.pca_2d_drawer = pca_2d_drawer
+//                        tiled_scroll_view.delegate = pca_2d_drawer
+//                        tiled_scroll_view.scroll_view.zoomScale = sammon_state.pca_2d_zoom_scale
+//                        tiled_scroll_view.hidden = false
+//                        left_view.hidden = true
+//                } else {
+//                        tiled_scroll_view.hidden = true
+//                        left_view.hidden = false
+//                        info_label.attributedText = astring_body(string: "There are less than 2 principal components")
+//                        info_label.textAlignment = .Center
+//                }
+//                view.setNeedsLayout()
         }
 
-        func update_pca3d_plot() {
-                tiled_scroll_view.hidden = true
-                if sammon_state.number_of_components >= 3 {
-                        let ordered_components = sammon_state.selected_components.sort()
-                        let axis_titles = ["PC\(ordered_components[0] + 1)", "PC\(ordered_components[1] + 1)", "PC\(ordered_components[2] + 1)"]
-                        let points_x = sammon_state.component_matrix[ordered_components[0]]
-                        let points_y = sammon_state.component_matrix[ordered_components[1]]
-                        let points_z = sammon_state.component_matrix[ordered_components[2]]
-                        let names = sammon_state.selected_sample_names
-                        pca3d_plot.update(points_x: points_x, points_y: points_y, points_z: points_z, names: names, plot_symbol: sammon_state.plot_symbol, colors: sammon_state.selected_sample_colors, axis_titles: axis_titles, symbol_size: sammon_state.symbol_size)
-                        pca3d_plot.hidden = false
-                        left_view.hidden = true
-                } else {
-                        pca3d_plot.hidden = true
-                        left_view.hidden = false
-                        info_label.attributedText = astring_body(string: "There are less than 3 principal components")
-                        info_label.textAlignment = .Center
-                }
-                view.setNeedsLayout()
+        func update_3d_plot() {
+//                tiled_scroll_view.hidden = true
+//                if sammon_state.number_of_components >= 3 {
+//                        let ordered_components = sammon_state.selected_components.sort()
+//                        let axis_titles = ["PC\(ordered_components[0] + 1)", "PC\(ordered_components[1] + 1)", "PC\(ordered_components[2] + 1)"]
+//                        let points_x = sammon_state.component_matrix[ordered_components[0]]
+//                        let points_y = sammon_state.component_matrix[ordered_components[1]]
+//                        let points_z = sammon_state.component_matrix[ordered_components[2]]
+//                        let names = sammon_state.selected_sample_names
+//                        pca3d_plot.update(points_x: points_x, points_y: points_y, points_z: points_z, names: names, plot_symbol: sammon_state.plot_symbol, colors: sammon_state.selected_sample_colors, axis_titles: axis_titles, symbol_size: sammon_state.symbol_size)
+//                        pca3d_plot.hidden = false
+//                        left_view.hidden = true
+//                } else {
+//                        pca3d_plot.hidden = true
+//                        left_view.hidden = false
+//                        info_label.attributedText = astring_body(string: "There are less than 3 principal components")
+//                        info_label.textAlignment = .Center
+//                }
+//                view.setNeedsLayout()
         }
 
         func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-                return 7
+                return 6
         }
 
         func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-                return section == 6 ? select_all_header_footer_view_height : centered_header_footer_view_height
+                return section == 5 ? select_all_header_footer_view_height : centered_header_footer_view_height
         }
 
         func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-                if section < 6 {
+                if section < 5 {
                         let header = tableView.dequeueReusableHeaderFooterViewWithIdentifier("centered-header") as! CenteredHeaderFooterView
                         switch section {
                         case 0:
@@ -324,10 +323,8 @@ class Sammon: Component, UITableViewDataSource, UITableViewDelegate, PCA2dDelega
                                 header.update_normal(text: "Plot symbol size")
                         case 3:
                                 header.update_normal(text: "Factor for colors")
-                        case 4:
-                                header.update_normal(text: "Color scheme")
                         default:
-                                header.update_normal(text: "Components")
+                                header.update_normal(text: "Color scheme")
                         }
                         return header
                 } else {
@@ -346,8 +343,6 @@ class Sammon: Component, UITableViewDataSource, UITableViewDelegate, PCA2dDelega
                         return state.factor_ids.count
                 case 4:
                         return sammon_state.level_names.count
-                case 5:
-                        return sammon_state.number_of_components
                 default:
                         return state.number_of_samples
                 }
@@ -382,7 +377,7 @@ class Sammon: Component, UITableViewDataSource, UITableViewDelegate, PCA2dDelega
                 case 3:
                         let cell = tableView.dequeueReusableCellWithIdentifier("centered_cell") as! CenteredTableViewCell
                         let text = state.factor_names[row]
-                        if state.factor_ids[row] == sammon_state.selected_factor_id {
+                        if row == sammon_state.selected_factor_index {
                                 cell.update_selected_checkmark(text: text)
                         } else {
                                 cell.update_unselected(text: text)
@@ -393,15 +388,6 @@ class Sammon: Component, UITableViewDataSource, UITableViewDelegate, PCA2dDelega
                         let level_name = sammon_state.level_names[row]
                         let level_color = color_from_hex(hex: sammon_state.level_colors[row])
                         cell.update(text: level_name, color: level_color)
-                        return cell
-                case 5:
-                        let cell = tableView.dequeueReusableCellWithIdentifier("centered_cell") as! CenteredTableViewCell
-                        let (text, number) = sammon_state.text_number_for_component(index: row)
-                        if let number = number {
-                                cell.update_selected_number(text: text, number: number)
-                        } else {
-                                cell.update_unselected(text: text)
-                        }
                         return cell
                 default:
                         let cell = tableView.dequeueReusableCellWithIdentifier("centered_cell") as! CenteredTableViewCell
@@ -419,19 +405,13 @@ class Sammon: Component, UITableViewDataSource, UITableViewDelegate, PCA2dDelega
                 let row = indexPath.row
 
                 if indexPath.section == 3 {
-                        let factor_id = state.factor_ids[row]
-                        if sammon_state.selected_factor_id == factor_id {
-                                sammon_state.selected_factor_id = nil
+                        if sammon_state.selected_factor_index == row {
+                                sammon_state.selected_factor_index = nil
                         } else {
-                                sammon_state.selected_factor_id = factor_id
+                                sammon_state.selected_factor_index = row
                         }
                         render_after_factor_change()
                 } else if indexPath.section == 5 {
-                        if sammon_state.selected_components.indexOf(row) == nil {
-                                sammon_state.selected_components = sammon_state.dimension == 2 ? [sammon_state.selected_components[1], row] : [sammon_state.selected_components[1], sammon_state.selected_components[2], row]
-                                render_after_components_change()
-                        }
-                } else if indexPath.section == 6 {
                         sammon_state.selected_samples[row] = !sammon_state.selected_samples[row]
                         render_after_sample_change()
                 }
@@ -468,7 +448,7 @@ class Sammon: Component, UITableViewDataSource, UITableViewDelegate, PCA2dDelega
         }
 
         func scroll_view_did_end_zooming(zoom_scale zoom_scale: CGFloat) {
-                sammon_state.pca_2d_zoom_scale = zoom_scale
+                sammon_state.zoom_scale_2d = zoom_scale
         }
 
         func tap_action() {
@@ -476,8 +456,8 @@ class Sammon: Component, UITableViewDataSource, UITableViewDelegate, PCA2dDelega
         }
 
         func pdf_action() {
-                let file_name_stem = "pca-2d"
-                let description = "2D principal component plot of samples."
+                let file_name_stem = "sammon-map-2d"
+                let description = "2D Sammon map of samples."
                 if let pca_2d_drawer = pca_2d_drawer {
                         state.insert_pdf_result_file(file_name_stem: file_name_stem, description: description, content_size: pca_2d_drawer.content_size, draw: pca_2d_drawer.draw)
                         state.render()
@@ -485,7 +465,7 @@ class Sammon: Component, UITableViewDataSource, UITableViewDelegate, PCA2dDelega
         }
         
         func png_action() {
-                let file_name_stem = "pca-3d"
+                let file_name_stem = "sammon-map-3d"
                 let image = pca3d_plot.snapshot()
                 if let file_data = UIImagePNGRepresentation(image) {
                         state.insert_png_result_file(file_name_stem: file_name_stem, file_data: file_data)
