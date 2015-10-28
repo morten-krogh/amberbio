@@ -7,7 +7,7 @@ class SammonState: PageState {
 
         var selected_samples = [] as [Bool]
         var selected_factor_index: Int?
-        var dimension = 3
+        var dimension = 2
         var plot_symbol = "circles"
         var symbol_size = 0.5 as Double
 
@@ -31,7 +31,7 @@ class SammonState: PageState {
         }
 
         override func prepare() {
-                set_dimension(dimension: 3)
+                set_dimension(dimension: dimension)
                 selected_samples = [Bool](count: state.number_of_samples, repeatedValue: true)
                 calculate_samples_and_levels()
                 calculate_sammon_map()
@@ -218,30 +218,33 @@ class Sammon: Component, UITableViewDataSource, UITableViewDelegate, PCA2dDelega
         }
 
         func update_2d_plot() {
-//                pca3d_plot.hidden = true
-//                let ordered_components = sammon_state.selected_components.sort()
-//                let axis_titles = ["PC\(ordered_components[0] + 1)", "PC\(ordered_components[1] + 1)"]
-//                if sammon_state.number_of_components >= 2 {
-//                        let points_x = sammon_state.component_matrix[ordered_components[0]]
-//                        let points_y = sammon_state.component_matrix[ordered_components[1]]
-//                        let names = sammon_state.plot_symbol == "circles" ? (nil as [String]?) : sammon_state.selected_sample_names
-//                        let pca_2d_drawer = PCA2dPlot()
-//                        pca_2d_drawer.delegate = self
-//                        pca_2d_drawer.update(points_x: points_x, points_y: points_y, names: names, colors: sammon_state.selected_sample_colors, axis_titles: axis_titles, symbol_size: sammon_state.symbol_size)
-//                        pca_2d_drawer.minimum_zoom_scale = max(1, min_zoom)
-//                        pca_2d_drawer.maximum_zoom_scale = 3 * pca_2d_drawer.minimum_zoom_scale
-//                        self.pca_2d_drawer = pca_2d_drawer
-//                        tiled_scroll_view.delegate = pca_2d_drawer
-//                        tiled_scroll_view.scroll_view.zoomScale = sammon_state.pca_2d_zoom_scale
-//                        tiled_scroll_view.hidden = false
-//                        left_view.hidden = true
-//                } else {
-//                        tiled_scroll_view.hidden = true
-//                        left_view.hidden = false
-//                        info_label.attributedText = astring_body(string: "There are less than 2 principal components")
-//                        info_label.textAlignment = .Center
-//                }
-//                view.setNeedsLayout()
+                pca3d_plot.hidden = true
+                let axis_titles = ["", ""]
+                if sammon_state.number_of_molecules_without_missing_values > 0 && sammon_state.sample_indices.count >= 3 {
+                        let points_x = [Double](sammon_state.sammon_points[0 ..< sammon_state.sample_indices.count])
+                        let points_y = [Double](sammon_state.sammon_points[sammon_state.sample_indices.count ..< 2 * sammon_state.sample_indices.count])
+                        let names = sammon_state.plot_symbol == "circles" ? (nil as [String]?) : sammon_state.sample_names
+                        let pca_2d_drawer = PCA2dPlot()
+                        pca_2d_drawer.delegate = self
+                        pca_2d_drawer.update(points_x: points_x, points_y: points_y, names: names, colors: sammon_state.sample_colors, axis_titles: axis_titles, symbol_size: sammon_state.symbol_size)
+                        pca_2d_drawer.minimum_zoom_scale = max(1, min_zoom)
+                        pca_2d_drawer.maximum_zoom_scale = 3 * pca_2d_drawer.minimum_zoom_scale
+                        self.pca_2d_drawer = pca_2d_drawer
+                        tiled_scroll_view.delegate = pca_2d_drawer
+                        tiled_scroll_view.scroll_view.zoomScale = sammon_state.zoom_scale_2d
+                        tiled_scroll_view.hidden = false
+                        left_view.hidden = true
+                } else {
+                        tiled_scroll_view.hidden = true
+                        left_view.hidden = false
+                        if sammon_state.sample_indices.count < 3 {
+                                info_label.attributedText = astring_body(string: "There are too few samples")
+                        } else {
+                                info_label.attributedText = astring_body(string: "There are no molecules without missing values")
+                        }
+                        info_label.textAlignment = .Center
+                }
+                view.setNeedsLayout()
         }
 
         func update_3d_plot() {
