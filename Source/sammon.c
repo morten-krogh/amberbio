@@ -49,6 +49,11 @@ long sammon_map(const double* values, const long number_of_molecules, const long
 
 
 
+
+
+
+        values_calculate_molecule_centered_values(sammon_points, dimension, sample_indices_length, sammon_points);
+
         return molecule_indices_length;
 }
 
