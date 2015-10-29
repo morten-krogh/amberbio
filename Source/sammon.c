@@ -93,8 +93,6 @@ long sammon_map(const double* values, const long number_of_molecules, const long
 
         long number_of_iterations = 10 + initial_number_of_iterations * 2e5 / (duration_in_usec + 10);
 
-        printf("%li, %li\n", duration_in_usec, number_of_iterations);
-
         double lambda_damper = exp(log(lambda_last / lambda_initial) / number_of_iterations);
         double lambda = lambda_initial;
 
