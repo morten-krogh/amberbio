@@ -192,7 +192,6 @@
 		60B401561BA19C7900D8DD80 /* TextFieldHeaderFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400CC1BA19C7900D8DD80 /* TextFieldHeaderFooterView.swift */; };
 		60B401571BA19C7900D8DD80 /* TextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400CD1BA19C7900D8DD80 /* TextFieldTableViewCell.swift */; };
 		60B401581BA19C7900D8DD80 /* TiledLayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400CE1BA19C7900D8DD80 /* TiledLayerView.swift */; };
-		60B401591BA19C7900D8DD80 /* TiledScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400CF1BA19C7900D8DD80 /* TiledScrollView.swift */; };
 		60B4015A1BA19C7900D8DD80 /* Title.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400D01BA19C7900D8DD80 /* Title.swift */; };
 		60B4015B1BA19C7900D8DD80 /* Txt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400D11BA19C7900D8DD80 /* Txt.swift */; };
 		60B4015C1BA19C7900D8DD80 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400D21BA19C7900D8DD80 /* User.swift */; };
@@ -223,6 +222,7 @@
 		60D2C3C21BE0C80400C6C6EF /* Sammon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D2C3C11BE0C80400C6C6EF /* Sammon.swift */; };
 		60D2C3C41BE0D4ED00C6C6EF /* sammon.c in Sources */ = {isa = PBXBuildFile; fileRef = 60D2C3C31BE0D4ED00C6C6EF /* sammon.c */; };
 		60D2C3C61BE1072F00C6C6EF /* Values2DPlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D2C3C51BE1072F00C6C6EF /* Values2DPlot.swift */; };
+		60D2C3C71BE20CD700C6C6EF /* TiledScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400CF1BA19C7900D8DD80 /* TiledScrollView.swift */; };
 		60D5CE361BC2545400B0D88A /* KNN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D5CE351BC2545400B0D88A /* KNN.swift */; };
 		60D5CE381BC26CD100B0D88A /* SupervisedClassificationTrainingSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D5CE371BC26CD100B0D88A /* SupervisedClassificationTrainingSelection.swift */; };
 		60DF228D1BC58E9E0038AAE1 /* random.c in Sources */ = {isa = PBXBuildFile; fileRef = 60DF228B1BC58E9E0038AAE1 /* random.c */; };
@@ -1135,7 +1135,6 @@
 				60B400FC1BA19C7900D8DD80 /* FactorSummary.swift in Sources */,
 				60B401531BA19C7900D8DD80 /* Statistics.swift in Sources */,
 				60B400FE1BA19C7900D8DD80 /* Feedback.swift in Sources */,
-				60B401591BA19C7900D8DD80 /* TiledScrollView.swift in Sources */,
 				605F52351BC3B37300033B91 /* knn.c in Sources */,
 				60B401231BA19C7900D8DD80 /* PairedPairingFactor.swift in Sources */,
 				60B401561BA19C7900D8DD80 /* TextFieldHeaderFooterView.swift in Sources */,
@@ -1270,6 +1269,7 @@
 				60B400D71BA19C7900D8DD80 /* Alert.swift in Sources */,
 				60B4003B1BA1983900D8DD80 /* State.swift in Sources */,
 				60B401451BA19C7900D8DD80 /* SingleChoiceTable.swift in Sources */,
+				60D2C3C71BE20CD700C6C6EF /* TiledScrollView.swift in Sources */,
 				605F523B1BC502A700033B91 /* CrossValidationTableViewCell.swift in Sources */,
 				60B401211BA19C7900D8DD80 /* PairedComparisonFactor.swift in Sources */,
 				60DF228D1BC58E9E0038AAE1 /* random.c in Sources */,
