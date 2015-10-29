@@ -202,10 +202,9 @@ class MultipleMoleculePlot: Component, UITableViewDataSource, UITableViewDelegat
         var multiple_molecule_plot_state: MultipleMoleculePlotState!
 
         let scroll_view = UIScrollView()
-        let tiled_scroll_view = TiledScrollView(frame: CGRect.zero)
         let left_view = UIView()
+        let values_2d_plot = Values2DPlot()
         let pca3d_plot = PCA3dPlot(frame: CGRect.zero)
-        var pca_2d_drawer: PCA2dPlot?
         let table_view = UITableView()
         let info_label = UILabel()
         var search_bar: UISearchBar?
@@ -222,7 +221,7 @@ class MultipleMoleculePlot: Component, UITableViewDataSource, UITableViewDelegat
                 scroll_view.scrollEnabled = false
                 view.addSubview(scroll_view)
 
-                scroll_view.addSubview(tiled_scroll_view)
+                scroll_view.addSubview(values_2d_plot)
                 scroll_view.addSubview(pca3d_plot)
 
                 table_view.registerClass(CenteredHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: "header")
@@ -242,11 +241,11 @@ class MultipleMoleculePlot: Component, UITableViewDataSource, UITableViewDelegat
                 let tap_recognizer_left_view = UITapGestureRecognizer(target: self, action: "tap_action")
                 left_view.addGestureRecognizer(tap_recognizer_left_view)
 
+                let tap_recognizer_2d = UITapGestureRecognizer(target: self, action: "tap_action")
+                values_2d_plot.addGestureRecognizer(tap_recognizer_2d)
+
                 let tap_recognizer_3d = UITapGestureRecognizer(target: self, action: "tap_action")
                 pca3d_plot.addGestureRecognizer(tap_recognizer_3d)
-
-                let tap_recognizer_2d = UITapGestureRecognizer(target: self, action: "tap_action")
-                tiled_scroll_view.addGestureRecognizer(tap_recognizer_2d)
 
                 let tap_recognizer_table_view = UITapGestureRecognizer(target: self, action: "tap_action_table_view")
                 tap_recognizer_table_view.cancelsTouchesInView = false
@@ -271,13 +270,7 @@ class MultipleMoleculePlot: Component, UITableViewDataSource, UITableViewDelegat
 
                 left_view.frame = CGRect(x: 0, y: 0, width: width_left, height: height)
 
-                if let pca_2d_drawer = pca_2d_drawer {
-                        min_zoom = min(width_left, height) / pca_2d_drawer.content_size.height
-                        pca_2d_drawer.minimum_zoom_scale = max(1, min_zoom)
-                        pca_2d_drawer.maximum_zoom_scale = 3 * pca_2d_drawer.minimum_zoom_scale
-                        tiled_scroll_view.frame = CGRect(x: 0, y: 0, width: width_left, height: height)
-                        tiled_scroll_view.scroll_view.zoomScale = multiple_molecule_plot_state.zoom_scale_2d
-                }
+                values_2d_plot.frame = CGRect(x: 0, y: 0, width: width_left, height: height)
 
                 pca3d_plot.frame = CGRect(x: 0, y: 0, width: width_left, height: height)
 
@@ -330,18 +323,12 @@ class MultipleMoleculePlot: Component, UITableViewDataSource, UITableViewDelegat
                 if state.number_of_molecules >= 2 {
                         let (names, colors, points_x, points_y, axis_titles) = multiple_molecule_plot_state.points_2d()
                         let names_or_nil = (multiple_molecule_plot_state.plot_symbol == "circles" ? nil : names) as [String]?
-                        let pca_2d_drawer = PCA2dPlot()
-                        pca_2d_drawer.delegate = self
-                        pca_2d_drawer.update(points_x: points_x, points_y: points_y, names: names_or_nil, colors: colors, axis_titles: axis_titles, symbol_size: multiple_molecule_plot_state.symbol_size)
-                        pca_2d_drawer.minimum_zoom_scale = max(1, min_zoom)
-                        pca_2d_drawer.maximum_zoom_scale = 3 * pca_2d_drawer.minimum_zoom_scale
-                        self.pca_2d_drawer = pca_2d_drawer
-                        tiled_scroll_view.delegate = pca_2d_drawer
-                        tiled_scroll_view.scroll_view.zoomScale = multiple_molecule_plot_state.zoom_scale_2d
-                        tiled_scroll_view.hidden = false
+
+                        values_2d_plot.update(points_x: points_x, points_y: points_y, names: names_or_nil, colors: colors, axis_titles: axis_titles, symbol_size: multiple_molecule_plot_state.symbol_size)
+                        values_2d_plot.hidden = false
                         left_view.hidden = true
                 } else {
-                        tiled_scroll_view.hidden = true
+                        values_2d_plot.hidden = true
                         left_view.hidden = false
                         info_label.attributedText = astring_body(string: "There are less than 2 molecules")
                         info_label.textAlignment = .Center
@@ -350,7 +337,7 @@ class MultipleMoleculePlot: Component, UITableViewDataSource, UITableViewDelegat
         }
 
         func update_3d_plot() {
-                tiled_scroll_view.hidden = true
+                values_2d_plot.hidden = true
                 if state.number_of_molecules >= 3 {
                         let (names, colors, points_x, points_y, points_z, axis_titles) = multiple_molecule_plot_state.points_3d()
                         pca3d_plot.update(points_x: points_x, points_y: points_y, points_z: points_z, names: names, plot_symbol: multiple_molecule_plot_state.plot_symbol, colors: colors, axis_titles: axis_titles, symbol_size: multiple_molecule_plot_state.symbol_size)
@@ -529,10 +516,8 @@ class MultipleMoleculePlot: Component, UITableViewDataSource, UITableViewDelegat
         func pdf_action() {
                 let file_name_stem = "multiple-molecule-2d"
                 let description = "Plot of samples for two molecules."
-                if let pca_2d_drawer = pca_2d_drawer {
-                        state.insert_pdf_result_file(file_name_stem: file_name_stem, description: description, content_size: pca_2d_drawer.content_size, draw: pca_2d_drawer.draw)
-                        state.render()
-                }
+                state.insert_pdf_result_file(file_name_stem: file_name_stem, description: description, content_size: values_2d_plot.content_size, draw: values_2d_plot.draw)
+                state.render()
         }
         
         func png_action() {
