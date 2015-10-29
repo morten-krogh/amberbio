@@ -301,13 +301,13 @@ class MultipleMoleculePlot: Component, UITableViewDataSource, UITableViewDelegat
 
         func render_after_factor_change() {
                 multiple_molecule_plot_state.calculate_levels_and_colors()
-                update_plot()
                 table_view.reloadData()
+                update_plot()
         }
 
         func render_after_molecule_change() {
-                update_plot()
                 table_view.reloadData()
+                update_plot()
         }
 
         func update_plot() {
