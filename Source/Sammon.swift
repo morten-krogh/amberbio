@@ -115,8 +115,8 @@ class Sammon: Component, UITableViewDataSource, UITableViewDelegate, SelectAllHe
 
                 scroll_view.addSubview(left_view)
 
-                info_label.attributedText = astring_body(string: "Calculating")
-                info_label.sizeToFit()
+                info_label.text = "Calculating"
+                info_label.font = UIFont(name: font_body.fontName, size: 22)
                 info_label.textAlignment = .Center
                 left_view.addSubview(info_label)
 
@@ -143,9 +143,8 @@ class Sammon: Component, UITableViewDataSource, UITableViewDelegate, SelectAllHe
                 scroll_view.contentSize = CGSize(width: width_left + width_right, height: height)
                 scroll_view.contentOffset = CGPoint(x: width_left + width_right - width, y: 0)
 
-                info_label.frame = CGRect(x: 0, y: (height - info_label.frame.height) / 2, width: width_left, height: info_label.frame.height)
-
                 left_view.frame = CGRect(x: 0, y: 0, width: width_left, height: height)
+                info_label.frame = CGRect(x: 0, y: 0, width: width_left, height: height)
 
                 values_2d_plot.frame = CGRect(x: 0, y: 0, width: width_left, height: height)
 
@@ -180,17 +179,16 @@ class Sammon: Component, UITableViewDataSource, UITableViewDelegate, SelectAllHe
                 sammon_state.calculate_samples_and_levels()
                 values_2d_plot.hidden = true
                 values_3d_plot.hidden = true
-                info_label.hidden = false
-                info_label.attributedText = astring_body(string: "Calculating")
-                info_label.textAlignment = .Center
+                left_view.hidden = false
+                info_label.hidden = state.number_of_samples < 200
+                info_label.text = "Calculating"
                 table_view.reloadData()
                 NSTimer.scheduledTimerWithTimeInterval(0.001, target: self, selector: "render_after_sample_change_timer", userInfo: nil, repeats: false)
         }
 
         func render_after_sample_change_timer() {
                 sammon_state.calculate_sammon_map()
-                table_view.reloadData()
-                update_pca_plot()
+                state.render()
         }
 
         func render_after_factor_change() {
@@ -222,11 +220,10 @@ class Sammon: Component, UITableViewDataSource, UITableViewDelegate, SelectAllHe
                         values_2d_plot.hidden = true
                         left_view.hidden = false
                         if sammon_state.sample_indices.count < 3 {
-                                info_label.attributedText = astring_body(string: "There are too few samples")
+                                info_label.text = "There are too few samples"
                         } else {
-                                info_label.attributedText = astring_body(string: "There are no molecules without missing values")
+                                info_label.text = "There are no molecules without missing values"
                         }
-                        info_label.textAlignment = .Center
                 }
                 view.setNeedsLayout()
         }
@@ -246,11 +243,10 @@ class Sammon: Component, UITableViewDataSource, UITableViewDelegate, SelectAllHe
                         values_3d_plot.hidden = true
                         left_view.hidden = false
                         if sammon_state.sample_indices.count < 3 {
-                                info_label.attributedText = astring_body(string: "There are too few samples")
+                                info_label.text = "There are too few samples"
                         } else {
-                                info_label.attributedText = astring_body(string: "There are no molecules without missing values")
+                                info_label.text = "There are no molecules without missing values"
                         }
-                        info_label.textAlignment = .Center
                 }
                 view.setNeedsLayout()
         }
