@@ -2,10 +2,29 @@
 
 void sammon_iteration(const double* distances, const long dimension, const long sample_indices_length, const double lambda, double* sammon_points)
 {
+        // delta_r_i = lambda * (d_ij - ||r_i - r_j||) * normalized(r_i - r_j)
 
-        
-        
-        
+        long n = sample_indices_length;
+        for (long i = 0; i < n - 1; i++) {
+                for (long j = i + 1; j < n; j++) {
+                        double d_ij = distances[i * (2 * n - 1 - i) / 2 + j - i - 1];
+                        double r_ij[dimension];
+                        double norm_square = 0.0;
+                        for (long d = 0; d < dimension; d++) {
+                                double diff = sammon_points[d * n + i] - sammon_points[d * n + j];
+                                r_ij[d] = diff;
+                                norm_square += diff * diff;
+                        }
+                        double norm = sqrt(norm_square);
+                        if (norm == 0) continue;
+                        double multiplier = lambda * (d_ij - norm);
+                        for (long d = 0; d < dimension; d++) {
+                                double delta = multiplier * r_ij[d] / norm;
+                                sammon_points[d * n + i] += delta;
+                                sammon_points[d * n + j] -= delta;
+                        }
+                }
+        }
 }
 
 long sammon_map(const double* values, const long number_of_molecules, const long number_of_samples, const long* sample_indices, const long sample_indices_length, const long dimension, double* sammon_points)
