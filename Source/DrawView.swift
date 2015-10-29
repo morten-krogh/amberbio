@@ -147,8 +147,11 @@ class DrawViewTiledLayerView: UIView {
         }
 
         func set_levels_of_detail(minimum_zoom_scale minimum_zoom_scale: CGFloat, maximum_zoom_scale: CGFloat) {
-                (layer as! CATiledLayer).levelsOfDetail = Int(floor(log(maximum_zoom_scale / minimum_zoom_scale) / log(2.0)) + 1)
-                (layer as! CATiledLayer).levelsOfDetailBias = Int(ceil(log(maximum_zoom_scale) / log(2.0)))
+                let levels_of_detail = Int(floor(log(maximum_zoom_scale / minimum_zoom_scale) / log(2.0)) + 1)
+                let levels_of_detail_bias = minimum_zoom_scale <= 1 ? Int(ceil(log(maximum_zoom_scale) / log(2.0))) : levels_of_detail
+
+                (layer as! CATiledLayer).levelsOfDetail = levels_of_detail
+                (layer as! CATiledLayer).levelsOfDetailBias = levels_of_detail_bias
                 setNeedsDisplay()
         }
 
