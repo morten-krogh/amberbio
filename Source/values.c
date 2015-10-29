@@ -147,19 +147,19 @@ void values_calculate_factor_elimination(const double* values, const long number
         }
 }
 
-void values_distances_euclidean(const double* values, const long number_of_samples, const long* molecule_indeces, const long molecule_indices_length, double* distances)
+void values_distances_euclidean(const double* values, const long number_of_samples, const long* molecule_indeces, const long molecule_indices_length, const long* sample_indeces, const long sample_indices_length, double* distances)
 {
-        long n = number_of_samples;
+        long n = sample_indices_length;
         for (long i = 0; i < n - 1; i++) {
                 for (long j = i + 1; j < n; j++) {
-                        double distance = 0.0;
+                        double distance_square = 0.0;
                         for (long h = 0; h < molecule_indices_length; h++) {
-                                double value_i = values[h * number_of_samples + i];
-                                double value_j = values[h * number_of_samples + j];
+                                double value_i = values[molecule_indeces[h] * number_of_samples + sample_indeces[i]];
+                                double value_j = values[molecule_indeces[h] * number_of_samples + sample_indeces[j]];
                                 double diff = value_i - value_j;
-                                distance += diff * diff;
+                                distance_square += diff * diff;
                         }
-                        distances[i * (2 * n - 1 - i) / 2 + j - i - 1] = distance;
+                        distances[i * (2 * n - 1 - i) / 2 + j - i - 1] = sqrt(distance_square);
                 }
         }
 }

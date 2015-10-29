@@ -29,7 +29,7 @@ void values_calculate_molecule_centered_values(const double* values, const long 
 void values_calculate_molecules_without_missing_values(const double* values, const long number_of_molecules, const long number_of_samples, const long* selected_sample_indices,const long number_of_selected_samples, long* number_of_present_molecules, long* is_present_molecule);
 void values_calculate_factor_elimination(const double* values, const long number_of_molecules, const long number_of_samples, const long* sample_level, const long number_of_levels, double* values_eliminated);
 void values_calculate_missing_values_and_std_devs(const double* values, const long number_of_molecules, const long number_of_samples, long* missing_values_per_molecule, double* std_dev_per_molecule);
-void values_distances_euclidean(const double* values, const long number_of_samples, const long* molecule_indeces, const long molecule_indices_length, double* distances);
+void values_distances_euclidean(const double* values, const long number_of_samples, const long* molecule_indeces, const long molecule_indices_length, const long* sample_indeces, const long sample_indices_length, double* distances);
 void values_indices_of_k_largest(double* values, const long values_length, const long k, long* indices);
 
 void random_fisher_yates_shuffle(long* values, const long values_length);
