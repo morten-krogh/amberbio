@@ -115,7 +115,7 @@ class Sammon: Component, UITableViewDataSource, UITableViewDelegate, SelectAllHe
 
                 scroll_view.addSubview(left_view)
 
-                info_label.attributedText = astring_body(string: "Calculating PCA")
+                info_label.attributedText = astring_body(string: "Calculating")
                 info_label.sizeToFit()
                 info_label.textAlignment = .Center
                 left_view.addSubview(info_label)
@@ -176,12 +176,12 @@ class Sammon: Component, UITableViewDataSource, UITableViewDelegate, SelectAllHe
                 table_view.reloadData()
         }
 
-        func render_after_sample_change() {
+        func render_after_sample_and_dimension_change() {
                 sammon_state.calculate_samples_and_levels()
                 values_2d_plot.hidden = true
                 values_3d_plot.hidden = true
                 info_label.hidden = false
-                info_label.attributedText = astring_body(string: "Calculating PCA")
+                info_label.attributedText = astring_body(string: "Calculating")
                 info_label.textAlignment = .Center
                 table_view.reloadData()
                 NSTimer.scheduledTimerWithTimeInterval(0.001, target: self, selector: "render_after_sample_change_timer", userInfo: nil, repeats: false)
@@ -365,15 +365,14 @@ class Sammon: Component, UITableViewDataSource, UITableViewDelegate, SelectAllHe
                         render_after_factor_change()
                 } else if indexPath.section == 5 {
                         sammon_state.selected_samples[row] = !sammon_state.selected_samples[row]
-                        render_after_sample_change()
+                        render_after_sample_and_dimension_change()
                 }
         }
 
         func dimension_action(sender: UISegmentedControl) {
                 let dimension = sender.selectedSegmentIndex == 0 ? 2 : 3
                 sammon_state.set_dimension(dimension: dimension)
-                sammon_state.calculate_sammon_map()
-                state.render()
+                render_after_sample_and_dimension_change()
         }
 
         func plot_symbol_action(sender: UISegmentedControl) {
@@ -390,14 +389,14 @@ class Sammon: Component, UITableViewDataSource, UITableViewDelegate, SelectAllHe
                 for i in 0 ..< sammon_state.selected_samples.count {
                         sammon_state.selected_samples[i] = true
                 }
-                render_after_sample_change()
+                render_after_sample_and_dimension_change()
         }
 
         func deselect_all_action(tag tag: Int) {
                 for i in 0 ..< sammon_state.selected_samples.count {
                         sammon_state.selected_samples[i] = false
                 }
-                render_after_sample_change()
+                render_after_sample_and_dimension_change()
         }
 
         func scroll_view_did_end_zooming(zoom_scale zoom_scale: CGFloat) {

@@ -1,4 +1,5 @@
 #include "c-functions.h"
+#include <sys/time.h>
 
 void sammon_iteration(const double* distances, const long dimension, const long sample_indices_length, const double lambda, double* sammon_points)
 {
@@ -78,11 +79,24 @@ long sammon_map(const double* values, const long number_of_molecules, const long
 
         double lambda_initial = 0.4;
         double lambda_last = 0.0001;
-        double number_of_iterations = 10000;
+
+        struct timeval t0, t1;
+        gettimeofday(&t0, NULL);
+
+        long initial_number_of_iterations = 5;
+        for (long iter = 0; iter < initial_number_of_iterations; iter++) {
+                sammon_iteration(distances, dimension, sample_indices_length, lambda_initial, sammon_points);
+        }
+
+        gettimeofday(&t1, NULL);
+        long duration_in_usec = (t1.tv_sec - t0.tv_sec) * 1e6 + t1.tv_usec - t0.tv_usec;
+
+        long number_of_iterations = 10 + initial_number_of_iterations * 2e5 / (duration_in_usec + 10);
+
+        printf("%li, %li\n", duration_in_usec, number_of_iterations);
+
         double lambda_damper = exp(log(lambda_last / lambda_initial) / number_of_iterations);
         double lambda = lambda_initial;
-
-        printf("%f\n", lambda_damper);
 
         for (long iter = 0; iter < number_of_iterations; iter++) {
                 sammon_iteration(distances, dimension, sample_indices_length, lambda, sammon_points);
