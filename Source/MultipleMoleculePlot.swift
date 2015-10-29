@@ -5,7 +5,7 @@ class MultipleMoleculePlotState: PageState {
         var selected_factor_id: Int?
         var dimension = 2
         var plot_symbol = "circles"
-        var symbol_size = 0.5 as Double
+        var symbol_size = 1.0
 
         var selected_samples = [] as [Bool]
         var selected_sample_indices = [] as [Int]

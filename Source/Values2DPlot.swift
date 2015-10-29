@@ -61,7 +61,7 @@ class Values2DPlot: DrawView {
                         }
                         
                         circle_radius = CGFloat(0.2 * exp(3 * symbol_size))
-                        names_font_size = CGFloat(0.25 * exp(3 * symbol_size))
+                        names_font_size = CGFloat(0.4 * exp(3 * symbol_size))
                         axis_title_font_size = CGFloat(2 * exp(symbol_size))
                 }
 

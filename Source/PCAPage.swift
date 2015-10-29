@@ -6,7 +6,7 @@ class PCAState: PageState {
         var selected_factor_id: Int?
         var dimension = 3
         var plot_symbol = "circles"
-        var symbol_size = 0.5 as Double
+        var symbol_size = 1.0
 
         var selected_sample_indices = [] as [Int]
         var selected_sample_names = [] as [String]
