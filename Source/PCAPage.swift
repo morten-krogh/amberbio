@@ -116,7 +116,7 @@ class PCA: Component, UITableViewDataSource, UITableViewDelegate, SelectAllHeade
         let scroll_view = UIScrollView()
         let left_view = UIView()
         let values_2d_plot = Values2DPlot()
-        let pca3d_plot = PCA3dPlot(frame: CGRect.zero)
+        let values_3d_plot = Values3DPlot()
         let table_view = UITableView()
         let info_label = UILabel()
 
@@ -134,7 +134,7 @@ class PCA: Component, UITableViewDataSource, UITableViewDelegate, SelectAllHeade
 
                 values_2d_plot.maximum_zoom_scale_multiplier = 50
                 scroll_view.addSubview(values_2d_plot)
-                scroll_view.addSubview(pca3d_plot)
+                scroll_view.addSubview(values_3d_plot)
 
                 table_view.registerClass(CenteredHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: "centered-header")
                 table_view.registerClass(SelectAllHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: "select-all-header")
@@ -160,7 +160,7 @@ class PCA: Component, UITableViewDataSource, UITableViewDelegate, SelectAllHeade
                 values_2d_plot.addGestureRecognizer(tap_recognizer_2d)
 
                 let tap_recognizer_3d = UITapGestureRecognizer(target: self, action: "tap_action")
-                pca3d_plot.addGestureRecognizer(tap_recognizer_3d)
+                values_3d_plot.addGestureRecognizer(tap_recognizer_3d)
         }
 
         override func viewWillLayoutSubviews() {
@@ -182,7 +182,7 @@ class PCA: Component, UITableViewDataSource, UITableViewDelegate, SelectAllHeade
 
                 values_2d_plot.frame = CGRect(x: 0, y: 0, width: width_left, height: height)
 
-                pca3d_plot.frame = CGRect(x: 0, y: 0, width: width_left, height: height)
+                values_3d_plot.frame = CGRect(x: 0, y: 0, width: width_left, height: height)
 
                 let origin_y = 0 as CGFloat
                 table_view.frame = CGRect(x: width_left, y: origin_y, width: width_right, height: height - origin_y)
@@ -213,7 +213,7 @@ class PCA: Component, UITableViewDataSource, UITableViewDelegate, SelectAllHeade
                 pca_state.calculate_selected_sample_indices()
                 pca_state.calculate_levels_and_colors()
                 values_2d_plot.hidden = true
-                pca3d_plot.hidden = true
+                values_3d_plot.hidden = true
                 info_label.hidden = false
                 info_label.attributedText = astring_body(string: "Calculating PCA")
                 info_label.textAlignment = .Center
@@ -242,12 +242,12 @@ class PCA: Component, UITableViewDataSource, UITableViewDelegate, SelectAllHeade
                 if pca_state.dimension == 2 {
                         update_pca2d_plot()
                 } else {
-                        update_pca3d_plot()
+                        update_values_3d_plot()
                 }
         }
 
         func update_pca2d_plot() {
-                pca3d_plot.hidden = true
+                values_3d_plot.hidden = true
                 let ordered_components = pca_state.selected_components.sort()
                 let axis_titles = ["PC\(ordered_components[0] + 1)", "PC\(ordered_components[1] + 1)"]
                 if pca_state.number_of_components >= 2 {
@@ -268,7 +268,7 @@ class PCA: Component, UITableViewDataSource, UITableViewDelegate, SelectAllHeade
                 view.setNeedsLayout()
         }
 
-        func update_pca3d_plot() {
+        func update_values_3d_plot() {
                 values_2d_plot.hidden = true
                 if pca_state.number_of_components >= 3 {
                         let ordered_components = pca_state.selected_components.sort()
@@ -277,11 +277,11 @@ class PCA: Component, UITableViewDataSource, UITableViewDelegate, SelectAllHeade
                         let points_y = pca_state.component_matrix[ordered_components[1]]
                         let points_z = pca_state.component_matrix[ordered_components[2]]
                         let names = pca_state.selected_sample_names
-                        pca3d_plot.update(points_x: points_x, points_y: points_y, points_z: points_z, names: names, plot_symbol: pca_state.plot_symbol, colors: pca_state.selected_sample_colors, axis_titles: axis_titles, symbol_size: pca_state.symbol_size)
-                        pca3d_plot.hidden = false
+                        values_3d_plot.update(points_x: points_x, points_y: points_y, points_z: points_z, names: names, plot_symbol: pca_state.plot_symbol, colors: pca_state.selected_sample_colors, axis_titles: axis_titles, symbol_size: pca_state.symbol_size)
+                        values_3d_plot.hidden = false
                         left_view.hidden = true
                 } else {
-                        pca3d_plot.hidden = true
+                        values_3d_plot.hidden = true
                         left_view.hidden = false
                         info_label.attributedText = astring_body(string: "There are less than 3 principal components")
                         info_label.textAlignment = .Center
@@ -465,7 +465,7 @@ class PCA: Component, UITableViewDataSource, UITableViewDelegate, SelectAllHeade
 
         func png_action() {
                 let file_name_stem = "pca-3d"
-                let image = pca3d_plot.snapshot()
+                let image = values_3d_plot.snapshot()
                 if let file_data = UIImagePNGRepresentation(image) {
                         state.insert_png_result_file(file_name_stem: file_name_stem, file_data: file_data)
                         state.render()

@@ -156,7 +156,7 @@
 		60B4012B1BA19C7900D8DD80 /* parse_values.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400A01BA19C7900D8DD80 /* parse_values.swift */; };
 		60B4012C1BA19C7900D8DD80 /* PCA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400A11BA19C7900D8DD80 /* PCA.swift */; };
 		60B4012D1BA19C7900D8DD80 /* PCA2dPlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400A21BA19C7900D8DD80 /* PCA2dPlot.swift */; };
-		60B4012E1BA19C7900D8DD80 /* PCA3Plot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400A31BA19C7900D8DD80 /* PCA3Plot.swift */; };
+		60B4012E1BA19C7900D8DD80 /* Values3DPlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400A31BA19C7900D8DD80 /* Values3DPlot.swift */; };
 		60B4012F1BA19C7900D8DD80 /* PCAaxis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400A41BA19C7900D8DD80 /* PCAaxis.swift */; };
 		60B401301BA19C7900D8DD80 /* PCAPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400A51BA19C7900D8DD80 /* PCAPage.swift */; };
 		60B401311BA19C7900D8DD80 /* Pdf.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400A61BA19C7900D8DD80 /* Pdf.swift */; };
@@ -396,7 +396,7 @@
 		60B400A01BA19C7900D8DD80 /* parse_values.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = parse_values.swift; path = Source/parse_values.swift; sourceTree = "<group>"; };
 		60B400A11BA19C7900D8DD80 /* PCA.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PCA.swift; path = Source/PCA.swift; sourceTree = "<group>"; };
 		60B400A21BA19C7900D8DD80 /* PCA2dPlot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PCA2dPlot.swift; path = Source/PCA2dPlot.swift; sourceTree = "<group>"; };
-		60B400A31BA19C7900D8DD80 /* PCA3Plot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PCA3Plot.swift; path = Source/PCA3Plot.swift; sourceTree = "<group>"; };
+		60B400A31BA19C7900D8DD80 /* Values3DPlot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Values3DPlot.swift; path = Source/Values3DPlot.swift; sourceTree = "<group>"; };
 		60B400A41BA19C7900D8DD80 /* PCAaxis.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PCAaxis.swift; path = Source/PCAaxis.swift; sourceTree = "<group>"; };
 		60B400A51BA19C7900D8DD80 /* PCAPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PCAPage.swift; path = Source/PCAPage.swift; sourceTree = "<group>"; };
 		60B400A61BA19C7900D8DD80 /* Pdf.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Pdf.swift; path = Source/Pdf.swift; sourceTree = "<group>"; };
@@ -671,7 +671,6 @@
 				60B400901BA19C7900D8DD80 /* MultiSegmentedControl.swift */,
 				60B4009A1BA19C7900D8DD80 /* PairTable.swift */,
 				60B400A21BA19C7900D8DD80 /* PCA2dPlot.swift */,
-				60B400A31BA19C7900D8DD80 /* PCA3Plot.swift */,
 				60B400A71BA19C7900D8DD80 /* PdfTxtButtons.swift */,
 				60B400A81BA19C7900D8DD80 /* PieChart.swift */,
 				60B400AD1BA19C7900D8DD80 /* PValueHistogramDelegate.swift */,
@@ -684,6 +683,7 @@
 				60B400CE1BA19C7900D8DD80 /* TiledLayerView.swift */,
 				60B400CF1BA19C7900D8DD80 /* TiledScrollView.swift */,
 				60D2C3C51BE1072F00C6C6EF /* Values2DPlot.swift */,
+				60B400A31BA19C7900D8DD80 /* Values3DPlot.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -1275,7 +1275,7 @@
 				60DF228D1BC58E9E0038AAE1 /* random.c in Sources */,
 				60D2C3C21BE0C80400C6C6EF /* Sammon.swift in Sources */,
 				60B400D81BA19C7900D8DD80 /* Anova.swift in Sources */,
-				60B4012E1BA19C7900D8DD80 /* PCA3Plot.swift in Sources */,
+				60B4012E1BA19C7900D8DD80 /* Values3DPlot.swift in Sources */,
 				60B4010C1BA19C7900D8DD80 /* linear_regression.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

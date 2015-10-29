@@ -83,7 +83,7 @@ class Sammon: Component, UITableViewDataSource, UITableViewDelegate, SelectAllHe
         let scroll_view = UIScrollView()
         let left_view = UIView()
         let values_2d_plot = Values2DPlot()
-        let pca3d_plot = PCA3dPlot(frame: CGRect.zero)
+        let values_3d_plot = Values3DPlot()
         let table_view = UITableView()
         let info_label = UILabel()
 
@@ -101,7 +101,7 @@ class Sammon: Component, UITableViewDataSource, UITableViewDelegate, SelectAllHe
 
                 values_2d_plot.maximum_zoom_scale_multiplier = 50
                 scroll_view.addSubview(values_2d_plot)
-                scroll_view.addSubview(pca3d_plot)
+                scroll_view.addSubview(values_3d_plot)
 
                 table_view.registerClass(CenteredHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: "centered-header")
                 table_view.registerClass(SelectAllHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: "select-all-header")
@@ -127,7 +127,7 @@ class Sammon: Component, UITableViewDataSource, UITableViewDelegate, SelectAllHe
                 values_2d_plot.addGestureRecognizer(tap_recognizer_2d)
 
                 let tap_recognizer_3d = UITapGestureRecognizer(target: self, action: "tap_action")
-                pca3d_plot.addGestureRecognizer(tap_recognizer_3d)
+                values_3d_plot.addGestureRecognizer(tap_recognizer_3d)
         }
 
         override func viewWillLayoutSubviews() {
@@ -149,7 +149,7 @@ class Sammon: Component, UITableViewDataSource, UITableViewDelegate, SelectAllHe
 
                 values_2d_plot.frame = CGRect(x: 0, y: 0, width: width_left, height: height)
 
-                pca3d_plot.frame = CGRect(x: 0, y: 0, width: width_left, height: height)
+                values_3d_plot.frame = CGRect(x: 0, y: 0, width: width_left, height: height)
 
                 let origin_y = 0 as CGFloat
                 table_view.frame = CGRect(x: width_left, y: origin_y, width: width_right, height: height - origin_y)
@@ -179,7 +179,7 @@ class Sammon: Component, UITableViewDataSource, UITableViewDelegate, SelectAllHe
         func render_after_sample_change() {
                 sammon_state.calculate_samples_and_levels()
                 values_2d_plot.hidden = true
-                pca3d_plot.hidden = true
+                values_3d_plot.hidden = true
                 info_label.hidden = false
                 info_label.attributedText = astring_body(string: "Calculating PCA")
                 info_label.textAlignment = .Center
@@ -208,7 +208,7 @@ class Sammon: Component, UITableViewDataSource, UITableViewDelegate, SelectAllHe
         }
 
         func update_2d_plot() {
-                pca3d_plot.hidden = true
+                values_3d_plot.hidden = true
                 if sammon_state.number_of_molecules_without_missing_values > 0 && sammon_state.sample_indices.count >= 3 {
                         let points_x = [Double](sammon_state.sammon_points[0 ..< sammon_state.sample_indices.count])
                         let points_y = [Double](sammon_state.sammon_points[sammon_state.sample_indices.count ..< 2 * sammon_state.sample_indices.count])
@@ -239,11 +239,11 @@ class Sammon: Component, UITableViewDataSource, UITableViewDelegate, SelectAllHe
                         let points_z = [Double](sammon_state.sammon_points[2 * sammon_state.sample_indices.count ..< 3 * sammon_state.sample_indices.count])
                         let axis_titles = ["", "", ""]
                         let names = sammon_state.sample_names
-                        pca3d_plot.update(points_x: points_x, points_y: points_y, points_z: points_z, names: names, plot_symbol: sammon_state.plot_symbol, colors: sammon_state.sample_colors, axis_titles: axis_titles, symbol_size: sammon_state.symbol_size)
-                        pca3d_plot.hidden = false
+                        values_3d_plot.update(points_x: points_x, points_y: points_y, points_z: points_z, names: names, plot_symbol: sammon_state.plot_symbol, colors: sammon_state.sample_colors, axis_titles: axis_titles, symbol_size: sammon_state.symbol_size)
+                        values_3d_plot.hidden = false
                         left_view.hidden = true
                 } else {
-                        pca3d_plot.hidden = true
+                        values_3d_plot.hidden = true
                         left_view.hidden = false
                         if sammon_state.sample_indices.count < 3 {
                                 info_label.attributedText = astring_body(string: "There are too few samples")
@@ -417,7 +417,7 @@ class Sammon: Component, UITableViewDataSource, UITableViewDelegate, SelectAllHe
         
         func png_action() {
                 let file_name_stem = "sammon-map-3d"
-                let image = pca3d_plot.snapshot()
+                let image = values_3d_plot.snapshot()
                 if let file_data = UIImagePNGRepresentation(image) {
                         state.insert_png_result_file(file_name_stem: file_name_stem, file_data: file_data)
                         state.render()

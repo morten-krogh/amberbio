@@ -1,11 +1,12 @@
 import UIKit
 import SceneKit
 
-class PCA3dPlot: SCNView {
+class Values3DPlot: SCNView {
 
         var sphere_nodes = [] as [SCNNode]
         var name_nodes = [] as [SCNNode]
         var title_nodes = [] as [SCNNode]
+        var tick_label_nodes = [] as [SCNNode]
 
         var points_x = [] as [Double]
         var points_y = [] as [Double]
@@ -18,8 +19,8 @@ class PCA3dPlot: SCNView {
 
         let view_scene = SCNScene()
 
-        override init(frame: CGRect) {
-                super.init(frame: frame, options: nil)
+        init() {
+                super.init(frame: CGRect(x: 0, y: 0, width: 100, height: 100), options: nil)
 
                 allowsCameraControl = true
                 scene = view_scene
@@ -57,21 +58,19 @@ class PCA3dPlot: SCNView {
                         tick_labels.append(astring)
                 }
 
-                title_nodes = []
-
-                let (x_axis_node, x_text_node) = create_axis(label: axis_titles[0], tick_values: tick_values, tick_labels: tick_labels)
+                let (x_axis_node, x_text_node, x_tick_label_nodes) = create_axis(label: axis_titles[0], tick_values: tick_values, tick_labels: tick_labels)
                 x_axis_node.rotation = SCNVector4(x: 0 as Float, y: 0 as Float, z: 1 as Float, w: -Float(M_PI_2))
                 view_scene.rootNode.addChildNode(x_axis_node)
-                title_nodes.append(x_text_node)
 
-                let (y_axis_node, y_text_node) = create_axis(label: axis_titles[1], tick_values: tick_values, tick_labels: tick_labels)
+                let (y_axis_node, y_text_node, y_tick_label_nodes) = create_axis(label: axis_titles[1], tick_values: tick_values, tick_labels: tick_labels)
                 view_scene.rootNode.addChildNode(y_axis_node)
-                title_nodes.append(y_text_node)
 
-                let (z_axis_node, z_text_node) = create_axis(label: axis_titles[2], tick_values: tick_values, tick_labels: tick_labels)
+                let (z_axis_node, z_text_node, z_tick_label_nodes) = create_axis(label: axis_titles[2], tick_values: tick_values, tick_labels: tick_labels)
                 z_axis_node.rotation = SCNVector4(x: 1 as Float, y: 0 as Float, z: 0 as Float, w: Float(M_PI_2))
                 view_scene.rootNode.addChildNode(z_axis_node)
-                title_nodes.append(z_text_node)
+
+                title_nodes = [x_text_node, y_text_node, z_text_node]
+                tick_label_nodes = x_tick_label_nodes + y_tick_label_nodes + z_tick_label_nodes
 
                 sphere_nodes = []
                 for i in 0 ..< points_x.count {
@@ -120,12 +119,17 @@ class PCA3dPlot: SCNView {
         }
 
         func update_symbol_size(symbol_size symbol_size: Double) {
-                let axis_title_scale = 0.001 + 0.005 * symbol_size
+                let axis_title_scale = 0.003 * exp(symbol_size)
                 for title_node in title_nodes {
                         title_node.scale = SCNVector3(x: Float(axis_title_scale), y: Float(axis_title_scale), z: Float(axis_title_scale))
                 }
 
-                let xyz_scale = 0.1 + symbol_size
+                let tick_label_scale = 0.0009 * exp(symbol_size)
+                for tick_label_node in tick_label_nodes {
+                        tick_label_node.scale = SCNVector3(x: Float(tick_label_scale), y: Float(tick_label_scale), z: Float(tick_label_scale))
+                }
+
+                let xyz_scale = 0.1 * exp(2 * symbol_size)
                 let sphere_scale = SCNVector3(x: Float(xyz_scale), y: Float(xyz_scale), z: Float(xyz_scale))
                 let name_scale = SCNVector3(x: Float(0.01 * xyz_scale), y: Float(0.01 * xyz_scale), z: Float(0.01 * xyz_scale))
                 for i in 0 ..< sphere_nodes.count {
@@ -170,7 +174,7 @@ class PCA3dPlot: SCNView {
                 return true
         }
 
-        func create_axis(label label: String, tick_values: [Double], tick_labels: [NSAttributedString]) -> (axis_node: SCNNode, text_node: SCNNode) {
+        func create_axis(label label: String, tick_values: [Double], tick_labels: [NSAttributedString]) -> (axis_node: SCNNode, text_node: SCNNode, tick_label_nodes: [SCNNode]) {
                 let axis_node = SCNNode()
                 let cylinder_geometry = SCNCylinder(radius: 0.01, height: 2)
                 cylinder_geometry.firstMaterial?.diffuse.contents = UIColor.blackColor()
@@ -191,6 +195,8 @@ class PCA3dPlot: SCNView {
                 text_node.scale = SCNVector3(x: 0.006, y: 0.006, z: 0.006)
                 axis_node.addChildNode(text_node)
 
+                var tick_label_nodes = [] as [SCNNode]
+
                 for i in 0 ..< tick_values.count {
                         let tick_geometry = SCNCylinder(radius: 0.01, height: 0.1)
                         tick_geometry.firstMaterial?.diffuse.contents = UIColor.blackColor()
@@ -206,9 +212,10 @@ class PCA3dPlot: SCNView {
                         tick_label_node.position = SCNVector3(x: 0.15, y: Float(tick_values[i]) - 0.05, z: 0)
                         tick_label_node.scale = SCNVector3(x: 0.003, y: 0.003, z: 0.003)
                         axis_node.addChildNode(tick_label_node)
+                        tick_label_nodes.append(tick_label_node)
                 }
 
-                return (axis_node, text_node)
+                return (axis_node, text_node, tick_label_nodes)
         }
 
         func create_sphere_node(radius radius: CGFloat, color: UIColor, x: Double, y: Double, z: Double) -> SCNNode {

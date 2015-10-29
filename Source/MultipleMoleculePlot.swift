@@ -3,7 +3,7 @@ import UIKit
 class MultipleMoleculePlotState: PageState {
 
         var selected_factor_id: Int?
-        var dimension = 2
+        var dimension = 3
         var plot_symbol = "circles"
         var symbol_size = 1.0
 
@@ -204,7 +204,7 @@ class MultipleMoleculePlot: Component, UITableViewDataSource, UITableViewDelegat
         let scroll_view = UIScrollView()
         let left_view = UIView()
         let values_2d_plot = Values2DPlot()
-        let pca3d_plot = PCA3dPlot(frame: CGRect.zero)
+        let values_3d_plot = Values3DPlot()
         let table_view = UITableView()
         let info_label = UILabel()
         var search_bar: UISearchBar?
@@ -223,7 +223,7 @@ class MultipleMoleculePlot: Component, UITableViewDataSource, UITableViewDelegat
 
                 values_2d_plot.maximum_zoom_scale_multiplier = 50
                 scroll_view.addSubview(values_2d_plot)
-                scroll_view.addSubview(pca3d_plot)
+                scroll_view.addSubview(values_3d_plot)
 
                 table_view.registerClass(CenteredHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: "header")
                 table_view.registerClass(CenteredTableViewCell.self, forCellReuseIdentifier: "centered_cell")
@@ -246,7 +246,7 @@ class MultipleMoleculePlot: Component, UITableViewDataSource, UITableViewDelegat
                 values_2d_plot.addGestureRecognizer(tap_recognizer_2d)
 
                 let tap_recognizer_3d = UITapGestureRecognizer(target: self, action: "tap_action")
-                pca3d_plot.addGestureRecognizer(tap_recognizer_3d)
+                values_3d_plot.addGestureRecognizer(tap_recognizer_3d)
 
                 let tap_recognizer_table_view = UITapGestureRecognizer(target: self, action: "tap_action_table_view")
                 tap_recognizer_table_view.cancelsTouchesInView = false
@@ -273,7 +273,7 @@ class MultipleMoleculePlot: Component, UITableViewDataSource, UITableViewDelegat
 
                 values_2d_plot.frame = CGRect(x: 0, y: 0, width: width_left, height: height)
 
-                pca3d_plot.frame = CGRect(x: 0, y: 0, width: width_left, height: height)
+                values_3d_plot.frame = CGRect(x: 0, y: 0, width: width_left, height: height)
 
                 let origin_y = 0 as CGFloat
                 table_view.frame = CGRect(x: width_left, y: origin_y, width: width_right, height: height - origin_y)
@@ -320,7 +320,7 @@ class MultipleMoleculePlot: Component, UITableViewDataSource, UITableViewDelegat
         }
 
         func update_2d_plot() {
-                pca3d_plot.hidden = true
+                values_3d_plot.hidden = true
                 if state.number_of_molecules >= 2 {
                         let (names, colors, points_x, points_y, axis_titles) = multiple_molecule_plot_state.points_2d()
                         let names_or_nil = (multiple_molecule_plot_state.plot_symbol == "circles" ? nil : names) as [String]?
@@ -341,11 +341,11 @@ class MultipleMoleculePlot: Component, UITableViewDataSource, UITableViewDelegat
                 values_2d_plot.hidden = true
                 if state.number_of_molecules >= 3 {
                         let (names, colors, points_x, points_y, points_z, axis_titles) = multiple_molecule_plot_state.points_3d()
-                        pca3d_plot.update(points_x: points_x, points_y: points_y, points_z: points_z, names: names, plot_symbol: multiple_molecule_plot_state.plot_symbol, colors: colors, axis_titles: axis_titles, symbol_size: multiple_molecule_plot_state.symbol_size)
-                        pca3d_plot.hidden = false
+                        values_3d_plot.update(points_x: points_x, points_y: points_y, points_z: points_z, names: names, plot_symbol: multiple_molecule_plot_state.plot_symbol, colors: colors, axis_titles: axis_titles, symbol_size: multiple_molecule_plot_state.symbol_size)
+                        values_3d_plot.hidden = false
                         left_view.hidden = true
                 } else {
-                        pca3d_plot.hidden = true
+                        values_3d_plot.hidden = true
                         left_view.hidden = false
                         info_label.attributedText = astring_body(string: "There are less than 3 molecules")
                         info_label.textAlignment = .Center
@@ -523,7 +523,7 @@ class MultipleMoleculePlot: Component, UITableViewDataSource, UITableViewDelegat
         
         func png_action() {
                 let file_name_stem = "multiple-molecule-3d"
-                let image = pca3d_plot.snapshot()
+                let image = values_3d_plot.snapshot()
                 if let file_data = UIImagePNGRepresentation(image) {
                         state.insert_png_result_file(file_name_stem: file_name_stem, file_data: file_data)
                         state.render()
