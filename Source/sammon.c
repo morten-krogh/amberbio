@@ -78,7 +78,7 @@ long sammon_map(const double* values, const long number_of_molecules, const long
 
         double lambda_initial = 0.4;
         double lambda_last = 0.0001;
-        double number_of_iterations = 1000;
+        double number_of_iterations = 10000;
         double lambda_damper = exp(log(lambda_last / lambda_initial) / number_of_iterations);
         double lambda = lambda_initial;
 
