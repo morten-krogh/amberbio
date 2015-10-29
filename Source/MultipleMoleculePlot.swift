@@ -221,7 +221,7 @@ class MultipleMoleculePlot: Component, UITableViewDataSource, UITableViewDelegat
                 scroll_view.scrollEnabled = false
                 view.addSubview(scroll_view)
 
-                values_2d_plot.maximum_zoom_scale_multiplier = 5
+                values_2d_plot.maximum_zoom_scale_multiplier = 50
                 scroll_view.addSubview(values_2d_plot)
                 scroll_view.addSubview(pca3d_plot)
 

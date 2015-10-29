@@ -60,9 +60,9 @@ class Values2DPlot: DrawView {
                                 tick_values.append(-tick_value)
                         }
                         
-                        circle_radius = CGFloat(0.5 + symbol_size * 6)
-                        names_font_size = CGFloat(0.5 + symbol_size * 20)
-                        axis_title_font_size = CGFloat(2 + symbol_size * 4)
+                        circle_radius = CGFloat(0.2 * exp(3 * symbol_size))
+                        names_font_size = CGFloat(0.25 * exp(3 * symbol_size))
+                        axis_title_font_size = CGFloat(2 * exp(symbol_size))
                 }
 
                 func padding_min_max(min min: Double, max: Double) -> (min: Double, max: Double) {
