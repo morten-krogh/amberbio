@@ -179,8 +179,7 @@ class Sammon: Component, UITableViewDataSource, UITableViewDelegate, SelectAllHe
                 sammon_state.calculate_samples_and_levels()
                 values_2d_plot.hidden = true
                 values_3d_plot.hidden = true
-                left_view.hidden = false
-                info_label.hidden = state.number_of_samples < 200
+                left_view.hidden = state.number_of_samples < 200
                 info_label.text = "Calculating"
                 table_view.reloadData()
                 NSTimer.scheduledTimerWithTimeInterval(0.001, target: self, selector: "render_after_sample_change_timer", userInfo: nil, repeats: false)
