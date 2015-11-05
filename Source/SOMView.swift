@@ -5,7 +5,12 @@ class SOMNode {
         var column = 0
         var names = [] as [String?]
         var colors = [] as [UIColor]
-        var border_values = [] as [Double]
+        var border_top_right = 0.0
+        var border_right = 0.0
+        var border_bottom_right = 0.0
+        var border_bottom_left = 0.0
+        var border_left = 0.0
+        var border_top_left = 0.0
 }
 
 class SOMView: DrawView {
@@ -40,32 +45,29 @@ class SOMView: DrawView {
 
         override func draw(context context: CGContext, rect: CGRect) {
                 for som_node in som_nodes {
-                        draw_som_node(som_node: som_node)
+                        draw_som_node(context: context, som_node: som_node)
                 }
         }
 
-        func draw_som_node(som_node som_node: SOMNode) {
+        func draw_som_node(context context: CGContext, som_node: SOMNode) {
                 let origin_y = margin + 1.5 * CGFloat(som_node.row) * size_of_hexagon_side
                 let origin_x = margin + (CGFloat(som_node.column) + (som_node.row % 2 == 0 ? 0 : 0.5)) * sqrt_3 * size_of_hexagon_side
 
-                
+                CGContextSetLineWidth(context, 2)
+
+                let color = color_for_value(value: som_node.border_top_right)
+                CGContextSetStrokeColorWithColor(context, color.CGColor)
+                var start_point = CGPoint(x: origin_x + sqrt_3 * 0.5 * size_of_hexagon_side, y: origin_y)
+                var end_point = CGPoint(x: origin_x + sqrt_3 * size_of_hexagon_side, y: origin_y + 0.5 * size_of_hexagon_side)
+                drawing_draw_line(context: context, start_point: start_point, end_point: end_point)
+
+
+
 
 
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        func color_for_value(value value: Double) -> UIColor {
+                return UIColor.blackColor()
+        }
 }
