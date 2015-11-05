@@ -343,6 +343,11 @@ class SOM: Component, UITableViewDataSource, UITableViewDelegate, UITextFieldDel
                 text_field = textField
         }
 
+        func textFieldShouldReturn(textField: UITextField) -> Bool {
+                textField.resignFirstResponder()
+                return true
+        }
+
         func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
                 if range.length != 0 && string.isEmpty {
                         return true

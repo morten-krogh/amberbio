@@ -219,6 +219,7 @@
 		60B4019A1BA1C38800D8DD80 /* parse_values.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400A01BA19C7900D8DD80 /* parse_values.swift */; };
 		60B4019C1BA1C48600D8DD80 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 60B401681BA1B2ED00D8DD80 /* libsqlite3.dylib */; };
 		60BFB2401BEB3E8F000B492C /* SOM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BFB23F1BEB3E8F000B492C /* SOM.swift */; };
+		60BFB2421BEB6478000B492C /* SOMView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BFB2411BEB6478000B492C /* SOMView.swift */; };
 		60D2C3BE1BDFDAAE00C6C6EF /* Values.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D2C3BD1BDFDAAE00C6C6EF /* Values.swift */; };
 		60D2C3C21BE0C80400C6C6EF /* Sammon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D2C3C11BE0C80400C6C6EF /* Sammon.swift */; };
 		60D2C3C41BE0D4ED00C6C6EF /* sammon.c in Sources */ = {isa = PBXBuildFile; fileRef = 60D2C3C31BE0D4ED00C6C6EF /* sammon.c */; };
@@ -455,6 +456,7 @@
 		60B401881BA1BEC400D8DD80 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		60B4018A1BA1BEC400D8DD80 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		60BFB23F1BEB3E8F000B492C /* SOM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SOM.swift; path = Source/SOM.swift; sourceTree = "<group>"; };
+		60BFB2411BEB6478000B492C /* SOMView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SOMView.swift; path = Source/SOMView.swift; sourceTree = "<group>"; };
 		60D2C3BC1BDFCA8F00C6C6EF /* c-functions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "c-functions.h"; path = "Source/c-functions.h"; sourceTree = "<group>"; };
 		60D2C3BD1BDFDAAE00C6C6EF /* Values.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Values.swift; path = Source/Values.swift; sourceTree = "<group>"; };
 		60D2C3C11BE0C80400C6C6EF /* Sammon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Sammon.swift; path = Source/Sammon.swift; sourceTree = "<group>"; };
@@ -682,6 +684,7 @@
 				60B400B81BA19C7900D8DD80 /* SearchBar.swift */,
 				60B400BB1BA19C7900D8DD80 /* SingleChoiceTable.swift */,
 				60B400C11BA19C7900D8DD80 /* SpreadSheet.swift */,
+				60BFB2411BEB6478000B492C /* SOMView.swift */,
 				60B400CA1BA19C7900D8DD80 /* TableOfAttributedStrings.swift */,
 				60B400CE1BA19C7900D8DD80 /* TiledLayerView.swift */,
 				60B400CF1BA19C7900D8DD80 /* TiledScrollView.swift */,
@@ -1150,6 +1153,7 @@
 				60B400FD1BA19C7900D8DD80 /* FactorSummaryDetail.swift in Sources */,
 				60B401011BA19C7900D8DD80 /* FullPage.swift in Sources */,
 				60B400F01BA19C7900D8DD80 /* DocumentPickerExport.swift in Sources */,
+				60BFB2421BEB6478000B492C /* SOMView.swift in Sources */,
 				60B4013A1BA19C7900D8DD80 /* Random.swift in Sources */,
 				6010034D1BA18744008A1FF9 /* AppDelegate.swift in Sources */,
 				60B4010A1BA19C7900D8DD80 /* InfoButton.swift in Sources */,
