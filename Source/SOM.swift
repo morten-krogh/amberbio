@@ -5,8 +5,8 @@ class SOMState: PageState {
         var sammon_points = [] as [Double]
         var molecule_indices = [] as [Int]
 
-        var number_of_rows = 10
-        var number_of_columns = 10
+        var number_of_rows = 4
+        var number_of_columns = 4
 
         var selected_samples = [] as [Bool]
         var selected_factor_index: Int?
