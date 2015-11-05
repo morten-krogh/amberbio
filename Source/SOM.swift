@@ -100,6 +100,8 @@ class SOM: Component, UITableViewDataSource, UITableViewDelegate, UITextFieldDel
         var width_right = 300 as CGFloat
         var width_left = 0 as CGFloat
 
+        var text_field: UITextField?
+
         override func viewDidLoad() {
                 super.viewDidLoad()
 
@@ -283,10 +285,12 @@ class SOM: Component, UITableViewDataSource, UITableViewDelegate, UITextFieldDel
                 case 0:
                         let cell = tableView.dequeueReusableCellWithIdentifier("text_field_table_view_cell") as! TextFieldTableViewCell
                         cell.update(text: "\(som_state.number_of_rows)", tag: 0, delegate: self)
+                        cell.text_field.keyboardType = UIKeyboardType.NumbersAndPunctuation
                         return cell
                 case 1:
                         let cell = tableView.dequeueReusableCellWithIdentifier("text_field_table_view_cell") as! TextFieldTableViewCell
-                        cell.update(text: "\(som_state.number_of_rows)", tag: 1, delegate: self)
+                        cell.update(text: "\(som_state.number_of_columns)", tag: 1, delegate: self)
+                        cell.text_field.keyboardType = UIKeyboardType.NumbersAndPunctuation
                         return cell
                 case 2:
                         let cell = tableView.dequeueReusableCellWithIdentifier("segmented_control_cell") as! SegmentedControlTableViewCell
@@ -335,6 +339,45 @@ class SOM: Component, UITableViewDataSource, UITableViewDelegate, UITextFieldDel
                 }
         }
 
+        func textFieldDidBeginEditing(textField: UITextField) {
+                text_field = textField
+        }
+
+        func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+                if range.length != 0 && string.isEmpty {
+                        return true
+                }
+
+                return Int(string) != nil
+        }
+
+        func textFieldDidEndEditing(textField: UITextField) {
+                let text = textField.text ?? "0"
+                var number = Int(text) ?? 0
+
+                if number < 2 {
+                        number = 2
+                        textField.text = "2"
+                } else if number > 20 {
+                        number = 20
+                        textField.text = "20"
+                }
+
+                if textField.tag == 0 {
+                        if som_state.number_of_rows != number {
+                                som_state.number_of_rows = number
+                                render_to_calculate_all()
+                        }
+                } else {
+                        if som_state.number_of_columns != number {
+                                som_state.number_of_columns = number
+                                render_to_calculate_all()
+                        }
+                }
+
+                text_field = nil
+        }
+
         func plot_symbol_action(sender: UISegmentedControl) {
                 som_state.plot_symbol = sender.selectedSegmentIndex == 0 ? "circles" : "sample names"
                 state.render()
@@ -355,7 +398,11 @@ class SOM: Component, UITableViewDataSource, UITableViewDelegate, UITextFieldDel
         }
 
         func tap_action() {
-                scroll_left_right()
+                if let text_field = text_field {
+                        text_field.resignFirstResponder()
+                } else {
+                        scroll_left_right()
+                }
         }
 
         func pdf_action() {
