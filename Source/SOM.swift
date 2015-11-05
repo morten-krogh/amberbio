@@ -32,24 +32,9 @@ class SOMState: PageState {
 
         override func prepare() {
                 selected_samples = [Bool](count: state.number_of_samples, repeatedValue: true)
-                calculate_samples()
-                calculate_levels()
-                calculate_som_weights()
-                calculate_som_nodes()
+                calculate_all()
 
                 prepared = true
-        }
-
-        func set_number_of_rows(number_of_rows number_of_rows: Int) {
-                self.number_of_rows = number_of_rows
-                calculate_som_weights()
-                calculate_som_nodes()
-        }
-
-        func set_number_of_columns(number_of_columns number_of_columns: Int) {
-                self.number_of_columns = number_of_columns
-                calculate_som_weights()
-                calculate_som_nodes()
         }
 
         func calculate_samples() {
@@ -61,8 +46,6 @@ class SOMState: PageState {
                                 sample_names.append(state.sample_names[i])
                         }
                 }
-                calculate_som_weights()
-                calculate_levels()
         }
 
         func calculate_levels() {
@@ -79,7 +62,6 @@ class SOMState: PageState {
                         level_colors = []
                         sample_colors = [UIColor](count: sample_indices.count, repeatedValue: color_blue_circle_color)
                 }
-                calculate_som_nodes()
         }
 
         func calculate_som_weights() {
@@ -88,6 +70,19 @@ class SOMState: PageState {
 
         func calculate_som_nodes() {
 
+        }
+
+        func calculate_all() {
+                calculate_samples()
+
+                var molecule_indices = [Int](count: state.number_of_molecules, repeatedValue: -1)
+
+                values_molecules_without_missing_values(state.values, state.number_of_molecules, state.number_of_samples, sample_indices, sample_indices.count, &molecule_indices, &number_of_molecules_without_missing_values);
+
+
+                calculate_levels()
+                calculate_som_weights()
+                calculate_som_nodes()
         }
 }
 
@@ -184,23 +179,22 @@ class SOM: Component, UITableViewDataSource, UITableViewDelegate, UITextFieldDel
                 table_view.reloadData()
         }
 
-        func render_after_sample_and_dimension_change() {
-//                som_state.calculate_samples_and_levels()
-//                values_2d_plot.hidden = true
-//                values_3d_plot.hidden = true
-//                left_view.hidden = state.number_of_samples < 200
-//                info_label.text = "Calculating"
-//                table_view.reloadData()
-//                NSTimer.scheduledTimerWithTimeInterval(0.001, target: self, selector: "render_after_sample_change_timer", userInfo: nil, repeats: false)
+        func render_to_calculate_all() {
+                som_plot.hidden = true
+                left_view.hidden = state.number_of_samples < 200
+                info_label.text = "Calculating"
+                table_view.reloadData()
+                NSTimer.scheduledTimerWithTimeInterval(0.001, target: self, selector: "render_after_sample_change_timer", userInfo: nil, repeats: false)
         }
 
         func render_after_sample_change_timer() {
-//                som_state.calculate_sammon_map()
+                som_state.calculate_all()
                 state.render()
         }
 
         func render_after_factor_change() {
-//                som_state.calculate_samples_and_levels()
+                som_state.calculate_levels()
+                som_state.calculate_som_nodes()
                 table_view.reloadData()
                 update_som_plot()
         }
@@ -339,7 +333,7 @@ class SOM: Component, UITableViewDataSource, UITableViewDelegate, UITextFieldDel
                         render_after_factor_change()
                 } else if indexPath.section == 5 {
                         som_state.selected_samples[row] = !som_state.selected_samples[row]
-                        render_after_sample_and_dimension_change()
+                        render_to_calculate_all()
                 }
         }
 
@@ -352,14 +346,14 @@ class SOM: Component, UITableViewDataSource, UITableViewDelegate, UITextFieldDel
                 for i in 0 ..< som_state.selected_samples.count {
                         som_state.selected_samples[i] = true
                 }
-                render_after_sample_and_dimension_change()
+                render_to_calculate_all()
         }
 
         func deselect_all_action(tag tag: Int) {
                 for i in 0 ..< som_state.selected_samples.count {
                         som_state.selected_samples[i] = false
                 }
-                render_after_sample_and_dimension_change()
+                render_to_calculate_all()
         }
 
         func tap_action() {
