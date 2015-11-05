@@ -53,16 +53,43 @@ class SOMView: DrawView {
                 let origin_y = margin + 1.5 * CGFloat(som_node.row) * size_of_hexagon_side
                 let origin_x = margin + (CGFloat(som_node.column) + (som_node.row % 2 == 0 ? 0 : 0.5)) * sqrt_3 * size_of_hexagon_side
 
-                CGContextSetLineWidth(context, 2)
+                CGContextSetLineWidth(context, 1)
 
-                let color = color_for_value(value: som_node.border_top_right)
+                var color = color_for_value(value: som_node.border_top_right)
                 CGContextSetStrokeColorWithColor(context, color.CGColor)
                 var start_point = CGPoint(x: origin_x + sqrt_3 * 0.5 * size_of_hexagon_side, y: origin_y)
                 var end_point = CGPoint(x: origin_x + sqrt_3 * size_of_hexagon_side, y: origin_y + 0.5 * size_of_hexagon_side)
                 drawing_draw_line(context: context, start_point: start_point, end_point: end_point)
 
+                color = color_for_value(value: som_node.border_right)
+                CGContextSetStrokeColorWithColor(context, color.CGColor)
+                start_point = end_point
+                end_point = CGPoint(x: origin_x + sqrt_3 * size_of_hexagon_side, y: origin_y + 1.5 * size_of_hexagon_side)
+                drawing_draw_line(context: context, start_point: start_point, end_point: end_point)
 
+                color = color_for_value(value: som_node.border_bottom_right)
+                CGContextSetStrokeColorWithColor(context, color.CGColor)
+                start_point = end_point
+                end_point = CGPoint(x: origin_x + sqrt_3 * 0.5 * size_of_hexagon_side, y: origin_y + 2 * size_of_hexagon_side)
+                drawing_draw_line(context: context, start_point: start_point, end_point: end_point)
 
+                color = color_for_value(value: som_node.border_bottom_left)
+                CGContextSetStrokeColorWithColor(context, color.CGColor)
+                start_point = end_point
+                end_point = CGPoint(x: origin_x, y: origin_y + 1.5 * size_of_hexagon_side)
+                drawing_draw_line(context: context, start_point: start_point, end_point: end_point)
+
+                color = color_for_value(value: som_node.border_left)
+                CGContextSetStrokeColorWithColor(context, color.CGColor)
+                start_point = end_point
+                end_point = CGPoint(x: origin_x, y: origin_y + 0.5 * size_of_hexagon_side)
+                drawing_draw_line(context: context, start_point: start_point, end_point: end_point)
+
+                color = color_for_value(value: som_node.border_top_left)
+                CGContextSetStrokeColorWithColor(context, color.CGColor)
+                start_point = end_point
+                end_point = CGPoint(x: origin_x + sqrt_3 * 0.5 * size_of_hexagon_side, y: origin_y)
+                drawing_draw_line(context: context, start_point: start_point, end_point: end_point)
 
 
         }
