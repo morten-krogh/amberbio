@@ -3,7 +3,7 @@ import UIKit
 class SOMState: PageState {
 
         var sammon_points = [] as [Double]
-        var number_of_molecules_without_missing_values = 0
+        var molecule_indices = [] as [Int]
 
         var number_of_rows = 10
         var number_of_columns = 10
@@ -75,10 +75,8 @@ class SOMState: PageState {
         func calculate_all() {
                 calculate_samples()
 
-                var molecule_indices = [Int](count: state.number_of_molecules, repeatedValue: -1)
-
-                values_molecules_without_missing_values(state.values, state.number_of_molecules, state.number_of_samples, sample_indices, sample_indices.count, &molecule_indices, &number_of_molecules_without_missing_values);
-
+                molecule_indices = values_molecule_indices_without_missing_values(values: state.values, number_of_molecules: state.number_of_molecules, number_of_samples: state.number_of_samples, sample_indices: sample_indices)
+                pdf_enabled = !molecule_indices.isEmpty && !sample_indices.isEmpty
 
                 calculate_levels()
                 calculate_som_weights()
@@ -200,25 +198,25 @@ class SOM: Component, UITableViewDataSource, UITableViewDelegate, UITextFieldDel
         }
 
         func update_som_plot() {
-//                if som_state.number_of_molecules_without_missing_values > 0 && som_state.sample_indices.count >= 3 {
+                if !som_state.molecule_indices.isEmpty && !som_state.sample_indices.isEmpty {
 //                        let points_x = [Double](som_state.sammon_points[0 ..< som_state.sample_indices.count])
 //                        let points_y = [Double](som_state.sammon_points[som_state.sample_indices.count ..< 2 * som_state.sample_indices.count])
 //                        let axis_titles = ["", ""]
 //                        let names = som_state.plot_symbol == "circles" ? (nil as [String]?) : som_state.sample_names
 
 //                        values_2d_plot.update(points_x: points_x, points_y: points_y, names: names, colors: som_state.sample_colors, axis_titles: axis_titles, symbol_size: som_state.symbol_size)
-//                        values_2d_plot.hidden = false
-//                        left_view.hidden = true
-//                } else {
-//                        values_2d_plot.hidden = true
-//                        left_view.hidden = false
-//                        if som_state.sample_indices.count < 3 {
-//                                info_label.text = "There are too few samples"
-//                        } else {
-//                                info_label.text = "There are no molecules without missing values"
-//                        }
-//                }
-//                view.setNeedsLayout()
+                        som_plot.hidden = false
+                        left_view.hidden = true
+                } else {
+                        som_plot.hidden = true
+                        left_view.hidden = false
+                        if som_state.sample_indices.isEmpty {
+                                info_label.text = "There are no selected samples"
+                        } else {
+                                info_label.text = "There are no molecules without missing values"
+                        }
+                }
+                view.setNeedsLayout()
         }
 
         func numberOfSectionsInTableView(tableView: UITableView) -> Int {
