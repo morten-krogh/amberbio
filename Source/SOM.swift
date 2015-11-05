@@ -5,9 +5,11 @@ class SOMState: PageState {
         var sammon_points = [] as [Double]
         var number_of_molecules_without_missing_values = 0
 
+        var number_of_rows = 10
+        var number_of_columns = 10
+
         var selected_samples = [] as [Bool]
         var selected_factor_index: Int?
-        var dimension = 3
         var plot_symbol = "circles"
         var symbol_size = 1.0 as Double
 
@@ -26,23 +28,17 @@ class SOMState: PageState {
                 title = astring_body(string: "Self organizing map")
                 info = "Kohonen self organizing map.\n\nTap the plot to show and hide the control panel on narrow screens.\n\nThe Self organzing map is computed for the selected samples using the molecules that have no missing values for those samples.\n\nThe colors represent levels for the selected factor.\n\nSee the manual for a description of the self organizing map."
 
+                pdf_enabled = true
                 full_screen = .Full
                 prepared = false
         }
 
         override func prepare() {
-                set_dimension(dimension: dimension)
                 selected_samples = [Bool](count: state.number_of_samples, repeatedValue: true)
                 calculate_samples_and_levels()
-                calculate_sammon_map()
+                calculate_som()
 
                 prepared = true
-        }
-
-        func set_dimension(dimension dimension: Int) {
-                pdf_enabled = dimension == 2
-                png_enabled = dimension == 3
-                self.dimension = dimension
         }
 
         func calculate_samples_and_levels() {
@@ -70,13 +66,13 @@ class SOMState: PageState {
                 }
         }
 
-        func calculate_sammon_map() {
-                sammon_points = [Double](count: dimension * sample_indices.count, repeatedValue: 0.0)
-                number_of_molecules_without_missing_values = sammon_map(state.values, state.number_of_molecules, state.number_of_samples, sample_indices, sample_indices.count, dimension, &sammon_points)
+        func calculate_som() {
+//                sammon_points = [Double](count: dimension * sample_indices.count, repeatedValue: 0.0)
+//                number_of_molecules_without_missing_values = sammon_map(state.values, state.number_of_molecules, state.number_of_samples, sample_indices, sample_indices.count, dimension, &sammon_points)
         }
 }
 
-class SOM: Component, UITableViewDataSource, UITableViewDelegate, SelectAllHeaderFooterViewDelegate {
+class SOM: Component, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, SelectAllHeaderFooterViewDelegate {
 
         var som_state: SOMState!
 
@@ -105,6 +101,7 @@ class SOM: Component, UITableViewDataSource, UITableViewDelegate, SelectAllHeade
 
                 table_view.registerClass(CenteredHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: "centered-header")
                 table_view.registerClass(SelectAllHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: "select-all-header")
+                table_view.registerClass(TextFieldTableViewCell.self, forCellReuseIdentifier: "text_field_table_view_cell")
                 table_view.registerClass(CenteredTableViewCell.self, forCellReuseIdentifier: "centered_cell")
                 table_view.registerClass(SegmentedControlTableViewCell.self, forCellReuseIdentifier: "segmented_control_cell")
                 table_view.registerClass(SliderTableViewCell.self, forCellReuseIdentifier: "slider_cell")
@@ -227,48 +224,27 @@ class SOM: Component, UITableViewDataSource, UITableViewDelegate, SelectAllHeade
 //                view.setNeedsLayout()
         }
 
-        func update_3d_plot() {
-                values_2d_plot.hidden = true
-//                if som_state.number_of_molecules_without_missing_values > 0 && som_state.sample_indices.count >= 3 {
-//                        let points_x = [Double](som_state.sammon_points[0 ..< som_state.sample_indices.count])
-//                        let points_y = [Double](som_state.sammon_points[som_state.sample_indices.count ..< 2 * som_state.sample_indices.count])
-//                        let points_z = [Double](som_state.sammon_points[2 * som_state.sample_indices.count ..< 3 * som_state.sample_indices.count])
-//                        let axis_titles = ["", "", ""]
-//                        let names = som_state.sample_names
-//                        values_3d_plot.update(points_x: points_x, points_y: points_y, points_z: points_z, names: names, plot_symbol: som_state.plot_symbol, colors: som_state.sample_colors, axis_titles: axis_titles, symbol_size: som_state.symbol_size)
-//                        values_3d_plot.hidden = false
-//                        left_view.hidden = true
-//                } else {
-//                        values_3d_plot.hidden = true
-//                        left_view.hidden = false
-//                        if som_state.sample_indices.count < 3 {
-//                                info_label.text = "There are too few samples"
-//                        } else {
-//                                info_label.text = "There are no molecules without missing values"
-//                        }
-//                }
-                view.setNeedsLayout()
-        }
-
         func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-                return 6
+                return 7
         }
 
         func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-                return section == 5 ? select_all_header_footer_view_height : centered_header_footer_view_height
+                return section == 6 ? select_all_header_footer_view_height : centered_header_footer_view_height
         }
 
         func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-                if section < 5 {
+                if section < 6 {
                         let header = tableView.dequeueReusableHeaderFooterViewWithIdentifier("centered-header") as! CenteredHeaderFooterView
                         switch section {
                         case 0:
-                                header.update_normal(text: "Dimension")
+                                header.update_normal(text: "Number of rows")
                         case 1:
-                                header.update_normal(text: "Plot symbol")
+                                header.update_normal(text: "Number of columns")
                         case 2:
-                                header.update_normal(text: "Plot symbol size")
+                                header.update_normal(text: "Plot symbol")
                         case 3:
+                                header.update_normal(text: "Plot symbol size")
+                        case 4:
                                 header.update_normal(text: "Factor for colors")
                         default:
                                 header.update_normal(text: "Color scheme")
@@ -284,11 +260,11 @@ class SOM: Component, UITableViewDataSource, UITableViewDelegate, SelectAllHeade
 
         func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
                 switch section {
-                case let section where section < 3:
+                case let section where section < 4:
                         return 1
-                case 3:
-                        return state.factor_ids.count
                 case 4:
+                        return state.factor_ids.count
+                case 5:
                         return som_state.level_names.count
                 default:
                         return state.number_of_samples
@@ -298,6 +274,8 @@ class SOM: Component, UITableViewDataSource, UITableViewDelegate, SelectAllHeade
         func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
                 switch indexPath.section {
                 case 0, 1:
+                        return text_field_table_view_cell_height
+                case 2:
                         return segmented_control_table_view_cell_height
                 default:
                         return centered_table_view_cell_height
@@ -310,18 +288,22 @@ class SOM: Component, UITableViewDataSource, UITableViewDelegate, SelectAllHeade
 
                 switch section {
                 case 0:
-                        let cell = tableView.dequeueReusableCellWithIdentifier("segmented_control_cell") as! SegmentedControlTableViewCell
-                        cell.update(items: ["2D", "3D"], selected_segment_index: som_state.dimension == 2 ? 0 : 1, target: self, selector: "dimension_action:")
+                        let cell = tableView.dequeueReusableCellWithIdentifier("text_field_table_view_cell") as! TextFieldTableViewCell
+                        cell.update(text: "\(som_state.number_of_rows)", tag: 0, delegate: self)
                         return cell
                 case 1:
+                        let cell = tableView.dequeueReusableCellWithIdentifier("text_field_table_view_cell") as! TextFieldTableViewCell
+                        cell.update(text: "\(som_state.number_of_rows)", tag: 1, delegate: self)
+                        return cell
+                case 2:
                         let cell = tableView.dequeueReusableCellWithIdentifier("segmented_control_cell") as! SegmentedControlTableViewCell
                         cell.update(items: ["Circles", "Sample names"], selected_segment_index: som_state.plot_symbol == "circles" ? 0 : 1, target: self, selector: "plot_symbol_action:")
                         return cell
-                case 2:
+                case 3:
                         let cell = tableView.dequeueReusableCellWithIdentifier("slider_cell") as! SliderTableViewCell
                         cell.update(minimum_value: 0, maximum_value: 1, value: som_state.symbol_size, target: self, selector: "plot_symbol_size_action:")
                         return cell
-                case 3:
+                case 4:
                         let cell = tableView.dequeueReusableCellWithIdentifier("centered_cell") as! CenteredTableViewCell
                         let text = state.factor_names[row]
                         if row == som_state.selected_factor_index {
@@ -330,7 +312,7 @@ class SOM: Component, UITableViewDataSource, UITableViewDelegate, SelectAllHeade
                                 cell.update_unselected(text: text)
                         }
                         return cell
-                case 4:
+                case 5:
                         let cell = tableView.dequeueReusableCellWithIdentifier("color_selection_cell", forIndexPath: indexPath) as! ColorSelectionTableViewCell
                         let level_name = som_state.level_names[row]
                         let level_color = color_from_hex(hex: som_state.level_colors[row])
@@ -362,12 +344,6 @@ class SOM: Component, UITableViewDataSource, UITableViewDelegate, SelectAllHeade
                         som_state.selected_samples[row] = !som_state.selected_samples[row]
                         render_after_sample_and_dimension_change()
                 }
-        }
-
-        func dimension_action(sender: UISegmentedControl) {
-                let dimension = sender.selectedSegmentIndex == 0 ? 2 : 3
-                som_state.set_dimension(dimension: dimension)
-                render_after_sample_and_dimension_change()
         }
 
         func plot_symbol_action(sender: UISegmentedControl) {
