@@ -218,6 +218,7 @@
 		60B401991BA1C37100D8DD80 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400541BA19C7900D8DD80 /* Color.swift */; };
 		60B4019A1BA1C38800D8DD80 /* parse_values.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400A01BA19C7900D8DD80 /* parse_values.swift */; };
 		60B4019C1BA1C48600D8DD80 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 60B401681BA1B2ED00D8DD80 /* libsqlite3.dylib */; };
+		60BFB2401BEB3E8F000B492C /* SOM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BFB23F1BEB3E8F000B492C /* SOM.swift */; };
 		60D2C3BE1BDFDAAE00C6C6EF /* Values.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D2C3BD1BDFDAAE00C6C6EF /* Values.swift */; };
 		60D2C3C21BE0C80400C6C6EF /* Sammon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D2C3C11BE0C80400C6C6EF /* Sammon.swift */; };
 		60D2C3C41BE0D4ED00C6C6EF /* sammon.c in Sources */ = {isa = PBXBuildFile; fileRef = 60D2C3C31BE0D4ED00C6C6EF /* sammon.c */; };
@@ -453,6 +454,7 @@
 		60B401851BA1BEC400D8DD80 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		60B401881BA1BEC400D8DD80 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		60B4018A1BA1BEC400D8DD80 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		60BFB23F1BEB3E8F000B492C /* SOM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SOM.swift; path = Source/SOM.swift; sourceTree = "<group>"; };
 		60D2C3BC1BDFCA8F00C6C6EF /* c-functions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "c-functions.h"; path = "Source/c-functions.h"; sourceTree = "<group>"; };
 		60D2C3BD1BDFDAAE00C6C6EF /* Values.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Values.swift; path = Source/Values.swift; sourceTree = "<group>"; };
 		60D2C3C11BE0C80400C6C6EF /* Sammon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Sammon.swift; path = Source/Sammon.swift; sourceTree = "<group>"; };
@@ -643,6 +645,7 @@
 				60B400B71BA19C7900D8DD80 /* SampleNormalization.swift */,
 				60B400BC1BA19C7900D8DD80 /* SingleMolecule.swift */,
 				60B400BE1BA19C7900D8DD80 /* SingleMoleculePlotTable.swift */,
+				60BFB23F1BEB3E8F000B492C /* SOM.swift */,
 				601E57A21BCD0441002EEEB3 /* SupervisedClassificationFactorSelection.swift */,
 				605F52311BC2ED2D00033B91 /* SupervisedClassificationParameterSelection.swift */,
 				605F52361BC3D9EF00033B91 /* SupervisedClassificationResult.swift */,
@@ -1230,6 +1233,7 @@
 				601E57A51BCD0A8F002EEEB3 /* SupervisedClassificationValidationSelection.swift in Sources */,
 				60B401271BA19C7900D8DD80 /* PairwiseFactor.swift in Sources */,
 				60A893EA1BD7F29F004DAD2C /* StoreProductTableViewCell.swift in Sources */,
+				60BFB2401BEB3E8F000B492C /* SOM.swift in Sources */,
 				60B401021BA19C7900D8DD80 /* HierarchicalClustering.swift in Sources */,
 				60B400F81BA19C7900D8DD80 /* FactorAssociation.swift in Sources */,
 				60B4014D1BA19C7900D8DD80 /* sqlite_functions.swift in Sources */,

@@ -220,6 +220,8 @@ class FullPage: Component, UIScrollViewDelegate, UISearchBarDelegate {
                                 page = KMeansClusteringResult()
                         case "sammon":
                                 page = Sammon()
+                        case "som":
+                                page = SOM()
 
                         default:
                                 print("Remember to update render in FullPage for \(page_name)")
