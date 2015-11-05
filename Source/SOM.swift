@@ -11,7 +11,6 @@ class SOMState: PageState {
         var selected_samples = [] as [Bool]
         var selected_factor_index: Int?
         var plot_symbol = "circles"
-        var symbol_size = 1.0 as Double
 
         var sample_indices = [] as [Int]
         var sample_names = [] as [String]
@@ -20,8 +19,6 @@ class SOMState: PageState {
         var level_names = [] as [String]
         var level_colors = [] as [String]
 
-        var zoom_scale_2d = 1 as CGFloat
-
         override init() {
                 super.init()
                 name = "som"
@@ -29,19 +26,33 @@ class SOMState: PageState {
                 info = "Kohonen self organizing map.\n\nTap the plot to show and hide the control panel on narrow screens.\n\nThe Self organzing map is computed for the selected samples using the molecules that have no missing values for those samples.\n\nThe colors represent levels for the selected factor.\n\nSee the manual for a description of the self organizing map."
 
                 pdf_enabled = true
-                full_screen = .Full
+                full_screen = .Conditional
                 prepared = false
         }
 
         override func prepare() {
                 selected_samples = [Bool](count: state.number_of_samples, repeatedValue: true)
-                calculate_samples_and_levels()
-                calculate_som()
+                calculate_samples()
+                calculate_levels()
+                calculate_som_weights()
+                calculate_som_nodes()
 
                 prepared = true
         }
 
-        func calculate_samples_and_levels() {
+        func set_number_of_rows(number_of_rows number_of_rows: Int) {
+                self.number_of_rows = number_of_rows
+                calculate_som_weights()
+                calculate_som_nodes()
+        }
+
+        func set_number_of_columns(number_of_columns number_of_columns: Int) {
+                self.number_of_columns = number_of_columns
+                calculate_som_weights()
+                calculate_som_nodes()
+        }
+
+        func calculate_samples() {
                 sample_indices = []
                 sample_names = []
                 for i in 0 ..< state.number_of_samples {
@@ -50,7 +61,11 @@ class SOMState: PageState {
                                 sample_names.append(state.sample_names[i])
                         }
                 }
+                calculate_som_weights()
+                calculate_levels()
+        }
 
+        func calculate_levels() {
                 if let factor_index = selected_factor_index {
                         level_names = state.level_names_by_factor[factor_index]
                         level_colors = state.level_colors_by_factor[factor_index]
@@ -64,11 +79,15 @@ class SOMState: PageState {
                         level_colors = []
                         sample_colors = [UIColor](count: sample_indices.count, repeatedValue: color_blue_circle_color)
                 }
+                calculate_som_nodes()
         }
 
-        func calculate_som() {
-//                sammon_points = [Double](count: dimension * sample_indices.count, repeatedValue: 0.0)
-//                number_of_molecules_without_missing_values = sammon_map(state.values, state.number_of_molecules, state.number_of_samples, sample_indices, sample_indices.count, dimension, &sammon_points)
+        func calculate_som_weights() {
+
+        }
+
+        func calculate_som_nodes() {
+
         }
 }
 
@@ -78,8 +97,7 @@ class SOM: Component, UITableViewDataSource, UITableViewDelegate, UITextFieldDel
 
         let scroll_view = UIScrollView()
         let left_view = UIView()
-        let values_2d_plot = Values2DPlot()
-        let values_3d_plot = Values3DPlot()
+        let som_plot = Values2DPlot()
         let table_view = UITableView()
         let info_label = UILabel()
 
@@ -95,9 +113,8 @@ class SOM: Component, UITableViewDataSource, UITableViewDelegate, UITextFieldDel
                 scroll_view.scrollEnabled = false
                 view.addSubview(scroll_view)
 
-                values_2d_plot.maximum_zoom_scale_multiplier = 50
-                scroll_view.addSubview(values_2d_plot)
-                scroll_view.addSubview(values_3d_plot)
+                som_plot.maximum_zoom_scale_multiplier = 50
+                scroll_view.addSubview(som_plot)
 
                 table_view.registerClass(CenteredHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: "centered-header")
                 table_view.registerClass(SelectAllHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: "select-all-header")
@@ -120,11 +137,8 @@ class SOM: Component, UITableViewDataSource, UITableViewDelegate, UITextFieldDel
                 let tap_recognizer_left_view = UITapGestureRecognizer(target: self, action: "tap_action")
                 left_view.addGestureRecognizer(tap_recognizer_left_view)
 
-                let tap_recognizer_2d = UITapGestureRecognizer(target: self, action: "tap_action")
-                values_2d_plot.addGestureRecognizer(tap_recognizer_2d)
-
-                let tap_recognizer_3d = UITapGestureRecognizer(target: self, action: "tap_action")
-                values_3d_plot.addGestureRecognizer(tap_recognizer_3d)
+                let tap_recognizer_som = UITapGestureRecognizer(target: self, action: "tap_action")
+                som_plot.addGestureRecognizer(tap_recognizer_som)
         }
 
         override func viewWillLayoutSubviews() {
@@ -143,9 +157,7 @@ class SOM: Component, UITableViewDataSource, UITableViewDelegate, UITextFieldDel
                 left_view.frame = CGRect(x: 0, y: 0, width: width_left, height: height)
                 info_label.frame = CGRect(x: 0, y: 0, width: width_left, height: height)
 
-                values_2d_plot.frame = CGRect(x: 0, y: 0, width: width_left, height: height)
-
-                values_3d_plot.frame = CGRect(x: 0, y: 0, width: width_left, height: height)
+                som_plot.frame = CGRect(x: 0, y: 0, width: width_left, height: height)
 
                 let origin_y = 0 as CGFloat
                 table_view.frame = CGRect(x: width_left, y: origin_y, width: width_right, height: height - origin_y)
@@ -166,7 +178,7 @@ class SOM: Component, UITableViewDataSource, UITableViewDelegate, UITextFieldDel
         override func render() {
                 som_state = state.page_state as! SOMState
 
-                update_pca_plot()
+                update_som_plot()
                 table_view.dataSource = self
                 table_view.delegate = self
                 table_view.reloadData()
@@ -190,19 +202,10 @@ class SOM: Component, UITableViewDataSource, UITableViewDelegate, UITextFieldDel
         func render_after_factor_change() {
 //                som_state.calculate_samples_and_levels()
                 table_view.reloadData()
-                update_pca_plot()
+                update_som_plot()
         }
 
-        func update_pca_plot() {
-//                if som_state.dimension == 2 {
-//                        update_2d_plot()
-//                } else {
-//                        update_3d_plot()
-//                }
-        }
-
-        func update_2d_plot() {
-                values_3d_plot.hidden = true
+        func update_som_plot() {
 //                if som_state.number_of_molecules_without_missing_values > 0 && som_state.sample_indices.count >= 3 {
 //                        let points_x = [Double](som_state.sammon_points[0 ..< som_state.sample_indices.count])
 //                        let points_y = [Double](som_state.sammon_points[som_state.sample_indices.count ..< 2 * som_state.sample_indices.count])
@@ -225,15 +228,15 @@ class SOM: Component, UITableViewDataSource, UITableViewDelegate, UITextFieldDel
         }
 
         func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-                return 7
+                return 6
         }
 
         func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-                return section == 6 ? select_all_header_footer_view_height : centered_header_footer_view_height
+                return section == 5 ? select_all_header_footer_view_height : centered_header_footer_view_height
         }
 
         func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-                if section < 6 {
+                if section < 5 {
                         let header = tableView.dequeueReusableHeaderFooterViewWithIdentifier("centered-header") as! CenteredHeaderFooterView
                         switch section {
                         case 0:
@@ -243,8 +246,6 @@ class SOM: Component, UITableViewDataSource, UITableViewDelegate, UITextFieldDel
                         case 2:
                                 header.update_normal(text: "Plot symbol")
                         case 3:
-                                header.update_normal(text: "Plot symbol size")
-                        case 4:
                                 header.update_normal(text: "Factor for colors")
                         default:
                                 header.update_normal(text: "Color scheme")
@@ -260,11 +261,11 @@ class SOM: Component, UITableViewDataSource, UITableViewDelegate, UITextFieldDel
 
         func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
                 switch section {
-                case let section where section < 4:
+                case let section where section < 3:
                         return 1
-                case 4:
+                case 3:
                         return state.factor_ids.count
-                case 5:
+                case 4:
                         return som_state.level_names.count
                 default:
                         return state.number_of_samples
@@ -300,10 +301,6 @@ class SOM: Component, UITableViewDataSource, UITableViewDelegate, UITextFieldDel
                         cell.update(items: ["Circles", "Sample names"], selected_segment_index: som_state.plot_symbol == "circles" ? 0 : 1, target: self, selector: "plot_symbol_action:")
                         return cell
                 case 3:
-                        let cell = tableView.dequeueReusableCellWithIdentifier("slider_cell") as! SliderTableViewCell
-                        cell.update(minimum_value: 0, maximum_value: 1, value: som_state.symbol_size, target: self, selector: "plot_symbol_size_action:")
-                        return cell
-                case 4:
                         let cell = tableView.dequeueReusableCellWithIdentifier("centered_cell") as! CenteredTableViewCell
                         let text = state.factor_names[row]
                         if row == som_state.selected_factor_index {
@@ -312,7 +309,7 @@ class SOM: Component, UITableViewDataSource, UITableViewDelegate, UITextFieldDel
                                 cell.update_unselected(text: text)
                         }
                         return cell
-                case 5:
+                case 4:
                         let cell = tableView.dequeueReusableCellWithIdentifier("color_selection_cell", forIndexPath: indexPath) as! ColorSelectionTableViewCell
                         let level_name = som_state.level_names[row]
                         let level_color = color_from_hex(hex: som_state.level_colors[row])
@@ -351,11 +348,6 @@ class SOM: Component, UITableViewDataSource, UITableViewDelegate, UITextFieldDel
                 state.render()
         }
 
-        func plot_symbol_size_action(sender: UISlider) {
-                som_state.symbol_size = Double(sender.value)
-                update_pca_plot()
-        }
-
         func select_all_action(tag tag: Int) {
                 for i in 0 ..< som_state.selected_samples.count {
                         som_state.selected_samples[i] = true
@@ -370,10 +362,6 @@ class SOM: Component, UITableViewDataSource, UITableViewDelegate, UITextFieldDel
                 render_after_sample_and_dimension_change()
         }
 
-        func scroll_view_did_end_zooming(zoom_scale zoom_scale: CGFloat) {
-                som_state.zoom_scale_2d = zoom_scale
-        }
-
         func tap_action() {
                 scroll_left_right()
         }
@@ -381,7 +369,7 @@ class SOM: Component, UITableViewDataSource, UITableViewDelegate, UITextFieldDel
         func pdf_action() {
                 let file_name_stem = "self-organizing-map"
                 let description = "Kohonen self organizng map. Samples are assigned to the nearest unit."
-                state.insert_pdf_result_file(file_name_stem: file_name_stem, description: description, content_size: values_2d_plot.content_size, draw: values_2d_plot.draw)
+                state.insert_pdf_result_file(file_name_stem: file_name_stem, description: description, content_size: som_plot.content_size, draw: som_plot.draw)
                 state.render()
         }
 }
