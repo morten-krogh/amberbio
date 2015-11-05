@@ -95,7 +95,7 @@ class Values2DPlot: DrawView {
                 pthread_rwlock_wrlock(&mutex)
                 self.parameters = parameters
                 pthread_rwlock_unlock(&mutex)
-                redraw()
+                setNeedsDisplay()
         }
 
         override func draw(context context: CGContext, rect: CGRect) {

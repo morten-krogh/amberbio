@@ -123,7 +123,8 @@ class DrawView: UIView, UIScrollViewDelegate, DrawViewTiledLayerViewDelegate {
 
         }
 
-        func redraw() {
+        override func setNeedsDisplay() {
+                super.setNeedsDisplay()
                 draw_view_tiled_layer_view?.setNeedsDisplay()
         }
 }
