@@ -19,6 +19,8 @@ class SOMState: PageState {
         var level_names = [] as [String]
         var level_colors = [] as [String]
 
+        var som_nodes = [] as [SOMNode]
+
         override init() {
                 super.init()
                 name = "som"
@@ -69,7 +71,18 @@ class SOMState: PageState {
         }
 
         func calculate_som_nodes() {
-
+                som_nodes = []
+                for i in 0 ..< number_of_rows {
+                        for j in 0 ..< number_of_columns {
+                                let som_node = SOMNode()
+                                som_node.row = i
+                                som_node.column = j
+                                som_node.names = ["\(i), \(j)"]
+                                som_node.colors = [UIColor.redColor()]
+                                som_node.border_right = 0.5
+                                som_nodes.append(som_node)
+                        }
+                }
         }
 
         func calculate_all() {
@@ -90,7 +103,7 @@ class SOM: Component, UITableViewDataSource, UITableViewDelegate, UITextFieldDel
 
         let scroll_view = UIScrollView()
         let left_view = UIView()
-        let som_plot = Values2DPlot()
+        let som_plot = SOMView()
         let table_view = UITableView()
         let info_label = UILabel()
 
@@ -201,12 +214,7 @@ class SOM: Component, UITableViewDataSource, UITableViewDelegate, UITextFieldDel
 
         func update_som_plot() {
                 if !som_state.molecule_indices.isEmpty && !som_state.sample_indices.isEmpty {
-//                        let points_x = [Double](som_state.sammon_points[0 ..< som_state.sample_indices.count])
-//                        let points_y = [Double](som_state.sammon_points[som_state.sample_indices.count ..< 2 * som_state.sample_indices.count])
-//                        let axis_titles = ["", ""]
-//                        let names = som_state.plot_symbol == "circles" ? (nil as [String]?) : som_state.sample_names
-
-//                        values_2d_plot.update(points_x: points_x, points_y: points_y, names: names, colors: som_state.sample_colors, axis_titles: axis_titles, symbol_size: som_state.symbol_size)
+                        som_plot.update(som_nodes: som_state.som_nodes, number_of_rows: som_state.number_of_rows, number_of_columns: som_state.number_of_columns)
                         som_plot.hidden = false
                         left_view.hidden = true
                 } else {

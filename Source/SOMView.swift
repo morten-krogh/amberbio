@@ -31,7 +31,7 @@ class SOMView: DrawView {
                 fatalError("init(coder:) has not been implemented")
         }
 
-        func update(som_nodes: [SOMNode], number_of_rows: Int, number_of_columns: Int) {
+        func update(som_nodes som_nodes: [SOMNode], number_of_rows: Int, number_of_columns: Int) {
                 self.number_of_rows = number_of_rows
                 self.number_of_columns = number_of_columns
                 self.som_nodes = som_nodes
