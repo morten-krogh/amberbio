@@ -63,36 +63,28 @@ class SOMView: DrawView {
                 CGContextSetLineWidth(context, 1)
 
                 CGContextSetStrokeColorWithColor(context, color_for_value(value: som_node.border_top_right).CGColor)
-                CGContextSetLineWidth(context, line_width_for_value(value: som_node.border_top_right))
                 drawing_draw_line(context: context, start_point: point_0, end_point: point_1)
 
                 CGContextSetStrokeColorWithColor(context, color_for_value(value: som_node.border_right).CGColor)
-                CGContextSetLineWidth(context, line_width_for_value(value: som_node.border_right))
                 drawing_draw_line(context: context, start_point: point_1, end_point: point_2)
 
                 CGContextSetStrokeColorWithColor(context, color_for_value(value: som_node.border_bottom_right).CGColor)
-                CGContextSetLineWidth(context, line_width_for_value(value: som_node.border_bottom_right))
                 drawing_draw_line(context: context, start_point: point_2, end_point: point_3)
 
                 if som_node.column == 0 || som_node.row == number_of_rows - 1 {
                         CGContextSetStrokeColorWithColor(context, color_for_value(value: som_node.border_bottom_left).CGColor)
-                        CGContextSetLineWidth(context, line_width_for_value(value: som_node.border_bottom_left))
                         drawing_draw_line(context: context, start_point: point_3, end_point: point_4)
                 }
 
                 if som_node.column == 0 {
                         CGContextSetStrokeColorWithColor(context, color_for_value(value: som_node.border_left).CGColor)
-                        CGContextSetLineWidth(context, line_width_for_value(value: som_node.border_left))
                         drawing_draw_line(context: context, start_point: point_4, end_point: point_5)
                 }
 
                 if som_node.row == 0 || som_node.column == 0 {
                         CGContextSetStrokeColorWithColor(context, color_for_value(value: som_node.border_top_left).CGColor)
-                        CGContextSetLineWidth(context, line_width_for_value(value: som_node.border_top_left))
                         drawing_draw_line(context: context, start_point: point_5, end_point: point_0)
                 }
-
-                CGContextSetLineWidth(context, 1)
 
                 let names = som_node.names
                 if !names.isEmpty {
@@ -122,9 +114,5 @@ class SOMView: DrawView {
         func color_for_value(value value: Double) -> UIColor {
                 let index = Int(floor(4 + 4 * value))
                 return color_from_hex(hex: color_brewer_sequential_9_blue[index])
-        }
-
-        func line_width_for_value(value value: Double) -> CGFloat {
-                return CGFloat(1 + 0 * value)
         }
 }
