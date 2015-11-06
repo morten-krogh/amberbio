@@ -77,12 +77,16 @@ class SOMView: DrawView {
                 if som_node.column == 0 || som_node.row == number_of_rows - 1 {
                         color = color_for_value(value: som_node.border_bottom_left)
                         CGContextSetStrokeColorWithColor(context, color.CGColor)
+
+                        CGContextSetLineWidth(context, 2)
                         drawing_draw_line(context: context, start_point: point_3, end_point: point_4)
                 }
 
                 if som_node.column == 0 {
                         color = color_for_value(value: som_node.border_left)
                         CGContextSetStrokeColorWithColor(context, color.CGColor)
+
+                         CGContextSetLineWidth(context, 1)
                         drawing_draw_line(context: context, start_point: point_4, end_point: point_5)
                 }
 
@@ -118,6 +122,7 @@ class SOMView: DrawView {
         }
 
         func color_for_value(value value: Double) -> UIColor {
-                return UIColor.blackColor()
+                let intensity = CGFloat(0.5 * (1 - value))
+                return UIColor(red: intensity, green: intensity, blue: intensity, alpha: 1)
         }
 }

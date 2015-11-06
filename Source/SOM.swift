@@ -79,7 +79,8 @@ class SOMState: PageState {
                                 som_node.column = j
                                 som_node.names = ["\(i), \(j). Hello", nil]
                                 som_node.colors = [UIColor.redColor(), UIColor.blueColor(), UIColor.greenColor()]
-                                som_node.border_right = 0.5
+                                som_node.border_right = 1
+                                som_node.border_left = 1
                                 som_nodes.append(som_node)
                         }
                 }
