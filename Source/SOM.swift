@@ -19,6 +19,9 @@ class SOMState: PageState {
         var level_names = [] as [String]
         var level_colors = [] as [String]
 
+        var row_for_sample_index = [] as [Int]
+        var column_for_sample_index = [] as [Int]
+
         var som_nodes = [] as [SOMNode]
 
         override init() {
@@ -48,6 +51,8 @@ class SOMState: PageState {
                                 sample_names.append(state.sample_names[i])
                         }
                 }
+                row_for_sample_index = [Int](count: sample_indices.count, repeatedValue: 0)
+                column_for_sample_index = [Int](count: sample_indices.count, repeatedValue: 0)
         }
 
         func calculate_levels() {
@@ -66,19 +71,28 @@ class SOMState: PageState {
                 }
         }
 
-        func calculate_som_weights() {
+        func calculate_som_assignments() {
+//                som
 
         }
 
         func calculate_som_nodes() {
                 som_nodes = []
-                for i in 0 ..< number_of_rows {
-                        for j in 0 ..< number_of_columns {
+                for row in 0 ..< number_of_rows {
+                        for column in 0 ..< number_of_columns {
                                 let som_node = SOMNode()
-                                som_node.row = i
-                                som_node.column = j
-                                som_node.names = ["\(i), \(j). Hello", nil]
-                                som_node.colors = [UIColor.redColor(), UIColor.blueColor(), UIColor.greenColor()]
+                                som_node.row = row
+                                som_node.column = column
+                                som_node.names = []
+                                som_node.colors = []
+                                for i in 0 ..< sample_indices.count {
+                                        if row_for_sample_index[i] == row && column_for_sample_index[i] == column {
+                                                let name = plot_symbol == "circles" ? (nil as String?) : sample_names[i]
+                                                let color = sample_colors[i]
+                                                som_node.names.append(name)
+                                                som_node.colors.append(color)
+                                        }
+                                }
                                 som_node.border_right = 1
                                 som_node.border_left = 1
                                 som_nodes.append(som_node)
@@ -93,7 +107,7 @@ class SOMState: PageState {
                 pdf_enabled = !molecule_indices.isEmpty && !sample_indices.isEmpty
 
                 calculate_levels()
-                calculate_som_weights()
+                calculate_som_assignments()
                 calculate_som_nodes()
         }
 }
@@ -247,7 +261,7 @@ class SOM: Component, UITableViewDataSource, UITableViewDelegate, UITextFieldDel
                         case 1:
                                 header.update_normal(text: "Number of columns")
                         case 2:
-                                header.update_normal(text: "Plot symbol")
+                                header.update_normal(text: "Plot symbols")
                         case 3:
                                 header.update_normal(text: "Factor for colors")
                         default:
@@ -394,6 +408,7 @@ class SOM: Component, UITableViewDataSource, UITableViewDelegate, UITextFieldDel
 
         func plot_symbol_action(sender: UISegmentedControl) {
                 som_state.plot_symbol = sender.selectedSegmentIndex == 0 ? "circles" : "sample names"
+                som_state.calculate_som_nodes()
                 state.render()
         }
 

@@ -304,7 +304,7 @@ class PCA: Component, UITableViewDataSource, UITableViewDelegate, SelectAllHeade
                         case 0:
                                 header.update_normal(text: "Dimension")
                         case 1:
-                                header.update_normal(text: "Plot symbol")
+                                header.update_normal(text: "Plot symbols")
                         case 2:
                                 header.update_normal(text: "Plot symbol size")
                         case 3:
