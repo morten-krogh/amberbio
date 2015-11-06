@@ -5,7 +5,7 @@ class DrawView: UIView, UIScrollViewDelegate, DrawViewTiledLayerViewDelegate {
         var content_size = CGSize.zero {
                 didSet {
                         print("hej from content_size")
-                        replace_scroll_view()
+//                        replace_scroll_view()
                         scroll_view.contentSize = content_size
                         zoom_scale = 1
                         initial_zoom = true
