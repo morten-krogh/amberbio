@@ -36,7 +36,7 @@ void random_fisher_yates_shuffle(long* values, const long values_length);
 
 long sammon_map(const double* values, const long number_of_molecules, const long number_of_samples, const long* sample_indices, const long sample_indices_length, const long dimension, double* sammon_points);
 
-void som(const double* values, const long* molecule_indices, const long molecule_indices_length, const long number_of_samples, const long* sample_indices, const long number_of_row, const long number_of_columns, long* row_for_sample_index, long *column_for_samples_index);
+void som(const double* values, const long* molecule_indices, const long molecule_indices_length, const long number_of_samples, const long* sample_indices, const long sample_indices_length, const long number_of_rows, const long number_of_columns, long* row_for_sample_index, long *column_for_samples_index);
 
 
 

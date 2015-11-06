@@ -72,8 +72,7 @@ class SOMState: PageState {
         }
 
         func calculate_som_assignments() {
-//                som
-
+                som(state.values, molecule_indices, molecule_indices.count, state.number_of_samples, sample_indices, sample_indices.count, number_of_rows, number_of_columns, &row_for_sample_index, &column_for_sample_index)
         }
 
         func calculate_som_nodes() {
