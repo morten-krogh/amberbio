@@ -105,7 +105,7 @@ class SOMView: DrawView {
                                         let astring = astring_font_size_color(string: name, font: nil, font_size: font_size, color: color)
                                         drawing_draw_attributed_text(context: context, attributed_text: astring, center: CGPoint(x: center_x, y: center_y), angle: 0)
                                 } else {
-                                        drawing_draw_circle(context: context, center_x: center_x, center_y: center_y, radius: text_height / 2, color: color)
+                                        drawing_draw_circle(context: context, center_x: center_x, center_y: center_y, radius: text_height / 1.3, color: color)
                                 }
                         }
                 }

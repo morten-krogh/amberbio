@@ -4,11 +4,13 @@ class DrawView: UIView, UIScrollViewDelegate, DrawViewTiledLayerViewDelegate {
 
         var content_size = CGSize.zero {
                 didSet {
-                        scroll_view.contentSize = content_size
-                        zoom_scale = 1
-                        initial_zoom = true
-                        set_min_max_zoom_scales()
-                        layout_scroll_view()
+                        if (content_size.width != oldValue.width || content_size.height != oldValue.height) {
+                                scroll_view.contentSize = content_size
+                                zoom_scale = 1
+                                initial_zoom = true
+                                set_min_max_zoom_scales()
+                                layout_scroll_view()
+                        }
                 }
         }
 

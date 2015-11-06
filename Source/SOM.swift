@@ -136,7 +136,7 @@ class SOM: Component, UITableViewDataSource, UITableViewDelegate, UITextFieldDel
                 scroll_view.scrollEnabled = false
                 view.addSubview(scroll_view)
 
-                som_plot.maximum_zoom_scale_multiplier = 2
+                som_plot.maximum_zoom_scale_multiplier = 4
                 scroll_view.addSubview(som_plot)
 
                 table_view.registerClass(CenteredHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: "centered-header")
