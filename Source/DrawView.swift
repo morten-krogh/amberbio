@@ -4,11 +4,11 @@ class DrawView: UIView, UIScrollViewDelegate, DrawViewTiledLayerViewDelegate {
 
         var content_size = CGSize.zero {
                 didSet {
-                        print("hej from content_size")
-//                        replace_scroll_view()
                         scroll_view.contentSize = content_size
                         zoom_scale = 1
                         initial_zoom = true
+                        set_min_max_zoom_scales()
+                        layout_scroll_view()
                 }
         }
 
@@ -18,7 +18,7 @@ class DrawView: UIView, UIScrollViewDelegate, DrawViewTiledLayerViewDelegate {
         var zoom_scale = 1 as CGFloat
         var initial_zoom = true
 
-        var scroll_view = UIScrollView()
+        let scroll_view = UIScrollView()
         var draw_view_tiled_layer_view: DrawViewTiledLayerView?
 
         init(frame: CGRect, tappable: Bool) {
@@ -30,8 +30,6 @@ class DrawView: UIView, UIScrollViewDelegate, DrawViewTiledLayerViewDelegate {
                 scroll_view.delegate = self
                 addSubview(scroll_view)
 
-                print("hej")
-
                 if tappable {
                         let tap_recognizer = UITapGestureRecognizer(target: self, action: "tap_action:")
                         draw_view_tiled_layer_view?.addGestureRecognizer(tap_recognizer)
@@ -42,15 +40,6 @@ class DrawView: UIView, UIScrollViewDelegate, DrawViewTiledLayerViewDelegate {
             fatalError("init(coder:) has not been implemented")
         }
 
-        func replace_scroll_view() {
-                print("replace")
-                scroll_view.removeFromSuperview()
-                scroll_view = UIScrollView()
-                scroll_view.addSubview(draw_view_tiled_layer_view!)
-                scroll_view.delegate = self
-                addSubview(scroll_view)
-        }
-
         override func layoutSubviews() {
                 super.layoutSubviews()
 
@@ -59,7 +48,6 @@ class DrawView: UIView, UIScrollViewDelegate, DrawViewTiledLayerViewDelegate {
         }
 
         func layout_scroll_view() {
-                print("layout scroll view, \(scroll_view.contentSize)")
                 let (width, height) = (bounds.width, bounds.height)
 
                 let scaled_content_size = CGSizeApplyAffineTransform(content_size, CGAffineTransformMakeScale(zoom_scale, zoom_scale))
@@ -82,48 +70,49 @@ class DrawView: UIView, UIScrollViewDelegate, DrawViewTiledLayerViewDelegate {
                 draw_view_tiled_layer_view!.frame = CGRect(origin: CGPoint.zero, size: scaled_content_size)
 
                 draw_view_tiled_layer_view!.set_levels_of_detail(minimum_zoom_scale: minimum_zoom_scale, maximum_zoom_scale: maximum_zoom_scale)
-
-                print("layout scroll view, \(scroll_view.contentSize)")
         }
 
         func set_min_max_zoom_scales() {
-                print("min max zoom, \(scroll_view.contentSize)")
                 let (width, height) = (bounds.width, bounds.height)
 
-                let scale_x = width / content_size.width
-                let scale_y = height / content_size.height
+                if width > 0 && height > 0 && content_size.width > 0 && content_size.height > 0 {
+                        let scale_x = width / content_size.width
+                        let scale_y = height / content_size.height
 
-                let scale_min = min(scale_x, scale_y)
-                if scale_min != minimum_zoom_scale {
-                        minimum_zoom_scale = scale_min
-                        scroll_view.minimumZoomScale = minimum_zoom_scale
-                }
+                        let scale_min = min(scale_x, scale_y)
+                        if scale_min != minimum_zoom_scale {
+                                minimum_zoom_scale = scale_min
+                                scroll_view.minimumZoomScale = minimum_zoom_scale
+                        }
 
-                let scale_max = maximum_zoom_scale_multiplier * max(1, scale_x, scale_y)
-                if scale_max != maximum_zoom_scale {
-                        maximum_zoom_scale = scale_max
-                        scroll_view.maximumZoomScale = maximum_zoom_scale
-                }
+                        let scale_max = maximum_zoom_scale_multiplier * max(1, scale_x, scale_y)
+                        if scale_max != maximum_zoom_scale {
+                                maximum_zoom_scale = scale_max
+                                scroll_view.maximumZoomScale = maximum_zoom_scale
+                        }
 
-                if initial_zoom {
-                        initial_zoom = false
-                        set_zoom_scale(zoom_scale: minimum_zoom_scale)
-                } else if zoom_scale < minimum_zoom_scale {
-                        set_zoom_scale(zoom_scale: minimum_zoom_scale)
-                } else if zoom_scale > maximum_zoom_scale {
-                        set_zoom_scale(zoom_scale: maximum_zoom_scale)
+                        if initial_zoom {
+                                initial_zoom = false
+                                set_zoom_scale(zoom_scale: minimum_zoom_scale)
+                        } else if zoom_scale < minimum_zoom_scale {
+                                set_zoom_scale(zoom_scale: minimum_zoom_scale)
+                        } else if zoom_scale > maximum_zoom_scale {
+                                set_zoom_scale(zoom_scale: maximum_zoom_scale)
+                        }
+                } else {
+                        minimum_zoom_scale = 1
+                        scroll_view.minimumZoomScale = 1
+                        maximum_zoom_scale = 1
+                        scroll_view.maximumZoomScale = 1
+                        set_zoom_scale(zoom_scale: 1)
                 }
         }
 
         func set_zoom_scale(zoom_scale zoom_scale: CGFloat) {
-                print("set zoom scale 1", zoom_scale, minimum_zoom_scale, maximum_zoom_scale, scroll_view.contentOffset, scroll_view.contentSize)
                 self.zoom_scale = min(maximum_zoom_scale, max(minimum_zoom_scale, zoom_scale))
-                print("set zoom scale, \(scroll_view.contentSize)")
                 scroll_view.zoomScale = self.zoom_scale
-                print("set zoom scale 2, \(scroll_view.contentSize)")
                 let scaled_content_size = CGSizeApplyAffineTransform(content_size, CGAffineTransformMakeScale(zoom_scale, zoom_scale))
                 scroll_view.contentSize = scaled_content_size
-                print("set zoom scale 3, \(scroll_view.contentSize)")
         }
 
         func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
@@ -141,7 +130,7 @@ class DrawView: UIView, UIScrollViewDelegate, DrawViewTiledLayerViewDelegate {
         }
 
         func scrollViewDidScroll(scrollView: UIScrollView) {
-                print(zoom_scale, minimum_zoom_scale, maximum_zoom_scale, scroll_view.contentSize, draw_view_tiled_layer_view?.frame)
+
         }
 
         func draw(context context: CGContext, rect: CGRect) {

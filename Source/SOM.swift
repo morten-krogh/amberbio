@@ -421,7 +421,7 @@ class SOM: Component, UITableViewDataSource, UITableViewDelegate, UITextFieldDel
 
         func pdf_action() {
                 let file_name_stem = "self-organizing-map"
-                let description = "Kohonen self organizng map. Samples are assigned to the nearest unit."
+                let description = "Kohonen self organizing map.\nSamples are assigned to the nearest unit."
                 state.insert_pdf_result_file(file_name_stem: file_name_stem, description: description, content_size: som_plot.content_size, draw: som_plot.draw)
                 state.render()
         }
