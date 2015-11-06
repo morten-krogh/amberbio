@@ -120,8 +120,8 @@ class SOMView: DrawView {
         }
 
         func color_for_value(value value: Double) -> UIColor {
-                let intensity = CGFloat(value)
-                return UIColor(red: intensity, green: 1 - intensity, blue: 1 - intensity, alpha: 1)
+                let index = Int(floor(4 + 4 * value))
+                return color_from_hex(hex: color_brewer_sequential_9_blue[index])
         }
 
         func line_width_for_value(value value: Double) -> CGFloat {
