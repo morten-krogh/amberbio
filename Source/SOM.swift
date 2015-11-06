@@ -25,7 +25,7 @@ class SOMState: PageState {
                 super.init()
                 name = "som"
                 title = astring_body(string: "Self organizing map")
-                info = "Kohonen self organizing map.\n\nTap the plot to show and hide the control panel on narrow screens.\n\nThe Self organzing map is computed for the selected samples using the molecules that have no missing values for those samples.\n\nThe colors represent levels for the selected factor.\n\nSee the manual for a description of the self organizing map."
+                info = "Kohonen self organizing map.\n\nTap the plot to show and hide the control panel on narrow screens.\n\nThe Self organzing map is computed for the selected samples using the molecules that have no missing values for those samples.\n\nThe colors represent levels for the selected factor.\n\nThe border colors of the cells represent the distances between the cells in the map. Darker colors represent larger distances.\n\nSee the manual for a description of the self organizing map."
 
                 pdf_enabled = true
                 full_screen = .Conditional
