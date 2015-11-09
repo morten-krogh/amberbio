@@ -112,7 +112,7 @@ class SOMState: PageState {
                                 som_node.border_bottom_right = border_bottom_right[unit]
                                 som_node.border_bottom_left = border_bottom_left[unit]
                                 som_node.border_left = border_left[unit]
-                                som_node.border_bottom_left = border_bottom_left[unit]
+                                som_node.border_top_left = border_top_left[unit]
                                 som_nodes.append(som_node)
                         }
                 }
