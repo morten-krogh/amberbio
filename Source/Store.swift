@@ -17,7 +17,7 @@ let store_initially_locked_page_names = [
         "knn_factor_selection",
         "pca",
         "anova_factor_selection",
-        "k_meanns_clustering_selection",
+        "k_means_clustering_selection",
         "sammon",
         "som"
 ]
@@ -27,10 +27,10 @@ let store_product_id_to_page_names = [
         "com.amberbio.product.knn" : ["knn_factor_selection"],
         "com.amberbio.product.pca" : ["pca"],
         "com.amberbio.product.anova" : ["anova_factor_selection"],
-        "com.amberbio.product.kmeans" : ["k_meanns_clustering_selection"],
+        "com.amberbio.product.kmeans" : ["k_means_clustering_selection"],
         "com.amberbio.product.sammon" : ["sammon"],
         "com.amberbio.product.som" : ["som"],
-        "com.amberbio.product.bundle_2015": ["svm_factor_selection", "knn_factor_selection", "pca", "anova_factor_selection", "k_meanns_clustering_selection", "sammon", "som"]
+        "com.amberbio.product.bundle_2015": ["svm_factor_selection", "knn_factor_selection", "pca", "anova_factor_selection", "k_means_clustering_selection", "sammon", "som"]
 ]
 
 class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver {

@@ -24,7 +24,7 @@ let home_page_name_to_section_row = [
         "linear_regression_selection": (4, 3),
         "hierarchical_clustering_selection": (5, 0),
         "pca": (5, 1),
-        "k_meanns_clustering_selection": (5, 2),
+        "k_means_clustering_selection": (5, 2),
         "sammon": (5, 3),
         "som": (5, 4),
         "knn_factor_selection": (6, 0),
