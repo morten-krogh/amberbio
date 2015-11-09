@@ -385,9 +385,9 @@ class SOM: Component, UITableViewDataSource, UITableViewDelegate, UITextFieldDel
                 if number < 2 {
                         number = 2
                         textField.text = "2"
-                } else if number > 20 {
-                        number = 20
-                        textField.text = "20"
+                } else if number > 10 {
+                        number = 10
+                        textField.text = "10"
                 }
 
                 if textField.tag == 0 {

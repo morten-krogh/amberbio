@@ -142,14 +142,16 @@ void som(const double* values, const long* molecule_indices, const long molecule
 
         double* weights = malloc(number_of_rows * number_of_columns * molecule_indices_length * sizeof(double));
 
-        long number_of_iterations = 1000;
+        long number_of_iterations = sample_indices_length < 50 ? 10 * sample_indices_length : 500;
 
         struct som_state som_state = {values, molecule_indices, molecule_indices_length, number_of_samples, sample_indices, sample_indices_length, number_of_rows, number_of_columns, row_for_sample_number, column_for_sample_number, weights, number_of_iterations, 0};
 
         som_initialize_weights(som_state);
 
+        srand(1970);
+
         while (som_state.iteration < som_state.number_of_iterations) {
-                long sample_number = som_state.iteration % number_of_samples;
+                long sample_number = rand() % sample_indices_length;
                 som_iteration(som_state, sample_number);
                 som_state.iteration++;
                 printf("iteration = %li\n", som_state.iteration);
