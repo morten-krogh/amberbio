@@ -106,8 +106,13 @@ class SOMState: PageState {
                                                 som_node.colors.append(color)
                                         }
                                 }
-                                som_node.border_right = 1
-                                som_node.border_left = 1
+                                let unit = row * number_of_columns + column
+                                som_node.border_top_right = border_top_right[unit]
+                                som_node.border_right = border_right[unit]
+                                som_node.border_bottom_right = border_bottom_right[unit]
+                                som_node.border_bottom_left = border_bottom_left[unit]
+                                som_node.border_left = border_left[unit]
+                                som_node.border_bottom_left = border_bottom_left[unit]
                                 som_nodes.append(som_node)
                         }
                 }

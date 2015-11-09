@@ -127,7 +127,6 @@ void som_iteration(struct som_state* som_state, long sample_number)
         double sigma = ((double) som_state->number_of_rows > som_state->number_of_columns ? som_state->number_of_rows : som_state->number_of_columns) * damper;
 
         long closest_unit = som_closest_unit(som_state, sample_number);
-//        printf("closest unit = %li, learning rate = %f\n", closest_unit, learning_rate);
         for (long u = 0; u < som_state->number_of_rows * som_state->number_of_columns; u++) {
                 double dist_square = som_unit_dist_square(som_state->number_of_columns, closest_unit, u);
                 double decay = exp(- dist_square / (2 * sigma * sigma));
@@ -139,10 +138,101 @@ void som_iteration(struct som_state* som_state, long sample_number)
                                 som_state->weights[offset] = (1 - alpha) * som_state->weights[offset] + alpha * value;
                         }
                 }
-//                printf("closest_unit = %li, u = %li, dist_square = %f, decay = %f\n", closest_unit, u, dist_square, decay);
         }
 }
 
+double som_weight_distance(struct som_state* som_state, long u_0, long u_1)
+{
+        double dist_square = 0.0;
+        for (long i = 0; i < som_state->molecule_indices_length; i++) {
+                double value_0 = som_state->weights[u_0 * som_state->molecule_indices_length + i];
+                double value_1 = som_state->weights[u_1 * som_state->molecule_indices_length + i];
+                double diff = value_1 - value_0;
+                dist_square += diff * diff;
+        }
+        return sqrt(dist_square);
+}
+
+void som_border_correct(double* value, const double max_dist)
+{
+        if (isnan(*value)) {
+                *value = 1;
+        } else {
+                *value /= max_dist;
+        }
+}
+
+void som_border_distances(struct som_state* som_state)
+{
+        const long number_of_rows = som_state->number_of_rows;
+        const long number_of_columns = som_state->number_of_columns;
+
+        double max_dist = 0.0;
+
+        for (long u = 0; u < number_of_rows * number_of_columns; u++) {
+                long row = u / number_of_columns;
+                long column = u % number_of_columns;
+                if (column == 0) {
+                        som_state->border_left[u] = nan(NULL);
+                }
+                if (column == number_of_columns - 1) {
+                        som_state->border_right[u] = nan(NULL);
+                }
+                if (row == 0 || (column == 0 && row % 2 == 0)) {
+                        som_state->border_top_left[u] = nan(NULL);
+                }
+                if (row == 0 || (column == number_of_columns - 1 && row % 2 == 1)) {
+                        som_state->border_top_right[u] = nan(NULL);
+                }
+                if (row == number_of_rows - 1 || (column == 0 && row % 2 == 0)) {
+                        som_state->border_bottom_left[u] = nan(NULL);
+                }
+                if (row == number_of_rows - 1 || (column == number_of_columns - 1 && row % 2 == 1)) {
+                        som_state->border_bottom_right[u] = nan(NULL);
+                }
+
+                if (column < number_of_columns - 1) {
+                        long u_1 = u + 1;
+                        double dist = som_weight_distance(som_state, u, u_1);
+                        if (dist > max_dist) {
+                                max_dist = dist;
+                        }
+                        som_state->border_right[u] = dist;
+                        som_state->border_left[u_1] = dist;
+                }
+
+                if (row > 0 && (column > 0 || row % 2 == 1)) {
+                        long u_1 = (row - 1) * number_of_columns + column - (row % 2 == 0 ? 1 : 0);
+                        double dist = som_weight_distance(som_state, u, u_1);
+                        if (dist > max_dist) {
+                                max_dist = dist;
+                        }
+                        som_state->border_top_left[u] = dist;
+                        som_state->border_bottom_right[u_1] = dist;
+                }
+
+                if (row < number_of_rows - 1 && (column > 0 || row % 2 == 1)) {
+                        long u_1 = (row + 1) * number_of_columns + column - (row % 2 == 0 ? 1 : 0);
+                        double dist = som_weight_distance(som_state, u, u_1);
+                        if (dist > max_dist) {
+                                max_dist = dist;
+                        }
+                        som_state->border_bottom_left[u] = dist;
+                        som_state->border_top_right[u_1] = dist;
+                }
+        }
+
+        if (max_dist > 0) {
+                for (long u = 0; u < number_of_rows * number_of_columns; u++) {
+                        som_border_correct(som_state->border_right + u, max_dist);
+                        som_border_correct(som_state->border_left + u, max_dist);
+                        som_border_correct(som_state->border_top_left + u, max_dist);
+                        som_border_correct(som_state->border_top_right + u, max_dist);
+                        som_border_correct(som_state->border_bottom_left + u, max_dist);
+                        som_border_correct(som_state->border_bottom_right + u, max_dist);
+                }
+        }
+}
 
 void som(const double* values, const long* molecule_indices, const long molecule_indices_length, const long number_of_samples, const long* sample_indices, const long sample_indices_length, const long number_of_rows, const long number_of_columns, long* row_for_sample_number, long *column_for_sample_number, double* border_top_right, double* border_right, double* border_bottom_right, double* border_bottom_left, double* border_left, double* border_top_left)
 {
@@ -164,10 +254,8 @@ void som(const double* values, const long* molecule_indices, const long molecule
 //                printf("iteration = %li\n", som_state.iteration);
         }
 
-
-
-
         som_assign_row_and_column(&som_state);
+        som_border_distances(&som_state);
 
         free(weights);
 }
