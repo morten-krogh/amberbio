@@ -19,8 +19,8 @@ class SOMState: PageState {
         var level_names = [] as [String]
         var level_colors = [] as [String]
 
-        var row_for_sample_index = [] as [Int]
-        var column_for_sample_index = [] as [Int]
+        var row_for_sample_number = [] as [Int]
+        var column_for_sample_number = [] as [Int]
 
         var som_nodes = [] as [SOMNode]
 
@@ -51,8 +51,8 @@ class SOMState: PageState {
                                 sample_names.append(state.sample_names[i])
                         }
                 }
-                row_for_sample_index = [Int](count: sample_indices.count, repeatedValue: 0)
-                column_for_sample_index = [Int](count: sample_indices.count, repeatedValue: 0)
+                row_for_sample_number = [Int](count: sample_indices.count, repeatedValue: 0)
+                column_for_sample_number = [Int](count: sample_indices.count, repeatedValue: 0)
         }
 
         func calculate_levels() {
@@ -72,7 +72,7 @@ class SOMState: PageState {
         }
 
         func calculate_som_assignments() {
-                som(state.values, molecule_indices, molecule_indices.count, state.number_of_samples, sample_indices, sample_indices.count, number_of_rows, number_of_columns, &row_for_sample_index, &column_for_sample_index)
+                som(state.values, molecule_indices, molecule_indices.count, state.number_of_samples, sample_indices, sample_indices.count, number_of_rows, number_of_columns, &row_for_sample_number, &column_for_sample_number)
         }
 
         func calculate_som_nodes() {
@@ -85,7 +85,7 @@ class SOMState: PageState {
                                 som_node.names = []
                                 som_node.colors = []
                                 for i in 0 ..< sample_indices.count {
-                                        if row_for_sample_index[i] == row && column_for_sample_index[i] == column {
+                                        if row_for_sample_number[i] == row && column_for_sample_number[i] == column {
                                                 let name = plot_symbol == "circles" ? (nil as String?) : sample_names[i]
                                                 let color = sample_colors[i]
                                                 som_node.names.append(name)
