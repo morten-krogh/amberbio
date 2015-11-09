@@ -144,13 +144,14 @@ void som_iteration(struct som_state* som_state, long sample_number)
 }
 
 
-void som(const double* values, const long* molecule_indices, const long molecule_indices_length, const long number_of_samples, const long* sample_indices, const long sample_indices_length, const long number_of_rows, const long number_of_columns, long* row_for_sample_number, long *column_for_sample_number) {
+void som(const double* values, const long* molecule_indices, const long molecule_indices_length, const long number_of_samples, const long* sample_indices, const long sample_indices_length, const long number_of_rows, const long number_of_columns, long* row_for_sample_number, long *column_for_sample_number, double* border_top_right, double* border_right, double* border_bottom_right, double* border_bottom_left, double* border_left, double* border_top_left)
+{
 
         double* weights = malloc(number_of_rows * number_of_columns * molecule_indices_length * sizeof(double));
 
         long number_of_iterations = sample_indices_length < 50 ? 10 * sample_indices_length : 500;
 
-        struct som_state som_state = {values, molecule_indices, molecule_indices_length, number_of_samples, sample_indices, sample_indices_length, number_of_rows, number_of_columns, row_for_sample_number, column_for_sample_number, weights, number_of_iterations, 0};
+        struct som_state som_state = {values, molecule_indices, molecule_indices_length, number_of_samples, sample_indices, sample_indices_length, number_of_rows, number_of_columns, row_for_sample_number, column_for_sample_number, weights, number_of_iterations, 0, border_top_right, border_right, border_bottom_right, border_bottom_left, border_left, border_top_left};
 
         som_initialize_weights(&som_state);
 

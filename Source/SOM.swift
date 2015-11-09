@@ -22,6 +22,13 @@ class SOMState: PageState {
         var row_for_sample_number = [] as [Int]
         var column_for_sample_number = [] as [Int]
 
+        var border_top_right = [] as [Double]
+        var border_right = [] as [Double]
+        var border_bottom_right = [] as [Double]
+        var border_bottom_left = [] as [Double]
+        var border_left = [] as [Double]
+        var border_top_left = [] as [Double]
+
         var som_nodes = [] as [SOMNode]
 
         override init() {
@@ -72,7 +79,14 @@ class SOMState: PageState {
         }
 
         func calculate_som_assignments() {
-                som(state.values, molecule_indices, molecule_indices.count, state.number_of_samples, sample_indices, sample_indices.count, number_of_rows, number_of_columns, &row_for_sample_number, &column_for_sample_number)
+                border_top_right = [Double](count: number_of_rows * number_of_columns, repeatedValue: 0.0)
+                border_right = [Double](count: number_of_rows * number_of_columns, repeatedValue: 0.0)
+                border_bottom_right = [Double](count: number_of_rows * number_of_columns, repeatedValue: 0.0)
+                border_bottom_left = [Double](count: number_of_rows * number_of_columns, repeatedValue: 0.0)
+                border_left = [Double](count: number_of_rows * number_of_columns, repeatedValue: 0.0)
+                border_top_left = [Double](count: number_of_rows * number_of_columns, repeatedValue: 0.0)
+
+                som(state.values, molecule_indices, molecule_indices.count, state.number_of_samples, sample_indices, sample_indices.count, number_of_rows, number_of_columns, &row_for_sample_number, &column_for_sample_number, &border_top_right, &border_right, &border_bottom_right, &border_bottom_left, &border_left, &border_top_left)
         }
 
         func calculate_som_nodes() {
