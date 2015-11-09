@@ -67,7 +67,7 @@ class HomeState: PageState {
 
 class Home: Component, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
-        let cell_width = 105 as CGFloat
+        let cell_width = 107 as CGFloat
         let cell_height = 60 as CGFloat
 
         let header_names = ["Info", "Import/export", "Projects and data sets", "Visualize data set", "Statistical tests", "Unsupervised classification", "Supervised classification", "Create new data sets", "Edit project"]

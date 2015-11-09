@@ -9,7 +9,13 @@ com.amberbio.product.knn
 com.amberbio.product.pca
         
 com.amberbio.product.anova
+
+com.amberbio.product.kmeans
+
+com.amberbio.product.sammon
         
+com.amberbio.product.som
+
 
 
 Products for bundles of modules
