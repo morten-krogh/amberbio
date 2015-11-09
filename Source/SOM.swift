@@ -271,6 +271,8 @@ class SOM: Component, UITableViewDataSource, UITableViewDelegate, UITextFieldDel
                         let header = tableView.dequeueReusableHeaderFooterViewWithIdentifier("select-all-header") as! SelectAllHeaderFooterView
                         let text = "Samples"
                         header.update(text: text, tag: 0, delegate: self)
+                        header.select_all_button.enabled = som_state.sample_indices.count != state.number_of_samples
+                        header.deselect_all_button.enabled = som_state.sample_indices.count != 0
                         return header
                 }
         }

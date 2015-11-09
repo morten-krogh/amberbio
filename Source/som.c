@@ -22,6 +22,12 @@ struct som_state {
         double* weights;
         const long number_of_iterations;
         long iteration;
+        double* border_top_right;
+        double* border_right;
+        double* border_bottom_right;
+        double* border_bottom_left;
+        double* border_left;
+        double* border_top_left;
 };
 
 void som_initialize_weights(struct som_state* som_state)
@@ -154,7 +160,7 @@ void som(const double* values, const long* molecule_indices, const long molecule
                 long sample_number = rand() % sample_indices_length;
                 som_iteration(&som_state, sample_number);
                 som_state.iteration++;
-                printf("iteration = %li\n", som_state.iteration);
+//                printf("iteration = %li\n", som_state.iteration);
         }
 
 
