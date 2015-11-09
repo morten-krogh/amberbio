@@ -109,6 +109,9 @@ class HierarchicalClusteringSelection: Component, UITableViewDataSource, UITable
                         let header = tableView.dequeueReusableHeaderFooterViewWithIdentifier("select-all-header") as! SelectAllHeaderFooterView
                         let text = "Samples to include"
                         header.update(text: text, tag: 0, delegate: self)
+                        let number_of_selected_samples = hierarchical_clustering_selection_state.selected_samples.filter({$0}).count
+                        header.select_all_button.enabled = number_of_selected_samples != state.number_of_samples
+                        header.deselect_all_button.enabled = number_of_selected_samples != 0
 
                         return header
                 }
