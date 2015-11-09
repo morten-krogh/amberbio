@@ -251,7 +251,6 @@ void som(const double* values, const long* molecule_indices, const long molecule
                 long sample_number = rand() % sample_indices_length;
                 som_iteration(&som_state, sample_number);
                 som_state.iteration++;
-//                printf("iteration = %li\n", som_state.iteration);
         }
 
         som_assign_row_and_column(&som_state);
