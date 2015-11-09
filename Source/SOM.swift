@@ -5,8 +5,8 @@ class SOMState: PageState {
         var sammon_points = [] as [Double]
         var molecule_indices = [] as [Int]
 
-        var number_of_rows = 4
-        var number_of_columns = 4
+        var number_of_rows = 5
+        var number_of_columns = 5
 
         var selected_samples = [] as [Bool]
         var selected_factor_index: Int?
@@ -208,7 +208,7 @@ class SOM: Component, UITableViewDataSource, UITableViewDelegate, UITextFieldDel
 
         func render_to_calculate_all() {
                 som_plot.hidden = true
-                left_view.hidden = state.number_of_samples < 200
+                left_view.hidden = false
                 info_label.text = "Calculating"
                 table_view.reloadData()
                 NSTimer.scheduledTimerWithTimeInterval(0.001, target: self, selector: "render_after_sample_change_timer", userInfo: nil, repeats: false)

@@ -100,7 +100,7 @@ double som_unit_dist_square(long number_of_columns, long u_0, long u_1)
         long row_0 = u_0 / number_of_columns;
         long column_0 = u_0 % number_of_columns;
         long row_1 = u_1 / number_of_columns;
-        long column_1 = u_1 / number_of_columns;
+        long column_1 = u_1 % number_of_columns;
         double vertical_dist = 1.5 * (row_1 - row_0);
         double horizontal_dist = 0.0;
         if ((row_1 - row_0) % 2 == 0) {
@@ -121,6 +121,7 @@ void som_iteration(struct som_state som_state, long sample_number)
         double sigma = ((double) som_state.number_of_rows > som_state.number_of_columns ? som_state.number_of_rows : som_state.number_of_columns) * damper;
 
         long closest_unit = som_closest_unit(som_state, sample_number);
+//        printf("closest unit = %li, learning rate = %f\n", closest_unit, learning_rate);
         for (long u = 0; u < som_state.number_of_rows * som_state.number_of_columns; u++) {
                 double dist_square = som_unit_dist_square(som_state.number_of_columns, closest_unit, u);
                 double decay = exp(- dist_square / (2 * sigma * sigma));
@@ -132,6 +133,7 @@ void som_iteration(struct som_state som_state, long sample_number)
                                 som_state.weights[offset] = (1 - alpha) * som_state.weights[offset] + alpha * value;
                         }
                 }
+//                printf("closest_unit = %li, u = %li, dist_square = %f, decay = %f\n", closest_unit, u, dist_square, decay);
         }
 }
 
@@ -140,13 +142,18 @@ void som(const double* values, const long* molecule_indices, const long molecule
 
         double* weights = malloc(number_of_rows * number_of_columns * molecule_indices_length * sizeof(double));
 
-        struct som_state som_state = {values, molecule_indices, molecule_indices_length, number_of_samples, sample_indices, sample_indices_length, number_of_rows, number_of_columns, row_for_sample_number, column_for_sample_number, weights};
+        long number_of_iterations = 1000;
+
+        struct som_state som_state = {values, molecule_indices, molecule_indices_length, number_of_samples, sample_indices, sample_indices_length, number_of_rows, number_of_columns, row_for_sample_number, column_for_sample_number, weights, number_of_iterations, 0};
 
         som_initialize_weights(som_state);
 
-
-
-
+        while (som_state.iteration < som_state.number_of_iterations) {
+                long sample_number = som_state.iteration % number_of_samples;
+                som_iteration(som_state, sample_number);
+                som_state.iteration++;
+                printf("iteration = %li\n", som_state.iteration);
+        }
 
 
 
