@@ -6,7 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<title>Amberbio</title>
         <link rel="icon" type="image/png" href="/favicon.png" />
-	<link rel="stylesheet" href="/css/index.css" type="text/css">
+	<link rel="stylesheet" href="index.css" type="text/css">
 	<script>
 	document.createElement('header');
 	document.createElement('nav');
@@ -17,7 +17,7 @@
 
 <body>
 <article>
-  <section-manual>
+  <section class="manual">
     <h1>Manual for the Amberbio app</h1>
 
     <p>
@@ -32,9 +32,9 @@
       This manual is available in the app and on the web
       at <a href="http://www.amberbio.com/manual">www.amberbio.com/manual</a>.
     </p>
-  </section-manual>
+  </section>
 
-  <section-manual>
+  <section class="manual">
     <h1 id="table-of-contents">Table of contents</h1>
 
     <div class="table-of-content-link">
@@ -116,33 +116,46 @@
     <div class="table-of-content-link">
       <a  href="#svm">Support vector machine classification</a>
     </div>
-  </section-manual>
 
-  <section-manual id="version">
+    <div class="table-of-content-link">
+      <a  href="#k-means-clustering">k means clustering</a>
+    </div>
+
+    <div class="table-of-content-link">
+      <a  href="#sammon">Sammon map</a>
+    </div>
+
+    <div class="table-of-content-link">
+      <a href="#som">Self organizing map</a>
+    </div>
+
+  </section>
+
+  <section class="manual" id="version">
     <h1><a href="#table-of-contents">Version</a></h1>
     <p>
-      Version 3 of the Amberbio app.
+      Version 4 of the Amberbio app.
     </p>
-  </section-manual>
+  </section>
 
-  <section-manual id="privacy">
+  <section class="manual" id="privacy">
     <h1><a href="#table-of-contents">Privacy</a></h1>
     <p>
       All data is stored locally on the device. All calculations are performed locally. Amber
       Biosciences does not have any access to user data.
     </p>
-  </section-manual>
+  </section>
 
-  <section-manual id="navigation">
+  <section class="manual" id="navigation">
     <h1><a href="#table-of-contents">Navigation</a></h1>
     <p>
       The app has a home page that is reached by tapping the home icon in the upper left
       corner. Navigation is done from the home page by tapping the icons or by the back and forward
       buttons.
     </p>
-  </section-manual>
+  </section>
 
-  <section-manual id="projects-and-data-sets">
+  <section class="manual" id="projects-and-data-sets">
     <h1><a href="#table-of-contents">Projects and data sets</a></h1>
     <p>
       The app handles projects and data sets. A data set is a set of values organized in a table
@@ -170,9 +183,9 @@
       molecule annotations. An example could be the molecule annotation "Chromosome" where each
       molecule has a value such as "chromosome 21".
     </p>
-  </section-manual>
+  </section>
 
-  <section-manual id="the-active-data-set">
+  <section class="manual" id="the-active-data-set">
     <h1><a href="#table-of-contents">The active data set</a></h1>
     <p>
       Analysis is performed on the active data set. Selection of the active data set is done on the
@@ -187,9 +200,9 @@
      the app automatically makes the new data set active and jumps to the
      page <span class="app-page">Data Set Selection</span>
     </p>
-  </section-manual>
+  </section>
 
-  <section-manual id="import-of-data">
+  <section class="manual" id="import-of-data">
     <h1><a href="#table-of-contents">Import of data</a></h1>
     <p>
       Data import is used to create new projects and to add factor and molecule annotation
@@ -203,9 +216,9 @@
 files can be seen on this page.  The app keeps all imported files until they are deleted by the
 user.
     </p>
-  </section-manual>
+  </section>
 
-  <section-manual id="import-of-files">
+  <section class="manual" id="import-of-files">
     <h1><a href="#table-of-contents">Import of files</a></h1>
     <p>
       The app can import files with extension "txt" or "sqlite". The "txt" files represent tables of
@@ -230,9 +243,9 @@ user.
       page <span class="app-page">Import data</span>. The corresponding cloud storage app must
       itself be installed on the device.
     </p>
-  </section-manual>
+  </section>
 
-  <section-manual id="parsing-import-files">
+  <section class="manual" id="parsing-import-files">
     <h1><a href="#table-of-contents">Parsing import files</a></h1>
     <p>
       Imported files are shown on the page <span class="app-page">Import data</span>. By tapping a
@@ -241,9 +254,9 @@ user.
       create a new project, to import factors to the active project, or to import molecule
       annotations to the active project.
     </p>
-  </section-manual>
+  </section>
 
-  <section-manual id="file-format-of-txt-files">
+  <section class="manual" id="file-format-of-txt-files">
     <h1><a href="#table-of-contents">File format of txt files</a></h1>
     <p>
       The "txt" files contain tables of values. The rows, or lines, are separated by "\n", "\r", or
@@ -357,9 +370,9 @@ user.
         <td>10</td>
       </tr>
     </table>
-  </section-manual>
+  </section>
 
-  <section-manual id="result-files">
+  <section class="manual" id="result-files">
     <h1><a href="#table-of-contents">Result files</a></h1>
     <p>
       Result files are created by the app. The result files are figures and tables and have the file
@@ -367,9 +380,9 @@ user.
       <span class="app-page">Result files</span>. The result files can be sent by email, opened in
       another app, or exported to a cloud storage.
     </p>
-  </section-manual>
+  </section>
 
-  <section-manual id="backup-and-sharing-of-projects">
+  <section class="manual" id="backup-and-sharing-of-projects">
     <h1><a href="#table-of-contents">Backup and sharing of projects</a></h1>
     <p>
       Projects can be exported to a database file on the page <span class="app-page">Export
@@ -377,9 +390,9 @@ user.
       and transfer of projects to other devices. The file can be sent by email or exported to a
       cloud storage.
     </p>
-  </section-manual>
+  </section>
 
-  <section-manual id="name-and-emails">
+  <section class="manual" id="name-and-emails">
     <h1><a href="#table-of-contents">Name and emails</a></h1>
     <p>
       On the page <span class="app-page">User</span>, a name and a list of emails can be
@@ -388,9 +401,9 @@ user.
       email from the app. The actual destination emails can always be changed before sending the
       email.
     </p>
-  </section-manual>
+  </section>
 
-  <section-manual id="anova">
+  <section class="manual" id="anova">
     <h1><a href="#table-of-contents">Anova</a></h1>
     <p>
       The Anova test is performed on the selected levels of a factor. The selected levels are
@@ -399,9 +412,9 @@ user.
       calculating the F-statistic as the ratio of between-groups variation divided by the
       within-groups variation. The p-value is the upper tail of the cumulative F-distribution.
     </p>
-  </section-manual>
+  </section>
 
-  <section-manual id="pairwise-test">
+  <section class="manual" id="pairwise-test">
     <h1><a href="#table-of-contents">Pairwise test</a></h1>
     <p>
       After selecting a factor, any number of pairwise tests between two levels can be selected in
@@ -411,9 +424,9 @@ user.
       size and by the Normal distribution approximation for large sample sizes.  The p-values are
       two-sided.
     </p>
-  </section-manual>
+  </section>
 
-  <section-manual id="paired-test">
+  <section class="manual" id="paired-test">
     <h1><a href="#table-of-contents">Paired test</a></h1>
     <p>
       A pairing factor must be selected. Samples with the same level for the pairing factor can be
@@ -435,9 +448,9 @@ user.
       comparison levels. The p-value is two-sided and tests the null hypothesis that the difference
       between the comparison levels is zero.
     </p>
-  </section-manual>
+  </section>
 
-  <section-manual id="linear-regression">
+  <section class="manual" id="linear-regression">
     <h1><a href="#table-of-contents">Linear regression</a></h1>
     <p>
       For the selected factor, the levels with a numeric interpretation are chosen. A level can be
@@ -455,9 +468,9 @@ user.
       large F-statistic, and correspondingly low p-value, implies that the line is a much better fit
       than a single mean value.
     </p>
-  </section-manual>
+  </section>
 
-  <section-manual id="multiple-hypothesis-testing">
+  <section class="manual" id="multiple-hypothesis-testing">
     <h1><a href="#table-of-contents">Multiple hypothesis testing</a></h1>
     <p>
       Multiple hypothesis testing is performed using the Benjamini-Hochberg false discovery rate
@@ -468,9 +481,9 @@ user.
       A histogram of the p-values can be seen by tapping "histogram". High frequencies for the low
       p-values imply a significant difference between the groups.
     </p>
-  </section-manual>
+  </section>
 
-   <section-manual id="supervised-classification">
+   <section class="manual" id="supervised-classification">
      <h1><a href="#table-of-contents">Supervised classification</a></h1>
      <p>
      The supervised classifiers separate samples into two or more levels. A classifier is
@@ -513,9 +526,9 @@ user.
        equal to leave-one-out cross validation. Leave-one-out cross validation has its own selection
        in the app because of it importance.
      </p>
-   </section-manual>
+   </section>
     
-  <section-manual id="knn">
+  <section class="manual" id="knn">
     <h1><a href="#table-of-contents">k nearest neighbor classification</a></h1>
     <p>
       Given a training set and a test sample, the k training samples with the smallest distances to
@@ -536,9 +549,9 @@ user.
       makes an arbitrary, but non-random, choice. This situation practically never occurs in real
       biological data.
     </p>
-  </section-manual>
+  </section>
 
-  <section-manual id="svm">
+  <section class="manual" id="svm">
     <h1><a href="#table-of-contents">Support vector machine classification</a></h1>
     <p>
       The support vector machine (SVM) classification uses the software library LIBSVM: "Chih-Chung
@@ -546,50 +559,50 @@ user.
       Intelligent Systems and Technology, 2:27:1--27:27, 2011". The LIBSVM software is available at
       http://www.csie.ntu.edu.tw/~cjlin/libsvm. The Amberbio app uses the LIBSVM library to train
       an SVM classifier and calculate the decision values and predicted classes for test samples.
-
-      <h5 class="copyright-header">Copyright for LIBSVM</h5>
-      
-      <div class="copyright">
-	<p>
-	Copyright (c) 2000-2014 Chih-Chung Chang and Chih-Jen Lin. All rights reserved.
-	</p>
-
-	<p>
-	  Redistribution and use in source and binary forms, with or without modification, are
-	  permitted provided that the following conditions are met:
-	</p>
-
-	<p>
-	  1. Redistributions of source code must retain the above copyright notice, this list of
-	  conditions and the following disclaimer.
-	</p>
-
-	<p>
-	  2. Redistributions in binary form must reproduce the above copyright notice, this list of
-	  conditions and the following disclaimer in the documentation and/or other materials
-	  provided with the distribution.
-	 </p>
-
-	<p>
-	  3. Neither name of copyright holders nor the names of its contributors may be used to
-	  endorse or promote products derived from this software without specific prior written
-	  permission.
-	</p>
-
-	<p>
-	  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS ``AS IS'' AND ANY
-	  EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
-	  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL
-	  THE REGENTS OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
-	  EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-	  SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
-	  HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR
-	  TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
-	  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-	</p>
-	
-      </div>
     </p>
+      
+    <h5 class="copyright-header">Copyright for LIBSVM</h5>
+      
+    <div class="copyright">
+      <p>
+	Copyright (c) 2000-2014 Chih-Chung Chang and Chih-Jen Lin. All rights reserved.
+      </p>
+
+      <p>
+	Redistribution and use in source and binary forms, with or without modification, are
+	permitted provided that the following conditions are met:
+      </p>
+
+      <p>
+	1. Redistributions of source code must retain the above copyright notice, this list of
+	conditions and the following disclaimer.
+      </p>
+
+      <p>
+	2. Redistributions in binary form must reproduce the above copyright notice, this list of
+	conditions and the following disclaimer in the documentation and/or other materials
+	provided with the distribution.
+      </p>
+
+      <p>
+	3. Neither name of copyright holders nor the names of its contributors may be used to
+	endorse or promote products derived from this software without specific prior written
+	permission.
+      </p>
+
+      <p>
+	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS ``AS IS'' AND ANY
+	EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+	MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE
+	REGENTS OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY,
+	OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+	SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+	THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+	OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+	POSSIBILITY OF SUCH DAMAGE.
+      </p>
+	
+    </div>
     
     <p>
       The SVM classifier in the app can compare two or more levels. A standard SVM classifier can
@@ -637,8 +650,139 @@ user.
     <p>
       Only molecules without missing values in the training and test sets are used for the SVM.
     </p>
-  </section-manual>
-  
+  </section>
+
+  <section class="manual" id="k-means-clustering">
+    <h1><a href="#table-of-contents">k means clustering</a></h1>
+    <p>
+      K means clustering is an unsupervised clustering algorithm that divides the samples into k
+      groups. The number of clusters, k, is user determined. The algorithm employed by the app is
+      probabilistic and might give different results for several runs on the same data set. However,
+      the results will be similar, and the differences are explained by movement of samples whose
+      group membership is ambiguous. Since there is no unique biologically correct clustering in
+      any case, the probabilistic nature of the algorithm is acceptable.
+    </p>
+
+    <p>
+      The algorithm is almost identical to the standard Lloyd algorithm. The steps are described below.
+    </p>
+
+    <ul style="list-style-type:none">
+      <li>
+	Iterate over the entire cluster algorithm below, and take the clustering with the smallest
+	sum of square deviation as the final result.  The number of iterations is dynamic and
+	depends on the duration for one iteration. The app should never become unresponsive by being
+	stuck in a long computation.
+      </li>
+
+      <li>
+	<ul style="list-style-type:none">
+	  <li>Assign the samples to random clusters.</li>
+	  <li>Resolve empty clusters by moving samples from the largest cluster to empty clusters.</li>
+	  <li>Iterate the following steps until the clusters are constant or a maximum limit is reached. In practice, the maximum limit is almost never needed.</li>
+	  <li>
+	    <ul style="list-style-type:none">
+	      <li>Calculate centroids as the average point in each cluster.</li>
+	      <li>Reassign samples to clusters. A sample belongs to the cluster whose centroid is closest.</li>
+	      <li>Resolve empty clusters by moving samples from the largest cluster to the empty clusters.
+	    </ul>
+	  </li>
+	  <li>Calculate the sum of square deviation of samples from their cluster centroid.</li>
+	</ul>
+      </li>
+    </ul>
+  </section>
+
+  <section class="manual" id="sammon">
+        <h1><a href="#table-of-contents">Sammon map</a></h1>
+	<p>
+	  The Sammon map is a projection of the high dimensional samples to a low dimensional space.
+	  The map was invented by Sammon in 1969. (J. W. Sammon jr. A Nonlinear Mapping for Data
+	  Structure Analysis. IEEE Transactions on Computers, vol. C-18, no. 5, pp 401-409, May
+	  1969). In this app the low dimensional space is two or three dimensional such that the
+	  samples can be visualized. The Sammon map attempts to preserve the pairwise distances
+	  between samples as much as possible.
+	</p>
+
+	<p>
+	  The distances in the high dimensional space are Euclidean distances using only the
+	  molecules without missing values for the selected samples. The algorithm is described by
+	  by Kohonen ( T. Kohonen. Self Organizing Maps. Springer, 3 edition, 2001) and is
+	  iterative. The number of iterations depend on the time of one iteration; the app will never
+	  go into a long computation.
+	</p>
+
+	<p>
+	  At each iteration, the algorithm loops over all pairs of samples and updates the two
+	  samples.  The update moves the two points directly away from each other if their distance
+	  is too small, and moves them towards each other if it is to large.  The size of the
+	  movement depends on the current distances and a variable multiplier. The multiplier starts
+	  at 0.4 and ends at a small value. The multiplier is reduced at each iteration.
+	</p>
+
+	<p>
+	  The purpose of the Sammon map is to obtain a visualization of the samples and hopefully
+	  gain some biological insight. The Sammon map is an alternative to the PCA map. The Sammon
+	  map has the property that samples close to each other remain close after the projection
+	  which is not guaranteed by the PCA map.
+	</p>
+
+  </section>
+
+  <section class="manual" id="som">
+        <h1><a href="#table-of-contents">Self organizing map</a></h1>
+	<p>
+	  The self organizing map was invented by Kohonen (Kohonen, Teuvo (1982). "Self-Organized
+	  Formation of Topologically Correct Feature Maps". Biological Cybernetics 43 (1): 59–69).
+	</p>
+	  
+	<p>
+	  The map works by mapping a grid of units into the space of the molecular values of the
+	  samples. In the Amberbio app the grid is made of hexagonal units with a user selected
+	  number of rows and columns. In the molecular space, only molecules without missing values
+	  are used.
+	</p>
+
+	<p>
+	  The map is calculated using an iterative process. At initialization, the units are given
+	  an arbitrary starting position. In the Amberbio app, the starting positions are distinct
+	  linear combinations of the samples. In the iterative process, a random sample is chosen at
+	  each step. The random number generator is seeded such that the same map is generated on
+	  the same samples for repeat runs of the algorithm. The unit closest to the random sample
+	  is found. Call this unit the special unit. The position of all units are updated such that
+	  they move closer to the random sample. The units are updated to a weighted average of their current position and
+	  the position of the random sample. The weight is largest for the special unit and falls
+	  off according to
+	</p>
+
+	  <div class="formula">K &times; exp(- distance_to_special_unit^2 / C)</div>
+
+	<p>
+	  where the constants <span class="formula">K</span> and <span class="formula">C</span>
+	  themselves decrease exponentially for each iteration.
+	</p>
+
+	<p>
+	  After generating the map, the samples are mapped to their closest unit. The plot in the
+	  app shows the grid of units with the embedded samples. In this way, the self organizing
+	  map can be used for unsupervised clustering and for visualization of the samples.
+	</p>
+
+	<p>
+	  The borders between the neighboring units are colored according to the distance between
+	  the units in the molecular sample space. The borders of proximate units are light blue and the
+	  borders of distant units are dark blue.
+	</p>
+
+	<p>
+	  The self organizing map can be thought of as a sheet that attempts to wrap around the
+	  samples in the high dimensional space of molecular values. The samples are projected onto
+	  the sheet and the plot shows the two dimensional grid of units with the samples embedded.
+	</p>
+
+
+  </section>
+
 </article>
 </body>
 </html>

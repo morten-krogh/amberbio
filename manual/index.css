@@ -6,6 +6,11 @@ body {
     background-color : rgb(224,243,248);
 }
 
+.formula {
+	 text-align : center;
+	 font-style : italic;
+}
+
 a {
     color : rgb(26,150,65);
 }
@@ -93,16 +98,13 @@ article > hgroup {
     padding-left : 50px;
 }
 
-section, section-manual {
+section.manual {
     display : block;
     overflow : hidden;
+    max-width : 800px;
 }
 
-section-manual {
-   max-width : 800px;
-}
-
-section-manual > h1, section-manual > h1 > a {
+section.manual > h1, section.manual > h1 > a {
    color : rgb(69,117,180);
 }
 
@@ -214,7 +216,7 @@ td, th {
 	max-width : 533px;
     }
 
-    section, section-manual {
+    section {
        	margin : 10px 5px 20px 5px;
     }
     
@@ -250,7 +252,7 @@ td, th {
 	margin-right : 10px;
     }
     
-    section, section-manual {
+    section {
        	margin : 20px 25px 30px 25px;
     }
 
@@ -273,7 +275,7 @@ td, th {
 	margin-right : 2.1%;
     }
     
-    section, section-manual {
+    section {
        	margin : 20px 25px 30px 25px;
     }
 
@@ -306,7 +308,7 @@ td, th {
 	margin-right : 6%;
     }
     
-    section, section-manual {
+    section {
        	margin : 20px 40px 10px 40px;
     }
 
@@ -350,3 +352,12 @@ td, th {
 	   margin: 30px 50px 50px 50px;
 	   font-size: 80%;
 }
+
+ul {
+   margin: 20px 10px 20px 10px;
+}
+
+li {
+   margin: 20px 10px 20px 10px;
+}
+
