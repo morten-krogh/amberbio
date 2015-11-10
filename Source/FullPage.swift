@@ -114,6 +114,8 @@ class FullPage: Component, UIScrollViewDelegate, UISearchBarDelegate {
                                 page = DataSetSelection()
                         case "import_data":
                                 page = ImportData()
+                        case "import_table":
+                                page = ImportTable()
                         case "export_projects":
                                 page = ExportProjects()
                         case "edit_project":

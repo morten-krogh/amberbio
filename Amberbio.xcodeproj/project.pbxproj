@@ -36,6 +36,7 @@
 		602709041BA8054800672D54 /* brain-stem-cells-values.txt in Resources */ = {isa = PBXBuildFile; fileRef = 602709001BA804EA00672D54 /* brain-stem-cells-values.txt */; };
 		602E0C721BD4D5F600BF0F17 /* MoleculeWebSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602E0C711BD4D5F600BF0F17 /* MoleculeWebSearch.swift */; };
 		604A51BA1BF25E600057373D /* ImportTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604A51B91BF25E600057373D /* ImportTableViewCell.swift */; };
+		604A51BC1BF26C1E0057373D /* ImportTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604A51BB1BF26C1E0057373D /* ImportTable.swift */; };
 		605F52321BC2ED2D00033B91 /* SupervisedClassificationParameterSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605F52311BC2ED2D00033B91 /* SupervisedClassificationParameterSelection.swift */; };
 		605F52351BC3B37300033B91 /* knn.c in Sources */ = {isa = PBXBuildFile; fileRef = 605F52331BC3B37300033B91 /* knn.c */; };
 		605F52371BC3D9EF00033B91 /* SupervisedClassificationResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605F52361BC3D9EF00033B91 /* SupervisedClassificationResult.swift */; };
@@ -286,6 +287,7 @@
 		602709001BA804EA00672D54 /* brain-stem-cells-values.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "brain-stem-cells-values.txt"; path = "demo-data/brain-stem-cells/brain-stem-cells-values.txt"; sourceTree = "<group>"; };
 		602E0C711BD4D5F600BF0F17 /* MoleculeWebSearch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MoleculeWebSearch.swift; path = Source/MoleculeWebSearch.swift; sourceTree = "<group>"; };
 		604A51B91BF25E600057373D /* ImportTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImportTableViewCell.swift; sourceTree = "<group>"; };
+		604A51BB1BF26C1E0057373D /* ImportTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImportTable.swift; path = Source/ImportTable.swift; sourceTree = "<group>"; };
 		605F52311BC2ED2D00033B91 /* SupervisedClassificationParameterSelection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SupervisedClassificationParameterSelection.swift; path = Source/SupervisedClassificationParameterSelection.swift; sourceTree = "<group>"; };
 		605F52331BC3B37300033B91 /* knn.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = knn.c; path = Source/knn.c; sourceTree = "<group>"; };
 		605F52361BC3D9EF00033B91 /* SupervisedClassificationResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SupervisedClassificationResult.swift; path = Source/SupervisedClassificationResult.swift; sourceTree = "<group>"; };
@@ -618,6 +620,7 @@
 				60B400791BA19C7900D8DD80 /* Home.swift */,
 				60B4007A1BA19C7900D8DD80 /* HomeButton.swift */,
 				60B4007C1BA19C7900D8DD80 /* ImportData.swift */,
+				604A51BB1BF26C1E0057373D /* ImportTable.swift */,
 				60B4007D1BA19C7900D8DD80 /* InfoButton.swift */,
 				60A77A961BDE459D00C8FBEE /* KMeansClusteringResult.swift */,
 				60A77A921BDE25BE00C8FBEE /* KMeansClusteringSelection.swift */,
@@ -1254,6 +1257,7 @@
 				60B400F71BA19C7900D8DD80 /* ExportProjects.swift in Sources */,
 				60B4011C1BA19C7900D8DD80 /* MultiSegmentedControl.swift in Sources */,
 				60A77A911BDE0D4800C8FBEE /* k_means_clustering.c in Sources */,
+				604A51BC1BF26C1E0057373D /* ImportTable.swift in Sources */,
 				60B401571BA19C7900D8DD80 /* TextFieldTableViewCell.swift in Sources */,
 				60B400E31BA19C7900D8DD80 /* ColorKey.swift in Sources */,
 				60B401471BA19C7900D8DD80 /* SingleMoleculePlot.swift in Sources */,
