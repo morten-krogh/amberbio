@@ -54,7 +54,7 @@ func parse_factor_file(data data: NSData, current_sample_names: [String], curren
                         return ([], [], error)
                 }
 
-                if table.count > 100 {
+                if table.count > 200 {
                         let error = "There are too many rows in the file"
                         return ([], [], error)
                 }

@@ -7,7 +7,13 @@ let database_url = file_app_directory_url(file_name: database_file_name)
 
 let reset_database = false
 //let initial_active_data_set_id = 1
-let initial_page_state = HomeState()
+#if DEBUG
+        let debug_flag = true
+        let initial_page_state = ImportDataState()
+#else
+        let debug_flag = false
+        let initial_page_state = HomeState()
+#endif
 
 func state_init() {
         //        print(database_path)

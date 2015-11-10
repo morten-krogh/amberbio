@@ -6,14 +6,14 @@ class ImportDataState: PageState {
                 super.init()
                 name = "import_data"
                 title = astring_body(string: "Import Data")
-                info = "Imported files contain measurement values, sample names, factors, molecule names and molecule annotations.\n\nTap a file to see the import options.\n\nThe \"import new file\" button is used to import files from cloud based services.\n\nFiles can be imported from the Email app by opening an attachment with the Amberbio App.\n\nDelete a file by swiping to the left.\n\nSee the manual for a description of the file formats"
+                info = "Downloaded files contain measurement values, sample names, factors, molecule names and molecule annotations.\n\nThe \"Download file\" button is used to download files from cloud based services.\n\nFiles can be downloaded from the Email app by opening an attachment with the Amberbio App.\n\nDelete a file by swiping to the left.\n\nSee the manual for a description of the file formats."
         }
 }
 
 class ImportData: Component, UITableViewDataSource, UITableViewDelegate {
 
         let table_view = UITableView()
-        let import_button = UIButton(type: UIButtonType.System)
+        let download_button = UIButton(type: UIButtonType.System)
 
         var file_ids = [] as [Int]
         var file_names = [] as [String]
@@ -22,24 +22,20 @@ class ImportData: Component, UITableViewDataSource, UITableViewDelegate {
 
         var should_reload_data = true
 
-        var selected_index_path: NSIndexPath?
-
         override func viewDidLoad() {
                 super.viewDidLoad()
 
-                import_button.setAttributedTitle(astring_body(string: "Import new file"), forState: .Normal)
-                import_button.addTarget(self, action: "import_button_action", forControlEvents: UIControlEvents.TouchUpInside)
+                download_button.setAttributedTitle(astring_body(string: "Download file"), forState: .Normal)
+                download_button.addTarget(self, action: "download_action", forControlEvents: UIControlEvents.TouchUpInside)
 
-                table_view.registerClass(NameDateTableViewCell.self, forCellReuseIdentifier: "file cell")
-                table_view.registerClass(ImportDataTableViewCell.self, forCellReuseIdentifier: "import data cell")
-                table_view.registerClass(ImportProjectsTableViewCell.self, forCellReuseIdentifier: "import projects cell")
+                table_view.registerClass(ImportTableViewCell.self, forCellReuseIdentifier: "import table view cell")
 
                 table_view.dataSource = self
                 table_view.delegate = self
                 table_view.backgroundColor = UIColor.whiteColor()
                 table_view.separatorStyle = .None
 
-                view.addSubview(import_button)
+                view.addSubview(download_button)
                 view.addSubview(table_view)
         }
 
@@ -49,10 +45,10 @@ class ImportData: Component, UITableViewDataSource, UITableViewDelegate {
                 let top_margin = 20 as CGFloat
                 let middle_margin = 20 as CGFloat
 
-                import_button.sizeToFit()
-                import_button.center = CGPoint(x: view.frame.width / 2.0, y: top_margin + import_button.frame.height / 2.0)
+                download_button.sizeToFit()
+                download_button.center = CGPoint(x: view.frame.width / 2.0, y: top_margin + download_button.frame.height / 2.0)
 
-                let table_view_origin_y = top_margin + import_button.frame.height + middle_margin
+                let table_view_origin_y = top_margin + download_button.frame.height + middle_margin
                 table_view.frame = CGRect(x: 0, y: table_view_origin_y, width: view.frame.width, height: view.frame.height - table_view_origin_y)
         }
 
@@ -65,8 +61,8 @@ class ImportData: Component, UITableViewDataSource, UITableViewDelegate {
                 should_reload_data = true
         }
 
-        func import_button_action() {
-                document_picker_import.import_file(from_view_controller: self, source_view: import_button, imported_file_handler: { (file_name: String, data: NSData) -> Void in
+        func download_action() {
+                document_picker_import.import_file(from_view_controller: self, source_view: download_button, imported_file_handler: { (file_name: String, data: NSData) -> Void in
                         state.insert_file(name: file_name, type: "imported", data: data)
                         self.render()
                         self.table_view.reloadData()
@@ -82,34 +78,22 @@ class ImportData: Component, UITableViewDataSource, UITableViewDelegate {
         }
 
         func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-                if selected_index_path == indexPath {
-                        let file_name = file_names[indexPath.row]
-                        return file_name.hasSuffix("sqlite") || !state.active_data_set ? 140 : 200
-                } else {
-                        return 70
-                }
+                return import_table_view_cell_height
         }
 
         func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
                 let row = indexPath.row
                 let file_name = file_names[row]
                 let date = date_from_sqlite_timestamp(timestamp: date_of_imports[row])
-                if selected_index_path == indexPath {
+                let cell = tableView.dequeueReusableCellWithIdentifier("import table view cell") as! ImportTableViewCell
+                cell.update(name: file_name, date: date, import_action: {
                         if file_name.hasSuffix("sqlite") {
-                                let cell = tableView.dequeueReusableCellWithIdentifier("import projects cell") as! ImportProjectsTableViewCell
-                                cell.update(import_data: self, row: row, name: file_name, date: date)
-                                return cell
+                                self.import_projects(row: row)
                         } else {
-                                let cell = tableView.dequeueReusableCellWithIdentifier("import data cell") as! ImportDataTableViewCell
-                                cell.update(import_data: self, only_create_project: !state.active_data_set, row: row, name: file_name, date: date)
-                                return cell
+                                print("import \(file_name)")
                         }
-                } else {
-                        let cell = tableView.dequeueReusableCellWithIdentifier("file cell", forIndexPath: indexPath) as! NameDateTableViewCell
-                        cell.update_selected(name: file_name, date: date_from_sqlite_timestamp(timestamp: date_of_imports[indexPath.row]))
-
-                        return cell
-                }
+                })
+                return cell
         }
 
         func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
@@ -119,15 +103,6 @@ class ImportData: Component, UITableViewDataSource, UITableViewDelegate {
                         state.render()
                         tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
                 }
-        }
-
-        func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-                if selected_index_path == indexPath {
-                        selected_index_path = nil
-                } else {
-                        selected_index_path = indexPath
-                }
-                table_view.reloadData()
         }
 
         func import_projects(row row: Int) {
@@ -194,7 +169,6 @@ class ImportData: Component, UITableViewDataSource, UITableViewDelegate {
                                         message = (factor_names.count == 1 ? "One factor has" : "\(factor_names.count) factors have") + " been added to the active project"
                                 }
                                 alert(title: "The file is valid", message: message, view_controller: self)
-                                self.selected_index_path = nil
                                 self.table_view.reloadData()
                         }
                 }
@@ -218,171 +192,181 @@ class ImportData: Component, UITableViewDataSource, UITableViewDelegate {
                                         message = (annotation_names.count == 1 ? "One molecule annotation has" : "\(annotation_names.count) molecule annotations have") + " been added to the active project"
                                 }
                                 alert(title: "The file is valid", message: message, view_controller: self)
-                                self.selected_index_path = nil
                                 self.table_view.reloadData()
                         }
                 }
         }
 }
 
-class ImportDataTableViewCell: UITableViewCell {
-
-        var import_data: ImportData!
-        var row: Int!
-
-        let inset_view = UIView()
-
-        let name_label = UILabel()
-        let date_label = UILabel()
-
-        let create_project_button = UIButton(type: .System)
-        let factors_button = UIButton(type: .System)
-        let annotations_button = UIButton(type: .System)
-
-        override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-                super.init(style: style, reuseIdentifier: reuseIdentifier)
-
-                selectionStyle = UITableViewCellSelectionStyle.None
-                contentView.backgroundColor = UIColor.whiteColor()
-
-                inset_view.layer.cornerRadius = 20
-                inset_view.backgroundColor = UIColor(red: 0.9, green: 0.98, blue: 0.9, alpha: 1.0)
-
-                name_label.textAlignment = .Center
-                name_label.font = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
-
-                date_label.textAlignment = .Center
-                date_label.font = UIFont.preferredFontForTextStyle(UIFontTextStyleFootnote)
-                date_label.textColor = UIColor.lightGrayColor()
-
-                create_project_button.setAttributedTitle(astring_body(string: "Create new project"), forState: .Normal)
-                create_project_button.addTarget(self, action: "create_project_action", forControlEvents: .TouchUpInside)
-
-                factors_button.setAttributedTitle(astring_body(string: "Import sample factors"), forState: .Normal)
-                factors_button.addTarget(self, action: "factors_action", forControlEvents: .TouchUpInside)
-
-                annotations_button.setAttributedTitle(astring_body(string: "Import molecule annotations"), forState: .Normal)
-                annotations_button.addTarget(self, action: "annotations_action", forControlEvents: .TouchUpInside)
-
-                contentView.addSubview(inset_view)
-                inset_view.addSubview(name_label)
-                inset_view.addSubview(date_label)
-                inset_view.addSubview(create_project_button)
-                inset_view.addSubview(factors_button)
-                inset_view.addSubview(annotations_button)
-        }
-
-        required init(coder aDecoder: NSCoder) {fatalError("This initializer should not be called")}
-
-        override func layoutSubviews() {
-                super.layoutSubviews()
-
-                let top_margin = 5 as CGFloat
-                let middle_margin = 20 as CGFloat
-
-                inset_view.frame = CGRectInset(contentView.bounds, 10, 5)
-                name_label.sizeToFit()
-                date_label.sizeToFit()
-
-                name_label.center = CGPoint(x: inset_view.frame.width / 2.0, y: top_margin + name_label.frame.height / 2.0)
-                date_label.center = CGPoint(x: inset_view.frame.width / 2.0, y: top_margin + name_label.frame.height / 2.0 + middle_margin + date_label.frame.height / 2.0)
-
-                create_project_button.sizeToFit()
-                create_project_button.center = CGPoint(x: inset_view.frame.width / 2.0, y: CGRectGetMaxY(date_label.frame) + 2 * middle_margin)
-
-                factors_button.sizeToFit()
-                factors_button.center = CGPoint(x: inset_view.frame.width / 2.0, y: CGRectGetMaxY(create_project_button.frame) + middle_margin)
-
-                annotations_button.sizeToFit()
-                annotations_button.center = CGPoint(x: inset_view.frame.width / 2.0, y: CGRectGetMaxY(factors_button.frame) + middle_margin)
-        }
-
-        func update(import_data import_data: ImportData, only_create_project: Bool, row: Int, name: String, date: NSDate) {
-                self.import_data = import_data
-                self.row = row
-                name_label.text = name
-                date_label.text = date_formatted_string(date: date)
-                factors_button.hidden = only_create_project
-                annotations_button.hidden = only_create_project
-        }
-
-        func create_project_action() {
-                import_data.create_project(row: row)
-        }
-
-        func factors_action() {
-                import_data.import_factors(row: row)
-        }
-
-        func annotations_action() {
-                import_data.import_annotations(row: row)
-        }
-}
-
-class ImportProjectsTableViewCell: UITableViewCell {
-
-        var import_data: ImportData!
-        var row: Int!
-
-        let inset_view = UIView()
-
-        let name_label = UILabel()
-        let date_label = UILabel()
-
-        let import_projects_button = UIButton(type: .System)
-
-        override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-                super.init(style: style, reuseIdentifier: reuseIdentifier)
-
-                selectionStyle = UITableViewCellSelectionStyle.None
-                contentView.backgroundColor = UIColor.whiteColor()
-
-                inset_view.layer.cornerRadius = 20
-                inset_view.backgroundColor = UIColor(red: 0.9, green: 0.98, blue: 0.9, alpha: 1.0)
-
-                name_label.textAlignment = .Center
-                name_label.font = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
-
-                date_label.textAlignment = .Center
-                date_label.font = UIFont.preferredFontForTextStyle(UIFontTextStyleFootnote)
-                date_label.textColor = UIColor.lightGrayColor()
-
-                import_projects_button.setAttributedTitle(astring_body(string: "Import projects"), forState: .Normal)
-                import_projects_button.addTarget(self, action: "import_projects_action", forControlEvents: .TouchUpInside)
-
-                contentView.addSubview(inset_view)
-                inset_view.addSubview(name_label)
-                inset_view.addSubview(date_label)
-                inset_view.addSubview(import_projects_button)
-        }
-
-        required init(coder aDecoder: NSCoder) {fatalError("This initializer should not be called")}
-
-        override func layoutSubviews() {
-                super.layoutSubviews()
-
-                let top_margin = 5 as CGFloat
-                let middle_margin = 20 as CGFloat
-
-                inset_view.frame = CGRectInset(contentView.bounds, 10, 5)
-                name_label.sizeToFit()
-                date_label.sizeToFit()
-
-                name_label.center = CGPoint(x: inset_view.frame.width / 2.0, y: top_margin + name_label.frame.height / 2.0)
-                date_label.center = CGPoint(x: inset_view.frame.width / 2.0, y: top_margin + name_label.frame.height / 2.0 + middle_margin + date_label.frame.height / 2.0)
-
-                import_projects_button.sizeToFit()
-                import_projects_button.center = CGPoint(x: inset_view.frame.width / 2.0, y: CGRectGetMaxY(date_label.frame) + 2 * middle_margin)
-        }
-
-        func update(import_data import_data: ImportData, row: Int, name: String, date: NSDate) {
-                self.import_data = import_data
-                self.row = row
-                name_label.text = name
-                date_label.text = date_formatted_string(date: date)
-        }
-
-        func import_projects_action() {
-                import_data.import_projects(row: row)
-        }
-}
+//class ImportDataTableViewCell: UITableViewCell {
+//
+//        var import_data: ImportData!
+//        var row: Int!
+//
+//        let inset_view = UIView()
+//
+//        let name_label = UILabel()
+//        let date_label = UILabel()
+//
+//        let create_project_button = UIButton(type: .System)
+//        let factors_button = UIButton(type: .System)
+//        let annotations_button = UIButton(type: .System)
+//
+//        override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+//                super.init(style: style, reuseIdentifier: reuseIdentifier)
+//
+//                selectionStyle = UITableViewCellSelectionStyle.None
+//                contentView.backgroundColor = UIColor.whiteColor()
+//
+//                inset_view.layer.cornerRadius = 20
+//                inset_view.backgroundColor = UIColor(red: 0.9, green: 0.98, blue: 0.9, alpha: 1.0)
+//
+//                name_label.numberOfLines = 0
+//                name_label.textAlignment = .Center
+//                name_label.font = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
+//
+//                date_label.textAlignment = .Center
+//                date_label.font = UIFont.preferredFontForTextStyle(UIFontTextStyleFootnote)
+//                date_label.textColor = UIColor.lightGrayColor()
+//
+//                create_project_button.setAttributedTitle(astring_body(string: "Create new project"), forState: .Normal)
+//                create_project_button.addTarget(self, action: "create_project_action", forControlEvents: .TouchUpInside)
+//
+//                factors_button.setAttributedTitle(astring_body(string: "Import sample factors"), forState: .Normal)
+//                factors_button.addTarget(self, action: "factors_action", forControlEvents: .TouchUpInside)
+//
+//                annotations_button.setAttributedTitle(astring_body(string: "Import molecule annotations"), forState: .Normal)
+//                annotations_button.addTarget(self, action: "annotations_action", forControlEvents: .TouchUpInside)
+//
+//                contentView.addSubview(inset_view)
+//                inset_view.addSubview(name_label)
+//                inset_view.addSubview(date_label)
+//                inset_view.addSubview(create_project_button)
+//                inset_view.addSubview(factors_button)
+//                inset_view.addSubview(annotations_button)
+//        }
+//
+//        required init(coder aDecoder: NSCoder) {fatalError("This initializer should not be called")}
+//
+//        override func layoutSubviews() {
+//                super.layoutSubviews()
+//
+//                let top_margin = 5 as CGFloat
+//                let middle_margin = 20 as CGFloat
+//
+//                inset_view.frame = CGRectInset(contentView.bounds, 10, 5)
+//                let name_label_size = name_label.sizeThatFits(CGSize(width: inset_view.frame.width - 10, height: 0))
+//                print(name_label_size)
+//                name_label.frame.size = name_label_size
+////                name_label.sizeToFit()
+//                print(name_label.text)
+//                print(name_label.frame.size)
+//                print(inset_view.frame.size)
+//
+//                date_label.sizeToFit()
+//
+//                name_label.center = CGPoint(x: inset_view.frame.width / 2.0, y: top_margin + name_label.frame.height / 2.0)
+//                date_label.center = CGPoint(x: inset_view.frame.width / 2.0, y: top_margin + name_label.frame.height / 2.0 + middle_margin + date_label.frame.height / 2.0)
+//
+//                create_project_button.sizeToFit()
+//                create_project_button.center = CGPoint(x: inset_view.frame.width / 2.0, y: CGRectGetMaxY(date_label.frame) + 2 * middle_margin)
+//
+//                factors_button.sizeToFit()
+//                factors_button.center = CGPoint(x: inset_view.frame.width / 2.0, y: CGRectGetMaxY(create_project_button.frame) + middle_margin)
+//
+//                annotations_button.sizeToFit()
+//                annotations_button.center = CGPoint(x: inset_view.frame.width / 2.0, y: CGRectGetMaxY(factors_button.frame) + middle_margin)
+//        }
+//
+//        func update(import_data import_data: ImportData, only_create_project: Bool, row: Int, name: String, date: NSDate) {
+//                self.import_data = import_data
+//                self.row = row
+//                name_label.text = name
+//                date_label.text = date_formatted_string(date: date)
+//                factors_button.hidden = only_create_project
+//                annotations_button.hidden = only_create_project
+//
+//                setNeedsLayout()
+//        }
+//
+//        func create_project_action() {
+//                import_data.create_project(row: row)
+//        }
+//
+//        func factors_action() {
+//                import_data.import_factors(row: row)
+//        }
+//
+//        func annotations_action() {
+//                import_data.import_annotations(row: row)
+//        }
+//}
+//
+//class ImportProjectsTableViewCell: UITableViewCell {
+//
+//        var import_data: ImportData!
+//        var row: Int!
+//
+//        let inset_view = UIView()
+//
+//        let name_label = UILabel()
+//        let date_label = UILabel()
+//
+//        let import_projects_button = UIButton(type: .System)
+//
+//        override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+//                super.init(style: style, reuseIdentifier: reuseIdentifier)
+//
+//                selectionStyle = UITableViewCellSelectionStyle.None
+//                contentView.backgroundColor = UIColor.whiteColor()
+//
+//                inset_view.layer.cornerRadius = 20
+//                inset_view.backgroundColor = UIColor(red: 0.9, green: 0.98, blue: 0.9, alpha: 1.0)
+//
+//                name_label.numberOfLines = 0
+//                name_label.textAlignment = .Center
+//                name_label.font = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
+//
+//                date_label.textAlignment = .Center
+//                date_label.font = UIFont.preferredFontForTextStyle(UIFontTextStyleFootnote)
+//                date_label.textColor = UIColor.lightGrayColor()
+//
+//                import_projects_button.setAttributedTitle(astring_body(string: "Import projects"), forState: .Normal)
+//                import_projects_button.addTarget(self, action: "import_projects_action", forControlEvents: .TouchUpInside)
+//
+//                contentView.addSubview(inset_view)
+//                inset_view.addSubview(name_label)
+//                inset_view.addSubview(date_label)
+//                inset_view.addSubview(import_projects_button)
+//        }
+//
+//        required init(coder aDecoder: NSCoder) {fatalError("This initializer should not be called")}
+//
+//        override func layoutSubviews() {
+//                super.layoutSubviews()
+//
+//                let top_margin = 5 as CGFloat
+//                let middle_margin = 20 as CGFloat
+//
+//                inset_view.frame = CGRectInset(contentView.bounds, 10, 5)
+//                name_label.sizeToFit()
+//                date_label.sizeToFit()
+//
+//                name_label.center = CGPoint(x: inset_view.frame.width / 2.0, y: top_margin + name_label.frame.height / 2.0)
+//                date_label.center = CGPoint(x: inset_view.frame.width / 2.0, y: top_margin + name_label.frame.height / 2.0 + middle_margin + date_label.frame.height / 2.0)
+//
+//                import_projects_button.sizeToFit()
+//                import_projects_button.center = CGPoint(x: inset_view.frame.width / 2.0, y: CGRectGetMaxY(date_label.frame) + 2 * middle_margin)
+//        }
+//
+//        func update(import_data import_data: ImportData, row: Int, name: String, date: NSDate) {
+//                self.import_data = import_data
+//                self.row = row
+//                name_label.text = name
+//                date_label.text = date_formatted_string(date: date)
+//        }
+//
+//        func import_projects_action() {
+//                import_data.import_projects(row: row)
+//        }
+//}

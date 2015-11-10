@@ -35,6 +35,7 @@
 		602709031BA8054400672D54 /* brain-stem-cells-factors.txt in Resources */ = {isa = PBXBuildFile; fileRef = 602708FF1BA804EA00672D54 /* brain-stem-cells-factors.txt */; };
 		602709041BA8054800672D54 /* brain-stem-cells-values.txt in Resources */ = {isa = PBXBuildFile; fileRef = 602709001BA804EA00672D54 /* brain-stem-cells-values.txt */; };
 		602E0C721BD4D5F600BF0F17 /* MoleculeWebSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602E0C711BD4D5F600BF0F17 /* MoleculeWebSearch.swift */; };
+		604A51BA1BF25E600057373D /* ImportTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604A51B91BF25E600057373D /* ImportTableViewCell.swift */; };
 		605F52321BC2ED2D00033B91 /* SupervisedClassificationParameterSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605F52311BC2ED2D00033B91 /* SupervisedClassificationParameterSelection.swift */; };
 		605F52351BC3B37300033B91 /* knn.c in Sources */ = {isa = PBXBuildFile; fileRef = 605F52331BC3B37300033B91 /* knn.c */; };
 		605F52371BC3D9EF00033B91 /* SupervisedClassificationResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605F52361BC3D9EF00033B91 /* SupervisedClassificationResult.swift */; };
@@ -284,6 +285,7 @@
 		602708FF1BA804EA00672D54 /* brain-stem-cells-factors.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "brain-stem-cells-factors.txt"; path = "demo-data/brain-stem-cells/brain-stem-cells-factors.txt"; sourceTree = "<group>"; };
 		602709001BA804EA00672D54 /* brain-stem-cells-values.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "brain-stem-cells-values.txt"; path = "demo-data/brain-stem-cells/brain-stem-cells-values.txt"; sourceTree = "<group>"; };
 		602E0C711BD4D5F600BF0F17 /* MoleculeWebSearch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MoleculeWebSearch.swift; path = Source/MoleculeWebSearch.swift; sourceTree = "<group>"; };
+		604A51B91BF25E600057373D /* ImportTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImportTableViewCell.swift; sourceTree = "<group>"; };
 		605F52311BC2ED2D00033B91 /* SupervisedClassificationParameterSelection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SupervisedClassificationParameterSelection.swift; path = Source/SupervisedClassificationParameterSelection.swift; sourceTree = "<group>"; };
 		605F52331BC3B37300033B91 /* knn.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = knn.c; path = Source/knn.c; sourceTree = "<group>"; };
 		605F52361BC3D9EF00033B91 /* SupervisedClassificationResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SupervisedClassificationResult.swift; path = Source/SupervisedClassificationResult.swift; sourceTree = "<group>"; };
@@ -703,6 +705,7 @@
 				60B400511BA19C7900D8DD80 /* CenteredTableViewCell.swift */,
 				605F52381BC400EF00033B91 /* ClassificationTableViewCell.swift */,
 				605F523A1BC502A700033B91 /* CrossValidationTableViewCell.swift */,
+				604A51B91BF25E600057373D /* ImportTableViewCell.swift */,
 				60B400921BA19C7900D8DD80 /* NameDateTableViewCell.swift */,
 				601E57AA1BCD53C4002EEEB3 /* ParameterTableViewCell.swift */,
 				60B400B91BA19C7900D8DD80 /* SearchTableViewCell.swift */,
@@ -1116,6 +1119,7 @@
 			files = (
 				60B401121BA19C7900D8DD80 /* MannWhitney.swift in Sources */,
 				60B400E91BA19C7900D8DD80 /* DataSetSelection.swift in Sources */,
+				604A51BA1BF25E600057373D /* ImportTableViewCell.swift in Sources */,
 				60B401041BA19C7900D8DD80 /* HierarchicalClusteringPlot.swift in Sources */,
 				60B4014A1BA19C7900D8DD80 /* SliderTableViewCell.swift in Sources */,
 				602E0C721BD4D5F600BF0F17 /* MoleculeWebSearch.swift in Sources */,
@@ -1491,6 +1495,7 @@
 				INFOPLIST_FILE = Amberbio/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				"OTHER_SWIFT_FLAGS[arch=*]" = "-DDEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = com.amberbio.Amberbio;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Amberbio-Bridging-Header.h";
