@@ -171,13 +171,13 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
                 new_project_button.sizeToFit()
                 new_project_button.center = CGPoint(x: width / 2, y: origin_y)
 
-                scroll_left_button.setAttributedTitle(astring_max_width(string: "Scroll left", max_width: (width - 40) / 3), forState: .Normal)
+                scroll_left_button.setAttributedTitle(astring_body(string: "Scroll left"), forState: .Normal)
                 scroll_left_button.sizeToFit()
-                scroll_left_button.frame.origin = CGPoint(x: 20, y: origin_y)
+                scroll_left_button.frame.origin = CGPoint(x: 20, y: origin_y - scroll_left_button.frame.height / 2)
 
-
-
-
+                scroll_right_button.setAttributedTitle(astring_body(string: "Scroll right"), forState: .Normal)
+                scroll_right_button.sizeToFit()
+                scroll_right_button.frame.origin = CGPoint(x: width - scroll_right_button.frame.width - 20, y: origin_y - scroll_right_button.frame.height / 2)
 
                 origin_y += new_project_button.frame.height + 5
 
@@ -403,11 +403,19 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
         }
 
         func scroll_to_top_action() {
-                scroll_view.contentOffset = CGPoint.zero
+                scroll_view.contentOffset.y = 0
         }
 
         func scroll_to_bottom_action() {
-                scroll_view.contentOffset = CGPoint(x: scroll_view.contentSize.width - scroll_view.frame.width, y: scroll_view.contentSize.height - scroll_view.frame.height)
+                scroll_view.contentOffset.y = scroll_view.contentSize.height - scroll_view.frame.height
+        }
+
+        func scroll_left_action() {
+                scroll_view.contentOffset.x = 0
+        }
+
+        func scroll_right_action() {
+                scroll_view.contentOffset.x = scroll_view.contentSize.width - scroll_view.frame.width
         }
 
         func cancel_action() {
