@@ -37,6 +37,7 @@
 		602E0C721BD4D5F600BF0F17 /* MoleculeWebSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602E0C711BD4D5F600BF0F17 /* MoleculeWebSearch.swift */; };
 		604A51BA1BF25E600057373D /* ImportTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604A51B91BF25E600057373D /* ImportTableViewCell.swift */; };
 		604A51BC1BF26C1E0057373D /* ImportTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604A51BB1BF26C1E0057373D /* ImportTable.swift */; };
+		604A51BE1BF338140057373D /* parse.c in Sources */ = {isa = PBXBuildFile; fileRef = 604A51BD1BF338140057373D /* parse.c */; };
 		605F52321BC2ED2D00033B91 /* SupervisedClassificationParameterSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605F52311BC2ED2D00033B91 /* SupervisedClassificationParameterSelection.swift */; };
 		605F52351BC3B37300033B91 /* knn.c in Sources */ = {isa = PBXBuildFile; fileRef = 605F52331BC3B37300033B91 /* knn.c */; };
 		605F52371BC3D9EF00033B91 /* SupervisedClassificationResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605F52361BC3D9EF00033B91 /* SupervisedClassificationResult.swift */; };
@@ -288,6 +289,7 @@
 		602E0C711BD4D5F600BF0F17 /* MoleculeWebSearch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MoleculeWebSearch.swift; path = Source/MoleculeWebSearch.swift; sourceTree = "<group>"; };
 		604A51B91BF25E600057373D /* ImportTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImportTableViewCell.swift; sourceTree = "<group>"; };
 		604A51BB1BF26C1E0057373D /* ImportTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImportTable.swift; path = Source/ImportTable.swift; sourceTree = "<group>"; };
+		604A51BD1BF338140057373D /* parse.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = parse.c; path = Source/parse.c; sourceTree = "<group>"; };
 		605F52311BC2ED2D00033B91 /* SupervisedClassificationParameterSelection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SupervisedClassificationParameterSelection.swift; path = Source/SupervisedClassificationParameterSelection.swift; sourceTree = "<group>"; };
 		605F52331BC3B37300033B91 /* knn.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = knn.c; path = Source/knn.c; sourceTree = "<group>"; };
 		605F52361BC3D9EF00033B91 /* SupervisedClassificationResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SupervisedClassificationResult.swift; path = Source/SupervisedClassificationResult.swift; sourceTree = "<group>"; };
@@ -854,6 +856,7 @@
 				60A77A8F1BDE0D4800C8FBEE /* k_means_clustering.c */,
 				605F52331BC3B37300033B91 /* knn.c */,
 				60B4007F1BA19C7900D8DD80 /* linear_regression.c */,
+				604A51BD1BF338140057373D /* parse.c */,
 				60DF228B1BC58E9E0038AAE1 /* random.c */,
 				60D2C3C31BE0D4ED00C6C6EF /* sammon.c */,
 				60BFB2431BECC7DC000B492C /* som.c */,
@@ -1227,6 +1230,7 @@
 				601E57B41BCF83E8002EEEB3 /* ROCView.swift in Sources */,
 				60A893E11BD52651004DAD2C /* Button.swift in Sources */,
 				60B400F11BA19C7900D8DD80 /* DocumentPickerImport.swift in Sources */,
+				604A51BE1BF338140057373D /* parse.c in Sources */,
 				60B401441BA19C7900D8DD80 /* SegmentedControlTableViewCell.swift in Sources */,
 				60B401001BA19C7900D8DD80 /* Forward.swift in Sources */,
 				60A77A951BDE283600C8FBEE /* KMeans.swift in Sources */,

@@ -9,6 +9,11 @@
 
 #include "svm.h"
 
+char parse_find_separator(const void* data, const long data_length);
+void parse_number_of_rows_and_columns(const void* bytes, const long length, const char separator, long* number_of_rows, long* number_of_columns);
+
+
+
 double distribution_beta(double a, double b);
 double distribution_incomplete_beta_continued_fraction(double a, double b, double x);
 double distribution_incomplete_beta(double a, double b, double x);

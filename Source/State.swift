@@ -118,7 +118,7 @@ class State {
         }
 
         func locked(page_name page_name: String) -> Bool {
-                return active_data_set && project_type == "user" && store.locked_page_names.contains(page_name)
+                return !unlock_all_modules && active_data_set && project_type == "user" && store.locked_page_names.contains(page_name)
         }
 
         func reset_data_set() {
@@ -268,7 +268,7 @@ class State {
                         if page_names_without_active_data_set.indexOf(page_state.name) == nil {
                                 page_state = DataSetSelectionState()
                         }
-                } else if !debug_flag && locked(page_name: page_state.name) {
+                } else if locked(page_name: page_state.name) {
                         page_state = ModuleStoreState()
                 }
         }

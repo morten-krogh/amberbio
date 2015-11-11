@@ -3,9 +3,15 @@ import UIKit
 class ImportTableState: PageState {
 
         let file_id: Int
+        var file_name = ""
+        var file_data = NSData()
+
+        var number_of_rows = 0
+        var number_of_columns = 0
+        var separator_positions = [] as [Int]
+
 
         init(file_id: Int) {
-                print(file_id)
                 self.file_id = file_id
                 super.init()
                 name = "import_table"
@@ -16,9 +22,20 @@ class ImportTableState: PageState {
         }
 
         override func prepare() {
-                
+                (file_name, file_data) = state.select_file_name_and_file_data(file_id: file_id)!
+
+                let separator = parse_find_separator(file_data.bytes, file_data.length)
+
+                parse_number_of_rows_and_columns(file_data.bytes, file_data.length, separator, &number_of_rows, &number_of_columns)
+
+                separator_positions = [Int](count: number_of_rows * number_of_columns, repeatedValue: -1)
+                print(separator, number_of_rows, number_of_columns)
 
                 prepared = true
+        }
+
+        func cell_string(row row: Int, column: Int) -> String {
+                return "\(row), \(column)"
         }
 }
 
@@ -26,16 +43,28 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
 
         var import_table_state: ImportTableState!
 
+        let scroll_to_top_button = UIButton(type: .System)
+        let scroll_to_bottom_button = UIButton(type: .System)
+
         let scroll_view = UIScrollView()
         let spread_sheet_cells = SpreadSheetCells()
 
-        var column_widths = [CGFloat](count: 5, repeatedValue: 100)
-        var row_heights = [CGFloat](count: 12000, repeatedValue: 50)
+        var row_heights = [] as [CGFloat]
+        var column_widths = [] as [CGFloat]
+
+
 
         override func viewDidLoad() {
                 super.viewDidLoad()
 
-                spread_sheet_cells.delegate = self
+                scroll_to_top_button.setAttributedTitle(astring_body(string: "Scroll to top"), forState: .Normal)
+                scroll_to_top_button.addTarget(self, action: "scroll_to_top_action", forControlEvents: .TouchUpInside)
+                view.addSubview(scroll_to_top_button)
+
+                scroll_to_bottom_button.setAttributedTitle(astring_body(string: "Scroll to bottom"), forState: .Normal)
+                scroll_to_bottom_button.addTarget(self, action: "scroll_to_bottom_action", forControlEvents: .TouchUpInside)
+                view.addSubview(scroll_to_bottom_button)
+
                 scroll_view.addSubview(spread_sheet_cells)
 
                 view.addSubview(scroll_view)
@@ -45,6 +74,12 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
                 super.viewWillLayoutSubviews()
 
                 let (width, height) = (view.frame.width, view.frame.height)
+
+                scroll_to_top_button.sizeToFit()
+                scroll_to_top_button.frame.origin = CGPoint(x: 20, y: 20)
+
+                scroll_to_bottom_button.sizeToFit()
+                scroll_to_bottom_button.frame.origin = CGPoint(x: width - 20 - scroll_to_bottom_button.frame.width, y: 20)
 
                 scroll_view.contentSize = CGSize(width: column_widths.reduce(0, combine: +), height: row_heights.reduce(0, combine: +))
 
@@ -56,6 +91,10 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
         override func render() {
                 import_table_state = state.page_state as! ImportTableState
 
+                row_heights = [CGFloat](count: import_table_state.number_of_rows, repeatedValue: 40)
+                column_widths = [CGFloat](count: import_table_state.number_of_columns, repeatedValue: 100)
+
+                spread_sheet_cells.delegate = self
                 spread_sheet_cells.reload()
         }
 
@@ -69,7 +108,8 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
         }
 
         func spread_sheet_cells_astring(spread_sheet_cells spread_sheet_cells: SpreadSheetCells, row: Int, column: Int) -> Astring {
-                return astring_body(string: "cell")
+                let cell_string = import_table_state.cell_string(row: row, column: column)
+                return astring_body(string: cell_string)
         }
 
         func spread_sheet_cells_tapable(spread_sheet_cells spread_sheet_cells: SpreadSheetCells) -> Bool {
@@ -78,5 +118,13 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
 
         func spread_sheet_cells_tapped(spread_sheet_cells spread_sheet_cells: SpreadSheetCells, row: Int, column: Int) {
 
+        }
+
+        func scroll_to_top_action() {
+                scroll_view.contentOffset = CGPoint.zero
+        }
+
+        func scroll_to_bottom_action() {
+                scroll_view.contentOffset = CGPoint(x: scroll_view.contentSize.width - scroll_view.frame.width, y: scroll_view.contentSize.height - scroll_view.frame.height)
         }
 }
