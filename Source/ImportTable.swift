@@ -33,23 +33,23 @@ class ImportTableState: PageState {
 
 
                 print(separator, number_of_rows, number_of_columns)
-                print(separator_positions)
-
-                for index in 0 ..< separator_positions.count {
-                        var position_0 = index > 0 ? separator_positions[index - 1] + 1 : 0
-                        let position_1 = separator_positions[index]
-                        if position_0 > position_1 {
-                                position_0 = position_1
-                        }
-                        var cstring = [CChar](count: position_1 - position_0 + 1, repeatedValue: 0)
-                        parse_read_cstring(file_data.bytes, position_0, position_1, &cstring)
-
-                        let str = String.fromCString(cstring) ?? ""
-
-                        print("cstring")
-                        print(cstring)
-                        print(str, str.lengthOfBytesUsingEncoding(NSUTF8StringEncoding))
-                }
+//                print(separator_positions)
+//
+//                for index in 0 ..< separator_positions.count {
+//                        var position_0 = index > 0 ? separator_positions[index - 1] + 1 : 0
+//                        let position_1 = separator_positions[index]
+//                        if position_0 > position_1 {
+//                                position_0 = position_1
+//                        }
+//                        var cstring = [CChar](count: position_1 - position_0 + 1, repeatedValue: 0)
+//                        parse_read_cstring(file_data.bytes, position_0, position_1, &cstring)
+//
+//                        let str = String.fromCString(cstring) ?? ""
+//
+//                        print("cstring")
+//                        print(cstring)
+//                        print(str, str.lengthOfBytesUsingEncoding(NSUTF8StringEncoding))
+//                }
 
                 prepared = true
         }
