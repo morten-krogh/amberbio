@@ -46,7 +46,7 @@ class ImportTableViewCell: UITableViewCell {
                 inset_view.frame = CGRectInset(contentView.bounds, 10, 5)
 
                 let name_astring = astring_body(string: name)
-                name_label.attributedText = astring_max_width(astring: name_astring, max_width: inset_view.frame.width - 20)
+                name_label.attributedText = astring_max_width(astring: name_astring, max_width: inset_view.frame.width - 40)
                 name_label.textAlignment = .Center
                 name_label.sizeToFit()
 
