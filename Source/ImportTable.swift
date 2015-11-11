@@ -263,6 +263,12 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
                         } else if in_interval(end_point_0: selected_cells[0].column, end_point_1: selected_cells[1].column, point: column) {
                                 return color_selected_values
                         }
+                } else if phase == 4 && selected_cells[0].column == selected_cells[1].column && column == selected_cells[2].column {
+                        if row == selected_cells[2].row {
+                                return color_selected_molecules
+                        } else if in_interval(end_point_0: selected_cells[0].row, end_point_1: selected_cells[1].row, point: row) {
+                                return color_selected_values
+                        }
                 }
 
 
@@ -329,6 +335,7 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
                 if import_table_state.phase >= 1 && import_table_state.phase <= 4 {
                         let potential_selected_cells = import_table_state.selected_cells + [(row, column)]
                         if valid_selected_cells(selected_cells: potential_selected_cells) {
+                                print("valid")
                                 import_table_state.selected_cells = potential_selected_cells
                                 import_table_state.phase++
                                 render_after_change()
@@ -374,7 +381,16 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
                                         return !in_interval(end_point_0: selected_cells[0].row, end_point_1: selected_cells[1].row, point: selected_cells[2].row)
                                 }
                         } else if selected_cells.count == 4 {
-                                return false
+                                if selected_cells[2].row != selected_cells[3].row {
+                                        return false
+                                }
+                                if in_interval(end_point_0: selected_cells[0].row, end_point_1: selected_cells[1].row, point: selected_cells[2].row) {
+                                        return false
+                                }
+                                if in_interval(end_point_0: selected_cells[2].column, end_point_1: selected_cells[3].column, point: selected_cells[0].column) {
+                                        return false
+                                }
+                                return true
                         }
                 }
                 return false
