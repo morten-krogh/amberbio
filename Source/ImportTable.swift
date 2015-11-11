@@ -10,7 +10,6 @@ class ImportTableState: PageState {
         var number_of_columns = 0
         var separator_positions = [] as [Int]
 
-
         init(file_id: Int) {
                 self.file_id = file_id
                 super.init()
@@ -18,38 +17,21 @@ class ImportTableState: PageState {
                 title = astring_body(string: "Import Data")
                 info = ""
 
-                prepared = false
+                (file_name, file_data) = state.select_file_name_and_file_data(file_id: file_id)!
+                if file_data.length >= 10_000_000 {
+                        prepared = false
+                } else {
+                        prepare()
+                }
         }
 
         override func prepare() {
-                (file_name, file_data) = state.select_file_name_and_file_data(file_id: file_id)!
-
                 let separator = parse_find_separator(file_data.bytes, file_data.length)
 
                 parse_number_of_rows_and_columns(file_data.bytes, file_data.length, separator, &number_of_rows, &number_of_columns)
 
                 separator_positions = [Int](count: number_of_rows * number_of_columns, repeatedValue: -1)
                 parse_separator_positions(file_data.bytes, file_data.length, separator, number_of_rows, number_of_columns, &separator_positions)
-
-
-                print(separator, number_of_rows, number_of_columns)
-//                print(separator_positions)
-//
-//                for index in 0 ..< separator_positions.count {
-//                        var position_0 = index > 0 ? separator_positions[index - 1] + 1 : 0
-//                        let position_1 = separator_positions[index]
-//                        if position_0 > position_1 {
-//                                position_0 = position_1
-//                        }
-//                        var cstring = [CChar](count: position_1 - position_0 + 1, repeatedValue: 0)
-//                        parse_read_cstring(file_data.bytes, position_0, position_1, &cstring)
-//
-//                        let str = String.fromCString(cstring) ?? ""
-//
-//                        print("cstring")
-//                        print(cstring)
-//                        print(str, str.lengthOfBytesUsingEncoding(NSUTF8StringEncoding))
-//                }
 
                 prepared = true
         }
