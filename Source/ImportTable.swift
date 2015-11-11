@@ -16,10 +16,11 @@ class ImportTableState: PageState {
         var number_of_columns = 0
         var separator_positions = [] as [Int]
 
-        var import_type: ImportType?
-        var import_phase = 0
+        var type: ImportType?
+        var phase = 0
 
-        var first_selected_cell: (row: Int, column: Int)?
+        var selected_cells = [] as [(row: Int, column: Int)]
+
         var selected_row: (row: Int, column_0: Int, column_1: Int)?
         var selected_column: (column: Int, row_0: Int, row_1: Int)?
 
@@ -169,7 +170,7 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
 
                 scroll_view.contentSize = CGSize(width: column_widths.reduce(0, combine: +), height: row_heights.reduce(0, combine: +))
 
-                origin_y = import_table_state.import_phase == 0 ? CGRectGetMaxY(add_annotations_button.frame) : CGRectGetMaxY(back_button.frame)
+                origin_y = import_table_state.phase == 0 ? CGRectGetMaxY(add_annotations_button.frame) : CGRectGetMaxY(back_button.frame)
                 origin_y += 20
                 scroll_view.frame = layout_centered_frame(contentSize: scroll_view.contentSize, rect: CGRect(x: 0, y: origin_y, width: width, height: height - origin_y))
                 spread_sheet_cells.frame = CGRect(origin: CGPoint.zero, size: scroll_view.contentSize)
@@ -191,7 +192,7 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
                 add_annotations_button.hidden = true
 
                 let label_text: String
-                switch import_table_state.import_phase {
+                switch import_table_state.phase {
                 case 0:
                         label_text = "Select the type of import"
                         back_button.hidden = true
@@ -199,29 +200,29 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
                         add_factors_button.hidden = false
                         add_annotations_button.hidden = false
                 case 1:
-                        if import_table_state.import_type == .Annotations {
+                        if import_table_state.type == .Annotations {
                                 label_text = "Tap the first molecule name"
                         } else {
                                 label_text = "Tap the first sample name"
                         }
                 case 2:
-                        if import_table_state.import_type == .Annotations {
+                        if import_table_state.type == .Annotations {
                                 label_text = "Tap the last molecule name"
                         } else {
                                 label_text = "Tap the last sample name"
                         }
                 case 3:
-                        if import_table_state.import_type == .Project {
+                        if import_table_state.type == .Project {
                                 label_text = "Tap the first molecule name"
-                        } else if import_table_state.import_type == .Factors {
+                        } else if import_table_state.type == .Factors {
                                 label_text = "Tap the first factor name"
                         } else {
                                 label_text = "Tap the first molecule annotation name"
                         }
                 case 4:
-                        if import_table_state.import_type == .Project {
+                        if import_table_state.type == .Project {
                                 label_text = "Tap the last molecule name"
-                        } else if import_table_state.import_type == .Factors {
+                        } else if import_table_state.type == .Factors {
                                 label_text = "Tap the last factor name"
                         } else {
                                 label_text = "Tap the last molecule annotation name"
@@ -239,38 +240,58 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
         }
 
         func cell_background_color(row row: Int, column: Int) -> UIColor {
-                if let selected_row = import_table_state.selected_row {
-                        if row == selected_row.row && ((column >= selected_row.column_0 && column <= selected_row.column_1) || (column <= selected_row.column_0 && column >= selected_row.column_1)) {
-                                if import_table_state.samples_in_row && import_table_state.import_type != .Annotations {
-                                        return color_selected_samples
-                                }
-                                if import_table_state.molecules_in_row && import_table_state.import_type != .Factors {
-                                        return color_selected_molecules
-                                }
+                let phase = import_table_state.phase
+                let type = import_table_state.type
+                let selected_cells = import_table_state.selected_cells
+                if phase == 2 && row == selected_cells[0].row && column == selected_cells[0].column {
+                        return type == .Annotations ? color_selected_molecules : color_selected_samples
+                } else if phase >= 3 && row == selected_cells[0].row && row == selected_cells[1].row {
+                        let column_min = min(selected_cells[0].column, selected_cells[1].column)
+                        let column_max = max(selected_cells[0].column, selected_cells[1].column)
+                        if column >= column_min && column <= column_max {
+                                return type == .Annotations ? color_selected_molecules : color_selected_samples
+                        }
+                } else if phase >= 3 && column == selected_cells[0].column && column == selected_cells[1].column {
+                        let row_min = min(selected_cells[0].row, selected_cells[1].row)
+                        let row_max = max(selected_cells[0].row, selected_cells[1].row)
+                        if row >= row_min && row <= row_max {
+                                return type == .Annotations ? color_selected_molecules : color_selected_samples
                         }
                 }
 
-                if let selected_column = import_table_state.selected_column {
-                        if column == selected_column.column && ((row >= selected_column.row_0 && row <= selected_column.row_1) || (row <= selected_column.row_0 && row >= selected_column.row_1)) {
-                                if !import_table_state.samples_in_row && import_table_state.import_type != .Annotations {
-                                        return color_selected_samples
-                                }
-                                if !import_table_state.molecules_in_row && import_table_state.import_type != .Factors {
-                                        return color_selected_molecules
-                                }
-                        }
-                }
 
-                if let selected_row = import_table_state.selected_row, let selected_column = import_table_state.selected_column {
-                        let column_min = min(selected_row.column_0, selected_row.column_1)
-                        let column_max = max(selected_row.column_0, selected_row.column_1)
-                        let row_min = min(selected_column.row_0, selected_column.row_1)
-                        let row_max = max(selected_column.row_0, selected_column.row_1)
-
-                        if column >= column_min && column <= column_max && row >= row_min && row <= row_max {
-                                return color_selected_values
-                        }
-                }
+//                if let selected_row = import_table_state.selected_row {
+//                        if row == selected_row.row && ((column >= selected_row.column_0 && column <= selected_row.column_1) || (column <= selected_row.column_0 && column >= selected_row.column_1)) {
+//                                if import_table_state.samples_in_row && import_table_state.import_type != .Annotations {
+//                                        return color_selected_samples
+//                                }
+//                                if import_table_state.molecules_in_row && import_table_state.import_type != .Factors {
+//                                        return color_selected_molecules
+//                                }
+//                        }
+//                }
+//
+//                if let selected_column = import_table_state.selected_column {
+//                        if column == selected_column.column && ((row >= selected_column.row_0 && row <= selected_column.row_1) || (row <= selected_column.row_0 && row >= selected_column.row_1)) {
+//                                if !import_table_state.samples_in_row && import_table_state.import_type != .Annotations {
+//                                        return color_selected_samples
+//                                }
+//                                if !import_table_state.molecules_in_row && import_table_state.import_type != .Factors {
+//                                        return color_selected_molecules
+//                                }
+//                        }
+//                }
+//
+//                if let selected_row = import_table_state.selected_row, let selected_column = import_table_state.selected_column {
+//                        let column_min = min(selected_row.column_0, selected_row.column_1)
+//                        let column_max = max(selected_row.column_0, selected_row.column_1)
+//                        let row_min = min(selected_column.row_0, selected_column.row_1)
+//                        let row_max = max(selected_column.row_0, selected_column.row_1)
+//
+//                        if column >= column_min && column <= column_max && row >= row_min && row <= row_max {
+//                                return color_selected_values
+//                        }
+//                }
 
                 return UIColor.whiteColor()
         }
@@ -298,10 +319,22 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
         }
 
         func spread_sheet_cells_tapped(spread_sheet_cells spread_sheet_cells: SpreadSheetCells, row: Int, column: Int) {
-                if import_table_state.import_phase == 1 {
-                        import_table_state.first_selected_cell = (row, column)
-                        import_table_state.selected_row = (row, column, column)
+                print("tapped, \(import_table_state.phase)")
+                let row_column = (row, column)
+                switch import_table_state.phase {
+                case 1:
+                        import_table_state.selected_cells = [row_column]
+                        import_table_state.phase = 2
                         render_after_change()
+                case 2:
+                        if row == import_table_state.selected_cells[0].row || column == import_table_state.selected_cells[0].column {
+                                import_table_state.selected_cells.append(row_column)
+                                import_table_state.phase = 3
+                                render_after_change()
+                        }
+
+                default:
+                        break
                 }
         }
 
@@ -320,25 +353,28 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
         }
 
         func back_action() {
-                import_table_state.import_phase--
+                import_table_state.phase--
+                if !import_table_state.selected_cells.isEmpty {
+                        import_table_state.selected_cells.removeLast()
+                }
                 render_after_change()
         }
 
         func new_project_action() {
-                import_table_state.import_type = .Project
-                import_table_state.import_phase = 1
+                import_table_state.type = .Project
+                import_table_state.phase = 1
                 render_after_change()
         }
 
         func add_factors_action() {
-                import_table_state.import_type = .Factors
-                import_table_state.import_phase = 1
+                import_table_state.type = .Factors
+                import_table_state.phase = 1
                 render_after_change()
         }
 
         func add_annotations_action() {
-                import_table_state.import_type = .Annotations
-                import_table_state.import_phase = 1
+                import_table_state.type = .Annotations
+                import_table_state.phase = 1
                 render_after_change()
         }
 }
