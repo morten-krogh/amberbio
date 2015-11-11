@@ -105,6 +105,7 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
                 cancel_button.addTarget(self, action: "cancel_action", forControlEvents: .TouchUpInside)
                 view.addSubview(cancel_button)
 
+                import_button.setAttributedTitle(astring_font_size_color(string: "Import", font: nil, font_size: 18, color: nil), forState: .Normal)
                 import_button.addTarget(self, action: "import_action", forControlEvents: .TouchUpInside)
                 view.addSubview(import_button)
 
@@ -175,10 +176,8 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
 
                 if import_table_state.phase == 0 {
                         origin_y = CGRectGetMaxY(add_annotations_button.frame)
-                } else if import_table_state.phase == 5 {
-                        origin_y = CGRectGetMaxY(import_button.frame)
                 } else {
-                        origin_y = CGRectGetMaxY(back_button.frame)
+                        origin_y = CGRectGetMaxY(import_button.frame)
                 }
                 origin_y += 20
                 scroll_view.frame = layout_centered_frame(contentSize: scroll_view.contentSize, rect: CGRect(x: 0, y: origin_y, width: width, height: height - origin_y))
