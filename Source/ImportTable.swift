@@ -64,6 +64,7 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
         let spread_sheet_cells = SpreadSheetCells()
 
         var row_heights = [] as [CGFloat]
+        let column_width = 100 as CGFloat
         var column_widths = [] as [CGFloat]
 
 
@@ -106,7 +107,7 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
                 import_table_state = state.page_state as! ImportTableState
 
                 row_heights = [CGFloat](count: import_table_state.number_of_rows, repeatedValue: 40)
-                column_widths = [CGFloat](count: import_table_state.number_of_columns, repeatedValue: 100)
+                column_widths = [CGFloat](count: import_table_state.number_of_columns, repeatedValue: column_width)
 
                 spread_sheet_cells.delegate = self
                 spread_sheet_cells.reload()
@@ -123,7 +124,9 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
 
         func spread_sheet_cells_astring(spread_sheet_cells spread_sheet_cells: SpreadSheetCells, row: Int, column: Int) -> Astring {
                 let cell_string = import_table_state.cell_string(row: row, column: column)
-                return astring_body(string: cell_string)
+                let astring = astring_body(string: cell_string)
+                let astring_narrow = astring_max_width(astring: astring, max_width: column_width - 20)
+                return astring_narrow
         }
 
         func spread_sheet_cells_tapable(spread_sheet_cells spread_sheet_cells: SpreadSheetCells) -> Bool {
