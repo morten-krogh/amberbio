@@ -342,7 +342,8 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
 
         func spread_sheet_cells_tapped(spread_sheet_cells spread_sheet_cells: SpreadSheetCells, row: Int, column: Int) {
                 if import_table_state.phase >= 1 && import_table_state.phase <= 4 {
-                        let potential_selected_cells = import_table_state.selected_cells + [(row, column)]
+                        let row_column = (row,column) as (row: Int, column: Int)
+                        let potential_selected_cells = import_table_state.selected_cells + [row_column]
                         if valid_selected_cells(selected_cells: potential_selected_cells) {
                                 import_table_state.selected_cells = potential_selected_cells
                                 import_table_state.phase++
