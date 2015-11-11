@@ -353,7 +353,16 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
                                         return !in_interval(end_point_0: selected_cells[0].column, end_point_1: selected_cells[1].column, point: selected_cells[2].column)
                                 }
                         } else if selected_cells.count == 4 {
-                                return false
+                                if selected_cells[2].column != selected_cells[3].column {
+                                        return false
+                                }
+                                if in_interval(end_point_0: selected_cells[0].column, end_point_1: selected_cells[1].column, point: selected_cells[2].column) {
+                                        return false
+                                }
+                                if in_interval(end_point_0: selected_cells[2].row, end_point_1: selected_cells[3].row, point: selected_cells[0].row) {
+                                        return false
+                                }
+                                return true
                         }
                 } else if selected_cells[0].column == selected_cells[1].column {
                         if selected_cells.count == 2 {
