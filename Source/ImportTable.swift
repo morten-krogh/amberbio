@@ -19,6 +19,7 @@ class ImportTableState: PageState {
         var import_type: ImportType?
         var import_phase = 0
 
+        var first_selected_cell: (row: Int, column: Int)?
         var selected_row: (row: Int, column_0: Int, column_1: Int)?
         var selected_column: (column: Int, row_0: Int, row_1: Int)?
 
@@ -49,9 +50,6 @@ class ImportTableState: PageState {
                 parse_separator_positions(file_data.bytes, file_data.length, separator, number_of_rows, number_of_columns, &separator_positions)
 
                 prepared = true
-
-                selected_row = (0, 2, 4)
-                selected_column = (0, 3, 5)
         }
 
         func cell_string(row row: Int, column: Int) -> String {
@@ -300,8 +298,11 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
         }
 
         func spread_sheet_cells_tapped(spread_sheet_cells spread_sheet_cells: SpreadSheetCells, row: Int, column: Int) {
-                
-
+                if import_table_state.import_phase == 1 {
+                        import_table_state.first_selected_cell = (row, column)
+                        import_table_state.selected_row = (row, column, column)
+                        render_after_change()
+                }
         }
 
         func scroll_to_top_action() {
