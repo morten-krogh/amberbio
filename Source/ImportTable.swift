@@ -241,43 +241,42 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
 
         func cell_background_color(row row: Int, column: Int) -> UIColor {
                 let phase = import_table_state.phase
-                let type = import_table_state.type
                 let selected_cells = import_table_state.selected_cells
                 if phase == 2 && row == selected_cells[0].row && column == selected_cells[0].column {
-                        return type == .Annotations ? color_selected_molecules : color_selected_samples
+                        return color_selected_headers
                 } else if phase >= 3 && row == selected_cells[0].row && row == selected_cells[1].row {
                         let column_min = min(selected_cells[0].column, selected_cells[1].column)
                         let column_max = max(selected_cells[0].column, selected_cells[1].column)
                         if column >= column_min && column <= column_max {
-                                return type == .Annotations ? color_selected_molecules : color_selected_samples
+                                return color_selected_headers
                         }
                 } else if phase >= 3 && column == selected_cells[0].column && column == selected_cells[1].column {
                         let row_min = min(selected_cells[0].row, selected_cells[1].row)
                         let row_max = max(selected_cells[0].row, selected_cells[1].row)
                         if row >= row_min && row <= row_max {
-                                return type == .Annotations ? color_selected_molecules : color_selected_samples
+                                return color_selected_headers
                         }
                 } else if phase == 4 && selected_cells[0].row == selected_cells[1].row && row == selected_cells[2].row {
                         if column == selected_cells[2].column {
-                                return color_selected_molecules
+                                return color_selected_headers
                         } else if in_interval(end_point_0: selected_cells[0].column, end_point_1: selected_cells[1].column, point: column) {
                                 return color_selected_values
                         }
                 } else if phase == 4 && selected_cells[0].column == selected_cells[1].column && column == selected_cells[2].column {
                         if row == selected_cells[2].row {
-                                return color_selected_molecules
+                                return color_selected_headers
                         } else if in_interval(end_point_0: selected_cells[0].row, end_point_1: selected_cells[1].row, point: row) {
                                 return color_selected_values
                         }
                 } else if phase == 5 && selected_cells[0].row == selected_cells[1].row {
                         if column == selected_cells[2].column && in_interval(end_point_0: selected_cells[2].row, end_point_1: selected_cells[3].row, point: row) {
-                                return color_selected_molecules
+                                return color_selected_headers
                         } else if in_interval(end_point_0: selected_cells[0].column, end_point_1: selected_cells[1].column, point: column) && in_interval(end_point_0: selected_cells[2].row, end_point_1: selected_cells[3].row, point: row) {
                                 return color_selected_values
                         }
                 } else if phase == 5 && selected_cells[0].column == selected_cells[1].column {
                         if row == selected_cells[2].row && in_interval(end_point_0: selected_cells[2].column, end_point_1: selected_cells[3].column, point: column) {
-                                return color_selected_molecules
+                                return color_selected_headers
                         } else if in_interval(end_point_0: selected_cells[0].row, end_point_1: selected_cells[1].row, point: row) && in_interval(end_point_0: selected_cells[2].column, end_point_1: selected_cells[3].column, point: column) {
                                 return color_selected_values
                         }
