@@ -163,7 +163,7 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
 
                 label.frame = CGRect(x: 0, y: 50, width: width, height: 40)
 
-                var origin_y = 50 as CGFloat
+                var origin_y = 80 as CGFloat
 
                 scroll_left_button.setAttributedTitle(astring_body(string: "Scroll left"), forState: .Normal)
                 scroll_left_button.sizeToFit()
@@ -341,11 +341,9 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
         }
 
         func spread_sheet_cells_tapped(spread_sheet_cells spread_sheet_cells: SpreadSheetCells, row: Int, column: Int) {
-                print("tapped, \(import_table_state.phase)")
                 if import_table_state.phase >= 1 && import_table_state.phase <= 4 {
                         let potential_selected_cells = import_table_state.selected_cells + [(row, column)]
                         if valid_selected_cells(selected_cells: potential_selected_cells) {
-                                print("valid")
                                 import_table_state.selected_cells = potential_selected_cells
                                 import_table_state.phase++
                                 render_after_change()
