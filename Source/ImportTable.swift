@@ -29,13 +29,45 @@ class ImportTableState: PageState {
                 parse_number_of_rows_and_columns(file_data.bytes, file_data.length, separator, &number_of_rows, &number_of_columns)
 
                 separator_positions = [Int](count: number_of_rows * number_of_columns, repeatedValue: -1)
+                parse_separator_positions(file_data.bytes, file_data.length, separator, number_of_rows, number_of_columns, &separator_positions)
+
+
                 print(separator, number_of_rows, number_of_columns)
+                print(separator_positions)
+
+                for index in 0 ..< separator_positions.count {
+                        var position_0 = index > 0 ? separator_positions[index - 1] + 1 : 0
+                        let position_1 = separator_positions[index]
+                        if position_0 > position_1 {
+                                position_0 = position_1
+                        }
+                        var cstring = [CChar](count: position_1 - position_0 + 1, repeatedValue: 0)
+                        parse_read_cstring(file_data.bytes, position_0, position_1, &cstring)
+
+                        let str = String.fromCString(cstring) ?? ""
+
+                        print("cstring")
+                        print(cstring)
+                        print(str, str.lengthOfBytesUsingEncoding(NSUTF8StringEncoding))
+                }
 
                 prepared = true
         }
 
         func cell_string(row row: Int, column: Int) -> String {
-                return "\(row), \(column)"
+                let index = row * number_of_columns + column
+
+                var position_0 = index > 0 ? separator_positions[index - 1] + 1 : 0
+                let position_1 = separator_positions[index]
+                if position_0 > position_1 {
+                        position_0 = position_1
+                }
+                var cstring = [CChar](count: position_1 - position_0 + 1, repeatedValue: 0)
+                parse_read_cstring(file_data.bytes, position_0, position_1, &cstring)
+
+                let str = String.fromCString(cstring) ?? ""
+
+                return str
         }
 }
 

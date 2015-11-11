@@ -11,6 +11,9 @@
 
 char parse_find_separator(const void* data, const long data_length);
 void parse_number_of_rows_and_columns(const void* bytes, const long length, const char separator, long* number_of_rows, long* number_of_columns);
+void parse_separator_positions(const void* bytes, const long length, const char separator, const long number_of_rows, const long number_of_columns, long* separator_positions);
+void parse_read_cstring(const void* bytes, const long position_0, const long position_1, char* cstring);
+
 
 
 

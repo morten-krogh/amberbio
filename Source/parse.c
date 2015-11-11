@@ -69,9 +69,23 @@ void parse_separator_positions(const void* bytes, const long length, const char 
                 }
                 previous_char = string[i];
         }
-        if (current_row == number_of_rows - 2) {
+        if (current_row == number_of_rows - 1) {
                 for (long j = current_column; j < number_of_columns; j++) {
                         separator_positions[current_row * number_of_columns + j] = length;
                 }
         }
+}
+
+void parse_read_cstring(const void* bytes, const long position_0, const long position_1, char* cstring)
+{
+        if (position_0 >= position_1) {
+                cstring[0] = '\0';
+                return;
+        }
+        const char* string = (const char*) bytes;
+        long start_index = string[position_0] == '\n' ? position_0 + 1 : position_0;
+        for (long i = start_index; i < position_1; i++) {
+                cstring[i - start_index] = string[i];
+        }
+        cstring[position_1 - position_0] = '\0';
 }
