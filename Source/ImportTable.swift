@@ -20,6 +20,10 @@ class ImportTableState: PageState {
 
         var selected_row: (row: Int, column_0: Int, column_1: Int)?
         var selected_column: (column: Int, row_0: Int, row_1: Int)?
+
+        var samples_in_row = false
+        var molecules_in_row = true
+
         init(file_id: Int) {
                 self.file_id = file_id
                 super.init()
@@ -137,13 +141,23 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
         func cell_background_color(row row: Int, column: Int) -> UIColor {
                 if let selected_row = import_table_state.selected_row {
                         if row == selected_row.row && ((column >= selected_row.column_0 && column <= selected_row.column_1) || (column <= selected_row.column_0 && column >= selected_row.column_1)) {
+                                if import_table_state.samples_in_row && import_table_state.import_type != .Annotations {
                                         return color_selected_samples
+                                }
+                                if import_table_state.molecules_in_row && import_table_state.import_type != .Factors {
+                                        return color_selected_molecules
+                                }
                         }
                 }
 
                 if let selected_column = import_table_state.selected_column {
                         if column == selected_column.column && ((row >= selected_column.row_0 && row <= selected_column.row_1) || (row <= selected_column.row_0 && row >= selected_column.row_1)) {
-                                return color_selected_molecules
+                                if !import_table_state.samples_in_row && import_table_state.import_type != .Annotations {
+                                        return color_selected_samples
+                                }
+                                if !import_table_state.molecules_in_row && import_table_state.import_type != .Factors {
+                                        return color_selected_molecules
+                                }
                         }
                 }
 
