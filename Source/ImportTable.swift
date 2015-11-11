@@ -163,13 +163,7 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
 
                 label.frame = CGRect(x: 0, y: 50, width: width, height: 40)
 
-                var origin_y = CGRectGetMaxY(label.frame) + 20
-
-                back_button.sizeToFit()
-                back_button.center = CGPoint(x: width / 2, y: origin_y)
-
-                new_project_button.sizeToFit()
-                new_project_button.center = CGPoint(x: width / 2, y: origin_y)
+                var origin_y = 50 as CGFloat
 
                 scroll_left_button.setAttributedTitle(astring_body(string: "Scroll left"), forState: .Normal)
                 scroll_left_button.sizeToFit()
@@ -178,6 +172,16 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
                 scroll_right_button.setAttributedTitle(astring_body(string: "Scroll right"), forState: .Normal)
                 scroll_right_button.sizeToFit()
                 scroll_right_button.frame.origin = CGPoint(x: width - scroll_right_button.frame.width - 20, y: origin_y - scroll_right_button.frame.height / 2)
+
+                origin_y = CGRectGetMaxY(label.frame) + 20
+
+                back_button.sizeToFit()
+                back_button.center = CGPoint(x: width / 2, y: origin_y)
+
+                new_project_button.sizeToFit()
+                new_project_button.center = CGPoint(x: width / 2, y: origin_y)
+
+
 
                 origin_y += new_project_button.frame.height + 5
 
