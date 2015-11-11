@@ -228,7 +228,7 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
                                 label_text = "Tap the last molecule annotation name"
                         }
                 default:
-                        label_text = "Tap the button to import."
+                        label_text = "Tap the button to import"
                 }
 
                 label.attributedText = astring_font_size_color(string: label_text, font: nil, font_size: 20, color: nil)
@@ -270,51 +270,18 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
                                 return color_selected_values
                         }
                 } else if phase == 5 && selected_cells[0].row == selected_cells[1].row {
-                        if column == selected_cells[2].column {
-                                if in_interval(end_point_0: selected_cells[2].row, end_point_1: selected_cells[3].row, point: row) {
-                                        return color_selected_molecules
-                                }
+                        if column == selected_cells[2].column && in_interval(end_point_0: selected_cells[2].row, end_point_1: selected_cells[3].row, point: row) {
+                                return color_selected_molecules
                         } else if in_interval(end_point_0: selected_cells[0].column, end_point_1: selected_cells[1].column, point: column) && in_interval(end_point_0: selected_cells[2].row, end_point_1: selected_cells[3].row, point: row) {
                                 return color_selected_values
                         }
+                } else if phase == 5 && selected_cells[0].column == selected_cells[1].column {
+                        if row == selected_cells[2].row && in_interval(end_point_0: selected_cells[2].column, end_point_1: selected_cells[3].column, point: column) {
+                                return color_selected_molecules
+                        } else if in_interval(end_point_0: selected_cells[0].row, end_point_1: selected_cells[1].row, point: row) && in_interval(end_point_0: selected_cells[2].column, end_point_1: selected_cells[3].column, point: column) {
+                                return color_selected_values
+                        }
                 }
-
-
-
-
-
-//                if let selected_row = import_table_state.selected_row {
-//                        if row == selected_row.row && ((column >= selected_row.column_0 && column <= selected_row.column_1) || (column <= selected_row.column_0 && column >= selected_row.column_1)) {
-//                                if import_table_state.samples_in_row && import_table_state.import_type != .Annotations {
-//                                        return color_selected_samples
-//                                }
-//                                if import_table_state.molecules_in_row && import_table_state.import_type != .Factors {
-//                                        return color_selected_molecules
-//                                }
-//                        }
-//                }
-//
-//                if let selected_column = import_table_state.selected_column {
-//                        if column == selected_column.column && ((row >= selected_column.row_0 && row <= selected_column.row_1) || (row <= selected_column.row_0 && row >= selected_column.row_1)) {
-//                                if !import_table_state.samples_in_row && import_table_state.import_type != .Annotations {
-//                                        return color_selected_samples
-//                                }
-//                                if !import_table_state.molecules_in_row && import_table_state.import_type != .Factors {
-//                                        return color_selected_molecules
-//                                }
-//                        }
-//                }
-//
-//                if let selected_row = import_table_state.selected_row, let selected_column = import_table_state.selected_column {
-//                        let column_min = min(selected_row.column_0, selected_row.column_1)
-//                        let column_max = max(selected_row.column_0, selected_row.column_1)
-//                        let row_min = min(selected_column.row_0, selected_column.row_1)
-//                        let row_max = max(selected_column.row_0, selected_column.row_1)
-//
-//                        if column >= column_min && column <= column_max && row >= row_min && row <= row_max {
-//                                return color_selected_values
-//                        }
-//                }
 
                 return UIColor.whiteColor()
         }
