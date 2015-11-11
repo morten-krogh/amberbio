@@ -18,9 +18,8 @@ class ImportTableState: PageState {
 
         var import_type: ImportType?
 
-        var selected_samples: (row_0: Int, column_0: Int, row_1: Int, column_1: Int)?
-        var selected_molecules: (row_0: Int, column_0: Int, row_1: Int, column_1: Int)?
-
+        var selected_row: (row: Int, column_0: Int, column_1: Int)?
+        var selected_column: (column: Int, row_0: Int, row_1: Int)?
         init(file_id: Int) {
                 self.file_id = file_id
                 super.init()
@@ -46,8 +45,8 @@ class ImportTableState: PageState {
 
                 prepared = true
 
-                selected_samples = (12, 0, 2, 0)
-                selected_molecules = (0, 2, 0, 4)
+                selected_row = (0, 2, 4)
+                selected_column = (0, 3, 5)
         }
 
         func cell_string(row row: Int, column: Int) -> String {
@@ -136,40 +135,27 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
         }
 
         func cell_background_color(row row: Int, column: Int) -> UIColor {
-                if let selected = import_table_state.selected_samples {
-                        if row == selected.row_0 && row == selected.row_1 {
-                                if (column >= selected.column_0 && column <= selected.column_1) || (column <= selected.column_0 && column >= selected.column_1) {
+                if let selected_row = import_table_state.selected_row {
+                        if row == selected_row.row && ((column >= selected_row.column_0 && column <= selected_row.column_1) || (column <= selected_row.column_0 && column >= selected_row.column_1)) {
                                         return color_selected_samples
-                                }
-                        }
-
-                        if column == selected.column_0 && column == selected.column_1 {
-                                if (row >= selected.row_0 && row <= selected.row_1) || (row <= selected.row_0 && row >= selected.row_1) {
-                                        return color_selected_samples
-                                }
                         }
                 }
 
-                if let selected = import_table_state.selected_molecules {
-                        if row == selected.row_0 && row == selected.row_1 {
-                                if (column >= selected.column_0 && column <= selected.column_1) || (column <= selected.column_0 && column >= selected.column_1) {
-                                        return color_selected_molecules
-                                }
-                        }
-
-                        if column == selected.column_0 && column == selected.column_1 {
-                                if (row >= selected.row_0 && row <= selected.row_1) || (row <= selected.row_0 && row >= selected.row_1) {
-                                        return color_selected_molecules
-                                }
+                if let selected_column = import_table_state.selected_column {
+                        if column == selected_column.column && ((row >= selected_column.row_0 && row <= selected_column.row_1) || (row <= selected_column.row_0 && row >= selected_column.row_1)) {
+                                return color_selected_molecules
                         }
                 }
 
-                if let samples = import_table_state.selected_samples, let molecules = import_table_state.selected_molecules {
-                        
+                if let selected_row = import_table_state.selected_row, let selected_column = import_table_state.selected_column {
+                        let column_min = min(selected_row.column_0, selected_row.column_1)
+                        let column_max = max(selected_row.column_0, selected_row.column_1)
+                        let row_min = min(selected_column.row_0, selected_column.row_1)
+                        let row_max = max(selected_column.row_0, selected_column.row_1)
 
-
-
-
+                        if column >= column_min && column <= column_max && row >= row_min && row <= row_max {
+                                return color_selected_values
+                        }
                 }
 
                 return UIColor.whiteColor()
