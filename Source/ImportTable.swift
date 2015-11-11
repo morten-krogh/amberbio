@@ -6,6 +6,18 @@ enum ImportType {
         case Annotations
 }
 
+enum ImportPhase {
+        case Begin
+        case FirstSample
+        case LastSample
+        case FirstMolecule
+        case LastMolecule
+        case FirstFactor
+        case LastFactor
+        case FirstMoleculeAnnotation
+        case LastMoleculeAnnotation
+}
+
 class ImportTableState: PageState {
 
         let file_id: Int
@@ -17,6 +29,7 @@ class ImportTableState: PageState {
         var separator_positions = [] as [Int]
 
         var import_type: ImportType?
+        var import_phase = ImportPhase.Begin
 
         var selected_row: (row: Int, column_0: Int, column_1: Int)?
         var selected_column: (column: Int, row_0: Int, row_1: Int)?
@@ -78,6 +91,13 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
         let scroll_to_bottom_button = UIButton(type: .System)
         let cancel_button = UIButton(type: .System)
 
+        let label = UILabel()
+
+        let new_project_button = UIButton(type: .System)
+        let add_factors_button = UIButton(type: .System)
+        let add_annotations_button = UIButton(type: .System)
+        let back_button = UIButton(type: .System)
+
         let scroll_view = UIScrollView()
         let spread_sheet_cells = SpreadSheetCells()
 
@@ -98,6 +118,26 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
 
                 cancel_button.addTarget(self, action: "cancel_action", forControlEvents: .TouchUpInside)
                 view.addSubview(cancel_button)
+
+                label.font = font_body
+                label.textAlignment = .Center
+                view.addSubview(label)
+
+                back_button.setAttributedTitle(astring_body(string: "Back"), forState: .Normal)
+                back_button.addTarget(self, action: "back_action", forControlEvents: .TouchUpInside)
+                view.addSubview(back_button)
+
+                new_project_button.setAttributedTitle(astring_body(string: "New project"), forState: .Normal)
+                new_project_button.addTarget(self, action: "new_project_action", forControlEvents: .TouchUpInside)
+                view.addSubview(new_project_button)
+
+                add_factors_button.setAttributedTitle(astring_body(string: "Add factors"), forState: .Normal)
+                add_factors_button.addTarget(self, action: "add_factors_action", forControlEvents: .TouchUpInside)
+                view.addSubview(add_factors_button)
+
+                add_annotations_button.setAttributedTitle(astring_body(string: "Add molecule annotations"), forState: .Normal)
+                add_annotations_button.addTarget("self", action: "add_annotations_action", forControlEvents: .TouchUpInside)
+                view.addSubview(add_annotations_button)
 
                 scroll_view.addSubview(spread_sheet_cells)
 
@@ -121,6 +161,25 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
                 cancel_button.sizeToFit()
                 cancel_button.frame.origin = CGPoint(x: (width - cancel_button.frame.width) / 2, y: 30 - cancel_button.frame.height / 2)
 
+                label.frame = CGRect(x: 0, y: 50, width: width, height: 40)
+
+                var origin_y = CGRectGetMaxY(label.frame) + 20
+
+                back_button.sizeToFit()
+                back_button.center = CGPoint(x: width / 2, y: origin_y)
+
+                new_project_button.sizeToFit()
+                new_project_button.center = CGPoint(x: width / 2, y: origin_y)
+                origin_y += new_project_button.frame.height
+
+                add_factors_button.sizeToFit()
+                add_factors_button.center = CGPoint(x: width / 2, y: origin_y)
+                origin_y += add_factors_button.frame.height + 5
+
+                add_annotations_button.sizeToFit()
+                add_annotations_button.center = CGPoint(x: width / 2, y: origin_y)
+
+
                 scroll_view.contentSize = CGSize(width: column_widths.reduce(0, combine: +), height: row_heights.reduce(0, combine: +))
 
 
@@ -133,6 +192,25 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
 
                 row_heights = [CGFloat](count: import_table_state.number_of_rows, repeatedValue: 40)
                 column_widths = [CGFloat](count: import_table_state.number_of_columns, repeatedValue: column_width)
+
+                back_button.hidden = false
+                new_project_button.hidden = true
+                add_factors_button.hidden = true
+                add_annotations_button.hidden = true
+
+                let label_text: String
+                switch import_table_state.import_phase {
+                case .Begin:
+                        label_text = "Select the type of import"
+                        back_button.hidden = true
+                        new_project_button.hidden = false
+                        add_factors_button.hidden = false
+                        add_annotations_button.hidden = false
+                }
+
+
+                label.attributedText = astring_body(string: label_text)
+                label.textAlignment = .Center
 
                 spread_sheet_cells.delegate = self
                 spread_sheet_cells.reload()
@@ -213,5 +291,21 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
                 let page_state = ImportDataState()
                 state.set_page_state(page_state: page_state)
                 state.render()
+        }
+
+        func back_action() {
+
+        }
+
+        func new_project_action() {
+
+        }
+
+        func add_factors_action() {
+
+        }
+
+        func add_annotations_action() {
+
         }
 }
