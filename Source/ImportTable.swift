@@ -269,7 +269,18 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
                         } else if in_interval(end_point_0: selected_cells[0].row, end_point_1: selected_cells[1].row, point: row) {
                                 return color_selected_values
                         }
+                } else if phase == 5 && selected_cells[0].row == selected_cells[1].row {
+                        if column == selected_cells[2].column {
+                                if in_interval(end_point_0: selected_cells[2].row, end_point_1: selected_cells[3].row, point: row) {
+                                        return color_selected_molecules
+                                }
+                        } else if in_interval(end_point_0: selected_cells[0].column, end_point_1: selected_cells[1].column, point: column) && in_interval(end_point_0: selected_cells[2].row, end_point_1: selected_cells[3].row, point: row) {
+                                return color_selected_values
+                        }
                 }
+
+
+
 
 
 //                if let selected_row = import_table_state.selected_row {
