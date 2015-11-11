@@ -34,6 +34,8 @@ class ImportTableState: PageState {
                 title = astring_body(string: "Import Data")
                 info = ""
 
+                full_screen = .Conditional
+
                 (file_name, file_data) = state.select_file_name_and_file_data(file_id: file_id)!
                 if file_data.length >= 10_000_000 {
                         prepared = false
@@ -76,6 +78,8 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
 
         let scroll_to_top_button = UIButton(type: .System)
         let scroll_to_bottom_button = UIButton(type: .System)
+        let scroll_left_button = UIButton(type: .System)
+        let scroll_right_button = UIButton(type: .System)
         let cancel_button = UIButton(type: .System)
 
         let label = UILabel()
@@ -101,6 +105,12 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
 
                 scroll_to_bottom_button.addTarget(self, action: "scroll_to_bottom_action", forControlEvents: .TouchUpInside)
                 view.addSubview(scroll_to_bottom_button)
+
+                scroll_left_button.addTarget(self, action: "scroll_left_action", forControlEvents: .TouchUpInside)
+                view.addSubview(scroll_left_button)
+
+                scroll_right_button.addTarget(self, action: "scroll_right_action", forControlEvents: .TouchUpInside)
+                view.addSubview(scroll_right_button)
 
                 cancel_button.addTarget(self, action: "cancel_action", forControlEvents: .TouchUpInside)
                 view.addSubview(cancel_button)
@@ -160,6 +170,15 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
 
                 new_project_button.sizeToFit()
                 new_project_button.center = CGPoint(x: width / 2, y: origin_y)
+
+                scroll_left_button.setAttributedTitle(astring_max_width(string: "Scroll left", max_width: (width - 40) / 3), forState: .Normal)
+                scroll_left_button.sizeToFit()
+                scroll_left_button.frame.origin = CGPoint(x: 20, y: origin_y)
+
+
+
+
+
                 origin_y += new_project_button.frame.height + 5
 
                 import_button.sizeToFit()
