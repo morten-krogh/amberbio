@@ -84,6 +84,7 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
         let add_factors_button = UIButton(type: .System)
         let add_annotations_button = UIButton(type: .System)
         let back_button = UIButton(type: .System)
+        let import_button = UIButton(type: .System)
 
         let scroll_view = UIScrollView()
         let spread_sheet_cells = SpreadSheetCells()
@@ -91,8 +92,6 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
         var row_heights = [] as [CGFloat]
         let column_width = 100 as CGFloat
         var column_widths = [] as [CGFloat]
-
-
 
         override func viewDidLoad() {
                 super.viewDidLoad()
@@ -105,6 +104,9 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
 
                 cancel_button.addTarget(self, action: "cancel_action", forControlEvents: .TouchUpInside)
                 view.addSubview(cancel_button)
+
+                import_button.addTarget(self, action: "import_action", forControlEvents: .TouchUpInside)
+                view.addSubview(import_button)
 
                 label.font = font_body
                 label.textAlignment = .Center
@@ -159,6 +161,9 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
                 new_project_button.center = CGPoint(x: width / 2, y: origin_y)
                 origin_y += new_project_button.frame.height + 5
 
+                import_button.sizeToFit()
+                import_button.center = CGPoint(x: width / 2, y: origin_y)
+
                 add_factors_button.sizeToFit()
                 add_factors_button.center = CGPoint(x: width / 2, y: origin_y)
                 origin_y += add_factors_button.frame.height + 5
@@ -166,11 +171,15 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
                 add_annotations_button.sizeToFit()
                 add_annotations_button.center = CGPoint(x: width / 2, y: origin_y)
 
-
-
                 scroll_view.contentSize = CGSize(width: column_widths.reduce(0, combine: +), height: row_heights.reduce(0, combine: +))
 
-                origin_y = import_table_state.phase == 0 ? CGRectGetMaxY(add_annotations_button.frame) : CGRectGetMaxY(back_button.frame)
+                if import_table_state.phase == 0 {
+                        origin_y = CGRectGetMaxY(add_annotations_button.frame)
+                } else if import_table_state.phase == 5 {
+                        origin_y = CGRectGetMaxY(import_button.frame)
+                } else {
+                        origin_y = CGRectGetMaxY(back_button.frame)
+                }
                 origin_y += 20
                 scroll_view.frame = layout_centered_frame(contentSize: scroll_view.contentSize, rect: CGRect(x: 0, y: origin_y, width: width, height: height - origin_y))
                 spread_sheet_cells.frame = CGRect(origin: CGPoint.zero, size: scroll_view.contentSize)
@@ -187,6 +196,7 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
         func render_after_change() {
 
                 back_button.hidden = false
+                import_button.hidden = true
                 new_project_button.hidden = true
                 add_factors_button.hidden = true
                 add_annotations_button.hidden = true
@@ -229,6 +239,7 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
                         }
                 default:
                         label_text = "Tap the button to import"
+                        import_button.hidden = false
                 }
 
                 label.attributedText = astring_font_size_color(string: label_text, font: nil, font_size: 20, color: nil)
@@ -411,5 +422,9 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
                 import_table_state.type = .Annotations
                 import_table_state.phase = 1
                 render_after_change()
+        }
+
+        func import_action() {
+                print("import")
         }
 }
