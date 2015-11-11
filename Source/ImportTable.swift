@@ -6,18 +6,6 @@ enum ImportType {
         case Annotations
 }
 
-enum ImportPhase {
-        case Begin
-        case FirstSample
-        case LastSample
-        case FirstMolecule
-        case LastMolecule
-        case FirstFactor
-        case LastFactor
-        case FirstMoleculeAnnotation
-        case LastMoleculeAnnotation
-}
-
 class ImportTableState: PageState {
 
         let file_id: Int
@@ -170,7 +158,7 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
 
                 new_project_button.sizeToFit()
                 new_project_button.center = CGPoint(x: width / 2, y: origin_y)
-                origin_y += new_project_button.frame.height
+                origin_y += new_project_button.frame.height + 5
 
                 add_factors_button.sizeToFit()
                 add_factors_button.center = CGPoint(x: width / 2, y: origin_y)
@@ -180,10 +168,12 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
                 add_annotations_button.center = CGPoint(x: width / 2, y: origin_y)
 
 
+
                 scroll_view.contentSize = CGSize(width: column_widths.reduce(0, combine: +), height: row_heights.reduce(0, combine: +))
 
-
-                scroll_view.frame = layout_centered_frame(contentSize: scroll_view.contentSize, rect: CGRect(x: 0, y: 200, width: width, height: height - 200))
+                origin_y = import_table_state.import_phase == 0 ? CGRectGetMaxY(add_annotations_button.frame) : CGRectGetMaxY(back_button.frame)
+                origin_y += 20
+                scroll_view.frame = layout_centered_frame(contentSize: scroll_view.contentSize, rect: CGRect(x: 0, y: origin_y, width: width, height: height - origin_y))
                 spread_sheet_cells.frame = CGRect(origin: CGPoint.zero, size: scroll_view.contentSize)
         }
 
@@ -204,36 +194,50 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
 
                 let label_text: String
                 switch import_table_state.import_phase {
-                case .Begin:
+                case 0:
                         label_text = "Select the type of import"
                         back_button.hidden = true
                         new_project_button.hidden = false
                         add_factors_button.hidden = false
                         add_annotations_button.hidden = false
-                case .FirstSample:
-                        label_text = "Tap the first sample name"
-                case .LastSample:
-                        label_text = "Tap the last sample name"
-                case .FirstMolecule:
-                        label_text = "Tap the first molecule name"
-                case .LastMolecule:
-                        label_text = "Tap the last molecule name"
-                case .FirstFactor:
-                        label_text = "Tap the first factor name"
-                case .LastFactor:
-                        label_text = "Tap the last factor name"
-                case .FirstMoleculeAnnotation:
-                        label_text = "Tap the first molecule annotation name"
-                case .LastMoleculeAnnotation:
-                        label_text = "Tap the last molecule annotation name"
+                case 1:
+                        if import_table_state.import_type == .Annotations {
+                                label_text = "Tap the first molecule name"
+                        } else {
+                                label_text = "Tap the first sample name"
+                        }
+                case 2:
+                        if import_table_state.import_type == .Annotations {
+                                label_text = "Tap the last molecule name"
+                        } else {
+                                label_text = "Tap the last sample name"
+                        }
+                case 3:
+                        if import_table_state.import_type == .Project {
+                                label_text = "Tap the first molecule name"
+                        } else if import_table_state.import_type == .Factors {
+                                label_text = "Tap the first factor name"
+                        } else {
+                                label_text = "Tap the first molecule annotation name"
+                        }
+                case 4:
+                        if import_table_state.import_type == .Project {
+                                label_text = "Tap the last molecule name"
+                        } else if import_table_state.import_type == .Factors {
+                                label_text = "Tap the last factor name"
+                        } else {
+                                label_text = "Tap the last molecule annotation name"
+                        }
+                default:
+                        label_text = "Tap the button to import."
                 }
 
-
-                label.attributedText = astring_body(string: label_text)
+                label.attributedText = astring_font_size_color(string: label_text, font: nil, font_size: 20, color: nil)
                 label.textAlignment = .Center
 
                 spread_sheet_cells.delegate = self
                 spread_sheet_cells.reload()
+                view.setNeedsLayout()
         }
 
         func cell_background_color(row row: Int, column: Int) -> UIColor {
@@ -296,6 +300,7 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
         }
 
         func spread_sheet_cells_tapped(spread_sheet_cells spread_sheet_cells: SpreadSheetCells, row: Int, column: Int) {
+                
 
         }
 
@@ -314,24 +319,25 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
         }
 
         func back_action() {
-
+                import_table_state.import_phase--
+                render_after_change()
         }
 
         func new_project_action() {
                 import_table_state.import_type = .Project
-                import_table_state.import_phase = .FirstSample
+                import_table_state.import_phase = 1
                 render_after_change()
         }
 
         func add_factors_action() {
                 import_table_state.import_type = .Factors
-                import_table_state.import_phase = .FirstSample
+                import_table_state.import_phase = 1
                 render_after_change()
         }
 
         func add_annotations_action() {
                 import_table_state.import_type = .Annotations
-                import_table_state.import_phase = .FirstMolecule
+                import_table_state.import_phase = 1
                 render_after_change()
         }
 }
