@@ -1,5 +1,11 @@
 import UIKit
 
+enum ImportType {
+        case Project
+        case Factors
+        case Annotations
+}
+
 class ImportTableState: PageState {
 
         let file_id: Int
@@ -9,6 +15,11 @@ class ImportTableState: PageState {
         var number_of_rows = 0
         var number_of_columns = 0
         var separator_positions = [] as [Int]
+
+        var import_type: ImportType?
+
+        var selected_samples: (row_0: Int, column_0: Int, row_1: Int, column_1: Int)?
+        var selected_molecules: (row_0: Int, column_0: Int, row_1: Int, column_1: Int)?
 
         init(file_id: Int) {
                 self.file_id = file_id
@@ -34,6 +45,9 @@ class ImportTableState: PageState {
                 parse_separator_positions(file_data.bytes, file_data.length, separator, number_of_rows, number_of_columns, &separator_positions)
 
                 prepared = true
+
+                selected_samples = (12, 0, 2, 0)
+                selected_molecules = (0, 2, 0, 4)
         }
 
         func cell_string(row row: Int, column: Int) -> String {
@@ -59,6 +73,7 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
 
         let scroll_to_top_button = UIButton(type: .System)
         let scroll_to_bottom_button = UIButton(type: .System)
+        let cancel_button = UIButton(type: .System)
 
         let scroll_view = UIScrollView()
         let spread_sheet_cells = SpreadSheetCells()
@@ -72,13 +87,14 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
         override func viewDidLoad() {
                 super.viewDidLoad()
 
-                scroll_to_top_button.setAttributedTitle(astring_body(string: "Scroll to top"), forState: .Normal)
                 scroll_to_top_button.addTarget(self, action: "scroll_to_top_action", forControlEvents: .TouchUpInside)
                 view.addSubview(scroll_to_top_button)
 
-                scroll_to_bottom_button.setAttributedTitle(astring_body(string: "Scroll to bottom"), forState: .Normal)
                 scroll_to_bottom_button.addTarget(self, action: "scroll_to_bottom_action", forControlEvents: .TouchUpInside)
                 view.addSubview(scroll_to_bottom_button)
+
+                cancel_button.addTarget(self, action: "cancel_action", forControlEvents: .TouchUpInside)
+                view.addSubview(cancel_button)
 
                 scroll_view.addSubview(spread_sheet_cells)
 
@@ -90,11 +106,17 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
 
                 let (width, height) = (view.frame.width, view.frame.height)
 
+                scroll_to_top_button.setAttributedTitle(astring_max_width(string: "Scroll to top", max_width: (width - 40) / 3), forState: .Normal)
                 scroll_to_top_button.sizeToFit()
-                scroll_to_top_button.frame.origin = CGPoint(x: 20, y: 20)
+                scroll_to_top_button.frame.origin = CGPoint(x: 20, y: 30 - scroll_to_top_button.frame.height / 2)
 
+                scroll_to_bottom_button.setAttributedTitle(astring_max_width(string: "Scroll to bottom", max_width: (width - 40) / 3), forState: .Normal)
                 scroll_to_bottom_button.sizeToFit()
-                scroll_to_bottom_button.frame.origin = CGPoint(x: width - 20 - scroll_to_bottom_button.frame.width, y: 20)
+                scroll_to_bottom_button.frame.origin = CGPoint(x: width - 20 - scroll_to_bottom_button.frame.width, y: 30 - scroll_to_bottom_button.frame.height / 2)
+
+                cancel_button.setAttributedTitle(astring_max_width(string: "Cancel", max_width: (width - 40) / 3), forState: .Normal)
+                cancel_button.sizeToFit()
+                cancel_button.frame.origin = CGPoint(x: (width - cancel_button.frame.width) / 2, y: 30 - cancel_button.frame.height / 2)
 
                 scroll_view.contentSize = CGSize(width: column_widths.reduce(0, combine: +), height: row_heights.reduce(0, combine: +))
 
@@ -113,6 +135,38 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
                 spread_sheet_cells.reload()
         }
 
+        func cell_background_color(row row: Int, column: Int) -> UIColor {
+                if let selected = import_table_state.selected_samples {
+                        if row == selected.row_0 && row == selected.row_1 {
+                                if (column >= selected.column_0 && column <= selected.column_1) || (column <= selected.column_0 && column >= selected.column_1) {
+                                        return color_green
+                                }
+                        }
+
+                        if column == selected.column_0 && column == selected.column_1 {
+                                if (row >= selected.row_0 && row <= selected.row_1) || (row <= selected.row_0 && row >= selected.row_1) {
+                                        return color_green
+                                }
+                        }
+                }
+
+                if let selected = import_table_state.selected_molecules {
+                        if row == selected.row_0 && row == selected.row_1 {
+                                if (column >= selected.column_0 && column <= selected.column_1) || (column <= selected.column_0 && column >= selected.column_1) {
+                                        return color_blue
+                                }
+                        }
+
+                        if column == selected.column_0 && column == selected.column_1 {
+                                if (row >= selected.row_0 && row <= selected.row_1) || (row <= selected.row_0 && row >= selected.row_1) {
+                                        return color_blue
+                                }
+                        }
+                }
+
+
+                return UIColor.whiteColor()
+        }
 
         func spread_sheet_cells_row_heights(spread_sheet_cells spread_sheet_cells: SpreadSheetCells) -> [CGFloat] {
                 return row_heights
@@ -124,9 +178,12 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
 
         func spread_sheet_cells_astring(spread_sheet_cells spread_sheet_cells: SpreadSheetCells, row: Int, column: Int) -> Astring {
                 let cell_string = import_table_state.cell_string(row: row, column: column)
-                let astring = astring_body(string: cell_string)
-                let astring_narrow = astring_max_width(astring: astring, max_width: column_width - 20)
-                return astring_narrow
+                let astring = astring_max_width(string: cell_string, max_width: column_width - 20)
+                return astring
+        }
+
+        func spread_sheet_cells_background_color(spread_sheet_cells spread_sheet_cells: SpreadSheetCells, row: Int, column: Int) -> UIColor {
+                return cell_background_color(row: row, column: column)
         }
 
         func spread_sheet_cells_tapable(spread_sheet_cells spread_sheet_cells: SpreadSheetCells) -> Bool {
@@ -143,5 +200,11 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
 
         func scroll_to_bottom_action() {
                 scroll_view.contentOffset = CGPoint(x: scroll_view.contentSize.width - scroll_view.frame.width, y: scroll_view.contentSize.height - scroll_view.frame.height)
+        }
+
+        func cancel_action() {
+                let page_state = ImportDataState()
+                state.set_page_state(page_state: page_state)
+                state.render()
         }
 }

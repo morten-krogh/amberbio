@@ -74,6 +74,10 @@ class SpreadSheet: UIView, UIScrollViewDelegate, SpreadSheetCellsDelegate {
                 }
         }
 
+        func spread_sheet_cells_background_color(spread_sheet_cells spread_sheet_cells: SpreadSheetCells, row: Int, column: Int) -> UIColor {
+                return UIColor.whiteColor()
+        }
+
         func spread_sheet_cells_tapable(spread_sheet_cells spread_sheet_cells: SpreadSheetCells) -> Bool {
                 if spread_sheet_cells == header_spread_sheet_cells {
                         return delegate?.spread_sheet_header_tapable(spread_sheet: self) ?? false
@@ -156,6 +160,7 @@ protocol SpreadSheetCellsDelegate: class {
         func spread_sheet_cells_row_heights(spread_sheet_cells spread_sheet_cells: SpreadSheetCells) -> [CGFloat]
         func spread_sheet_cells_column_widths(spread_sheet_cells spread_sheet_cells: SpreadSheetCells) -> [CGFloat]
         func spread_sheet_cells_astring(spread_sheet_cells spread_sheet_cells: SpreadSheetCells, row: Int, column: Int) -> Astring
+        func spread_sheet_cells_background_color(spread_sheet_cells spread_sheet_cells: SpreadSheetCells, row: Int, column: Int) -> UIColor
 
         func spread_sheet_cells_tapable(spread_sheet_cells spread_sheet_cells: SpreadSheetCells) -> Bool
         func spread_sheet_cells_tapped(spread_sheet_cells spread_sheet_cells: SpreadSheetCells, row: Int, column: Int) -> Void
@@ -259,12 +264,13 @@ class SpreadSheetCells: UIView {
         func drawCell(context context: CGContext, row: Int, col: Int) {
                 let rect = rect_for_cell(row: row, col: col)
                 let astring = delegate?.spread_sheet_cells_astring(spread_sheet_cells: self, row: row, column: col) ?? astring_body(string: "")
+                let background_color = delegate?.spread_sheet_cells_background_color(spread_sheet_cells: self, row: row, column: col) ?? UIColor.whiteColor()
                 let right_line = col != column_widths.count - 1
                 let bottom_line = row != row_heights.count - 1
                 let margin_horizontal = (row_heights[row] - astring.size().height) / 2
                 let margin_vertical = (column_widths[col] - astring.size().width) / 2
 
-                drawing_draw_cell_with_attributed_text(context: context, rect: rect, line_width: line_width, attributed_text: astring, background_color: backgroundColor, horizontal_cell: true, margin_horizontal: margin_horizontal, margin_vertical: margin_vertical, text_centered: true, circle_color: nil, circle_radius: 0, top_line: false, right_line: right_line, bottom_line: bottom_line, left_line: false)
+                drawing_draw_cell_with_attributed_text(context: context, rect: rect, line_width: line_width, attributed_text: astring, background_color: background_color, horizontal_cell: true, margin_horizontal: margin_horizontal, margin_vertical: margin_vertical, text_centered: true, circle_color: nil, circle_radius: 0, top_line: false, right_line: right_line, bottom_line: bottom_line, left_line: false)
         }
 
         func draw_bottom_line(context context: CGContext) {

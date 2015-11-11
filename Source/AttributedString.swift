@@ -111,3 +111,8 @@ func astring_max_width(astring astring: Astring, max_width: CGFloat) -> Astring 
                 return astring
         }
 }
+
+func astring_max_width(string string: String, max_width: CGFloat) -> Astring {
+        return astring_max_width(astring: astring_body(string: string), max_width: max_width)
+
+}
