@@ -139,13 +139,13 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
                 if let selected = import_table_state.selected_samples {
                         if row == selected.row_0 && row == selected.row_1 {
                                 if (column >= selected.column_0 && column <= selected.column_1) || (column <= selected.column_0 && column >= selected.column_1) {
-                                        return color_green
+                                        return color_selected_samples
                                 }
                         }
 
                         if column == selected.column_0 && column == selected.column_1 {
                                 if (row >= selected.row_0 && row <= selected.row_1) || (row <= selected.row_0 && row >= selected.row_1) {
-                                        return color_green
+                                        return color_selected_samples
                                 }
                         }
                 }
@@ -153,17 +153,24 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
                 if let selected = import_table_state.selected_molecules {
                         if row == selected.row_0 && row == selected.row_1 {
                                 if (column >= selected.column_0 && column <= selected.column_1) || (column <= selected.column_0 && column >= selected.column_1) {
-                                        return color_blue
+                                        return color_selected_molecules
                                 }
                         }
 
                         if column == selected.column_0 && column == selected.column_1 {
                                 if (row >= selected.row_0 && row <= selected.row_1) || (row <= selected.row_0 && row >= selected.row_1) {
-                                        return color_blue
+                                        return color_selected_molecules
                                 }
                         }
                 }
 
+                if let samples = import_table_state.selected_samples, let molecules = import_table_state.selected_molecules {
+                        
+
+
+
+
+                }
 
                 return UIColor.whiteColor()
         }

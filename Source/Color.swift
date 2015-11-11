@@ -36,6 +36,10 @@ let color_failure = color_from_hex(hex: color_brewer_qualitative_9_pastel1[0])
 let color_additional = color_from_hex(hex: color_brewer_qualitative_9_pastel1[8])
 let color_normal = color_from_hex(hex: color_brewer_qualitative_9_pastel1[2])
 
+let color_selected_samples = color_from_hex(hex: color_brewer_qualitative_9_pastel1[0])
+let color_selected_molecules = color_from_hex(hex: color_brewer_qualitative_9_pastel1[2])
+let color_selected_values = color_from_hex(hex: color_brewer_qualitative_9_pastel1[1])
+
 let color_text_success = UIColor.blueColor()
 let color_text_failure = UIColor.redColor()
 
