@@ -29,7 +29,7 @@ class ImportTableState: PageState {
         var separator_positions = [] as [Int]
 
         var import_type: ImportType?
-        var import_phase = ImportPhase.Begin
+        var import_phase = 0
 
         var selected_row: (row: Int, column_0: Int, column_1: Int)?
         var selected_column: (column: Int, row_0: Int, row_1: Int)?
@@ -192,6 +192,10 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
 
                 row_heights = [CGFloat](count: import_table_state.number_of_rows, repeatedValue: 40)
                 column_widths = [CGFloat](count: import_table_state.number_of_columns, repeatedValue: column_width)
+                render_after_change()
+        }
+
+        func render_after_change() {
 
                 back_button.hidden = false
                 new_project_button.hidden = true
@@ -206,6 +210,22 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
                         new_project_button.hidden = false
                         add_factors_button.hidden = false
                         add_annotations_button.hidden = false
+                case .FirstSample:
+                        label_text = "Tap the first sample name"
+                case .LastSample:
+                        label_text = "Tap the last sample name"
+                case .FirstMolecule:
+                        label_text = "Tap the first molecule name"
+                case .LastMolecule:
+                        label_text = "Tap the last molecule name"
+                case .FirstFactor:
+                        label_text = "Tap the first factor name"
+                case .LastFactor:
+                        label_text = "Tap the last factor name"
+                case .FirstMoleculeAnnotation:
+                        label_text = "Tap the first molecule annotation name"
+                case .LastMoleculeAnnotation:
+                        label_text = "Tap the last molecule annotation name"
                 }
 
 
@@ -298,14 +318,20 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
         }
 
         func new_project_action() {
-
+                import_table_state.import_type = .Project
+                import_table_state.import_phase = .FirstSample
+                render_after_change()
         }
 
         func add_factors_action() {
-
+                import_table_state.import_type = .Factors
+                import_table_state.import_phase = .FirstSample
+                render_after_change()
         }
 
         func add_annotations_action() {
-
+                import_table_state.import_type = .Annotations
+                import_table_state.import_phase = .FirstMolecule
+                render_after_change()
         }
 }
