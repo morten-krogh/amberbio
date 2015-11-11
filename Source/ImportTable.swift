@@ -257,6 +257,12 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
                         if row >= row_min && row <= row_max {
                                 return type == .Annotations ? color_selected_molecules : color_selected_samples
                         }
+                } else if phase == 4 && selected_cells[0].row == selected_cells[1].row && row == selected_cells[2].row {
+                        if column == selected_cells[2].column {
+                                return color_selected_molecules
+                        } else if in_interval(end_point_0: selected_cells[0].column, end_point_1: selected_cells[1].column, point: column) {
+                                return color_selected_values
+                        }
                 }
 
 
@@ -320,22 +326,49 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
 
         func spread_sheet_cells_tapped(spread_sheet_cells spread_sheet_cells: SpreadSheetCells, row: Int, column: Int) {
                 print("tapped, \(import_table_state.phase)")
-                let row_column = (row, column)
-                switch import_table_state.phase {
-                case 1:
-                        import_table_state.selected_cells = [row_column]
-                        import_table_state.phase = 2
-                        render_after_change()
-                case 2:
-                        if row == import_table_state.selected_cells[0].row || column == import_table_state.selected_cells[0].column {
-                                import_table_state.selected_cells.append(row_column)
-                                import_table_state.phase = 3
+                if import_table_state.phase >= 1 && import_table_state.phase <= 4 {
+                        let potential_selected_cells = import_table_state.selected_cells + [(row, column)]
+                        if valid_selected_cells(selected_cells: potential_selected_cells) {
+                                import_table_state.selected_cells = potential_selected_cells
+                                import_table_state.phase++
                                 render_after_change()
                         }
-
-                default:
-                        break
                 }
+        }
+
+        func in_interval(end_point_0 end_point_0: Int, end_point_1: Int, point: Int) -> Bool {
+                return (point >= end_point_0 && point <= end_point_1) || (point >= end_point_1 && point <= end_point_0)
+        }
+
+        func valid_selected_cells(selected_cells selected_cells: [(row: Int, column: Int)]) -> Bool {
+                if selected_cells.count <= 1 {
+                        return true
+                } else if selected_cells[0].row == selected_cells[1].row {
+                        if selected_cells.count == 2 {
+                                return true
+                        } else if selected_cells.count == 3 {
+                                if selected_cells[2].row == selected_cells[0].row {
+                                        return false
+                                } else {
+                                        return !in_interval(end_point_0: selected_cells[0].column, end_point_1: selected_cells[1].column, point: selected_cells[2].column)
+                                }
+                        } else if selected_cells.count == 4 {
+                                return false
+                        }
+                } else if selected_cells[0].column == selected_cells[1].column {
+                        if selected_cells.count == 2 {
+                                return true
+                        } else if selected_cells.count == 3 {
+                                if selected_cells[2].column == selected_cells[0].column {
+                                        return false
+                                } else {
+                                        return !in_interval(end_point_0: selected_cells[0].row, end_point_1: selected_cells[1].row, point: selected_cells[2].row)
+                                }
+                        } else if selected_cells.count == 4 {
+                                return false
+                        }
+                }
+                return false
         }
 
         func scroll_to_top_action() {
