@@ -105,6 +105,7 @@ class ImportTable: Component, SpreadSheetCellsDelegate, UITextFieldDelegate {
         let import_button = UIButton(type: .System)
 
         let project_name_text_field = UITextField()
+        let create_project_button = UIButton(type: .System)
 
         let scroll_view = UIScrollView()
         let spread_sheet_cells = SpreadSheetCells()
@@ -164,6 +165,10 @@ class ImportTable: Component, SpreadSheetCellsDelegate, UITextFieldDelegate {
                 project_name_text_field.delegate = self
                 view.addSubview(project_name_text_field)
 
+                create_project_button.setAttributedTitle(astring_body(string: "Create the new project"), forState: .Normal)
+                create_project_button.addTarget(self, action: "create_project_action", forControlEvents: .TouchUpInside)
+                view.addSubview(create_project_button)
+
                 scroll_view.addSubview(spread_sheet_cells)
 
                 view.addSubview(scroll_view)
@@ -205,6 +210,8 @@ class ImportTable: Component, SpreadSheetCellsDelegate, UITextFieldDelegate {
                 if !project_name_text_field.hidden {
                         project_name_text_field.sizeToFit()
                         project_name_text_field.frame = CGRect(x: 100, y: origin_y, width: width - 200, height: project_name_text_field.frame.height + 20)
+                        create_project_button.sizeToFit()
+                        create_project_button.center = CGPoint(x: width / 2, y: origin_y + project_name_text_field.frame.height + 50)
                         back_button.center = CGPoint(x: width / 2, y: origin_y + project_name_text_field.frame.height + 100)
                 } else {
                         back_button.center = CGPoint(x: width / 2, y: origin_y)
@@ -252,6 +259,7 @@ class ImportTable: Component, SpreadSheetCellsDelegate, UITextFieldDelegate {
                 add_factors_button.hidden = true
                 add_annotations_button.hidden = true
                 project_name_text_field.hidden = true
+                create_project_button.hidden = true
 
                 let label_text: String
                 var label_color = nil as UIColor?
@@ -300,7 +308,9 @@ class ImportTable: Component, SpreadSheetCellsDelegate, UITextFieldDelegate {
                         label_text = "Type a project title"
                         project_name_text_field.text = import_table_state.project_name
                         project_name_text_field.hidden = false
-                        project_name_text_field.becomeFirstResponder()
+//                        project_name_text_field.borderStyle = .Bezel
+//                        project_name_text_field.becomeFirstResponder()
+                        create_project_button.hidden = false
                 }
 
                 label.attributedText = astring_font_size_color(string: label_text, font: nil, font_size: 20, color: label_color)
@@ -398,7 +408,6 @@ class ImportTable: Component, SpreadSheetCellsDelegate, UITextFieldDelegate {
 
         func textFieldDidEndEditing(textField: UITextField) {
                 import_table_state.project_name = textField.text ?? ""
-                create_project()
         }
 
         func in_interval(end_point_0 end_point_0: Int, end_point_1: Int, point: Int) -> Bool {
@@ -477,6 +486,7 @@ class ImportTable: Component, SpreadSheetCellsDelegate, UITextFieldDelegate {
         }
 
         func back_action() {
+                project_name_text_field.resignFirstResponder()
                 if import_table_state.phase == 7 {
                         import_table_state.phase = 5
                 } else {
@@ -753,7 +763,8 @@ class ImportTable: Component, SpreadSheetCellsDelegate, UITextFieldDelegate {
                 }
         }
 
-        func create_project() {
+        func create_project_action() {
+                project_name_text_field.resignFirstResponder()
                 let corrected_project_name = import_table_state.project_name == "" ? "Project?" : import_table_state.project_name
                 let project_id = state.insert_project(project_name: corrected_project_name, data_set_name: "Original data set", values: import_table_state.values, sample_names: import_table_state.header_0_1, molecule_names: import_table_state.header_2_3)
 
