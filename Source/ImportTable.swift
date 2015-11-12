@@ -675,9 +675,42 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
                         render_after_change()
                 }
 
-                
+                if import_table_state.type == .Annotations {
+                        var number_of_annotations = 0
+                        for i in 0 ..< header_2_3.count {
+                                let annotation_name = header_2_3[i]
+                                if state.molecule_annotation_names.indexOf(annotation_name) != nil {
+                                        continue
+                                }
+                                number_of_annotations++
 
+                                let values: [String]
+                                if row_0_1_min == row_0_1_max {
+                                        values = get_row_of_cells(row: row_2_3_min + i, column_0: col_0_1_min, column_1: col_0_1_max)
+                                } else {
+                                        values = get_column_of_cells(column: col_2_3_min + i, row_0: row_0_1_min, row_1: row_0_1_max)
+                                }
+                                var molecule_name_to_annotation_value = [:] as [String: String]
+                                for i in 0 ..< header_0_1.count {
+                                        molecule_name_to_annotation_value[header_0_1[i]] = values[i]
+                                }
 
+                                let annotation_values = state.molecule_names.map { molecule_name_to_annotation_value[$0]! }
+
+                                state.insert_molecule_annotation(project_id: state.project_id, molecule_annotation_name: annotation_name, molecule_annotation_values: annotation_values)
+                        }
+
+                        if number_of_annotations == 0 {
+                                import_table_state.import_message = "There were no new annotations"
+                                import_table_state.import_message_color = UIColor.redColor()
+                        } else {
+                                import_table_state.import_message = (number_of_annotations == 1 ? "One annotation has" : "\(number_of_annotations) annotations have")  + " been added"
+                                import_table_state.import_message_color = UIColor.blackColor()
+                        }
+
+                        import_table_state.phase = 6
+                        render_after_change()
+                }
 
                 let time_interval = NSDate().timeIntervalSinceDate(date_0)
                 print(time_interval)
