@@ -240,8 +240,8 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
                         label_text = "Select the type of import"
                         back_button.hidden = true
                         new_project_button.hidden = false
-                        add_factors_button.hidden = false
-                        add_annotations_button.hidden = false
+                        add_factors_button.hidden = !state.active_data_set
+                        add_annotations_button.hidden = !state.active_data_set
                 case 1:
                         if import_table_state.type == .Annotations {
                                 label_text = "Tap the first molecule name"
@@ -620,16 +620,6 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
                 }
 
 
-
-
-
-
-
-
-
-
-
-
                 if import_table_state.type == .Project {
                         let values: [Double]
                         if (row_0_1_min == row_0_1_max) {
@@ -637,16 +627,55 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
                         } else {
                                 values = import_table_state.cell_values_column_major(row_0: row_0_1_min, row_1: row_0_1_max, col_0: col_2_3_min, col_1: col_2_3_max)
                         }
-                        print(values)
+
+                        let corrected_project_name = "Hello"
+                        let project_id = state.insert_project(project_name: corrected_project_name, data_set_name: "Original data set", values: values, sample_names: header_0_1, molecule_names: header_2_3)
+
+                        let data_set_id = state.get_original_data_set_id(project_id: project_id)
+                        state.set_active_data_set(data_set_id: data_set_id)
+                        let data_set_selection_state = DataSetSelectionState()
+                        state.navigate(page_state: data_set_selection_state)
+                        state.render()
                 }
 
+                if import_table_state.type == .Factors {
+                        var number_of_factors = 0
+                        for i in 0 ..< header_2_3.count {
+                                let factor_name = header_2_3[i]
+                                if state.factor_names.indexOf(factor_name) != nil {
+                                        continue
+                                }
+                                number_of_factors++
 
+                                let levels: [String]
+                                if row_0_1_min == row_0_1_max {
+                                        levels = get_row_of_cells(row: row_2_3_min + i, column_0: col_0_1_min, column_1: col_0_1_max)
+                                } else {
+                                        levels = get_column_of_cells(column: col_2_3_min + i, row_0: row_0_1_min, row_1: row_0_1_max)
+                                }
+                                var sample_name_to_level = [:] as [String: String]
+                                for i in 0 ..< header_0_1.count {
+                                        sample_name_to_level[header_0_1[i]] = levels[i]
+                                }
 
+                                let level_names_of_samples = state.sample_names.map { sample_name_to_level[$0]! }
 
+                                sqlite_begin(database: state.database)
+                                state.insert_factor(project_id: state.project_id, factor_name: factor_name, level_names_of_samples: level_names_of_samples)
+                                sqlite_end(database: state.database)
+                        }
 
-//                print(header_0_1)
-//                print(header_2_3)
+                        if number_of_factors == 0 {
+                                import_table_state.import_message = "There were no new factors"
+                                import_table_state.import_message_color = UIColor.redColor()
+                        } else {
+                                import_table_state.import_message = (number_of_factors == 1 ? "One factor has" : "\(number_of_factors) factors have")  + " been added"
+                                import_table_state.import_message_color = UIColor.blackColor()
+                        }
 
+                        import_table_state.phase = 6
+                        render_after_change()
+                }
 
 
 
