@@ -24,7 +24,7 @@ class ImportTableState: PageState {
         var import_message = ""
         var import_message_color = UIColor.blackColor()
 
-        var project_name = "Project?"
+        var project_name = "A project"
         var header_0_1 = [] as [String]
         var header_2_3 = [] as [String]
         var values = [] as [Double]
@@ -776,7 +776,7 @@ class ImportTable: Component, SpreadSheetCellsDelegate, UITextFieldDelegate {
 
         func create_project_action() {
                 project_name_text_field.resignFirstResponder()
-                let corrected_project_name = import_table_state.project_name == "" ? "Project?" : import_table_state.project_name
+                let corrected_project_name = import_table_state.project_name == "" ? "A project" : import_table_state.project_name
                 let project_id = state.insert_project(project_name: corrected_project_name, data_set_name: "Original data set", values: import_table_state.values, sample_names: import_table_state.header_0_1, molecule_names: import_table_state.header_2_3)
 
                 import_table_state.header_0_1 = []
