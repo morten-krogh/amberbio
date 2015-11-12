@@ -9,7 +9,7 @@ let reset_database = false
 //let initial_active_data_set_id = 1
 #if DEBUG
         let unlock_all_modules = true
-        let initial_page_state = ImportTableState(file_id: 2)
+        let initial_page_state = ImportDataState() // ImportTableState(file_id: 2)
 #else
         let unlock_all_modules = false
         let initial_page_state = HomeState()

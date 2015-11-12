@@ -453,7 +453,68 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
                 render_after_change()
         }
 
-        func import_action() {
-                print("import")
+        func get_row_of_cells(row row: Int, column_0: Int, column_1: Int) -> [String] {
+                var strings = [String](count: column_1 - column_0 + 1, repeatedValue: "")
+                for i in 0 ..< column_1 - column_0 + 1 {
+                        strings[i] = import_table_state.cell_string(row: row, column: column_0 + i)
+                }
+                return strings
         }
+
+        func get_column_of_cells(column column: Int, row_0: Int, row_1: Int) -> [String] {
+                var strings = [String](count: row_1 - row_0 + 1, repeatedValue: "")
+                for i in 0 ..< row_1 - row_0 + 1 {
+                        strings[i] = import_table_state.cell_string(row: row_0 + i, column: column)
+                }
+                return strings
+        }
+
+
+
+        func import_action() {
+                let date_0 = NSDate()
+                print("import")
+                let selected_cells = import_table_state.selected_cells
+                let row_0_1_min = min(selected_cells[0].row, selected_cells[1].row)
+                let row_0_1_max = max(selected_cells[0].row, selected_cells[1].row)
+                let col_0_1_min = min(selected_cells[0].column, selected_cells[1].column)
+                let col_0_1_max = max(selected_cells[0].column, selected_cells[1].column)
+                let row_2_3_min = min(selected_cells[2].row, selected_cells[3].row)
+                let row_2_3_max = max(selected_cells[2].row, selected_cells[3].row)
+                let col_2_3_min = min(selected_cells[2].column, selected_cells[3].column)
+                let col_2_3_max = max(selected_cells[2].column, selected_cells[3].column)
+
+                let header_0_1: [String]
+                if row_0_1_min == row_0_1_max {
+                        header_0_1 = get_row_of_cells(row: row_0_1_min, column_0: col_0_1_min, column_1: col_0_1_max)
+                } else {
+                        header_0_1 = get_column_of_cells(column: col_0_1_min, row_0: row_0_1_min, row_1: row_0_1_max)
+                }
+
+                let header_2_3: [String]
+                if row_2_3_min == row_2_3_max {
+                        header_2_3 = get_row_of_cells(row: row_2_3_min, column_0: col_2_3_min, column_1: col_2_3_max)
+                } else {
+                        header_2_3 = get_column_of_cells(column: col_2_3_min, row_0: row_2_3_min, row_1: row_2_3_max)
+                }
+
+
+
+
+
+
+
+
+
+//                print(header_0_1)
+//                print(header_2_3)
+
+
+
+
+                let time_interval = NSDate().timeIntervalSinceDate(date_0)
+                print(time_interval)
+        }
+
+
 }
