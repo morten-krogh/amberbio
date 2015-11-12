@@ -242,7 +242,6 @@ class ImportTable: Component, SpreadSheetCellsDelegate, UITextFieldDelegate {
         }
 
         func render_after_change() {
-
                 back_button.hidden = false
                 import_button.hidden = true
                 new_project_button.hidden = true
