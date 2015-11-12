@@ -504,6 +504,19 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
                 return false
         }
 
+        func missing_name(strings strings: [String], names: [String]) -> String? {
+                var set = Set<String>()
+                for string in strings {
+                        set.insert(string)
+                }
+                for name in names {
+                        if !set.contains(name) {
+                                return name
+                        }
+                }
+                return nil
+        }
+
         func import_action() {
                 let date_0 = NSDate()
                 print("import")
@@ -547,6 +560,29 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
                         render_after_change()
                         return
                 }
+
+                if import_table_state.type == .Factors {
+                        if let name = missing_name(strings: header_0_1, names: state.sample_names) {
+                                import_table_state.import_message = "The sample name \(name) is missing"
+                                import_table_state.import_message_color = UIColor.redColor()
+                                import_table_state.phase = 6
+                                render_after_change()
+                                return
+                        }
+                }
+
+                if import_table_state.type == .Annotations {
+                        if let name = missing_name(strings: header_0_1, names: state.molecule_names) {
+                                import_table_state.import_message = "The molecule name \(name) is missing"
+                                import_table_state.import_message_color = UIColor.redColor()
+                                import_table_state.phase = 6
+                                render_after_change()
+                                return
+                        }
+                }
+
+
+
 
                 let header_2_3: [String]
                 if row_2_3_min == row_2_3_max {
