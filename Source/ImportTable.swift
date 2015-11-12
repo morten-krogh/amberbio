@@ -157,12 +157,12 @@ class ImportTable: Component, SpreadSheetCellsDelegate, UITextFieldDelegate {
                 view.addSubview(add_annotations_button)
 
                 project_name_text_field.layer.borderWidth = 1
-                project_name_text_field.layer.borderColor = UIColor.blackColor().CGColor
+                project_name_text_field.layer.borderColor = UIColor.blueColor().CGColor
+                project_name_text_field.layer.cornerRadius = 10
                 project_name_text_field.clearButtonMode = .WhileEditing
                 project_name_text_field.font = font_body
                 project_name_text_field.autocorrectionType = .No
                 project_name_text_field.textAlignment = .Center
-                project_name_text_field.borderStyle = UITextBorderStyle.Bezel
                 project_name_text_field.layer.masksToBounds = true
                 project_name_text_field.delegate = self
                 view.addSubview(project_name_text_field)
@@ -174,6 +174,10 @@ class ImportTable: Component, SpreadSheetCellsDelegate, UITextFieldDelegate {
                 scroll_view.addSubview(spread_sheet_cells)
 
                 view.addSubview(scroll_view)
+
+                let tap_recognizer = UITapGestureRecognizer(target: self, action: "tap_recognizer_action")
+                tap_recognizer.cancelsTouchesInView = false
+                view.addGestureRecognizer(tap_recognizer)
         }
 
         override func viewWillLayoutSubviews() {
@@ -211,28 +215,29 @@ class ImportTable: Component, SpreadSheetCellsDelegate, UITextFieldDelegate {
 
                 if !project_name_text_field.hidden {
                         project_name_text_field.sizeToFit()
-                        project_name_text_field.frame = CGRect(x: 100, y: origin_y, width: width - 200, height: project_name_text_field.frame.height + 10)
+                        let text_field_width = min(width - 200, 400)
+                        project_name_text_field.frame = CGRect(x: (width - text_field_width) / 2, y: origin_y - 10, width: text_field_width, height: project_name_text_field.frame.height + 20)
                         create_project_button.sizeToFit()
                         create_project_button.center = CGPoint(x: width / 2, y: origin_y + project_name_text_field.frame.height + 30)
-                        back_button.center = CGPoint(x: width / 2, y: origin_y + project_name_text_field.frame.height + create_project_button.frame.height + 30)
+                        back_button.center = CGPoint(x: width / 2, y: origin_y + project_name_text_field.frame.height + create_project_button.frame.height + 40)
                 } else {
-                        back_button.center = CGPoint(x: width / 2, y: origin_y)
+                        back_button.center = CGPoint(x: width / 2, y: origin_y + 10)
                 }
 
                 new_project_button.sizeToFit()
                 new_project_button.center = CGPoint(x: width / 2, y: origin_y)
 
-                origin_y += new_project_button.frame.height + 5
+                origin_y += new_project_button.frame.height
 
                 import_button.sizeToFit()
-                import_button.center = CGPoint(x: width / 2, y: origin_y)
+                import_button.center = CGPoint(x: width / 2, y: origin_y + 15)
 
                 add_factors_button.sizeToFit()
-                add_factors_button.center = CGPoint(x: width / 2, y: origin_y)
+                add_factors_button.center = CGPoint(x: width / 2, y: origin_y + 5)
                 origin_y += add_factors_button.frame.height + 5
 
                 add_annotations_button.sizeToFit()
-                add_annotations_button.center = CGPoint(x: width / 2, y: origin_y)
+                add_annotations_button.center = CGPoint(x: width / 2, y: origin_y + 5)
 
                 scroll_view.contentSize = CGSize(width: column_widths.reduce(0, combine: +), height: row_heights.reduce(0, combine: +))
 
@@ -312,8 +317,6 @@ class ImportTable: Component, SpreadSheetCellsDelegate, UITextFieldDelegate {
                         label_text = "Type a project title"
                         project_name_text_field.text = import_table_state.project_name
                         project_name_text_field.hidden = false
-//                        project_name_text_field.borderStyle = .Bezel
-//                        project_name_text_field.becomeFirstResponder()
                         create_project_button.hidden = false
                 }
 
@@ -412,6 +415,10 @@ class ImportTable: Component, SpreadSheetCellsDelegate, UITextFieldDelegate {
 
         func textFieldDidEndEditing(textField: UITextField) {
                 import_table_state.project_name = textField.text ?? ""
+        }
+
+        func tap_recognizer_action() {
+                project_name_text_field.resignFirstResponder()
         }
 
         func in_interval(end_point_0 end_point_0: Int, end_point_1: Int, point: Int) -> Bool {
