@@ -134,17 +134,11 @@ void parse_read_double_values(const void* bytes, const long number_of_rows, cons
                                 value = parse_parse_double(cstring);
                         }
 
-                        values[(row - row_0) * (col_1 - col_0 + 1) + col - col_0] = value;
+                        if (row_major == 1) {
+                                values[(row - row_0) * (col_1 - col_0 + 1) + col - col_0] = value;
+                        } else {
+                                values[(col - col_0) * (row_1 - row_0 + 1) + row - row_0] = value;
+                        }
                 }
         }
 }
-
-
-
-
-
-
-
-
-
-

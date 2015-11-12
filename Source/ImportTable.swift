@@ -73,9 +73,13 @@ class ImportTableState: PageState {
 
         func cell_values_row_major(row_0 row_0: Int, row_1: Int, col_0: Int, col_1: Int) -> [Double] {
                 var values = [Double](count: (row_1 - row_0 + 1) * (col_1 - col_0 + 1), repeatedValue: Double.NaN)
-                
                 parse_read_double_values(file_data.bytes, number_of_rows, number_of_columns, separator_positions, row_0, row_1, col_0, col_1, 1, &values)
+                return values
+        }
 
+        func cell_values_column_major(row_0 row_0: Int, row_1: Int, col_0: Int, col_1: Int) -> [Double] {
+                var values = [Double](count: (row_1 - row_0 + 1) * (col_1 - col_0 + 1), repeatedValue: Double.NaN)
+                parse_read_double_values(file_data.bytes, number_of_rows, number_of_columns, separator_positions, row_0, row_1, col_0, col_1, 0, &values)
                 return values
         }
 }
@@ -508,10 +512,13 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
 
 
                 if import_table_state.type == .Project {
+                        let values: [Double]
                         if (row_0_1_min == row_0_1_max) {
-                                let values = import_table_state.cell_values_row_major(row_0: row_2_3_min, row_1: row_2_3_max, col_0: col_0_1_min, col_1: col_0_1_max)
-                                print(values)
+                                values = import_table_state.cell_values_row_major(row_0: row_2_3_min, row_1: row_2_3_max, col_0: col_0_1_min, col_1: col_0_1_max)
+                        } else {
+                                values = import_table_state.cell_values_column_major(row_0: row_0_1_min, row_1: row_0_1_max, col_0: col_2_3_min, col_1: col_2_3_max)
                         }
+                        print(values)
                 }
 
 
