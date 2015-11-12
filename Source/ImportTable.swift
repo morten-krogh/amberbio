@@ -21,11 +21,8 @@ class ImportTableState: PageState {
 
         var selected_cells = [] as [(row: Int, column: Int)]
 
-        var selected_row: (row: Int, column_0: Int, column_1: Int)?
-        var selected_column: (column: Int, row_0: Int, row_1: Int)?
-
-        var samples_in_row = false
-        var molecules_in_row = true
+        var import_message = ""
+        var import_message_color = UIColor.blackColor()
 
         init(file_id: Int) {
                 self.file_id = file_id
@@ -133,6 +130,7 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
 
                 label.font = font_body
                 label.textAlignment = .Center
+                label.numberOfLines = 0
                 view.addSubview(label)
 
                 back_button.setAttributedTitle(astring_body(string: "Back"), forState: .Normal)
@@ -236,6 +234,7 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
                 add_annotations_button.hidden = true
 
                 let label_text: String
+                var label_color = nil as UIColor?
                 switch import_table_state.phase {
                 case 0:
                         label_text = "Select the type of import"
@@ -271,12 +270,15 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
                         } else {
                                 label_text = "Tap the last molecule annotation name"
                         }
-                default:
+                case 5:
                         label_text = "Tap the button to import"
                         import_button.hidden = false
+                default:
+                        label_text = import_table_state.import_message
+                        label_color = import_table_state.import_message_color
                 }
 
-                label.attributedText = astring_font_size_color(string: label_text, font: nil, font_size: 20, color: nil)
+                label.attributedText = astring_font_size_color(string: label_text, font: nil, font_size: 20, color: label_color)
                 label.textAlignment = .Center
 
                 spread_sheet_cells.delegate = self
@@ -441,7 +443,7 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
 
         func back_action() {
                 import_table_state.phase--
-                if !import_table_state.selected_cells.isEmpty {
+                if import_table_state.phase > 0 && import_table_state.phase < 5 {
                         import_table_state.selected_cells.removeLast()
                 }
                 render_after_change()
@@ -481,7 +483,17 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
                 return strings
         }
 
-
+        func find_duplicate(strings strings: [String]) -> String? {
+                var set = Set<String>()
+                for string in strings {
+                        if set.contains(string) {
+                                return string
+                        } else {
+                                set.insert(string)
+                        }
+                }
+                return nil
+        }
 
         func import_action() {
                 let date_0 = NSDate()
@@ -503,6 +515,18 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
                         header_0_1 = get_column_of_cells(column: col_0_1_min, row_0: row_0_1_min, row_1: row_0_1_max)
                 }
 
+                if let duplicate = find_duplicate(strings: header_0_1) {
+                        if import_table_state.type != .Annotations {
+                                import_table_state.import_message = "\(duplicate) is a duplicate sample name"
+                        } else {
+                                import_table_state.import_message = "\(duplicate) is a duplicate molecule name"
+                        }
+                        import_table_state.import_message_color = UIColor.redColor()
+                        import_table_state.phase = 6
+                        render_after_change()
+                        return
+                }
+
                 let header_2_3: [String]
                 if row_2_3_min == row_2_3_max {
                         header_2_3 = get_row_of_cells(row: row_2_3_min, column_0: col_2_3_min, column_1: col_2_3_max)
@@ -510,6 +534,19 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
                         header_2_3 = get_column_of_cells(column: col_2_3_min, row_0: row_2_3_min, row_1: row_2_3_max)
                 }
 
+                if let duplicate = find_duplicate(strings: header_2_3) {
+                        if import_table_state.type == .Project {
+                                import_table_state.import_message = "\(duplicate) is a duplicate molecule name"
+                        } else if import_table_state.type == .Factors {
+                                import_table_state.import_message = "\(duplicate) is a duplicate factor name"
+                        } else if import_table_state.type == .Annotations {
+                                import_table_state.import_message = "\(duplicate) is a duplicate molecule annotation name"
+                        }
+                        import_table_state.import_message_color = UIColor.redColor()
+                        import_table_state.phase = 6
+                        render_after_change()
+                        return
+                }
 
                 if import_table_state.type == .Project {
                         let values: [Double]
