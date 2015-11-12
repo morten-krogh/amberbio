@@ -137,7 +137,6 @@ class ImportTable: Component, SpreadSheetCellsDelegate, UITextFieldDelegate {
 
                 label.font = font_body
                 label.textAlignment = .Center
-                label.numberOfLines = 0
                 view.addSubview(label)
 
                 back_button.setAttributedTitle(astring_body(string: "Back"), forState: .Normal)
@@ -156,6 +155,12 @@ class ImportTable: Component, SpreadSheetCellsDelegate, UITextFieldDelegate {
                 add_annotations_button.addTarget("self", action: "add_annotations_action", forControlEvents: .TouchUpInside)
                 view.addSubview(add_annotations_button)
 
+                project_name_text_field.clearButtonMode = .WhileEditing
+                project_name_text_field.font = font_body
+                project_name_text_field.autocorrectionType = .No
+                project_name_text_field.textAlignment = .Center
+                project_name_text_field.borderStyle = UITextBorderStyle.Bezel
+                project_name_text_field.layer.masksToBounds = true
                 project_name_text_field.delegate = self
                 view.addSubview(project_name_text_field)
 
@@ -198,16 +203,15 @@ class ImportTable: Component, SpreadSheetCellsDelegate, UITextFieldDelegate {
                 back_button.sizeToFit()
 
                 if !project_name_text_field.hidden {
-                        project_name_text_field.frame = CGRect(x: 100, y: origin_y, width: width - 200, height: 50)
-                        back_button.center = CGPoint(x: width / 2, y: origin_y + 50)
+                        project_name_text_field.sizeToFit()
+                        project_name_text_field.frame = CGRect(x: 100, y: origin_y, width: width - 200, height: project_name_text_field.frame.height + 20)
+                        back_button.center = CGPoint(x: width / 2, y: origin_y + project_name_text_field.frame.height + 100)
                 } else {
                         back_button.center = CGPoint(x: width / 2, y: origin_y)
                 }
 
                 new_project_button.sizeToFit()
                 new_project_button.center = CGPoint(x: width / 2, y: origin_y)
-
-
 
                 origin_y += new_project_button.frame.height + 5
 
@@ -293,9 +297,10 @@ class ImportTable: Component, SpreadSheetCellsDelegate, UITextFieldDelegate {
                         label_text = import_table_state.import_message
                         label_color = import_table_state.import_message_color
                 default:
-                        label_text = "Project title"
+                        label_text = "Type a project title"
                         project_name_text_field.text = import_table_state.project_name
                         project_name_text_field.hidden = false
+                        project_name_text_field.becomeFirstResponder()
                 }
 
                 label.attributedText = astring_font_size_color(string: label_text, font: nil, font_size: 20, color: label_color)
@@ -384,6 +389,16 @@ class ImportTable: Component, SpreadSheetCellsDelegate, UITextFieldDelegate {
                                 render_after_change()
                         }
                 }
+        }
+
+        func textFieldShouldReturn(textField: UITextField) -> Bool {
+                textField.resignFirstResponder()
+                return true
+        }
+
+        func textFieldDidEndEditing(textField: UITextField) {
+                import_table_state.project_name = textField.text ?? ""
+                create_project()
         }
 
         func in_interval(end_point_0 end_point_0: Int, end_point_1: Int, point: Int) -> Bool {
@@ -749,10 +764,10 @@ class ImportTable: Component, SpreadSheetCellsDelegate, UITextFieldDelegate {
                 let data_set_id = state.get_original_data_set_id(project_id: project_id)
                 state.set_active_data_set(data_set_id: data_set_id)
 
-                import_table_state.import_message = "A new project has been created and made active"
+                import_table_state.import_message = "The new project \"\(corrected_project_name)\" is active"
                 import_table_state.import_message_color = UIColor.blueColor()
 
                 import_table_state.phase = 6
-                render_after_change()
+                state.render()
         }
 }
