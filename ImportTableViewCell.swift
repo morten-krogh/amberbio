@@ -26,7 +26,7 @@ class ImportTableViewCell: UITableViewCell {
                 date_label.font = UIFont.preferredFontForTextStyle(UIFontTextStyleFootnote)
                 date_label.textColor = UIColor.lightGrayColor()
 
-                import_button.setAttributedTitle(astring_body(string: "Import"), forState: .Normal)
+                import_button.setAttributedTitle(astring_font_size_color(string: "Import", font: nil, font_size: 20, color: nil), forState: .Normal)
                 import_button.addTarget(self, action: "local_import_action", forControlEvents: .TouchUpInside)
 
                 contentView.addSubview(inset_view)
