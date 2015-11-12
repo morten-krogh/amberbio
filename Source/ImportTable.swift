@@ -156,6 +156,8 @@ class ImportTable: Component, SpreadSheetCellsDelegate, UITextFieldDelegate {
                 add_annotations_button.addTarget("self", action: "add_annotations_action", forControlEvents: .TouchUpInside)
                 view.addSubview(add_annotations_button)
 
+                project_name_text_field.layer.borderWidth = 1
+                project_name_text_field.layer.borderColor = UIColor.blackColor().CGColor
                 project_name_text_field.clearButtonMode = .WhileEditing
                 project_name_text_field.font = font_body
                 project_name_text_field.autocorrectionType = .No
@@ -209,10 +211,10 @@ class ImportTable: Component, SpreadSheetCellsDelegate, UITextFieldDelegate {
 
                 if !project_name_text_field.hidden {
                         project_name_text_field.sizeToFit()
-                        project_name_text_field.frame = CGRect(x: 100, y: origin_y, width: width - 200, height: project_name_text_field.frame.height + 20)
+                        project_name_text_field.frame = CGRect(x: 100, y: origin_y, width: width - 200, height: project_name_text_field.frame.height + 10)
                         create_project_button.sizeToFit()
-                        create_project_button.center = CGPoint(x: width / 2, y: origin_y + project_name_text_field.frame.height + 50)
-                        back_button.center = CGPoint(x: width / 2, y: origin_y + project_name_text_field.frame.height + 100)
+                        create_project_button.center = CGPoint(x: width / 2, y: origin_y + project_name_text_field.frame.height + 30)
+                        back_button.center = CGPoint(x: width / 2, y: origin_y + project_name_text_field.frame.height + create_project_button.frame.height + 30)
                 } else {
                         back_button.center = CGPoint(x: width / 2, y: origin_y)
                 }
@@ -236,8 +238,10 @@ class ImportTable: Component, SpreadSheetCellsDelegate, UITextFieldDelegate {
 
                 if import_table_state.phase == 0 {
                         origin_y = CGRectGetMaxY(add_annotations_button.frame)
-                } else {
+                } else if import_table_state.phase < 7 {
                         origin_y = CGRectGetMaxY(import_button.frame)
+                } else {
+                        origin_y = CGRectGetMaxY(back_button.frame)
                 }
                 origin_y += 20
                 scroll_view.frame = layout_centered_frame(contentSize: scroll_view.contentSize, rect: CGRect(x: 0, y: origin_y, width: width, height: height - origin_y))
