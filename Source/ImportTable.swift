@@ -24,6 +24,11 @@ class ImportTableState: PageState {
         var import_message = ""
         var import_message_color = UIColor.blackColor()
 
+        var project_name = "Project?"
+        var header_0_1 = [] as [String]
+        var header_2_3 = [] as [String]
+        var values = [] as [Double]
+
         init(file_id: Int) {
                 self.file_id = file_id
                 super.init()
@@ -81,7 +86,7 @@ class ImportTableState: PageState {
         }
 }
 
-class ImportTable: Component, SpreadSheetCellsDelegate {
+class ImportTable: Component, SpreadSheetCellsDelegate, UITextFieldDelegate {
 
         var import_table_state: ImportTableState!
 
@@ -98,6 +103,8 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
         let add_annotations_button = UIButton(type: .System)
         let back_button = UIButton(type: .System)
         let import_button = UIButton(type: .System)
+
+        let project_name_text_field = UITextField()
 
         let scroll_view = UIScrollView()
         let spread_sheet_cells = SpreadSheetCells()
@@ -149,6 +156,9 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
                 add_annotations_button.addTarget("self", action: "add_annotations_action", forControlEvents: .TouchUpInside)
                 view.addSubview(add_annotations_button)
 
+                project_name_text_field.delegate = self
+                view.addSubview(project_name_text_field)
+
                 scroll_view.addSubview(spread_sheet_cells)
 
                 view.addSubview(scroll_view)
@@ -186,7 +196,13 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
                 origin_y = CGRectGetMaxY(label.frame) + 20
 
                 back_button.sizeToFit()
-                back_button.center = CGPoint(x: width / 2, y: origin_y)
+
+                if !project_name_text_field.hidden {
+                        project_name_text_field.frame = CGRect(x: 100, y: origin_y, width: width - 200, height: 50)
+                        back_button.center = CGPoint(x: width / 2, y: origin_y + 50)
+                } else {
+                        back_button.center = CGPoint(x: width / 2, y: origin_y)
+                }
 
                 new_project_button.sizeToFit()
                 new_project_button.center = CGPoint(x: width / 2, y: origin_y)
@@ -232,6 +248,7 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
                 new_project_button.hidden = true
                 add_factors_button.hidden = true
                 add_annotations_button.hidden = true
+                project_name_text_field.hidden = true
 
                 let label_text: String
                 var label_color = nil as UIColor?
@@ -273,9 +290,13 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
                 case 5:
                         label_text = "Tap the button to import"
                         import_button.hidden = false
-                default:
+                case 6:
                         label_text = import_table_state.import_message
                         label_color = import_table_state.import_message_color
+                default:
+                        label_text = "Project title"
+                        project_name_text_field.text = import_table_state.project_name
+                        project_name_text_field.hidden = false
                 }
 
                 label.attributedText = astring_font_size_color(string: label_text, font: nil, font_size: 20, color: label_color)
@@ -442,9 +463,13 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
         }
 
         func back_action() {
-                import_table_state.phase--
-                if import_table_state.phase > 0 && import_table_state.phase < 5 {
-                        import_table_state.selected_cells.removeLast()
+                if import_table_state.phase == 7 {
+                        import_table_state.phase = 5
+                } else {
+                        import_table_state.phase--
+                        if import_table_state.phase > 0 && import_table_state.phase < 5 {
+                                import_table_state.selected_cells.removeLast()
+                        }
                 }
                 render_after_change()
         }
@@ -518,8 +543,6 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
         }
 
         func import_action() {
-                let date_0 = NSDate()
-                print("import")
                 let selected_cells = import_table_state.selected_cells
                 let row_0_1_min = min(selected_cells[0].row, selected_cells[1].row)
                 let row_0_1_max = max(selected_cells[0].row, selected_cells[1].row)
@@ -581,9 +604,6 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
                         }
                 }
 
-
-
-
                 let header_2_3: [String]
                 if row_2_3_min == row_2_3_max {
                         header_2_3 = get_row_of_cells(row: row_2_3_min, column_0: col_2_3_min, column_1: col_2_3_max)
@@ -621,6 +641,9 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
 
 
                 if import_table_state.type == .Project {
+                        import_table_state.header_0_1 = header_0_1
+                        import_table_state.header_2_3 = header_2_3
+
                         let values: [Double]
                         if (row_0_1_min == row_0_1_max) {
                                 values = import_table_state.cell_values_row_major(row_0: row_2_3_min, row_1: row_2_3_max, col_0: col_0_1_min, col_1: col_0_1_max)
@@ -628,14 +651,11 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
                                 values = import_table_state.cell_values_column_major(row_0: row_0_1_min, row_1: row_0_1_max, col_0: col_2_3_min, col_1: col_2_3_max)
                         }
 
-                        let corrected_project_name = "Hello"
-                        let project_id = state.insert_project(project_name: corrected_project_name, data_set_name: "Original data set", values: values, sample_names: header_0_1, molecule_names: header_2_3)
+                        import_table_state.values = values
 
-                        let data_set_id = state.get_original_data_set_id(project_id: project_id)
-                        state.set_active_data_set(data_set_id: data_set_id)
-                        let data_set_selection_state = DataSetSelectionState()
-                        state.navigate(page_state: data_set_selection_state)
-                        state.render()
+                        import_table_state.phase = 7
+                        render_after_change()
+                        return
                 }
 
                 if import_table_state.type == .Factors {
@@ -677,6 +697,9 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
 
                 if import_table_state.type == .Annotations {
                         var number_of_annotations = 0
+                        var annotation_names = [] as [String]
+                        var annotation_values_array = [] as [[String]]
+
                         for i in 0 ..< header_2_3.count {
                                 let annotation_name = header_2_3[i]
                                 if state.molecule_annotation_names.indexOf(annotation_name) != nil {
@@ -697,8 +720,11 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
 
                                 let annotation_values = state.molecule_names.map { molecule_name_to_annotation_value[$0]! }
 
-                                state.insert_molecule_annotation(project_id: state.project_id, molecule_annotation_name: annotation_name, molecule_annotation_values: annotation_values)
+                                annotation_names.append(annotation_name)
+                                annotation_values_array.append(annotation_values)
                         }
+
+                        state.insert_molecule_annotations(project_id: state.project_id, molecule_annotation_names: annotation_names, molecule_annotation_values: annotation_values_array)
 
                         if number_of_annotations == 0 {
                                 import_table_state.import_message = "There were no new annotations"
@@ -711,10 +737,23 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
                         import_table_state.phase = 6
                         render_after_change()
                 }
-
-                let time_interval = NSDate().timeIntervalSinceDate(date_0)
-                print(time_interval)
         }
 
+        func create_project() {
+                let corrected_project_name = import_table_state.project_name == "" ? "Project?" : import_table_state.project_name
+                let project_id = state.insert_project(project_name: corrected_project_name, data_set_name: "Original data set", values: import_table_state.values, sample_names: import_table_state.header_0_1, molecule_names: import_table_state.header_2_3)
 
+                import_table_state.header_0_1 = []
+                import_table_state.header_2_3 = []
+                import_table_state.values = []
+
+                let data_set_id = state.get_original_data_set_id(project_id: project_id)
+                state.set_active_data_set(data_set_id: data_set_id)
+
+                import_table_state.import_message = "A new project has been created and made active"
+                import_table_state.import_message_color = UIColor.blueColor()
+
+                import_table_state.phase = 6
+                render_after_change()
+        }
 }
