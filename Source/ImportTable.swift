@@ -508,12 +508,11 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
 
 
                 if import_table_state.type == .Project {
-                        
-
-                let values = import_table_state.cell_values_row_major(row_0: <#T##Int#>, row_1: <#T##Int#>, col_0: <#T##Int#>, col_1: <#T##Int#>)
-
-
-
+                        if (row_0_1_min == row_0_1_max) {
+                                let values = import_table_state.cell_values_row_major(row_0: row_2_3_min, row_1: row_2_3_max, col_0: col_0_1_min, col_1: col_0_1_max)
+                                print(values)
+                        }
+                }
 
 
 

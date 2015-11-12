@@ -90,6 +90,31 @@ void parse_read_cstring(const void* bytes, const long position_0, const long pos
         cstring[position_1 - position_0] = '\0';
 }
 
+double parse_parse_double(char* cstring) {
+        for (char* cursor = cstring; *cursor != '\0'; cursor++) {
+                if (*cursor == ',') {
+                        *cursor = '.';
+                }
+        }
+
+        char* endptr;
+
+        double value = strtod(cstring, &endptr);
+
+        if (endptr == cstring) {
+                return nanf(NULL);
+        } else if (*endptr == '\0') {
+                return value;
+        } else {
+                for (char* cursor = endptr; *cursor != '\0'; cursor++) {
+                        if (*cursor != ' ') {
+                                return nanf(NULL);
+                        }
+                }
+                return value;
+        }
+}
+
 void parse_read_double_values(const void* bytes, const long number_of_rows, const long number_of_columns, const long* separator_positions, long row_0, long row_1, long col_0, long col_1, long row_major, double* values)
 {
         long max_cstring_size = 100;
@@ -106,7 +131,7 @@ void parse_read_double_values(const void* bytes, const long number_of_rows, cons
                                 value = nanf(NULL);
                         } else {
                                 parse_read_cstring(bytes, position_0, position_1, cstring);
-                                value = strtod(cstring, NULL);
+                                value = parse_parse_double(cstring);
                         }
 
                         values[(row - row_0) * (col_1 - col_0 + 1) + col - col_0] = value;
