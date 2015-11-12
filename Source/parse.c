@@ -89,3 +89,37 @@ void parse_read_cstring(const void* bytes, const long position_0, const long pos
         }
         cstring[position_1 - position_0] = '\0';
 }
+
+void parse_read_double_values(const void* bytes, const long number_of_rows, const long number_of_columns, const long* separator_positions, long row_0, long row_1, long col_0, long col_1, long row_major, double* values)
+{
+        long max_cstring_size = 100;
+        char cstring[max_cstring_size];
+
+        for (long row = row_0; row < row_1 + 1; row++) {
+                for (long col = col_0; col < col_1 + 1; col++) {
+                        long index = row * number_of_columns + col;
+                        long position_0 = index > 0 ? separator_positions[index - 1] + 1 : 0;
+                        long position_1 = separator_positions[index];
+
+                        double value;
+                        if (position_0 >= position_1 || position_1 - position_0 >= max_cstring_size) {
+                                value = nanf(NULL);
+                        } else {
+                                parse_read_cstring(bytes, position_0, position_1, cstring);
+                                value = strtod(cstring, NULL);
+                        }
+
+                        values[(row - row_0) * (col_1 - col_0 + 1) + col - col_0] = value;
+                }
+        }
+}
+
+
+
+
+
+
+
+
+
+

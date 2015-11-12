@@ -70,6 +70,14 @@ class ImportTableState: PageState {
 
                 return str
         }
+
+        func cell_values_row_major(row_0 row_0: Int, row_1: Int, col_0: Int, col_1: Int) -> [Double] {
+                var values = [Double](count: (row_1 - row_0 + 1) * (col_1 - col_0 + 1), repeatedValue: Double.NaN)
+                
+                parse_read_double_values(file_data.bytes, number_of_rows, number_of_columns, separator_positions, row_0, row_1, col_0, col_1, 1, &values)
+
+                return values
+        }
 }
 
 class ImportTable: Component, SpreadSheetCellsDelegate {
@@ -454,17 +462,17 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
         }
 
         func get_row_of_cells(row row: Int, column_0: Int, column_1: Int) -> [String] {
-                var strings = [String](count: column_1 - column_0 + 1, repeatedValue: "")
+                var strings = [] as [String]
                 for i in 0 ..< column_1 - column_0 + 1 {
-                        strings[i] = import_table_state.cell_string(row: row, column: column_0 + i)
+                        strings.append(import_table_state.cell_string(row: row, column: column_0 + i))
                 }
                 return strings
         }
 
         func get_column_of_cells(column column: Int, row_0: Int, row_1: Int) -> [String] {
-                var strings = [String](count: row_1 - row_0 + 1, repeatedValue: "")
+                var strings = [] as [String]
                 for i in 0 ..< row_1 - row_0 + 1 {
-                        strings[i] = import_table_state.cell_string(row: row_0 + i, column: column)
+                        strings.append(import_table_state.cell_string(row: row_0 + i, column: column))
                 }
                 return strings
         }
@@ -498,6 +506,11 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
                         header_2_3 = get_column_of_cells(column: col_2_3_min, row_0: row_2_3_min, row_1: row_2_3_max)
                 }
 
+
+                if import_table_state.type == .Project {
+                        
+
+                let values = import_table_state.cell_values_row_major(row_0: <#T##Int#>, row_1: <#T##Int#>, col_0: <#T##Int#>, col_1: <#T##Int#>)
 
 
 
