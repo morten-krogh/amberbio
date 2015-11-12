@@ -660,9 +660,7 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
 
                                 let level_names_of_samples = state.sample_names.map { sample_name_to_level[$0]! }
 
-                                sqlite_begin(database: state.database)
                                 state.insert_factor(project_id: state.project_id, factor_name: factor_name, level_names_of_samples: level_names_of_samples)
-                                sqlite_end(database: state.database)
                         }
 
                         if number_of_factors == 0 {
@@ -676,6 +674,8 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
                         import_table_state.phase = 6
                         render_after_change()
                 }
+
+                
 
 
 
