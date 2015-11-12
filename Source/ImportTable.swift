@@ -315,13 +315,13 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
                         } else if in_interval(end_point_0: selected_cells[0].row, end_point_1: selected_cells[1].row, point: row) {
                                 return color_selected_values
                         }
-                } else if phase == 5 && selected_cells[0].row == selected_cells[1].row {
+                } else if phase >= 5 && selected_cells[0].row == selected_cells[1].row {
                         if column == selected_cells[2].column && in_interval(end_point_0: selected_cells[2].row, end_point_1: selected_cells[3].row, point: row) {
                                 return color_selected_headers
                         } else if in_interval(end_point_0: selected_cells[0].column, end_point_1: selected_cells[1].column, point: column) && in_interval(end_point_0: selected_cells[2].row, end_point_1: selected_cells[3].row, point: row) {
                                 return color_selected_values
                         }
-                } else if phase == 5 && selected_cells[0].column == selected_cells[1].column {
+                } else if phase >= 5 && selected_cells[0].column == selected_cells[1].column {
                         if row == selected_cells[2].row && in_interval(end_point_0: selected_cells[2].column, end_point_1: selected_cells[3].column, point: column) {
                                 return color_selected_headers
                         } else if in_interval(end_point_0: selected_cells[0].row, end_point_1: selected_cells[1].row, point: row) && in_interval(end_point_0: selected_cells[2].column, end_point_1: selected_cells[3].column, point: column) {
@@ -495,6 +495,15 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
                 return nil
         }
 
+        func any_empty(strings strings: [String]) -> Bool {
+                for string in strings {
+                        if string.isEmpty {
+                                return true
+                        }
+                }
+                return false
+        }
+
         func import_action() {
                 let date_0 = NSDate()
                 print("import")
@@ -527,6 +536,18 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
                         return
                 }
 
+                if any_empty(strings: header_0_1) {
+                        if import_table_state.type != .Annotations {
+                                import_table_state.import_message = "There is an empty sample name"
+                        } else {
+                                import_table_state.import_message = "There is an empty molecule name"
+                        }
+                        import_table_state.import_message_color = UIColor.redColor()
+                        import_table_state.phase = 6
+                        render_after_change()
+                        return
+                }
+
                 let header_2_3: [String]
                 if row_2_3_min == row_2_3_max {
                         header_2_3 = get_row_of_cells(row: row_2_3_min, column_0: col_2_3_min, column_1: col_2_3_max)
@@ -547,6 +568,31 @@ class ImportTable: Component, SpreadSheetCellsDelegate {
                         render_after_change()
                         return
                 }
+
+                if any_empty(strings: header_2_3) {
+                        if import_table_state.type == .Project {
+                                import_table_state.import_message = "There is an empty molecule name"
+                        } else if import_table_state.type == .Factors {
+                                import_table_state.import_message = "There is an empty factor name"
+                        } else if import_table_state.type == .Annotations {
+                                import_table_state.import_message = "There is an empty molecule annotation name"
+                        }
+                        import_table_state.import_message_color = UIColor.redColor()
+                        import_table_state.phase = 6
+                        render_after_change()
+                        return
+                }
+
+
+
+
+
+
+
+
+
+
+
 
                 if import_table_state.type == .Project {
                         let values: [Double]
