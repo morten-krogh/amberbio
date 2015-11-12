@@ -238,10 +238,10 @@ class ImportTable: Component, SpreadSheetCellsDelegate, UITextFieldDelegate {
 
                 if !project_name_text_field.hidden {
                         project_name_text_field.sizeToFit()
-                        let text_field_width = min(width - 200, 400)
+                        let text_field_width = min(width - 200, 500)
                         project_name_text_field.frame = CGRect(x: (width - text_field_width) / 2, y: origin_y, width: text_field_width, height: project_name_text_field.frame.height + 20)
                         create_project_button.sizeToFit()
-                        create_project_button.center = CGPoint(x: width / 2, y: origin_y + project_name_text_field.frame.height + 20)
+                        create_project_button.center = CGPoint(x: width / 2, y: origin_y + project_name_text_field.frame.height + 30)
                         origin_y = CGRectGetMaxY(create_project_button.frame)
                 }
 
