@@ -12,6 +12,7 @@ class ImportDataState: PageState {
 
 class ImportData: Component, UITableViewDataSource, UITableViewDelegate {
 
+        let info_label = UILabel()
         let table_view = UITableView()
         let download_button = UIButton(type: UIButtonType.System)
 
@@ -25,7 +26,12 @@ class ImportData: Component, UITableViewDataSource, UITableViewDelegate {
         override func viewDidLoad() {
                 super.viewDidLoad()
 
-                download_button.setAttributedTitle(astring_body(string: "Download file"), forState: .Normal)
+                info_label.text = "Importing data is a two step process. The first step is to download a file from cloud storage or open a file from another app such as Mail. The second step is to import the file. Read the manual for details."
+                info_label.font = font_body
+                info_label.textAlignment = .Center
+                info_label.numberOfLines = 0
+
+                download_button.setAttributedTitle(astring_font_size_color(string: "Download file", font: nil, font_size: 20, color: nil), forState: .Normal)
                 download_button.addTarget(self, action: "download_action", forControlEvents: UIControlEvents.TouchUpInside)
 
                 table_view.registerClass(ImportTableViewCell.self, forCellReuseIdentifier: "import table view cell")
@@ -35,6 +41,7 @@ class ImportData: Component, UITableViewDataSource, UITableViewDelegate {
                 table_view.backgroundColor = UIColor.whiteColor()
                 table_view.separatorStyle = .None
 
+                view.addSubview(info_label)
                 view.addSubview(download_button)
                 view.addSubview(table_view)
         }
@@ -42,14 +49,20 @@ class ImportData: Component, UITableViewDataSource, UITableViewDelegate {
         override func viewWillLayoutSubviews() {
                 super.viewWillLayoutSubviews()
 
-                let top_margin = 20 as CGFloat
-                let middle_margin = 20 as CGFloat
+                let (width, height) = (view.frame.width, view.frame.height)
+
+                var origin_y = 20 as CGFloat
+
+                let info_label_size = info_label.sizeThatFits(CGSize(width: width - 40, height: 0))
+                info_label.frame = CGRect(x: 20, y: origin_y, width: width - 40, height: info_label_size.height)
+
+                origin_y = CGRectGetMaxY(info_label.frame) + 20
 
                 download_button.sizeToFit()
-                download_button.center = CGPoint(x: view.frame.width / 2.0, y: top_margin + download_button.frame.height / 2.0)
+                download_button.center = CGPoint(x: width / 2.0, y: origin_y + download_button.frame.height / 2.0)
 
-                let table_view_origin_y = top_margin + download_button.frame.height + middle_margin
-                table_view.frame = CGRect(x: 0, y: table_view_origin_y, width: view.frame.width, height: view.frame.height - table_view_origin_y)
+                origin_y = CGRectGetMaxY(download_button.frame) + 20
+                table_view.frame = CGRect(x: 0, y: origin_y, width: width, height: height - origin_y)
         }
 
         override func render() {
@@ -131,71 +144,71 @@ class ImportData: Component, UITableViewDataSource, UITableViewDelegate {
                 file_remove(path: database_path)
         }
 
-        func create_project(row row: Int) {
-                let file_id = file_ids[row]
-                if let (file_name, file_data) = state.select_file_name_and_file_data(file_id: file_id) {
-                        let (sample_names, molecule_names, values, error) = parse_project_file(data: file_data)
-                        if let error = error {
-                                alert(title: "\(file_name) is invalid", message: error, view_controller: self)
-                        } else {
-                                alert_text_field(title: "Project title", message: "Choose a title for the new project", view_controller: self, placeholder: file_name.componentsSeparatedByString(".")[0], callback: { (project_name: String) in
-                                        let corrected_project_name = project_name == "" ? "Project?" : project_name
-                                        let project_id = state.insert_project(project_name: corrected_project_name, data_set_name: "Original data set", values: values!, sample_names: sample_names!, molecule_names: molecule_names!)
+//        func create_project(row row: Int) {
+//                let file_id = file_ids[row]
+//                if let (file_name, file_data) = state.select_file_name_and_file_data(file_id: file_id) {
+//                        let (sample_names, molecule_names, values, error) = parse_project_file(data: file_data)
+//                        if let error = error {
+//                                alert(title: "\(file_name) is invalid", message: error, view_controller: self)
+//                        } else {
+//                                alert_text_field(title: "Project title", message: "Choose a title for the new project", view_controller: self, placeholder: file_name.componentsSeparatedByString(".")[0], callback: { (project_name: String) in
+//                                        let corrected_project_name = project_name == "" ? "Project?" : project_name
+//                                        let project_id = state.insert_project(project_name: corrected_project_name, data_set_name: "Original data set", values: values!, sample_names: sample_names!, molecule_names: molecule_names!)
+//
+//                                        let data_set_id = state.get_original_data_set_id(project_id: project_id)
+//                                        state.set_active_data_set(data_set_id: data_set_id)
+//                                        let data_set_selection_state = DataSetSelectionState()
+//                                        state.navigate(page_state: data_set_selection_state)
+//                                        state.render()
+//                                })
+//                        }
+//                }
+//        }
 
-                                        let data_set_id = state.get_original_data_set_id(project_id: project_id)
-                                        state.set_active_data_set(data_set_id: data_set_id)
-                                        let data_set_selection_state = DataSetSelectionState()
-                                        state.navigate(page_state: data_set_selection_state)
-                                        state.render()
-                                })
-                        }
-                }
-        }
+//        func import_factors(row row: Int) {
+//                let file_id = file_ids[row]
+//                if let (file_name, file_data) = state.select_file_name_and_file_data(file_id: file_id) {
+//                        let (_, current_sample_names) = state.get_samples(data_set_id: state.original_data_set_id)
+//                        let (factor_names, sample_levels, error) = parse_factor_file(data: file_data, current_sample_names: current_sample_names, current_factor_names: state.factor_names)
+//                        if let error = error {
+//                                alert(title: "\(file_name) is invalid", message: error, view_controller: self)
+//                        } else {
+//                                for i in 0 ..< factor_names.count {
+//                                        state.insert_factor(project_id: state.project_id, factor_name: factor_names[i], level_names_of_samples: sample_levels[i])
+//                                }
+//
+//                                let message: String
+//                                if factor_names.isEmpty {
+//                                        message = "There were no new factors"
+//                                } else {
+//                                        message = (factor_names.count == 1 ? "One factor has" : "\(factor_names.count) factors have") + " been added to the active project"
+//                                }
+//                                alert(title: "The file is valid", message: message, view_controller: self)
+//                                self.table_view.reloadData()
+//                        }
+//                }
+//        }
 
-        func import_factors(row row: Int) {
-                let file_id = file_ids[row]
-                if let (file_name, file_data) = state.select_file_name_and_file_data(file_id: file_id) {
-                        let (_, current_sample_names) = state.get_samples(data_set_id: state.original_data_set_id)
-                        let (factor_names, sample_levels, error) = parse_factor_file(data: file_data, current_sample_names: current_sample_names, current_factor_names: state.factor_names)
-                        if let error = error {
-                                alert(title: "\(file_name) is invalid", message: error, view_controller: self)
-                        } else {
-                                for i in 0 ..< factor_names.count {
-                                        state.insert_factor(project_id: state.project_id, factor_name: factor_names[i], level_names_of_samples: sample_levels[i])
-                                }
-
-                                let message: String
-                                if factor_names.isEmpty {
-                                        message = "There were no new factors"
-                                } else {
-                                        message = (factor_names.count == 1 ? "One factor has" : "\(factor_names.count) factors have") + " been added to the active project"
-                                }
-                                alert(title: "The file is valid", message: message, view_controller: self)
-                                self.table_view.reloadData()
-                        }
-                }
-        }
-
-        func import_annotations(row row: Int) {
-                let file_id = file_ids[row]
-                if let (file_name, file_data) = state.select_file_name_and_file_data(file_id: file_id) {
-                        let molecule_names = state.get_molecule_names(project_id: state.project_id)
-                        let (annotation_names, annotation_values, error) = parse_annotation_file(data: file_data, molecule_names: molecule_names, current_annotation_names: state.molecule_annotation_names)
-
-                        if let error = error {
-                                alert(title: "\(file_name) is invalid", message: error, view_controller: self)
-                        } else {
-                                state.insert_molecule_annotations(project_id: state.project_id, molecule_annotation_names: annotation_names, molecule_annotation_values: annotation_values)
-
-                                let message: String
-                                if annotation_names.isEmpty {
-                                        message = "There were no new annotations"
-                                } else {
-                                        message = (annotation_names.count == 1 ? "One molecule annotation has" : "\(annotation_names.count) molecule annotations have") + " been added to the active project"
-                                }
-                                alert(title: "The file is valid", message: message, view_controller: self)
-                                self.table_view.reloadData()
-                        }
-                }
-        }
+//        func import_annotations(row row: Int) {
+//                let file_id = file_ids[row]
+//                if let (file_name, file_data) = state.select_file_name_and_file_data(file_id: file_id) {
+//                        let molecule_names = state.get_molecule_names(project_id: state.project_id)
+//                        let (annotation_names, annotation_values, error) = parse_annotation_file(data: file_data, molecule_names: molecule_names, current_annotation_names: state.molecule_annotation_names)
+//
+//                        if let error = error {
+//                                alert(title: "\(file_name) is invalid", message: error, view_controller: self)
+//                        } else {
+//                                state.insert_molecule_annotations(project_id: state.project_id, molecule_annotation_names: annotation_names, molecule_annotation_values: annotation_values)
+//
+//                                let message: String
+//                                if annotation_names.isEmpty {
+//                                        message = "There were no new annotations"
+//                                } else {
+//                                        message = (annotation_names.count == 1 ? "One molecule annotation has" : "\(annotation_names.count) molecule annotations have") + " been added to the active project"
+//                                }
+//                                alert(title: "The file is valid", message: message, view_controller: self)
+//                                self.table_view.reloadData()
+//                        }
+//                }
+//        }
 }

@@ -34,7 +34,7 @@ class ImportTableState: PageState {
                 super.init()
                 name = "import_table"
                 title = astring_body(string: "Import Data")
-                info = ""
+                info = "Follow the instructions to select and import a rectangular part of the table."
 
                 full_screen = .Conditional
 
