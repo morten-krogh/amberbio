@@ -132,17 +132,16 @@ class ImportTable: Component, SpreadSheetCellsDelegate, UITextFieldDelegate {
                 cancel_button.addTarget(self, action: "cancel_action", forControlEvents: .TouchUpInside)
                 view.addSubview(cancel_button)
 
-                import_button.setAttributedTitle(astring_font_size_color(string: "Import", font: nil, font_size: 18, color: nil), forState: .Normal)
-                import_button.addTarget(self, action: "import_action", forControlEvents: .TouchUpInside)
-                view.addSubview(import_button)
+                back_button.addTarget(self, action: "back_action", forControlEvents: .TouchUpInside)
+                view.addSubview(back_button)
 
                 label.font = font_body
                 label.textAlignment = .Center
                 view.addSubview(label)
 
-                back_button.setAttributedTitle(astring_body(string: "Back"), forState: .Normal)
-                back_button.addTarget(self, action: "back_action", forControlEvents: .TouchUpInside)
-                view.addSubview(back_button)
+                import_button.setAttributedTitle(astring_font_size_color(string: "Import", font: nil, font_size: 18, color: nil), forState: .Normal)
+                import_button.addTarget(self, action: "import_action", forControlEvents: .TouchUpInside)
+                view.addSubview(import_button)
 
                 new_project_button.setAttributedTitle(astring_body(string: "New project"), forState: .Normal)
                 new_project_button.addTarget(self, action: "new_project_action", forControlEvents: .TouchUpInside)
@@ -185,70 +184,76 @@ class ImportTable: Component, SpreadSheetCellsDelegate, UITextFieldDelegate {
 
                 let (width, height) = (view.frame.width, view.frame.height)
 
+                var origin_y = 30 as CGFloat
+
                 scroll_to_top_button.setAttributedTitle(astring_max_width(string: "Scroll to top", max_width: (width - 40) / 3), forState: .Normal)
                 scroll_to_top_button.sizeToFit()
-                scroll_to_top_button.frame.origin = CGPoint(x: 20, y: 30 - scroll_to_top_button.frame.height / 2)
+                scroll_to_top_button.frame.origin = CGPoint(x: 20, y: origin_y - scroll_to_top_button.frame.height / 2)
 
                 scroll_to_bottom_button.setAttributedTitle(astring_max_width(string: "Scroll to bottom", max_width: (width - 40) / 3), forState: .Normal)
                 scroll_to_bottom_button.sizeToFit()
-                scroll_to_bottom_button.frame.origin = CGPoint(x: width - 20 - scroll_to_bottom_button.frame.width, y: 30 - scroll_to_bottom_button.frame.height / 2)
+                scroll_to_bottom_button.frame.origin = CGPoint(x: width - 20 - scroll_to_bottom_button.frame.width, y: origin_y - scroll_to_bottom_button.frame.height / 2)
 
                 cancel_button.setAttributedTitle(astring_max_width(string: "Cancel", max_width: (width - 40) / 3), forState: .Normal)
                 cancel_button.sizeToFit()
-                cancel_button.frame.origin = CGPoint(x: (width - cancel_button.frame.width) / 2, y: 30 - cancel_button.frame.height / 2)
+                cancel_button.frame.origin = CGPoint(x: (width - cancel_button.frame.width) / 2, y: origin_y - cancel_button.frame.height / 2)
 
-                label.frame = CGRect(x: 0, y: 50, width: width, height: 40)
+                origin_y = CGRectGetMaxY(cancel_button.frame) + 20
 
-                var origin_y = 80 as CGFloat
-
-                scroll_left_button.setAttributedTitle(astring_body(string: "Scroll left"), forState: .Normal)
+                scroll_left_button.setAttributedTitle(astring_max_width(string: "Scroll left", max_width: (width - 40) / 3), forState: .Normal)
                 scroll_left_button.sizeToFit()
                 scroll_left_button.frame.origin = CGPoint(x: 20, y: origin_y - scroll_left_button.frame.height / 2)
 
-                scroll_right_button.setAttributedTitle(astring_body(string: "Scroll right"), forState: .Normal)
+                scroll_right_button.setAttributedTitle(astring_max_width(string: "Scroll right", max_width: (width - 40) / 3), forState: .Normal)
                 scroll_right_button.sizeToFit()
                 scroll_right_button.frame.origin = CGPoint(x: width - scroll_right_button.frame.width - 20, y: origin_y - scroll_right_button.frame.height / 2)
 
-                origin_y = CGRectGetMaxY(label.frame) + 20
-
+                back_button.setAttributedTitle(astring_max_width(string: "Back", max_width: (width - 40) / 3), forState: .Normal)
                 back_button.sizeToFit()
+                back_button.frame.origin = CGPoint(x: (width - back_button.frame.width) / 2, y: origin_y - back_button.frame.height / 2)
+
+                origin_y = CGRectGetMaxY(scroll_left_button.frame)
+
+                label.frame = CGRect(x: 0, y: origin_y, width: width, height: 40)
+
+                origin_y = CGRectGetMaxY(label.frame) + 15
+
+                if !new_project_button.hidden {
+                        new_project_button.sizeToFit()
+                        new_project_button.center = CGPoint(x: width / 2, y: origin_y)
+                        origin_y = CGRectGetMaxY(new_project_button.frame) + 15
+                }
+
+                if !add_factors_button.hidden {
+                        add_factors_button.sizeToFit()
+                        add_factors_button.center = CGPoint(x: width / 2, y: origin_y + 5)
+                        origin_y = CGRectGetMaxY(add_factors_button.frame) + 15
+                }
+
+                if !add_annotations_button.hidden {
+                        add_annotations_button.sizeToFit()
+                        add_annotations_button.center = CGPoint(x: width / 2, y: origin_y + 5)
+                        origin_y = CGRectGetMaxY(add_annotations_button.frame)
+                }
 
                 if !project_name_text_field.hidden {
                         project_name_text_field.sizeToFit()
                         let text_field_width = min(width - 200, 400)
-                        project_name_text_field.frame = CGRect(x: (width - text_field_width) / 2, y: origin_y - 10, width: text_field_width, height: project_name_text_field.frame.height + 20)
+                        project_name_text_field.frame = CGRect(x: (width - text_field_width) / 2, y: origin_y, width: text_field_width, height: project_name_text_field.frame.height + 20)
                         create_project_button.sizeToFit()
-                        create_project_button.center = CGPoint(x: width / 2, y: origin_y + project_name_text_field.frame.height + 30)
-                        back_button.center = CGPoint(x: width / 2, y: origin_y + project_name_text_field.frame.height + create_project_button.frame.height + 40)
-                } else {
-                        back_button.center = CGPoint(x: width / 2, y: origin_y + 10)
+                        create_project_button.center = CGPoint(x: width / 2, y: origin_y + project_name_text_field.frame.height + 20)
+                        origin_y = CGRectGetMaxY(create_project_button.frame)
                 }
 
-                new_project_button.sizeToFit()
-                new_project_button.center = CGPoint(x: width / 2, y: origin_y)
+                if !import_button.hidden {
+                        import_button.sizeToFit()
+                        import_button.center = CGPoint(x: width / 2, y: origin_y)
+                        origin_y = CGRectGetMaxY(import_button.frame)
+                }
 
-                origin_y += new_project_button.frame.height
-
-                import_button.sizeToFit()
-                import_button.center = CGPoint(x: width / 2, y: origin_y + 15)
-
-                add_factors_button.sizeToFit()
-                add_factors_button.center = CGPoint(x: width / 2, y: origin_y + 5)
-                origin_y += add_factors_button.frame.height + 5
-
-                add_annotations_button.sizeToFit()
-                add_annotations_button.center = CGPoint(x: width / 2, y: origin_y + 5)
+                origin_y += 10
 
                 scroll_view.contentSize = CGSize(width: column_widths.reduce(0, combine: +), height: row_heights.reduce(0, combine: +))
-
-                if import_table_state.phase == 0 {
-                        origin_y = CGRectGetMaxY(add_annotations_button.frame)
-                } else if import_table_state.phase < 7 {
-                        origin_y = CGRectGetMaxY(import_button.frame)
-                } else {
-                        origin_y = CGRectGetMaxY(back_button.frame)
-                }
-                origin_y += 20
                 scroll_view.frame = layout_centered_frame(contentSize: scroll_view.contentSize, rect: CGRect(x: 0, y: origin_y, width: width, height: height - origin_y))
                 spread_sheet_cells.frame = CGRect(origin: CGPoint.zero, size: scroll_view.contentSize)
         }
