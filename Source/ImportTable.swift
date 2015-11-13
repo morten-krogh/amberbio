@@ -103,6 +103,7 @@ class ImportTable: Component, SpreadSheetCellsDelegate, UITextFieldDelegate {
         let add_annotations_button = UIButton(type: .System)
         let back_button = UIButton(type: .System)
         let import_button = UIButton(type: .System)
+        let restart_button = UIButton(type:. System)
 
         let project_name_text_field = UITextField()
         let create_project_button = UIButton(type: .System)
@@ -148,10 +149,12 @@ class ImportTable: Component, SpreadSheetCellsDelegate, UITextFieldDelegate {
                 view.addSubview(new_project_button)
 
                 add_factors_button.setAttributedTitle(astring_body(string: "Add factors"), forState: .Normal)
+                add_factors_button.setAttributedTitle(astring_font_size_color(string: "Add factors", font: nil, font_size: nil, color: color_disabled), forState: .Disabled)
                 add_factors_button.addTarget(self, action: "add_factors_action", forControlEvents: .TouchUpInside)
                 view.addSubview(add_factors_button)
 
                 add_annotations_button.setAttributedTitle(astring_body(string: "Add molecule annotations"), forState: .Normal)
+                add_annotations_button.setAttributedTitle(astring_font_size_color(string: "Add molecule annotations", font: nil, font_size: nil, color: color_disabled), forState: .Disabled)
                 add_annotations_button.addTarget("self", action: "add_annotations_action", forControlEvents: .TouchUpInside)
                 view.addSubview(add_annotations_button)
 
@@ -169,6 +172,10 @@ class ImportTable: Component, SpreadSheetCellsDelegate, UITextFieldDelegate {
                 create_project_button.setAttributedTitle(astring_body(string: "Create the new project"), forState: .Normal)
                 create_project_button.addTarget(self, action: "create_project_action", forControlEvents: .TouchUpInside)
                 view.addSubview(create_project_button)
+
+                restart_button.setAttributedTitle(astring_body(string: "More imports from this file"), forState: .Normal)
+                restart_button.addTarget(self, action: "restart_action", forControlEvents: .TouchUpInside)
+                view.addSubview(restart_button)
 
                 scroll_view.addSubview(spread_sheet_cells)
 
@@ -222,15 +229,11 @@ class ImportTable: Component, SpreadSheetCellsDelegate, UITextFieldDelegate {
                         new_project_button.sizeToFit()
                         new_project_button.center = CGPoint(x: width / 2, y: origin_y)
                         origin_y = CGRectGetMaxY(new_project_button.frame) + 15
-                }
 
-                if !add_factors_button.hidden {
                         add_factors_button.sizeToFit()
                         add_factors_button.center = CGPoint(x: width / 2, y: origin_y + 5)
                         origin_y = CGRectGetMaxY(add_factors_button.frame) + 15
-                }
 
-                if !add_annotations_button.hidden {
                         add_annotations_button.sizeToFit()
                         add_annotations_button.center = CGPoint(x: width / 2, y: origin_y + 5)
                         origin_y = CGRectGetMaxY(add_annotations_button.frame)
@@ -249,6 +252,12 @@ class ImportTable: Component, SpreadSheetCellsDelegate, UITextFieldDelegate {
                         import_button.sizeToFit()
                         import_button.center = CGPoint(x: width / 2, y: origin_y)
                         origin_y = CGRectGetMaxY(import_button.frame)
+                }
+
+                if !restart_button.hidden {
+                        restart_button.sizeToFit()
+                        restart_button.center = CGPoint(x: width / 2, y: origin_y)
+                        origin_y = CGRectGetMaxY(restart_button.frame)
                 }
 
                 origin_y += 10
@@ -274,6 +283,7 @@ class ImportTable: Component, SpreadSheetCellsDelegate, UITextFieldDelegate {
                 add_annotations_button.hidden = true
                 project_name_text_field.hidden = true
                 create_project_button.hidden = true
+                restart_button.hidden = true
 
                 let label_text: String
                 var label_color = nil as UIColor?
@@ -282,8 +292,10 @@ class ImportTable: Component, SpreadSheetCellsDelegate, UITextFieldDelegate {
                         label_text = "Select the type of import"
                         back_button.hidden = true
                         new_project_button.hidden = false
-                        add_factors_button.hidden = !state.active_data_set
-                        add_annotations_button.hidden = !state.active_data_set
+                        add_factors_button.hidden = false
+                        add_annotations_button.hidden = false
+                        add_factors_button.enabled = state.active_data_set
+                        add_annotations_button.enabled = state.active_data_set
                 case 1:
                         if import_table_state.type == .Annotations {
                                 label_text = "Tap the first molecule name"
@@ -318,11 +330,15 @@ class ImportTable: Component, SpreadSheetCellsDelegate, UITextFieldDelegate {
                 case 6:
                         label_text = import_table_state.import_message
                         label_color = import_table_state.import_message_color
-                default:
+                case 7:
                         label_text = "Type a project title"
                         project_name_text_field.text = import_table_state.project_name
                         project_name_text_field.hidden = false
                         create_project_button.hidden = false
+                default:
+                        label_text = import_table_state.import_message
+                        label_color = import_table_state.import_message_color
+                        restart_button.hidden = false
                 }
 
                 label.attributedText = astring_font_size_color(string: label_text, font: nil, font_size: 20, color: label_color)
@@ -529,6 +545,13 @@ class ImportTable: Component, SpreadSheetCellsDelegate, UITextFieldDelegate {
         func add_annotations_action() {
                 import_table_state.type = .Annotations
                 import_table_state.phase = 1
+                render_after_change()
+        }
+
+        func restart_action() {
+                import_table_state.type = nil
+                import_table_state.phase = 0
+                import_table_state.selected_cells = []
                 render_after_change()
         }
 
@@ -794,7 +817,7 @@ class ImportTable: Component, SpreadSheetCellsDelegate, UITextFieldDelegate {
                 import_table_state.import_message = "The new project \"\(corrected_project_name)\" is active"
                 import_table_state.import_message_color = UIColor.blueColor()
 
-                import_table_state.phase = 6
+                import_table_state.phase = 8
                 state.render()
         }
 }
