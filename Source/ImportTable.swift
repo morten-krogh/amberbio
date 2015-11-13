@@ -219,7 +219,7 @@ class ImportTable: Component, SpreadSheetCellsDelegate, UITextFieldDelegate {
                 back_button.sizeToFit()
                 back_button.frame.origin = CGPoint(x: (width - back_button.frame.width) / 2, y: origin_y - back_button.frame.height / 2)
 
-                origin_y = CGRectGetMaxY(scroll_left_button.frame)
+                origin_y = CGRectGetMaxY(scroll_left_button.frame) + 5
 
                 label.frame = CGRect(x: 0, y: origin_y, width: width, height: 40)
 
@@ -330,15 +330,12 @@ class ImportTable: Component, SpreadSheetCellsDelegate, UITextFieldDelegate {
                 case 6:
                         label_text = import_table_state.import_message
                         label_color = import_table_state.import_message_color
-                case 7:
+                        restart_button.hidden = false
+                default:
                         label_text = "Type a project title"
                         project_name_text_field.text = import_table_state.project_name
                         project_name_text_field.hidden = false
                         create_project_button.hidden = false
-                default:
-                        label_text = import_table_state.import_message
-                        label_color = import_table_state.import_message_color
-                        restart_button.hidden = false
                 }
 
                 label.attributedText = astring_font_size_color(string: label_text, font: nil, font_size: 20, color: label_color)
@@ -817,7 +814,7 @@ class ImportTable: Component, SpreadSheetCellsDelegate, UITextFieldDelegate {
                 import_table_state.import_message = "The new project \"\(corrected_project_name)\" is active"
                 import_table_state.import_message_color = UIColor.blueColor()
 
-                import_table_state.phase = 8
+                import_table_state.phase = 6
                 state.render()
         }
 }
