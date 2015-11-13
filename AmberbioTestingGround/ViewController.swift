@@ -10,53 +10,49 @@ import UIKit
 
 class ViewController: UIViewController {
 
-        let draw_view_example = DrawViewExample(frame: CGRect.zero)
+        let label = UILabel()
 
         override func viewDidLoad() {
                 super.viewDidLoad()
 
-                view.addSubview(draw_view_example)
+                label.numberOfLines = 0
+                view.addSubview(label)
+
+                let file_manager = NSFileManager.defaultManager()
+                if let path = NSBundle.mainBundle().pathForResource("GDS1001_full", ofType: "soft"), let content = file_manager.contentsAtPath(path) {
+                        let geo_soft_file_parser = GEOSoftFileParser(data: content)
+
+                        label.text = geo_soft_file_parser.text
+                }
         }
 
         override func viewWillLayoutSubviews() {
                 super.viewWillLayoutSubviews()
 
-                draw_view_example.frame = CGRectInset(view.bounds, 70, 70)
+                label.frame = CGRectInset(view.bounds, 10, 10)
         }
 }
 
-class DrawViewExample: DrawView {
+class GEOSoftFileParser {
 
-        init(frame: CGRect) {
-                super.init(frame: frame, tappable: true)
+        let data: NSData
 
-                content_size = CGSize(width: 800, height: 500)
-//                scroll_view.contentSize = content_size
+        var text = ""
 
+        init(data: NSData) {
+                self.data = data
+
+                var cstring = [CChar](count: 10000, repeatedValue: 0)
+
+                geo_soft_find_header(data.bytes, data.length, &cstring, cstring.count - 1)
+
+                let header = String.fromCString(cstring) ?? ""
+
+                text = header
         }
 
-        required init?(coder aDecoder: NSCoder) {
-            fatalError("init(coder:) has not been implemented")
-        }
 
-        override func draw(context context: CGContext, rect: CGRect) {
 
-                let start_point = CGPoint(x: 0, y: 0)
-                let end_point = CGPoint(x: 800, y: 500)
-                drawing_draw_line(context: context, start_point: start_point, end_point: end_point)
 
-                drawing_draw_circle(context: context, center_x: 150, center_y: 200, radius: 30, color: UIColor.redColor())
-                drawing_draw_circle(context: context, center_x: 750, center_y: 400, radius: 40, color: UIColor.greenColor())
 
-        }
-
-        override func tap_action(recognizer: UITapGestureRecognizer) {
-//                let location = recognizer.locationInView(draw_view_tiled_layer_view)
-//                print(location)
-        }
-
-        override func scrollViewDidEndZooming(scrollView: UIScrollView, withView view: UIView?, atScale scale: CGFloat) {
-                super.scrollViewDidEndZooming(scrollView, withView: view, atScale: scale)
-//                print("hi \(scale)")
-        }
 }
