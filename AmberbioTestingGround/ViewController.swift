@@ -42,7 +42,18 @@ class ViewController: UIViewController {
 
 class GEOSoftFileParser {
 
+        var error = false
+
         let data: NSData
+
+        let header: String
+
+        var dataset_info = ""
+        var feature_count = 0
+        var column_names = [] as [String]
+        var sample_names = [] as [String]
+        
+
 
         var text = ""
 
@@ -53,10 +64,69 @@ class GEOSoftFileParser {
 
                 geo_soft_find_header(data.bytes, data.length, &cstring, cstring.count - 1)
 
-                let header = String.fromCString(cstring) ?? ""
+                header = String.fromCString(cstring) ?? ""
+                parse_header()
 
                 text = header
         }
+
+        func split_and_trim(string string: String, separator: String) -> [String] {
+                let comps = string.componentsSeparatedByString(separator)
+                return comps.map { $0.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) }
+        }
+
+        func parse_header() {
+                let lines = header.componentsSeparatedByCharactersInSet(NSCharacterSet.newlineCharacterSet())
+
+                var index_caret_dataset = 0
+                for line in lines {
+                        if line.hasPrefix("^DATASET") {
+                                break
+                        }
+                        index_caret_dataset++
+                }
+
+                var dataset_info_array = [] as [String]
+                for i in (index_caret_dataset + 1) ..< lines.count {
+                        if !lines[i].hasPrefix("^") {
+                                dataset_info_array.append(lines[i])
+                        } else {
+                                break
+                        }
+                }
+
+                dataset_info = dataset_info_array.joinWithSeparator("\n")
+
+                for line in lines {
+                        if line.hasPrefix("!dataset_feature_count") {
+                                let comps = split_and_trim(string: line, separator: "=")
+                                if comps.count == 2, let number = Int(comps[1]) {
+                                        feature_count = number
+                                } else {
+                                        error = true
+                                }
+                        }
+
+                        if line.hasPrefix("#") {
+                                let comps = split_and_trim(string: line, separator: "=")
+                                column_names.append(comps[0])
+
+
+
+                        }
+
+
+
+                }
+
+
+                print(index_caret_dataset)
+                print(lines[index_caret_dataset])
+                print(feature_count)
+
+
+        }
+
 
 
 
