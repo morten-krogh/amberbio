@@ -52,7 +52,8 @@ class GEOSoftFileParser {
         var feature_count = 0
         var column_names = [] as [String]
         var sample_names = [] as [String]
-        
+        var sample_values = [] as [String]
+
 
 
         var text = ""
@@ -104,15 +105,24 @@ class GEOSoftFileParser {
                                         feature_count = number
                                 } else {
                                         error = true
+                                        return
                                 }
                         }
 
                         if line.hasPrefix("#") {
-                                let comps = split_and_trim(string: line, separator: "=")
+                                let index = line.startIndex.advancedBy(1)
+                                let line_without_pound = line.substringFromIndex(index)
+                                let comps = split_and_trim(string: line_without_pound, separator: "=")
+                                if comps.count != 2 {
+                                        error = true
+                                        return
+                                }
                                 column_names.append(comps[0])
 
-
-
+                                if comps[0].hasPrefix("GSM") {
+                                        sample_names.append(comps[0])
+                                        sample_values.append(comps[1])
+                                }
                         }
 
 
@@ -123,7 +133,9 @@ class GEOSoftFileParser {
                 print(index_caret_dataset)
                 print(lines[index_caret_dataset])
                 print(feature_count)
-
+                print(column_names)
+                print(sample_names)
+                print(sample_values)
 
         }
 
