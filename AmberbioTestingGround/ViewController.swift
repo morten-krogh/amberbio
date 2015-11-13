@@ -25,7 +25,7 @@ class ViewController: UIViewController {
                 if let path = NSBundle.mainBundle().pathForResource("GDS1001_full", ofType: "soft"), let content = file_manager.contentsAtPath(path) {
                         let geo_soft_file_parser = GEOSoftFileParser(data: content)
 
-                        label.text = geo_soft_file_parser.text
+                        label.text = geo_soft_file_parser.header
                 }
         }
 
@@ -53,10 +53,11 @@ class GEOSoftFileParser {
         var column_names = [] as [String]
         var sample_names = [] as [String]
         var sample_values = [] as [String]
+        var value_for_sample_levels = [] as [String]
+        var src_levels = [] as [String]
 
-
-
-        var text = ""
+        var factor_names = [] as [String]
+        var levels_for_samples = [] as [[String]]
 
         init(data: NSData) {
                 self.data = data
@@ -67,8 +68,16 @@ class GEOSoftFileParser {
 
                 header = String.fromCString(cstring) ?? ""
                 parse_header()
+                if error {
+                        return
+                }
+                make_factors()
+                if error {
+                        return
+                }
+                print(value_for_sample_levels)
+                print(src_levels)
 
-                text = header
         }
 
         func split_and_trim(string string: String, separator: String) -> [String] {
@@ -128,15 +137,28 @@ class GEOSoftFileParser {
 
 
                 }
+        }
 
+        func make_factors() {
+                for sample_value in sample_values {
+                        let semicolon_split_string = split_and_trim(string: sample_value, separator: ";")
+                        if semicolon_split_string.count != 2 {
+                                error = true
+                                return
+                        }
+                        var levels = [] as [String]
+                        for part in semicolon_split_string {
+                                let colon_parts = split_and_trim(string: part, separator: ":")
+                                if colon_parts.count != 2 {
+                                        error = true
+                                        return
+                                }
+                                levels.append(colon_parts[1])
+                        }
 
-                print(index_caret_dataset)
-                print(lines[index_caret_dataset])
-                print(feature_count)
-                print(column_names)
-                print(sample_names)
-                print(sample_values)
-
+                        value_for_sample_levels.append(levels[0])
+                        src_levels.append(levels[1])
+                }
         }
 
 
