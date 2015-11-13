@@ -11,12 +11,15 @@ import UIKit
 class ViewController: UIViewController {
 
         let label = UILabel()
+        let scroll_view = UIScrollView()
 
         override func viewDidLoad() {
                 super.viewDidLoad()
 
+                view.addSubview(scroll_view)
+
                 label.numberOfLines = 0
-                view.addSubview(label)
+                scroll_view.addSubview(label)
 
                 let file_manager = NSFileManager.defaultManager()
                 if let path = NSBundle.mainBundle().pathForResource("GDS1001_full", ofType: "soft"), let content = file_manager.contentsAtPath(path) {
@@ -29,7 +32,11 @@ class ViewController: UIViewController {
         override func viewWillLayoutSubviews() {
                 super.viewWillLayoutSubviews()
 
-                label.frame = CGRectInset(view.bounds, 10, 10)
+                label.sizeToFit()
+                scroll_view.contentSize = label.frame.size
+
+                scroll_view.frame = CGRectInset(view.bounds, 10, 10)
+                label.frame.origin = CGPoint.zero
         }
 }
 
