@@ -23,9 +23,10 @@ class ViewController: UIViewController {
 
                 let file_manager = NSFileManager.defaultManager()
                 if let path = NSBundle.mainBundle().pathForResource("GDS1001_full", ofType: "soft"), let content = file_manager.contentsAtPath(path) {
-                        let geo_soft_file_parser = GEOSoftFileParser(data: content)
+                        let gds_parser = GDSParser(data: content)
 
-                        label.text = geo_soft_file_parser.header
+                        label.text = gds_parser.header
+
                 }
         }
 
@@ -40,13 +41,13 @@ class ViewController: UIViewController {
         }
 }
 
-class GEOSoftFileParser {
+class GDSParser {
 
-        var error = false
+        var error: String?
 
         let data: NSData
 
-        let header: String
+        var header = ""
 
         var dataset_info = ""
         var feature_count = 0
@@ -61,22 +62,64 @@ class GEOSoftFileParser {
 
         init(data: NSData) {
                 self.data = data
+                parse()
+        }
 
-                var cstring = [CChar](count: 10000, repeatedValue: 0)
+        func parse() {
+                let full_range = NSRange(0 ..< data.length)
+                let range_dataset_table_begin = data.rangeOfData("!dataset_table_begin".dataUsingEncoding(NSUTF8StringEncoding)!, options: [], range: full_range)
 
-                geo_soft_find_header(data.bytes, data.length, &cstring, cstring.count - 1)
+                if range_dataset_table_begin.location == NSNotFound {
+                        error = "header not found"
+                        return
+                }
 
-                header = String.fromCString(cstring) ?? ""
+                let header_range = NSRange(0 ..< range_dataset_table_begin.location)
+                let data_header =  data.subdataWithRange(header_range)
+                header = String(data: data_header, encoding: NSUTF8StringEncoding) ?? ""
+
                 parse_header()
-                if error {
+                if error != nil {
                         return
                 }
                 make_factors()
-                if error {
+                if error != nil {
                         return
                 }
+
+                print(feature_count)
                 print(value_for_sample_levels)
                 print(src_levels)
+
+                let bytes = UnsafePointer<UInt8>(data.bytes)
+
+
+
+
+//                let range = NSRange(1 ..< 20)
+//                let str = NSString(data: data.subdataWithRange(range), encoding: NSUTF8StringEncoding) ?? ""
+//                print(str)
+
+
+//                var index = string.startIndex
+//
+//                print(string.substringWithRange(index ..< index.advancedBy(2))
+//
+//                while index != string.endIndex {
+////                        string.substringWithRange(<#T##aRange: Range<Index>##Range<Index>#>)
+//
+//                }
+
+
+
+
+
+
+
+
+
+
+
 
         }
 
@@ -113,7 +156,7 @@ class GEOSoftFileParser {
                                 if comps.count == 2, let number = Int(comps[1]) {
                                         feature_count = number
                                 } else {
-                                        error = true
+                                        error = "incorrect feature count"
                                         return
                                 }
                         }
@@ -123,7 +166,7 @@ class GEOSoftFileParser {
                                 let line_without_pound = line.substringFromIndex(index)
                                 let comps = split_and_trim(string: line_without_pound, separator: "=")
                                 if comps.count != 2 {
-                                        error = true
+                                        error = "incorrect column names"
                                         return
                                 }
                                 column_names.append(comps[0])
@@ -143,27 +186,77 @@ class GEOSoftFileParser {
                 for sample_value in sample_values {
                         let semicolon_split_string = split_and_trim(string: sample_value, separator: ";")
                         if semicolon_split_string.count != 2 {
-                                error = true
+                                error = "incorrect sample values"
                                 return
                         }
                         var levels = [] as [String]
                         for part in semicolon_split_string {
                                 let colon_parts = split_and_trim(string: part, separator: ":")
                                 if colon_parts.count != 2 {
-                                        error = true
+                                        error = "incorrect factors"
                                         return
                                 }
                                 levels.append(colon_parts[1])
                         }
-
+                        
                         value_for_sample_levels.append(levels[0])
                         src_levels.append(levels[1])
                 }
         }
-
-
-
-
-
-
 }
+
+
+
+
+//class GEOSoftFileParser {
+//
+//        var error = false
+//
+//        let data: NSData
+//
+//        let header: String
+//
+//        var dataset_info = ""
+//        var feature_count = 0
+//        var column_names = [] as [String]
+//        var sample_names = [] as [String]
+//        var sample_values = [] as [String]
+//        var value_for_sample_levels = [] as [String]
+//        var src_levels = [] as [String]
+//
+//        var factor_names = [] as [String]
+//        var levels_for_samples = [] as [[String]]
+//
+//        init(data: NSData) {
+//                self.data = data
+//
+//                var cstring = [CChar](count: 10000, repeatedValue: 0)
+//
+//                geo_soft_find_header(data.bytes, data.length, &cstring, cstring.count - 1)
+//
+//                header = String.fromCString(cstring) ?? ""
+//                parse_header()
+//                if error {
+//                        return
+//                }
+//                make_factors()
+//                if error {
+//                        return
+//                }
+//                print(value_for_sample_levels)
+//                print(src_levels)
+//
+//        }
+//
+//        func split_and_trim(string string: String, separator: String) -> [String] {
+//                let comps = string.componentsSeparatedByString(separator)
+//                return comps.map { $0.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) }
+//        }
+//
+//
+//
+//
+//
+//
+//
+//}
