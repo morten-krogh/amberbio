@@ -4,12 +4,14 @@
 struct gds {
         bool valid;
         char* header;
-        long feature_count;
+        long number_of_molecules;
         long number_of_headers;
         char** headers;
         long sample_column_min;
         long number_of_samples;
+        char** sample_names;
 
+        double* values;
 };
 
 bool gds_valid(struct gds* gds)
@@ -22,6 +24,10 @@ char* gds_header(struct gds* gds)
         return gds->header;
 }
 
+double* gds_values(struct gds* gds)
+{
+        return gds->values;
+}
 
 struct gds* gds_new(const void* bytes, const long length)
 {
@@ -44,7 +50,7 @@ struct gds* gds_new(const void* bytes, const long length)
         gds->header[header_length] = '\0';
 
         const char* position_of_feature_count = strnstr(position_of_dataset_title, "!dataset_feature_count", end - position_of_dataset_title);
-        gds->feature_count = strtol(position_of_feature_count + 25, NULL, 10);
+        gds->number_of_molecules = strtol(position_of_feature_count + 25, NULL, 10);
 
         const char* position_dataset_table_begin = strnstr(position_of_caret_after_dataset_title, "!dataset_table_begin", end - position_of_caret_after_dataset_title);
         if (position_dataset_table_begin == NULL) return gds;
@@ -85,16 +91,39 @@ struct gds* gds_new(const void* bytes, const long length)
         const char* position_dataset_table_end = strnstr(position_cells, "!dataset_table_end", end - position_cells);
         if (position_dataset_table_end == NULL) return gds;
 
+        if (gds->number_of_molecules == 0 || gds->number_of_samples == 0) return gds;
+
+        gds->values = malloc(gds->number_of_samples * gds->number_of_molecules * sizeof(double));
+
         const char* position_start = position_cells;
         const char* position = position_start;
         long row = 0;
         long col = 0;
         while (position < position_dataset_table_end) {
+                if (row >= gds->number_of_molecules || col >= gds->number_of_headers) return gds;
                 if (*position == '\t' || *position == '\n') {
                         long cell_length = position - position_start;
-                        if (cell_length > 100 && col < 15) {
-                                printf("%li, %li, %li\n", row, col, cell_length);
+                        if (col >= gds->sample_column_min  && col < gds->sample_column_min + gds->number_of_samples) {
+                                char str[cell_length + 1];
+                                memcpy(str, position_start, cell_length);
+                                str[cell_length] = '\0';
+                                char* endptr = str;
+
+                                double value = strtod(str, &endptr);
+                                if (endptr != str + cell_length) {
+                                        value = nanf(NULL);
+                                }
+
+                                long index = row * gds->number_of_samples + col - gds->sample_column_min;
+                                gds->values[index] = value;
+
+                                if (row <= 1) {
+                                        printf("%li, %li, %li, %f\n", row, col, cell_length, value);
+                                }
+
                         }
+
+
 
                         if (*position == '\t') {
                                 col++;
@@ -105,6 +134,8 @@ struct gds* gds_new(const void* bytes, const long length)
 
                         position++;
                         position_start = position;
+
+
                 } else {
                         position++;
                 }

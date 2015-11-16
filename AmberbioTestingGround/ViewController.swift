@@ -29,7 +29,10 @@ class ViewController: UIViewController {
 
                         if (valid) {
                                 let header = String.fromCString(gds_header(gds))
+                                let values = gds_values(gds)
                                 label.text = header
+
+                                print(values[0], values[17])
                         }
 
                         print(valid)

@@ -13,6 +13,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <math.h>
 
 struct gds;
 
@@ -20,6 +21,8 @@ struct gds* gds_new(const void* bytes, const long length);
 
 bool gds_valid(struct gds* gds);
 char* gds_header(struct gds* gds);
+double* gds_values(struct gds* gds);
+
 
 
 
