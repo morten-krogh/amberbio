@@ -11,8 +11,18 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
+#include <stdbool.h>
 
-void geo_soft_find_header(const void* bytes, const long length, char* cstring, const long cstring_max_length);
+struct gds;
+
+struct gds* gds_init(const void* bytes, const long length);
+
+bool gds_valid(struct gds* gds);
+char* gds_header(struct gds* gds);
+
+
+
 
 
 #endif /* geo_soft_file_parser_h */
