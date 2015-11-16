@@ -39,6 +39,8 @@ class GDS {
         var sample_column_min = -1
         var number_of_samples = 0
         var sample_names = [] as [String]
+        var factor_value = [] as [String]
+        var factor_src = [] as [String]
         var number_of_molecule_annotations = 0
         var molecule_annotation_names = [] as [String]
         var molecule_annotation_values = [] as [[String]]
@@ -79,6 +81,31 @@ class GDS {
                 }
 
                 number_of_samples = sample_names.count
+
+                var factors = [[], []] as [[String]]
+                var location_factor_line = find_location_of_data(data: data, string: "#GSM", begin: 0)
+                while (location_factor_line != NSNotFound) {
+                        if let line = find_line(data: data, begin: location_factor_line) {
+                                let parts = split_and_trim(string: line, separator: "=")
+                                if parts.count == 2 {
+                                        let comps = split_and_trim(string: parts[1], separator: ";")
+                                        if comps.count == 2 {
+                                                for i in 0 ..< 2 {
+                                                        let elems = split_and_trim(string: comps[i], separator: ":")
+                                                        if elems.count == 2 {
+                                                                factors[i].append(elems[1])
+                                                        }
+                                                }
+                                        }
+                                }
+                        }
+                        location_factor_line = find_location_of_data(data: data, string: "#GSM", begin: location_factor_line + 3)
+                }
+
+                if factors[0].count != number_of_samples || factors[1].count != number_of_samples { return }
+
+                factor_value = factors[0]
+                factor_src = factors[1]
 
                 var is_annotation = [Bool](count: headers.count, repeatedValue: false)
                 for i in 0 ..< headers.count {
@@ -131,13 +158,17 @@ class GDS {
 
                 number_of_molecules = molecule_annotation_values[0].count
 
+
+
                 print(sample_names)
                 print(molecule_annotation_names)
-                print(molecule_annotation_values[7][0])
+                print(molecule_annotation_values[1][10])
                 print(values[0], values[8])
 
                 print(number_of_molecules)
                 print(values[values.count - 2])
+                print(factor_value)
+                print(factor_src)
 
                 valid = true
         }
