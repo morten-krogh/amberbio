@@ -24,29 +24,45 @@ class ViewController: UIViewController {
                 let file_manager = NSFileManager.defaultManager()
                 if let path = NSBundle.mainBundle().pathForResource("GDS1001_full", ofType: "soft"), let content = file_manager.contentsAtPath(path) {
 
-                        let gds = gds_new(content.bytes, content.length)
-                        let valid = gds_valid(gds);
+                        let gds = GDS(data: content)
 
-                        if (valid) {
-                                let header = String.fromCString(gds_header(gds))
-
-                                let number_of_samples = gds_number_of_samples(gds)
-                                let number_of_molecules = gds_number_of_molecules(gds)
-                                label.text = header
-
-                                print(number_of_samples)
-                                print(number_of_molecules)
-
-                                let buffer = UnsafeBufferPointer(start: gds_values(gds), count: number_of_samples * number_of_molecules)
-
-                                let values = [Double](buffer)
+                        print(gds.valid)
+                        label.text = gds.header
 
 
-                                print(values.count)
-                                print(values[0], values[17])
-                        }
-
-                        print(valid)
+//                        let gds = gds_new(content.bytes, content.length)
+//                        let valid = gds_valid(gds);
+//
+//                        if (valid) {
+//                                let header = String.fromCString(gds_header(gds))
+//
+//                                let number_of_samples = gds_number_of_samples(gds)
+//
+//                                var sample_names = [] as [String]
+//                                let raw_samples_names = gds_samples_names(gds)
+//                                for i in 0 ..< number_of_samples {
+//                                        let sample_name = String.fromCString(raw_samples_names[i]) ?? ""
+//                                        sample_names.append(sample_name)
+//                                }
+//
+//                                print(sample_names)
+//
+//                                let number_of_molecules = gds_number_of_molecules(gds)
+//                                label.text = header
+//
+//                                print(number_of_samples)
+//                                print(number_of_molecules)
+//
+//                                let buffer = UnsafeBufferPointer(start: gds_values(gds), count: number_of_samples * number_of_molecules)
+//
+//                                let values = [Double](buffer)
+//
+//
+//                                print(values.count)
+//                                print(values[0], values[17])
+//                        }
+//
+//                        print(valid)
 
                 }
         }

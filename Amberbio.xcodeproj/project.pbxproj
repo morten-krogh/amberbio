@@ -73,6 +73,7 @@
 		60AEE22A1BF620B1005E858D /* GDS1001_full.soft in Resources */ = {isa = PBXBuildFile; fileRef = 60AEE2291BF620B1005E858D /* GDS1001_full.soft */; };
 		60AEE22E1BF62766005E858D /* geo_parser.c in Sources */ = {isa = PBXBuildFile; fileRef = 60AEE22C1BF62766005E858D /* geo_parser.c */; };
 		60AEE2301BF68B86005E858D /* GDS5091_full.soft in Resources */ = {isa = PBXBuildFile; fileRef = 60AEE22F1BF68B86005E858D /* GDS5091_full.soft */; };
+		60AEE2351BFA1D4E005E858D /* geo_parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60AEE2341BFA1D4E005E858D /* geo_parser.swift */; };
 		60B400391BA1982900D8DD80 /* state_init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400381BA1982900D8DD80 /* state_init.swift */; };
 		60B4003B1BA1983900D8DD80 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B4003A1BA1983900D8DD80 /* State.swift */; };
 		60B400411BA19BED00D8DD80 /* AttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B4003D1BA19BED00D8DD80 /* AttributedString.swift */; };
@@ -323,6 +324,7 @@
 		60AEE22C1BF62766005E858D /* geo_parser.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = geo_parser.c; path = Source/geo_parser.c; sourceTree = SOURCE_ROOT; };
 		60AEE22D1BF62766005E858D /* geo_parser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = geo_parser.h; path = Source/geo_parser.h; sourceTree = SOURCE_ROOT; };
 		60AEE22F1BF68B86005E858D /* GDS5091_full.soft */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = GDS5091_full.soft; path = ../../../../share/GEO/GDS5091_full.soft; sourceTree = "<group>"; };
+		60AEE2341BFA1D4E005E858D /* geo_parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = geo_parser.swift; path = Source/geo_parser.swift; sourceTree = SOURCE_ROOT; };
 		60B400381BA1982900D8DD80 /* state_init.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = state_init.swift; path = Source/state_init.swift; sourceTree = "<group>"; };
 		60B4003A1BA1983900D8DD80 /* State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = State.swift; path = Source/State.swift; sourceTree = "<group>"; };
 		60B4003D1BA19BED00D8DD80 /* AttributedString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AttributedString.swift; path = Source/AttributedString.swift; sourceTree = "<group>"; };
@@ -763,6 +765,7 @@
 				6094CBF31BCF8DCF002A5E2A /* Assets.xcassets */,
 				6094CBF51BCF8DCF002A5E2A /* LaunchScreen.storyboard */,
 				6094CBF81BCF8DCF002A5E2A /* Info.plist */,
+				60AEE2341BFA1D4E005E858D /* geo_parser.swift */,
 				60AEE22C1BF62766005E858D /* geo_parser.c */,
 				60AEE22D1BF62766005E858D /* geo_parser.h */,
 				60AEE22B1BF62765005E858D /* AmberbioTestingGround-Bridging-Header.h */,
@@ -1349,6 +1352,7 @@
 				6094CC051BD0EAC9002A5E2A /* DrawView.swift in Sources */,
 				6094CC011BCFAA7F002A5E2A /* Color.swift in Sources */,
 				6094CC001BCF9132002A5E2A /* AttributedString.swift in Sources */,
+				60AEE2351BFA1D4E005E858D /* geo_parser.swift in Sources */,
 				6094CBED1BCF8DCF002A5E2A /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
