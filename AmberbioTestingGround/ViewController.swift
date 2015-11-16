@@ -183,10 +183,7 @@ class ViewController: UIViewController {
 //
 //        }
 //
-//        func split_and_trim(string string: String, separator: String) -> [String] {
-//                let comps = string.componentsSeparatedByString(separator)
-//                return comps.map { $0.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) }
-//        }
+//        
 //
 //        func parse_header() {
 //                let lines = header.componentsSeparatedByCharactersInSet(NSCharacterSet.newlineCharacterSet())
