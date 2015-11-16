@@ -129,58 +129,15 @@ class GDS {
                         }
                 }
 
-
-//                while (position < position_dataset_table_end) {
-//                        if (row >= gds->number_of_molecules || col >= gds->number_of_headers) return gds;
-//                        if (*position == '\t' || *position == '\n') {
-//                                long cell_length = position - position_start;
-//                                if (col >= gds->sample_column_min  && col < gds->sample_column_min + gds->number_of_samples) {
-//                                        char str[cell_length + 1];
-//                                        memcpy(str, position_start, cell_length);
-//                                        str[cell_length] = '\0';
-//                                        char* endptr = str;
-//
-//                                        double value = strtod(str, &endptr);
-//                                        if (endptr != str + cell_length) {
-//                                                value = nanf(NULL);
-//                                        }
-//
-//                                        long index = row * gds->number_of_samples + col - gds->sample_column_min;
-//                                        gds->values[index] = value;
-//
-//                                        if (row <= 1) {
-//                                                printf("%li, %li, %li, %f\n", row, col, cell_length, value);
-//                                        }
-//
-//                                }
-//
-//
-//                                
-//                                if (*position == '\t') {
-//                                        col++;
-//                                } else {
-//                                        row++;
-//                                        col = 0;
-//                                }
-//                                
-//                                position++;
-//                                position_start = position;
-//                                
-//                                
-//                        } else {
-//                                position++;
-//                        }
-//                }
-
-
-
-
-
+                number_of_molecules = molecule_annotation_values[0].count
 
                 print(sample_names)
                 print(molecule_annotation_names)
                 print(molecule_annotation_values[7][0])
                 print(values[0], values[8])
+
+                print(number_of_molecules)
+                print(values[values.count - 2])
 
                 valid = true
         }
