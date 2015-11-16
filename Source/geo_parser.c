@@ -7,6 +7,8 @@ struct gds {
         long feature_count;
         long number_of_headers;
         char** headers;
+        long sample_column_min;
+        long number_of_samples;
 
 };
 
@@ -65,9 +67,56 @@ struct gds* gds_new(const void* bytes, const long length)
                 position_header_start = position + 1;
         }
 
+        gds->sample_column_min = -1;
+        gds->number_of_samples = 0;
         for (long i = 0; i < gds->number_of_headers; i++) {
-                printf("%s\n", gds->headers[i]);
+                if (strstr(gds->headers[i], "GSM") == gds->headers[i]) {
+                        if (gds->sample_column_min == -1) {
+                                gds->sample_column_min = i;
+                        }
+                        gds->number_of_samples++;
+                } else if (gds->sample_column_min != -1) {
+                        break;
+                }
         }
+
+        const char* position_cells = strnstr(position_headers, "\n", end - position_headers - 1) + 1;
+
+        const char* position_dataset_table_end = strnstr(position_cells, "!dataset_table_end", end - position_cells);
+        if (position_dataset_table_end == NULL) return gds;
+
+        const char* position_start = position_cells;
+        const char* position = position_start;
+        long row = 0;
+        long col = 0;
+        while (position < position_dataset_table_end) {
+                if (*position == '\t' || *position == '\n') {
+                        long cell_length = position - position_start;
+                        if (cell_length > 100 && col < 15) {
+                                printf("%li, %li, %li\n", row, col, cell_length);
+                        }
+
+                        if (*position == '\t') {
+                                col++;
+                        } else {
+                                row++;
+                                col = 0;
+                        }
+
+                        position++;
+                        position_start = position;
+                } else {
+                        position++;
+                }
+        }
+
+
+
+
+
+
+
+
 
 
 
