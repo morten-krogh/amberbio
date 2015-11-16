@@ -29,9 +29,20 @@ class ViewController: UIViewController {
 
                         if (valid) {
                                 let header = String.fromCString(gds_header(gds))
-                                let values = gds_values(gds)
+
+                                let number_of_samples = gds_number_of_samples(gds)
+                                let number_of_molecules = gds_number_of_molecules(gds)
                                 label.text = header
 
+                                print(number_of_samples)
+                                print(number_of_molecules)
+
+                                let buffer = UnsafeBufferPointer(start: gds_values(gds), count: number_of_samples * number_of_molecules)
+
+                                let values = [Double](buffer)
+
+
+                                print(values.count)
                                 print(values[0], values[17])
                         }
 

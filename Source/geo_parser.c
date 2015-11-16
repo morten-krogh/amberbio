@@ -24,10 +24,27 @@ char* gds_header(struct gds* gds)
         return gds->header;
 }
 
+long gds_number_of_samples(struct gds* gds)
+{
+        return gds->number_of_samples;
+}
+
+char** gds_samples_names(struct gds* gds)
+{
+        return gds->sample_names;
+}
+
+long gds_number_of_molecules(struct gds* gds)
+{
+        return gds->number_of_molecules;
+}
+
 double* gds_values(struct gds* gds)
 {
         return gds->values;
 }
+
+
 
 struct gds* gds_new(const void* bytes, const long length)
 {
@@ -84,6 +101,11 @@ struct gds* gds_new(const void* bytes, const long length)
                 } else if (gds->sample_column_min != -1) {
                         break;
                 }
+        }
+
+        gds->sample_names = malloc(gds->number_of_samples * sizeof(*gds->sample_names));
+        for (long i = 0; i < gds->number_of_samples; i++) {
+                gds->sample_names[i] = gds->headers[gds->sample_column_min + i];
         }
 
         const char* position_cells = strnstr(position_headers, "\n", end - position_headers - 1) + 1;

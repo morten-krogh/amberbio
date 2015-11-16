@@ -21,6 +21,9 @@ struct gds* gds_new(const void* bytes, const long length);
 
 bool gds_valid(struct gds* gds);
 char* gds_header(struct gds* gds);
+long gds_number_of_samples(struct gds* gds);
+char** gds_samples_names(struct gds* gds);
+long gds_number_of_molecules(struct gds* gds);
 double* gds_values(struct gds* gds);
 
 
