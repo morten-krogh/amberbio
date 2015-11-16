@@ -1,5 +1,12 @@
 #include "geo_parser.h"
 
+double parse_double(const char* str, const long str_len)
+{
+        char* endptr = NULL;
+        double value = strtod(str, &endptr);
+        return endptr == str + str_len ? value : nanf(NULL);
+}
+
 
 struct gds {
         bool valid;

@@ -24,6 +24,7 @@ class ViewController: UIViewController {
                 let file_manager = NSFileManager.defaultManager()
                 if let path = NSBundle.mainBundle().pathForResource("GDS1001_full", ofType: "soft"), let content = file_manager.contentsAtPath(path) {
 
+                        let date_0 = NSDate()
                         let gds = GDS(data: content)
 
                         print(gds.valid)
@@ -31,8 +32,12 @@ class ViewController: UIViewController {
 
 
 //                        let gds = gds_new(content.bytes, content.length)
+
 //                        let valid = gds_valid(gds);
-//
+
+                        let duration = NSDate().timeIntervalSinceDate(date_0)
+                        print(duration)
+                        //
 //                        if (valid) {
 //                                let header = String.fromCString(gds_header(gds))
 //

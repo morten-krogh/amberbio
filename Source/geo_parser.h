@@ -15,6 +15,9 @@
 #include <stdbool.h>
 #include <math.h>
 
+double parse_double(const char* str, const long str_len);
+
+
 struct gds;
 
 struct gds* gds_new(const void* bytes, const long length);

@@ -6,12 +6,20 @@ func string_from_data_range(data data: NSData, begin: Int, end: Int) -> String? 
         return String(data: range_data, encoding: NSUTF8StringEncoding)
 }
 
-func double_from_data(data data: NSData, begin: Int, end: Int) -> Double {
-        let string = string_from_data_range(data: data, begin: begin, end: end) ?? ""
-        let scanner = NSScanner(string: string)
-        var result = 0.0
-        let success = scanner.scanDouble(&result)
-        return success && scanner.atEnd ? result : Double.NaN
+//func double_from_data(data data: NSData, begin: Int, end: Int) -> Double {
+//        let string = string_from_data_range(data: data, begin: begin, end: end) ?? ""
+//        let scanner = NSScanner(string: string)
+//        var result = 0.0
+//        let success = scanner.scanDouble(&result)
+//        return success && scanner.atEnd ? result : Double.NaN
+//}
+
+func double_from_bytes(bytes bytes: UnsafePointer<UInt8>, begin: Int, end: Int) -> Double {
+        var cstring = [Int8](count: end - begin + 1, repeatedValue: 0)
+        for i in 0 ..< end - begin {
+                cstring[i] = Int8(bytes[begin + i])
+        }
+        return parse_double(cstring, end - begin)
 }
 
 func find_location_of_data(data data: NSData, string: String, begin: Int) -> Int {
@@ -134,7 +142,7 @@ class GDS {
                 while position < location_dataset_table_end {
                         if bytes[position] == 9 || bytes[position] == 10 {
                                 if col >= sample_column_min && col <= sample_column_min + number_of_samples - 1 {
-                                        let value = double_from_data(data: data, begin: position_start, end: position)
+                                        let value = double_from_bytes(bytes: bytes, begin: position_start, end: position)
                                         values.append(value)
                                 } else if is_annotation[col] {
                                         let str = string_from_data_range(data: data, begin: position_start, end: position) ?? ""
