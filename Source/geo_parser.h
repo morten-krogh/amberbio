@@ -16,7 +16,7 @@
 
 struct gds;
 
-struct gds* gds_init(const void* bytes, const long length);
+struct gds* gds_new(const void* bytes, const long length);
 
 bool gds_valid(struct gds* gds);
 char* gds_header(struct gds* gds);

@@ -24,7 +24,7 @@ class ViewController: UIViewController {
                 let file_manager = NSFileManager.defaultManager()
                 if let path = NSBundle.mainBundle().pathForResource("GDS1001_full", ofType: "soft"), let content = file_manager.contentsAtPath(path) {
 
-                        let gds = gds_init(content.bytes, content.length)
+                        let gds = gds_new(content.bytes, content.length)
                         let valid = gds_valid(gds);
 
                         if (valid) {
