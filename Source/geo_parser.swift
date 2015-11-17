@@ -257,15 +257,46 @@ class GSE {
 
                 number_of_molecules = molecule_annotation_values[0].count
 
-                print(molecule_annotation_values[3][0])
-                print(molecule_annotation_values[4][0])
-                print(molecule_annotation_values[5][0])
+                var id_to_row = [:] as [String: Int]
+                for i in 0 ..< molecule_annotation_values[0].count {
+                        id_to_row[molecule_annotation_values[0][i]] = i
+                }
+
+                let suggested_factor_names = ["Source name", "Treatment protocol", "Growth protocol"]
+                let factor_keys = ["Sample_source_name", "Sample_treatment_protocol", "Sample_growth_protocol"]
+
+                var levels = [[String]](count: suggested_factor_names.count, repeatedValue: [])
+
+                var location_sample = find_location_of_data(data: data, string: "^SAMPLE", begin: location_platform_table_end)
+                while location_sample != NSNotFound {
+                        let sample_line = find_line(data: data, begin: location_sample) ?? ""
+                        let sample_parts = split_and_trim(string: sample_line, separator: "=")
+                        if sample_parts.count != 2 { return }
+                        sample_names.append(sample_parts[1])
+
+                        for i in 0 ..< suggestes_factor_names.count {
+                                let location = find_location_of_data(data: data, string: factor_keys[i], begin: location_sample)
+                                if location == NSNotFound { continue }
+                                if let line = find_line(data: data, begin: location) {
+                                        let parts = split_and_trim(string: line, separator: "=")
+                                        if parts.count != 2 { continue }
+                                        levels[i].append(parts[1])
+                                }
+                        }
 
 
-                print(number_of_molecules)
+                        let location_sample_table_begin = find_location_of_data(data: data, string: "!sample_table_begin", begin: location_sample)
+                        if location_sample_table_begin == NSNotFound { return }
+
+                        let location_sample_table_end = find_location_of_data(data: data, string: "!sample_table_begin", begin: location_sample_table_begin)
+                        if location_sample_table_end == NSNotFound { return }
 
 
+                        location_sample = find_location_of_data(data: data, string: "^SAMPLE", begin: location_sample_table_end)
+                }
 
+
+                print(sample_names)
 //                let location_caret_after_dataset_title = find_location_of_data(data: data, string: "^", begin: location_dataset_title)
 //                if location_caret_after_dataset_title == NSNotFound { return }
 //
