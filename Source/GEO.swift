@@ -1,14 +1,16 @@
 import UIKit
 
 enum GEOStatus {
-        case Input
+        case NoInput
+        case CorrectInput
+        case IncorrectInput
         case Downloading
         case Importing
 }
 
 class GEOState: PageState {
 
-        var state = GEOStatus.Input
+        var state = GEOStatus.NoInput
         var geo_id = ""
 
         override init() {
@@ -38,6 +40,9 @@ class GEO: Component, UITextFieldDelegate {
                 info_label.numberOfLines = 0
                 scroll_view.addSubview(info_label)
 
+                message_label.numberOfLines = 0
+                scroll_view.addSubview(message_label)
+
                 text_field.clearButtonMode = UITextFieldViewMode.WhileEditing
                 text_field.font = font_body
                 text_field.autocorrectionType = UITextAutocorrectionType.No
@@ -47,9 +52,9 @@ class GEO: Component, UITextFieldDelegate {
                 text_field.delegate = self
                 scroll_view.addSubview(text_field)
 
-                button.setAttributedTitle(astring_body(string: "Download"), forState: .Normal)
-                button.setAttributedTitle(astring_font_size_color(string: "Download", font: nil, font_size: nil, color: color_disabled), forState: .Disabled)
-                button.addTarget(self, action: "download_action", forControlEvents: .TouchUpInside)
+                button.setAttributedTitle(astring_font_size_color(string: "Download and import", font: nil, font_size: 20, color: nil), forState: .Normal)
+                button.setAttributedTitle(astring_font_size_color(string: "Download and import", font: nil, font_size: 20, color: color_disabled), forState: .Disabled)
+                button.addTarget(self, action: "download_and_import_action", forControlEvents: .TouchUpInside)
                 scroll_view.addSubview(button)
 
                 view.addSubview(scroll_view)
@@ -66,16 +71,24 @@ class GEO: Component, UITextFieldDelegate {
                 info_label.frame = CGRect(x: 20, y: origin_y, width: width - 40, height: info_label_size.height)
                 origin_y = CGRectGetMaxY(info_label.frame) + 20
 
-                let text_field_width = min(width - 40, 400)
+                let message_label_size = message_label.sizeThatFits(CGSize(width: width - 40, height: 0))
+                message_label.frame = CGRect(x: 20, y: origin_y, width: width - 40, height: message_label_size.height)
+                origin_y = CGRectGetMaxY(message_label.frame) + 20
+
+                let text_field_width = min(width - 40, 300)
                 text_field.frame = CGRect(x: (width - text_field_width) / 2, y: origin_y, width: text_field_width, height: 50)
-                origin_y = CGRectGetMaxY(text_field.frame)
+                origin_y = CGRectGetMaxY(text_field.frame) + 30
 
-                
+                button.sizeToFit()
+                button.frame.origin = CGPoint(x: (width - button.frame.width) / 2, y: origin_y)
+                origin_y = CGRectGetMaxY(button.frame) + 20
 
 
 
 
 
+
+                scroll_view.contentSize = CGSize(width: width, height: origin_y)
                 scroll_view.frame = view.bounds
         }
 
@@ -85,6 +98,21 @@ class GEO: Component, UITextFieldDelegate {
 
 
 
+
+        }
+
+        func textFieldShouldReturn(textField: UITextField) -> Bool {
+                textField.resignFirstResponder()
+                return true
+        }
+
+        func textFieldDidEndEditing(textField: UITextField) {
+                let text = textField.text ?? ""
+
+                
+
+
+
         }
 
 
@@ -93,11 +121,8 @@ class GEO: Component, UITextFieldDelegate {
 
 
 
+        func download_and_import_action() {
 
 
-
-
-
-
-
+        }
 }
