@@ -22,53 +22,17 @@ class ViewController: UIViewController {
                 scroll_view.addSubview(label)
 
                 let file_manager = NSFileManager.defaultManager()
-                if let path = NSBundle.mainBundle().pathForResource("GDS1001_full", ofType: "soft"), let content = file_manager.contentsAtPath(path) {
+//                if let path = NSBundle.mainBundle().pathForResource("GSE1134_family", ofType: "soft"), let content = file_manager.contentsAtPath(path) {
+                if let path = NSBundle.mainBundle().pathForResource("GSE47516_family", ofType: "soft"), let content = file_manager.contentsAtPath(path) {
 
                         let date_0 = NSDate()
-                        let gds = GDS(data: content)
+                        let gse = GSE(data: content)
 
-                        print(gds.valid)
-                        label.text = gds.header
-
-
-//                        let gds = gds_new(content.bytes, content.length)
-
-//                        let valid = gds_valid(gds);
+                        print(gse.valid)
+                        label.text = gse.header
 
                         let duration = NSDate().timeIntervalSinceDate(date_0)
                         print(duration)
-                        //
-//                        if (valid) {
-//                                let header = String.fromCString(gds_header(gds))
-//
-//                                let number_of_samples = gds_number_of_samples(gds)
-//
-//                                var sample_names = [] as [String]
-//                                let raw_samples_names = gds_samples_names(gds)
-//                                for i in 0 ..< number_of_samples {
-//                                        let sample_name = String.fromCString(raw_samples_names[i]) ?? ""
-//                                        sample_names.append(sample_name)
-//                                }
-//
-//                                print(sample_names)
-//
-//                                let number_of_molecules = gds_number_of_molecules(gds)
-//                                label.text = header
-//
-//                                print(number_of_samples)
-//                                print(number_of_molecules)
-//
-//                                let buffer = UnsafeBufferPointer(start: gds_values(gds), count: number_of_samples * number_of_molecules)
-//
-//                                let values = [Double](buffer)
-//
-//
-//                                print(values.count)
-//                                print(values[0], values[17])
-//                        }
-//
-//                        print(valid)
-
                 }
         }
 
