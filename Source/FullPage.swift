@@ -224,6 +224,8 @@ class FullPage: Component, UIScrollViewDelegate, UISearchBarDelegate {
                                 page = Sammon()
                         case "som":
                                 page = SOM()
+                        case "geo":
+                                page = GEO()
 
                         default:
                                 print("Remember to update render in FullPage for \(page_name)")
