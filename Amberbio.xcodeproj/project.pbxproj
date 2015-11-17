@@ -76,6 +76,7 @@
 		60AEE2351BFA1D4E005E858D /* geo_parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60AEE2341BFA1D4E005E858D /* geo_parser.swift */; };
 		60AEE2381BFB222C005E858D /* GSE1134_family.soft in Resources */ = {isa = PBXBuildFile; fileRef = 60AEE2361BFB222C005E858D /* GSE1134_family.soft */; };
 		60AEE2391BFB222C005E858D /* GSE47516_family.soft in Resources */ = {isa = PBXBuildFile; fileRef = 60AEE2371BFB222C005E858D /* GSE47516_family.soft */; };
+		60AEE23C1BFB6562005E858D /* GEO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60AEE23A1BFB6179005E858D /* GEO.swift */; };
 		60B400391BA1982900D8DD80 /* state_init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400381BA1982900D8DD80 /* state_init.swift */; };
 		60B4003B1BA1983900D8DD80 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B4003A1BA1983900D8DD80 /* State.swift */; };
 		60B400411BA19BED00D8DD80 /* AttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B4003D1BA19BED00D8DD80 /* AttributedString.swift */; };
@@ -329,6 +330,7 @@
 		60AEE2341BFA1D4E005E858D /* geo_parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = geo_parser.swift; path = Source/geo_parser.swift; sourceTree = SOURCE_ROOT; };
 		60AEE2361BFB222C005E858D /* GSE1134_family.soft */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = GSE1134_family.soft; path = ../../../../share/GEO/GSE1134_family.soft; sourceTree = "<group>"; };
 		60AEE2371BFB222C005E858D /* GSE47516_family.soft */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = GSE47516_family.soft; path = ../../../../share/GEO/GSE47516_family.soft; sourceTree = "<group>"; };
+		60AEE23A1BFB6179005E858D /* GEO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GEO.swift; path = Source/GEO.swift; sourceTree = "<group>"; };
 		60B400381BA1982900D8DD80 /* state_init.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = state_init.swift; path = Source/state_init.swift; sourceTree = "<group>"; };
 		60B4003A1BA1983900D8DD80 /* State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = State.swift; path = Source/State.swift; sourceTree = "<group>"; };
 		60B4003D1BA19BED00D8DD80 /* AttributedString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AttributedString.swift; path = Source/AttributedString.swift; sourceTree = "<group>"; };
@@ -631,6 +633,7 @@
 				60B400B21BA19C7900D8DD80 /* FilterMolecules.swift */,
 				60B400731BA19C7900D8DD80 /* Forward.swift */,
 				60B400741BA19C7900D8DD80 /* FullPage.swift */,
+				60AEE23A1BFB6179005E858D /* GEO.swift */,
 				60B400771BA19C7900D8DD80 /* HierarchicalClusteringPlot.swift */,
 				60B400781BA19C7900D8DD80 /* HierarchicalClusteringSelection.swift */,
 				60B400791BA19C7900D8DD80 /* Home.swift */,
@@ -1221,6 +1224,7 @@
 				60B401361BA19C7900D8DD80 /* ProjectNotes.swift in Sources */,
 				602708CA1BA2CA0300672D54 /* SelectAllHeaderFooterView.swift in Sources */,
 				60B401351BA19C7900D8DD80 /* ProgressIndicator.swift in Sources */,
+				60AEE23C1BFB6562005E858D /* GEO.swift in Sources */,
 				605F52321BC2ED2D00033B91 /* SupervisedClassificationParameterSelection.swift in Sources */,
 				60B400E71BA19C7900D8DD80 /* ContingencyTable.swift in Sources */,
 				601E57AF1BCE64F2002EEEB3 /* svm.cpp in Sources */,
