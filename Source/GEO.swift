@@ -6,6 +6,7 @@ enum GEOStatus {
         case IncorrectInput
         case Downloading
         case Importing
+        case Done
 }
 
 class GEOState: PageState {
@@ -17,7 +18,7 @@ class GEOState: PageState {
                 super.init()
                 name = "geo"
                 title = astring_body(string: "Gene expression omnibus")
-                info = "Download data set and series records from Gene expression omnibus (GEO).\n\nRDatasets have ids of the form GDSnnnnn.\n\nSeries have ids of the form GSEnnnn.\n\n"
+                info = "Download data set and series records from Gene expression omnibus (GEO).\n\nDataset records have ids of the form GDSxxxx.\n\nSeries records have ids of the form GSExxxx.\n\nxxxx denotes a number of any number of digits."
         }
 }
 
@@ -104,12 +105,12 @@ class GEO: Component, UITextFieldDelegate {
 
                 switch geo_state.state {
                 case .NoInput:
-                        message_text = "Type an id of the form GDSxxxx or GSExxxx"
+                        message_text = "Type GDSxxxx or GSExxxx"
                         message_color = UIColor.blackColor()
                         set_button_title(title: "Download and import")
                         button.enabled = false
                 case .IncorrectInput:
-                        message_text = "Type an id of the form GDSxxxx or GSExxxx"
+                        message_text = "Type GDSxxxx or GSExxxx"
                         message_color = UIColor.redColor()
                         set_button_title(title: "Download and import")
                         button.enabled = false
@@ -127,9 +128,14 @@ class GEO: Component, UITextFieldDelegate {
                         message_color = UIColor.blackColor()
                         set_button_title(title: "Cancel")
                         button.hidden = true
+                case .Done:
+                        message_text = "The project XXXX has been created"
+                        message_color = UIColor.blueColor()
+                        set_button_title(title: "Download and import")
+                        button.enabled = false
                 }
 
-                message_label.attributedText = astring_font_size_color(string: message_text, font: nil, font_size: nil, color: message_color)
+                message_label.attributedText = astring_font_size_color(string: message_text, font: nil, font_size: 20, color: message_color)
                 message_label.textAlignment = .Center
 
                 view.setNeedsLayout()
