@@ -5,7 +5,6 @@ enum GEOStatus {
         case CorrectInput
         case IncorrectInput
         case Downloading
-        case Parsing
         case Importing
 }
 
@@ -53,11 +52,13 @@ class GEO: Component, UITextFieldDelegate {
                 text_field.delegate = self
                 scroll_view.addSubview(text_field)
 
-
-                button.addTarget(self, action: "download_and_import_action", forControlEvents: .TouchUpInside)
+                button.addTarget(self, action: "button_action", forControlEvents: .TouchUpInside)
                 scroll_view.addSubview(button)
 
                 view.addSubview(scroll_view)
+
+                let tap_recognizer = UITapGestureRecognizer(target: self, action: "tap_action")
+                view.addGestureRecognizer(tap_recognizer)
         }
 
         override func viewWillLayoutSubviews() {
@@ -95,9 +96,41 @@ class GEO: Component, UITextFieldDelegate {
         override func render() {
                 geo_state = state.page_state as! GEOState
 
+                button.enabled = true
+                button.hidden = false
 
+                let message_text: String
+                let message_color: UIColor
 
+                switch geo_state.state {
+                case .NoInput:
+                        message_text = "Type an id of the form GDSxxxx or GSExxxx"
+                        message_color = UIColor.blackColor()
+                        set_button_title(title: "Download and import")
+                        button.enabled = false
+                case .IncorrectInput:
+                        message_text = "Type an id of the form GDSxxxx or GSExxxx"
+                        message_color = UIColor.redColor()
+                        set_button_title(title: "Download and import")
+                        button.enabled = false
+                case .CorrectInput:
+                        message_text = "Tap the button"
+                        message_color = UIColor.blackColor()
+                        set_button_title(title: "Download and import")
+                case .Downloading:
+                        message_text = "The data set is being downloaded from GEO"
+                        message_color = UIColor.blackColor()
+                        set_button_title(title: "Cancel")
+                        button.enabled = true
+                case .Importing:
+                        message_text = "The data set is being imported"
+                        message_color = UIColor.blackColor()
+                        set_button_title(title: "Cancel")
+                        button.hidden = true
+                }
 
+                message_label.attributedText = astring_font_size_color(string: message_text, font: nil, font_size: nil, color: message_color)
+                message_label.textAlignment = .Center
 
                 view.setNeedsLayout()
         }
@@ -108,22 +141,36 @@ class GEO: Component, UITextFieldDelegate {
         }
 
         func textFieldDidEndEditing(textField: UITextField) {
-                let text = textField.text ?? ""
+                let original_text = textField.text ?? ""
 
-                
+                let text = original_text.uppercaseString
 
+                if text == "" {
+                        geo_state.state = .NoInput
+                } else if text.hasPrefix("GSE") || text.hasPrefix("GDS") {
+                        let substring = text.substringFromIndex(text.startIndex.advancedBy(3))
+                        if Int(substring) == nil {
+                                geo_state.state = .IncorrectInput
+                        } else {
+                                geo_state.state = .CorrectInput
+                        }
+                } else {
+                        geo_state.state = .IncorrectInput
+                }
 
+                if text != original_text && geo_state.state == .CorrectInput {
+                        textField.text = text
+                }
+                render()
+        }
+
+        func button_action() {
 
 
         }
 
-
-
-
-
-        func download_and_import_action() {
-
-
+        func tap_action() {
+                text_field.resignFirstResponder()
         }
 
         func set_button_title(title title: String) {
