@@ -171,8 +171,8 @@ class GSE {
         var sample_column_min = -1
         var number_of_samples = 0
         var sample_names = [] as [String]
-        var factor_value = [] as [String]
-        var factor_src = [] as [String]
+        var factor_names = [] as [String]
+        var level_names_for_factor = [] as [[String]]
         var number_of_molecule_annotations = 0
         var molecule_annotation_names = [] as [String]
         var molecule_annotation_values = [] as [[String]]
@@ -262,8 +262,8 @@ class GSE {
                         id_to_row[molecule_annotation_values[0][i]] = i
                 }
 
-                let suggested_factor_names = ["Source name", "Treatment protocol", "Growth protocol"]
-                let factor_keys = ["Sample_source_name", "Sample_treatment_protocol", "Sample_growth_protocol"]
+                let suggested_factor_names = ["Sample title", "Source name", "Organism",  "Treatment protocol", "Sample characteristics"]
+                let factor_keys = ["Sample_title", "Sample_source_name", "Sample_organism", "Sample_treatment_protocol", "Sample_characteristics"]
 
                 var levels = [[String]](count: suggested_factor_names.count, repeatedValue: [])
 
@@ -274,7 +274,7 @@ class GSE {
                         if sample_parts.count != 2 { return }
                         sample_names.append(sample_parts[1])
 
-                        for i in 0 ..< suggestes_factor_names.count {
+                        for i in 0 ..< suggested_factor_names.count {
                                 let location = find_location_of_data(data: data, string: factor_keys[i], begin: location_sample)
                                 if location == NSNotFound { continue }
                                 if let line = find_line(data: data, begin: location) {
@@ -297,6 +297,11 @@ class GSE {
 
 
                 print(sample_names)
+                print(levels)
+
+                
+
+
 //                let location_caret_after_dataset_title = find_location_of_data(data: data, string: "^", begin: location_dataset_title)
 //                if location_caret_after_dataset_title == NSNotFound { return }
 //
