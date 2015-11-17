@@ -5,6 +5,7 @@ enum GEOStatus {
         case CorrectInput
         case IncorrectInput
         case Downloading
+        case Parsing
         case Importing
 }
 
@@ -52,8 +53,7 @@ class GEO: Component, UITextFieldDelegate {
                 text_field.delegate = self
                 scroll_view.addSubview(text_field)
 
-                button.setAttributedTitle(astring_font_size_color(string: "Download and import", font: nil, font_size: 20, color: nil), forState: .Normal)
-                button.setAttributedTitle(astring_font_size_color(string: "Download and import", font: nil, font_size: 20, color: color_disabled), forState: .Disabled)
+
                 button.addTarget(self, action: "download_and_import_action", forControlEvents: .TouchUpInside)
                 scroll_view.addSubview(button)
 
@@ -99,6 +99,7 @@ class GEO: Component, UITextFieldDelegate {
 
 
 
+                view.setNeedsLayout()
         }
 
         func textFieldShouldReturn(textField: UITextField) -> Bool {
@@ -113,9 +114,8 @@ class GEO: Component, UITextFieldDelegate {
 
 
 
+
         }
-
-
 
 
 
@@ -124,5 +124,10 @@ class GEO: Component, UITextFieldDelegate {
         func download_and_import_action() {
 
 
+        }
+
+        func set_button_title(title title: String) {
+                button.setAttributedTitle(astring_font_size_color(string: title, font: nil, font_size: 20, color: nil), forState: .Normal)
+                button.setAttributedTitle(astring_font_size_color(string: title, font: nil, font_size: 20, color: color_disabled), forState: .Disabled)
         }
 }
