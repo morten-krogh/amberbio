@@ -11,8 +11,8 @@ enum GEOStatus {
 
 class GEOState: PageState {
 
-        var state = GEOStatus.NoInput
-        var geo_id = ""
+        var state = GEOStatus.CorrectInput
+        var geo_id = "GDS1001"
 
         override init() {
                 super.init()
@@ -97,6 +97,10 @@ class GEO: Component, UITextFieldDelegate {
         override func render() {
                 geo_state = state.page_state as! GEOState
 
+                if text_field.text != geo_state.geo_id {
+                        text_field.text = geo_state.geo_id
+                }
+
                 button.enabled = true
                 button.hidden = false
 
@@ -167,10 +171,29 @@ class GEO: Component, UITextFieldDelegate {
                 if text != original_text && geo_state.state == .CorrectInput {
                         textField.text = text
                 }
+                geo_state.geo_id = text
                 render()
         }
 
         func button_action() {
+                if geo_state.state == .CorrectInput {
+                        download()
+                }
+        }
+
+        func download() {
+                let url_string = "ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS1nnn/GDS1001/soft/GDS1001_full.soft.gz"
+                let url = NSURL(string: url_string)!
+                let task = NSURLSession.sharedSession().dataTaskWithURL(url, completionHandler: download_completion_handler)
+                task.resume()
+        }
+
+        func download_completion_handler(data data: NSData?, response: NSURLResponse?, error: NSError?) {
+                print("download done")
+                if let data = data {
+                        print(data.subdataWithRange(NSRange(0 ..< 10)))
+                }
+                print(data?.length)
 
 
         }
