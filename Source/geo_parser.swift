@@ -24,6 +24,11 @@ func find_line(data data: NSData, begin: Int) -> String? {
         return location == NSNotFound ? nil : string_from_data_range(data: data, begin: begin, end: location)
 }
 
+func find_start_of_next_line(data data: NSData, location: Int) -> Int {
+        let location_newline = find_location_of_data(data: data, string: "\n", begin: location)
+        return location_newline == NSNotFound ? NSNotFound : location_newline + 1
+}
+
 func split_and_trim(string string: String, separator: String) -> [String] {
         let comps = string.componentsSeparatedByString(separator)
         return comps.map { $0.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) }
@@ -180,6 +185,7 @@ class GSE {
         var values = [] as [Double]
 
         init(data: NSData) {
+                let bytes = UnsafePointer<UInt8>(data.bytes)
 
                 if string_from_data_range(data: data, begin: data.length - 1, end: data.length) != "\n" { return }
 
@@ -232,7 +238,7 @@ class GSE {
                 var position = position_start
                 var row = 0
                 var col = 0
-                let bytes = UnsafePointer<UInt8>(data.bytes)
+
 
                 while position < location_platform_table_end {
                         if bytes[position] == 9 || bytes[position] == 10 {
@@ -262,6 +268,8 @@ class GSE {
                         id_to_row[molecule_annotation_values[0][i]] = i
                 }
 
+                var values_for_samples = [] as [[Double]]
+
                 let suggested_factor_names = ["Sample title", "Source name", "Organism",  "Treatment protocol", "Sample characteristics"]
                 let factor_keys = ["Sample_title", "Sample_source_name", "Sample_organism", "Sample_treatment_protocol", "Sample_characteristics"]
 
@@ -273,6 +281,7 @@ class GSE {
                         let sample_parts = split_and_trim(string: sample_line, separator: "=")
                         if sample_parts.count != 2 { return }
                         sample_names.append(sample_parts[1])
+                        var current_values_for_samples = [Double](count: number_of_molecules, repeatedValue: Double.NaN)
 
                         for i in 0 ..< suggested_factor_names.count {
                                 let location = find_location_of_data(data: data, string: factor_keys[i], begin: location_sample)
@@ -288,40 +297,75 @@ class GSE {
                         let location_sample_table_begin = find_location_of_data(data: data, string: "!sample_table_begin", begin: location_sample)
                         if location_sample_table_begin == NSNotFound { return }
 
-                        let location_sample_table_end = find_location_of_data(data: data, string: "!sample_table_begin", begin: location_sample_table_begin)
+                        let location_sample_table_end = find_location_of_data(data: data, string: "!sample_table_end", begin: location_sample_table_begin)
                         if location_sample_table_end == NSNotFound { return }
 
+                        let location_value_header = find_start_of_next_line(data: data, location: location_sample_table_begin)
+                        let header_line = find_line(data: data, begin: location_value_header) ?? ""
+                        let headers = header_line.componentsSeparatedByString("\t")
+                        let col_value = headers.indexOf("VALUE")
+                        if col_value == nil || col_value < 1 { return }
 
+                        position_start = find_start_of_next_line(data: data, location: location_value_header)
+                        position = position_start
+                        row = 0
+                        col = 0
+
+                        var id = ""
+                        var value = 0.0
+                        while position < location_sample_table_end {
+                                if bytes[position] == 9 || bytes[position] == 10 {
+                                        if col == 0 {
+                                                id = string_from_data_range(data: data, begin: position_start, end: position) ?? ""
+                                        } else if col == col_value {
+                                                value = double_from_bytes(bytes: bytes, begin: position_start, end: position)
+                                        }
+
+                                        if bytes[position] == 9 {
+                                                col++
+                                        } else {
+                                                if let row = id_to_row[id] {
+                                                        current_values_for_samples[row] = value
+                                                }
+                                                row++
+                                                col = 0
+                                        }
+
+                                        position++
+                                        position_start = position
+                                } else {
+                                        position++
+                                }
+                        }
+
+                        values_for_samples.append(current_values_for_samples)
                         location_sample = find_location_of_data(data: data, string: "^SAMPLE", begin: location_sample_table_end)
                 }
 
+                number_of_samples = sample_names.count
 
-                print(sample_names)
-                print(levels)
+                for i in 0 ..< suggested_factor_names.count {
+                        var all_empty = true
+                        for level in levels[i] {
+                                if level != "" {
+                                        all_empty = false
+                                        break
+                                }
+                        }
+                        if !all_empty {
+                                factor_names.append(suggested_factor_names[i])
+                                level_names_for_factor.append(levels[i])
+                        }
+                }
 
-                
-
-
-//                let location_caret_after_dataset_title = find_location_of_data(data: data, string: "^", begin: location_dataset_title)
-//                if location_caret_after_dataset_title == NSNotFound { return }
-//
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                values = [Double](count: number_of_molecules * number_of_samples, repeatedValue: Double.NaN)
+                for col in 0 ..< number_of_samples {
+                        for row in 0 ..< number_of_molecules {
+                                let index = row * number_of_samples + col
+                                let value = values_for_samples[col][row]
+                                values[index] = value
+                        }
+                }
 
                 valid = true
         }
