@@ -220,16 +220,26 @@ class GEO: Component, UITextFieldDelegate, NSURLSessionDelegate, NSURLSessionDat
                 let id = geo_state.geo_id
                 let prefix = id.substringWithRange(id.startIndex ..< id.startIndex.advancedBy(3))
                 let digits = [Character](id.substringFromIndex(id.startIndex.advancedBy(3)).characters).map { String($0) } as [String]
-                print(prefix)
-                print(digits)
+                let is_gds = prefix == "GDS"
 
+                var url = "http://ftp.ncbi.nlm.nih.gov/geo/"
+                url += is_gds ? "datasets/GDS" : "series/GSE"
+                if digits.count > 3 {
+                        for i in 0 ..< digits.count - 3 {
+                                url += digits[i]
+                        }
+                }
+                url += "nnn/" + id + "/soft/" + id + "_"
+                url += is_gds ? "full" : "family"
+                url += ".soft.gz"
 
+                print(url)
 
 //                let url_string = "http://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS1nnn/GDS1001/soft/GDS1001_full.soft.gz"
 //                let url_string = "http://ftp.ncbi.nlm.nih.gov/genomes/Acanthisitta_chloris/Gnomon/ref_ASM69581v1_gnomon_scaffolds.gff3.gz"
-                let url_string = "http://www.amberbio.com/345"
-                let url = NSURL(string: url_string)!
-                return url
+//                let url_string = "http://www.amberbio.com/345"
+                let nsurl = NSURL(string: url)!
+                return nsurl
         }
 
         func download() {
@@ -278,7 +288,7 @@ class GEO: Component, UITextFieldDelegate, NSURLSessionDelegate, NSURLSessionDat
                         geo_state.state = .FileNotFound
                 } else {
                         geo_state.state = .Importing
-                        import_data_set()
+                        NSTimer.scheduledTimerWithTimeInterval(0.001, target: self, selector: "import_data_set", userInfo: nil, repeats: false)
                 }
                 state.render()
         }
@@ -313,6 +323,7 @@ class GEO: Component, UITextFieldDelegate, NSURLSessionDelegate, NSURLSessionDat
                         } else {
                                 let gse = GSE(data: inflated_data)
                                 if gse.valid {
+                                        import_data_set(sample_name: gse.sample_names, values: gse.values)
 
                                 } else {
                                         geo_state.state = .ImportError
