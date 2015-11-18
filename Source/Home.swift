@@ -8,6 +8,7 @@ let home_page_name_to_section_row = [
         "import_data": (1, 0),
         "export_projects": (1, 1),
         "result_files": (1, 2),
+        "geo": (1, 3),
         "data_set_selection": (2, 0),
         "project_notes": (2, 1),
         "data_set_table": (3, 0),
@@ -74,7 +75,7 @@ class Home: Component, UICollectionViewDataSource, UICollectionViewDelegate, UIC
 
         let page_titles = [
                 ["Module\nStore", "Manual", "Feedback", "User"],
-                ["Import\nData", "Export Projects", "Result Files"],
+                ["Import\nData", "Export Projects", "Result Files", "GEO"],
                 ["Data Set Selection", "Project Notes" ],
                 ["Data Set Table", "Data Set Summary", "Factor\nChart", "Factor Association", "Factor Summary", "Missing Values for Samples", "Single Molecule Plots", "Multiple Molecule Plot"],
                 ["Anova", "Pairwise Test", "Paired Test", "Linear Regression"],
@@ -102,6 +103,8 @@ class Home: Component, UICollectionViewDataSource, UICollectionViewDelegate, UIC
                         return ExportProjectsState()
                 case (1, 2):
                         return ResultFilesState()
+                case (1, 3):
+                        return GEOState()
                 case (2, 0):
                         return DataSetSelectionState()
                 case (2, 1):
