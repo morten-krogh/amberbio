@@ -5,7 +5,8 @@ enum GEOStatus {
         case CorrectInput
         case IncorrectInput
         case Downloading
-        case DownloadError
+        case NoConnection
+        case FileNotFound
         case Importing
         case Done
 }
@@ -41,6 +42,8 @@ class GEO: Component, UITextFieldDelegate, NSURLSessionDelegate, NSURLSessionDat
         var task: NSURLSessionDataTask?
         var bytes_downloaded = 0
         var received_data = [] as [NSData]
+        var response_status_code = 200
+        var canceled = false
 
         override func viewDidLoad() {
                 super.viewDidLoad()
@@ -127,24 +130,28 @@ class GEO: Component, UITextFieldDelegate, NSURLSessionDelegate, NSURLSessionDat
                         set_button_title(title: "Download and import")
                         button.enabled = false
                 case .CorrectInput:
-                        message_text = "Tap the button"
+                        message_text = "The id has the correct form"
                         message_color = UIColor.blackColor()
                         set_button_title(title: "Download and import")
                 case .Downloading:
-                        text_field.hidden = true
                         message_text = "\(bytes_downloaded) bytes downloaded"
                         message_color = UIColor.blackColor()
                         set_button_title(title: "Cancel")
                         button.enabled = true
-                case .DownloadError:
-                        message_text = "There data set could not be downloaded"
+                        text_field.hidden = true
+                case .NoConnection:
+                        message_text = "There is a problem with the internet connection"
+                        message_color = UIColor.redColor()
+                        set_button_title(title: "Download and import")
+                case .FileNotFound:
+                        message_text = "The data set could not be found"
                         message_color = UIColor.redColor()
                         set_button_title(title: "Download and import")
                 case .Importing:
-                        message_text = "The data set is being imported"
+                        message_text = "The downloaded data set is being imported"
                         message_color = UIColor.blackColor()
-                        set_button_title(title: "Cancel")
                         button.hidden = true
+                        text_field.hidden = true
                 case .Done:
                         message_text = "The project XXXX has been created"
                         message_color = UIColor.blueColor()
@@ -217,6 +224,8 @@ class GEO: Component, UITextFieldDelegate, NSURLSessionDelegate, NSURLSessionDat
 
                 bytes_downloaded = 0
                 received_data = []
+                canceled = false
+                response_status_code = 0
                 let url = url_of_data_set()
                 task = session?.dataTaskWithURL(url)
 
@@ -237,9 +246,7 @@ class GEO: Component, UITextFieldDelegate, NSURLSessionDelegate, NSURLSessionDat
 
                 bytes_downloaded = 0
                 received_data = []
-
-                geo_state.state = .CorrectInput
-                state.render()
+                canceled = true
         }
 
         func URLSession(session: NSURLSession, dataTask: NSURLSessionDataTask, didReceiveData data: NSData) {
@@ -249,35 +256,32 @@ class GEO: Component, UITextFieldDelegate, NSURLSessionDelegate, NSURLSessionDat
         }
 
         func URLSession(session: NSURLSession, task: NSURLSessionTask, didCompleteWithError error: NSError?) {
-                if let error = error {
-                        print("did complete with error = \(error)")
-                        geo_state.state = .DownloadError
-                } else {
-//                        geo_state.state = .Importing
+                print("did complete with error = \(error)")
+                if canceled {
                         geo_state.state = .CorrectInput
+                } else if error != nil {
+                        geo_state.state = .NoConnection
+                } else if response_status_code == 404 {
+                        geo_state.state = .FileNotFound
+                } else {
+                        geo_state.state = .Importing
                 }
                 state.render()
         }
 
         func URLSession(session: NSURLSession, dataTask: NSURLSessionDataTask, didReceiveResponse response: NSURLResponse, completionHandler: (NSURLSessionResponseDisposition) -> Void) {
+                if let response = response as? NSHTTPURLResponse {
+                        response_status_code = response.statusCode
+                } else {
+                        response_status_code = 404
+                }
                 print(response)
-
                 completionHandler(NSURLSessionResponseDisposition.Allow)
         }
 
-        func URLSession(session: NSURLSession, didBecomeInvalidWithError error: NSError?) {
-                print("did become invalid with error", error)
-        }
+        func import() {
+                
 
-
-        func download_completion_handler(data data: NSData?, response: NSURLResponse?, error: NSError?) {
-                print("download done")
-                print(error)
-                print(response)
-                if let data = data, let inflated = gunzip(data: data) {
-                        print(String(data: inflated.subdataWithRange(NSRange(0 ..< 10)), encoding: NSUTF8StringEncoding))
-                        print(inflated.length)
-                }
 
         }
 
