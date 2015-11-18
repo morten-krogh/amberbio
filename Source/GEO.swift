@@ -321,7 +321,8 @@ class GEO: Component, UITextFieldDelegate, NSURLSessionDelegate, NSURLSessionDat
                 print(sample_names)
 
 
-
+                geo_state.state = .Done
+                state.render()
         }
 
         func tap_action() {
