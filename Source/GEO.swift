@@ -12,6 +12,7 @@ enum GEOStatus {
 
 class GEOState: PageState {
 
+        var session: NSURLSession!
         var state = GEOStatus.CorrectInput
         var geo_id = "GDS1001"
 
@@ -33,11 +34,16 @@ class GEO: Component, UITextFieldDelegate, NSURLSessionDelegate, NSURLSessionDat
         let text_field = UITextField()
         let button = UIButton(type: .System)
 
+        let serial_queue = dispatch_queue_create("GEO download", DISPATCH_QUEUE_SERIAL)
+        var session: NSURLSession?
         var task: NSURLSessionDataTask?
         var bytes_downloaded = 0
+        var task_counter = 0
 
         override func viewDidLoad() {
                 super.viewDidLoad()
+
+
 
                 info_label.text = "Download a public data set from Gene expression omnibus. Type an id for a GEO data set of the form GDSnnnn or a GEO series of the form GSEnnnn."
                 info_label.textAlignment = .Left
@@ -181,24 +187,38 @@ class GEO: Component, UITextFieldDelegate, NSURLSessionDelegate, NSURLSessionDat
                         download()
                 } else if geo_state.state == .Downloading {
                         print("cancel")
-                        task?.cancel()
-                        task = nil
+
+
+//                        dispatch_async(serial_queue, {
+                                self.task?.cancel()
+                                self.task = nil
+                                self.session?.invalidateAndCancel()
+                                self.session = nil
+//                        })
+
                         geo_state.state = .CorrectInput
                         state.render()
+
+
                 }
         }
 
         func download() {
                 print("start download")
-                let url_string = "ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS1nnn/GDS1001/soft/GDS1001_full.soft.gz"
+                let url_string: String
+//                if task_counter % 2 == 0 {
+//                        url_string = "http://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS1nnn/GDS1001/soft/GDS1001_full.soft.gz"
+//                } else {
+//                        url_string = "ftp://ftp.ncbi.nlm.nih.gov/genomes/Acanthisitta_chloris/Gnomon/ref_ASM69581v1_gnomon_scaffolds.gff3.gz"
+                        url_string = "http://www.amberbio.com/GDS1001_full.soft.gz"
+//                }
                 let url = NSURL(string: url_string)!
-                let session = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration(), delegate: self, delegateQueue: nil)
 
-//                let task = session.dataTaskWithURL(url, completionHandler: download_completion_handler)
+                session = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration(), delegate: self, delegateQueue: NSOperationQueue.mainQueue())
+
                 bytes_downloaded = 0
-                task = session.dataTaskWithURL(url)
-
-                let serial_queue = dispatch_queue_create("GEO download", DISPATCH_QUEUE_SERIAL)
+                task = session?.dataTaskWithURL(url)
+//                task_counter++
 
                 dispatch_async(serial_queue, {
                         self.task?.resume()
@@ -209,17 +229,27 @@ class GEO: Component, UITextFieldDelegate, NSURLSessionDelegate, NSURLSessionDat
         }
 
         func URLSession(session: NSURLSession, dataTask: NSURLSessionDataTask, didReceiveData data: NSData) {
-                dispatch_async(dispatch_get_main_queue(), {
+                print("did receive data")
+//                dispatch_async(dispatch_get_main_queue(), {
                         self.bytes_downloaded += data.length
-                        print(self.bytes_downloaded)
-                        self.render()
-                })
+//                        print(self.bytes_downloaded)
+                        state.render()
+//                })
         }
 
         func URLSession(session: NSURLSession, task: NSURLSessionTask, didCompleteWithError error: NSError?) {
                 print("did complete with error = \(error)")
         }
 
+        func URLSession(session: NSURLSession, dataTask: NSURLSessionDataTask, didReceiveResponse response: NSURLResponse, completionHandler: (NSURLSessionResponseDisposition) -> Void) {
+                print(response)
+
+                completionHandler(NSURLSessionResponseDisposition.Allow)
+        }
+
+        func URLSession(session: NSURLSession, didBecomeInvalidWithError error: NSError?) {
+                print("did become invalid with error", error)
+        }
 
 
         func download_completion_handler(data data: NSData?, response: NSURLResponse?, error: NSError?) {
