@@ -1,5 +1,12 @@
 #include "c-functions.h"
 
+double parse_double(const char* str, const long str_len)
+{
+        char* endptr = NULL;
+        double value = strtod(str, &endptr);
+        return endptr == str + str_len ? value : nanf(NULL);
+}
+
 char parse_find_separator(const void* bytes, const long length)
 {
         const char* string = (const char*) bytes;

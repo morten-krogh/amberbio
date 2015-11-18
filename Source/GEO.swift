@@ -8,6 +8,7 @@ enum GEOStatus {
         case NoConnection
         case FileNotFound
         case Importing
+        case ImportError
         case Done
 }
 
@@ -152,6 +153,10 @@ class GEO: Component, UITextFieldDelegate, NSURLSessionDelegate, NSURLSessionDat
                         message_color = UIColor.blackColor()
                         button.hidden = true
                         text_field.hidden = true
+                case .ImportError:
+                        message_text = "The file could not be imported"
+                        message_color = UIColor.redColor()
+                        set_button_title(title: "Download and import")
                 case .Done:
                         message_text = "The project XXXX has been created"
                         message_color = UIColor.blueColor()
@@ -265,6 +270,7 @@ class GEO: Component, UITextFieldDelegate, NSURLSessionDelegate, NSURLSessionDat
                         geo_state.state = .FileNotFound
                 } else {
                         geo_state.state = .Importing
+                        import_data_set()
                 }
                 state.render()
         }
@@ -279,8 +285,41 @@ class GEO: Component, UITextFieldDelegate, NSURLSessionDelegate, NSURLSessionDat
                 completionHandler(NSURLSessionResponseDisposition.Allow)
         }
 
-        func import() {
-                
+        func import_data_set() {
+                let deflated_data = NSMutableData()
+                for data in received_data {
+                        deflated_data.appendData(data)
+                }
+
+                if let inflated_data = gunzip(data: deflated_data) {
+                        if geo_state.geo_id.hasPrefix("GDS") {
+                                let gds = GDS(data: inflated_data)
+                                if gds.valid {
+                                        import_data_set(sample_name: gds.sample_names, values: gds.values)
+
+
+                                } else {
+                                        geo_state.state = .ImportError
+                                        render()
+                                }
+                        } else {
+                                let gse = GSE(data: inflated_data)
+                                if gse.valid {
+
+                                } else {
+                                        geo_state.state = .ImportError
+                                        render()
+                                }
+                        }
+                } else {
+                        geo_state.state = .ImportError
+                        render()
+                }
+        }
+
+        func import_data_set(sample_name sample_names: [String], values: [Double]) {
+                print(sample_names)
+
 
 
         }
