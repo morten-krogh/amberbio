@@ -1,22 +1,15 @@
-//
-//  zlib.swift
-//  Amberbio
-//
-//  Created by Morten Krogh on 17/11/15.
-//  Copyright © 2015 Morten Krogh. All rights reserved.
-//
-
 import Foundation
 
-//func gunzip(data data: NData) -> NSData {
+func gunzip(data data: NSData) -> NSData? {
+
+        let bytes = UnsafePointer<Int8>(data.bytes)
+
+        var output_size = 0
+
+        let output_bytes = gunzip(bytes, data.length, &output_size)
+
+        print(output_size)
 
 
-
-
-
-
-
-
-
-
-//}
+        return nil
+}

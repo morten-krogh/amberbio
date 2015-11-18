@@ -26,8 +26,11 @@ class ViewController: UIViewController {
 //                if let path = NSBundle.mainBundle().pathForResource("GSE1134_family", ofType: "soft"), let content = file_manager.contentsAtPath(path) {
 //                if let path = NSBundle.mainBundle().pathForResource("GSE47516_family", ofType: "soft"), let content = file_manager.contentsAtPath(path) {
 
-                        zli
                         print(content.length)
+
+                        gunzip(data: content)
+
+
 
 //                        let date_0 = NSDate()
 //                        let gse = GSE(data: content)

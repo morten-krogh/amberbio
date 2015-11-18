@@ -32,6 +32,10 @@ double* gds_values(struct gds* gds);
 
 
 
+char* gunzip(const char* input, const long input_size, long* output_size);
+
+
+
 
 
 #endif /* geo_soft_file_parser_h */
