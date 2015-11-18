@@ -28,8 +28,9 @@ class ViewController: UIViewController {
 
                         print(content.length)
 
-                        gunzip(data: content)
+//                        let inflated_data = gunzip(data: content)
 
+//                        print(inflated_data?.length)
 
 
 //                        let date_0 = NSDate()

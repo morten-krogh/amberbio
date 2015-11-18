@@ -5,6 +5,7 @@ enum GEOStatus {
         case CorrectInput
         case IncorrectInput
         case Downloading
+//        case 
         case Importing
         case Done
 }
@@ -22,7 +23,7 @@ class GEOState: PageState {
         }
 }
 
-class GEO: Component, UITextFieldDelegate {
+class GEO: Component, UITextFieldDelegate, NSURLSessionDelegate, NSURLSessionDataDelegate, NSURLSessionTaskDelegate {
 
         var geo_state: GEOState!
 
@@ -31,6 +32,9 @@ class GEO: Component, UITextFieldDelegate {
         let message_label = UILabel()
         let text_field = UITextField()
         let button = UIButton(type: .System)
+
+        var task: NSURLSessionDataTask?
+        var bytes_downloaded = 0
 
         override func viewDidLoad() {
                 super.viewDidLoad()
@@ -85,11 +89,6 @@ class GEO: Component, UITextFieldDelegate {
                 button.frame.origin = CGPoint(x: (width - button.frame.width) / 2, y: origin_y)
                 origin_y = CGRectGetMaxY(button.frame) + 20
 
-
-
-
-
-
                 scroll_view.contentSize = CGSize(width: width, height: origin_y)
                 scroll_view.frame = view.bounds
         }
@@ -101,6 +100,7 @@ class GEO: Component, UITextFieldDelegate {
                         text_field.text = geo_state.geo_id
                 }
 
+                text_field.hidden = false
                 button.enabled = true
                 button.hidden = false
 
@@ -123,7 +123,8 @@ class GEO: Component, UITextFieldDelegate {
                         message_color = UIColor.blackColor()
                         set_button_title(title: "Download and import")
                 case .Downloading:
-                        message_text = "The data set is being downloaded from GEO"
+                        text_field.hidden = true
+                        message_text = "\(bytes_downloaded) bytes downloaded"
                         message_color = UIColor.blackColor()
                         set_button_title(title: "Cancel")
                         button.enabled = true
@@ -178,23 +179,57 @@ class GEO: Component, UITextFieldDelegate {
         func button_action() {
                 if geo_state.state == .CorrectInput {
                         download()
+                } else if geo_state.state == .Downloading {
+                        print("cancel")
+                        task?.cancel()
+                        task = nil
+                        geo_state.state = .CorrectInput
+                        state.render()
                 }
         }
 
         func download() {
+                print("start download")
                 let url_string = "ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS1nnn/GDS1001/soft/GDS1001_full.soft.gz"
                 let url = NSURL(string: url_string)!
-                let task = NSURLSession.sharedSession().dataTaskWithURL(url, completionHandler: download_completion_handler)
-                task.resume()
+                let session = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration(), delegate: self, delegateQueue: nil)
+
+//                let task = session.dataTaskWithURL(url, completionHandler: download_completion_handler)
+                bytes_downloaded = 0
+                task = session.dataTaskWithURL(url)
+
+                let serial_queue = dispatch_queue_create("GEO download", DISPATCH_QUEUE_SERIAL)
+
+                dispatch_async(serial_queue, {
+                        self.task?.resume()
+                })
+
+                geo_state.state = .Downloading
+                state.render()
         }
+
+        func URLSession(session: NSURLSession, dataTask: NSURLSessionDataTask, didReceiveData data: NSData) {
+                dispatch_async(dispatch_get_main_queue(), {
+                        self.bytes_downloaded += data.length
+                        print(self.bytes_downloaded)
+                        self.render()
+                })
+        }
+
+        func URLSession(session: NSURLSession, task: NSURLSessionTask, didCompleteWithError error: NSError?) {
+                print("did complete with error = \(error)")
+        }
+
+
 
         func download_completion_handler(data data: NSData?, response: NSURLResponse?, error: NSError?) {
                 print("download done")
-                if let data = data {
-                        print(data.subdataWithRange(NSRange(0 ..< 10)))
+                print(error)
+                print(response)
+                if let data = data, let inflated = gunzip(data: data) {
+                        print(String(data: inflated.subdataWithRange(NSRange(0 ..< 10)), encoding: NSUTF8StringEncoding))
+                        print(inflated.length)
                 }
-                print(data?.length)
-
 
         }
 
