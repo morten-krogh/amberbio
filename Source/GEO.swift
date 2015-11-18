@@ -145,7 +145,7 @@ class GEO: Component, UITextFieldDelegate, NSURLSessionDelegate, NSURLSessionDat
                         message_color = UIColor.redColor()
                         set_button_title(title: "Download and import")
                 case .FileNotFound:
-                        message_text = "The data set could not be found"
+                        message_text = "The data set does not exist"
                         message_color = UIColor.redColor()
                         set_button_title(title: "Download and import")
                 case .Importing:
@@ -154,11 +154,11 @@ class GEO: Component, UITextFieldDelegate, NSURLSessionDelegate, NSURLSessionDat
                         button.hidden = true
                         text_field.hidden = true
                 case .ImportError:
-                        message_text = "The file could not be imported"
+                        message_text = "The file was not of the expected format"
                         message_color = UIColor.redColor()
-                        set_button_title(title: "Download and import")
+                        button.hidden = true
                 case .Done:
-                        message_text = "The project XXXX has been created"
+                        message_text = "The project \(geo_state.geo_id) has been created"
                         message_color = UIColor.blueColor()
                         set_button_title(title: "Download and import")
                         button.enabled = false
@@ -217,9 +217,17 @@ class GEO: Component, UITextFieldDelegate, NSURLSessionDelegate, NSURLSessionDat
         }
 
         func url_of_data_set() -> NSURL {
-                let url_string = "http://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS1nnn/GDS1001/soft/GDS1001_full.soft.gz"
-//                url_string = "ftp://ftp.ncbi.nlm.nih.gov/genomes/Acanthisitta_chloris/Gnomon/ref_ASM69581v1_gnomon_scaffolds.gff3.gz"
-//                url_string = "http://www.amberbio.com/GDS1001_full.soft.gz"
+                let id = geo_state.geo_id
+                let prefix = id.substringWithRange(id.startIndex ..< id.startIndex.advancedBy(3))
+                let digits = [Character](id.substringFromIndex(id.startIndex.advancedBy(3)).characters).map { String($0) } as [String]
+                print(prefix)
+                print(digits)
+
+
+
+//                let url_string = "http://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS1nnn/GDS1001/soft/GDS1001_full.soft.gz"
+//                let url_string = "http://ftp.ncbi.nlm.nih.gov/genomes/Acanthisitta_chloris/Gnomon/ref_ASM69581v1_gnomon_scaffolds.gff3.gz"
+                let url_string = "http://www.amberbio.com/345"
                 let url = NSURL(string: url_string)!
                 return url
         }
@@ -318,7 +326,11 @@ class GEO: Component, UITextFieldDelegate, NSURLSessionDelegate, NSURLSessionDat
         }
 
         func import_data_set(sample_name sample_names: [String], values: [Double]) {
+                let project_name = geo_state.geo_id
+
+
                 print(sample_names)
+
 
 
                 geo_state.state = .Done
