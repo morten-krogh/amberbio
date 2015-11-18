@@ -22,17 +22,21 @@ class ViewController: UIViewController {
                 scroll_view.addSubview(label)
 
                 let file_manager = NSFileManager.defaultManager()
+                if let path = NSBundle.mainBundle().pathForResource("GDS1001_full.soft", ofType: "gz"), let content = file_manager.contentsAtPath(path) {
 //                if let path = NSBundle.mainBundle().pathForResource("GSE1134_family", ofType: "soft"), let content = file_manager.contentsAtPath(path) {
-                if let path = NSBundle.mainBundle().pathForResource("GSE47516_family", ofType: "soft"), let content = file_manager.contentsAtPath(path) {
+//                if let path = NSBundle.mainBundle().pathForResource("GSE47516_family", ofType: "soft"), let content = file_manager.contentsAtPath(path) {
 
-                        let date_0 = NSDate()
-                        let gse = GSE(data: content)
+                        zli
+                        print(content.length)
 
-                        print(gse.valid)
-                        label.text = gse.header
-
-                        let duration = NSDate().timeIntervalSinceDate(date_0)
-                        print(duration)
+//                        let date_0 = NSDate()
+//                        let gse = GSE(data: content)
+//
+//                        print(gse.valid)
+//                        label.text = gse.header
+//
+//                        let duration = NSDate().timeIntervalSinceDate(date_0)
+//                        print(duration)
                 }
         }
 
