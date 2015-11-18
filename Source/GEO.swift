@@ -5,7 +5,7 @@ enum GEOStatus {
         case CorrectInput
         case IncorrectInput
         case Downloading
-//        case 
+        case DownloadError
         case Importing
         case Done
 }
@@ -22,6 +22,8 @@ class GEOState: PageState {
                 title = astring_body(string: "Gene expression omnibus")
                 info = "Download data set and series records from Gene expression omnibus (GEO).\n\nDataset records have ids of the form GDSxxxx.\n\nSeries records have ids of the form GSExxxx.\n\nxxxx denotes a number of any number of digits."
         }
+
+        
 }
 
 class GEO: Component, UITextFieldDelegate, NSURLSessionDelegate, NSURLSessionDataDelegate, NSURLSessionTaskDelegate {
@@ -35,15 +37,15 @@ class GEO: Component, UITextFieldDelegate, NSURLSessionDelegate, NSURLSessionDat
         let button = UIButton(type: .System)
 
         let serial_queue = dispatch_queue_create("GEO download", DISPATCH_QUEUE_SERIAL)
-        var session: NSURLSession?
+        var session: NSURLSession!
         var task: NSURLSessionDataTask?
         var bytes_downloaded = 0
-        var task_counter = 0
+        var received_data = [] as [NSData]
 
         override func viewDidLoad() {
                 super.viewDidLoad()
 
-
+                session = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration(), delegate: self, delegateQueue: NSOperationQueue.mainQueue())
 
                 info_label.text = "Download a public data set from Gene expression omnibus. Type an id for a GEO data set of the form GDSnnnn or a GEO series of the form GSEnnnn."
                 info_label.textAlignment = .Left
@@ -134,6 +136,10 @@ class GEO: Component, UITextFieldDelegate, NSURLSessionDelegate, NSURLSessionDat
                         message_color = UIColor.blackColor()
                         set_button_title(title: "Cancel")
                         button.enabled = true
+                case .DownloadError:
+                        message_text = "There data set could not be downloaded"
+                        message_color = UIColor.redColor()
+                        set_button_title(title: "Download and import")
                 case .Importing:
                         message_text = "The data set is being imported"
                         message_color = UIColor.blackColor()
@@ -152,6 +158,14 @@ class GEO: Component, UITextFieldDelegate, NSURLSessionDelegate, NSURLSessionDat
                 view.setNeedsLayout()
         }
 
+        override func finish() {
+                session.invalidateAndCancel()
+                session = nil
+                if geo_state.state == .Downloading {
+                        geo_state.state = .CorrectInput
+                }
+        }
+
         func textFieldShouldReturn(textField: UITextField) -> Bool {
                 textField.resignFirstResponder()
                 return true
@@ -160,7 +174,7 @@ class GEO: Component, UITextFieldDelegate, NSURLSessionDelegate, NSURLSessionDat
         func textFieldDidEndEditing(textField: UITextField) {
                 let original_text = textField.text ?? ""
 
-                let text = original_text.uppercaseString
+                let text = trim(string: original_text.uppercaseString)
 
                 if text == "" {
                         geo_state.state = .NoInput
@@ -186,39 +200,25 @@ class GEO: Component, UITextFieldDelegate, NSURLSessionDelegate, NSURLSessionDat
                 if geo_state.state == .CorrectInput {
                         download()
                 } else if geo_state.state == .Downloading {
-                        print("cancel")
-
-
-//                        dispatch_async(serial_queue, {
-                                self.task?.cancel()
-                                self.task = nil
-                                self.session?.invalidateAndCancel()
-                                self.session = nil
-//                        })
-
-                        geo_state.state = .CorrectInput
-                        state.render()
-
-
+                        cancel_download()
                 }
+        }
+
+        func url_of_data_set() -> NSURL {
+                let url_string = "http://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS1nnn/GDS1001/soft/GDS1001_full.soft.gz"
+//                url_string = "ftp://ftp.ncbi.nlm.nih.gov/genomes/Acanthisitta_chloris/Gnomon/ref_ASM69581v1_gnomon_scaffolds.gff3.gz"
+//                url_string = "http://www.amberbio.com/GDS1001_full.soft.gz"
+                let url = NSURL(string: url_string)!
+                return url
         }
 
         func download() {
                 print("start download")
-                let url_string: String
-//                if task_counter % 2 == 0 {
-//                        url_string = "http://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS1nnn/GDS1001/soft/GDS1001_full.soft.gz"
-//                } else {
-//                        url_string = "ftp://ftp.ncbi.nlm.nih.gov/genomes/Acanthisitta_chloris/Gnomon/ref_ASM69581v1_gnomon_scaffolds.gff3.gz"
-                        url_string = "http://www.amberbio.com/GDS1001_full.soft.gz"
-//                }
-                let url = NSURL(string: url_string)!
-
-                session = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration(), delegate: self, delegateQueue: NSOperationQueue.mainQueue())
 
                 bytes_downloaded = 0
+                received_data = []
+                let url = url_of_data_set()
                 task = session?.dataTaskWithURL(url)
-//                task_counter++
 
                 dispatch_async(serial_queue, {
                         self.task?.resume()
@@ -228,17 +228,35 @@ class GEO: Component, UITextFieldDelegate, NSURLSessionDelegate, NSURLSessionDat
                 state.render()
         }
 
+        func cancel_download() {
+                print("cancel")
+                dispatch_async(serial_queue, {
+                        self.task?.cancel()
+                        self.task = nil
+                })
+
+                bytes_downloaded = 0
+                received_data = []
+
+                geo_state.state = .CorrectInput
+                state.render()
+        }
+
         func URLSession(session: NSURLSession, dataTask: NSURLSessionDataTask, didReceiveData data: NSData) {
-                print("did receive data")
-//                dispatch_async(dispatch_get_main_queue(), {
-                        self.bytes_downloaded += data.length
-//                        print(self.bytes_downloaded)
-                        state.render()
-//                })
+                received_data.append(data)
+                bytes_downloaded += data.length
+                render()
         }
 
         func URLSession(session: NSURLSession, task: NSURLSessionTask, didCompleteWithError error: NSError?) {
-                print("did complete with error = \(error)")
+                if let error = error {
+                        print("did complete with error = \(error)")
+                        geo_state.state = .DownloadError
+                } else {
+//                        geo_state.state = .Importing
+                        geo_state.state = .CorrectInput
+                }
+                state.render()
         }
 
         func URLSession(session: NSURLSession, dataTask: NSURLSessionDataTask, didReceiveResponse response: NSURLResponse, completionHandler: (NSURLSessionResponseDisposition) -> Void) {
