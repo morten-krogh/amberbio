@@ -22,10 +22,8 @@ class GEOState: PageState {
                 super.init()
                 name = "geo"
                 title = astring_body(string: "Gene expression omnibus")
-                info = "Download data set and series records from Gene expression omnibus (GEO).\n\nDataset records have ids of the form GDSxxxx.\n\nSeries records have ids of the form GSExxxx.\n\nxxxx denotes a number of any number of digits."
+                info = "Download data set and series records from Gene expression omnibus (GEO).\n\nDataset records have ids of the form GDSxxxx.\n\nSeries records have ids of the form GSExxxx.\n\nxxxx denotes any number of digits."
         }
-
-        
 }
 
 class GEO: Component, UITextFieldDelegate, NSURLSessionDelegate, NSURLSessionDataDelegate, NSURLSessionTaskDelegate {
