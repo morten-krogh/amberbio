@@ -40,12 +40,9 @@ class Manual: Component, WKNavigationDelegate {
                         decisionHandler(.Allow)
                 } else {
                         if let url = url {
-
+                                UIApplication.sharedApplication().openURL(url)
                         }
                         decisionHandler(.Cancel)
                 }
-
-                print(navigationAction.navigationType.rawValue)
-                print(navigationAction.request.URL?.scheme)
         }
 }
