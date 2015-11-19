@@ -62,15 +62,7 @@
     </div>
 
     <div class="table-of-content-link">
-      <a href="#import-of-files">Import of files</a>
-    </div>
-
-    <div class="table-of-content-link">
-      <a href="#parsing-import-files">Parsing import files</a>
-    </div>
-
-    <div class="table-of-content-link">
-      <a href="#file-format-of-txt-files">File format of txt files</a>
+      <a href="#geo">GEO</a>
     </div>
 
     <div class="table-of-content-link">
@@ -134,7 +126,7 @@
   <section class="manual" id="version">
     <h1><a href="#table-of-contents">Version</a></h1>
     <p>
-      Version 4 of the Amberbio app.
+      Version 5 of the Amberbio app.
     </p>
   </section>
 
@@ -206,79 +198,87 @@
     <h1><a href="#table-of-contents">Import of data</a></h1>
     <p>
       Data import is used to create new projects and to add factor and molecule annotation
-      information to projects. Import of data is a two step process. First, a file is imported into
+      information to projects. Import of data is a two step process. First, a file is downloaded to
       the app. Second, the file is read and parsed and the data is imported into a database kept by
       the app.
     </p>
 
     <p>
-      Import of data is handled by the page <span class="app-page">Import data</span>. All imported
-files can be seen on this page.  The app keeps all imported files until they are deleted by the
-user.
+      Import of data is handled by the page <span class="app-page">Import data</span>. All
+      downloaded files can be seen on this page.  The app keeps all imported files until they are
+      deleted by the user.
     </p>
-  </section>
 
-  <section class="manual" id="import-of-files">
-    <h1><a href="#table-of-contents">Import of files</a></h1>
     <p>
-      The app can import files with extension "txt" or "sqlite". The "txt" files represent tables of
+      A project is created from a table of values. The values can not be changed. New values must be
+      imported in a new project. Factors and molecule annotations can be added at any time.
+    </p>
+
+    <h3>Download of files</h3>
+    <p>
+      The app can handle import files with extension "txt" or "sqlite". The "txt" files represent tables of
       data supplied by the user. The "sqlite" is a database file that has been exported from the app
       at an earlier time. The "sqlite" files are used for backup and transfer of projects from one
       device to another.
     </p>
 
     <p>
-      Files can be imported in two ways; either by "opening" the file in another app or by import from a cloud storage.
+      Files can be downloaded in two ways; either by "opening" the file in another app such as Mail
+      or by import from a cloud storage.
     </p>
 
     <p>
-      Importing a file by "opening" it in another app is done by tapping the file in the other app
-      and selecting the Amberbio app. A typical use case is to open an email attachment by tapping
-      the attachment in the Mail app.
+      "opening" a file in another app is done by tapping the file and selecting the Amberbio app. A
+      typical use case is to open an email attachment by tapping the attachment in the Mail app.
     </p>
 
     <p>
       Files can be imported from a cloud storage such as iCloud Drive, Dropbox, Box, or Google
-      Drive. The import is done by tapping "Import new file" on the
-      page <span class="app-page">Import data</span>. The corresponding cloud storage app must
-      itself be installed on the device.
+      Drive. The import is done by tapping "Download file" on the page <span class="app-page">Import
+      data</span>. The corresponding cloud storage app must itself be installed on the device. The
+      first time a certain cloud storage provider is used in the Amberbio app, it might be necessary
+      to tap "more" and enable it.
     </p>
-  </section>
 
-  <section class="manual" id="parsing-import-files">
-    <h1><a href="#table-of-contents">Parsing import files</a></h1>
+    <h3>Importing downloaded files</h3>
     <p>
-      Imported files are shown on the page <span class="app-page">Import data</span>. By tapping a
-      file, the file can be parsed and read into the database of the app. Files with extension
-      "sqlite" are read automatically into projects. Files with extension "txt" file can be used to
-      create a new project, to import factors to the active project, or to import molecule
-      annotations to the active project.
+      Tap the button "Import" below the file name for a downloaded file to import it. The import
+      process is performed by an import wizard that goes through several steps where the user can
+      select a rectangular region by tapping. The use of the import wizard minimizes the need to
+      edit the table in an external program before import.
     </p>
-  </section>
 
-  <section class="manual" id="file-format-of-txt-files">
-    <h1><a href="#table-of-contents">File format of txt files</a></h1>
+    <h3>File format of txt files</h3>
+    <p>
+      Files with extension "txt" can be used to create a new project, to import factors to the
+      active project, or to import molecule annotations to the active project.
+    </p>
+
     <p>
       The "txt" files contain tables of values. The rows, or lines, are separated by "\n", "\r", or
-      "\r\n", and the cells are separated by "\t" or ",". The file extension should be "txt" in any
-      case. The app tries to find the separator by first searching for tabs. If there are tabs, the
-      app tries to read the file as a tab separated file. If there are no tabs, the file is read as
-      a comma separated file. Tabs are never allowed within the cells. If there are commas within the
-      cells, the file must be tab separated. The three types of "txt" files are described below.
-    </p>
-
-    <p>
-      The first file type contains the measurement values. This file is used to create a new
-      project. It contains samples in the columns and molecules in the rows. The first row contains
-      the sample names. The first column contains the molecule names. The values are written in the
-      cells.
+      "\r\n", and the cells are separated by "\t" or ",". The app finds the separator automatically by
+      first searching for tabs. If there are tabs, the app reads the file as a tab separated
+      file. If there are no tabs, the file is read as a comma separated file. Tabs are never allowed
+      within the cells. If there are commas within the cells, the file must be tab separated. 
     </p>
 
     <p>
       The decimal separator can be either point as in "12.98" or comma as in "12,98". If the decimal
-      separator is comma, the file must be tab separated. Missing values must be written as (the
-      empty string), NA, na, NaN, NAN, or nan. The upper left cell can contain anything. An example
-      value table with two missing values is shown below.
+      separator is comma, the file must be tab separated. Anything else than a number is taken as a
+      missing value if a number is expected.
+    </p>
+
+    <p>
+      Due to the import wizard, any reasonable arrangement of rows and columns can be used for
+      import. For instance, samples can be in either row or columns with molecules in the other dimension. 
+      Examples are shown below.
+    </p>
+
+    <h4>Example 1</h4>
+    
+    <p>
+      The first example shows a table that contains everything, i.e., sample names, molecule names, values, factors, and molecule annotations.
+      Through the import wizard various rectangular regions can be imported.
     </p>
 
     <table>
@@ -286,90 +286,217 @@ user.
         <td>Anything</td>
         <td>Sample 1</td>
         <td>Sample 2</td>
+	<td></td>
+	<td>Unigene</td>
+	<td>Chromosome</td>
       </tr>
       <tr>
         <td>Molecule 1</td>
         <td>6.7</td>
         <td></td>
+	<td></td>
+	<td>Hs.243564</td>
+	<td>1</td>
       </tr>
       <tr>
         <td>Molecule 2</td>
         <td>-0.45</td>
         <td>NaN</td>
+	<td></td>
+	<td>Hs.375439</td>
+	<td>19</td>
       </tr>
       <tr>
         <td>Molecule 3</td>
-        <td>50</td>
+        <td>#NULL</td>
         <td>-12</td>
+	<td></td>
+	<td>Hs.631576</td>
+	<td>19</td>
       </tr>
-    </table>
-
-    <p>
-      The second file type contains factors for the samples. Factors can be imported into a project
-      at any time and are not part of the initial creation of the project. The first row of the
-      factor file contains sample names. The first column contains factor names. The values are the
-      levels for the factor and sample. The upper left cell can be anything. The factor names must
-      be distinct and the sample names can come in any order. All samples of the project must be
-      present. Extra samples will be ignored. An example factor table is shown below
-    </p>
-
-    <table>
       <tr>
-        <td>Anything</td>
-        <td>Sample 1</td>
-        <td>Sample 2</td>
+        <td></td>
+        <td></td>
+        <td></td>
+	<td></td>
+	<td></td>
+	<td></td>
       </tr>
       <tr>
         <td>Gender</td>
         <td>Male</td>
         <td>Female</td>
+	<td></td>
+	<td></td>
+	<td></td>
       </tr>
       <tr>
-        <td>Disease</td>
+        <td>Status</td>
         <td>Cancer</td>
-        <td>Alzheimer</td>
-      </tr>
-      <tr>
-        <td>Age</td>
-        <td>55</td>
-        <td>78</td>
+        <td>Normal</td>
+	<td></td>
+	<td></td>
+	<td></td>
       </tr>
     </table>
 
+    <h4>Example 2</h4>
+    
     <p>
-      The third file type contains molecule annotations and it can be imported at any time and is
-      not part of the initial creation of the project. The first row contains the name of the molecule
-      annotation. The first column must contain all the molecule names. The order of the rows is
-      arbitrary and extra molecules are ignored. An example molecule annotation table is shown below
+      The second example is a transposed version of the first example. Also "," is used as decimal
+      separator in some values. This file must then be tab separated.
     </p>
 
     <table>
       <tr>
         <td>Anything</td>
-        <td>Unigene</td>
-        <td>Chromosome</td>
-      </tr>
-      <tr>
-        <td>Molecule 7</td>
-        <td>Hs.551713</td>
-        <td>18</td>
-      </tr>
-      <tr>
-        <td>Molecule 3</td>
-        <td>Hs.518267</td>
-        <td>3</td>
-      </tr>
-      <tr>
-        <td>Molecule 2</td>
-        <td>Hs.300701</td>
-        <td>6</td>
-      </tr>
-      <tr>
         <td>Molecule 1</td>
-        <td>Hs.691131</td>
-        <td>10</td>
+        <td>Molecule 2</td>
+        <td>Molecule 3</td>
+        <td></td>
+        <td>Gender</td>
+        <td>Status</td>
+      </tr>
+      <tr>
+        <td>Sample 1</td>
+        <td>6,7</td>
+        <td>-0.45</td>
+        <td>#NULL</td>
+        <td></td>
+        <td>Male</td>
+        <td>Cancer</td>
+      </tr>
+      <tr>
+        <td>Sample 2</td>
+        <td></td>
+        <td>NaN</td>
+        <td>-12</td>
+	<td></td>
+        <td>Female</td>
+        <td>Normal</td>
+      </tr>
+      <tr>
+	<td></td>
+	<td></td>
+        <td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+      </tr>
+      <tr>
+	<td>Unigene</td>
+	<td>Hs.243564</td>
+	<td>Hs.375439</td>
+	<td>Hs.631576</td>
+	<td></td>
+	<td></td>
+	<td></td>
+      </tr>
+      <tr>
+	<td>Chromosome</td>
+	<td>1</td>
+	<td>19</td>
+	<td>19</td>
+	<td></td>
+	<td></td>
+	<td></td>
       </tr>
     </table>
+
+    <h4>Example 3</h4>
+
+    <p>
+      The third example shows a table that contains information about values and molecule
+      annotations but no factors.
+    </p>
+
+    <table>
+      <tr>
+	<td>Molecule name</td>
+	<td>Molecule id</td>
+	<td></td>
+	<td></td>
+	<td>Mouse A</td>
+	<td>Mouse B</td>
+      </tr>
+      <tr>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+      </tr>
+      <tr>
+	<td>Mol 1</td>
+	<td>Id 1</td>
+	<td></td>
+	<td></td>
+	<td>5.6</td>
+	<td>3.4</td>
+      </tr>
+      <tr>
+	<td>Mol 2</td>
+	<td>Id 2</td>
+	<td></td>
+	<td></td>
+	<td>-9.8</td>
+	<td>#NA</td>
+      </tr>
+      </table>
+
+    <h4>Example 4</h4>
+
+    <p>
+      The fourth example provides factors for the third example. The factors can be imported at any
+      later time. Samples that are absent in the project, like Mouse C, are automatically ignored.
+    </p>
+
+    <table>
+      <tr>
+	<td></td>
+	<td>Treatment</td>
+	<td>Diet</td>
+      </tr>
+      <tr>
+      <tr>
+	<td>Mouse B</td>
+	<td>Drug</td>
+	<td>Fat</td>
+      </tr>
+      <tr>
+	<td>Mouse C</td>
+	<td>Drug</td>
+	<td>Sugar</td>
+      </tr>
+      <tr>
+	<td>Mouse A</td>
+	<td>Placebo</td>
+	<td>Fat</td>
+      </tr>
+    </table>
+  </section>
+
+  <section class="manual" id="geo">
+    <h1><a href="#table-of-contents">GEO</a></h1>
+    <p>
+      Data sets can be imported directly from the NCBI Gene Expression Omnibus (GEO). The app
+      downloads and imports a data set based on a user supplied id. The id must be of the form
+      GDSxxxx or GSExxxx where xxxx is any number. 
+    </p>
+
+    <p>
+      The imported data set becomes the original data in a new project named after the id. The app
+      extracts some, but not all, information from the downloaded data set. The factors are not
+      standardized in GEO data sets. Like all data sets in the app, factors can be manually edited
+      and added.
+    </p>
+
+    <p>
+      GEO data sets can be searched on the web page
+      <a href="http://www.ncbi.nlm.nih.gov/sites/GDSbrowser">http://www.ncbi.nlm.nih.gov/sites/GDSbrowser.</a>
+    </p>
   </section>
 
   <section class="manual" id="result-files">
@@ -755,7 +882,7 @@ user.
 	  off according to
 	</p>
 
-	  <div class="formula">K &times; exp(- distance_to_special_unit^2 / C)</div>
+	  <div class="formula">K &times; exp(- distance_to_special_unit^2 / C)</div> 
 
 	<p>
 	  where the constants <span class="formula">K</span> and <span class="formula">C</span>
