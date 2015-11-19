@@ -20,7 +20,8 @@ class MoleculeWebSearch {
 
         func url(molecule_index molecule_index: Int) -> NSURL? {
                 let molecule_name = state.molecule_names[molecule_index]
-                let url = system_urls[0] + molecule_name
+                let escaped_name = molecule_name.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLHostAllowedCharacterSet()) ?? " "
+                let url = system_urls[0] + escaped_name
                 return NSURL(string: url)
         }
 
