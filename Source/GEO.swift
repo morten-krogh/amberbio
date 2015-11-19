@@ -50,7 +50,7 @@ class GEO: Component, UITextFieldDelegate, NSURLSessionDelegate, NSURLSessionDat
 
                 session = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration(), delegate: self, delegateQueue: NSOperationQueue.mainQueue())
 
-                info_label.text = "Download a public data set from Gene expression omnibus. Type an id for a GEO data set of the form GDSnnnn or a GEO series of the form GSEnnnn."
+                info_label.text = "Download a GEO data set (GDSxxxx) or GEO series record (GSExxxx)"
                 info_label.textAlignment = .Left
                 info_label.font = font_body
                 info_label.numberOfLines = 0
@@ -82,23 +82,23 @@ class GEO: Component, UITextFieldDelegate, NSURLSessionDelegate, NSURLSessionDat
 
                 let width = view.frame.width
 
-                var origin_y = 20 as CGFloat
+                var origin_y = 30 as CGFloat
 
                 let info_label_size = info_label.sizeThatFits(CGSize(width: width - 40, height: 0))
-                info_label.frame = CGRect(x: 20, y: origin_y, width: width - 40, height: info_label_size.height)
-                origin_y = CGRectGetMaxY(info_label.frame) + 20
+                info_label.frame = CGRect(x: (width - info_label_size.width) / 2, y: origin_y, width: info_label_size.width, height: info_label_size.height)
+                origin_y = CGRectGetMaxY(info_label.frame) + 50
 
                 let message_label_size = message_label.sizeThatFits(CGSize(width: width - 40, height: 0))
                 message_label.frame = CGRect(x: 20, y: origin_y, width: width - 40, height: message_label_size.height)
-                origin_y = CGRectGetMaxY(message_label.frame) + 20
+                origin_y = CGRectGetMaxY(message_label.frame) + 40
 
                 let text_field_width = min(width - 40, 300)
                 text_field.frame = CGRect(x: (width - text_field_width) / 2, y: origin_y, width: text_field_width, height: 50)
-                origin_y = CGRectGetMaxY(text_field.frame) + 30
+                origin_y = CGRectGetMaxY(text_field.frame) + 40
 
                 button.sizeToFit()
                 button.frame.origin = CGPoint(x: (width - button.frame.width) / 2, y: origin_y)
-                origin_y = CGRectGetMaxY(button.frame) + 20
+                origin_y = CGRectGetMaxY(button.frame) + 10
 
                 scroll_view.contentSize = CGSize(width: width, height: origin_y)
                 scroll_view.frame = view.bounds
