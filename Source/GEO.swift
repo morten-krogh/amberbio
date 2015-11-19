@@ -41,8 +41,7 @@ class GEO: Component, UITextFieldDelegate, NSURLSessionDelegate, NSURLSessionDat
         let serial_queue = dispatch_queue_create("GEO download", DISPATCH_QUEUE_SERIAL)
         var session: NSURLSession!
         var task: NSURLSessionDataTask?
-        var bytes_downloaded = 0
-        var received_data = [] as [NSData]
+        var received_data = NSMutableData()
         var response_status_code = 200
         var canceled = false
 
@@ -135,7 +134,7 @@ class GEO: Component, UITextFieldDelegate, NSURLSessionDelegate, NSURLSessionDat
                         message_color = UIColor.blackColor()
                         set_button_title(title: "Download and import")
                 case .Downloading:
-                        message_text = "\(bytes_downloaded) bytes downloaded"
+                        message_text = "\(received_data.length) bytes downloaded"
                         message_color = UIColor.blackColor()
                         set_button_title(title: "Cancel")
                         button.enabled = true
@@ -217,6 +216,8 @@ class GEO: Component, UITextFieldDelegate, NSURLSessionDelegate, NSURLSessionDat
         }
 
         func url_of_data_set() -> NSURL {
+//                http://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS1nnn/GDS1001/soft/GDS1001_full.soft.gz
+//                http://ftp.ncbi.nlm.nih.gov/geo/series/GSEnnn/GSE1/soft/GSE1_family.soft.gz
                 let id = geo_state.geo_id
                 let prefix = id.substringWithRange(id.startIndex ..< id.startIndex.advancedBy(3))
                 let digits = [Character](id.substringFromIndex(id.startIndex.advancedBy(3)).characters).map { String($0) } as [String]
@@ -235,9 +236,7 @@ class GEO: Component, UITextFieldDelegate, NSURLSessionDelegate, NSURLSessionDat
 
                 print(url)
 
-//                let url_string = "http://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS1nnn/GDS1001/soft/GDS1001_full.soft.gz"
-//                let url_string = "http://ftp.ncbi.nlm.nih.gov/genomes/Acanthisitta_chloris/Gnomon/ref_ASM69581v1_gnomon_scaffolds.gff3.gz"
-//                let url_string = "http://www.amberbio.com/345"
+
                 let nsurl = NSURL(string: url)!
                 return nsurl
         }
@@ -245,8 +244,7 @@ class GEO: Component, UITextFieldDelegate, NSURLSessionDelegate, NSURLSessionDat
         func download() {
                 print("start download")
 
-                bytes_downloaded = 0
-                received_data = []
+                received_data = NSMutableData()
                 canceled = false
                 response_status_code = 0
                 let url = url_of_data_set()
@@ -267,14 +265,12 @@ class GEO: Component, UITextFieldDelegate, NSURLSessionDelegate, NSURLSessionDat
                         self.task = nil
                 })
 
-                bytes_downloaded = 0
-                received_data = []
+                received_data = NSMutableData()
                 canceled = true
         }
 
         func URLSession(session: NSURLSession, dataTask: NSURLSessionDataTask, didReceiveData data: NSData) {
-                received_data.append(data)
-                bytes_downloaded += data.length
+                received_data.appendData(data)
                 render()
         }
 
@@ -304,12 +300,7 @@ class GEO: Component, UITextFieldDelegate, NSURLSessionDelegate, NSURLSessionDat
         }
 
         func import_data_set() {
-                let deflated_data = NSMutableData()
-                for data in received_data {
-                        deflated_data.appendData(data)
-                }
-
-                if let inflated_data = gunzip(data: deflated_data) {
+                if let inflated_data = gunzip(data: received_data) {
                         if geo_state.geo_id.hasPrefix("GDS") {
                                 let gds = GDS(data: inflated_data)
                                 if gds.valid {
