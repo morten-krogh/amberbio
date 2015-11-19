@@ -122,8 +122,11 @@ class ColorSelectionTableViewCell: UITableViewCell {
                 let width = inset_view.frame.width
                 let height = inset_view.frame.height
 
-                let margin = 20 as CGFloat
+                let margin = 10 as CGFloat
 
+                let astring = astring_max_width(string: label.text ?? "", max_width: width - 3 * margin - color_circle.frame.width)
+                label.attributedText = astring
+                label.textAlignment = .Center
                 label.sizeToFit()
                 label.frame = CGRect(x: margin, y: (height - label.frame.height) / 2.0, width: label.frame.width, height: label.frame.height)
                 color_circle.frame.origin = CGPoint(x: width - margin - color_circle.frame.width, y: (height - color_circle.frame.height) / 2.0)

@@ -242,8 +242,6 @@ class GEO: Component, UITextFieldDelegate, NSURLSessionDelegate, NSURLSessionDat
         }
 
         func download() {
-                print("start download")
-
                 received_data = NSMutableData()
                 canceled = false
                 response_status_code = 0
@@ -259,7 +257,6 @@ class GEO: Component, UITextFieldDelegate, NSURLSessionDelegate, NSURLSessionDat
         }
 
         func cancel_download() {
-                print("cancel")
                 dispatch_async(serial_queue, {
                         self.task?.cancel()
                         self.task = nil
@@ -275,7 +272,7 @@ class GEO: Component, UITextFieldDelegate, NSURLSessionDelegate, NSURLSessionDat
         }
 
         func URLSession(session: NSURLSession, task: NSURLSessionTask, didCompleteWithError error: NSError?) {
-                print("did complete with error = \(error)")
+//                print("did complete with error = \(error)")
                 if canceled {
                         geo_state.state = .CorrectInput
                 } else if error != nil {
@@ -304,9 +301,7 @@ class GEO: Component, UITextFieldDelegate, NSURLSessionDelegate, NSURLSessionDat
                         if geo_state.geo_id.hasPrefix("GDS") {
                                 let gds = GDS(data: inflated_data)
                                 if gds.valid {
-                                        import_data_set(sample_name: gds.sample_names, values: gds.values)
-
-
+                                        import_data_set(sample_name: gds.sample_names, number_of_molecules: gds.number_of_molecules, values: gds.values, molecule_annotation_names: gds.molecule_annotation_names, molecule_annotation_values: gds.molecule_annotation_values, factor_names: gds.factor_names, level_names_for_factor: gds.level_names_for_factor, header: gds.header)
                                 } else {
                                         geo_state.state = .ImportError
                                         render()
@@ -314,8 +309,7 @@ class GEO: Component, UITextFieldDelegate, NSURLSessionDelegate, NSURLSessionDat
                         } else {
                                 let gse = GSE(data: inflated_data)
                                 if gse.valid {
-                                        import_data_set(sample_name: gse.sample_names, values: gse.values)
-
+                                        import_data_set(sample_name: gse.sample_names, number_of_molecules: gse.number_of_molecules, values: gse.values, molecule_annotation_names: gse.molecule_annotation_names, molecule_annotation_values: gse.molecule_annotation_values, factor_names: gse.factor_names, level_names_for_factor: gse.level_names_for_factor, header: gse.header)
                                 } else {
                                         geo_state.state = .ImportError
                                         render()
@@ -327,13 +321,29 @@ class GEO: Component, UITextFieldDelegate, NSURLSessionDelegate, NSURLSessionDat
                 }
         }
 
-        func import_data_set(sample_name sample_names: [String], values: [Double]) {
+        func import_data_set(sample_name sample_names: [String], number_of_molecules: Int, values: [Double], molecule_annotation_names: [String], molecule_annotation_values: [[String]], factor_names: [String], level_names_for_factor: [[String]], header: String) {
                 let project_name = geo_state.geo_id
 
+                var molecule_names = [] as [String]
+                if molecule_annotation_names.count == 1 {
+                        molecule_names = molecule_annotation_values[0]
+                } else {
+                        for i in 0 ..< number_of_molecules {
+                                let molecule_name = "\(molecule_annotation_values[0][i]) (\(molecule_annotation_values[1][i]))"
+                                molecule_names.append(molecule_name)
+                        }
+                }
 
-                print(sample_names)
+                sqlite_begin(database: state.database)
+                let project_id = state.insert_project(project_name: project_name, data_set_name: "Original data set", values: values, sample_names: sample_names, molecule_names: molecule_names)
+                state.insert_molecule_annotations(project_id: project_id, molecule_annotation_names: molecule_annotation_names, molecule_annotation_values: molecule_annotation_values)
+                for i in 0 ..< factor_names.count {
+                        state.insert_factor(project_id: project_id, factor_name: factor_names[i], level_names_of_samples: level_names_for_factor[i])
+                }
+                sqlite_end(database: state.database)
 
-
+                let data_set_id = state.get_original_data_set_id(project_id: project_id)
+                state.set_active_data_set(data_set_id: data_set_id)
 
                 geo_state.state = .Done
                 state.render()

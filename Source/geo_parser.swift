@@ -44,8 +44,8 @@ class GDS {
         var sample_column_min = -1
         var number_of_samples = 0
         var sample_names = [] as [String]
-        var factor_value = [] as [String]
-        var factor_src = [] as [String]
+        var factor_names = [] as [String]
+        var level_names_for_factor = [] as [[String]]
         var number_of_molecule_annotations = 0
         var molecule_annotation_names = [] as [String]
         var molecule_annotation_values = [] as [[String]]
@@ -87,7 +87,9 @@ class GDS {
 
                 number_of_samples = sample_names.count
 
-                var factors = [[], []] as [[String]]
+                factor_names = ["value", "src"]
+
+                level_names_for_factor = [[], []] as [[String]]
                 var location_factor_line = find_location_of_data(data: data, string: "#GSM", begin: 0)
                 while (location_factor_line != NSNotFound) {
                         if let line = find_line(data: data, begin: location_factor_line) {
@@ -98,7 +100,7 @@ class GDS {
                                                 for i in 0 ..< 2 {
                                                         let elems = split_and_trim(string: comps[i], separator: ":")
                                                         if elems.count == 2 {
-                                                                factors[i].append(elems[1])
+                                                                level_names_for_factor[i].append(elems[1])
                                                         }
                                                 }
                                         }
@@ -107,10 +109,7 @@ class GDS {
                         location_factor_line = find_location_of_data(data: data, string: "#GSM", begin: location_factor_line + 3)
                 }
 
-                if factors[0].count != number_of_samples || factors[1].count != number_of_samples { return }
-
-                factor_value = factors[0]
-                factor_src = factors[1]
+                if level_names_for_factor[0].count != number_of_samples || level_names_for_factor[1].count != number_of_samples { return }
 
                 var is_annotation = [Bool](count: headers.count, repeatedValue: false)
                 for i in 0 ..< headers.count {
