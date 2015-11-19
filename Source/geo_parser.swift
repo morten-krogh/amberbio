@@ -96,7 +96,7 @@ class GDS {
                                 let parts = split_and_trim(string: line, separator: "=")
                                 if parts.count == 2 {
                                         let comps = split_and_trim(string: parts[1], separator: ";")
-                                        if comps.count == 2 {
+                                        if comps.count >= 2 {
                                                 for i in 0 ..< 2 {
                                                         let elems = split_and_trim(string: comps[i], separator: ":")
                                                         if elems.count == 2 {

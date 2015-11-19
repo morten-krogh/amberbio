@@ -16,7 +16,7 @@ class GEOState: PageState {
 
         var session: NSURLSession!
         var state = GEOStatus.CorrectInput
-        var geo_id = "GDS1001"
+        var geo_id = ""
 
         override init() {
                 super.init()
@@ -57,6 +57,7 @@ class GEO: Component, UITextFieldDelegate, NSURLSessionDelegate, NSURLSessionDat
                 message_label.numberOfLines = 0
                 scroll_view.addSubview(message_label)
 
+                text_field.keyboardType = UIKeyboardType.NamePhonePad
                 text_field.clearButtonMode = UITextFieldViewMode.WhileEditing
                 text_field.font = font_body
                 text_field.autocorrectionType = UITextAutocorrectionType.No

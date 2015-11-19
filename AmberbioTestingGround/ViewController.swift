@@ -24,15 +24,19 @@ class ViewController: UIViewController {
                 let file_manager = NSFileManager.defaultManager()
 //                if let path = NSBundle.mainBundle().pathForResource("GDS1001_full.soft", ofType: "gz"), let content = file_manager.contentsAtPath(path) {
 //                if let path = NSBundle.mainBundle().pathForResource("GSE1134_family", ofType: "soft"), let content = file_manager.contentsAtPath(path) {
-                //                if let path = NSBundle.mainBundle().pathForResource("GSE47516_family", ofType: "soft"), let content = file_manager.contentsAtPath(path) {
-                if let path = NSBundle.mainBundle().pathForResource("GSE9_family", ofType: "soft"), let content = file_manager.contentsAtPath(path) {
+//                if let path = NSBundle.mainBundle().pathForResource("GSE47516_family", ofType: "soft"), let content = file_manager.contentsAtPath(path) {
+//                if let path = NSBundle.mainBundle().pathForResource("GSE9_family", ofType: "soft"), let content = file_manager.contentsAtPath(path) {
+                if let path = NSBundle.mainBundle().pathForResource("GDS100_full", ofType: "soft"), let content = file_manager.contentsAtPath(path) {
 
                         print(content.length)
 
-                        let gse = GSE(data: content)
+                        let gds = GDS(data: content)
+//                        let gse = GSE(data: content)
 
-                        print(gse.valid)
-                        label.text = gse.header
+                        label.text = gds.header
+                        print(gds.valid)
+//                        print(gse.valid)
+//                        label.text = gse.header
 
 //                        let duration = NSDate().timeIntervalSinceDate(date_0)
 //                        print(duration)
