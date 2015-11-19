@@ -337,6 +337,8 @@ class GEO: Component, UITextFieldDelegate, NSURLSessionDelegate, NSURLSessionDat
                 for i in 0 ..< factor_names.count {
                         state.insert_factor(project_id: project_id, factor_name: factor_names[i], level_names_of_samples: level_names_for_factor[i])
                 }
+                state.insert_project_note(project_note_text: header, project_note_type: "auto", project_note_user_name: state.get_user_name(), project_id: project_id)
+
                 sqlite_end(database: state.database)
 
                 let data_set_id = state.get_original_data_set_id(project_id: project_id)

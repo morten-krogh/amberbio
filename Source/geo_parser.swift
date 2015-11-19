@@ -220,9 +220,9 @@ class GSE {
                 if platform_header.isEmpty { return }
 
                 var molecule_annotation_columns = [0] as [Int]
-                var molecule_annotation_names = [platform_header[0]] as [String]
+                molecule_annotation_names = [platform_header[0]] as [String]
 
-                for name in ["GB_ACC", "Gene Title", "Gene Symbol", "ENTREZ_GENE_ID", "RefSeq Transcript ID"] {
+                for name in ["GB_ACC", "Gene Title", "Gene Symbol", "GENE_SYMBOL", "GENE_DESC", "ENTREZ_GENE_ID", "RefSeq Transcript ID", "ORF"] {
                         if let index = platform_header.indexOf(name) where index != 0 {
                                 molecule_annotation_columns.append(index)
                                 molecule_annotation_names.append(platform_header[index])
@@ -237,7 +237,6 @@ class GSE {
                 var position = position_start
                 var row = 0
                 var col = 0
-
 
                 while position < location_platform_table_end {
                         if bytes[position] == 9 || bytes[position] == 10 {
@@ -365,6 +364,7 @@ class GSE {
                                 values[index] = value
                         }
                 }
+
 
                 valid = true
         }
