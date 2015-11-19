@@ -16,7 +16,7 @@ class GEOState: PageState {
 
         var session: NSURLSession!
         var state = GEOStatus.CorrectInput
-        var geo_id = ""
+        var geo_id = "GDS1001"
 
         override init() {
                 super.init()
