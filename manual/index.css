@@ -23,6 +23,14 @@ h1, h1 > a, .logo-text {
     color : rgb(49,54,149);
 }
 
+h3 {
+   color : rgb(128,177,211);
+}
+
+h4 {
+   color : rgb(255,127,0)
+}
+
 section > div > h2 {
     color : rgb(69,117,180);
 }
@@ -137,6 +145,10 @@ section > div > h2 {
     width : 90%;
     max-width : 1200px;
     margin: 100px auto 0 auto;
+}
+
+.table-wrapper {
+	       overflow-x:scroll;
 }
 
 table {
