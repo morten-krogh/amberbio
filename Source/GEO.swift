@@ -22,7 +22,7 @@ class GEOState: PageState {
                 super.init()
                 name = "geo"
                 title = astring_body(string: "Gene expression omnibus")
-                info = "Download data set and series records from Gene expression omnibus (GEO).\n\nDataset records have ids of the form GDSxxxx.\n\nSeries records have ids of the form GSExxxx.\n\nxxxx denotes any number of digits."
+                info = "Download data set and series records from Gene expression omnibus (GEO).\n\nDataset records have ids of the form GDSxxxx.\n\nSeries records have ids of the form GSExxxx.\n\nxxxx denotes any number of digits.\n\nData sets can be searched on http://www.ncbi.nlm.nih.gov/sites/GDSbrowser."
         }
 }
 
@@ -35,6 +35,8 @@ class GEO: Component, UITextFieldDelegate, NSURLSessionDelegate, NSURLSessionDat
         let message_label = UILabel()
         let text_field = UITextField()
         let button = UIButton(type: .System)
+        let link_label = UILabel()
+        let link_button = UIButton(type: .System)
 
         let serial_queue = dispatch_queue_create("GEO download", DISPATCH_QUEUE_SERIAL)
         var session: NSURLSession!
@@ -70,6 +72,14 @@ class GEO: Component, UITextFieldDelegate, NSURLSessionDelegate, NSURLSessionDat
                 button.addTarget(self, action: "button_action", forControlEvents: .TouchUpInside)
                 scroll_view.addSubview(button)
 
+                link_label.text = "Web search for data sets"
+                link_label.font = font_body
+                scroll_view.addSubview(link_label)
+
+                link_button.setAttributedTitle(astring_body(string: "www.ncbi.nlm.nih.gov/sites/GDSbrowser"), forState: .Normal)
+                link_button.addTarget(self, action: "link_action", forControlEvents: .TouchUpInside)
+                scroll_view.addSubview(link_button)
+
                 view.addSubview(scroll_view)
 
                 let tap_recognizer = UITapGestureRecognizer(target: self, action: "tap_action")
@@ -97,7 +107,15 @@ class GEO: Component, UITextFieldDelegate, NSURLSessionDelegate, NSURLSessionDat
 
                 button.sizeToFit()
                 button.frame.origin = CGPoint(x: (width - button.frame.width) / 2, y: origin_y)
-                origin_y = CGRectGetMaxY(button.frame) + 10
+                origin_y = CGRectGetMaxY(button.frame) + 50
+
+                link_label.sizeToFit()
+                link_label.frame.origin = CGPoint(x: (width - link_label.frame.width) / 2, y: origin_y)
+                origin_y = CGRectGetMaxY(link_label.frame) + 10
+
+                link_button.sizeToFit()
+                link_button.frame.origin = CGPoint(x: (width - link_button.frame.width) / 2, y: origin_y)
+                origin_y = CGRectGetMaxY(link_button.frame) + 10
 
                 scroll_view.contentSize = CGSize(width: width, height: origin_y)
                 scroll_view.frame = view.bounds
@@ -357,5 +375,13 @@ class GEO: Component, UITextFieldDelegate, NSURLSessionDelegate, NSURLSessionDat
         func set_button_title(title title: String) {
                 button.setAttributedTitle(astring_font_size_color(string: title, font: nil, font_size: 20, color: nil), forState: .Normal)
                 button.setAttributedTitle(astring_font_size_color(string: title, font: nil, font_size: 20, color: color_disabled), forState: .Disabled)
+        }
+
+        func link_action() {
+                let link = "http://www.ncbi.nlm.nih.gov/sites/GDSbrowser"
+                if let url = NSURL(string: link) {
+                        print(url)
+                        UIApplication.sharedApplication().openURL(url)
+                }
         }
 }
