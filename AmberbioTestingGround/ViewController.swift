@@ -26,7 +26,7 @@ class ViewController: UIViewController {
 //                if let path = NSBundle.mainBundle().pathForResource("GSE1134_family", ofType: "soft"), let content = file_manager.contentsAtPath(path) {
 //                if let path = NSBundle.mainBundle().pathForResource("GSE47516_family", ofType: "soft"), let content = file_manager.contentsAtPath(path) {
 //                if let path = NSBundle.mainBundle().pathForResource("GSE9_family", ofType: "soft"), let content = file_manager.contentsAtPath(path) {
-                if let path = NSBundle.mainBundle().pathForResource("GDS100_full", ofType: "soft"), let content = file_manager.contentsAtPath(path) {
+                if let path = NSBundle.mainBundle().pathForResource("GDS509_full", ofType: "soft"), let content = file_manager.contentsAtPath(path) {
 
                         print(content.length)
 

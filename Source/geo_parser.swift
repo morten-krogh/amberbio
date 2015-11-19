@@ -87,29 +87,34 @@ class GDS {
 
                 number_of_samples = sample_names.count
 
-                factor_names = ["value", "src"]
+                factor_names = []
+                var suggested_level_names_for_factor = [] as [[String]]
 
-                level_names_for_factor = [[], []] as [[String]]
                 var location_factor_line = find_location_of_data(data: data, string: "#GSM", begin: 0)
                 while (location_factor_line != NSNotFound) {
                         if let line = find_line(data: data, begin: location_factor_line) {
-                                let parts = split_and_trim(string: line, separator: "=")
-                                if parts.count == 2 {
-                                        let comps = split_and_trim(string: parts[1], separator: ";")
-                                        if comps.count >= 2 {
-                                                for i in 0 ..< 2 {
-                                                        let elems = split_and_trim(string: comps[i], separator: ":")
-                                                        if elems.count == 2 {
-                                                                level_names_for_factor[i].append(elems[1])
-                                                        }
+                                if let range_of_first_colon = line.rangeOfString(":") {
+                                        let line_after_colon = line.substringFromIndex(range_of_first_colon.startIndex.advancedBy(1))
+                                        let parts = split_and_trim(string: line_after_colon, separator: ";")
+                                        for i in 0 ..< parts.count {
+                                                while suggested_level_names_for_factor.count < i + 1 {
+                                                        suggested_level_names_for_factor.append([])
                                                 }
+                                                suggested_level_names_for_factor[i].append(parts[i])
                                         }
                                 }
                         }
                         location_factor_line = find_location_of_data(data: data, string: "#GSM", begin: location_factor_line + 3)
                 }
 
-                if level_names_for_factor[0].count != number_of_samples || level_names_for_factor[1].count != number_of_samples { return }
+                level_names_for_factor = []
+                for level_names in suggested_level_names_for_factor {
+                        if level_names.count == number_of_samples {
+                                level_names_for_factor.append(level_names)
+                                let factor_name = "Factor \(factor_names.count + 1)"
+                                factor_names.append(factor_name)
+                        }
+                }
 
                 var is_annotation = [Bool](count: headers.count, repeatedValue: false)
                 for i in 0 ..< headers.count {
