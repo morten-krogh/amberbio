@@ -262,7 +262,7 @@ class State {
         }
 
         func verify_page() {
-                let page_names_without_active_data_set = ["home", "module_store", "manual", "feedback", "user", "data_set_selection", "import_data", "import_table", "export_projects"]
+                let page_names_without_active_data_set = ["home", "module_store", "manual", "feedback", "user", "data_set_selection", "import_data", "import_table", "export_projects", "geo"]
 
                 if !active_data_set {
                         if page_names_without_active_data_set.indexOf(page_state.name) == nil {

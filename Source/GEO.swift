@@ -211,6 +211,7 @@ class GEO: Component, UITextFieldDelegate, NSURLSessionDelegate, NSURLSessionDat
         }
 
         func button_action() {
+                text_field.resignFirstResponder()
                 if geo_state.state == .CorrectInput || geo_state.state == .NoConnection {
                         download()
                 } else if geo_state.state == .Downloading {
