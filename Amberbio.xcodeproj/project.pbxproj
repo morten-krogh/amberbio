@@ -70,13 +70,9 @@
 		60A893E61BD794FB004DAD2C /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A893E51BD794FB004DAD2C /* Store.swift */; };
 		60A893E81BD7CE6A004DAD2C /* ModuleStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A893E71BD7CE6A004DAD2C /* ModuleStore.swift */; };
 		60A893EA1BD7F29F004DAD2C /* StoreProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A893E91BD7F29F004DAD2C /* StoreProductTableViewCell.swift */; };
-		60AEE22A1BF620B1005E858D /* GDS1001_full.soft in Resources */ = {isa = PBXBuildFile; fileRef = 60AEE2291BF620B1005E858D /* GDS1001_full.soft */; };
 		60AEE22E1BF62766005E858D /* geo_parser.c in Sources */ = {isa = PBXBuildFile; fileRef = 60AEE22C1BF62766005E858D /* geo_parser.c */; };
-		60AEE2301BF68B86005E858D /* GDS5091_full.soft in Resources */ = {isa = PBXBuildFile; fileRef = 60AEE22F1BF68B86005E858D /* GDS5091_full.soft */; };
-		60AEE2381BFB222C005E858D /* GSE1134_family.soft in Resources */ = {isa = PBXBuildFile; fileRef = 60AEE2361BFB222C005E858D /* GSE1134_family.soft */; };
 		60AEE2391BFB222C005E858D /* GSE47516_family.soft in Resources */ = {isa = PBXBuildFile; fileRef = 60AEE2371BFB222C005E858D /* GSE47516_family.soft */; };
 		60AEE23C1BFB6562005E858D /* GEO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60AEE23A1BFB6179005E858D /* GEO.swift */; };
-		60AEE2401BFBC33A005E858D /* GDS1001_full.soft.gz in Resources */ = {isa = PBXBuildFile; fileRef = 60AEE23F1BFBC33A005E858D /* GDS1001_full.soft.gz */; };
 		60AEE2471BFC8DDF005E858D /* libz.1.2.5.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 60AEE2461BFC8DDF005E858D /* libz.1.2.5.tbd */; };
 		60AEE2481BFC9791005E858D /* zlib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60AEE23D1BFBC31D005E858D /* zlib.swift */; };
 		60AEE2491BFC988C005E858D /* libz.1.2.5.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 60AEE2461BFC8DDF005E858D /* libz.1.2.5.tbd */; };
@@ -84,9 +80,6 @@
 		60AEE24B1BFCF155005E858D /* geo_parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60AEE2341BFA1D4E005E858D /* geo_parser.swift */; };
 		60AEE24E1BFDD449005E858D /* ColorSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60AEE24C1BFDD391005E858D /* ColorSelectionTableViewCell.swift */; };
 		60AEE24F1BFDEA9A005E858D /* geo_parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60AEE2341BFA1D4E005E858D /* geo_parser.swift */; };
-		60AEE2511BFDEB1B005E858D /* GSE9_family.soft in Resources */ = {isa = PBXBuildFile; fileRef = 60AEE2501BFDEB1A005E858D /* GSE9_family.soft */; };
-		60AEE2531BFDEE63005E858D /* GDS100_full.soft in Resources */ = {isa = PBXBuildFile; fileRef = 60AEE2521BFDEE63005E858D /* GDS100_full.soft */; };
-		60AEE2551BFDF1B8005E858D /* GDS509_full.soft in Resources */ = {isa = PBXBuildFile; fileRef = 60AEE2541BFDF1B8005E858D /* GDS509_full.soft */; };
 		60B400391BA1982900D8DD80 /* state_init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400381BA1982900D8DD80 /* state_init.swift */; };
 		60B4003B1BA1983900D8DD80 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B4003A1BA1983900D8DD80 /* State.swift */; };
 		60B400411BA19BED00D8DD80 /* AttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B4003D1BA19BED00D8DD80 /* AttributedString.swift */; };
@@ -332,23 +325,16 @@
 		60A893E51BD794FB004DAD2C /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Store.swift; path = Source/Store.swift; sourceTree = "<group>"; };
 		60A893E71BD7CE6A004DAD2C /* ModuleStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ModuleStore.swift; path = Source/ModuleStore.swift; sourceTree = "<group>"; };
 		60A893E91BD7F29F004DAD2C /* StoreProductTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StoreProductTableViewCell.swift; path = Source/StoreProductTableViewCell.swift; sourceTree = "<group>"; };
-		60AEE2291BF620B1005E858D /* GDS1001_full.soft */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = GDS1001_full.soft; path = ../../../../share/GEO/GDS1001_full.soft; sourceTree = "<group>"; };
 		60AEE22B1BF62765005E858D /* AmberbioTestingGround-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AmberbioTestingGround-Bridging-Header.h"; sourceTree = "<group>"; };
 		60AEE22C1BF62766005E858D /* geo_parser.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = geo_parser.c; path = Source/geo_parser.c; sourceTree = SOURCE_ROOT; };
 		60AEE22D1BF62766005E858D /* geo_parser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = geo_parser.h; path = Source/geo_parser.h; sourceTree = SOURCE_ROOT; };
-		60AEE22F1BF68B86005E858D /* GDS5091_full.soft */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = GDS5091_full.soft; path = ../../../../share/GEO/GDS5091_full.soft; sourceTree = "<group>"; };
 		60AEE2341BFA1D4E005E858D /* geo_parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = geo_parser.swift; path = Source/geo_parser.swift; sourceTree = SOURCE_ROOT; };
-		60AEE2361BFB222C005E858D /* GSE1134_family.soft */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = GSE1134_family.soft; path = ../../../../share/GEO/GSE1134_family.soft; sourceTree = "<group>"; };
 		60AEE2371BFB222C005E858D /* GSE47516_family.soft */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = GSE47516_family.soft; path = ../../../../share/GEO/GSE47516_family.soft; sourceTree = "<group>"; };
 		60AEE23A1BFB6179005E858D /* GEO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GEO.swift; path = Source/GEO.swift; sourceTree = "<group>"; };
 		60AEE23D1BFBC31D005E858D /* zlib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = zlib.swift; path = AmberbioTestingGround/zlib.swift; sourceTree = "<group>"; };
-		60AEE23F1BFBC33A005E858D /* GDS1001_full.soft.gz */ = {isa = PBXFileReference; lastKnownFileType = archive.gzip; name = GDS1001_full.soft.gz; path = ../../../../share/GEO/GDS1001_full.soft.gz; sourceTree = "<group>"; };
 		60AEE2411BFC884D005E858D /* zlib_util.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = zlib_util.c; path = Source/zlib_util.c; sourceTree = "<group>"; };
 		60AEE2461BFC8DDF005E858D /* libz.1.2.5.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.1.2.5.tbd; path = usr/lib/libz.1.2.5.tbd; sourceTree = SDKROOT; };
 		60AEE24C1BFDD391005E858D /* ColorSelectionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorSelectionTableViewCell.swift; sourceTree = "<group>"; };
-		60AEE2501BFDEB1A005E858D /* GSE9_family.soft */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = GSE9_family.soft; path = ../../../../share/GEO/GSE9_family.soft; sourceTree = "<group>"; };
-		60AEE2521BFDEE63005E858D /* GDS100_full.soft */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = GDS100_full.soft; path = ../../../../share/GEO/GDS100_full.soft; sourceTree = "<group>"; };
-		60AEE2541BFDF1B8005E858D /* GDS509_full.soft */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = GDS509_full.soft; path = ../../../../share/GEO/GDS509_full.soft; sourceTree = "<group>"; };
 		60B400381BA1982900D8DD80 /* state_init.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = state_init.swift; path = Source/state_init.swift; sourceTree = "<group>"; };
 		60B4003A1BA1983900D8DD80 /* State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = State.swift; path = Source/State.swift; sourceTree = "<group>"; };
 		60B4003D1BA19BED00D8DD80 /* AttributedString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AttributedString.swift; path = Source/AttributedString.swift; sourceTree = "<group>"; };
@@ -797,14 +783,7 @@
 				60AEE22C1BF62766005E858D /* geo_parser.c */,
 				60AEE22D1BF62766005E858D /* geo_parser.h */,
 				60AEE22B1BF62765005E858D /* AmberbioTestingGround-Bridging-Header.h */,
-				60AEE2541BFDF1B8005E858D /* GDS509_full.soft */,
-				60AEE2521BFDEE63005E858D /* GDS100_full.soft */,
-				60AEE23F1BFBC33A005E858D /* GDS1001_full.soft.gz */,
-				60AEE2291BF620B1005E858D /* GDS1001_full.soft */,
-				60AEE22F1BF68B86005E858D /* GDS5091_full.soft */,
-				60AEE2361BFB222C005E858D /* GSE1134_family.soft */,
 				60AEE2371BFB222C005E858D /* GSE47516_family.soft */,
-				60AEE2501BFDEB1A005E858D /* GSE9_family.soft */,
 			);
 			path = AmberbioTestingGround;
 			sourceTree = "<group>";
@@ -1145,15 +1124,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				60AEE2401BFBC33A005E858D /* GDS1001_full.soft.gz in Resources */,
 				6094CBF71BCF8DCF002A5E2A /* LaunchScreen.storyboard in Resources */,
 				6094CBF41BCF8DCF002A5E2A /* Assets.xcassets in Resources */,
-				60AEE2511BFDEB1B005E858D /* GSE9_family.soft in Resources */,
-				60AEE2531BFDEE63005E858D /* GDS100_full.soft in Resources */,
-				60AEE2301BF68B86005E858D /* GDS5091_full.soft in Resources */,
-				60AEE22A1BF620B1005E858D /* GDS1001_full.soft in Resources */,
-				60AEE2381BFB222C005E858D /* GSE1134_family.soft in Resources */,
-				60AEE2551BFDF1B8005E858D /* GDS509_full.soft in Resources */,
 				60AEE2391BFB222C005E858D /* GSE47516_family.soft in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
