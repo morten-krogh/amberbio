@@ -134,7 +134,10 @@ class GEO: Component, UITextFieldDelegate, NSURLSessionDelegate, NSURLSessionDat
                         message_color = UIColor.blackColor()
                         set_button_title(title: "Download and import")
                 case .Downloading:
-                        message_text = "\(received_data.length) bytes downloaded"
+                        let nbytes = received_data.length
+                        let n100kb = nbytes / 100_000
+                        let nmb = Double(n100kb) / 10
+                        message_text = "\(nmb) MB downloaded"
                         message_color = UIColor.blackColor()
                         set_button_title(title: "Cancel")
                         button.enabled = true
@@ -170,6 +173,7 @@ class GEO: Component, UITextFieldDelegate, NSURLSessionDelegate, NSURLSessionDat
         }
 
         override func finish() {
+                canceled = true
                 session.invalidateAndCancel()
                 session = nil
                 if geo_state.state == .Downloading {
@@ -208,7 +212,7 @@ class GEO: Component, UITextFieldDelegate, NSURLSessionDelegate, NSURLSessionDat
         }
 
         func button_action() {
-                if geo_state.state == .CorrectInput {
+                if geo_state.state == .CorrectInput || geo_state.state == .NoConnection {
                         download()
                 } else if geo_state.state == .Downloading {
                         cancel_download()
@@ -233,9 +237,6 @@ class GEO: Component, UITextFieldDelegate, NSURLSessionDelegate, NSURLSessionDat
                 url += "nnn/" + id + "/soft/" + id + "_"
                 url += is_gds ? "full" : "family"
                 url += ".soft.gz"
-
-                print(url)
-
 
                 let nsurl = NSURL(string: url)!
                 return nsurl
@@ -272,7 +273,6 @@ class GEO: Component, UITextFieldDelegate, NSURLSessionDelegate, NSURLSessionDat
         }
 
         func URLSession(session: NSURLSession, task: NSURLSessionTask, didCompleteWithError error: NSError?) {
-//                print("did complete with error = \(error)")
                 if canceled {
                         geo_state.state = .CorrectInput
                 } else if error != nil {
