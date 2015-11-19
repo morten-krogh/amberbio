@@ -32,7 +32,8 @@ struct som_state {
 
 void som_initialize_weights(struct som_state* som_state)
 {
-        double vec1[som_state->molecule_indices_length], vec2[som_state->molecule_indices_length];
+        double* vec1 = malloc(som_state->molecule_indices_length * sizeof(double));
+        double* vec2 = malloc(som_state->molecule_indices_length * sizeof(double));
         for (long i = 0; i < som_state->molecule_indices_length; i++) {
                 vec1[i] = 0;
                 vec2[i] = 0;
@@ -66,6 +67,9 @@ void som_initialize_weights(struct som_state* som_state)
                         som_state->weights[offset + i] = alpha * vec1[i] + (1 - alpha) * vec2[i];
                 }
         }
+
+        free(vec1);
+        free(vec2);
 }
 
 long som_closest_unit(struct som_state* som_state, long sample_number)

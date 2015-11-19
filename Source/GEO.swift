@@ -292,7 +292,6 @@ class GEO: Component, UITextFieldDelegate, NSURLSessionDelegate, NSURLSessionDat
                 } else {
                         response_status_code = 404
                 }
-                print(response)
                 completionHandler(NSURLSessionResponseDisposition.Allow)
         }
 

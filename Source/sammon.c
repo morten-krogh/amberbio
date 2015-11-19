@@ -30,7 +30,7 @@ void sammon_iteration(const double* distances, const long dimension, const long 
 
 long sammon_map(const double* values, const long number_of_molecules, const long number_of_samples, const long* sample_indices, const long sample_indices_length, const long dimension, double* sammon_points)
 {
-        long molecule_indices[number_of_molecules];
+        long* molecule_indices = malloc(number_of_molecules * sizeof(long));
         long molecule_indices_length = 0;
 
         values_molecules_without_missing_values(values, number_of_molecules, number_of_samples, sample_indices, sample_indices_length, molecule_indices, &molecule_indices_length);
@@ -52,7 +52,7 @@ long sammon_map(const double* values, const long number_of_molecules, const long
                 return molecule_indices_length;
         }
 
-        double variances[molecule_indices_length];
+        double* variances = malloc(molecule_indices_length * sizeof(double));
         for (long i = 0; i < molecule_indices_length; i++) {
                 double sum = 0.0;
                 double sum_of_squares = 0.0;
@@ -74,7 +74,7 @@ long sammon_map(const double* values, const long number_of_molecules, const long
                 }
         }
 
-        double distances[sample_indices_length * (sample_indices_length - 1) / 2];
+        double* distances = malloc((sample_indices_length * (sample_indices_length - 1) / 2) * sizeof(double));
         values_distances_euclidean(values, number_of_samples, molecule_indices, molecule_indices_length, sample_indices, sample_indices_length, distances);
 
         double lambda_initial = 0.4;
@@ -88,7 +88,7 @@ long sammon_map(const double* values, const long number_of_molecules, const long
                 sammon_iteration(distances, dimension, sample_indices_length, lambda_initial, sammon_points);
         }
 
-        gettimeofday(&t1, NULL);
+                                   gettimeofday(&t1, NULL);
         long duration_in_usec = (t1.tv_sec - t0.tv_sec) * 1e6 + t1.tv_usec - t0.tv_usec;
 
         long number_of_iterations = 10 + initial_number_of_iterations * 2e5 / (duration_in_usec + 10);
@@ -102,6 +102,10 @@ long sammon_map(const double* values, const long number_of_molecules, const long
         }
 
         values_calculate_molecule_centered_values(sammon_points, dimension, sample_indices_length, sammon_points);
+
+        free(distances);
+        free(molecule_indices);
+        free(variances);
 
         return molecule_indices_length;
 }
