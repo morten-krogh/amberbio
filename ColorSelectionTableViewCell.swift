@@ -35,11 +35,6 @@ class ColorSelectionTableViewCell: UITableViewCell {
                 label.attributedText = astring
                 label.textAlignment = .Center
                 label.sizeToFit()
-                print("values:")
-                print(width)
-                print(width - 2 * margin - color_circle.frame.width - 10)
-                print(label.frame.width)
-
                 label.frame = CGRect(x: margin, y: (height - label.frame.height) / 2.0, width: label.frame.width, height: label.frame.height)
                 color_circle.frame.origin = CGPoint(x: width - margin - color_circle.frame.width, y: (height - color_circle.frame.height) / 2.0)
         }
