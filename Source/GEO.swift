@@ -15,7 +15,7 @@ enum GEOStatus {
 class GEOState: PageState {
 
         var session: NSURLSession!
-        var state = GEOStatus.CorrectInput
+        var state = GEOStatus.NoInput
         var geo_id = ""
 
         override init() {
@@ -41,6 +41,7 @@ class GEO: Component, UITextFieldDelegate, NSURLSessionDelegate, NSURLSessionDat
         let serial_queue = dispatch_queue_create("GEO download", DISPATCH_QUEUE_SERIAL)
         var session: NSURLSession!
         var task: NSURLSessionDataTask?
+        var content_length: Int?
         var received_data = NSMutableData()
         var response_status_code = 200
         var canceled = false
@@ -152,9 +153,13 @@ class GEO: Component, UITextFieldDelegate, NSURLSessionDelegate, NSURLSessionDat
                         set_button_title(title: "Download and import")
                 case .Downloading:
                         let nbytes = received_data.length
-                        let n100kb = nbytes / 100_000
-                        let nmb = Double(n100kb) / 10
-                        message_text = "\(nmb) MB downloaded"
+                        let nmb = megabytes(nbytes: nbytes)
+                        if let content_length = content_length {
+                                let total_nbm = megabytes(nbytes: content_length)
+                                message_text = "\(nmb) of \(total_nbm) downloaded"
+                        } else {
+                                message_text = "Starting download"
+                        }
                         message_color = UIColor.blackColor()
                         set_button_title(title: "Cancel")
                         button.enabled = true
@@ -264,6 +269,7 @@ class GEO: Component, UITextFieldDelegate, NSURLSessionDelegate, NSURLSessionDat
                 received_data = NSMutableData()
                 canceled = false
                 response_status_code = 0
+                content_length = nil
                 let url = url_of_data_set()
                 task = session?.dataTaskWithURL(url)
 
@@ -307,6 +313,7 @@ class GEO: Component, UITextFieldDelegate, NSURLSessionDelegate, NSURLSessionDat
         func URLSession(session: NSURLSession, dataTask: NSURLSessionDataTask, didReceiveResponse response: NSURLResponse, completionHandler: (NSURLSessionResponseDisposition) -> Void) {
                 if let response = response as? NSHTTPURLResponse {
                         response_status_code = response.statusCode
+                        content_length = Int(response.expectedContentLength)
                 } else {
                         response_status_code = 404
                 }
@@ -383,5 +390,11 @@ class GEO: Component, UITextFieldDelegate, NSURLSessionDelegate, NSURLSessionDat
                         print(url)
                         UIApplication.sharedApplication().openURL(url)
                 }
+        }
+
+        func megabytes(nbytes nbytes: Int) -> String {
+                let n100kb = nbytes / 100_000
+                let nmb = Double(n100kb) / 10
+                return "\(nmb) MB"
         }
 }
