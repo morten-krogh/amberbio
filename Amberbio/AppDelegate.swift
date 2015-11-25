@@ -7,24 +7,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 
-                let xml_path = NSBundle.mainBundle().pathForResource("App_Store_Pricing_Matrix", ofType: "xlsx")
-                let spreadsheet = BRAOfficeDocumentPackage.open(xml_path)
-
-                let worksheet = spreadsheet.workbook.worksheets[0] as! BRAWorksheet
-
-
-                //                65let row = worksheet.rows[4] as! BRARow
-
-                //                for cell in row.cells {
-                //                        print(cell, cell.stringValue)
-                //                }
-
-                for i in 0 ..< worksheet.rows.count {
-                        let row = worksheet.rows[i] as! BRARow
-                        print(row.cells.count)
-                }
-
-
                 state_init()
 
                 let screen: CGRect = UIScreen.mainScreen().bounds
