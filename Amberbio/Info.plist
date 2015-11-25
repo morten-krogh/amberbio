@@ -2,7 +2,7 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>CFBundleDevelopmentRegion</key>
+  <key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDocumentTypes</key>
 	<array>
@@ -30,6 +30,18 @@
 				<string>com.amberbio.sqlite</string>
 			</array>
 		</dict>
+		<dict>
+		  <key>CFBundleTypeName</key>
+		  <string>excel file</string>
+		  <key>LSHandlerRank</key>
+		  <string>Owner</string>
+		  <key>CFBundleTypeRole</key>
+		  <string>Editor</string>
+		  <key>LSItemContentTypes</key>
+		  <array>
+		    <string>com.amberbio.xlsx</string>
+		  </array>
+		</dict>
 	</array>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
@@ -51,14 +63,14 @@
 	<true/>
 	<key>NSAppTransportSecurity</key>
 	<dict>
-	  <key>NSExceptionDomains</key>
-	  <dict>  
-	    <key>ftp.ncbi.nlm.nih.gov</key>
-	    <dict>
-	      <key>NSExceptionAllowsInsecureHTTPLoads</key>
-	      <true/>
-	    </dict>
-	  </dict>
+		<key>NSExceptionDomains</key>
+		<dict>
+			<key>ftp.ncbi.nlm.nih.gov</key>
+			<dict>
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+			</dict>
+		</dict>
 	</dict>
 	<key>UILaunchStoryboardName</key>
 	<string>AmberbioLaunchScreen</string>
@@ -89,7 +101,7 @@
 		<dict>
 			<key>UTTypeConformsTo</key>
 			<array>
-				<string>public.database</string>
+				<string>public.data</string>
 			</array>
 			<key>UTTypeDescription</key>
 			<string>Amberbio sqlite database</string>
@@ -103,6 +115,25 @@
 				<string>sqlite</string>
 			</dict>
 		</dict>
+		<dict>
+		  <key>UTTypeDescription</key>
+		  <string>excel file</string>
+		  <key>UTTypeTagSpecification</key>
+		  <dict>
+		    <key>public.filename-extension</key>
+		    <string>xlsx</string>
+		    <key>public.mime-type</key>
+		    <string>application/vnd.openxmlformats-officedocument.spreadsheetml.sheet</string>
+		  </dict>
+		  <key>UTTypeConformsTo</key>
+		  <array>
+		    <string>public.data</string>
+		  </array>
+		  <key>UTTypeIdentifier</key>
+		  <string>com.amberbio.xlsx</string>
+		</dict>
+
+
 	</array>
 </dict>
 </plist>

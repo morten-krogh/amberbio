@@ -266,7 +266,7 @@
         _cacheData.minWidth = integerPart.length + decimalPoint.length + decimalPart.length;
         _cacheData.decimals = [decimalPart integerValue];
         _cacheData.precision = decimalPart.length;
-        _cacheData.pattern = [NSString stringWithFormat:@"%%0%ld.%ldf", _cacheData.minWidth, _cacheData.precision];
+        _cacheData.pattern = [NSString stringWithFormat:@"%%0%ld.%ldf", (long)_cacheData.minWidth, (long)_cacheData.precision];
 
         if ([results[0] rangeAtIndex:5].location != NSNotFound) {
             NSString *exponentPart = [formatCode substringWithRange:[results[0] rangeAtIndex:5]];

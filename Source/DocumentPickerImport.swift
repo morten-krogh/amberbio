@@ -5,7 +5,7 @@ let document_picker_import = DocumentPickerImport()
 class DocumentPickerImport: NSObject, UIDocumentMenuDelegate, UIDocumentPickerDelegate {
 
         var imported_file_handler: ((file_name: String, content: NSData) -> Void)?
-        let document_types = ["public.text", "com.amberbio.sqlite"]
+        let document_types = ["public.text", "com.amberbio.sqlite", "com.amberbio.xlsx"]
         var from_view_controller: UIViewController?
 
         func import_file(from_view_controller from_view_controller: UIViewController, source_view: UIView, imported_file_handler: ((file_name: String, content: NSData) -> Void)) {
