@@ -241,6 +241,51 @@
 		60D2C3C71BE20CD700C6C6EF /* TiledScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400CF1BA19C7900D8DD80 /* TiledScrollView.swift */; };
 		60D5CE361BC2545400B0D88A /* KNN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D5CE351BC2545400B0D88A /* KNN.swift */; };
 		60D5CE381BC26CD100B0D88A /* SupervisedClassificationTrainingSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D5CE371BC26CD100B0D88A /* SupervisedClassificationTrainingSelection.swift */; };
+		60D906431C05F4780043F42D /* XMLDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 60D906421C05F4780043F42D /* XMLDictionary.m */; };
+		60D906931C05F4950043F42D /* BRACalcChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 60D906461C05F4950043F42D /* BRACalcChain.m */; };
+		60D906941C05F4950043F42D /* BRACalcChainCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 60D906481C05F4950043F42D /* BRACalcChainCell.m */; };
+		60D906951C05F4950043F42D /* BRACell.m in Sources */ = {isa = PBXBuildFile; fileRef = 60D9064A1C05F4950043F42D /* BRACell.m */; };
+		60D906961C05F4950043F42D /* BRACellFill.m in Sources */ = {isa = PBXBuildFile; fileRef = 60D9064C1C05F4950043F42D /* BRACellFill.m */; };
+		60D906971C05F4950043F42D /* BRACellFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 60D9064E1C05F4950043F42D /* BRACellFormat.m */; };
+		60D906981C05F4950043F42D /* BRACellRange.m in Sources */ = {isa = PBXBuildFile; fileRef = 60D906501C05F4950043F42D /* BRACellRange.m */; };
+		60D906991C05F4950043F42D /* BRAColumn.m in Sources */ = {isa = PBXBuildFile; fileRef = 60D906521C05F4950043F42D /* BRAColumn.m */; };
+		60D9069A1C05F4950043F42D /* BRAComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 60D906541C05F4950043F42D /* BRAComment.m */; };
+		60D9069B1C05F4950043F42D /* BRAComments.m in Sources */ = {isa = PBXBuildFile; fileRef = 60D906561C05F4950043F42D /* BRAComments.m */; };
+		60D9069C1C05F4950043F42D /* BRAContentTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 60D906581C05F4950043F42D /* BRAContentTypes.m */; };
+		60D9069D1C05F4950043F42D /* BRAContentTypesDefaultExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 60D9065A1C05F4950043F42D /* BRAContentTypesDefaultExtension.m */; };
+		60D9069E1C05F4950043F42D /* BRAContentTypesOverride.m in Sources */ = {isa = PBXBuildFile; fileRef = 60D9065C1C05F4950043F42D /* BRAContentTypesOverride.m */; };
+		60D9069F1C05F4950043F42D /* BRADrawing.m in Sources */ = {isa = PBXBuildFile; fileRef = 60D9065E1C05F4950043F42D /* BRADrawing.m */; };
+		60D906A01C05F4950043F42D /* BRAElementWithRelationships.m in Sources */ = {isa = PBXBuildFile; fileRef = 60D906601C05F4950043F42D /* BRAElementWithRelationships.m */; };
+		60D906A11C05F4950043F42D /* BRAImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 60D906621C05F4950043F42D /* BRAImage.m */; };
+		60D906A21C05F4950043F42D /* BRAMergeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 60D906641C05F4950043F42D /* BRAMergeCell.m */; };
+		60D906A31C05F4950043F42D /* BRANumberFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 60D906661C05F4950043F42D /* BRANumberFormat.m */; };
+		60D906A41C05F4950043F42D /* BRAOfficeDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 60D906681C05F4950043F42D /* BRAOfficeDocument.m */; };
+		60D906A51C05F4950043F42D /* BRAOfficeDocumentPackage.m in Sources */ = {isa = PBXBuildFile; fileRef = 60D9066A1C05F4950043F42D /* BRAOfficeDocumentPackage.m */; };
+		60D906A61C05F4950043F42D /* BRAOpenXmlElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 60D9066C1C05F4950043F42D /* BRAOpenXmlElement.m */; };
+		60D906A71C05F4950043F42D /* BRAOpenXmlSubElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 60D9066E1C05F4950043F42D /* BRAOpenXmlSubElement.m */; };
+		60D906A81C05F4950043F42D /* BRARelationship.m in Sources */ = {isa = PBXBuildFile; fileRef = 60D906711C05F4950043F42D /* BRARelationship.m */; };
+		60D906A91C05F4950043F42D /* BRARelationships.m in Sources */ = {isa = PBXBuildFile; fileRef = 60D906731C05F4950043F42D /* BRARelationships.m */; };
+		60D906AA1C05F4950043F42D /* BRARow.m in Sources */ = {isa = PBXBuildFile; fileRef = 60D906751C05F4950043F42D /* BRARow.m */; };
+		60D906AB1C05F4950043F42D /* BRASharedString.m in Sources */ = {isa = PBXBuildFile; fileRef = 60D906771C05F4950043F42D /* BRASharedString.m */; };
+		60D906AC1C05F4950043F42D /* BRASharedStrings.m in Sources */ = {isa = PBXBuildFile; fileRef = 60D906791C05F4950043F42D /* BRASharedStrings.m */; };
+		60D906AD1C05F4950043F42D /* BRASheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 60D9067B1C05F4950043F42D /* BRASheet.m */; };
+		60D906AE1C05F4950043F42D /* BRAStyles.m in Sources */ = {isa = PBXBuildFile; fileRef = 60D9067D1C05F4950043F42D /* BRAStyles.m */; };
+		60D906AF1C05F4950043F42D /* BRATheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 60D9067F1C05F4950043F42D /* BRATheme.m */; };
+		60D906B01C05F4950043F42D /* BRAVmlDrawing.m in Sources */ = {isa = PBXBuildFile; fileRef = 60D906811C05F4950043F42D /* BRAVmlDrawing.m */; };
+		60D906B11C05F4950043F42D /* BRAWorksheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 60D906831C05F4950043F42D /* BRAWorksheet.m */; };
+		60D906B21C05F4950043F42D /* BRAWorksheetDrawing.m in Sources */ = {isa = PBXBuildFile; fileRef = 60D906851C05F4950043F42D /* BRAWorksheetDrawing.m */; };
+		60D906B31C05F4950043F42D /* NSDictionary+DeepCopy.m in Sources */ = {isa = PBXBuildFile; fileRef = 60D906871C05F4950043F42D /* NSDictionary+DeepCopy.m */; };
+		60D906B41C05F4950043F42D /* NSDictionary+OpenXMLDictionaryParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 60D906891C05F4950043F42D /* NSDictionary+OpenXMLDictionaryParser.m */; };
+		60D906B51C05F4950043F42D /* NSDictionary+OpenXmlString.m in Sources */ = {isa = PBXBuildFile; fileRef = 60D9068B1C05F4950043F42D /* NSDictionary+OpenXmlString.m */; };
+		60D906B61C05F4950043F42D /* UIColor+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 60D9068D1C05F4950043F42D /* UIColor+HTML.m */; };
+		60D906B71C05F4950043F42D /* UIColor+OpenXML.m in Sources */ = {isa = PBXBuildFile; fileRef = 60D9068F1C05F4950043F42D /* UIColor+OpenXML.m */; };
+		60D906B81C05F4950043F42D /* UIFont+BoldItalic.m in Sources */ = {isa = PBXBuildFile; fileRef = 60D906911C05F4950043F42D /* UIFont+BoldItalic.m */; };
+		60D906C71C05F4A20043F42D /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = 60D906BC1C05F4A20043F42D /* ioapi.c */; };
+		60D906C81C05F4A20043F42D /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = 60D906BE1C05F4A20043F42D /* mztools.c */; };
+		60D906C91C05F4A20043F42D /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = 60D906C01C05F4A20043F42D /* unzip.c */; };
+		60D906CA1C05F4A20043F42D /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = 60D906C21C05F4A20043F42D /* zip.c */; };
+		60D906CB1C05F4A20043F42D /* SSZipArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = 60D906C61C05F4A20043F42D /* SSZipArchive.m */; };
+		60D906CD1C05F5BD0043F42D /* App_Store_Pricing_Matrix.xlsx in Resources */ = {isa = PBXBuildFile; fileRef = 60D906CC1C05F5BD0043F42D /* App_Store_Pricing_Matrix.xlsx */; };
 		60DF228D1BC58E9E0038AAE1 /* random.c in Sources */ = {isa = PBXBuildFile; fileRef = 60DF228B1BC58E9E0038AAE1 /* random.c */; };
 		60E06B9E1BAC3D2F00B05223 /* RemoveMolecules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E06B9D1BAC3D2F00B05223 /* RemoveMolecules.swift */; };
 /* End PBXBuildFile section */
@@ -470,7 +515,7 @@
 		60B401611BA1A1D200D8DD80 /* ColorPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ColorPicker.swift; path = Source/ColorPicker.swift; sourceTree = "<group>"; };
 		60B401641BA1A20400D8DD80 /* ColorGrid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ColorGrid.swift; path = Source/ColorGrid.swift; sourceTree = "<group>"; };
 		60B401651BA1A20400D8DD80 /* ColorSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ColorSlider.swift; path = Source/ColorSlider.swift; sourceTree = "<group>"; };
-		60B401681BA1B2ED00D8DD80 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = ../../../../../usr/lib/libsqlite3.dylib; sourceTree = "<group>"; };
+		60B401681BA1B2ED00D8DD80 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = /usr/lib/libsqlite3.dylib; sourceTree = "<absolute>"; };
 		60B4016B1BA1B60F00D8DD80 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/AmberbioLaunchScreen.storyboard; sourceTree = "<group>"; };
 		60B4016D1BA1B94500D8DD80 /* Amberbio.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Amberbio.entitlements; sourceTree = "<group>"; };
 		60B401741BA1BE2400D8DD80 /* DatabasePopulate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DatabasePopulate.swift; path = Source/DatabasePopulate.swift; sourceTree = "<group>"; };
@@ -492,6 +537,99 @@
 		60D2C3C51BE1072F00C6C6EF /* Values2DPlot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Values2DPlot.swift; path = Source/Values2DPlot.swift; sourceTree = "<group>"; };
 		60D5CE351BC2545400B0D88A /* KNN.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KNN.swift; path = Source/KNN.swift; sourceTree = "<group>"; };
 		60D5CE371BC26CD100B0D88A /* SupervisedClassificationTrainingSelection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SupervisedClassificationTrainingSelection.swift; path = Source/SupervisedClassificationTrainingSelection.swift; sourceTree = "<group>"; };
+		60D906411C05F4780043F42D /* XMLDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLDictionary.h; sourceTree = "<group>"; };
+		60D906421C05F4780043F42D /* XMLDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLDictionary.m; sourceTree = "<group>"; };
+		60D906451C05F4950043F42D /* BRACalcChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRACalcChain.h; sourceTree = "<group>"; };
+		60D906461C05F4950043F42D /* BRACalcChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRACalcChain.m; sourceTree = "<group>"; };
+		60D906471C05F4950043F42D /* BRACalcChainCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRACalcChainCell.h; sourceTree = "<group>"; };
+		60D906481C05F4950043F42D /* BRACalcChainCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRACalcChainCell.m; sourceTree = "<group>"; };
+		60D906491C05F4950043F42D /* BRACell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRACell.h; sourceTree = "<group>"; };
+		60D9064A1C05F4950043F42D /* BRACell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRACell.m; sourceTree = "<group>"; };
+		60D9064B1C05F4950043F42D /* BRACellFill.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRACellFill.h; sourceTree = "<group>"; };
+		60D9064C1C05F4950043F42D /* BRACellFill.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRACellFill.m; sourceTree = "<group>"; };
+		60D9064D1C05F4950043F42D /* BRACellFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRACellFormat.h; sourceTree = "<group>"; };
+		60D9064E1C05F4950043F42D /* BRACellFormat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRACellFormat.m; sourceTree = "<group>"; };
+		60D9064F1C05F4950043F42D /* BRACellRange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRACellRange.h; sourceTree = "<group>"; };
+		60D906501C05F4950043F42D /* BRACellRange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRACellRange.m; sourceTree = "<group>"; };
+		60D906511C05F4950043F42D /* BRAColumn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRAColumn.h; sourceTree = "<group>"; };
+		60D906521C05F4950043F42D /* BRAColumn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRAColumn.m; sourceTree = "<group>"; };
+		60D906531C05F4950043F42D /* BRAComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRAComment.h; sourceTree = "<group>"; };
+		60D906541C05F4950043F42D /* BRAComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRAComment.m; sourceTree = "<group>"; };
+		60D906551C05F4950043F42D /* BRAComments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRAComments.h; sourceTree = "<group>"; };
+		60D906561C05F4950043F42D /* BRAComments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRAComments.m; sourceTree = "<group>"; };
+		60D906571C05F4950043F42D /* BRAContentTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRAContentTypes.h; sourceTree = "<group>"; };
+		60D906581C05F4950043F42D /* BRAContentTypes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRAContentTypes.m; sourceTree = "<group>"; };
+		60D906591C05F4950043F42D /* BRAContentTypesDefaultExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRAContentTypesDefaultExtension.h; sourceTree = "<group>"; };
+		60D9065A1C05F4950043F42D /* BRAContentTypesDefaultExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRAContentTypesDefaultExtension.m; sourceTree = "<group>"; };
+		60D9065B1C05F4950043F42D /* BRAContentTypesOverride.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRAContentTypesOverride.h; sourceTree = "<group>"; };
+		60D9065C1C05F4950043F42D /* BRAContentTypesOverride.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRAContentTypesOverride.m; sourceTree = "<group>"; };
+		60D9065D1C05F4950043F42D /* BRADrawing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRADrawing.h; sourceTree = "<group>"; };
+		60D9065E1C05F4950043F42D /* BRADrawing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRADrawing.m; sourceTree = "<group>"; };
+		60D9065F1C05F4950043F42D /* BRAElementWithRelationships.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRAElementWithRelationships.h; sourceTree = "<group>"; };
+		60D906601C05F4950043F42D /* BRAElementWithRelationships.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRAElementWithRelationships.m; sourceTree = "<group>"; };
+		60D906611C05F4950043F42D /* BRAImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRAImage.h; sourceTree = "<group>"; };
+		60D906621C05F4950043F42D /* BRAImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRAImage.m; sourceTree = "<group>"; };
+		60D906631C05F4950043F42D /* BRAMergeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRAMergeCell.h; sourceTree = "<group>"; };
+		60D906641C05F4950043F42D /* BRAMergeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRAMergeCell.m; sourceTree = "<group>"; };
+		60D906651C05F4950043F42D /* BRANumberFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRANumberFormat.h; sourceTree = "<group>"; };
+		60D906661C05F4950043F42D /* BRANumberFormat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRANumberFormat.m; sourceTree = "<group>"; };
+		60D906671C05F4950043F42D /* BRAOfficeDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRAOfficeDocument.h; sourceTree = "<group>"; };
+		60D906681C05F4950043F42D /* BRAOfficeDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRAOfficeDocument.m; sourceTree = "<group>"; };
+		60D906691C05F4950043F42D /* BRAOfficeDocumentPackage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRAOfficeDocumentPackage.h; sourceTree = "<group>"; };
+		60D9066A1C05F4950043F42D /* BRAOfficeDocumentPackage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRAOfficeDocumentPackage.m; sourceTree = "<group>"; };
+		60D9066B1C05F4950043F42D /* BRAOpenXmlElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRAOpenXmlElement.h; sourceTree = "<group>"; };
+		60D9066C1C05F4950043F42D /* BRAOpenXmlElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRAOpenXmlElement.m; sourceTree = "<group>"; };
+		60D9066D1C05F4950043F42D /* BRAOpenXmlSubElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRAOpenXmlSubElement.h; sourceTree = "<group>"; };
+		60D9066E1C05F4950043F42D /* BRAOpenXmlSubElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRAOpenXmlSubElement.m; sourceTree = "<group>"; };
+		60D9066F1C05F4950043F42D /* BRARelatedToColumnAndRowProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRARelatedToColumnAndRowProtocol.h; sourceTree = "<group>"; };
+		60D906701C05F4950043F42D /* BRARelationship.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRARelationship.h; sourceTree = "<group>"; };
+		60D906711C05F4950043F42D /* BRARelationship.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRARelationship.m; sourceTree = "<group>"; };
+		60D906721C05F4950043F42D /* BRARelationships.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRARelationships.h; sourceTree = "<group>"; };
+		60D906731C05F4950043F42D /* BRARelationships.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRARelationships.m; sourceTree = "<group>"; };
+		60D906741C05F4950043F42D /* BRARow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRARow.h; sourceTree = "<group>"; };
+		60D906751C05F4950043F42D /* BRARow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRARow.m; sourceTree = "<group>"; };
+		60D906761C05F4950043F42D /* BRASharedString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRASharedString.h; sourceTree = "<group>"; };
+		60D906771C05F4950043F42D /* BRASharedString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRASharedString.m; sourceTree = "<group>"; };
+		60D906781C05F4950043F42D /* BRASharedStrings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRASharedStrings.h; sourceTree = "<group>"; };
+		60D906791C05F4950043F42D /* BRASharedStrings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRASharedStrings.m; sourceTree = "<group>"; };
+		60D9067A1C05F4950043F42D /* BRASheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRASheet.h; sourceTree = "<group>"; };
+		60D9067B1C05F4950043F42D /* BRASheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRASheet.m; sourceTree = "<group>"; };
+		60D9067C1C05F4950043F42D /* BRAStyles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRAStyles.h; sourceTree = "<group>"; };
+		60D9067D1C05F4950043F42D /* BRAStyles.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRAStyles.m; sourceTree = "<group>"; };
+		60D9067E1C05F4950043F42D /* BRATheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRATheme.h; sourceTree = "<group>"; };
+		60D9067F1C05F4950043F42D /* BRATheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRATheme.m; sourceTree = "<group>"; };
+		60D906801C05F4950043F42D /* BRAVmlDrawing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRAVmlDrawing.h; sourceTree = "<group>"; };
+		60D906811C05F4950043F42D /* BRAVmlDrawing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRAVmlDrawing.m; sourceTree = "<group>"; };
+		60D906821C05F4950043F42D /* BRAWorksheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRAWorksheet.h; sourceTree = "<group>"; };
+		60D906831C05F4950043F42D /* BRAWorksheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRAWorksheet.m; sourceTree = "<group>"; };
+		60D906841C05F4950043F42D /* BRAWorksheetDrawing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRAWorksheetDrawing.h; sourceTree = "<group>"; };
+		60D906851C05F4950043F42D /* BRAWorksheetDrawing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRAWorksheetDrawing.m; sourceTree = "<group>"; };
+		60D906861C05F4950043F42D /* NSDictionary+DeepCopy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+DeepCopy.h"; sourceTree = "<group>"; };
+		60D906871C05F4950043F42D /* NSDictionary+DeepCopy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+DeepCopy.m"; sourceTree = "<group>"; };
+		60D906881C05F4950043F42D /* NSDictionary+OpenXMLDictionaryParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+OpenXMLDictionaryParser.h"; sourceTree = "<group>"; };
+		60D906891C05F4950043F42D /* NSDictionary+OpenXMLDictionaryParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+OpenXMLDictionaryParser.m"; sourceTree = "<group>"; };
+		60D9068A1C05F4950043F42D /* NSDictionary+OpenXmlString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+OpenXmlString.h"; sourceTree = "<group>"; };
+		60D9068B1C05F4950043F42D /* NSDictionary+OpenXmlString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+OpenXmlString.m"; sourceTree = "<group>"; };
+		60D9068C1C05F4950043F42D /* UIColor+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+HTML.h"; sourceTree = "<group>"; };
+		60D9068D1C05F4950043F42D /* UIColor+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+HTML.m"; sourceTree = "<group>"; };
+		60D9068E1C05F4950043F42D /* UIColor+OpenXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+OpenXML.h"; sourceTree = "<group>"; };
+		60D9068F1C05F4950043F42D /* UIColor+OpenXML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+OpenXML.m"; sourceTree = "<group>"; };
+		60D906901C05F4950043F42D /* UIFont+BoldItalic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+BoldItalic.h"; sourceTree = "<group>"; };
+		60D906911C05F4950043F42D /* UIFont+BoldItalic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+BoldItalic.m"; sourceTree = "<group>"; };
+		60D906921C05F4950043F42D /* XlsxReaderWriter-swift-bridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XlsxReaderWriter-swift-bridge.h"; sourceTree = "<group>"; };
+		60D906BB1C05F4A20043F42D /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypt.h; sourceTree = "<group>"; };
+		60D906BC1C05F4A20043F42D /* ioapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ioapi.c; sourceTree = "<group>"; };
+		60D906BD1C05F4A20043F42D /* ioapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ioapi.h; sourceTree = "<group>"; };
+		60D906BE1C05F4A20043F42D /* mztools.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mztools.c; sourceTree = "<group>"; };
+		60D906BF1C05F4A20043F42D /* mztools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mztools.h; sourceTree = "<group>"; };
+		60D906C01C05F4A20043F42D /* unzip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = unzip.c; sourceTree = "<group>"; };
+		60D906C11C05F4A20043F42D /* unzip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = unzip.h; sourceTree = "<group>"; };
+		60D906C21C05F4A20043F42D /* zip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zip.c; sourceTree = "<group>"; };
+		60D906C31C05F4A20043F42D /* zip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zip.h; sourceTree = "<group>"; };
+		60D906C41C05F4A20043F42D /* SSZipArchive-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SSZipArchive-Prefix.pch"; sourceTree = "<group>"; };
+		60D906C51C05F4A20043F42D /* SSZipArchive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSZipArchive.h; sourceTree = "<group>"; };
+		60D906C61C05F4A20043F42D /* SSZipArchive.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSZipArchive.m; sourceTree = "<group>"; };
+		60D906CC1C05F5BD0043F42D /* App_Store_Pricing_Matrix.xlsx */ = {isa = PBXFileReference; lastKnownFileType = file; name = App_Store_Pricing_Matrix.xlsx; path = ../../../Desktop/App_Store_Pricing_Matrix.xlsx; sourceTree = "<group>"; };
 		60DF228B1BC58E9E0038AAE1 /* random.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = random.c; path = Source/random.c; sourceTree = "<group>"; };
 		60E06B9D1BAC3D2F00B05223 /* RemoveMolecules.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RemoveMolecules.swift; path = Source/RemoveMolecules.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -543,10 +681,8 @@
 		601003401BA18744008A1FF9 = {
 			isa = PBXGroup;
 			children = (
-				60AEE2461BFC8DDF005E858D /* libz.1.2.5.tbd */,
+				60D906CC1C05F5BD0043F42D /* App_Store_Pricing_Matrix.xlsx */,
 				60014BC41BB5AC7C001A79B1 /* amberbio-main.sqlite */,
-				60A893E21BD78D38004DAD2C /* StoreKit.framework */,
-				60B401681BA1B2ED00D8DD80 /* libsqlite3.dylib */,
 				60B400361BA1980000D8DD80 /* Source */,
 				6010034B1BA18744008A1FF9 /* Amberbio */,
 				601003601BA18744008A1FF9 /* AmberbioTests */,
@@ -556,6 +692,10 @@
 				6010034A1BA18744008A1FF9 /* Products */,
 				60B4019D1BA1C77200D8DD80 /* DemoData */,
 				601E57AC1BCE6471002EEEB3 /* Libsvm */,
+				60D906371C05EF900043F42D /* XlsxReaderWriter */,
+				60B401681BA1B2ED00D8DD80 /* libsqlite3.dylib */,
+				60A893E21BD78D38004DAD2C /* StoreKit.framework */,
+				60AEE2461BFC8DDF005E858D /* libz.1.2.5.tbd */,
 			);
 			sourceTree = "<group>";
 		};
@@ -945,6 +1085,140 @@
 			name = DemoData;
 			sourceTree = "<group>";
 		};
+		60D906371C05EF900043F42D /* XlsxReaderWriter */ = {
+			isa = PBXGroup;
+			children = (
+				60D906B91C05F4A20043F42D /* SSZipArchive */,
+				60D906441C05F4950043F42D /* XlsxReaderWriter */,
+				60D906401C05F4780043F42D /* XMLDictionary */,
+			);
+			name = XlsxReaderWriter;
+			sourceTree = "<group>";
+		};
+		60D906401C05F4780043F42D /* XMLDictionary */ = {
+			isa = PBXGroup;
+			children = (
+				60D906411C05F4780043F42D /* XMLDictionary.h */,
+				60D906421C05F4780043F42D /* XMLDictionary.m */,
+			);
+			name = XMLDictionary;
+			path = XlsxReaderWriter/XMLDictionary;
+			sourceTree = "<group>";
+		};
+		60D906441C05F4950043F42D /* XlsxReaderWriter */ = {
+			isa = PBXGroup;
+			children = (
+				60D906451C05F4950043F42D /* BRACalcChain.h */,
+				60D906461C05F4950043F42D /* BRACalcChain.m */,
+				60D906471C05F4950043F42D /* BRACalcChainCell.h */,
+				60D906481C05F4950043F42D /* BRACalcChainCell.m */,
+				60D906491C05F4950043F42D /* BRACell.h */,
+				60D9064A1C05F4950043F42D /* BRACell.m */,
+				60D9064B1C05F4950043F42D /* BRACellFill.h */,
+				60D9064C1C05F4950043F42D /* BRACellFill.m */,
+				60D9064D1C05F4950043F42D /* BRACellFormat.h */,
+				60D9064E1C05F4950043F42D /* BRACellFormat.m */,
+				60D9064F1C05F4950043F42D /* BRACellRange.h */,
+				60D906501C05F4950043F42D /* BRACellRange.m */,
+				60D906511C05F4950043F42D /* BRAColumn.h */,
+				60D906521C05F4950043F42D /* BRAColumn.m */,
+				60D906531C05F4950043F42D /* BRAComment.h */,
+				60D906541C05F4950043F42D /* BRAComment.m */,
+				60D906551C05F4950043F42D /* BRAComments.h */,
+				60D906561C05F4950043F42D /* BRAComments.m */,
+				60D906571C05F4950043F42D /* BRAContentTypes.h */,
+				60D906581C05F4950043F42D /* BRAContentTypes.m */,
+				60D906591C05F4950043F42D /* BRAContentTypesDefaultExtension.h */,
+				60D9065A1C05F4950043F42D /* BRAContentTypesDefaultExtension.m */,
+				60D9065B1C05F4950043F42D /* BRAContentTypesOverride.h */,
+				60D9065C1C05F4950043F42D /* BRAContentTypesOverride.m */,
+				60D9065D1C05F4950043F42D /* BRADrawing.h */,
+				60D9065E1C05F4950043F42D /* BRADrawing.m */,
+				60D9065F1C05F4950043F42D /* BRAElementWithRelationships.h */,
+				60D906601C05F4950043F42D /* BRAElementWithRelationships.m */,
+				60D906611C05F4950043F42D /* BRAImage.h */,
+				60D906621C05F4950043F42D /* BRAImage.m */,
+				60D906631C05F4950043F42D /* BRAMergeCell.h */,
+				60D906641C05F4950043F42D /* BRAMergeCell.m */,
+				60D906651C05F4950043F42D /* BRANumberFormat.h */,
+				60D906661C05F4950043F42D /* BRANumberFormat.m */,
+				60D906671C05F4950043F42D /* BRAOfficeDocument.h */,
+				60D906681C05F4950043F42D /* BRAOfficeDocument.m */,
+				60D906691C05F4950043F42D /* BRAOfficeDocumentPackage.h */,
+				60D9066A1C05F4950043F42D /* BRAOfficeDocumentPackage.m */,
+				60D9066B1C05F4950043F42D /* BRAOpenXmlElement.h */,
+				60D9066C1C05F4950043F42D /* BRAOpenXmlElement.m */,
+				60D9066D1C05F4950043F42D /* BRAOpenXmlSubElement.h */,
+				60D9066E1C05F4950043F42D /* BRAOpenXmlSubElement.m */,
+				60D9066F1C05F4950043F42D /* BRARelatedToColumnAndRowProtocol.h */,
+				60D906701C05F4950043F42D /* BRARelationship.h */,
+				60D906711C05F4950043F42D /* BRARelationship.m */,
+				60D906721C05F4950043F42D /* BRARelationships.h */,
+				60D906731C05F4950043F42D /* BRARelationships.m */,
+				60D906741C05F4950043F42D /* BRARow.h */,
+				60D906751C05F4950043F42D /* BRARow.m */,
+				60D906761C05F4950043F42D /* BRASharedString.h */,
+				60D906771C05F4950043F42D /* BRASharedString.m */,
+				60D906781C05F4950043F42D /* BRASharedStrings.h */,
+				60D906791C05F4950043F42D /* BRASharedStrings.m */,
+				60D9067A1C05F4950043F42D /* BRASheet.h */,
+				60D9067B1C05F4950043F42D /* BRASheet.m */,
+				60D9067C1C05F4950043F42D /* BRAStyles.h */,
+				60D9067D1C05F4950043F42D /* BRAStyles.m */,
+				60D9067E1C05F4950043F42D /* BRATheme.h */,
+				60D9067F1C05F4950043F42D /* BRATheme.m */,
+				60D906801C05F4950043F42D /* BRAVmlDrawing.h */,
+				60D906811C05F4950043F42D /* BRAVmlDrawing.m */,
+				60D906821C05F4950043F42D /* BRAWorksheet.h */,
+				60D906831C05F4950043F42D /* BRAWorksheet.m */,
+				60D906841C05F4950043F42D /* BRAWorksheetDrawing.h */,
+				60D906851C05F4950043F42D /* BRAWorksheetDrawing.m */,
+				60D906861C05F4950043F42D /* NSDictionary+DeepCopy.h */,
+				60D906871C05F4950043F42D /* NSDictionary+DeepCopy.m */,
+				60D906881C05F4950043F42D /* NSDictionary+OpenXMLDictionaryParser.h */,
+				60D906891C05F4950043F42D /* NSDictionary+OpenXMLDictionaryParser.m */,
+				60D9068A1C05F4950043F42D /* NSDictionary+OpenXmlString.h */,
+				60D9068B1C05F4950043F42D /* NSDictionary+OpenXmlString.m */,
+				60D9068C1C05F4950043F42D /* UIColor+HTML.h */,
+				60D9068D1C05F4950043F42D /* UIColor+HTML.m */,
+				60D9068E1C05F4950043F42D /* UIColor+OpenXML.h */,
+				60D9068F1C05F4950043F42D /* UIColor+OpenXML.m */,
+				60D906901C05F4950043F42D /* UIFont+BoldItalic.h */,
+				60D906911C05F4950043F42D /* UIFont+BoldItalic.m */,
+				60D906921C05F4950043F42D /* XlsxReaderWriter-swift-bridge.h */,
+			);
+			name = XlsxReaderWriter;
+			path = XlsxReaderWriter/XlsxReaderWriter;
+			sourceTree = "<group>";
+		};
+		60D906B91C05F4A20043F42D /* SSZipArchive */ = {
+			isa = PBXGroup;
+			children = (
+				60D906BA1C05F4A20043F42D /* minizip */,
+				60D906C41C05F4A20043F42D /* SSZipArchive-Prefix.pch */,
+				60D906C51C05F4A20043F42D /* SSZipArchive.h */,
+				60D906C61C05F4A20043F42D /* SSZipArchive.m */,
+			);
+			name = SSZipArchive;
+			path = XlsxReaderWriter/SSZipArchive;
+			sourceTree = "<group>";
+		};
+		60D906BA1C05F4A20043F42D /* minizip */ = {
+			isa = PBXGroup;
+			children = (
+				60D906BB1C05F4A20043F42D /* crypt.h */,
+				60D906BC1C05F4A20043F42D /* ioapi.c */,
+				60D906BD1C05F4A20043F42D /* ioapi.h */,
+				60D906BE1C05F4A20043F42D /* mztools.c */,
+				60D906BF1C05F4A20043F42D /* mztools.h */,
+				60D906C01C05F4A20043F42D /* unzip.c */,
+				60D906C11C05F4A20043F42D /* unzip.h */,
+				60D906C21C05F4A20043F42D /* zip.c */,
+				60D906C31C05F4A20043F42D /* zip.h */,
+			);
+			path = minizip;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1098,6 +1372,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				60D906CD1C05F5BD0043F42D /* App_Store_Pricing_Matrix.xlsx in Resources */,
 				60014BD01BB96AD6001A79B1 /* manual.html in Resources */,
 				60014BCE1BB968C6001A79B1 /* index.css in Resources */,
 				601003541BA18744008A1FF9 /* Assets.xcassets in Resources */,
@@ -1164,38 +1439,50 @@
 				602E0C721BD4D5F600BF0F17 /* MoleculeWebSearch.swift in Sources */,
 				60B400D91BA19C7900D8DD80 /* AnovaFactorSelection.swift in Sources */,
 				60B401671BA1A20400D8DD80 /* ColorSlider.swift in Sources */,
+				60D906931C05F4950043F42D /* BRACalcChain.m in Sources */,
+				60D9069E1C05F4950043F42D /* BRAContentTypesOverride.m in Sources */,
 				60B4011B1BA19C7900D8DD80 /* MultipleMoleculePlot.swift in Sources */,
+				60D906431C05F4780043F42D /* XMLDictionary.m in Sources */,
 				60B401031BA19C7900D8DD80 /* HierarchicalClusteringDrawer.swift in Sources */,
 				60B400FB1BA19C7900D8DD80 /* FactorElimination.swift in Sources */,
 				60B4012D1BA19C7900D8DD80 /* PCA2dPlot.swift in Sources */,
 				60B400FA1BA19C7900D8DD80 /* FactorContingencyTable.swift in Sources */,
 				60B401221BA19C7900D8DD80 /* PairedLevel.swift in Sources */,
 				60B400EC1BA19C7900D8DD80 /* Date.swift in Sources */,
+				60D906C81C05F4A20043F42D /* mztools.c in Sources */,
+				60D906A11C05F4950043F42D /* BRAImage.m in Sources */,
 				60D5CE361BC2545400B0D88A /* KNN.swift in Sources */,
 				60B401541BA19C7900D8DD80 /* TableOfAttributedStrings.swift in Sources */,
 				60B4013F1BA19C7900D8DD80 /* RootComponent.swift in Sources */,
 				60B400F41BA19C7900D8DD80 /* EditFactors.swift in Sources */,
 				60B401201BA19C7900D8DD80 /* PageState.swift in Sources */,
+				60D906CA1C05F4A20043F42D /* zip.c in Sources */,
 				60B400431BA19BED00D8DD80 /* Serialize.swift in Sources */,
+				60D906A81C05F4950043F42D /* BRARelationship.m in Sources */,
 				60B400F31BA19C7900D8DD80 /* EditFactor.swift in Sources */,
 				60B4010E1BA19C7900D8DD80 /* LinearRegressionPlot.swift in Sources */,
 				60B400E01BA19C7900D8DD80 /* ChiSquare.swift in Sources */,
 				60B4011A1BA19C7900D8DD80 /* MoleculeRange.swift in Sources */,
 				60B400F61BA19C7900D8DD80 /* Email.swift in Sources */,
 				60AEE24A1BFC9946005E858D /* zlib_util.c in Sources */,
+				60D906AA1C05F4950043F42D /* BRARow.m in Sources */,
 				60B401191BA19C7900D8DD80 /* MoleculeAnnotations.swift in Sources */,
 				60B401481BA19C7900D8DD80 /* SingleMoleculePlotTable.swift in Sources */,
 				60B400FC1BA19C7900D8DD80 /* FactorSummary.swift in Sources */,
 				60B401531BA19C7900D8DD80 /* Statistics.swift in Sources */,
 				60B400FE1BA19C7900D8DD80 /* Feedback.swift in Sources */,
 				605F52351BC3B37300033B91 /* knn.c in Sources */,
+				60D906AC1C05F4950043F42D /* BRASharedStrings.m in Sources */,
 				60B401231BA19C7900D8DD80 /* PairedPairingFactor.swift in Sources */,
+				60D906B81C05F4950043F42D /* UIFont+BoldItalic.m in Sources */,
 				60B401561BA19C7900D8DD80 /* TextFieldHeaderFooterView.swift in Sources */,
 				601E57A71BCD0B12002EEEB3 /* SupervisedClassification.swift in Sources */,
 				60B400EF1BA19C7900D8DD80 /* DocumentInteractionOpen.swift in Sources */,
 				60B401631BA1A1D200D8DD80 /* ColorPicker.swift in Sources */,
 				60B401171BA19C7900D8DD80 /* MissingValues.swift in Sources */,
+				60D906991C05F4950043F42D /* BRAColumn.m in Sources */,
 				60B400F51BA19C7900D8DD80 /* EditProject.swift in Sources */,
+				60D906B01C05F4950043F42D /* BRAVmlDrawing.m in Sources */,
 				60E06B9E1BAC3D2F00B05223 /* RemoveMolecules.swift in Sources */,
 				60B400FD1BA19C7900D8DD80 /* FactorSummaryDetail.swift in Sources */,
 				60B401011BA19C7900D8DD80 /* FullPage.swift in Sources */,
@@ -1203,9 +1490,11 @@
 				60BFB2421BEB6478000B492C /* SOMView.swift in Sources */,
 				60B4013A1BA19C7900D8DD80 /* Random.swift in Sources */,
 				6010034D1BA18744008A1FF9 /* AppDelegate.swift in Sources */,
+				60D906AE1C05F4950043F42D /* BRAStyles.m in Sources */,
 				60B4010A1BA19C7900D8DD80 /* InfoButton.swift in Sources */,
 				60B4012B1BA19C7900D8DD80 /* parse_values.swift in Sources */,
 				60A893E61BD794FB004DAD2C /* Store.swift in Sources */,
+				60D906941C05F4950043F42D /* BRACalcChainCell.m in Sources */,
 				60B4011F1BA19C7900D8DD80 /* NormalDistribution.swift in Sources */,
 				60B401581BA19C7900D8DD80 /* TiledLayerView.swift in Sources */,
 				60B401621BA1A1D200D8DD80 /* ColorCircle.swift in Sources */,
@@ -1216,20 +1505,32 @@
 				60A77A9A1BDE5B2E00C8FBEE /* HeaderView.swift in Sources */,
 				60B400E11BA19C7900D8DD80 /* ChiSquareTableMath.swift in Sources */,
 				60B401261BA19C7900D8DD80 /* PairTable.swift in Sources */,
+				60D906A41C05F4950043F42D /* BRAOfficeDocument.m in Sources */,
+				60D9069D1C05F4950043F42D /* BRAContentTypesDefaultExtension.m in Sources */,
+				60D906981C05F4950043F42D /* BRACellRange.m in Sources */,
+				60D9069B1C05F4950043F42D /* BRAComments.m in Sources */,
 				60B400D51BA19C7900D8DD80 /* ActiveDataSet.swift in Sources */,
+				60D906CB1C05F4A20043F42D /* SSZipArchive.m in Sources */,
 				60B4010D1BA19C7900D8DD80 /* LinearRegressionDrawer.swift in Sources */,
 				60B4015A1BA19C7900D8DD80 /* Title.swift in Sources */,
 				60B401051BA19C7900D8DD80 /* HierarchicalClusteringSelection.swift in Sources */,
 				60D2C3C61BE1072F00C6C6EF /* Values2DPlot.swift in Sources */,
 				60B401131BA19C7900D8DD80 /* Manual.swift in Sources */,
 				60B401111BA19C7900D8DD80 /* LogarithmTransform.swift in Sources */,
+				60D906B51C05F4950043F42D /* NSDictionary+OpenXmlString.m in Sources */,
 				60B401101BA19C7900D8DD80 /* LinearRegressionTable.swift in Sources */,
+				60D906AD1C05F4950043F42D /* BRASheet.m in Sources */,
 				60B4015B1BA19C7900D8DD80 /* Txt.swift in Sources */,
+				60D906AB1C05F4950043F42D /* BRASharedString.m in Sources */,
+				60D906A21C05F4950043F42D /* BRAMergeCell.m in Sources */,
 				60B400DB1BA19C7900D8DD80 /* AnovaTable.swift in Sources */,
+				60D906C71C05F4A20043F42D /* ioapi.c in Sources */,
 				60B401361BA19C7900D8DD80 /* ProjectNotes.swift in Sources */,
+				60D906A71C05F4950043F42D /* BRAOpenXmlSubElement.m in Sources */,
 				602708CA1BA2CA0300672D54 /* SelectAllHeaderFooterView.swift in Sources */,
 				60B401351BA19C7900D8DD80 /* ProgressIndicator.swift in Sources */,
 				60AEE23C1BFB6562005E858D /* GEO.swift in Sources */,
+				60D906B61C05F4950043F42D /* UIColor+HTML.m in Sources */,
 				605F52321BC2ED2D00033B91 /* SupervisedClassificationParameterSelection.swift in Sources */,
 				60B400E71BA19C7900D8DD80 /* ContingencyTable.swift in Sources */,
 				601E57AF1BCE64F2002EEEB3 /* svm.cpp in Sources */,
@@ -1257,11 +1558,14 @@
 				605F52371BC3D9EF00033B91 /* SupervisedClassificationResult.swift in Sources */,
 				60B401431BA19C7900D8DD80 /* SearchTableViewCell.swift in Sources */,
 				60B400DF1BA19C7900D8DD80 /* CenteredTableViewCell.swift in Sources */,
+				60D906AF1C05F4950043F42D /* BRATheme.m in Sources */,
+				60D906A61C05F4950043F42D /* BRAOpenXmlElement.m in Sources */,
 				60B401371BA19C7900D8DD80 /* PValueHistogram.swift in Sources */,
 				60B400EB1BA19C7900D8DD80 /* DataSetTable.swift in Sources */,
 				60B400DE1BA19C7900D8DD80 /* CenteredHeaderFooterView.swift in Sources */,
 				60B401331BA19C7900D8DD80 /* PieChart.swift in Sources */,
 				60D5CE381BC26CD100B0D88A /* SupervisedClassificationTrainingSelection.swift in Sources */,
+				60D906A31C05F4950043F42D /* BRANumberFormat.m in Sources */,
 				60B401061BA19C7900D8DD80 /* Home.swift in Sources */,
 				6094A3741BD8E15500611310 /* StoreRestoreTableViewCell.swift in Sources */,
 				601E57B41BCF83E8002EEEB3 /* ROCView.swift in Sources */,
@@ -1282,11 +1586,13 @@
 				60B4014C1BA19C7900D8DD80 /* sqlite_execute.swift in Sources */,
 				60B401501BA19C7900D8DD80 /* sqlite_tables.swift in Sources */,
 				60B401321BA19C7900D8DD80 /* PdfTxtButtons.swift in Sources */,
+				60D906A01C05F4950043F42D /* BRAElementWithRelationships.m in Sources */,
 				60B400D61BA19C7900D8DD80 /* ActivityIndicator.swift in Sources */,
 				60B400F91BA19C7900D8DD80 /* FactorChart.swift in Sources */,
 				60B401411BA19C7900D8DD80 /* SampleNormalization.swift in Sources */,
 				60B401311BA19C7900D8DD80 /* Pdf.swift in Sources */,
 				60B401301BA19C7900D8DD80 /* PCAPage.swift in Sources */,
+				60D906A51C05F4950043F42D /* BRAOfficeDocumentPackage.m in Sources */,
 				601E57A51BCD0A8F002EEEB3 /* SupervisedClassificationValidationSelection.swift in Sources */,
 				60B401271BA19C7900D8DD80 /* PairwiseFactor.swift in Sources */,
 				60A893EA1BD7F29F004DAD2C /* StoreProductTableViewCell.swift in Sources */,
@@ -1294,24 +1600,32 @@
 				60B401021BA19C7900D8DD80 /* HierarchicalClustering.swift in Sources */,
 				60B400F81BA19C7900D8DD80 /* FactorAssociation.swift in Sources */,
 				60B4014D1BA19C7900D8DD80 /* sqlite_functions.swift in Sources */,
+				60D9069A1C05F4950043F42D /* BRAComment.m in Sources */,
 				60B400DA1BA19C7900D8DD80 /* AnovaPlot.swift in Sources */,
 				60B4012F1BA19C7900D8DD80 /* PCAaxis.swift in Sources */,
+				60D906B21C05F4950043F42D /* BRAWorksheetDrawing.m in Sources */,
 				60B400F71BA19C7900D8DD80 /* ExportProjects.swift in Sources */,
+				60D906961C05F4950043F42D /* BRACellFill.m in Sources */,
 				60B4011C1BA19C7900D8DD80 /* MultiSegmentedControl.swift in Sources */,
+				60D906B41C05F4950043F42D /* NSDictionary+OpenXMLDictionaryParser.m in Sources */,
 				60A77A911BDE0D4800C8FBEE /* k_means_clustering.c in Sources */,
 				604A51BC1BF26C1E0057373D /* ImportTable.swift in Sources */,
 				60B401571BA19C7900D8DD80 /* TextFieldTableViewCell.swift in Sources */,
 				60B400E31BA19C7900D8DD80 /* ColorKey.swift in Sources */,
 				60B401471BA19C7900D8DD80 /* SingleMoleculePlot.swift in Sources */,
 				60B400E51BA19C7900D8DD80 /* ColorSelectionPicker.swift in Sources */,
+				60D906B71C05F4950043F42D /* UIColor+OpenXML.m in Sources */,
 				60B400E41BA19C7900D8DD80 /* ColorSelectionLevel.swift in Sources */,
 				60B401241BA19C7900D8DD80 /* PairedPlot.swift in Sources */,
 				60B400E61BA19C7900D8DD80 /* Component.swift in Sources */,
 				60A77A9C1BDE5CB400C8FBEE /* HomeCellView.swift in Sources */,
 				601E57AB1BCD53C4002EEEB3 /* ParameterTableViewCell.swift in Sources */,
 				60B4013D1BA19C7900D8DD80 /* RemoveSamples.swift in Sources */,
+				60D9069F1C05F4950043F42D /* BRADrawing.m in Sources */,
+				60D906B11C05F4950043F42D /* BRAWorksheet.m in Sources */,
 				601E57A91BCD0F1C002EEEB3 /* SVM.swift in Sources */,
 				60B400391BA1982900D8DD80 /* state_init.swift in Sources */,
+				60D906971C05F4950043F42D /* BRACellFormat.m in Sources */,
 				60B401401BA19C7900D8DD80 /* SampleNames.swift in Sources */,
 				60B400FF1BA19C7900D8DD80 /* Files.swift in Sources */,
 				60B4011E1BA19C7900D8DD80 /* NameDateTableViewCell.swift in Sources */,
@@ -1319,9 +1633,11 @@
 				60B400F21BA19C7900D8DD80 /* Drawing.swift in Sources */,
 				60B4010F1BA19C7900D8DD80 /* LinearRegressionSelection.swift in Sources */,
 				60B400DD1BA19C7900D8DD80 /* Back.swift in Sources */,
+				60D906B31C05F4950043F42D /* NSDictionary+DeepCopy.m in Sources */,
 				60B401161BA19C7900D8DD80 /* MissingValueHistogram.swift in Sources */,
 				60B401071BA19C7900D8DD80 /* HomeButton.swift in Sources */,
 				60B401461BA19C7900D8DD80 /* SingleMolecule.swift in Sources */,
+				60D906A91C05F4950043F42D /* BRARelationships.m in Sources */,
 				60B4015D1BA19C7900D8DD80 /* values.c in Sources */,
 				60B401421BA19C7900D8DD80 /* SearchBar.swift in Sources */,
 				6094CC041BD0DCF7002A5E2A /* DrawView.swift in Sources */,
@@ -1330,9 +1646,12 @@
 				60B4012C1BA19C7900D8DD80 /* PCA.swift in Sources */,
 				60B400D71BA19C7900D8DD80 /* Alert.swift in Sources */,
 				60B4003B1BA1983900D8DD80 /* State.swift in Sources */,
+				60D9069C1C05F4950043F42D /* BRAContentTypes.m in Sources */,
 				60B401451BA19C7900D8DD80 /* SingleChoiceTable.swift in Sources */,
 				60D2C3C71BE20CD700C6C6EF /* TiledScrollView.swift in Sources */,
+				60D906C91C05F4A20043F42D /* unzip.c in Sources */,
 				605F523B1BC502A700033B91 /* CrossValidationTableViewCell.swift in Sources */,
+				60D906951C05F4950043F42D /* BRACell.m in Sources */,
 				60B401211BA19C7900D8DD80 /* PairedComparisonFactor.swift in Sources */,
 				60DF228D1BC58E9E0038AAE1 /* random.c in Sources */,
 				60D2C3C21BE0C80400C6C6EF /* Sammon.swift in Sources */,
