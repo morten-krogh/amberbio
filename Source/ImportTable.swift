@@ -9,12 +9,10 @@ enum ImportType {
 class ImportTableState: PageState {
 
         let file_id: Int
-        var file_name = ""
-        var file_data = NSData()
+        let file_name: String
+        let file_data: NSData
 
-        var number_of_rows = 0
-        var number_of_columns = 0
-        var separator_positions = [] as [Int]
+        var parser_spreadsheet: ParserSpreadsheetProtocol!
 
         var type: ImportType?
         var phase = 0
@@ -31,6 +29,9 @@ class ImportTableState: PageState {
 
         init(file_id: Int) {
                 self.file_id = file_id
+                let (file_name, file_data) = state.select_file_name_and_file_data(file_id: file_id)!
+                self.file_name = file_name
+                self.file_data = file_data
                 super.init()
                 name = "import_table"
                 title = astring_body(string: "Import Data")
@@ -38,7 +39,6 @@ class ImportTableState: PageState {
 
                 full_screen = .Conditional
 
-                (file_name, file_data) = state.select_file_name_and_file_data(file_id: file_id)!
                 if file_data.length >= 10_000_000 {
                         prepared = false
                 } else {
@@ -47,42 +47,9 @@ class ImportTableState: PageState {
         }
 
         override func prepare() {
-                let separator = parse_find_separator(file_data.bytes, file_data.length)
-
-                parse_number_of_rows_and_columns(file_data.bytes, file_data.length, separator, &number_of_rows, &number_of_columns)
-
-                separator_positions = [Int](count: number_of_rows * number_of_columns, repeatedValue: -1)
-                parse_separator_positions(file_data.bytes, file_data.length, separator, number_of_rows, number_of_columns, &separator_positions)
+                parser_spreadsheet = file_name.hasSuffix("xlsx") ? ParserSpreadsheetXlsx(data: file_data) : ParserSpreadsheetTxt(data: file_data)
 
                 prepared = true
-        }
-
-        func cell_string(row row: Int, column: Int) -> String {
-                let index = row * number_of_columns + column
-
-                var position_0 = index > 0 ? separator_positions[index - 1] + 1 : 0
-                let position_1 = separator_positions[index]
-                if position_0 > position_1 {
-                        position_0 = position_1
-                }
-                var cstring = [CChar](count: position_1 - position_0 + 1, repeatedValue: 0)
-                parse_read_cstring(file_data.bytes, position_0, position_1, &cstring)
-
-                let str = String.fromCString(cstring) ?? ""
-
-                return str
-        }
-
-        func cell_values_row_major(row_0 row_0: Int, row_1: Int, col_0: Int, col_1: Int) -> [Double] {
-                var values = [Double](count: (row_1 - row_0 + 1) * (col_1 - col_0 + 1), repeatedValue: Double.NaN)
-                parse_read_double_values(file_data.bytes, number_of_rows, number_of_columns, separator_positions, row_0, row_1, col_0, col_1, 1, &values)
-                return values
-        }
-
-        func cell_values_column_major(row_0 row_0: Int, row_1: Int, col_0: Int, col_1: Int) -> [Double] {
-                var values = [Double](count: (row_1 - row_0 + 1) * (col_1 - col_0 + 1), repeatedValue: Double.NaN)
-                parse_read_double_values(file_data.bytes, number_of_rows, number_of_columns, separator_positions, row_0, row_1, col_0, col_1, 0, &values)
-                return values
         }
 }
 
@@ -270,8 +237,8 @@ class ImportTable: Component, SpreadSheetCellsDelegate, UITextFieldDelegate {
         override func render() {
                 import_table_state = state.page_state as! ImportTableState
 
-                row_heights = [CGFloat](count: import_table_state.number_of_rows, repeatedValue: 40)
-                column_widths = [CGFloat](count: import_table_state.number_of_columns, repeatedValue: column_width)
+                row_heights = [CGFloat](count: import_table_state.parser_spreadsheet.number_of_rows, repeatedValue: 40)
+                column_widths = [CGFloat](count: import_table_state.parser_spreadsheet.number_of_columns, repeatedValue: column_width)
                 render_after_change()
         }
 
@@ -401,7 +368,7 @@ class ImportTable: Component, SpreadSheetCellsDelegate, UITextFieldDelegate {
         }
 
         func spread_sheet_cells_astring(spread_sheet_cells spread_sheet_cells: SpreadSheetCells, row: Int, column: Int) -> Astring {
-                let cell_string = import_table_state.cell_string(row: row, column: column)
+                let cell_string = import_table_state.parser_spreadsheet.cell_string(row: row, column: column)
                 let astring = astring_max_width(string: cell_string, max_width: column_width - 20)
                 return astring
         }
@@ -555,7 +522,7 @@ class ImportTable: Component, SpreadSheetCellsDelegate, UITextFieldDelegate {
         func get_row_of_cells(row row: Int, column_0: Int, column_1: Int) -> [String] {
                 var strings = [] as [String]
                 for i in 0 ..< column_1 - column_0 + 1 {
-                        strings.append(import_table_state.cell_string(row: row, column: column_0 + i))
+                        strings.append(import_table_state.parser_spreadsheet.cell_string(row: row, column: column_0 + i))
                 }
                 return strings
         }
@@ -563,7 +530,7 @@ class ImportTable: Component, SpreadSheetCellsDelegate, UITextFieldDelegate {
         func get_column_of_cells(column column: Int, row_0: Int, row_1: Int) -> [String] {
                 var strings = [] as [String]
                 for i in 0 ..< row_1 - row_0 + 1 {
-                        strings.append(import_table_state.cell_string(row: row_0 + i, column: column))
+                        strings.append(import_table_state.parser_spreadsheet.cell_string(row: row_0 + i, column: column))
                 }
                 return strings
         }
@@ -706,9 +673,9 @@ class ImportTable: Component, SpreadSheetCellsDelegate, UITextFieldDelegate {
 
                         let values: [Double]
                         if (row_0_1_min == row_0_1_max) {
-                                values = import_table_state.cell_values_row_major(row_0: row_2_3_min, row_1: row_2_3_max, col_0: col_0_1_min, col_1: col_0_1_max)
+                                values = import_table_state.parser_spreadsheet.cell_values_row_major(row_0: row_2_3_min, row_1: row_2_3_max, col_0: col_0_1_min, col_1: col_0_1_max)
                         } else {
-                                values = import_table_state.cell_values_column_major(row_0: row_0_1_min, row_1: row_0_1_max, col_0: col_2_3_min, col_1: col_2_3_max)
+                                values = import_table_state.parser_spreadsheet.cell_values_column_major(row_0: row_0_1_min, row_1: row_0_1_max, col_0: col_2_3_min, col_1: col_2_3_max)
                         }
 
                         import_table_state.values = values
