@@ -66,7 +66,7 @@ class ParserSpreadsheetXlsx: ParserSpreadsheetProtocol {
         var number_of_rows = 0
         var number_of_columns = 0
 
-        var worksheet: BRAWorksheet?
+        var cells = [] as [[BRACell]]
 
         init(data: NSData) {
                 self.data = data
@@ -80,21 +80,31 @@ class ParserSpreadsheetXlsx: ParserSpreadsheetProtocol {
                         let worksheet = worksheets[0] as! BRAWorksheet
                         number_of_rows = worksheet.rows.count
                         for i in 0 ..< worksheet.rows.count {
+                                var row_of_cells = [] as [BRACell]
+
                                 let row = worksheet.rows[i] as! BRARow
-                                if row.cells.count > number_of_columns {
-                                        number_of_columns = row.cells.count
+                                for i in 0 ..< row.cells.count {
+                                        let cell = row.cells[i] as! BRACell
+                                        row_of_cells.append(cell)
                                 }
+
+                                if row_of_cells.count > number_of_columns {
+                                        number_of_columns = row_of_cells.count
+                                }
+
+                                cells.append(row_of_cells)
                         }
-                        self.worksheet = worksheet
                 }
         }
 
         func cell_string(row row: Int, column: Int) -> String {
-                
-
-                let str = "Dummy"
-
-                return str
+                let row_of_cells = cells[row]
+                if column < row_of_cells.count {
+                        let cell = row_of_cells[column]
+                        return cell.stringValue()
+                } else {
+                        return ""
+                }
         }
 
         func cell_values_row_major(row_0 row_0: Int, row_1: Int, col_0: Int, col_1: Int) -> [Double] {
