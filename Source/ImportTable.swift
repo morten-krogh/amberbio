@@ -304,7 +304,7 @@ class ImportTable: Component, SpreadSheetCellsDelegate, UITextFieldDelegate {
                         label_color = import_table_state.import_message_color
                         restart_button.hidden = false
                 default:
-                        label_text = "Type a project title"
+                        label_text = "Type a title and tap the create button"
                         project_name_text_field.text = import_table_state.project_name
                         project_name_text_field.hidden = false
                         create_project_button.hidden = false
