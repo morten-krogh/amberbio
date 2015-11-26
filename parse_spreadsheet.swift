@@ -66,12 +66,31 @@ class ParserSpreadsheetXlsx: ParserSpreadsheetProtocol {
         var number_of_rows = 0
         var number_of_columns = 0
 
+        var worksheet: BRAWorksheet?
+
         init(data: NSData) {
                 self.data = data
 
+                let url = file_create_temp_file_url(content: data)
+                let path = url.path
+
+                let spreadsheet = BRAOfficeDocumentPackage.open(path)
+                let worksheets = spreadsheet.workbook.worksheets
+                if !worksheets.isEmpty {
+                        let worksheet = worksheets[0] as! BRAWorksheet
+                        number_of_rows = worksheet.rows.count
+                        for i in 0 ..< worksheet.rows.count {
+                                let row = worksheet.rows[i] as! BRARow
+                                if row.cells.count > number_of_columns {
+                                        number_of_columns = row.cells.count
+                                }
+                        }
+                        self.worksheet = worksheet
+                }
         }
 
         func cell_string(row row: Int, column: Int) -> String {
+                
 
                 let str = "Dummy"
 
