@@ -71,30 +71,43 @@ class ParserSpreadsheetXlsx: ParserSpreadsheetProtocol {
         init(data: NSData) {
                 self.data = data
 
+
                 let url = file_create_temp_file_url(content: data)
                 let path = url.path
 
-                let spreadsheet = BRAOfficeDocumentPackage.open(path)
-                let worksheets = spreadsheet.workbook.worksheets
-                if !worksheets.isEmpty {
-                        let worksheet = worksheets[0] as! BRAWorksheet
-                        number_of_rows = worksheet.rows.count
-                        for i in 0 ..< worksheet.rows.count {
-                                var row_of_cells = [] as [BRACell]
-
-                                let row = worksheet.rows[i] as! BRARow
-                                for i in 0 ..< row.cells.count {
-                                        let cell = row.cells[i] as! BRACell
-                                        row_of_cells.append(cell)
-                                }
-
-                                if row_of_cells.count > number_of_columns {
-                                        number_of_columns = row_of_cells.count
-                                }
-
-                                cells.append(row_of_cells)
-                        }
+                if let spreadsheet = BRAOfficeDocumentPackage.open(path) {
+                        print(spreadsheet == 0)
+                        print("hello")
+                } else {
+                        print("error")
                 }
+
+
+                file_remove(url: url)
+
+//                print(spreadsheet.workbook)
+
+
+//                let worksheets = spreadsheet.workbook.worksheets
+//                if !worksheets.isEmpty {
+//                        let worksheet = worksheets[0] as! BRAWorksheet
+//                        number_of_rows = worksheet.rows.count
+//                        for i in 0 ..< worksheet.rows.count {
+//                                var row_of_cells = [] as [BRACell]
+//
+//                                let row = worksheet.rows[i] as! BRARow
+//                                for i in 0 ..< row.cells.count {
+//                                        let cell = row.cells[i] as! BRACell
+//                                        row_of_cells.append(cell)
+//                                }
+//
+//                                if row_of_cells.count > number_of_columns {
+//                                        number_of_columns = row_of_cells.count
+//                                }
+//
+//                                cells.append(row_of_cells)
+//                        }
+//                }
         }
 
         func cell_string(row row: Int, column: Int) -> String {
