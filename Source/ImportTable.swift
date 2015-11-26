@@ -188,9 +188,11 @@ class ImportTable: Component, SpreadSheetCellsDelegate, UITextFieldDelegate {
 
                 origin_y = CGRectGetMaxY(scroll_left_button.frame) + 5
 
-                label.frame = CGRect(x: 0, y: origin_y, width: width, height: 40)
+                label.sizeToFit()
+                let label_width = label.frame.width + 10
+                label.frame = CGRect(x: (width - label_width) / 2, y: origin_y, width: label_width, height: label.frame.height + 15)
 
-                origin_y = CGRectGetMaxY(label.frame) + 15
+                origin_y = CGRectGetMaxY(label.frame) + 25
 
                 if !new_project_button.hidden {
                         new_project_button.sizeToFit()
@@ -292,7 +294,7 @@ class ImportTable: Component, SpreadSheetCellsDelegate, UITextFieldDelegate {
                                 label_text = "Tap the last molecule annotation name"
                         }
                 case 5:
-                        label_text = "Tap the button to import"
+                        label_text = "Tap the import button"
                         import_button.hidden = false
                 case 6:
                         label_text = import_table_state.import_message
@@ -305,12 +307,19 @@ class ImportTable: Component, SpreadSheetCellsDelegate, UITextFieldDelegate {
                         create_project_button.hidden = false
                 }
 
-                label.attributedText = astring_font_size_color(string: label_text, font: nil, font_size: 20, color: label_color)
-                label.textAlignment = .Center
+                set_label_text(text: label_text, color: label_color)
 
                 spread_sheet_cells.delegate = self
                 spread_sheet_cells.reload()
                 view.setNeedsLayout()
+        }
+
+        func set_label_text(text text: String, color: UIColor?) {
+                let label_text = color == nil ? "Now: " + text : text
+                let background_color = color == nil ? color_yellow : UIColor.whiteColor()
+                label.attributedText = astring_font_size_color(string: label_text, font: nil, font_size: 20, color: color)
+                label.textAlignment = .Center
+                label.backgroundColor = background_color
         }
 
         func cell_background_color(row row: Int, column: Int) -> UIColor {
