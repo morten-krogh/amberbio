@@ -319,7 +319,13 @@ class ImportTable: Component, SpreadSheetCellsDelegate, UITextFieldDelegate {
                 let background_color = color == nil ? color_yellow : UIColor.whiteColor()
                 label.attributedText = astring_font_size_color(string: label_text, font: nil, font_size: 20, color: color)
                 label.textAlignment = .Center
-                label.backgroundColor = background_color
+                label.backgroundColor = UIColor.whiteColor()
+
+                if color == nil {
+                        UIView.animateWithDuration(5, animations: {
+                                self.label.backgroundColor = background_color
+                        })
+                }
         }
 
         func cell_background_color(row row: Int, column: Int) -> UIColor {
