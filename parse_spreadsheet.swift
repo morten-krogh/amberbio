@@ -70,48 +70,29 @@ class ParserSpreadsheetXlsx: ParserSpreadsheetProtocol {
                 if let path = url.path, let parser_xlsx = ParserXLSX(path: path) {
                         number_of_rows = parser_xlsx.numberOfRows
                         number_of_columns = parser_xlsx.numberOfColumns
-
-                        print(parser_xlsx.valid)
-                        print(parser_xlsx.numberOfRows)
-                        print(parser_xlsx.numberOfColumns)
+                        self.parser_xlsx = parser_xlsx
                 }
                 file_remove(url: url)
         }
 
-//                let worksheets = spreadsheet.workbook.worksheets
-//                if !worksheets.isEmpty {
-//                        let worksheet = worksheets[0] as! BRAWorksheet
-//                        number_of_rows = worksheet.rows.count
-//                        for i in 0 ..< worksheet.rows.count {
-//                                var row_of_cells = [] as [BRACell]
-//
-//                                let row = worksheet.rows[i] as! BRARow
-//                                for i in 0 ..< row.cells.count {
-//                                        let cell = row.cells[i] as! BRACell
-//                                        row_of_cells.append(cell)
-//                                }
-//
-//                                if row_of_cells.count > number_of_columns {
-//                                        number_of_columns = row_of_cells.count
-//                                }
-//
-//                                cells.append(row_of_cells)
-//                        }
-//                }
-
         func cell_string(row row: Int, column: Int) -> String {
-                return parser_xlsx.cellStringForRow(row, andColumn: column)
+                if let cell = parser_xlsx?.cellForRow(row, andColumn: column) {
+                        return cell.stringValue()
+                } else {
+                        return ""
+                }
         }
 
         func cell_values_row_major(row_0 row_0: Int, row_1: Int, col_0: Int, col_1: Int) -> [Double] {
-                let number_values = parser_xlsx.cellValuesRowMajor(row_0, row_1: row_1, col_0: col_0, col_1: col_1);
+                var values = [Double](count: (row_1 - row_0 + 1) * (col_1 - col_0 + 1), repeatedValue: Double.NaN)
 
-                var values = [] as [Double]
-
-                for i in 0 ..< number_values.count {
-                        let number_value = number_values[i] as! NSNumber
-                        let value = number_value.doubleValue
-                        values.append(value)
+                for i in 0 ..< row_1 - row_0 + 1 {
+                        for j in 0 ..< col_1 - col_0 + 1 {
+                                if let cell = parser_xlsx?.cellForRow(row_0 + i, andColumn: col_0 + j) {
+                                        let index = i * (col_1 - col_0 + 1) + j
+                                        values[index] = cell_value(cell: cell)
+                                }
+                        }
                 }
 
                 return values
@@ -120,17 +101,14 @@ class ParserSpreadsheetXlsx: ParserSpreadsheetProtocol {
         func cell_values_column_major(row_0 row_0: Int, row_1: Int, col_0: Int, col_1: Int) -> [Double] {
                 var values = [Double](count: (row_1 - row_0 + 1) * (col_1 - col_0 + 1), repeatedValue: Double.NaN)
 
-//                for j in 0 ..< col_1 - col_0 + 1 {
-//                        for i in 0 ..< row_1 - row_0 + 1 {
-//                                let row_of_cells = cells[row_0 + i]
-//                                let col = col_0 + j
-//                                if col < row_of_cells.count {
-//                                        let cell = row_of_cells[col]
-//                                        let index = j * (row_1 - row_0 + 1) + i
-//                                        values[index] = cell_value(cell: cell)
-//                                }
-//                        }
-//                }
+                for j in 0 ..< col_1 - col_0 + 1 {
+                        for i in 0 ..< row_1 - row_0 + 1 {
+                                if let cell = parser_xlsx?.cellForRow(row_0 + i, andColumn: col_0 + j) {
+                                        let index = j * (row_1 - row_0 + 1) + i
+                                        values[index] = cell_value(cell: cell)
+                                }
+                        }
+                }
 
                 return values
         }
