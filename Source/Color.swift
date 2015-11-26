@@ -30,12 +30,13 @@ let color_brewer_sequential_9_blue = ["f7fbff", "deebf7", "c6dbef", "9ecae1", "6
 let color_red = color_from_hex(hex: color_brewer_qualitative_9_set1[0])
 let color_blue = color_from_hex(hex: color_brewer_qualitative_9_set1[1])
 let color_green = color_from_hex(hex: color_brewer_qualitative_9_set1[2])
+let color_yellow = color_from_hex(hex: color_brewer_qualitative_9_pastel1[5])
+let color_pink = color_from_hex(hex: color_brewer_qualitative_9_pastel1[7])
 
 let color_success = color_from_hex(hex: color_brewer_qualitative_9_pastel1[2])
 let color_failure = color_from_hex(hex: color_brewer_qualitative_9_pastel1[0])
 let color_additional = color_from_hex(hex: color_brewer_qualitative_9_pastel1[8])
 let color_normal = color_from_hex(hex: color_brewer_qualitative_9_pastel1[2])
-let color_yellow = color_from_hex(hex: color_brewer_qualitative_9_pastel1[5])
 
 let color_selected_headers = color_from_hex(hex: color_brewer_qualitative_9_pastel1[2])
 let color_selected_values = color_from_hex(hex: color_brewer_qualitative_9_pastel1[1])

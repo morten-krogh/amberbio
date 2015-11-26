@@ -82,6 +82,8 @@ class ImportTable: Component, SpreadSheetCellsDelegate, UITextFieldDelegate {
         let column_width = 100 as CGFloat
         var column_widths = [] as [CGFloat]
 
+        var first_time_set_label_text = true
+
         override func viewDidLoad() {
                 super.viewDidLoad()
 
@@ -315,17 +317,21 @@ class ImportTable: Component, SpreadSheetCellsDelegate, UITextFieldDelegate {
         }
 
         func set_label_text(text text: String, color: UIColor?) {
-                let label_text = color == nil ? "Now: " + text : text
-                let background_color = color == nil ? color_yellow : UIColor.whiteColor()
-                label.attributedText = astring_font_size_color(string: label_text, font: nil, font_size: 20, color: color)
+                label.attributedText = astring_font_size_color(string: text, font: nil, font_size: 20, color: color)
                 label.textAlignment = .Center
-                label.backgroundColor = UIColor.whiteColor()
 
-                if color == nil {
-                        UIView.animateWithDuration(5, animations: {
-                                self.label.backgroundColor = background_color
+                if first_time_set_label_text {
+                        label.layer.backgroundColor = color_yellow.CGColor
+                } else if color == nil {
+                        label.layer.backgroundColor = color_blue.CGColor
+                        UIView.animateWithDuration(0.4, animations: {
+                                self.label.layer.backgroundColor = color_yellow.CGColor
                         })
+                } else {
+                        label.layer.backgroundColor = UIColor.whiteColor().CGColor
                 }
+
+                first_time_set_label_text = false
         }
 
         func cell_background_color(row row: Int, column: Int) -> UIColor {
