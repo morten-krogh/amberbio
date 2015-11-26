@@ -83,6 +83,7 @@ class ImportTable: Component, SpreadSheetCellsDelegate, UITextFieldDelegate {
         var column_widths = [] as [CGFloat]
 
         var first_time_set_label_text = true
+        var color_label_background = color_yellow
 
         override func viewDidLoad() {
                 super.viewDidLoad()
@@ -321,17 +322,18 @@ class ImportTable: Component, SpreadSheetCellsDelegate, UITextFieldDelegate {
                 label.textAlignment = .Center
 
                 if first_time_set_label_text {
-                        label.layer.backgroundColor = color_yellow.CGColor
+                        label.layer.backgroundColor = color_label_background.CGColor
                 } else if color == nil {
                         label.layer.backgroundColor = color_selected_values.CGColor
                         UIView.animateWithDuration(0.3, animations: {
-                                self.label.layer.backgroundColor = color_yellow.CGColor
+                                self.label.layer.backgroundColor = self.color_label_background.CGColor
                         })
                 } else {
                         label.layer.backgroundColor = UIColor.whiteColor().CGColor
                 }
 
                 first_time_set_label_text = false
+                color_label_background = color_label_background == color_yellow ? color_orange : color_yellow
         }
 
         func cell_background_color(row row: Int, column: Int) -> UIColor {

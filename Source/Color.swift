@@ -31,6 +31,7 @@ let color_red = color_from_hex(hex: color_brewer_qualitative_9_set1[0])
 let color_blue = color_from_hex(hex: color_brewer_qualitative_9_set1[1])
 let color_green = color_from_hex(hex: color_brewer_qualitative_9_set1[2])
 
+let color_orange = color_from_hex(hex: color_brewer_qualitative_9_pastel1[4])
 let color_yellow = color_from_hex(hex: color_brewer_qualitative_9_pastel1[5])
 let color_pink = color_from_hex(hex: color_brewer_qualitative_9_pastel1[7])
 
