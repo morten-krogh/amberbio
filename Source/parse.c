@@ -97,7 +97,8 @@ void parse_read_cstring(const void* bytes, const long position_0, const long pos
         cstring[position_1 - position_0] = '\0';
 }
 
-double parse_parse_double(char* cstring) {
+double parse_parse_double(char* cstring)
+{
         for (char* cursor = cstring; *cursor != '\0'; cursor++) {
                 if (*cursor == ',') {
                         *cursor = '.';

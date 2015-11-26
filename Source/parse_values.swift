@@ -58,21 +58,6 @@ func parse_separator_separated_string(string string: String, separator: Characte
         return result
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 func parse_project_file(data data: NSData) -> (sample_names: [String]?, molecule_names: [String]?, values: [Double]?, error: String?) {
         let (table, error) = parse_data(data: data)
 

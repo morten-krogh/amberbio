@@ -108,14 +108,51 @@ class ParserSpreadsheetXlsx: ParserSpreadsheetProtocol {
         }
 
         func cell_values_row_major(row_0 row_0: Int, row_1: Int, col_0: Int, col_1: Int) -> [Double] {
-                let values = [Double](count: (row_1 - row_0 + 1) * (col_1 - col_0 + 1), repeatedValue: Double.NaN)
+                var values = [Double](count: (row_1 - row_0 + 1) * (col_1 - col_0 + 1), repeatedValue: Double.NaN)
+
+                for i in 0 ..< row_1 - row_0 + 1 {
+                        for j in 0 ..< col_1 - col_0 + 1 {
+                                let row_of_cells = cells[row_0 + i]
+                                let col = col_0 + j
+                                if col < row_of_cells.count {
+                                        let cell = row_of_cells[col]
+                                        let index = i * (col_1 - col_0 + 1) + j
+                                        values[index] = cell_value(cell: cell)
+                                }
+                        }
+
+
+                }
 
                 return values
         }
 
         func cell_values_column_major(row_0 row_0: Int, row_1: Int, col_0: Int, col_1: Int) -> [Double] {
-                let values = [Double](count: (row_1 - row_0 + 1) * (col_1 - col_0 + 1), repeatedValue: Double.NaN)
+                var values = [Double](count: (row_1 - row_0 + 1) * (col_1 - col_0 + 1), repeatedValue: Double.NaN)
+
+                for j in 0 ..< col_1 - col_0 + 1 {
+                        for i in 0 ..< row_1 - row_0 + 1 {
+                                let row_of_cells = cells[row_0 + i]
+                                let col = col_0 + j
+                                if col < row_of_cells.count {
+                                        let cell = row_of_cells[col]
+                                        let index = j * (row_1 - row_0 + 1) + i
+                                        values[index] = cell_value(cell: cell)
+                                }
+                        }
+                }
 
                 return values
+        }
+
+        func cell_value(cell cell: BRACell) -> Double {
+                if cell.type == BRACellContentTypeNumber || cell.type == BRACellContentTypeUnknown {
+                        return Double(cell.floatValue())
+                } else {
+                        let str = cell.stringValue()
+                        var c_string = str.cStringUsingEncoding(NSUTF8StringEncoding) ?? []
+                        let value = parse_parse_double(&c_string)
+                        return value
+                }
         }
 }
