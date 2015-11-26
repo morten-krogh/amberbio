@@ -14,7 +14,6 @@
 
 -(instancetype) initWithPath:(NSString *) path
 {
-        [self setValid: NO];
         [self setNumberOfRows: 0];
         [self setNumberOfColumns: 0];
         [self setRows: [[NSArray alloc] init]];
@@ -59,6 +58,20 @@
                 return @"";
         }
 }
+
+-(nullable BRACell*) cellForRow:(NSInteger)row andColumn:(NSInteger)column
+{
+        BRARow* bra_row = [[self rows] objectAtIndex: row];
+        if (column < [[bra_row cells] count]) {
+                BRACell* cell = [[bra_row cells] objectAtIndex: column];
+                return cell;
+        } else {
+                return NULL;
+        }
+}
+
+
+
 
 -(double) valueForCell:(BRACell*) cell
 {

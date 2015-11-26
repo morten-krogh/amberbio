@@ -61,28 +61,22 @@ class ParserSpreadsheetTxt: ParserSpreadsheetProtocol {
 
 class ParserSpreadsheetXlsx: ParserSpreadsheetProtocol {
 
-        let number_of_rows: Int
-        let number_of_columns: Int
-        let parser_xlsx: ParserXLSX
+        var number_of_rows = 0
+        var number_of_columns = 0
+        var parser_xlsx: ParserXLSX?
 
         init(data: NSData) {
                 let url = file_create_temp_file_url(content: data)
-                let path = url.path
-                parser_xlsx = ParserXLSX(path: path)
+                if let path = url.path, let parser_xlsx = ParserXLSX(path: path) {
+                        number_of_rows = parser_xlsx.numberOfRows
+                        number_of_columns = parser_xlsx.numberOfColumns
+
+                        print(parser_xlsx.valid)
+                        print(parser_xlsx.numberOfRows)
+                        print(parser_xlsx.numberOfColumns)
+                }
                 file_remove(url: url)
-
-                number_of_rows = parser_xlsx.numberOfRows
-                number_of_columns = parser_xlsx.numberOfColumns
-
-                print(parser_xlsx.valid)
-                print(parser_xlsx.numberOfRows)
-                print(parser_xlsx.numberOfColumns)
-
-
-                
-
-//                print(spreadsheet.workbook)
-
+        }
 
 //                let worksheets = spreadsheet.workbook.worksheets
 //                if !worksheets.isEmpty {
@@ -104,7 +98,6 @@ class ParserSpreadsheetXlsx: ParserSpreadsheetProtocol {
 //                                cells.append(row_of_cells)
 //                        }
 //                }
-        }
 
         func cell_string(row row: Int, column: Int) -> String {
                 return parser_xlsx.cellStringForRow(row, andColumn: column)

@@ -8,15 +8,16 @@
 
 }
 
-- (instancetype)initWithPath:(NSString *)path;
+- (nullable instancetype)initWithPath:(nonnull NSString *)path;
 
-@property BOOL valid;
 @property NSInteger numberOfRows;
 @property NSInteger numberOfColumns;
 
-@property NSArray* rows;
+@property NSArray* _Nonnull rows;
 
--(NSString*) cellStringForRow: (NSInteger) row andColumn: (NSInteger) column;
--(NSArray*) cellValuesRowMajor:(NSInteger)row_0 row_1:(NSInteger)row_1 col_0:(NSInteger)col_0 col_1:(NSInteger)col_1;
+-(nullable BRACell*) cellForRow:(NSInteger)row andColumn:(NSInteger)column;
+
+-(nonnull NSString*) cellStringForRow: (NSInteger) row andColumn: (NSInteger) column;
+-(nonnull NSArray*) cellValuesRowMajor:(NSInteger)row_0 row_1:(NSInteger)row_1 col_0:(NSInteger)col_0 col_1:(NSInteger)col_1;
 
 @end;
