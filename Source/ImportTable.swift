@@ -323,8 +323,8 @@ class ImportTable: Component, SpreadSheetCellsDelegate, UITextFieldDelegate {
                 if first_time_set_label_text {
                         label.layer.backgroundColor = color_yellow.CGColor
                 } else if color == nil {
-                        label.layer.backgroundColor = color_blue.CGColor
-                        UIView.animateWithDuration(0.4, animations: {
+                        label.layer.backgroundColor = color_selected_values.CGColor
+                        UIView.animateWithDuration(0.3, animations: {
                                 self.label.layer.backgroundColor = color_yellow.CGColor
                         })
                 } else {

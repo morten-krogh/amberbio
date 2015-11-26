@@ -30,6 +30,7 @@ let color_brewer_sequential_9_blue = ["f7fbff", "deebf7", "c6dbef", "9ecae1", "6
 let color_red = color_from_hex(hex: color_brewer_qualitative_9_set1[0])
 let color_blue = color_from_hex(hex: color_brewer_qualitative_9_set1[1])
 let color_green = color_from_hex(hex: color_brewer_qualitative_9_set1[2])
+
 let color_yellow = color_from_hex(hex: color_brewer_qualitative_9_pastel1[5])
 let color_pink = color_from_hex(hex: color_brewer_qualitative_9_pastel1[7])
 
