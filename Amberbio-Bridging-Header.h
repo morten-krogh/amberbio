@@ -5,6 +5,8 @@
 
 #import "c-functions.h"
 
+#import "ParserXLSX.h"
+
 #import "XlsxReaderWriter-swift-bridge.h"
 
 
