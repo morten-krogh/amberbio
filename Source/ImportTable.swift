@@ -39,7 +39,7 @@ class ImportTableState: PageState {
 
                 full_screen = .Conditional
 
-                if file_data.length >= 10_000_000 {
+                if file_data.length >= 10_000_000 || file_name.hasSuffix("xlsx") {
                         prepared = false
                 } else {
                         prepare()
@@ -48,6 +48,10 @@ class ImportTableState: PageState {
 
         override func prepare() {
                 parser_spreadsheet = file_name.hasSuffix("xlsx") ? ParserSpreadsheetXlsx(data: file_data) : ParserSpreadsheetTxt(data: file_data)
+
+                if parser_spreadsheet.number_of_rows == 0 || parser_spreadsheet.number_of_columns == 0 {
+                        phase = 8
+                }
 
                 prepared = true
         }
@@ -303,11 +307,14 @@ class ImportTable: Component, SpreadSheetCellsDelegate, UITextFieldDelegate {
                         label_text = import_table_state.import_message
                         label_color = import_table_state.import_message_color
                         restart_button.hidden = false
-                default:
+                case 7:
                         label_text = "Type a title and tap the create button"
                         project_name_text_field.text = import_table_state.project_name
                         project_name_text_field.hidden = false
                         create_project_button.hidden = false
+                default:
+                        label_text = "The file can not be read"
+                        label_color = UIColor.redColor()
                 }
 
                 set_label_text(text: label_text, color: label_color)
@@ -321,7 +328,9 @@ class ImportTable: Component, SpreadSheetCellsDelegate, UITextFieldDelegate {
                 label.attributedText = astring_font_size_color(string: text, font: nil, font_size: 20, color: color)
                 label.textAlignment = .Center
 
-                if first_time_set_label_text {
+                if import_table_state.phase == 8 {
+                        label.layer.backgroundColor = UIColor.whiteColor().CGColor
+                } else if first_time_set_label_text {
                         label.layer.backgroundColor = color_label_background.CGColor
                 } else if color == nil {
                         label.layer.backgroundColor = color_selected_values.CGColor

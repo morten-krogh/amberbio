@@ -8,7 +8,7 @@
 @property NSInteger numberOfRows;
 @property NSInteger numberOfColumns;
 
-@property NSArray* _Nonnull rows;
+@property (nonnull) NSArray* rows;
 
 -(nullable BRACell*) cellForRow:(NSInteger)row andColumn:(NSInteger)column;
 

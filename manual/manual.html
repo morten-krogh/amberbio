@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8" />
-	<meta name="description" content="Amberbio app for data analysis.">
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	<title>Amberbio</title>
+                                        <meta charset="utf-8" />
+                                        <meta name="description" content="Amberbio app for data analysis.">
+                                        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+                                        <title>Amberbio</title>
         <link rel="icon" type="image/png" href="/favicon.png" />
-	<link rel="stylesheet" href="index.css" type="text/css">
-	<script>
-	document.createElement('header');
-	document.createElement('nav');
-	document.createElement('article');
-	document.createElement('section');
-	</script>
+                                        <link rel="stylesheet" href="index.css" type="text/css">
+                                        <script>
+                                        document.createElement('header');
+                                        document.createElement('nav');
+                                        document.createElement('article');
+                                        document.createElement('section');
+                                        </script>
 </head>
 
 <body>
@@ -126,7 +126,7 @@
   <section class="manual" id="version">
     <h1><a href="#table-of-contents">Version</a></h1>
     <p>
-      Version 5 of the Amberbio app.
+      Version 6 of the Amberbio app.
     </p>
   </section>
 
@@ -214,22 +214,33 @@
       imported in a new project. Factors and molecule annotations can be added at any time.
     </p>
 
-    <h3>Download of files</h3>
+    <h3>File types</h3>
     <p>
-      The app can handle import files with extension "txt" or "sqlite". The "txt" files represent tables of
-      data supplied by the user. The "sqlite" is a database file that has been exported from the app
-      at an earlier time. The "sqlite" files are used for backup and transfer of projects from one
-      device to another.
+      The app can import files with file extension ".txt", ".xlsx" and ".sqlite".
+     </p>
+
+    <p>
+      The ".txt" and ".xlsx" files contain tables, or spreadsheets, of data. They are prepared by
+      the user.  The tables are used to create a new project, to import factors to the active
+      project, or to import molecule annotations to the active project. The precise format of these
+      file types is explained below.
     </p>
 
+    <p>
+      The ".sqlite" files are internal files. They are exported by the app and later imported
+      in the app on any device. They are used to transfer and backup data by the app.
+    </p>
+
+    <h3>Download of files</h3>
     <p>
       Files can be downloaded in two ways; either by "opening" the file in another app such as Mail
       or by import from a cloud storage.
     </p>
 
     <p>
-      "opening" a file in another app is done by tapping the file and selecting the Amberbio app. A
-      typical use case is to open an email attachment by tapping the attachment in the Mail app.
+      Opening a file in the Amberbio app from another app is done by tapping the file and selecting
+      the Amberbio app. A typical use case is to open an email attachment by tapping the attachment
+      in the Mail app.
     </p>
 
     <p>
@@ -237,41 +248,86 @@
       Drive. The import is done by tapping "Download file" on the page <span class="app-page">Import
       data</span>. The corresponding cloud storage app must itself be installed on the device. The
       first time a certain cloud storage provider is used in the Amberbio app, it might be necessary
-      to tap "more" and enable it.
+      to tap "more" and enable that provider.
     </p>
 
     <h3>Importing downloaded files</h3>
     <p>
-      Tap the button "Import" below the file name for a downloaded file to import it. The import
-      process is performed by an import wizard that goes through several steps where the user can
-      select a rectangular region by tapping. The use of the import wizard minimizes the need to
-      edit the table in an external program before import.
+      Tap the button "Import" below the file name for a downloaded file to import it. ".sqlite"
+      files are automatically processed. ".txt" and ".xlsx" files are processed by an import wizard
+      that goes through several steps where the user can select a rectangular region by tapping. The
+      use of the import wizard minimizes the need to edit the table in an external program before
+      import.
     </p>
 
-    <h3>File format of txt files</h3>
+    <h3>Format of .txt files</h3>
     <p>
-      Files with extension "txt" can be used to create a new project, to import factors to the
-      active project, or to import molecule annotations to the active project.
+      The ".txt" files contain tables of data. The rows, or lines, are separated by "\n", "\r", or
+      "\r\n", and the cells are separated by "\t" or ",". In other words, the ".txt" files can be
+      both tab and comma separated and have all common line endings. The app finds the cell
+      separator automatically by first searching for tabs. If there are tabs, the app reads the file
+      as a tab separated file. If there are no tabs, the file is read as a comma separated
+      file. Tabs are never allowed within the cells. If there are commas within the cells, the file
+      must be tab separated.
+    </p>
+
+    <h3>Format of .xlsx files</h3>
+    <p>
+      The ".xlsx" are modern Excel files. They are distinct from the older ".xls" files. The ".xlsx"
+      files can be exported from Excel and many other programs. The data must reside in the first
+      sheet.
     </p>
 
     <p>
-      The "txt" files contain tables of values. The rows, or lines, are separated by "\n", "\r", or
-      "\r\n", and the cells are separated by "\t" or ",". The app finds the separator automatically by
-      first searching for tabs. If there are tabs, the app reads the file as a tab separated
-      file. If there are no tabs, the file is read as a comma separated file. Tabs are never allowed
-      within the cells. If there are commas within the cells, the file must be tab separated. 
+      The ".xlsx" files are parsed by the library "XlsxReaderWriter" by René BIGOT. The library is
+      available at https://github.com/renebigot/XlsxReaderWriter.
+    </p>
+
+    <h5 class="copyright-header">Copyright for XlsxReaderWriter</h5>
+      
+    <div class="copyright">
+      <p>
+	The MIT License (MIT)
+      </p>
+
+      <p>
+	Copyright (c) 2014 René BIGOT
+      </p>
+
+      <p>
+	Permission is hereby granted, free of charge, to any person obtaining a copy of this
+	software and associated documentation files (the "Software"), to deal in the Software
+	without restriction, including without limitation the rights to use, copy, modify, merge,
+	publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons
+	to whom the Software is furnished to do so, subject to the following conditions:
+      </p>
+
+      <p>
+	The above copyright notice and this permission notice shall be included in all copies or
+	substantial portions of the Software.
+      </p>
+
+      <p>
+	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+	INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
+	PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE
+	FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+	OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+	DEALINGS IN THE SOFTWARE.
+      </p>
+    </div>
+
+    <h3>Specification of tables from .txt and .xlsx files</h3>
+    <p>
+      Numerical values can be specified with either decimal point as in "12.98" or decimal comma as
+      in "12,98". If the decimal separator is comma, a ".txt" file must be tab separated. Anything else
+      than a number is taken as a missing value if a number is expected.
     </p>
 
     <p>
-      The decimal separator can be either point as in "12.98" or comma as in "12,98". If the decimal
-      separator is comma, the file must be tab separated. Anything else than a number is taken as a
-      missing value if a number is expected.
-    </p>
-
-    <p>
-      Due to the import wizard, any reasonable arrangement of rows and columns can be used for
-      import. For instance, samples can be in either row or columns with molecules in the other dimension. 
-      Examples are shown below.
+      Because of the import wizard, any reasonable arrangement of rows and columns can be used for
+      import. For instance, samples can be in either row or columns with molecules in the other
+      dimension. Examples are shown below.
     </p>
 
     <h4>Example 1</h4>
@@ -346,7 +402,7 @@
     
     <p>
       The second example is a transposed version of the first example. Also "," is used as decimal
-      separator in some values. This file must then be tab separated.
+      separator in some values. This file can not then be a comma separated ".txt" file.
     </p>
 
     <div class="table-wrapper">
@@ -511,7 +567,7 @@
     <h1><a href="#table-of-contents">Result files</a></h1>
     <p>
       Result files are created by the app. The result files are figures and tables and have the file
-      extension "txt", "pdf", or "png".  The result files are kept on the page
+      extension ".txt", ".pdf", or ".png".  The result files are kept on the page
       <span class="app-page">Result files</span>. The result files can be sent by email, opened in
       another app, or exported to a cloud storage.
     </p>
@@ -521,7 +577,7 @@
     <h1><a href="#table-of-contents">Backup and sharing of projects</a></h1>
     <p>
       Projects can be exported to a database file on the page <span class="app-page">Export
-      projects</span>. The database file has the extension "sqlite". The file can be used for backup
+      projects</span>. The database file has the extension ".sqlite". The file can be used for backup
       and transfer of projects to other devices. The file can be sent by email or exported to a
       cloud storage.
     </p>
