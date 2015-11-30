@@ -120,8 +120,6 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver {
                                 purchased_product_ids.insert(product_id)
                                 set_all()
                         }
-                } else {
-                        print("Thank you for the donation")
                 }
         }
 
