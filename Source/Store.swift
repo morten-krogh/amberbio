@@ -3,15 +3,9 @@ import StoreKit
 
 let store_product_ids = [
         "com.amberbio.product.ads",
-        "com.amberbio.product.donation_1"
-//        "com.amberbio.product.svm",
-//        "com.amberbio.product.knn",
-//        "com.amberbio.product.pca",
-//        "com.amberbio.product.anova",
-//        "com.amberbio.product.kmeans",
-//        "com.amberbio.product.sammon",
-//        "com.amberbio.product.som",
-//        "com.amberbio.product.bundle_2015"
+        "com.amberbio.product.donation_1",
+        "com.amberbio.product.donation_2",
+        "com.amberbio.product.donation_3"
 ]
 
 class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver {
@@ -23,10 +17,11 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver {
 
         var purchased_product_ids = [] as Set<String>
 
-        var products = [] as [SKProduct]
-        var purchased_products = [] as [SKProduct]
-        var products_to_purchase = [] as [SKProduct]
+        var ads_removed = false
 
+        var products = [] as [SKProduct]
+
+        var remove_ads_product: SKProduct?
         var donations = [] as [SKProduct]
 
         init(database: Database) {
@@ -100,23 +95,17 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver {
         }
 
         func set_all() {
-                purchased_products = []
-                products_to_purchase = []
                 donations = []
                 for product in products {
                         let product_id = product.productIdentifier
                         if product_id.hasPrefix("com.amberbio.product.donation") {
                                 donations.append(product)
-                        } else if purchased_product_ids.contains(product_id) {
-                                purchased_products.append(product)
                         } else {
-                                products_to_purchase.append(product)
+                                remove_ads_product = product
                         }
                 }
 
-                if purchased_product_ids.contains("com.amberbio.ads") {
-                        state.ads_removed = true
-                }
+                ads_removed = purchased_product_ids.contains("com.amberbio.product.ads")
         }
 
         func get_purchased_product_ids() {
@@ -125,10 +114,14 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver {
         }
 
         func insert_purchased_product_id(product_id product_id: String) {
-                if store_product_ids.indexOf(product_id) != nil {
-                        sqlite_insert_store_product_id(database: database, store_product_id: product_id)
-                        purchased_product_ids.insert(product_id)
-                        set_all()
+                if product_id == "com.amberbio.product.ads" {
+                        if store_product_ids.indexOf(product_id) != nil {
+                                sqlite_insert_store_product_id(database: database, store_product_id: product_id)
+                                purchased_product_ids.insert(product_id)
+                                set_all()
+                        }
+                } else {
+                        print("Thank you for the donation")
                 }
         }
 

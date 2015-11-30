@@ -63,7 +63,7 @@ class ModuleStore: Component, UITableViewDataSource, UITableViewDelegate {
         }
 
         func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-                return 4
+                return 3
         }
 
         func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -75,10 +75,12 @@ class ModuleStore: Component, UITableViewDataSource, UITableViewDelegate {
 
                 let text: String
                 if section == 0 {
-                        text = "Products to purchase"
+                        if state.store.ads_removed {
+                                text = "Ad removal has been purchased"
+                        } else {
+                                text = "Purchase ad removal"
+                        }
                 } else if section == 1 {
-                        text = "Purchased products"
-                } else if section == 2 {
                         text = "Donations"
                 } else {
                         text = "Restore purchased products"
@@ -90,10 +92,8 @@ class ModuleStore: Component, UITableViewDataSource, UITableViewDelegate {
 
         func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
                 if section == 0 {
-                        return state.store.products_to_purchase.count
+                        return state.store.remove_ads_product == nil ? 0 : 1
                 } else if section == 1 {
-                        return state.store.purchased_products.count
-                } else if section == 2 {
                         return state.store.donations.count
                 } else {
                         return 1
@@ -103,10 +103,12 @@ class ModuleStore: Component, UITableViewDataSource, UITableViewDelegate {
         func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
                 switch indexPath.section {
                 case 0:
-                        return store_product_table_view_cell_height
+                        if state.store.ads_removed {
+                                return centered_table_view_cell_height + 20
+                        } else {
+                                return store_product_table_view_cell_height
+                        }
                 case 1:
-                        return centered_table_view_cell_height + 20
-                case 2:
                         return store_product_table_view_cell_height
                 default:
                         return store_restore_table_view_cell_height
@@ -117,18 +119,20 @@ class ModuleStore: Component, UITableViewDataSource, UITableViewDelegate {
                 let (section, row) = (indexPath.section, indexPath.row)
 
                 if section == 0 {
-                        let color = color_from_hex(hex: color_brewer_qualitative_9_pastel1[5])
-                        let cell = tableView.dequeueReusableCellWithIdentifier("product cell") as! StoreProductTableViewCell
-                        cell.update(product: state.store.products_to_purchase[row], color: color)
-                        return cell
+                        if state.store.ads_removed {
+                                let color = color_from_hex(hex: color_brewer_qualitative_9_pastel1[2])
+                                let cell = tableView.dequeueReusableCellWithIdentifier("centered cell") as! CenteredTableViewCell
+                                let title = state.store.remove_ads_product!.localizedTitle
+                                let astring = astring_body(string: title)
+                                cell.update(attributed_text: astring, background_color: color, symbol: .Checkmark)
+                                return cell
+                        } else {
+                                let color = color_from_hex(hex: color_brewer_qualitative_9_pastel1[5])
+                                let cell = tableView.dequeueReusableCellWithIdentifier("product cell") as! StoreProductTableViewCell
+                                cell.update(product: state.store.remove_ads_product!, color: color)
+                                return cell
+                        }
                 } else if section == 1 {
-                        let color = color_from_hex(hex: color_brewer_qualitative_9_pastel1[2])
-                        let cell = tableView.dequeueReusableCellWithIdentifier("centered cell") as! CenteredTableViewCell
-                        let title = state.store.purchased_products[row].localizedTitle
-                        let astring = astring_body(string: title)
-                        cell.update(attributed_text: astring, background_color: color, symbol: .Checkmark)
-                        return cell
-                } else if section == 2 {
                         let color = color_from_hex(hex: color_brewer_qualitative_9_pastel1[5])
                         let cell = tableView.dequeueReusableCellWithIdentifier("product cell") as! StoreProductTableViewCell
                         cell.update(product: state.store.donations[row], color: color)

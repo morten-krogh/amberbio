@@ -16,7 +16,6 @@ class State {
         var render_type_before_ads = RenderType.full_page
         let root_component = RootComponent()
 
-        var ads_removed = false
         var ads_did_finish = true
         var ads_time_of_last = NSDate()
 
@@ -114,7 +113,7 @@ class State {
         let page_names_with_ads = ["geo", "pca"]
 
         func ads_show() {
-                if ads_removed || page_names_with_ads.indexOf(page_state.name) == nil {
+                if store.ads_removed || page_names_with_ads.indexOf(page_state.name) == nil {
                         return
                 }
 
