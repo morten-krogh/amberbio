@@ -45,7 +45,7 @@ func state_init() {
 
         state = State(database: database)
         state.set_page_state(page_state: initial_page_state)
-        state.render_type = .ads
+//        state.render_type = .ads
 
         SKPaymentQueue.defaultQueue().addTransactionObserver(state.store)
 }

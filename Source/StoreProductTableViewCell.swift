@@ -1,7 +1,7 @@
 import UIKit
 import StoreKit
 
-let store_product_table_view_cell_height = 275 as CGFloat
+let store_product_table_view_cell_height = 210 as CGFloat
 
 class StoreProductTableViewCell: UITableViewCell {
 
@@ -65,7 +65,7 @@ class StoreProductTableViewCell: UITableViewCell {
                         description_label.font = font_footnote
                 }
 
-                description_label.frame = CGRect(x: (width - description_width) / 2, y: origin_y, width: description_width, height: 120)
+                description_label.frame = CGRect(x: (width - description_width) / 2, y: origin_y, width: description_width, height: 50)
                 origin_y += description_label.frame.height
 
                 price_label.frame = CGRect(x: 0, y: origin_y, width: width, height: 40)

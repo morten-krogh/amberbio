@@ -63,7 +63,7 @@ class ModuleStore: Component, UITableViewDataSource, UITableViewDelegate {
         }
 
         func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-                return 3
+                return 4
         }
 
         func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -78,6 +78,8 @@ class ModuleStore: Component, UITableViewDataSource, UITableViewDelegate {
                         text = "Products to purchase"
                 } else if section == 1 {
                         text = "Purchased products"
+                } else if section == 2 {
+                        text = "Donations"
                 } else {
                         text = "Restore purchased products"
                 }
@@ -91,6 +93,8 @@ class ModuleStore: Component, UITableViewDataSource, UITableViewDelegate {
                         return state.store.products_to_purchase.count
                 } else if section == 1 {
                         return state.store.purchased_products.count
+                } else if section == 2 {
+                        return state.store.donations.count
                 } else {
                         return 1
                 }
@@ -103,9 +107,9 @@ class ModuleStore: Component, UITableViewDataSource, UITableViewDelegate {
                 case 1:
                         return centered_table_view_cell_height + 20
                 case 2:
-                        return store_restore_table_view_cell_height
+                        return store_product_table_view_cell_height
                 default:
-                        return centered_table_view_cell_height + 20
+                        return store_restore_table_view_cell_height
                 }
         }
 
@@ -123,6 +127,11 @@ class ModuleStore: Component, UITableViewDataSource, UITableViewDelegate {
                         let title = state.store.purchased_products[row].localizedTitle
                         let astring = astring_body(string: title)
                         cell.update(attributed_text: astring, background_color: color, symbol: .Checkmark)
+                        return cell
+                } else if section == 2 {
+                        let color = color_from_hex(hex: color_brewer_qualitative_9_pastel1[5])
+                        let cell = tableView.dequeueReusableCellWithIdentifier("product cell") as! StoreProductTableViewCell
+                        cell.update(product: state.store.donations[row], color: color)
                         return cell
                 } else {
                         let cell = tableView.dequeueReusableCellWithIdentifier("restore cell") as! StoreRestoreTableViewCell

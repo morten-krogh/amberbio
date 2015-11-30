@@ -2,7 +2,8 @@ import Foundation
 import StoreKit
 
 let store_product_ids = [
-        "com.amberbio.product.ads"
+        "com.amberbio.product.ads",
+        "com.amberbio.product.donation_1"
 //        "com.amberbio.product.svm",
 //        "com.amberbio.product.knn",
 //        "com.amberbio.product.pca",
@@ -25,6 +26,8 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver {
         var products = [] as [SKProduct]
         var purchased_products = [] as [SKProduct]
         var products_to_purchase = [] as [SKProduct]
+
+        var donations = [] as [SKProduct]
 
         init(database: Database) {
                 self.database = database
@@ -99,9 +102,12 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver {
         func set_all() {
                 purchased_products = []
                 products_to_purchase = []
+                donations = []
                 for product in products {
                         let product_id = product.productIdentifier
-                        if !purchased_product_ids.contains(product_id) {
+                        if product_id.hasPrefix("com.amberbio.product.donation") {
+                                donations.append(product)
+                        } else if purchased_product_ids.contains(product_id) {
                                 purchased_products.append(product)
                         } else {
                                 products_to_purchase.append(product)
