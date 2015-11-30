@@ -44,7 +44,7 @@ class Ads: Component {
 
 
 
-
+                print(height) // remove again
         }
 
         override func render() {
