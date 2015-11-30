@@ -289,6 +289,7 @@
 		60D906D41C071EC90043F42D /* ParserXLSX.m in Sources */ = {isa = PBXBuildFile; fileRef = 60D906D31C071EC90043F42D /* ParserXLSX.m */; };
 		60DF228D1BC58E9E0038AAE1 /* random.c in Sources */ = {isa = PBXBuildFile; fileRef = 60DF228B1BC58E9E0038AAE1 /* random.c */; };
 		60E06B9E1BAC3D2F00B05223 /* RemoveMolecules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E06B9D1BAC3D2F00B05223 /* RemoveMolecules.swift */; };
+		60F73F3B1C0C7244000E9750 /* Ads.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F73F3A1C0C7244000E9750 /* Ads.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -635,6 +636,7 @@
 		60D906D51C071EF20043F42D /* ParserXLSX.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ParserXLSX.h; path = Source/ParserXLSX.h; sourceTree = "<group>"; };
 		60DF228B1BC58E9E0038AAE1 /* random.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = random.c; path = Source/random.c; sourceTree = "<group>"; };
 		60E06B9D1BAC3D2F00B05223 /* RemoveMolecules.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RemoveMolecules.swift; path = Source/RemoveMolecules.swift; sourceTree = "<group>"; };
+		60F73F3A1C0C7244000E9750 /* Ads.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Ads.swift; path = Source/Ads.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -759,6 +761,7 @@
 				60B400581BA19C7900D8DD80 /* Component.swift */,
 				60B400461BA19C7900D8DD80 /* ActiveDataSet.swift */,
 				60B400471BA19C7900D8DD80 /* ActivityIndicator.swift */,
+				60F73F3A1C0C7244000E9750 /* Ads.swift */,
 				60B4004A1BA19C7900D8DD80 /* AnovaFactorSelection.swift */,
 				60B4004B1BA19C7900D8DD80 /* AnovaPlot.swift */,
 				60B4004C1BA19C7900D8DD80 /* AnovaTable.swift */,
@@ -963,6 +966,7 @@
 				60B4015F1BA19E7F00D8DD80 /* CFunctions */,
 				60B4016E1BA1BBFD00D8DD80 /* Manual */,
 				60B401731BA1BDE800D8DD80 /* MakeDatabase */,
+				60F73F391C0C71F9000E9750 /* Ads */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -1222,6 +1226,13 @@
 				60D906C31C05F4A20043F42D /* zip.h */,
 			);
 			path = minizip;
+			sourceTree = "<group>";
+		};
+		60F73F391C0C71F9000E9750 /* Ads */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Ads;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1633,6 +1644,7 @@
 				60D906971C05F4950043F42D /* BRACellFormat.m in Sources */,
 				60B401401BA19C7900D8DD80 /* SampleNames.swift in Sources */,
 				60B400FF1BA19C7900D8DD80 /* Files.swift in Sources */,
+				60F73F3B1C0C7244000E9750 /* Ads.swift in Sources */,
 				60B4011E1BA19C7900D8DD80 /* NameDateTableViewCell.swift in Sources */,
 				60B401491BA19C7900D8DD80 /* SingleMoleculeTableViewCell.swift in Sources */,
 				60B400F21BA19C7900D8DD80 /* Drawing.swift in Sources */,

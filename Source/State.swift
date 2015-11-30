@@ -4,6 +4,7 @@ enum RenderType {
         case full_page
         case progress_indicator
         case activity_indicator
+        case ads
 }
 
 class State {
@@ -12,7 +13,12 @@ class State {
 
         var rendering = false
         var render_type = RenderType.full_page
+        var render_type_before_ads = RenderType.full_page
         let root_component = RootComponent()
+
+        var ads_removed = false
+        var ads_did_finish = true
+        var ads_time_of_last = NSDate()
 
         var activity_indicator_info = ""
         var progress_indicator_info = ""
@@ -72,6 +78,7 @@ class State {
         func render() {
                 if !rendering {
                         rendering = true
+                        ads_show()
                         if render_type == RenderType.full_page && !state.page_state.prepared {
                                 activity_indicator_info = "Calculating"
                                 render_type = RenderType.activity_indicator
@@ -102,6 +109,31 @@ class State {
                         self.progress_indicator_progress = progress_indicator_progress
                         render_from_dispatch_queue()
                 }
+        }
+
+        let page_names_with_ads = ["geo", "pca"]
+
+        func ads_show() {
+                if ads_removed || page_names_with_ads.indexOf(page_state.name) == nil {
+                        return
+                }
+
+                if !ads_did_finish || NSDate().timeIntervalSinceDate(ads_time_of_last) > 10 {
+                        ads_did_finish = false
+                        render_type_before_ads = render_type
+                        render_type = .ads
+                }
+        }
+
+        func ads_finish() {
+                ads_did_finish = true
+                ads_time_of_last = NSDate()
+                render_type = render_type_before_ads
+        }
+
+        func ads_interrupt() {
+                render_type = .full_page
+                navigate(page_state: ModuleStoreState())
         }
 
         func set_active_data_set(data_set_id data_set_id: Int) {

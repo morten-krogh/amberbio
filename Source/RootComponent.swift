@@ -7,6 +7,7 @@ class RootComponent: Component {
         let full_page = FullPage()
         let progress_indicator = ProgressIndicator()
         let activity_indicator = ActivityIndicator()
+        let ads = Ads()
 
         override func viewWillLayoutSubviews() {
                 super.viewWillLayoutSubviews()
@@ -25,15 +26,19 @@ class RootComponent: Component {
         }
 
         override func render() {
-                if state.render_type == RenderType.full_page {
+                switch state.render_type {
+                case .full_page:
                         set_child_view_controller(view_controller: full_page)
                         full_page.render()
-                } else if state.render_type == RenderType.progress_indicator {
+                case .progress_indicator:
                         set_child_view_controller(view_controller: progress_indicator)
                         progress_indicator.render()
-                } else if state.render_type == RenderType.activity_indicator {
+                case .activity_indicator:
                         set_child_view_controller(view_controller: activity_indicator)
                         activity_indicator.render()
+                case .ads:
+                        set_child_view_controller(view_controller: ads)
+                        ads.render()
                 }
         }
 
