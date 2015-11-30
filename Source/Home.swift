@@ -223,10 +223,8 @@ class Home: Component, UICollectionViewDataSource, UICollectionViewDelegate, UIC
 
                 let title = page_titles[indexPath.section][indexPath.row]
                 let previously_selected = state.home_selected_index_path == indexPath
-                let page_name = home_helper.index_path_to_page_name[indexPath]!
-                let locked = state.locked(page_name: page_name)
 
-                cell.update(title: title, section: indexPath.section, border: previously_selected, locked: locked)
+                cell.update(title: title, section: indexPath.section, border: previously_selected, locked: false)
 
                 return cell
         }
