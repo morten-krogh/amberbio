@@ -24,11 +24,11 @@ class Ads: Component, AVCustomAdDelegate {
                 let av_custom = AvocarrotCustom()
                 av_custom.apiKey = "d63c88bab12483f26954d2a0e2d3388fe5ccc6fc"
                 av_custom.sandbox = true
-                av_custom.loadAdForPlacement("32f5518cc3f0cd20a557f893906dcdd02badfb85")
                 av_custom.delegate = self
                 av_custom.setLogger(true, withLevel: "ALL")
+                av_custom.loadAdForPlacement("32f5518cc3f0cd20a557f893906dcdd02badfb85")
 
-                remove_ads_button.setAttributedTitle(astring_body(string: "Remove ads and support the app"), forState: .Normal)
+                remove_ads_button.setAttributedTitle(astring_body_size(string: "Remove ads and support the app", font_size: 20), forState: .Normal)
                 remove_ads_button.addTarget("self", action: "remove_ads_action", forControlEvents: .TouchUpInside)
                 view.addSubview(remove_ads_button)
 
@@ -38,8 +38,10 @@ class Ads: Component, AVCustomAdDelegate {
                 av_button.enabled = false
                 view.addSubview(av_button)
 
+                av_headline.numberOfLines = 0
                 view.addSubview(av_headline)
 
+                av_subheadline.numberOfLines = 0
                 view.addSubview(av_subheadline)
 
                 view.addSubview(av_image_view)
@@ -55,25 +57,38 @@ class Ads: Component, AVCustomAdDelegate {
 
                 remove_ads_button.sizeToFit()
                 remove_ads_button.center = CGPoint(x: width / 2, y: origin_y + remove_ads_button.frame.height / 2)
-                origin_y = CGRectGetMaxY(remove_ads_button.frame) + 20
+                origin_y = CGRectGetMaxY(remove_ads_button.frame) + 15
 
                 timer_label.sizeToFit()
-                timer_label.frame = CGRect(x: 0, y: origin_y, width: width, height: 40 + timer_label.frame.height)
-                origin_y = CGRectGetMaxY(timer_label.frame) + 30
+                timer_label.frame = CGRect(x: 0, y: origin_y, width: width, height: timer_label.frame.height)
+                origin_y = CGRectGetMaxY(timer_label.frame) + 20
 
                 av_button.sizeToFit()
                 av_button.center = CGPoint(x: width / 2, y: origin_y + av_button.frame.height / 2)
-                origin_y = CGRectGetMaxY(av_button.frame) + 20
+                origin_y = CGRectGetMaxY(av_button.frame) + 10
 
-                av_headline.frame = CGRect(x: 0, y: origin_y, width: width, height: 40)
-                origin_y = CGRectGetMaxY(av_headline.frame) + 30
+                let av_headline_size = av_headline.sizeThatFits(CGSize(width: width - 10, height: 0))
+                av_headline.frame = CGRect(x: 0, y: origin_y, width: width, height: av_headline_size.height)
+                origin_y = CGRectGetMaxY(av_headline.frame) + 15
 
-                av_subheadline.frame = CGRect(x: 0, y: origin_y, width: width, height: 40)
-                origin_y = CGRectGetMaxY(av_subheadline.frame) + 30
+                let av_subheadline_size = av_subheadline.sizeThatFits(CGSize(width: width - 10, height: 0))
+                av_subheadline.frame = CGRect(x: 0, y: origin_y, width: width, height: av_subheadline_size.height)
+                origin_y = CGRectGetMaxY(av_subheadline.frame) + 10
 
-                
+                let image_width = CGFloat(ad?.getImageWidth().floatValue ?? 0.0)
+                let image_height = CGFloat(ad?.getImageHeight().floatValue ?? 0.0)
+                let remaining_height = height - origin_y
+                let remaining_width = width
 
-                print(height) // remove again
+                if image_width > 0 && image_height > 0 && remaining_width > 0 && remaining_height > 0 {
+                        let scale_width = remaining_width / image_width
+                        let scale_height = remaining_height / image_height
+                        let scale = min(scale_width, scale_height)
+                        av_image_view.frame.size = CGSize(width: scale * image_width, height: scale * image_height)
+                        av_image_view.center = CGPoint(x: width / 2, y: origin_y + remaining_height / 2)
+                } else {
+                        av_image_view.frame = CGRect.zero
+                }
         }
 
         override func render() {
@@ -104,7 +119,8 @@ class Ads: Component, AVCustomAdDelegate {
         func remove_ads_action() {
                 timer?.invalidate()
                 timer = nil
-                state.ads_interrupt()
+                state.render_type = .full_page
+                state.navigate(page_state: ModuleStoreState())
                 state.render()
         }
 
@@ -112,10 +128,12 @@ class Ads: Component, AVCustomAdDelegate {
                 self.ad = ad
                 ad.bindToView(view)
 
+                print(ad.getImageUrl())
+
                 dispatch_after(DISPATCH_TIME_NOW, dispatch_get_main_queue(), {
 
                         let av_button_text = ad.getCTAText()
-                        self.av_button.setAttributedTitle(astring_body(string: av_button_text), forState: .Normal)
+                        self.av_button.setAttributedTitle(astring_body_size(string: av_button_text, font_size: 20), forState: .Normal)
                         self.av_button.enabled = true
 
                         let av_headline_text = ad.getHeadline()
@@ -126,12 +144,11 @@ class Ads: Component, AVCustomAdDelegate {
                         self.av_subheadline.attributedText = astring_body(string: av_subheadline_text)
                         self.av_subheadline.textAlignment = .Center
 
+                        if ad.getImageHeight().integerValue > 0 && ad.getImageWidth().integerValue > 0 {
+                                self.av_image_view.image = ad.getImage()
+                        }
 
-
-//                        if ad.getImageHeight().integerValue > 0 && ad.getImageWidth().integerValue > 0 {
-//                                self.image_field.image = ad.getImage()
-//                        }
-
+                        self.view.setNeedsLayout()
                 })
         }
 

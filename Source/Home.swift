@@ -255,6 +255,7 @@ class Home: Component, UICollectionViewDataSource, UICollectionViewDelegate, UIC
         func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
                 let page_state = section_row_to_page_state(section: indexPath.section, row: indexPath.row)
                 state.navigate(page_state: page_state)
+                state.ads_show()
                 state.render()
         }
 

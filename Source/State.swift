@@ -16,7 +16,6 @@ class State {
         var render_type_before_ads = RenderType.full_page
         let root_component = RootComponent()
 
-        var ads_did_finish = true
         var ads_time_of_last = NSDate()
 
         var activity_indicator_info = ""
@@ -77,7 +76,6 @@ class State {
         func render() {
                 if !rendering {
                         rendering = true
-                        ads_show()
                         if render_type == RenderType.full_page && !state.page_state.prepared {
                                 activity_indicator_info = "Calculating"
                                 render_type = RenderType.activity_indicator
@@ -117,22 +115,17 @@ class State {
                         return
                 }
 
-                if !ads_did_finish || NSDate().timeIntervalSinceDate(ads_time_of_last) > ad_time_to_next_ad {
-                        ads_did_finish = false
-                        render_type_before_ads = render_type
-                        render_type = .ads
+                if NSDate().timeIntervalSinceDate(ads_time_of_last) > ad_time_to_next_ad {
+                        if render_type != .ads {
+                                render_type_before_ads = render_type
+                                render_type = .ads
+                        }
                 }
         }
 
         func ads_finish() {
-                ads_did_finish = true
                 ads_time_of_last = NSDate()
                 render_type = render_type_before_ads
-        }
-
-        func ads_interrupt() {
-                render_type = .full_page
-                navigate(page_state: ModuleStoreState())
         }
 
         func set_active_data_set(data_set_id data_set_id: Int) {

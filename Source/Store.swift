@@ -105,7 +105,9 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver {
                         }
                 }
 
-                ads_removed = purchased_product_ids.contains("com.amberbio.product.ads")
+                if purchased_product_ids.contains("com.amberbio.product.ads") {
+                        ads_removed = true
+                }
         }
 
         func get_purchased_product_ids() {

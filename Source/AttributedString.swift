@@ -26,6 +26,10 @@ func astring_body(string string: String) -> Astring {
         return Astring(string: string, attributes: attributes_body)
 }
 
+func astring_body_size(string string: String, font_size: CGFloat) -> Astring {
+        return astring_font_size_color(string: string, font: nil, font_size: font_size, color: nil)
+}
+
 func astring_headline(string string: String) -> Astring {
         return Astring(string: string, attributes: attributes_headline)
 }

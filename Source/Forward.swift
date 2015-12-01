@@ -24,6 +24,7 @@ class Forward: Component {
 
         func action() {
                 state.navigate_forward()
+                state.ads_show()
                 state.render()
         }
 }
