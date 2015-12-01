@@ -5,8 +5,8 @@ class ModuleStoreState: PageState {
         override init() {
                 super.init()
                 name = "module_store"
-                title = astring_body(string: "Module store")
-                info = "The module store is used to purchase modules.\n\nA purchased module is unlocked forever on this device and other devices with the same Apple ID.\n\nTap the button \"Restore\" to unlock modules that have been purchased on another device or on a previous installation of this app.\n\nAll modules cen be freely used for the demo data sets."
+                title = astring_body(string: "Payment")
+                info = "The app is ad based.\n\nAds can be removed by a one tme payment.\n\nDonations do not change the workings of the app, but support the development of the app."
 
                 state.store.request_products()
         }
