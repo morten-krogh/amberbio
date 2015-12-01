@@ -23,7 +23,7 @@ class Ads: Component, AVCustomAdDelegate {
 
                 let av_custom = AvocarrotCustom()
                 av_custom.apiKey = "d63c88bab12483f26954d2a0e2d3388fe5ccc6fc"
-                av_custom.sandbox = true
+                av_custom.sandbox = false
                 av_custom.delegate = self
                 av_custom.setLogger(true, withLevel: "ALL")
                 av_custom.loadAdForPlacement("32f5518cc3f0cd20a557f893906dcdd02badfb85")
@@ -67,12 +67,12 @@ class Ads: Component, AVCustomAdDelegate {
                 av_button.center = CGPoint(x: width / 2, y: origin_y + av_button.frame.height / 2)
                 origin_y = CGRectGetMaxY(av_button.frame) + 10
 
-                let av_headline_size = av_headline.sizeThatFits(CGSize(width: width - 10, height: 0))
-                av_headline.frame = CGRect(x: 0, y: origin_y, width: width, height: av_headline_size.height)
+                let av_headline_size = av_headline.sizeThatFits(CGSize(width: width - 20, height: 0))
+                av_headline.frame = CGRect(x: 10, y: origin_y, width: width - 20, height: av_headline_size.height)
                 origin_y = CGRectGetMaxY(av_headline.frame) + 15
 
-                let av_subheadline_size = av_subheadline.sizeThatFits(CGSize(width: width - 10, height: 0))
-                av_subheadline.frame = CGRect(x: 0, y: origin_y, width: width, height: av_subheadline_size.height)
+                let av_subheadline_size = av_subheadline.sizeThatFits(CGSize(width: width - 20, height: 0))
+                av_subheadline.frame = CGRect(x: 10, y: origin_y, width: width - 20, height: av_subheadline_size.height)
                 origin_y = CGRectGetMaxY(av_subheadline.frame) + 10
 
                 let image_width = CGFloat(ad?.getImageWidth().floatValue ?? 0.0)
@@ -125,30 +125,36 @@ class Ads: Component, AVCustomAdDelegate {
         }
 
         func adDidLoad(ad: AVCustomAd!) {
+                print("\n\n\ncall adDidLoad")
                 self.ad = ad
                 ad.bindToView(view)
 
-                print(ad.getImageUrl())
+//                print(ad.getImageUrl())
 
                 dispatch_after(DISPATCH_TIME_NOW, dispatch_get_main_queue(), {
 
-                        let av_button_text = ad.getCTAText()
-                        self.av_button.setAttributedTitle(astring_body_size(string: av_button_text, font_size: 20), forState: .Normal)
-                        self.av_button.enabled = true
+                        let valid_ad = avocarrot_ad_valid(ad) as Bool
+                        print("The ad is valid = \(valid_ad)")
 
-                        let av_headline_text = ad.getHeadline()
-                        self.av_headline.attributedText = astring_body(string: av_headline_text)
-                        self.av_headline.textAlignment = .Center
+                        if (valid_ad) {
+                                let av_button_text = ad.getCTAText()
+                                self.av_button.setAttributedTitle(astring_body_size(string: av_button_text!, font_size: 20), forState: .Normal)
+                                self.av_button.enabled = true
 
-                        let av_subheadline_text = ad.getSubHeadline()
-                        self.av_subheadline.attributedText = astring_body(string: av_subheadline_text)
-                        self.av_subheadline.textAlignment = .Center
+                                let av_headline_text = ad.getHeadline()
+                                self.av_headline.attributedText = astring_body(string: av_headline_text)
+                                self.av_headline.textAlignment = .Center
 
-                        if ad.getImageHeight().integerValue > 0 && ad.getImageWidth().integerValue > 0 {
-                                self.av_image_view.image = ad.getImage()
+                                let av_subheadline_text = ad.getSubHeadline()
+                                self.av_subheadline.attributedText = astring_body(string: av_subheadline_text)
+                                self.av_subheadline.textAlignment = .Center
+
+                                if ad.getImageHeight().integerValue > 0 && ad.getImageWidth().integerValue > 0 {
+                                        self.av_image_view.image = ad.getImage()
+                                }
+                                
+                                self.view.setNeedsLayout()
                         }
-
-                        self.view.setNeedsLayout()
                 })
         }
 

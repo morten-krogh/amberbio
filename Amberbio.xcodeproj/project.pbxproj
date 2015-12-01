@@ -294,6 +294,7 @@
 		60F73F3F1C0D8B01000E9750 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60F73F3E1C0D8B01000E9750 /* AdSupport.framework */; };
 		60F73F411C0D8B17000E9750 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60F73F401C0D8B17000E9750 /* CoreTelephony.framework */; };
 		60F73F431C0D8B27000E9750 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60F73F421C0D8B27000E9750 /* SystemConfiguration.framework */; };
+		60F73F451C0DEAA0000E9750 /* Avocarrot.m in Sources */ = {isa = PBXBuildFile; fileRef = 60F73F441C0DEAA0000E9750 /* Avocarrot.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -645,6 +646,8 @@
 		60F73F3E1C0D8B01000E9750 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		60F73F401C0D8B17000E9750 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		60F73F421C0D8B27000E9750 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		60F73F441C0DEAA0000E9750 /* Avocarrot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Avocarrot.m; path = Source/Avocarrot.m; sourceTree = "<group>"; };
+		60F73F461C0DEBA6000E9750 /* Avocarrot.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Avocarrot.h; path = Source/Avocarrot.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1247,6 +1250,8 @@
 		60F73F391C0C71F9000E9750 /* Ads */ = {
 			isa = PBXGroup;
 			children = (
+				60F73F461C0DEBA6000E9750 /* Avocarrot.h */,
+				60F73F441C0DEAA0000E9750 /* Avocarrot.m */,
 			);
 			name = Ads;
 			sourceTree = "<group>";
@@ -1565,6 +1570,7 @@
 				60D906B61C05F4950043F42D /* UIColor+HTML.m in Sources */,
 				605F52321BC2ED2D00033B91 /* SupervisedClassificationParameterSelection.swift in Sources */,
 				60B400E71BA19C7900D8DD80 /* ContingencyTable.swift in Sources */,
+				60F73F451C0DEAA0000E9750 /* Avocarrot.m in Sources */,
 				601E57AF1BCE64F2002EEEB3 /* svm.cpp in Sources */,
 				60D2C3BE1BDFDAAE00C6C6EF /* Values.swift in Sources */,
 				60BFB2441BECC7DC000B492C /* som.c in Sources */,
