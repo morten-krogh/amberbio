@@ -1,11 +1,12 @@
 import UIKit
 
+let add_time_interval = 10.0
+let add_time_show = 10.0
+
 class Ads: Component {
 
         var timer: NSTimer?
-        var elapsed_time = 0
-        let total_time = 10
-        let add_remove_time = 5
+        var elapsed_time = 0.0
 
         let remove_ads_button = UIButton(type: .System)
         let timer_label = UILabel()
@@ -16,11 +17,8 @@ class Ads: Component {
                 remove_ads_button.addTarget("self", action: "remove_ads_action", forControlEvents: .TouchUpInside)
                 view.addSubview(remove_ads_button)
 
-                set_timer_label()
+
                 view.addSubview(timer_label)
-
-
-
 
 
         }
@@ -49,18 +47,18 @@ class Ads: Component {
 
         override func render() {
                 elapsed_time = 0
+                set_timer_label()
                 timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "timer_action", userInfo: nil, repeats: true)
-
         }
 
         func set_timer_label() {
-                let text = "Ads will disappear in \(total_time - elapsed_time) seconds"
+                let text = "Ads will disappear in \(add_time_show - elapsed_time) seconds"
                 timer_label.attributedText = astring_body(string: text)
                 timer_label.textAlignment = .Center
         }
 
         func timer_action() {
-                if elapsed_time < total_time {
+                if elapsed_time < add_time_show {
                         elapsed_time++
                         set_timer_label()
                 } else {
