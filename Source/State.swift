@@ -117,7 +117,7 @@ class State {
                         return
                 }
 
-                if !ads_did_finish || NSDate().timeIntervalSinceDate(ads_time_of_last) > add_time_interval {
+                if !ads_did_finish || NSDate().timeIntervalSinceDate(ads_time_of_last) > ad_time_to_next_ad {
                         ads_did_finish = false
                         render_type_before_ads = render_type
                         render_type = .ads

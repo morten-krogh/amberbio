@@ -1,7 +1,7 @@
 import UIKit
 
-let add_time_interval = 10.0
-let add_time_show = 10.0
+let ad_time_to_next_ad = 10.0
+let ad_time_show = 10.0
 
 class Ads: Component, AVCustomAdDelegate {
 
@@ -68,7 +68,10 @@ class Ads: Component, AVCustomAdDelegate {
                 av_headline.frame = CGRect(x: 0, y: origin_y, width: width, height: 40)
                 origin_y = CGRectGetMaxY(av_headline.frame) + 30
 
+                av_subheadline.frame = CGRect(x: 0, y: origin_y, width: width, height: 40)
+                origin_y = CGRectGetMaxY(av_subheadline.frame) + 30
 
+                
 
                 print(height) // remove again
         }
@@ -80,13 +83,14 @@ class Ads: Component, AVCustomAdDelegate {
         }
 
         func set_timer_label() {
-                let text = "Ads will disappear in \(add_time_show - elapsed_time) seconds"
+                let remaining = Int(ad_time_show - elapsed_time)
+                let text = "The ad will disappear in \(remaining) seconds"
                 timer_label.attributedText = astring_body(string: text)
                 timer_label.textAlignment = .Center
         }
 
         func timer_action() {
-                if elapsed_time < add_time_show {
+                if elapsed_time < ad_time_show {
                         elapsed_time++
                         set_timer_label()
                 } else {
@@ -117,6 +121,10 @@ class Ads: Component, AVCustomAdDelegate {
                         let av_headline_text = ad.getHeadline()
                         self.av_headline.attributedText = astring_body(string: av_headline_text)
                         self.av_headline.textAlignment = .Center
+
+                        let av_subheadline_text = ad.getSubHeadline()
+                        self.av_subheadline.attributedText = astring_body(string: av_subheadline_text)
+                        self.av_subheadline.textAlignment = .Center
 
 
 

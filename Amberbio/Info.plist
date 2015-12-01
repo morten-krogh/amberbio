@@ -63,6 +63,8 @@
 	<true/>
 	<key>NSAppTransportSecurity</key>
 	<dict>
+          <key>NSAllowsArbitraryLoads</key><true/>  
+<!--		
 		<key>NSExceptionDomains</key>
 		<dict>
 			<key>ftp.ncbi.nlm.nih.gov</key>
@@ -71,6 +73,7 @@
 				<true/>
 			</dict>
 		</dict>
+--> 
 	</dict>
 	<key>UILaunchStoryboardName</key>
 	<string>AmberbioLaunchScreen</string>
