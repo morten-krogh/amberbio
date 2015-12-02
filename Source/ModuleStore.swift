@@ -25,7 +25,6 @@ class ModuleStore: Component, UITableViewDataSource, UITableViewDelegate {
                 info_label.numberOfLines = 0
                 view.addSubview(info_label)
 
-                table_view.registerClass(MultiLineHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: "multi line header")
                 table_view.registerClass(CenteredHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: "centered header")
                 table_view.registerClass(StoreProductTableViewCell.self, forCellReuseIdentifier: "product cell")
                 table_view.registerClass(StoreRestoreTableViewCell.self, forCellReuseIdentifier: "restore cell")
@@ -79,31 +78,27 @@ class ModuleStore: Component, UITableViewDataSource, UITableViewDelegate {
         }
 
         func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+                let header = tableView.dequeueReusableHeaderFooterViewWithIdentifier("centered header") as! CenteredHeaderFooterView
+
+                let text: String
+
                 if section == 0 {
-                        let header = tableView.dequeueReusableHeaderFooterViewWithIdentifier("multi line header") as! MultiLineHeaderFooterView
-                        let text = "4 ways to support the app.\n1. Purchase ad removal.\n2. Install and open apps from the ads."
-                        let attributed_text = astring_font_size_color(string: text, font: nil, font_size: 22, color: nil)
-                        header.update(attributed_text: attributed_text, background_color: color_success)
-                        return header
-                } else {
-                        let header = tableView.dequeueReusableHeaderFooterViewWithIdentifier("centered header") as! CenteredHeaderFooterView
-
-                        let text: String
-                        if section == 1 {
-                                if state.store.ads_removed {
-                                        text = "Ad removal has been purchased"
-                                } else {
-                                        text = "Purchase ad removal"
-                                }
-                        } else if section == 2 {
-                                text = "Donations"
+                        text = "Four ways to support the app"
+                } else if section == 1 {
+                        if state.store.ads_removed {
+                                text = "Ad removal has been purchased"
                         } else {
-                                text = "Restore purchased products"
+                                text = "Purchase ad removal"
                         }
-                        header.update_normal(text: text)
-
-                        return header
+                        
+                } else if section == 2 {
+                        text = "Donations"
+                } else {
+                        text = "Restore purchased products"
                 }
+                header.update_normal(text: text)
+
+                return header
         }
 
         func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
