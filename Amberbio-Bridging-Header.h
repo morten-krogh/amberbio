@@ -9,3 +9,4 @@
 
 #import "XlsxReaderWriter-swift-bridge.h"
 
+#import <AdBuddiz/AdBuddiz.h>

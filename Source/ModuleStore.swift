@@ -68,6 +68,7 @@ class ModuleStore: Component, UITableViewDataSource, UITableViewDelegate {
                 if state.store.ads_show_now && !ad_shown {
                         ad_shown = true
                         print("Show ad")
+                        AdBuddiz.showAd()
                 }
         }
 
