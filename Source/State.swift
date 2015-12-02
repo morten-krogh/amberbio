@@ -15,8 +15,6 @@ class State {
         var render_type_before_ads = RenderType.full_page
         let root_component = RootComponent()
 
-        var ads_time_of_last = NSDate()
-
         var activity_indicator_info = ""
         var progress_indicator_info = ""
         var progress_indicator_progress = 0 as Int
@@ -106,20 +104,6 @@ class State {
                         render_from_dispatch_queue()
                 }
         }
-
-        func ads_show() {
-                if store.ads_removed {
-                        return
-                }
-
-//                if NSDate().timeIntervalSinceDate(ads_time_of_last) > ad_time_to_next_ad {
-//                        if render_type != .ads {
-//                                render_type_before_ads = render_type
-//                                render_type = .ads
-//                        }
-//                }
-        }
-
 
         func set_active_data_set(data_set_id data_set_id: Int) {
                 if self.data_set_id != data_set_id {

@@ -38,7 +38,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         func applicationWillEnterForeground(application: UIApplication) {}
 
-        func applicationDidBecomeActive(application: UIApplication) {}
+        func applicationDidBecomeActive(application: UIApplication) {
+                state.store.app_did_become_active()
+        }
 
         func applicationWillTerminate(application: UIApplication) {}
 }

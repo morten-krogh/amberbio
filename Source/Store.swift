@@ -17,7 +17,12 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver {
 
         var purchased_product_ids = [] as Set<String>
 
+        let ads_time_first_showing = 30.0
+        let ads_time_other_showings = 150.0
         var ads_removed = false
+        var ads_first_ad = true
+        var ads_time_of_last = NSDate()
+        var ads_show_now = false
 
         var products = [] as [SKProduct]
 
@@ -29,6 +34,29 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver {
                 super.init()
                 get_purchased_product_ids()
                 set_all()
+        }
+
+        func app_did_become_active() {
+                ads_first_ad = true
+                ads_time_of_last = NSDate()
+        }
+
+        func ads_check() {
+                if !ads_removed && state.page_state.name == "home" {
+                        let time_since_last = NSDate().timeIntervalSinceDate(ads_time_of_last)
+                        if time_since_last > ads_time_other_showings || (ads_first_ad && time_since_last > ads_time_first_showing) {
+                                ads_first_ad = false
+                                ads_show_now = true
+                                state.page_state = ModuleStoreState()
+                        }
+                }
+        }
+
+        func ads_done() {
+                if ads_show_now {
+                        ads_show_now = false
+                        ads_time_of_last = NSDate()
+                }
         }
 
         func request_products() {

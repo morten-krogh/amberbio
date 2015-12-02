@@ -60,6 +60,15 @@ class ModuleStore: Component, UITableViewDataSource, UITableViewDelegate {
                         table_view.reloadData()
                 }
                 view.setNeedsLayout()
+
+                if state.store.ads_show_now {
+                        state.store.ads_show_now = false
+                        print("Show ad")
+                }
+        }
+
+        override func finish() {
+                state.store.ads_done()
         }
 
         func numberOfSectionsInTableView(tableView: UITableView) -> Int {

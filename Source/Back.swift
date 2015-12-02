@@ -24,7 +24,7 @@ class Back: Component {
 
         func action() {
                 state.navigate_back()
-                state.ads_show()
+                state.store.ads_check()
                 state.render()
         }
 }
