@@ -23,6 +23,7 @@ class Forward: Component {
         }
 
         func action() {
+                state.store.ads_done()
                 state.navigate_forward()
                 state.store.ads_check()
                 state.render()

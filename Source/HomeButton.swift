@@ -18,6 +18,7 @@ class HomeButton: Component {
         }
 
         func action() {
+                state.store.ads_done()
                 state.navigate(page_state: HomeState())
                 state.store.ads_check()
                 state.render()

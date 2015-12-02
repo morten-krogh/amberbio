@@ -23,6 +23,7 @@ class Back: Component {
         }
 
         func action() {
+                state.store.ads_done()
                 state.navigate_back()
                 state.store.ads_check()
                 state.render()

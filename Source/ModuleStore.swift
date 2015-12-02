@@ -17,6 +17,8 @@ class ModuleStore: Component, UITableViewDataSource, UITableViewDelegate {
         let info_label = UILabel()
         let table_view = UITableView()
 
+        var ad_shown = false
+
         override func viewDidLoad() {
                 super.viewDidLoad()
 
@@ -61,14 +63,10 @@ class ModuleStore: Component, UITableViewDataSource, UITableViewDelegate {
                 }
                 view.setNeedsLayout()
 
-                if state.store.ads_show_now {
-                        state.store.ads_show_now = false
+                if state.store.ads_show_now && !ad_shown {
+                        ad_shown = true
                         print("Show ad")
                 }
-        }
-
-        override func finish() {
-                state.store.ads_done()
         }
 
         func numberOfSectionsInTableView(tableView: UITableView) -> Int {
