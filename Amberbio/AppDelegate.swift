@@ -43,8 +43,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         func applicationDidBecomeActive(application: UIApplication) {
                 if !state.store.ads_removed {
                         AdBuddiz.setPublisherKey(adbuddiz_publisherkey)
-                        //                AdBuddiz.setTestModeActive()  // remove
-                        //                AdBuddiz.setLogLevel(ABLogLevelInfo) // remove
+                        AdBuddiz.setLogLevel(ABLogLevelSilent)
+                        //                        AdBuddiz.setLogLevel(ABLogLevelInfo)
                         AdBuddiz.cacheAds()
                         state.store.app_did_become_active()
                 }
