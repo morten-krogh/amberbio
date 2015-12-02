@@ -41,11 +41,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         func applicationWillEnterForeground(application: UIApplication) {}
 
         func applicationDidBecomeActive(application: UIApplication) {
-                AdBuddiz.setPublisherKey(adbuddiz_publisherkey)
-//                AdBuddiz.setTestModeActive()  // remove
-                AdBuddiz.setLogLevel(ABLogLevelInfo) // remove
-                AdBuddiz.cacheAds()
-                state.store.app_did_become_active()
+                if !state.store.ads_removed {
+                        AdBuddiz.setPublisherKey(adbuddiz_publisherkey)
+                        //                AdBuddiz.setTestModeActive()  // remove
+                        //                AdBuddiz.setLogLevel(ABLogLevelInfo) // remove
+                        AdBuddiz.cacheAds()
+                        state.store.app_did_become_active()
+                }
         }
 
         func applicationWillTerminate(application: UIApplication) {}

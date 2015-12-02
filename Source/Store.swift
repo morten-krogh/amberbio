@@ -27,8 +27,10 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver, 
         var ads_removed = false
         var ads_first_ad = true
         var ads_time_of_last = NSDate()
-        var ads_show_now = false
+        var ad_should_be_shown_now = false
         var ad_shown = false
+        var ad_was_shown = false
+        var store_active = false
 
         var products = [] as [SKProduct]
 
@@ -40,7 +42,9 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver, 
                 super.init()
                 get_purchased_product_ids()
                 set_all()
-                AdBuddiz.setDelegate(self)
+                if !ads_removed {
+                        AdBuddiz.setDelegate(self)
+                }
         }
 
         func app_did_become_active() {
@@ -49,34 +53,43 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver, 
         }
 
         func ads_check() {
-                if !ads_removed && state.page_state.name == "home" {
+                if ad_was_shown {
+                        ad_was_shown = false
+                        ads_time_of_last = NSDate()
+                } else if !ads_removed && !store_active && state.page_state.name == "home" && AdBuddiz.isReadyToShowAd() {
                         let time_since_last = NSDate().timeIntervalSinceDate(ads_time_of_last)
                         if time_since_last > ads_time_other_showings || (ads_first_ad && time_since_last > ads_time_first_showing) {
                                 ads_first_ad = false
-                                ads_show_now = true
+                                ad_should_be_shown_now = true
                                 state.page_state = ModuleStoreState()
                         }
                 }
+
+                if store_active && state.page_state.name != "module_store" {
+                        store_active = false
+                }
         }
 
-        func ads_done() {
-                if ads_show_now {
-                        ads_show_now = false
-                        ads_time_of_last = NSDate()
+        func show_ad() -> Bool {
+                store_active = true
+                if ad_should_be_shown_now && !ad_shown && AdBuddiz.isReadyToShowAd() {
+                        ad_shown = true
+                        ad_should_be_shown_now = false
+                        return true
+                } else {
+                        return false
                 }
         }
 
         func didHideAd() {
-                print("did hide")
                 ad_shown = false
-                ads_show_now = false
+                ad_was_shown = true
                 state.render()
         }
 
-        func didClick() {
-                print("did click")
+        func didFailToShowAd(error: AdBuddizError) {
                 ad_shown = false
-                ads_show_now = false
+                ad_was_shown = true
                 state.render()
         }
 

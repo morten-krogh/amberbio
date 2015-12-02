@@ -48,8 +48,6 @@ class ModuleStore: Component, UITableViewDataSource, UITableViewDelegate {
         }
 
         override func render() {
-                print("render: \(state.store.ad_shown)")
-
                 info_label.hidden = false
                 table_view.hidden = true
 
@@ -67,8 +65,7 @@ class ModuleStore: Component, UITableViewDataSource, UITableViewDelegate {
                 }
                 view.setNeedsLayout()
 
-                if state.store.ads_show_now && !state.store.ad_shown {
-                        state.store.ad_shown = true
+                if state.store.show_ad() {
                         info_label.hidden = true
                         table_view.hidden = true
                         AdBuddiz.showAd()
