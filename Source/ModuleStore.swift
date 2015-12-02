@@ -103,7 +103,7 @@ class ModuleStore: Component, UITableViewDataSource, UITableViewDelegate {
 
         func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
                 if section == 0 {
-                        return 0
+                        return 4
                 } else if section == 1 {
                         return state.store.remove_ads_product == nil ? 0 : 1
                 } else if section == 2 {
@@ -115,6 +115,8 @@ class ModuleStore: Component, UITableViewDataSource, UITableViewDelegate {
 
         func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
                 switch indexPath.section {
+                case 0:
+                        return centered_table_view_cell_height + 10
                 case 1:
                         if state.store.ads_removed {
                                 return centered_table_view_cell_height + 20
@@ -131,7 +133,26 @@ class ModuleStore: Component, UITableViewDataSource, UITableViewDelegate {
         func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
                 let (section, row) = (indexPath.section, indexPath.row)
 
-                if section == 1 {
+                if section == 0 {
+                        let cell = tableView.dequeueReusableCellWithIdentifier("centered cell") as! CenteredTableViewCell
+
+                        let color = color_from_hex(hex: color_brewer_qualitative_9_pastel1[2])
+                        let title: String
+                        switch row {
+                        case 0:
+                                title = "Purchase ad removal"
+                        case 1:
+                                title = "Install and open apps from ads"
+                        case 2:
+                                title = "Donations"
+                        default:
+                                title = "Spread the app to colleagues"
+                        }
+
+                        let astring = astring_body(string: title)
+                        cell.update(attributed_text: astring, background_color: color, symbol: .None)
+                        return cell
+                } else if section == 1 {
                         if state.store.ads_removed {
                                 let color = color_from_hex(hex: color_brewer_qualitative_9_pastel1[2])
                                 let cell = tableView.dequeueReusableCellWithIdentifier("centered cell") as! CenteredTableViewCell
