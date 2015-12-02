@@ -5,10 +5,15 @@ let store_product_ids = [
         "com.amberbio.product.ads",
         "com.amberbio.product.donation_1",
         "com.amberbio.product.donation_2",
-        "com.amberbio.product.donation_3"
+        "com.amberbio.product.donation_3",
+        "com.amberbio.product.donation_4",
+        "com.amberbio.product.donation_5",
+        "com.amberbio.product.donation_6",
+        "com.amberbio.product.donation_7",
+        "com.amberbio.product.donation_8"
 ]
 
-class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver {
+class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver, AdBuddizDelegate {
 
         let database: Database
 
@@ -18,11 +23,12 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver {
         var purchased_product_ids = [] as Set<String>
 
         let ads_time_first_showing = 5.0
-        let ads_time_other_showings = 20.0
+        let ads_time_other_showings = 5.0
         var ads_removed = false
         var ads_first_ad = true
         var ads_time_of_last = NSDate()
         var ads_show_now = false
+        var ad_shown = false
 
         var products = [] as [SKProduct]
 
@@ -34,6 +40,7 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver {
                 super.init()
                 get_purchased_product_ids()
                 set_all()
+                AdBuddiz.setDelegate(self)
         }
 
         func app_did_become_active() {
@@ -59,6 +66,20 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver {
                 }
         }
 
+        func didHideAd() {
+                print("did hide")
+                ad_shown = false
+                ads_show_now = false
+                state.render()
+        }
+
+        func didClick() {
+                print("did click")
+                ad_shown = false
+                ads_show_now = false
+                state.render()
+        }
+
         func request_products() {
                 let products_request = SKProductsRequest(productIdentifiers: Set<String>(store_product_ids))
                 products_request.delegate = self
@@ -79,6 +100,8 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver {
         }
 
         func buy(product product: SKProduct) {
+                print(SKPaymentQueue.canMakePayments())
+
                 let payment = SKMutablePayment(product: product)
                 SKPaymentQueue.defaultQueue().addPayment(payment)
         }

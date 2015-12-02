@@ -6,7 +6,7 @@ class ModuleStoreState: PageState {
                 super.init()
                 name = "module_store"
                 title = astring_body(string: "Support the app")
-                info = "The app is ad based.\n\nAds can be removed by a one time payment.\n\nDonations do not change the workings of the app, but support the development of the app."
+                info = "The app is ad based.\n\nAmberbio is paid when apps from ads are installed and opened.\n\nAds can be removed by a one time payment.\n\nDonations do not change the workings of the app, but support the development of the app."
 
                 state.store.request_products()
         }
@@ -16,8 +16,6 @@ class ModuleStore: Component, UITableViewDataSource, UITableViewDelegate {
 
         let info_label = UILabel()
         let table_view = UITableView()
-
-        var ad_shown = false
 
         override func viewDidLoad() {
                 super.viewDidLoad()
@@ -50,10 +48,14 @@ class ModuleStore: Component, UITableViewDataSource, UITableViewDelegate {
         }
 
         override func render() {
+                print("render: \(state.store.ad_shown)")
+
                 info_label.hidden = false
                 table_view.hidden = true
 
-                if state.store.request_products_pending {
+                if state.store.ad_shown {
+                        info_label.hidden = true
+                } else if state.store.request_products_pending {
                         let text = "The products are fetched from the server"
                         info_label.attributedText = astring_font_size_color(string: text, font: nil, font_size: 20, color: nil)
                         info_label.textAlignment = .Center
@@ -65,9 +67,10 @@ class ModuleStore: Component, UITableViewDataSource, UITableViewDelegate {
                 }
                 view.setNeedsLayout()
 
-                if state.store.ads_show_now && !ad_shown {
-                        ad_shown = true
-                        print("Show ad")
+                if state.store.ads_show_now && !state.store.ad_shown {
+                        state.store.ad_shown = true
+                        info_label.hidden = true
+                        table_view.hidden = true
                         AdBuddiz.showAd()
                 }
         }
@@ -149,7 +152,7 @@ class ModuleStore: Component, UITableViewDataSource, UITableViewDelegate {
                         case 2:
                                 title = "Donations"
                         default:
-                                title = "Spread the app to colleagues"
+                                title = "Spread the app"
                         }
 
                         let astring = astring_body(string: title)

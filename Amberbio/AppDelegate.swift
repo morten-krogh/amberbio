@@ -42,7 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         func applicationDidBecomeActive(application: UIApplication) {
                 AdBuddiz.setPublisherKey(adbuddiz_publisherkey)
-                AdBuddiz.setTestModeActive()  // remove
+//                AdBuddiz.setTestModeActive()  // remove
                 AdBuddiz.setLogLevel(ABLogLevelInfo) // remove
                 AdBuddiz.cacheAds()
                 state.store.app_did_become_active()
