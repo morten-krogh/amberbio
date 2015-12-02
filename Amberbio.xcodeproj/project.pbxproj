@@ -291,6 +291,7 @@
 		60E06B9E1BAC3D2F00B05223 /* RemoveMolecules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E06B9D1BAC3D2F00B05223 /* RemoveMolecules.swift */; };
 		60F73F3F1C0D8B01000E9750 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60F73F3E1C0D8B01000E9750 /* AdSupport.framework */; };
 		60F73F431C0D8B27000E9750 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60F73F421C0D8B27000E9750 /* SystemConfiguration.framework */; };
+		60F73F481C0EF232000E9750 /* MultiLineHeaderFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F73F471C0EF232000E9750 /* MultiLineHeaderFooterView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -640,6 +641,7 @@
 		60F73F3E1C0D8B01000E9750 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		60F73F401C0D8B17000E9750 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		60F73F421C0D8B27000E9750 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		60F73F471C0EF232000E9750 /* MultiLineHeaderFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MultiLineHeaderFooterView.swift; path = Source/MultiLineHeaderFooterView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -888,6 +890,7 @@
 				60AEE24C1BFDD391005E858D /* ColorSelectionTableViewCell.swift */,
 				605F523A1BC502A700033B91 /* CrossValidationTableViewCell.swift */,
 				604A51B91BF25E600057373D /* ImportTableViewCell.swift */,
+				60F73F471C0EF232000E9750 /* MultiLineHeaderFooterView.swift */,
 				60B400921BA19C7900D8DD80 /* NameDateTableViewCell.swift */,
 				601E57AA1BCD53C4002EEEB3 /* ParameterTableViewCell.swift */,
 				60B400B91BA19C7900D8DD80 /* SearchTableViewCell.swift */,
@@ -1581,6 +1584,7 @@
 				60B401331BA19C7900D8DD80 /* PieChart.swift in Sources */,
 				60D5CE381BC26CD100B0D88A /* SupervisedClassificationTrainingSelection.swift in Sources */,
 				60D906A31C05F4950043F42D /* BRANumberFormat.m in Sources */,
+				60F73F481C0EF232000E9750 /* MultiLineHeaderFooterView.swift in Sources */,
 				60B401061BA19C7900D8DD80 /* Home.swift in Sources */,
 				6094A3741BD8E15500611310 /* StoreRestoreTableViewCell.swift in Sources */,
 				601E57B41BCF83E8002EEEB3 /* ROCView.swift in Sources */,
