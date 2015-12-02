@@ -37,7 +37,6 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver {
         }
 
         func app_did_become_active() {
-                print("did become active")
                 ads_first_ad = true
                 ads_time_of_last = NSDate()
         }
@@ -45,9 +44,7 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver {
         func ads_check() {
                 if !ads_removed && state.page_state.name == "home" {
                         let time_since_last = NSDate().timeIntervalSinceDate(ads_time_of_last)
-                        print(time_since_last)
                         if time_since_last > ads_time_other_showings || (ads_first_ad && time_since_last > ads_time_first_showing) {
-                                print("ads_check success")
                                 ads_first_ad = false
                                 ads_show_now = true
                                 state.page_state = ModuleStoreState()
@@ -56,7 +53,6 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver {
         }
 
         func ads_done() {
-                print("ads_done, \(ads_show_now)")
                 if ads_show_now {
                         ads_show_now = false
                         ads_time_of_last = NSDate()

@@ -54,7 +54,9 @@ class ModuleStore: Component, UITableViewDataSource, UITableViewDelegate {
                 table_view.hidden = true
 
                 if state.store.request_products_pending {
-                        info_label.attributedText = astring_font_size_color(string: "The products are fetched from the server", font: nil, font_size: 20, color: nil)
+                        let text = "The products are fetched from the server"
+                        info_label.attributedText = astring_font_size_color(string: text, font: nil, font_size: 20, color: nil)
+                        info_label.textAlignment = .Center
                 } else if state.store.restoring_pending {
                         info_label.attributedText = astring_font_size_color(string: "Restoring purchased modules", font: nil, font_size: 22, color: nil)
                 } else {
