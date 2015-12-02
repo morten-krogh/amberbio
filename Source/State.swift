@@ -4,7 +4,6 @@ enum RenderType {
         case full_page
         case progress_indicator
         case activity_indicator
-        case ads
 }
 
 class State {
@@ -108,25 +107,19 @@ class State {
                 }
         }
 
-        let page_names_with_ads = ["geo", "pca"]
-
         func ads_show() {
-                if store.ads_removed || page_names_with_ads.indexOf(page_state.name) == nil {
+                if store.ads_removed {
                         return
                 }
 
-                if NSDate().timeIntervalSinceDate(ads_time_of_last) > ad_time_to_next_ad {
-                        if render_type != .ads {
-                                render_type_before_ads = render_type
-                                render_type = .ads
-                        }
-                }
+//                if NSDate().timeIntervalSinceDate(ads_time_of_last) > ad_time_to_next_ad {
+//                        if render_type != .ads {
+//                                render_type_before_ads = render_type
+//                                render_type = .ads
+//                        }
+//                }
         }
 
-        func ads_finish() {
-                ads_time_of_last = NSDate()
-                render_type = render_type_before_ads
-        }
 
         func set_active_data_set(data_set_id data_set_id: Int) {
                 if self.data_set_id != data_set_id {

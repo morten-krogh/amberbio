@@ -7,7 +7,6 @@ class RootComponent: Component {
         let full_page = FullPage()
         let progress_indicator = ProgressIndicator()
         let activity_indicator = ActivityIndicator()
-        let ads = Ads()
 
         override func viewWillLayoutSubviews() {
                 super.viewWillLayoutSubviews()
@@ -36,9 +35,6 @@ class RootComponent: Component {
                 case .activity_indicator:
                         set_child_view_controller(view_controller: activity_indicator)
                         activity_indicator.render()
-                case .ads:
-                        set_child_view_controller(view_controller: ads)
-                        ads.render()
                 }
         }
 
