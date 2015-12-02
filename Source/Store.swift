@@ -1,6 +1,9 @@
 import Foundation
 import StoreKit
 
+let ads_time_first_showing = 30.0
+let ads_time_other_showings = 150.0
+
 let store_product_ids = [
         "com.amberbio.product.ads",
         "com.amberbio.product.donation_1",
@@ -22,8 +25,6 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver, 
 
         var purchased_product_ids = [] as Set<String>
 
-        let ads_time_first_showing = 5.0
-        let ads_time_other_showings = 5.0
         var ads_removed = false
         var ads_first_ad = true
         var ads_time_of_last = NSDate()
