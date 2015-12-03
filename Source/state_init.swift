@@ -8,10 +8,10 @@ let database_url = file_app_directory_url(file_name: database_file_name)
 let reset_database = false
 //let initial_active_data_set_id = 1
 #if DEBUG
-        let unlock_all_modules = true
+        let global_remove_ads = false
         let initial_page_state = ModuleStoreState()
 #else
-        let unlock_all_modules = false
+        let global_remove_ads = false
         let initial_page_state = HomeState()
 #endif
 

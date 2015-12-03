@@ -2,7 +2,7 @@ import Foundation
 import StoreKit
 
 let ads_time_first_showing = 30.0
-let ads_time_other_showings = 150.0
+let ads_time_other_showings = 180.0
 
 let store_product_ids = [
         "com.amberbio.product.ads",
@@ -170,7 +170,7 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver, 
                         }
                 }
 
-                if purchased_product_ids.contains("com.amberbio.product.ads") {
+                if global_remove_ads || purchased_product_ids.contains("com.amberbio.product.ads") {
                         ads_removed = true
                 }
         }
