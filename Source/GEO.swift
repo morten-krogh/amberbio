@@ -230,7 +230,7 @@ class GEO: Component, UITextFieldDelegate, NSURLSessionDelegate, NSURLSessionDat
                         textField.text = text
                 }
                 geo_state.geo_id = text
-                render()
+                state.render()
         }
 
         func button_action() {

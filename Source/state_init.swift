@@ -9,7 +9,7 @@ let reset_database = false
 //let initial_active_data_set_id = 1
 #if DEBUG
         let global_remove_ads = false
-        let initial_page_state = ModuleStoreState()
+        let initial_page_state = HomeState()
 #else
         let global_remove_ads = false
         let initial_page_state = HomeState()

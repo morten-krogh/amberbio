@@ -1,7 +1,7 @@
 import Foundation
 import StoreKit
 
-let ads_time_first_showing = 30.0
+let ads_time_first_showing = 60.0
 let ads_time_other_showings = 180.0
 
 let store_product_ids = [
