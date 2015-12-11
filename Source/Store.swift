@@ -16,6 +16,18 @@ let store_product_ids = [
         "com.amberbio.product.donation_8"
 ]
 
+let store_product_ids_that_remove_ads = Set<String>([
+        "com.amberbio.product.ads",
+        "com.amberbio.product.bundle_2015",
+        "com.amberbio.product.svm",
+        "com.amberbio.product.knn",
+        "com.amberbio.product.pca",
+        "com.amberbio.product.anova",
+        "com.amberbio.product.kmeans",
+        "com.amberbio.product.sammon",
+        "com.amberbio.product.som"
+])
+
 class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver, AdBuddizDelegate {
 
         let database: Database
@@ -165,12 +177,12 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver, 
                         let product_id = product.productIdentifier
                         if product_id.hasPrefix("com.amberbio.product.donation") {
                                 donations.append(product)
-                        } else {
+                        } else if product_id == "com.amberbio.product.ads" {
                                 remove_ads_product = product
                         }
                 }
 
-                if global_remove_ads || purchased_product_ids.contains("com.amberbio.product.ads") {
+                if global_remove_ads || !store_product_ids_that_remove_ads.intersect(purchased_product_ids).isEmpty {
                         ads_removed = true
                 }
         }
@@ -181,12 +193,10 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver, 
         }
 
         func insert_purchased_product_id(product_id product_id: String) {
-                if product_id == "com.amberbio.product.ads" {
-                        if store_product_ids.indexOf(product_id) != nil {
-                                sqlite_insert_store_product_id(database: database, store_product_id: product_id)
-                                purchased_product_ids.insert(product_id)
-                                set_all()
-                        }
+                if !purchased_product_ids.contains(product_id) && store_product_ids_that_remove_ads.contains(product_id) {
+                        sqlite_insert_store_product_id(database: database, store_product_id: product_id)
+                        purchased_product_ids.insert(product_id)
+                        set_all()
                 }
         }
 
