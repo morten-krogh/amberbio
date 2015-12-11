@@ -346,7 +346,7 @@
 		602708FF1BA804EA00672D54 /* brain-stem-cells-factors.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "brain-stem-cells-factors.txt"; path = "demo-data/brain-stem-cells/brain-stem-cells-factors.txt"; sourceTree = "<group>"; };
 		602709001BA804EA00672D54 /* brain-stem-cells-values.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "brain-stem-cells-values.txt"; path = "demo-data/brain-stem-cells/brain-stem-cells-values.txt"; sourceTree = "<group>"; };
 		602E0C711BD4D5F600BF0F17 /* MoleculeWebSearch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MoleculeWebSearch.swift; path = Source/MoleculeWebSearch.swift; sourceTree = "<group>"; };
-		604A51B91BF25E600057373D /* ImportTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImportTableViewCell.swift; sourceTree = "<group>"; };
+		604A51B91BF25E600057373D /* ImportTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImportTableViewCell.swift; path = Source/ImportTableViewCell.swift; sourceTree = "<group>"; };
 		604A51BB1BF26C1E0057373D /* ImportTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImportTable.swift; path = Source/ImportTable.swift; sourceTree = "<group>"; };
 		604A51BD1BF338140057373D /* parse.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = parse.c; path = Source/parse.c; sourceTree = "<group>"; };
 		605F52311BC2ED2D00033B91 /* SupervisedClassificationParameterSelection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SupervisedClassificationParameterSelection.swift; path = Source/SupervisedClassificationParameterSelection.swift; sourceTree = "<group>"; };
@@ -383,7 +383,7 @@
 		60AEE23D1BFBC31D005E858D /* zlib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = zlib.swift; path = AmberbioTestingGround/zlib.swift; sourceTree = "<group>"; };
 		60AEE2411BFC884D005E858D /* zlib_util.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = zlib_util.c; path = Source/zlib_util.c; sourceTree = "<group>"; };
 		60AEE2461BFC8DDF005E858D /* libz.1.2.5.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.1.2.5.tbd; path = usr/lib/libz.1.2.5.tbd; sourceTree = SDKROOT; };
-		60AEE24C1BFDD391005E858D /* ColorSelectionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorSelectionTableViewCell.swift; sourceTree = "<group>"; };
+		60AEE24C1BFDD391005E858D /* ColorSelectionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ColorSelectionTableViewCell.swift; path = Source/ColorSelectionTableViewCell.swift; sourceTree = "<group>"; };
 		60B400381BA1982900D8DD80 /* state_init.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = state_init.swift; path = Source/state_init.swift; sourceTree = "<group>"; };
 		60B4003A1BA1983900D8DD80 /* State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = State.swift; path = Source/State.swift; sourceTree = "<group>"; };
 		60B4003D1BA19BED00D8DD80 /* AttributedString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AttributedString.swift; path = Source/AttributedString.swift; sourceTree = "<group>"; };
@@ -633,7 +633,7 @@
 		60D906C41C05F4A20043F42D /* SSZipArchive-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SSZipArchive-Prefix.pch"; sourceTree = "<group>"; };
 		60D906C51C05F4A20043F42D /* SSZipArchive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSZipArchive.h; sourceTree = "<group>"; };
 		60D906C61C05F4A20043F42D /* SSZipArchive.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSZipArchive.m; sourceTree = "<group>"; };
-		60D906CE1C06F35A0043F42D /* parse_spreadsheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = parse_spreadsheet.swift; sourceTree = "<group>"; };
+		60D906CE1C06F35A0043F42D /* parse_spreadsheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = parse_spreadsheet.swift; path = Source/parse_spreadsheet.swift; sourceTree = "<group>"; };
 		60D906D31C071EC90043F42D /* ParserXLSX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ParserXLSX.m; path = Source/ParserXLSX.m; sourceTree = "<group>"; };
 		60D906D51C071EF20043F42D /* ParserXLSX.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ParserXLSX.h; path = Source/ParserXLSX.h; sourceTree = "<group>"; };
 		60DF228B1BC58E9E0038AAE1 /* random.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = random.c; path = Source/random.c; sourceTree = "<group>"; };
