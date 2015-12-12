@@ -41,8 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         func applicationWillEnterForeground(application: UIApplication) {}
 
         func applicationDidBecomeActive(application: UIApplication) {
-
-        
+                state.donation_manager.app_did_become_active()
         }
 
         func applicationWillTerminate(application: UIApplication) {}
