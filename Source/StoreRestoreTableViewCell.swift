@@ -55,6 +55,6 @@ class StoreRestoreTableViewCell: UITableViewCell {
         }
 
         func restore_action() {
-                state.store.restore()
+//                state.store.restore()
         }
 }

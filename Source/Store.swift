@@ -5,7 +5,6 @@ let ads_time_first_showing = 60.0
 let ads_time_other_showings = 180.0
 
 let store_product_ids = [
-        "com.amberbio.product.ads",
         "com.amberbio.product.donation_1",
         "com.amberbio.product.donation_2",
         "com.amberbio.product.donation_3",
@@ -16,94 +15,19 @@ let store_product_ids = [
         "com.amberbio.product.donation_8"
 ]
 
-let store_product_ids_that_remove_ads = Set<String>([
-        "com.amberbio.product.ads",
-        "com.amberbio.product.bundle_2015",
-        "com.amberbio.product.svm",
-        "com.amberbio.product.knn",
-        "com.amberbio.product.pca",
-        "com.amberbio.product.anova",
-        "com.amberbio.product.kmeans",
-        "com.amberbio.product.sammon",
-        "com.amberbio.product.som"
-])
-
-class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver, AdBuddizDelegate {
+class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver {
 
         let database: Database
 
         var request_products_pending = false
-        var restoring_pending = false
 
-        var purchased_product_ids = [] as Set<String>
-
-        var ads_removed = false
-        var ads_first_ad = true
-        var ads_time_of_last = NSDate()
-        var ad_should_be_shown_now = false
-        var ad_shown = false
-        var ad_was_shown = false
         var store_active = false
 
         var products = [] as [SKProduct]
 
-        var remove_ads_product: SKProduct?
-        var donations = [] as [SKProduct]
-
         init(database: Database) {
                 self.database = database
                 super.init()
-                get_purchased_product_ids()
-                set_all()
-                if !ads_removed {
-                        AdBuddiz.setDelegate(self)
-                }
-        }
-
-        func app_did_become_active() {
-                ads_first_ad = true
-                ads_time_of_last = NSDate()
-        }
-
-        func ads_check() {
-                if ad_was_shown {
-                        ad_was_shown = false
-                        ads_time_of_last = NSDate()
-                } else if !ads_removed && !store_active && state.page_state.name == "home" && AdBuddiz.isReadyToShowAd() {
-                        let time_since_last = NSDate().timeIntervalSinceDate(ads_time_of_last)
-                        if time_since_last > ads_time_other_showings || (ads_first_ad && time_since_last > ads_time_first_showing) {
-                                ads_first_ad = false
-                                ad_should_be_shown_now = true
-                                state.page_state = ModuleStoreState()
-                        }
-                }
-
-                if store_active && state.page_state.name != "module_store" {
-                        store_active = false
-                }
-        }
-
-        func show_ad() -> Bool {
-                store_active = true
-                if ad_should_be_shown_now && !ad_shown && AdBuddiz.isReadyToShowAd() {
-                        ad_shown = true
-                        ad_should_be_shown_now = false
-                        return true
-                } else {
-                        return false
-                }
-        }
-
-        func didHideAd() {
-                ad_shown = false
-                ad_was_shown = true
-                state.render()
-        }
-
-        func didFailToShowAd(error: AdBuddizError) {
-                ad_shown = false
-                ad_was_shown = true
-                state.render()
         }
 
         func request_products() {
@@ -111,12 +35,10 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver, 
                 products_request.delegate = self
                 products_request.start()
                 request_products_pending = true
-                restoring_pending = false
         }
 
         func productsRequest(request: SKProductsRequest, didReceiveResponse response: SKProductsResponse) {
                 self.products = response.products
-                set_all()
                 for invalid_product_id in response.invalidProductIdentifiers {
                         print("Invalid product id: \(invalid_product_id)")
                 }
@@ -130,12 +52,6 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver, 
 
                 let payment = SKMutablePayment(product: product)
                 SKPaymentQueue.defaultQueue().addPayment(payment)
-        }
-
-        func restore() {
-                SKPaymentQueue.defaultQueue().restoreCompletedTransactions()
-                restoring_pending = true
-                conditional_render()
         }
 
         func paymentQueue(queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
@@ -155,51 +71,25 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver, 
                                 SKPaymentQueue.defaultQueue().finishTransaction(transaction)
                         }
                 }
-                restoring_pending = false
                 conditional_render()
         }
 
-        func paymentQueueRestoreCompletedTransactionsFinished(queue: SKPaymentQueue) {
-                if restoring_pending {
-                        restoring_pending = false
-                        conditional_render()
-                }
-        }
-
-        func paymentQueue(queue: SKPaymentQueue, restoreCompletedTransactionsFailedWithError error: NSError) {
-                restoring_pending = false
-                conditional_render()
-        }
-
-        func set_all() {
-                donations = []
-                for product in products {
-                        let product_id = product.productIdentifier
-                        if product_id.hasPrefix("com.amberbio.product.donation") {
-                                donations.append(product)
-                        } else if product_id == "com.amberbio.product.ads" {
-                                remove_ads_product = product
-                        }
-                }
-
-                if global_remove_ads || !store_product_ids_that_remove_ads.intersect(purchased_product_ids).isEmpty {
-                        ads_removed = true
-                }
-        }
-
-        func get_purchased_product_ids() {
-                let product_ids = sqlite_get_store_product_ids(database: database)
-                purchased_product_ids = Set<String>(product_ids)
-        }
+//        func paymentQueueRestoreCompletedTransactionsFinished(queue: SKPaymentQueue) {
+//                if restoring_pending {
+//                        restoring_pending = false
+//                        conditional_render()
+//                }
+//        }
+//
+//        func paymentQueue(queue: SKPaymentQueue, restoreCompletedTransactionsFailedWithError error: NSError) {
+//                restoring_pending = false
+//                conditional_render()
+//        }
 
         func insert_purchased_product_id(product_id product_id: String) {
-                if !purchased_product_ids.contains(product_id) && store_product_ids_that_remove_ads.contains(product_id) {
-                        sqlite_insert_store_product_id(database: database, store_product_id: product_id)
-                        purchased_product_ids.insert(product_id)
-                        set_all()
-                }
+                
         }
-
+        
         func conditional_render() {
                 if state.page_state.name == "module_store" {
                         state.render()

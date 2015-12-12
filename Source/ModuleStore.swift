@@ -5,8 +5,8 @@ class ModuleStoreState: PageState {
         override init() {
                 super.init()
                 name = "module_store"
-                title = astring_body(string: "Support the app")
-                info = "The app is ad based.\n\nAmberbio is paid when apps from ads are installed and opened.\n\nAds can be removed by a one time payment.\n\nDonations do not change the workings of the app, but support the development of the app."
+                title = astring_body(string: "Donate")
+                info = "The Amberbio app is free to use.\n\nDonations help support development and hosting of the app.\n\nPlease consider a donation if you find the app beneficial."
 
                 state.store.request_products()
         }
@@ -48,32 +48,23 @@ class ModuleStore: Component, UITableViewDataSource, UITableViewDelegate {
         }
 
         override func render() {
-                info_label.hidden = false
+                info_label.hidden = true
                 table_view.hidden = true
 
-                if state.store.ad_shown {
-                        info_label.hidden = true
-                } else if state.store.request_products_pending {
+                if state.store.request_products_pending {
+                        info_label.hidden = false
                         let text = "The products are fetched from the server"
                         info_label.attributedText = astring_font_size_color(string: text, font: nil, font_size: 20, color: nil)
                         info_label.textAlignment = .Center
-                } else if state.store.restoring_pending {
-                        info_label.attributedText = astring_font_size_color(string: "Restoring purchased modules", font: nil, font_size: 22, color: nil)
                 } else {
                         table_view.hidden = false
                         table_view.reloadData()
                 }
                 view.setNeedsLayout()
-
-                if state.store.show_ad() {
-                        info_label.hidden = true
-                        table_view.hidden = true
-                        AdBuddiz.showAd()
-                }
         }
 
         func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-                return 4
+                return 1
         }
 
         func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -83,54 +74,18 @@ class ModuleStore: Component, UITableViewDataSource, UITableViewDelegate {
         func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
                 let header = tableView.dequeueReusableHeaderFooterViewWithIdentifier("centered header") as! CenteredHeaderFooterView
 
-                let text: String
-
-                if section == 0 {
-                        text = "Four ways to support the app"
-                } else if section == 1 {
-                        if state.store.ads_removed {
-                                text = "Ad removal has been purchased"
-                        } else {
-                                text = "Purchase ad removal"
-                        }
-                        
-                } else if section == 2 {
-                        text = "Donations"
-                } else {
-                        text = "Restore purchased products"
-                }
-                header.update_normal(text: text)
-
+                let text = "Donations support the development of the app."
+                header.update_multiline(text: text)
+                
                 return header
         }
 
         func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-                if section == 0 {
-                        return 4
-                } else if section == 1 {
-                        return state.store.remove_ads_product == nil ? 0 : 1
-                } else if section == 2 {
-                        return state.store.donations.count
-                } else {
-                        return 1
-                }
+                return state.store.products.count
         }
 
         func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-                switch indexPath.section {
-                case 0:
-                        return centered_table_view_cell_height + 10
-                case 1:
-                        if state.store.ads_removed {
-                                return centered_table_view_cell_height + 20
-                        } else {
-                                return store_product_table_view_cell_height
-                        }
-                case 2:
-                        return store_product_table_view_cell_height
-                default:
-                        return store_restore_table_view_cell_height
-                }
+                return store_product_table_view_cell_height
         }
 
         func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
