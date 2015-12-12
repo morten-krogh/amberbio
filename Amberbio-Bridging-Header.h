@@ -8,5 +8,3 @@
 #import "ParserXLSX.h"
 
 #import "XlsxReaderWriter-swift-bridge.h"
-
-#import <AdBuddiz/AdBuddiz.h>

@@ -41,7 +41,7 @@ func state_init() {
         }
 
         let database = sqlite_open(database_path: database_url.path!)!
-//        sqlite_database_main_migrate(database: database)
+        sqlite_database_main_migrate(database: database)
 
         state = State(database: database)
         state.set_page_state(page_state: initial_page_state)

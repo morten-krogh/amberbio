@@ -1,7 +1,7 @@
 import UIKit
 import StoreKit
 
-let store_product_table_view_cell_height = 150 as CGFloat
+let store_product_table_view_cell_height = 145 as CGFloat
 
 class StoreProductTableViewCell: UITableViewCell {
 
@@ -53,9 +53,9 @@ class StoreProductTableViewCell: UITableViewCell {
                 
                 let width = inset_view.frame.width
 
-                var origin_y = 10 as CGFloat
+                var origin_y = 5 as CGFloat
 
-                title_label.frame = CGRect(x: 0, y: origin_y, width: width, height: 40)
+                title_label.frame = CGRect(x: 0, y: origin_y, width: width, height: 37)
                 origin_y += title_label.frame.height
 
 //                let description_width = min(width - 40, 500)
