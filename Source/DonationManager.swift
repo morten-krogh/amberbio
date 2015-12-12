@@ -1,0 +1,15 @@
+import Foundation
+
+class DonationManager {
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+}

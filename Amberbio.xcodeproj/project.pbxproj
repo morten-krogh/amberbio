@@ -234,6 +234,7 @@
 		60BFB2401BEB3E8F000B492C /* SOM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BFB23F1BEB3E8F000B492C /* SOM.swift */; };
 		60BFB2421BEB6478000B492C /* SOMView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BFB2411BEB6478000B492C /* SOMView.swift */; };
 		60BFB2441BECC7DC000B492C /* som.c in Sources */ = {isa = PBXBuildFile; fileRef = 60BFB2431BECC7DC000B492C /* som.c */; };
+		60C797FC1C1CAD5200C41633 /* DonationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C797FB1C1CAD5200C41633 /* DonationManager.swift */; };
 		60D2C3BE1BDFDAAE00C6C6EF /* Values.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D2C3BD1BDFDAAE00C6C6EF /* Values.swift */; };
 		60D2C3C21BE0C80400C6C6EF /* Sammon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D2C3C11BE0C80400C6C6EF /* Sammon.swift */; };
 		60D2C3C41BE0D4ED00C6C6EF /* sammon.c in Sources */ = {isa = PBXBuildFile; fileRef = 60D2C3C31BE0D4ED00C6C6EF /* sammon.c */; };
@@ -534,6 +535,7 @@
 		60BFB23F1BEB3E8F000B492C /* SOM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SOM.swift; path = Source/SOM.swift; sourceTree = "<group>"; };
 		60BFB2411BEB6478000B492C /* SOMView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SOMView.swift; path = Source/SOMView.swift; sourceTree = "<group>"; };
 		60BFB2431BECC7DC000B492C /* som.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = som.c; path = Source/som.c; sourceTree = "<group>"; };
+		60C797FB1C1CAD5200C41633 /* DonationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DonationManager.swift; path = Source/DonationManager.swift; sourceTree = "<group>"; };
 		60D2C3BC1BDFCA8F00C6C6EF /* c-functions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "c-functions.h"; path = "Source/c-functions.h"; sourceTree = "<group>"; };
 		60D2C3BD1BDFDAAE00C6C6EF /* Values.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Values.swift; path = Source/Values.swift; sourceTree = "<group>"; };
 		60D2C3C11BE0C80400C6C6EF /* Sammon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Sammon.swift; path = Source/Sammon.swift; sourceTree = "<group>"; };
@@ -957,6 +959,7 @@
 		60A893E41BD792DE004DAD2C /* Store */ = {
 			isa = PBXGroup;
 			children = (
+				60C797FB1C1CAD5200C41633 /* DonationManager.swift */,
 				60A893E51BD794FB004DAD2C /* Store.swift */,
 			);
 			name = Store;
@@ -1462,6 +1465,7 @@
 				60B4011B1BA19C7900D8DD80 /* MultipleMoleculePlot.swift in Sources */,
 				60D906431C05F4780043F42D /* XMLDictionary.m in Sources */,
 				60B401031BA19C7900D8DD80 /* HierarchicalClusteringDrawer.swift in Sources */,
+				60C797FC1C1CAD5200C41633 /* DonationManager.swift in Sources */,
 				60B400FB1BA19C7900D8DD80 /* FactorElimination.swift in Sources */,
 				60B4012D1BA19C7900D8DD80 /* PCA2dPlot.swift in Sources */,
 				60B400FA1BA19C7900D8DD80 /* FactorContingencyTable.swift in Sources */,

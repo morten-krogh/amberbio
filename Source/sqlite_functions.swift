@@ -351,3 +351,18 @@ func sqlite_import_database(source_database source_database: Database, destinati
 
         return (new_projects, existing_projects)
 }
+
+func sqlite_key_value_select(database database: Database, key: String) -> String? {
+        let statement = "select key_value_value from key_value where key_value_key = :text0"
+        let query = Query(statement: statement, bind_texts: [key], result_types: ["text"])
+        sqlite_execute(database: database, query: query)
+        return query.result_texts[0].isEmpty ? nil : query.result_texts[0][0]
+}
+
+func sqlite_key_value_insert(database database: Database, key: String, value: String) {
+        let statement_0 = "insert or ignore into key_value (key_value_key, key_value_value) values (:text0, :text1)"
+        let query_0 = Query(statement: statement_0, bind_texts: [key, value])
+        let statement_1 = "update key_value set key_value_value = :text0 where key_value_key = :text1"
+        let query_1 = Query(statement: statement_1, bind_texts: [value, key])
+        sqlite_execute(database: database, queries: [query_0, query_1])
+}
