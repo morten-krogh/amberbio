@@ -89,49 +89,9 @@ class ModuleStore: Component, UITableViewDataSource, UITableViewDelegate {
         }
 
         func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-                let (section, row) = (indexPath.section, indexPath.row)
-
-                if section == 0 {
-                        let cell = tableView.dequeueReusableCellWithIdentifier("centered cell") as! CenteredTableViewCell
-
-                        let color = color_from_hex(hex: color_brewer_qualitative_9_pastel1[2])
-                        let title: String
-                        switch row {
-                        case 0:
-                                title = "Purchase ad removal"
-                        case 1:
-                                title = "Install and open apps from ads"
-                        case 2:
-                                title = "Donations"
-                        default:
-                                title = "Spread the app"
-                        }
-
-                        let astring = astring_body(string: title)
-                        cell.update(attributed_text: astring, background_color: color, symbol: .None)
-                        return cell
-                } else if section == 1 {
-                        if state.store.ads_removed {
-                                let color = color_from_hex(hex: color_brewer_qualitative_9_pastel1[2])
-                                let cell = tableView.dequeueReusableCellWithIdentifier("centered cell") as! CenteredTableViewCell
-                                let title = state.store.remove_ads_product!.localizedTitle
-                                let astring = astring_body(string: title)
-                                cell.update(attributed_text: astring, background_color: color, symbol: .Checkmark)
-                                return cell
-                        } else {
-                                let color = color_from_hex(hex: color_brewer_qualitative_9_pastel1[5])
-                                let cell = tableView.dequeueReusableCellWithIdentifier("product cell") as! StoreProductTableViewCell
-                                cell.update(product: state.store.remove_ads_product!, color: color)
-                                return cell
-                        }
-                } else if section == 2 {
-                        let color = color_from_hex(hex: color_brewer_qualitative_9_pastel1[5])
-                        let cell = tableView.dequeueReusableCellWithIdentifier("product cell") as! StoreProductTableViewCell
-                        cell.update(product: state.store.donations[row], color: color)
-                        return cell
-                } else {
-                        let cell = tableView.dequeueReusableCellWithIdentifier("restore cell") as! StoreRestoreTableViewCell
-                        return cell
-                }
+                let cell = tableView.dequeueReusableCellWithIdentifier("product cell") as! StoreProductTableViewCell
+                let color = color_from_hex(hex: color_brewer_qualitative_9_pastel1[5])
+                cell.update(product: state.store.products[indexPath.row], color: color)
+                return cell
         }
 }

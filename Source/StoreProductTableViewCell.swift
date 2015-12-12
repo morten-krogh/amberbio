@@ -1,14 +1,14 @@
 import UIKit
 import StoreKit
 
-let store_product_table_view_cell_height = 210 as CGFloat
+let store_product_table_view_cell_height = 150 as CGFloat
 
 class StoreProductTableViewCell: UITableViewCell {
 
         var product: SKProduct?
 
         let title_label = UILabel()
-        let description_label = UILabel()
+//        let description_label = UILabel()
         let price_label = UILabel()
         let buy_button = UIButton(type: .System)
         let inset_view = UIView()
@@ -27,10 +27,10 @@ class StoreProductTableViewCell: UITableViewCell {
                 title_label.textAlignment = .Center
                 inset_view.addSubview(title_label)
 
-                description_label.font = font_body
-                description_label.textAlignment = .Left
-                description_label.numberOfLines = 0
-                inset_view.addSubview(description_label)
+//                description_label.font = font_body
+//                description_label.textAlignment = .Left
+//                description_label.numberOfLines = 0
+//                inset_view.addSubview(description_label)
 
                 price_label.font = font_headline
                 price_label.textAlignment = .Center
@@ -56,17 +56,17 @@ class StoreProductTableViewCell: UITableViewCell {
                 var origin_y = 10 as CGFloat
 
                 title_label.frame = CGRect(x: 0, y: origin_y, width: width, height: 40)
-                origin_y += title_label.frame.height + 5
+                origin_y += title_label.frame.height
 
-                let description_width = min(width - 40, 500)
-                description_label.font = font_body
-                let description_size = description_label.sizeThatFits(CGSize(width: description_width, height: 0))
-                if description_size.height > 120 {
-                        description_label.font = font_footnote
-                }
+//                let description_width = min(width - 40, 500)
+//                description_label.font = font_body
+//                let description_size = description_label.sizeThatFits(CGSize(width: description_width, height: 0))
+//                if description_size.height > 120 {
+//                        description_label.font = font_footnote
+//                }
 
-                description_label.frame = CGRect(x: (width - description_width) / 2, y: origin_y, width: description_width, height: 50)
-                origin_y += description_label.frame.height
+//                description_label.frame = CGRect(x: (width - description_width) / 2, y: origin_y, width: description_width, height: 50)
+//                origin_y += description_label.frame.height
 
                 price_label.frame = CGRect(x: 0, y: origin_y, width: width, height: 40)
                 origin_y += price_label.frame.height
@@ -82,7 +82,7 @@ class StoreProductTableViewCell: UITableViewCell {
                 inset_view.backgroundColor = color
 
                 title_label.text = product.localizedTitle
-                description_label.text = product.localizedDescription
+//                description_label.text = product.localizedDescription
 
                 let number_formatter = NSNumberFormatter()
                 number_formatter.formatterBehavior = NSNumberFormatterBehavior.Behavior10_4
