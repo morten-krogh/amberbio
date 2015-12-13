@@ -2,9 +2,9 @@ import Foundation
 
 class DonationManager {
 
-        let threshold_app_did_enter_foreground_counter = 5
-        let threshold_time_donation_view =  20 //   7 * 24 * 60 * 60
-        let threshold_time_donation = 60 // 8 * 7 * 24 * 60 * 60
+        let threshold_app_did_enter_foreground_counter = 3
+        let threshold_time_donation_view =  7 * 24 * 60 * 60
+        let threshold_time_donation = 8 * 7 * 24 * 60 * 60
         
         let database: Database
         
@@ -34,30 +34,28 @@ class DonationManager {
                 }
                 
                 if app_did_enter_foreground_counter - app_did_enter_foreground_counter_at_view < threshold_app_did_enter_foreground_counter {
-//                        return
+                        return
                 }
                 
                 let now = Int(round(NSDate().timeIntervalSince1970))
                 
                 if now - time_donation_view < threshold_time_donation_view {
-//                        return
+                        return
                 }
 
                 if now - time_donation < threshold_time_donation {
-//                        return
+                        return
                 }
                 
                 show_donation_view()
         }
         
         func donation() {
-                print("donation")
                 time_donation = Int(round(NSDate().timeIntervalSince1970))
                 put(key: key_time_donation, value: time_donation)
         }
 
         func show_donation_view() {
-                print("show donation view")
                 app_did_enter_foreground_counter_at_view = app_did_enter_foreground_counter
                 time_donation_view = Int(round(NSDate().timeIntervalSince1970))
                 put_all()
