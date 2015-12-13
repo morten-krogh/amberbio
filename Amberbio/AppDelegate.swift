@@ -1,7 +1,5 @@
 import UIKit
 
-let adbuddiz_publisherkey = "fa82bb57-40fd-4de6-876b-8d5f97400a79"
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -38,12 +36,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         func applicationDidEnterBackground(application: UIApplication) {}
 
-        func applicationWillEnterForeground(application: UIApplication) {}
-
-        func applicationDidBecomeActive(application: UIApplication) {
-                state.donation_manager.app_did_become_active()
+        func applicationWillEnterForeground(application: UIApplication) {
+                print("app delegate application will enter foreground")
+                state.donation_manager.app_will_enter_foreground()
                 state.render()
         }
+
+        func applicationDidBecomeActive(application: UIApplication) {}
 
         func applicationWillTerminate(application: UIApplication) {}
 }

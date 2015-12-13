@@ -87,7 +87,7 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver {
 //        }
 
         func insert_purchased_product_id(product_id product_id: String) {
-                
+                state.donation_manager.donation()
         }
         
         func conditional_render() {

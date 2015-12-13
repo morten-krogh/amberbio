@@ -2,7 +2,7 @@ import Foundation
 
 class DonationView: Component {
 
-        let info_text = "Donations support hosting and development of the app.\n\nWith donations, the app can be free and benefit people across the world of all financial means.\n\nPlease donate if the app is useful to you."
+        let info_text = "Donations support hosting and development of the app.\n\nWith donations, the app can be free and benefit people across the world.\n\nPlease consider donating if the app is useful to you."
 
         let content_view = UIView()
         let close_button = UIButton(type: UIButtonType.System)
