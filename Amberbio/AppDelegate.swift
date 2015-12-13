@@ -16,6 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 window!.rootViewController = state.root_component
                 window!.makeKeyAndVisible()
                 
+                state.donation_manager.app_will_enter_foreground()
+                
                 state.render()
 
                 return true
@@ -37,7 +39,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         func applicationDidEnterBackground(application: UIApplication) {}
 
         func applicationWillEnterForeground(application: UIApplication) {
-                print("app delegate application will enter foreground")
                 state.donation_manager.app_will_enter_foreground()
                 state.render()
         }

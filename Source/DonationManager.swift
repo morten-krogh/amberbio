@@ -26,7 +26,6 @@ class DonationManager {
         }
 
         func app_will_enter_foreground() {
-                print("app will enter foreground")
                 app_did_enter_foreground_counter++
                 put(key: key_app_did_enter_foreground_counter, value: app_did_enter_foreground_counter)
                 
@@ -41,7 +40,7 @@ class DonationManager {
                 }
 
                 if now - time_donation < threshold_time_donation {
-                        return
+//                        return
                 }
                 
                 show_donation_view()
