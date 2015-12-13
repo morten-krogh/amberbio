@@ -2,6 +2,10 @@ import Foundation
 
 class DonationManager {
 
+        let threshold_number_of_times_app_did_become_active = 5
+        let threshold_time_interval_since_donation_view =  20 //   7 * 24 * 60 * 60
+        let threshold_time_interval_since_donation = 8 * 7 * 24 * 60 * 60
+        
         let database: Database
         
         var number_of_times_app_did_become_active = 0
@@ -19,17 +23,19 @@ class DonationManager {
         func app_did_become_active() {
                 number_of_times_app_did_become_active++
                 put(key: "number_of_times_app_did_become_active", value: number_of_times_app_did_become_active)
-//                if number_of_times_app_did_become_active - number_time_app_did_become_active_at_view < 5 {
+                if number_of_times_app_did_become_active - number_time_app_did_become_active_at_view < threshold_number_of_times_app_did_become_active {
 //                        return
-//                }
-//                let now = Int(round(NSDate().timeIntervalSince1970))
-//                if now - most_recent_time_donation_view_shown < 3 * 24 * 3600 {
+                }
+                let now = Int(round(NSDate().timeIntervalSince1970))
+                print(now - most_recent_time_donation_view_shown)
+                
+                if now - most_recent_time_donation_view_shown < threshold_time_interval_since_donation_view {
+                        return
+                }
+                if now - most_recent_time_donation < threshold_time_interval_since_donation {
 //                        return
-//                }
-//                if now - most_recent_time_donation < 60 * 24 * 3600 {
-//                        return
-//                }
-                        show_donation_view()
+                }
+                show_donation_view()
         }
         
         func donation() {

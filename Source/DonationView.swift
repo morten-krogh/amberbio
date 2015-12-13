@@ -2,7 +2,7 @@ import Foundation
 
 class DonationView: Component {
 
-        let info_text = "Donations support hosting and development of the app.\n\nThere are many advantages of donations. The app can benefit people across the world. The app can be tested without paying. Licenses, registrations and subscriptions are avoided. Usage patterns vary a lot and can not be captured by a single price.\n\nPlease donate if the app is useful to you."
+        let info_text = "Donations support hosting and development of the app.\n\nWith donations, the app can be free and benefit people across the world of all financial means.\n\nPlease donate if the app is useful to you."
 
         let content_view = UIView()
         let close_button = UIButton(type: UIButtonType.System)
@@ -43,31 +43,27 @@ class DonationView: Component {
                 no_thanks_button.setAttributedTitle(astring_body_size(string: "No thanks", font_size: 22), forState: .Normal)
                 no_thanks_button.addTarget(self, action: "finish_action", forControlEvents: .TouchUpInside)
                 content_view.addSubview(no_thanks_button)
-                
-                
         }
         
         override func viewWillLayoutSubviews() {
                 super.viewWillLayoutSubviews()
                 
                 let (width, height) = (view.frame.width, view.frame.height)
-                print(width, height)
-                let content_width = width < 590 ? CGFloat(width - 40) : CGFloat(550)
+
                 let short = height < 400
-                let content_height: CGFloat
+                let content_width: CGFloat
                 if short {
-                        content_height = height - 10
+                        content_width = width - 10
                 } else {
-                        content_height = height < 740 ? CGFloat(height - 40) : CGFloat(700)
+                        content_width = width < 590 ? CGFloat(width - 40) : CGFloat(550)
                 }
-                
-                content_view.frame = CGRect(x: (width - content_width) / 2, y: (height - content_height) / 2, width: content_width, height: content_height)
-                
+
                 close_button.frame = CGRect(x: content_width - 40, y: 0, width: 40, height: 40)
                 
-                var origin_y = 
-                please_label.frame = CGRect(x: 0, y: 20, width: content_width, height: 30)
-                var origin_y = CGRectGetMaxY(please_label.frame) + 20
+                var origin_y = 20 as CGFloat
+                
+                please_label.frame = CGRect(x: 0, y: origin_y, width: content_width, height: 30)
+                origin_y = CGRectGetMaxY(please_label.frame) + 20
 
                 let info_size = info_label.sizeThatFits(CGSize(width: content_width - 40, height: 0))
                 info_label.frame.origin = CGPoint(x: 20, y: origin_y)
@@ -80,6 +76,16 @@ class DonationView: Component {
                 
                 no_thanks_button.sizeToFit()
                 no_thanks_button.frame.origin = CGPoint(x: (content_width - no_thanks_button.frame.width) / 2, y: origin_y)
+                origin_y = CGRectGetMaxY(no_thanks_button.frame)
+
+                let content_height: CGFloat
+                if origin_y + 10 < height {
+                        content_height = origin_y + 10
+                } else {
+                        content_height = origin_y
+                }
+                content_view.frame.size = CGSize(width: content_width, height: content_height)
+                content_view.center = CGPoint(x: width / 2, y: height / 2)
         }
         
         func donate_action() {
