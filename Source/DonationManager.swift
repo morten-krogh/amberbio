@@ -29,6 +29,10 @@ class DonationManager {
                 app_did_enter_foreground_counter++
                 put(key: key_app_did_enter_foreground_counter, value: app_did_enter_foreground_counter)
                 
+                if state.page_state.name == "module_store" {
+                        return
+                }
+                
                 if app_did_enter_foreground_counter - app_did_enter_foreground_counter_at_view < threshold_app_did_enter_foreground_counter {
 //                        return
                 }

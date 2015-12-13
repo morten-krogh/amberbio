@@ -6,7 +6,7 @@ class ModuleStoreState: PageState {
                 super.init()
                 name = "module_store"
                 title = astring_body(string: "Donate")
-                info = "The Amberbio app is free to use.\n\nDonations help support development and hosting of the app.\n\nPlease consider a donation if you find the app beneficial."
+                info = "The Amberbio app is free to use.\n\nDonations support hosting and development of the app.\n\nWith donations, the app can be free and benefit people across the world.\n\nPlease consider donating if the app is useful to you."
 
                 state.store.request_products()
         }
@@ -53,7 +53,7 @@ class ModuleStore: Component, UITableViewDataSource, UITableViewDelegate {
 
                 if state.store.request_products_pending {
                         info_label.hidden = false
-                        let text = "The products are fetched from the server"
+                        let text = "The donation options are fetched from the server"
                         info_label.attributedText = astring_font_size_color(string: text, font: nil, font_size: 20, color: nil)
                         info_label.textAlignment = .Center
                 } else {
@@ -74,7 +74,7 @@ class ModuleStore: Component, UITableViewDataSource, UITableViewDelegate {
         func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
                 let header = tableView.dequeueReusableHeaderFooterViewWithIdentifier("centered header") as! CenteredHeaderFooterView
 
-                let text = "Donations support the development of the app."
+                let text = "Donations support the development of the app"
                 header.update_multiline(text: text)
                 
                 return header
