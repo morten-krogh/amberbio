@@ -76,9 +76,6 @@ class FullPage: Component, UIScrollViewDelegate, UISearchBarDelegate {
 
                 scroll_view.delegate = self
                 scroll_view.showsVerticalScrollIndicator = false
-                
-                add_child_view_controller(parent: self, child: donation_view)
-                donation_view.view.layer.zPosition = 1
         }
 
         func add_child_view_controller_to_header(child child: UIViewController) {
@@ -270,7 +267,12 @@ class FullPage: Component, UIScrollViewDelegate, UISearchBarDelegate {
                 page.render()
                 active_data_set.render()
                 
-                donation_view.view.hidden = state.render_type != .donation_view
+                if donation_view.parentViewController != nil {
+                        remove_child_view_controller(child: donation_view)
+                }
+                if state.render_type == .donation_view {
+                        add_child_view_controller(parent: self, child: donation_view)
+                }
                 
                 view.setNeedsLayout()
         }
