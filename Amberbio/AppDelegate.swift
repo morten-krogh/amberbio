@@ -42,6 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         func applicationDidBecomeActive(application: UIApplication) {
                 state.donation_manager.app_did_become_active()
+                state.render()
         }
 
         func applicationWillTerminate(application: UIApplication) {}

@@ -19,17 +19,17 @@ class DonationManager {
         func app_did_become_active() {
                 number_of_times_app_did_become_active++
                 put(key: "number_of_times_app_did_become_active", value: number_of_times_app_did_become_active)
-                if number_of_times_app_did_become_active - number_time_app_did_become_active_at_view < 5 {
-                        return
-                }
-                let now = Int(round(NSDate().timeIntervalSince1970))
-                if now - most_recent_time_donation_view_shown < 3 * 24 * 3600 {
-                        return
-                }
-                if now - most_recent_time_donation < 60 * 24 * 3600 {
-                        return
-                }
-                show_donation_view()
+//                if number_of_times_app_did_become_active - number_time_app_did_become_active_at_view < 5 {
+//                        return
+//                }
+//                let now = Int(round(NSDate().timeIntervalSince1970))
+//                if now - most_recent_time_donation_view_shown < 3 * 24 * 3600 {
+//                        return
+//                }
+//                if now - most_recent_time_donation < 60 * 24 * 3600 {
+//                        return
+//                }
+                        show_donation_view()
         }
         
         func donation() {
@@ -41,8 +41,9 @@ class DonationManager {
                 number_time_app_did_become_active_at_view = number_of_times_app_did_become_active
                 most_recent_time_donation_view_shown = Int(round(NSDate().timeIntervalSince1970))
                 put_all()
-                
-                
+                if state.render_type == .full_page {
+                        state.render_type = .donation_view
+                }
         }
         
         func get_all() {

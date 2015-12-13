@@ -4,6 +4,7 @@ enum RenderType {
         case full_page
         case progress_indicator
         case activity_indicator
+        case donation_view
 }
 
 class State {

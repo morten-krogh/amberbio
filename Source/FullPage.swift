@@ -22,6 +22,7 @@ class FullPage: Component, UIScrollViewDelegate, UISearchBarDelegate {
 
         var displayed_page_name = ""
         var page = Component()
+        let donation_view = DonationView()
 
         override func loadView() {
                 view = scroll_view
@@ -75,6 +76,9 @@ class FullPage: Component, UIScrollViewDelegate, UISearchBarDelegate {
 
                 scroll_view.delegate = self
                 scroll_view.showsVerticalScrollIndicator = false
+                
+                add_child_view_controller(parent: self, child: donation_view)
+                donation_view.view.layer.zPosition = 1
         }
 
         func add_child_view_controller_to_header(child child: UIViewController) {
@@ -265,6 +269,9 @@ class FullPage: Component, UIScrollViewDelegate, UISearchBarDelegate {
                 render_buttons()
                 page.render()
                 active_data_set.render()
+                
+                donation_view.view.hidden = state.render_type != .donation_view
+                
                 view.setNeedsLayout()
         }
 
@@ -370,7 +377,7 @@ class FullPage: Component, UIScrollViewDelegate, UISearchBarDelegate {
 
                 let middle_margin = 50 as CGFloat
 
-                let full_screen = state.page_state.full_screen == .Full || (state.page_state.full_screen == .Conditional && height < 700)
+                let full_screen = (state.page_state.full_screen == .Full || (state.page_state.full_screen == .Conditional && height < 700)) && state.render_type == .full_page
 
                 if full_screen {
                         page.view.frame = CGRect(x: 0, y: header_height, width: width, height: height - middle_margin)
@@ -378,6 +385,12 @@ class FullPage: Component, UIScrollViewDelegate, UISearchBarDelegate {
                 } else {
                         page.view.frame = CGRect(x: 0, y: header_height, width: width, height: height - header_height)
                         scroll_view.contentSize = CGSize(width: width, height: height)
+                }
+                
+                if state.render_type == .donation_view {
+                        donation_view.view.frame = view.bounds
+                } else {
+                        donation_view.view.frame = CGRect.zero
                 }
         }
 

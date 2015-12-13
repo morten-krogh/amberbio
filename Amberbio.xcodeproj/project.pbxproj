@@ -235,6 +235,7 @@
 		60BFB2421BEB6478000B492C /* SOMView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BFB2411BEB6478000B492C /* SOMView.swift */; };
 		60BFB2441BECC7DC000B492C /* som.c in Sources */ = {isa = PBXBuildFile; fileRef = 60BFB2431BECC7DC000B492C /* som.c */; };
 		60C797FC1C1CAD5200C41633 /* DonationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C797FB1C1CAD5200C41633 /* DonationManager.swift */; };
+		60C797FE1C1D5BB500C41633 /* DonationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C797FD1C1D5BB500C41633 /* DonationView.swift */; };
 		60D2C3BE1BDFDAAE00C6C6EF /* Values.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D2C3BD1BDFDAAE00C6C6EF /* Values.swift */; };
 		60D2C3C21BE0C80400C6C6EF /* Sammon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D2C3C11BE0C80400C6C6EF /* Sammon.swift */; };
 		60D2C3C41BE0D4ED00C6C6EF /* sammon.c in Sources */ = {isa = PBXBuildFile; fileRef = 60D2C3C31BE0D4ED00C6C6EF /* sammon.c */; };
@@ -536,6 +537,7 @@
 		60BFB2411BEB6478000B492C /* SOMView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SOMView.swift; path = Source/SOMView.swift; sourceTree = "<group>"; };
 		60BFB2431BECC7DC000B492C /* som.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = som.c; path = Source/som.c; sourceTree = "<group>"; };
 		60C797FB1C1CAD5200C41633 /* DonationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DonationManager.swift; path = Source/DonationManager.swift; sourceTree = "<group>"; };
+		60C797FD1C1D5BB500C41633 /* DonationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DonationView.swift; path = Source/DonationView.swift; sourceTree = "<group>"; };
 		60D2C3BC1BDFCA8F00C6C6EF /* c-functions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "c-functions.h"; path = "Source/c-functions.h"; sourceTree = "<group>"; };
 		60D2C3BD1BDFDAAE00C6C6EF /* Values.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Values.swift; path = Source/Values.swift; sourceTree = "<group>"; };
 		60D2C3C11BE0C80400C6C6EF /* Sammon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Sammon.swift; path = Source/Sammon.swift; sourceTree = "<group>"; };
@@ -784,6 +786,7 @@
 				60B4005B1BA19C7900D8DD80 /* DataSetSelection.swift */,
 				60B4005C1BA19C7900D8DD80 /* DataSetSummary.swift */,
 				60B4005D1BA19C7900D8DD80 /* DataSetTable.swift */,
+				60C797FD1C1D5BB500C41633 /* DonationView.swift */,
 				60B400661BA19C7900D8DD80 /* EditFactor.swift */,
 				60B400671BA19C7900D8DD80 /* EditFactors.swift */,
 				60B400681BA19C7900D8DD80 /* EditProject.swift */,
@@ -1653,6 +1656,7 @@
 				60B400FF1BA19C7900D8DD80 /* Files.swift in Sources */,
 				60B4011E1BA19C7900D8DD80 /* NameDateTableViewCell.swift in Sources */,
 				60B401491BA19C7900D8DD80 /* SingleMoleculeTableViewCell.swift in Sources */,
+				60C797FE1C1D5BB500C41633 /* DonationView.swift in Sources */,
 				60B400F21BA19C7900D8DD80 /* Drawing.swift in Sources */,
 				60B4010F1BA19C7900D8DD80 /* LinearRegressionSelection.swift in Sources */,
 				60B400DD1BA19C7900D8DD80 /* Back.swift in Sources */,

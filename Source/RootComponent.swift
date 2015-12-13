@@ -26,7 +26,7 @@ class RootComponent: Component {
 
         override func render() {
                 switch state.render_type {
-                case .full_page:
+                case .full_page, .donation_view:
                         set_child_view_controller(view_controller: full_page)
                         full_page.render()
                 case .progress_indicator:
