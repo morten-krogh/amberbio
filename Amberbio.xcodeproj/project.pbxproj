@@ -62,7 +62,7 @@
 		60A77A931BDE25BE00C8FBEE /* KMeansClusteringSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A77A921BDE25BE00C8FBEE /* KMeansClusteringSelection.swift */; };
 		60A77A951BDE283600C8FBEE /* KMeans.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A77A941BDE283600C8FBEE /* KMeans.swift */; };
 		60A77A971BDE459D00C8FBEE /* KMeansClusteringResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A77A961BDE459D00C8FBEE /* KMeansClusteringResult.swift */; };
-		60A77A9A1BDE5B2E00C8FBEE /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A77A991BDE5B2E00C8FBEE /* HeaderView.swift */; };
+		60A77A9A1BDE5B2E00C8FBEE /* HeaderReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A77A991BDE5B2E00C8FBEE /* HeaderReusableView.swift */; };
 		60A77A9C1BDE5CB400C8FBEE /* HomeCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A77A9B1BDE5CB400C8FBEE /* HomeCellView.swift */; };
 		60A77A9E1BDE5D0300C8FBEE /* TwoLabelColorCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A77A9D1BDE5D0300C8FBEE /* TwoLabelColorCellView.swift */; };
 		60A893E11BD52651004DAD2C /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A893E01BD52651004DAD2C /* Button.swift */; };
@@ -365,7 +365,7 @@
 		60A77A921BDE25BE00C8FBEE /* KMeansClusteringSelection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KMeansClusteringSelection.swift; path = Source/KMeansClusteringSelection.swift; sourceTree = "<group>"; };
 		60A77A941BDE283600C8FBEE /* KMeans.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KMeans.swift; path = Source/KMeans.swift; sourceTree = "<group>"; };
 		60A77A961BDE459D00C8FBEE /* KMeansClusteringResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KMeansClusteringResult.swift; path = Source/KMeansClusteringResult.swift; sourceTree = "<group>"; };
-		60A77A991BDE5B2E00C8FBEE /* HeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HeaderView.swift; path = Source/HeaderView.swift; sourceTree = "<group>"; };
+		60A77A991BDE5B2E00C8FBEE /* HeaderReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HeaderReusableView.swift; path = Source/HeaderReusableView.swift; sourceTree = "<group>"; };
 		60A77A9B1BDE5CB400C8FBEE /* HomeCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeCellView.swift; path = Source/HomeCellView.swift; sourceTree = "<group>"; };
 		60A77A9D1BDE5D0300C8FBEE /* TwoLabelColorCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TwoLabelColorCellView.swift; path = Source/TwoLabelColorCellView.swift; sourceTree = "<group>"; };
 		60A893E01BD52651004DAD2C /* Button.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Button.swift; path = Source/Button.swift; sourceTree = "<group>"; };
@@ -946,7 +946,7 @@
 		60A77A981BDE5AD500C8FBEE /* CollectionViews */ = {
 			isa = PBXGroup;
 			children = (
-				60A77A991BDE5B2E00C8FBEE /* HeaderView.swift */,
+				60A77A991BDE5B2E00C8FBEE /* HeaderReusableView.swift */,
 				60A77A9B1BDE5CB400C8FBEE /* HomeCellView.swift */,
 				60A77A9D1BDE5D0300C8FBEE /* TwoLabelColorCellView.swift */,
 			);
@@ -1521,7 +1521,7 @@
 				60B401291BA19C7900D8DD80 /* PairwiseTable.swift in Sources */,
 				60B401381BA19C7900D8DD80 /* PValueHistogramDelegate.swift in Sources */,
 				60014BC71BB5CB82001A79B1 /* Sort.swift in Sources */,
-				60A77A9A1BDE5B2E00C8FBEE /* HeaderView.swift in Sources */,
+				60A77A9A1BDE5B2E00C8FBEE /* HeaderReusableView.swift in Sources */,
 				60B400E11BA19C7900D8DD80 /* ChiSquareTableMath.swift in Sources */,
 				60B401261BA19C7900D8DD80 /* PairTable.swift in Sources */,
 				60D906A41C05F4950043F42D /* BRAOfficeDocument.m in Sources */,

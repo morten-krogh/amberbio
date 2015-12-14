@@ -186,7 +186,7 @@ class Home: Component, UICollectionViewDataSource, UICollectionViewDelegate, UIC
 
                 collection_view.backgroundColor = UIColor.whiteColor()
                 collection_view.registerClass(HomeCellView.self, forCellWithReuseIdentifier: "cell")
-                collection_view.registerClass(HeaderView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "header")
+                collection_view.registerClass(HeaderReusableView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "header")
                 collection_view.dataSource = self
                 collection_view.delegate = self
 
@@ -205,7 +205,7 @@ class Home: Component, UICollectionViewDataSource, UICollectionViewDelegate, UIC
         }
 
         func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
-                let header = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "header", forIndexPath: indexPath) as! HeaderView
+                let header = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "header", forIndexPath: indexPath) as! HeaderReusableView
 
                 let header_name = header_names[indexPath.section]
 

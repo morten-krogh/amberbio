@@ -46,7 +46,7 @@ class KMeansClusteringResult: Component, UICollectionViewDataSource, UICollectio
                 view.addSubview(create_new_factor_button)
 
                 collection_view.backgroundColor = UIColor.whiteColor()
-                collection_view.registerClass(HeaderView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "header")
+                collection_view.registerClass(HeaderReusableView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "header")
                 collection_view.registerClass(TwoLabelColorCellView.self, forCellWithReuseIdentifier: "cell")
                 view.addSubview(collection_view)
         }
@@ -89,7 +89,7 @@ class KMeansClusteringResult: Component, UICollectionViewDataSource, UICollectio
         }
 
         func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
-                let header = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "header", forIndexPath: indexPath) as! HeaderView
+                let header = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "header", forIndexPath: indexPath) as! HeaderReusableView
 
                 let section = indexPath.section + 1
                 let title = "Cluster \(section)"
