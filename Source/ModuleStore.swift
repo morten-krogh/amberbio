@@ -77,28 +77,35 @@ class ModuleStoreState: PageState {
 //        }
 //}
 
+
 class ModuleStore: Component, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
         let collection_view = UICollectionView(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout())
 
-        override func loadView() {
-                view = collection_view
-        }
-        
         override func viewDidLoad() {
                 super.viewDidLoad()
                 
                 collection_view.backgroundColor = UIColor.whiteColor()
                 
                 collection_view.registerClass(HeaderReusableView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "header")
-        
+                collection_view.registerClass(CenteredViewCell.self, forCellWithReuseIdentifier: "centered cell")
                 
                 collection_view.dataSource = self
                 collection_view.delegate = self
+                
+                view.addSubview(collection_view)
         }
         
         override func render() {
                 collection_view.reloadData()
+        }
+        
+        override func viewWillLayoutSubviews() {
+                super.viewWillLayoutSubviews()
+
+                collection_view.frame = view.bounds
+                collection_view.collectionViewLayout.invalidateLayout()
+                
         }
         
         func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
@@ -117,17 +124,23 @@ class ModuleStore: Component, UICollectionViewDataSource, UICollectionViewDelega
         }
 
         func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-                return 0
+                return state.store.request_products_pending ? 1 : state.store.products.count
         }
         
         func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-                return CGSize.zero
+                return CGSize(width: view.frame.width, height: 56)
         }
         
         func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-                return UICollectionViewCell()
+                let cell = collectionView.dequeueReusableCellWithReuseIdentifier("centered cell", forIndexPath: indexPath) as! CenteredViewCell
+                
+                let text = "Waiting for the server"
+                cell.update_unselected(text: text)
+                
+                return cell
         }
         
+
 }
 
 
