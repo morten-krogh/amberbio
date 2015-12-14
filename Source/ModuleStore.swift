@@ -89,6 +89,7 @@ class ModuleStore: Component, UICollectionViewDataSource, UICollectionViewDelega
                 
                 collection_view.registerClass(HeaderReusableView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "header")
                 collection_view.registerClass(CenteredViewCell.self, forCellWithReuseIdentifier: "centered cell")
+                collection_view.registerClass(DonationViewCell.self, forCellWithReuseIdentifier: "donation cell")
                 
                 collection_view.dataSource = self
                 collection_view.delegate = self
@@ -103,9 +104,10 @@ class ModuleStore: Component, UICollectionViewDataSource, UICollectionViewDelega
         override func viewWillLayoutSubviews() {
                 super.viewWillLayoutSubviews()
 
-                collection_view.frame = view.bounds
+
                 collection_view.collectionViewLayout.invalidateLayout()
-                
+
+                collection_view.frame = view.bounds
         }
         
         func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
@@ -113,6 +115,7 @@ class ModuleStore: Component, UICollectionViewDataSource, UICollectionViewDelega
         }
         
         func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+                print(view.frame.width)
                 return CGSize(width: view.frame.width, height: 80)
         }
         
@@ -128,32 +131,31 @@ class ModuleStore: Component, UICollectionViewDataSource, UICollectionViewDelega
         }
         
         func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-                return CGSize(width: view.frame.width, height: 56)
+                if state.store.request_products_pending {
+                        return CGSize(width: view.frame.width, height: 56)
+                } else {
+                        return CGSize(width: 175, height: 145)
+                }
+        }
+        
+        func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
+                return state.store.request_products_pending ? UIEdgeInsetsZero : UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20)
         }
         
         func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-                let cell = collectionView.dequeueReusableCellWithReuseIdentifier("centered cell", forIndexPath: indexPath) as! CenteredViewCell
-                
-                let text = "Waiting for the server"
-                cell.update_unselected(text: text)
-                
-                return cell
+                if state.store.request_products_pending {
+                        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("centered cell", forIndexPath: indexPath) as! CenteredViewCell
+                        let text = "Waiting for the server"
+                        cell.update_unselected(text: text)
+                        return cell
+                } else {
+                        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("donation cell", forIndexPath: indexPath) as! DonationViewCell
+                        let color = color_from_hex(hex: color_brewer_qualitative_9_pastel1[5])
+                        cell.update(product: state.store.products[indexPath.row], color: color)
+                        return cell
+                }
         }
-        
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
