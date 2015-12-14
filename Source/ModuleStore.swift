@@ -36,19 +36,6 @@ class ModuleStore: Component, UITableViewDataSource, UITableViewDelegate {
 
         override func render() {
                 table_view.reloadData()
-//                info_label.hidden = true
-//                table_view.hidden = true
-//
-//                if state.store.request_products_pending {
-//                        info_label.hidden = false
-//                        let text = "The donation options are fetched from the server"
-//                        info_label.attributedText = astring_font_size_color(string: text, font: nil, font_size: 20, color: nil)
-//                        info_label.textAlignment = .Center
-//                } else {
-//                        table_view.hidden = false
-//                        table_view.reloadData()
-//                }
-//                view.setNeedsLayout()
         }
 
         func numberOfSectionsInTableView(tableView: UITableView) -> Int {
