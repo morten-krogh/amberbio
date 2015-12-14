@@ -48,8 +48,6 @@ class Store: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver {
         }
 
         func buy(product product: SKProduct) {
-                print(SKPaymentQueue.canMakePayments())
-
                 let payment = SKMutablePayment(product: product)
                 SKPaymentQueue.defaultQueue().addPayment(payment)
         }

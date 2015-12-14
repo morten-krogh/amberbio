@@ -31,6 +31,9 @@ class DonationViewCell: UICollectionViewCell {
                 buy_button.setAttributedTitle(buy_text, forState: .Normal)
                 buy_button.addTarget(self, action: "buy_action", forControlEvents: .TouchUpInside)
                 inset_view.addSubview(buy_button)
+                
+                let tap_recognizer = UITapGestureRecognizer(target: self, action: "buy_action")
+                inset_view.addGestureRecognizer(tap_recognizer)
         }
 
         required init?(coder aDecoder: NSCoder) {
