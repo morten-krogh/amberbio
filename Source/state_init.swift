@@ -8,10 +8,8 @@ let database_url = file_app_directory_url(file_name: database_file_name)
 let reset_database = false
 //let initial_active_data_set_id = 1
 #if DEBUG
-        let global_remove_ads = false
         let initial_page_state = HomeState()
 #else
-        let global_remove_ads = false
         let initial_page_state = HomeState()
 #endif
 
