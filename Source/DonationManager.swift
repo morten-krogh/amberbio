@@ -2,9 +2,9 @@ import Foundation
 
 class DonationManager {
 
-        let threshold_app_did_enter_foreground_counter = 3
-        let threshold_time_donation_view =  7 * 24 * 60 * 60
-        let threshold_time_donation = 8 * 7 * 24 * 60 * 60
+        let threshold_app_did_enter_foreground_counter = 5
+        let threshold_time_donation_view = 4 * 7 * 24 * 60 * 60
+        let threshold_time_donation = 3 * 4 * 7 * 24 * 60 * 60
         
         let database: Database
         

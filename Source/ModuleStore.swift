@@ -5,7 +5,7 @@ class ModuleStoreState: PageState {
         override init() {
                 super.init()
                 name = "module_store"
-                title = astring_body(string: "Donate")
+                title = astring_body(string: "Donations")
                 info = "The Amberbio app is free to use.\n\nDonations support hosting and development of the app.\n\nWith donations, the app can be free and benefit people across the world.\n\nPlease consider donating if the app is useful to you."
 
                 state.store.request_products()
@@ -14,7 +14,6 @@ class ModuleStoreState: PageState {
 
 class ModuleStore: Component, UITableViewDataSource, UITableViewDelegate {
 
-//        let info_label = UILabel()
         let table_view = UITableView()
 
         override func loadView() {
@@ -66,7 +65,7 @@ class ModuleStore: Component, UITableViewDataSource, UITableViewDelegate {
         func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
                 if state.store.request_products_pending {
                         let cell = tableView.dequeueReusableCellWithIdentifier("centered cell") as! CenteredTableViewCell
-                        let text = "The donation information is fetched from the server"
+                        let text = "Waiting for the server"
                         cell.update_unselected(text: text)
                         return cell
                 } else {
