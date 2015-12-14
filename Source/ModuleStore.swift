@@ -14,53 +14,41 @@ class ModuleStoreState: PageState {
 
 class ModuleStore: Component, UITableViewDataSource, UITableViewDelegate {
 
-        let info_label = UILabel()
+//        let info_label = UILabel()
         let table_view = UITableView()
 
+        override func loadView() {
+                view = table_view
+        }
+        
         override func viewDidLoad() {
                 super.viewDidLoad()
 
-                info_label.numberOfLines = 0
-                view.addSubview(info_label)
-
                 table_view.registerClass(CenteredHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: "centered header")
                 table_view.registerClass(StoreProductTableViewCell.self, forCellReuseIdentifier: "product cell")
-                table_view.registerClass(StoreRestoreTableViewCell.self, forCellReuseIdentifier: "restore cell")
                 table_view.registerClass(CenteredTableViewCell.self, forCellReuseIdentifier: "centered cell")
 
                 table_view.dataSource = self
                 table_view.delegate = self
                 table_view.backgroundColor = UIColor.whiteColor()
                 table_view.separatorStyle = .None
-                view.addSubview(table_view)
-        }
-
-        override func viewWillLayoutSubviews() {
-                super.viewWillLayoutSubviews()
-
-                let width = view.frame.width
-
-                let info_size = info_label.sizeThatFits(CGSize(width: width - 40, height: 0))
-                info_label.frame.size = info_size
-                info_label.center = CGPoint(x: width / 2, y: 100)
-
-                table_view.frame = view.bounds
         }
 
         override func render() {
-                info_label.hidden = true
-                table_view.hidden = true
-
-                if state.store.request_products_pending {
-                        info_label.hidden = false
-                        let text = "The donation options are fetched from the server"
-                        info_label.attributedText = astring_font_size_color(string: text, font: nil, font_size: 20, color: nil)
-                        info_label.textAlignment = .Center
-                } else {
-                        table_view.hidden = false
-                        table_view.reloadData()
-                }
-                view.setNeedsLayout()
+                table_view.reloadData()
+//                info_label.hidden = true
+//                table_view.hidden = true
+//
+//                if state.store.request_products_pending {
+//                        info_label.hidden = false
+//                        let text = "The donation options are fetched from the server"
+//                        info_label.attributedText = astring_font_size_color(string: text, font: nil, font_size: 20, color: nil)
+//                        info_label.textAlignment = .Center
+//                } else {
+//                        table_view.hidden = false
+//                        table_view.reloadData()
+//                }
+//                view.setNeedsLayout()
         }
 
         func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -81,17 +69,24 @@ class ModuleStore: Component, UITableViewDataSource, UITableViewDelegate {
         }
 
         func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-                return state.store.products.count
+                return state.store.request_products_pending ? 1 : state.store.products.count
         }
 
         func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-                return store_product_table_view_cell_height
+                return state.store.request_products_pending ? centered_table_view_cell_height : store_product_table_view_cell_height
         }
 
         func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-                let cell = tableView.dequeueReusableCellWithIdentifier("product cell") as! StoreProductTableViewCell
-                let color = color_from_hex(hex: color_brewer_qualitative_9_pastel1[5])
-                cell.update(product: state.store.products[indexPath.row], color: color)
-                return cell
+                if state.store.request_products_pending {
+                        let cell = tableView.dequeueReusableCellWithIdentifier("centered cell") as! CenteredTableViewCell
+                        let text = "The donation information is fetched from the server"
+                        cell.update_unselected(text: text)
+                        return cell
+                } else {
+                        let cell = tableView.dequeueReusableCellWithIdentifier("product cell") as! StoreProductTableViewCell
+                        let color = color_from_hex(hex: color_brewer_qualitative_9_pastel1[5])
+                        cell.update(product: state.store.products[indexPath.row], color: color)
+                        return cell
+                }
         }
 }
