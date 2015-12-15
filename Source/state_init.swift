@@ -7,7 +7,11 @@ let database_url = file_app_directory_url(file_name: database_file_name)
 
 let reset_database = false
 //let initial_active_data_set_id = 1
-let initial_page_state = HomeState()
+#if DEBUG
+        let initial_page_state = HomeState()
+#else
+        let initial_page_state = HomeState()
+#endif
 
 func state_init() {
         //        print(database_path)
@@ -35,7 +39,7 @@ func state_init() {
         }
 
         let database = sqlite_open(database_path: database_url.path!)!
-//        sqlite_database_main_migrate(database: database)
+        sqlite_database_main_migrate(database: database)
 
         state = State(database: database)
         state.set_page_state(page_state: initial_page_state)

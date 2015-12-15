@@ -210,7 +210,7 @@ class SupervisedClassification {
                 var number_of_present_molecules = 0
                 var is_present_molecule = [Int](count: state.number_of_molecules, repeatedValue: 0)
 
-                calculate_molecules_without_missing_values(state.values, state.number_of_molecules, state.number_of_samples, sample_indices, sample_indices.count, &number_of_present_molecules, &is_present_molecule)
+                values_calculate_molecules_without_missing_values(state.values, state.number_of_molecules, state.number_of_samples, sample_indices, sample_indices.count, &number_of_present_molecules, &is_present_molecule)
 
                 molecule_indices = []
                 for i in 0 ..< is_present_molecule.count {

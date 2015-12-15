@@ -124,7 +124,7 @@ func create_factor_elimination_data_set(factor_index factor_index: Int) {
 
                 var values_eliminated = [Double](count: state.values.count, repeatedValue: 0)
 
-                calculate_factor_elimination(state.values, state.number_of_molecules, state.number_of_samples, sample_level, counter, &values_eliminated)
+                values_calculate_factor_elimination(state.values, state.number_of_molecules, state.number_of_samples, sample_level, counter, &values_eliminated)
 
                 let data_set_name = "Data set with eliminated: \(factor_name)"
                 let project_note_text = "Creation of data set \"\(data_set_name)\" by elimination of \(factor_name)."

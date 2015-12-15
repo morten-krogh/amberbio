@@ -8,6 +8,7 @@ let home_page_name_to_section_row = [
         "import_data": (1, 0),
         "export_projects": (1, 1),
         "result_files": (1, 2),
+        "geo": (1, 3),
         "data_set_selection": (2, 0),
         "project_notes": (2, 1),
         "data_set_table": (3, 0),
@@ -24,6 +25,9 @@ let home_page_name_to_section_row = [
         "linear_regression_selection": (4, 3),
         "hierarchical_clustering_selection": (5, 0),
         "pca": (5, 1),
+        "k_means_clustering_selection": (5, 2),
+        "sammon": (5, 3),
+        "som": (5, 4),
         "knn_factor_selection": (6, 0),
         "svm_factor_selection": (6, 1),
         "logarithm_transform": (7, 0),
@@ -64,18 +68,18 @@ class HomeState: PageState {
 
 class Home: Component, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
-        let cell_width = 105 as CGFloat
+        let cell_width = 107 as CGFloat
         let cell_height = 60 as CGFloat
 
         let header_names = ["Info", "Import/export", "Projects and data sets", "Visualize data set", "Statistical tests", "Unsupervised classification", "Supervised classification", "Create new data sets", "Edit project"]
 
         let page_titles = [
-                ["Module\nStore", "Manual", "Feedback", "User"],
-                ["Import\nData", "Export Projects", "Result Files"],
+                ["Donations", "Manual", "Feedback", "User"],
+                ["Import\nData", "Export Projects", "Result Files", "GEO"],
                 ["Data Set Selection", "Project Notes" ],
                 ["Data Set Table", "Data Set Summary", "Factor\nChart", "Factor Association", "Factor Summary", "Missing Values for Samples", "Single Molecule Plots", "Multiple Molecule Plot"],
                 ["Anova", "Pairwise Test", "Paired Test", "Linear Regression"],
-                ["Hierarchical Clustering", "PCA"],
+                ["Hierarchical Clustering", "PCA", "k means clustering", "Sammon map", "Self organizing map"],
                 ["k nearest neighbor", "Support vector machine"],
                 ["Logarithm Transform", "Sample Normalization", "Factor Elimination", "Remove Samples", "Remove Molecules", "Filter Molecules"],
                 ["Edit Project", "Sample Names", "Molecule Annotations", "Color Selection", "Edit Factors"]
@@ -99,6 +103,8 @@ class Home: Component, UICollectionViewDataSource, UICollectionViewDelegate, UIC
                         return ExportProjectsState()
                 case (1, 2):
                         return ResultFilesState()
+                case (1, 3):
+                        return GEOState()
                 case (2, 0):
                         return DataSetSelectionState()
                 case (2, 1):
@@ -131,6 +137,12 @@ class Home: Component, UICollectionViewDataSource, UICollectionViewDelegate, UIC
                         return HierarchicalClusteringSelectionState()
                 case (5, 1):
                         return PCAState()
+                case (5, 2):
+                        return KMeansClusteringSelectionState()
+                case (5, 3):
+                        return SammonState()
+                case (5, 4):
+                        return SOMState()
                 case (6, 0):
                         return SupervisedClassificationFactorSelectionState(supervised_classification_type: .KNN)
                 case (6, 1):
@@ -174,7 +186,7 @@ class Home: Component, UICollectionViewDataSource, UICollectionViewDelegate, UIC
 
                 collection_view.backgroundColor = UIColor.whiteColor()
                 collection_view.registerClass(HomeCellView.self, forCellWithReuseIdentifier: "cell")
-                collection_view.registerClass(HomeHeaderView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "header")
+                collection_view.registerClass(HeaderReusableView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "header")
                 collection_view.dataSource = self
                 collection_view.delegate = self
 
@@ -193,7 +205,7 @@ class Home: Component, UICollectionViewDataSource, UICollectionViewDelegate, UIC
         }
 
         func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
-                let header = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "header", forIndexPath: indexPath) as! HomeHeaderView
+                let header = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "header", forIndexPath: indexPath) as! HeaderReusableView
 
                 let header_name = header_names[indexPath.section]
 
@@ -211,10 +223,8 @@ class Home: Component, UICollectionViewDataSource, UICollectionViewDelegate, UIC
 
                 let title = page_titles[indexPath.section][indexPath.row]
                 let previously_selected = state.home_selected_index_path == indexPath
-                let page_name = home_helper.index_path_to_page_name[indexPath]!
-                let locked = state.locked(page_name: page_name)
 
-                cell.update(title: title, section: indexPath.section, border: previously_selected, locked: locked)
+                cell.update(title: title, section: indexPath.section, border: previously_selected, locked: false)
 
                 return cell
         }
@@ -254,96 +264,5 @@ class Home: Component, UICollectionViewDataSource, UICollectionViewDelegate, UIC
                 } else {
                         view_will_layout_subviews_was_called = false
                 }
-        }
-}
-
-class HomeHeaderView: UICollectionReusableView {
-
-        let label = UILabel()
-
-        override init(frame: CGRect) {
-                super.init(frame: frame)
-
-                label.textAlignment = .Center
-                addSubview(label)
-        }
-
-        required init(coder aDecoder: NSCoder) {
-            fatalError("init(coder:) has not been implemented")
-        }
-
-        override func layoutSubviews() {
-                super.layoutSubviews()
-                label.frame = bounds
-        }
-
-        func update(title title: String) {
-                let attributed_text = astring_font_size_color(string: title, font: font_headline, font_size: 20, color: nil)
-                label.attributedText = attributed_text
-                label.textAlignment = .Center
-        }
-}
-
-class HomeCellView: UICollectionViewCell {
-
-        var color_normal = UIColor.redColor()
-
-        let label = UILabel()
-        let lock_label = UILabel()
-
-        override init(frame: CGRect) {
-                super.init(frame: frame)
-
-                contentView.layer.cornerRadius = 10
-
-                lock_label.attributedText = astring_font_size_color(string: "\u{1F512}", font: nil, font_size: 30, color: nil)
-                lock_label.textAlignment = .Center
-                contentView.addSubview(lock_label)
-
-                label.numberOfLines = 0
-                label.textAlignment = .Center
-                contentView.addSubview(label)
-        }
-
-        required init(coder aDecoder: NSCoder) {
-                fatalError("init(coder:) has not been implemented")
-        }
-
-        override func layoutSubviews() {
-                super.layoutSubviews()
-
-                if lock_label.hidden {
-                        label.frame = bounds
-                } else {
-                        lock_label.sizeToFit()
-                        let separator_x = bounds.width - lock_label.frame.width
-                        lock_label.frame.origin = CGPoint(x: separator_x, y: (bounds.height - lock_label.frame.height) / 2)
-                        label.frame = CGRect(x: 0, y: 0, width: separator_x, height: bounds.height)
-                }
-        }
-
-        func update(title title: String, section: Int, border: Bool, locked: Bool) {
-                let attributed_text = astring_font_size_color(string: title, font: font_body, font_size: 16, color: nil)
-                label.attributedText = attributed_text
-                label.textAlignment = .Center
-                color_normal = color_from_hex(hex: color_brewer_qualitative_9_pastel1[section])
-                contentView.backgroundColor = color_normal
-                if border {
-                        contentView.layer.borderWidth = 2
-                        contentView.layer.borderColor = UIColor.blackColor().CGColor
-                } else {
-                        contentView.layer.borderWidth = 0
-                        contentView.layer.borderColor = UIColor.whiteColor().CGColor
-                }
-                lock_label.hidden = !locked
-                setNeedsLayout()
-        }
-
-        func highlight() {
-                contentView.backgroundColor = color_normal.colorWithAlphaComponent(0.5)
-        }
-
-        func dehighlight() {
-                contentView.backgroundColor = color_normal
         }
 }

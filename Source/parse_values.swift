@@ -1,5 +1,63 @@
 import Foundation
 
+func swift_parse_find_separator(string string: String) -> Character? {
+        var current_index = string.startIndex
+        var comma_found = false
+        while current_index < string.endIndex {
+                switch string[current_index] {
+                case "\t":
+                        return "\t"
+                case ",":
+                        comma_found = true
+                        current_index = current_index.advancedBy(1)
+                default:
+                        current_index = current_index.advancedBy(1)
+                }
+        }
+        return comma_found ? "," : nil
+}
+
+func parse_separator_separated_string(string string: String, separator: Character) -> [[String]] {
+        var result = [] as [[String]]
+
+        var current_row = [] as [String]
+        var previous_index = string.startIndex
+        var current_index = string.startIndex
+        while current_index < string.endIndex {
+                switch string[current_index] {
+                case separator:
+                        let cell = trim(string: string.substringWithRange(previous_index ..< current_index))
+                        current_row.append(cell)
+                        current_index = current_index.advancedBy(1)
+                        previous_index = current_index
+                case "\r", "\n", "\r\n":
+                        let ch = string[current_index]
+                        let cell = trim(string: string.substringWithRange(previous_index ..< current_index))
+                        current_row.append(cell)
+                        result.append(current_row)
+                        current_row = []
+                        current_index = current_index.advancedBy(1)
+                        if ch == "\r" && current_index < string.endIndex && string[current_index] == "\n" {
+                                current_index = current_index.advancedBy(1)
+                        }
+                        previous_index = current_index
+                default:
+                        current_index = current_index.advancedBy(1)
+                }
+        }
+
+        if current_index > previous_index {
+                let cell = trim(string: string.substringWithRange(previous_index ..< current_index))
+                current_row.append(cell)
+        }
+
+        if !current_row.isEmpty {
+                result.append(current_row)
+        }
+
+        return result
+}
+
 func parse_project_file(data data: NSData) -> (sample_names: [String]?, molecule_names: [String]?, values: [Double]?, error: String?) {
         let (table, error) = parse_data(data: data)
 
@@ -54,7 +112,7 @@ func parse_factor_file(data data: NSData, current_sample_names: [String], curren
                         return ([], [], error)
                 }
 
-                if table.count > 100 {
+                if table.count > 200 {
                         let error = "There are too many rows in the file"
                         return ([], [], error)
                 }
@@ -164,7 +222,7 @@ func parse_annotation_file(data data: NSData, molecule_names: [String], current_
 
 func parse_data(data data: NSData) -> (table: [[String]]?, error: String?) {
         if let string = NSString(data: data, encoding: NSUTF8StringEncoding) as? String {
-                if let separator = parse_find_separator(string: string) {
+                if let separator = swift_parse_find_separator(string: string) {
                         let table = parse_separator_separated_string(string: string, separator: separator)
                         return parse_extract_rectangular_table(table: table)
                 } else {
@@ -175,63 +233,8 @@ func parse_data(data data: NSData) -> (table: [[String]]?, error: String?) {
         }
 }
 
-func parse_find_separator(string string: String) -> Character? {
-        var current_index = string.startIndex
-        var comma_found = false
-        while current_index < string.endIndex {
-                switch string[current_index] {
-                case "\t":
-                        return "\t"
-                case ",":
-                        comma_found = true
-                        current_index = current_index.advancedBy(1)
-                default:
-                        current_index = current_index.advancedBy(1)
-                }
-        }
-        return comma_found ? "," : nil
-}
 
-func parse_separator_separated_string(string string: String, separator: Character) -> [[String]] {
-        var result = [] as [[String]]
 
-        var current_row = [] as [String]
-        var previous_index = string.startIndex
-        var current_index = string.startIndex
-        while current_index < string.endIndex {
-                switch string[current_index] {
-                case separator:
-                        let cell = trim(string: string.substringWithRange(previous_index ..< current_index))
-                        current_row.append(cell)
-                        current_index = current_index.advancedBy(1)
-                        previous_index = current_index
-                case "\r", "\n", "\r\n":
-                        let ch = string[current_index]
-                        let cell = trim(string: string.substringWithRange(previous_index ..< current_index))
-                        current_row.append(cell)
-                        result.append(current_row)
-                        current_row = []
-                        current_index = current_index.advancedBy(1)
-                        if ch == "\r" && current_index < string.endIndex && string[current_index] == "\n" {
-                                current_index = current_index.advancedBy(1)
-                        }
-                        previous_index = current_index
-                default:
-                        current_index = current_index.advancedBy(1)
-                }
-        }
-
-        if current_index > previous_index {
-                let cell = trim(string: string.substringWithRange(previous_index ..< current_index))
-                current_row.append(cell)
-        }
-
-        if !current_row.isEmpty {
-                result.append(current_row)
-        }
-
-        return result
-}
 
 func parse_extract_rectangular_table(table table: [[String]]) -> (table: [[String]]?, error: String?) {
         var result = [] as [[String]]

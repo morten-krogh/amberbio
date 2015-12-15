@@ -6,7 +6,7 @@ class PCAState: PageState {
         var selected_factor_id: Int?
         var dimension = 3
         var plot_symbol = "circles"
-        var symbol_size = 0.5 as Double
+        var symbol_size = 1.0
 
         var selected_sample_indices = [] as [Int]
         var selected_sample_names = [] as [String]
@@ -21,7 +21,6 @@ class PCAState: PageState {
         let maximum_number_of_components = 5
         var number_of_components = 0
         var selected_components = [0, 1, 2]
-        var pca_2d_zoom_scale = 1 as CGFloat
 
         override init() {
                 super.init()
@@ -110,15 +109,14 @@ class PCAState: PageState {
         }
 }
 
-class PCA: Component, UITableViewDataSource, UITableViewDelegate, PCA2dDelegate, SelectAllHeaderFooterViewDelegate {
+class PCA: Component, UITableViewDataSource, UITableViewDelegate, SelectAllHeaderFooterViewDelegate {
 
         var pca_state: PCAState!
 
         let scroll_view = UIScrollView()
-        let tiled_scroll_view = TiledScrollView()
         let left_view = UIView()
-        let pca3d_plot = PCA3dPlot(frame: CGRect.zero)
-        var pca_2d_drawer: PCA2dPlot?
+        let values_2d_plot = Values2DPlot()
+        let values_3d_plot = Values3DPlot()
         let table_view = UITableView()
         let info_label = UILabel()
 
@@ -134,8 +132,9 @@ class PCA: Component, UITableViewDataSource, UITableViewDelegate, PCA2dDelegate,
                 scroll_view.scrollEnabled = false
                 view.addSubview(scroll_view)
 
-                scroll_view.addSubview(tiled_scroll_view)
-                scroll_view.addSubview(pca3d_plot)
+                values_2d_plot.maximum_zoom_scale_multiplier = 50
+                scroll_view.addSubview(values_2d_plot)
+                scroll_view.addSubview(values_3d_plot)
 
                 table_view.registerClass(CenteredHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: "centered-header")
                 table_view.registerClass(SelectAllHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: "select-all-header")
@@ -155,12 +154,13 @@ class PCA: Component, UITableViewDataSource, UITableViewDelegate, PCA2dDelegate,
                 left_view.addSubview(info_label)
 
                 let tap_recognizer_left_view = UITapGestureRecognizer(target: self, action: "tap_action")
-                tap_recognizer_left_view.numberOfTapsRequired = 1
                 left_view.addGestureRecognizer(tap_recognizer_left_view)
 
+                let tap_recognizer_2d = UITapGestureRecognizer(target: self, action: "tap_action")
+                values_2d_plot.addGestureRecognizer(tap_recognizer_2d)
+
                 let tap_recognizer_3d = UITapGestureRecognizer(target: self, action: "tap_action")
-                tap_recognizer_3d.numberOfTapsRequired = 1
-                pca3d_plot.addGestureRecognizer(tap_recognizer_3d)
+                values_3d_plot.addGestureRecognizer(tap_recognizer_3d)
         }
 
         override func viewWillLayoutSubviews() {
@@ -180,15 +180,9 @@ class PCA: Component, UITableViewDataSource, UITableViewDelegate, PCA2dDelegate,
 
                 left_view.frame = CGRect(x: 0, y: 0, width: width_left, height: height)
 
-                if let pca_2d_drawer = pca_2d_drawer {
-                        min_zoom = min(width_left, height) / pca_2d_drawer.content_size.height
-                        pca_2d_drawer.minimum_zoom_scale = max(1, min_zoom)
-                        pca_2d_drawer.maximum_zoom_scale = max(2, 20 * pca_2d_drawer.minimum_zoom_scale)
-                        tiled_scroll_view.frame = CGRect(x: 0, y: 0, width: width_left, height: height)
-                        tiled_scroll_view.scroll_view.zoomScale = pca_state.pca_2d_zoom_scale
-                }
+                values_2d_plot.frame = CGRect(x: 0, y: 0, width: width_left, height: height)
 
-                pca3d_plot.frame = CGRect(x: 0, y: 0, width: width_left, height: height)
+                values_3d_plot.frame = CGRect(x: 0, y: 0, width: width_left, height: height)
 
                 let origin_y = 0 as CGFloat
                 table_view.frame = CGRect(x: width_left, y: origin_y, width: width_right, height: height - origin_y)
@@ -218,8 +212,8 @@ class PCA: Component, UITableViewDataSource, UITableViewDelegate, PCA2dDelegate,
         func render_after_sample_change() {
                 pca_state.calculate_selected_sample_indices()
                 pca_state.calculate_levels_and_colors()
-                tiled_scroll_view.hidden = true
-                pca3d_plot.hidden = true
+                values_2d_plot.hidden = true
+                values_3d_plot.hidden = true
                 info_label.hidden = false
                 info_label.attributedText = astring_body(string: "Calculating PCA")
                 info_label.textAlignment = .Center
@@ -248,30 +242,25 @@ class PCA: Component, UITableViewDataSource, UITableViewDelegate, PCA2dDelegate,
                 if pca_state.dimension == 2 {
                         update_pca2d_plot()
                 } else {
-                        update_pca3d_plot()
+                        update_values_3d_plot()
                 }
         }
 
         func update_pca2d_plot() {
-                pca3d_plot.hidden = true
+                values_3d_plot.hidden = true
                 let ordered_components = pca_state.selected_components.sort()
                 let axis_titles = ["PC\(ordered_components[0] + 1)", "PC\(ordered_components[1] + 1)"]
                 if pca_state.number_of_components >= 2 {
                         let points_x = pca_state.component_matrix[ordered_components[0]]
                         let points_y = pca_state.component_matrix[ordered_components[1]]
                         let names = pca_state.plot_symbol == "circles" ? (nil as [String]?) : pca_state.selected_sample_names
-                        let pca_2d_drawer = PCA2dPlot()
-                        pca_2d_drawer.delegate = self
-                        pca_2d_drawer.update(points_x: points_x, points_y: points_y, names: names, colors: pca_state.selected_sample_colors, axis_titles: axis_titles, symbol_size: pca_state.symbol_size)
-                        pca_2d_drawer.minimum_zoom_scale = max(1, min_zoom)
-                        pca_2d_drawer.maximum_zoom_scale = 3 * pca_2d_drawer.minimum_zoom_scale
-                        self.pca_2d_drawer = pca_2d_drawer
-                        tiled_scroll_view.delegate = pca_2d_drawer
-                        tiled_scroll_view.scroll_view.zoomScale = pca_state.pca_2d_zoom_scale
-                        tiled_scroll_view.hidden = false
+
+                        values_2d_plot.update(points_x: points_x, points_y: points_y, names: names, colors: pca_state.selected_sample_colors, axis_titles: axis_titles, symbol_size: pca_state.symbol_size)
+                        values_2d_plot.hidden = false
+
                         left_view.hidden = true
                 } else {
-                        tiled_scroll_view.hidden = true
+                        values_2d_plot.hidden = true
                         left_view.hidden = false
                         info_label.attributedText = astring_body(string: "There are less than 2 principal components")
                         info_label.textAlignment = .Center
@@ -279,8 +268,8 @@ class PCA: Component, UITableViewDataSource, UITableViewDelegate, PCA2dDelegate,
                 view.setNeedsLayout()
         }
 
-        func update_pca3d_plot() {
-                tiled_scroll_view.hidden = true
+        func update_values_3d_plot() {
+                values_2d_plot.hidden = true
                 if pca_state.number_of_components >= 3 {
                         let ordered_components = pca_state.selected_components.sort()
                         let axis_titles = ["PC\(ordered_components[0] + 1)", "PC\(ordered_components[1] + 1)", "PC\(ordered_components[2] + 1)"]
@@ -288,11 +277,11 @@ class PCA: Component, UITableViewDataSource, UITableViewDelegate, PCA2dDelegate,
                         let points_y = pca_state.component_matrix[ordered_components[1]]
                         let points_z = pca_state.component_matrix[ordered_components[2]]
                         let names = pca_state.selected_sample_names
-                        pca3d_plot.update(points_x: points_x, points_y: points_y, points_z: points_z, names: names, plot_symbol: pca_state.plot_symbol, colors: pca_state.selected_sample_colors, axis_titles: axis_titles, symbol_size: pca_state.symbol_size)
-                        pca3d_plot.hidden = false
+                        values_3d_plot.update(points_x: points_x, points_y: points_y, points_z: points_z, names: names, plot_symbol: pca_state.plot_symbol, colors: pca_state.selected_sample_colors, axis_titles: axis_titles, symbol_size: pca_state.symbol_size)
+                        values_3d_plot.hidden = false
                         left_view.hidden = true
                 } else {
-                        pca3d_plot.hidden = true
+                        values_3d_plot.hidden = true
                         left_view.hidden = false
                         info_label.attributedText = astring_body(string: "There are less than 3 principal components")
                         info_label.textAlignment = .Center
@@ -315,7 +304,7 @@ class PCA: Component, UITableViewDataSource, UITableViewDelegate, PCA2dDelegate,
                         case 0:
                                 header.update_normal(text: "Dimension")
                         case 1:
-                                header.update_normal(text: "Plot symbol")
+                                header.update_normal(text: "Plot symbols")
                         case 2:
                                 header.update_normal(text: "Plot symbol size")
                         case 3:
@@ -330,6 +319,9 @@ class PCA: Component, UITableViewDataSource, UITableViewDelegate, PCA2dDelegate,
                         let header = tableView.dequeueReusableHeaderFooterViewWithIdentifier("select-all-header") as! SelectAllHeaderFooterView
                         let text = "Samples"
                         header.update(text: text, tag: 0, delegate: self)
+                        header.select_all_button.enabled = pca_state.selected_sample_indices.count != state.number_of_samples
+                        header.deselect_all_button.enabled = !pca_state.selected_sample_indices.isEmpty
+
                         return header
                 }
         }
@@ -463,10 +455,6 @@ class PCA: Component, UITableViewDataSource, UITableViewDelegate, PCA2dDelegate,
                 render_after_sample_change()
         }
 
-        func scroll_view_did_end_zooming(zoom_scale zoom_scale: CGFloat) {
-                pca_state.pca_2d_zoom_scale = zoom_scale
-        }
-
         func tap_action() {
                 scroll_left_right()
         }
@@ -474,15 +462,13 @@ class PCA: Component, UITableViewDataSource, UITableViewDelegate, PCA2dDelegate,
         func pdf_action() {
                 let file_name_stem = "pca-2d"
                 let description = "2D principal component plot of samples."
-                if let pca_2d_drawer = pca_2d_drawer {
-                        state.insert_pdf_result_file(file_name_stem: file_name_stem, description: description, content_size: pca_2d_drawer.content_size, draw: pca_2d_drawer.draw)
-                        state.render()
-                }
+                state.insert_pdf_result_file(file_name_stem: file_name_stem, description: description, content_size: values_2d_plot.content_size, draw: values_2d_plot.draw)
+                state.render()
         }
 
         func png_action() {
                 let file_name_stem = "pca-3d"
-                let image = pca3d_plot.snapshot()
+                let image = values_3d_plot.snapshot()
                 if let file_data = UIImagePNGRepresentation(image) {
                         state.insert_png_result_file(file_name_stem: file_name_stem, file_data: file_data)
                         state.render()

@@ -39,7 +39,7 @@ class HierarchicalClusteringPlotState: PageState {
                         values_corrected = state.values
                 } else {
                         values_corrected = [Double](count: state.values.count, repeatedValue: 0)
-                        calculate_molecule_centered_values(state.values, state.number_of_molecules, state.number_of_samples, &values_corrected)
+                        values_calculate_molecule_centered_values(state.values, state.number_of_molecules, state.number_of_samples, &values_corrected)
                 }
 
                 let selected_sample_indices = [Int](0 ..< state.sample_ids.count).filter { self.selected_samples[$0] }

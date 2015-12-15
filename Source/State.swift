@@ -4,14 +4,17 @@ enum RenderType {
         case full_page
         case progress_indicator
         case activity_indicator
+        case donation_view
 }
 
 class State {
         let database: Database
         let store: Store
+        let donation_manager: DonationManager
 
         var rendering = false
         var render_type = RenderType.full_page
+        var render_type_before_ads = RenderType.full_page
         let root_component = RootComponent()
 
         var activity_indicator_info = ""
@@ -60,6 +63,7 @@ class State {
         init(database: Database) {
                 self.database = database
                 store = Store(database: database)
+                donation_manager = DonationManager(database: database)
                 let active_data_set_id = get_active_data_set_id()
                 data_set_id = -1
                 if active_data_set_id == 0 && home_selected_index_path == nil, let (section, row) = home_page_name_to_section_row["data_set_selection"] {
@@ -115,10 +119,6 @@ class State {
                                 self.data_set_id = 0
                         }
                 }
-        }
-
-        func locked(page_name page_name: String) -> Bool {
-                return active_data_set && project_type == "user" && store.locked_page_names.contains(page_name)
         }
 
         func reset_data_set() {
@@ -262,14 +262,12 @@ class State {
         }
 
         func verify_page() {
-                let page_names_without_active_data_set = ["home", "module_store", "manual", "feedback", "user", "data_set_selection", "import_data", "export_projects"]
+                let page_names_without_active_data_set = ["home", "module_store", "manual", "feedback", "user", "data_set_selection", "import_data", "import_table", "export_projects", "geo"]
 
                 if !active_data_set {
                         if page_names_without_active_data_set.indexOf(page_state.name) == nil {
                                 page_state = DataSetSelectionState()
                         }
-                } else if locked(page_name: page_state.name) {
-                        page_state = ModuleStoreState()
                 }
         }
 

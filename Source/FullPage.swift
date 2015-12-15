@@ -22,6 +22,7 @@ class FullPage: Component, UIScrollViewDelegate, UISearchBarDelegate {
 
         var displayed_page_name = ""
         var page = Component()
+        let donation_view = DonationView()
 
         override func loadView() {
                 view = scroll_view
@@ -114,6 +115,8 @@ class FullPage: Component, UIScrollViewDelegate, UISearchBarDelegate {
                                 page = DataSetSelection()
                         case "import_data":
                                 page = ImportData()
+                        case "import_table":
+                                page = ImportTable()
                         case "export_projects":
                                 page = ExportProjects()
                         case "edit_project":
@@ -214,7 +217,16 @@ class FullPage: Component, UIScrollViewDelegate, UISearchBarDelegate {
                                 page = SupervisedClassificationParameterSelection()
                         case "supervised_classification_result":
                                 page = SupervisedClassificationResult()
-
+                        case "k_means_clustering_selection":
+                                page = KMeansClusteringSelection()
+                        case "k_means_clustering_result":
+                                page = KMeansClusteringResult()
+                        case "sammon":
+                                page = Sammon()
+                        case "som":
+                                page = SOM()
+                        case "geo":
+                                page = GEO()
 
                         default:
                                 print("Remember to update render in FullPage for \(page_name)")
@@ -254,6 +266,14 @@ class FullPage: Component, UIScrollViewDelegate, UISearchBarDelegate {
                 render_buttons()
                 page.render()
                 active_data_set.render()
+                
+                if donation_view.parentViewController != nil {
+                        remove_child_view_controller(child: donation_view)
+                }
+                if state.render_type == .donation_view {
+                        add_child_view_controller(parent: self, child: donation_view)
+                }
+                
                 view.setNeedsLayout()
         }
 
@@ -359,7 +379,7 @@ class FullPage: Component, UIScrollViewDelegate, UISearchBarDelegate {
 
                 let middle_margin = 50 as CGFloat
 
-                let full_screen = state.page_state.full_screen == .Full || (state.page_state.full_screen == .Conditional && height < 1000)
+                let full_screen = (state.page_state.full_screen == .Full || (state.page_state.full_screen == .Conditional && height < 700)) && state.render_type == .full_page
 
                 if full_screen {
                         page.view.frame = CGRect(x: 0, y: header_height, width: width, height: height - middle_margin)
@@ -367,6 +387,12 @@ class FullPage: Component, UIScrollViewDelegate, UISearchBarDelegate {
                 } else {
                         page.view.frame = CGRect(x: 0, y: header_height, width: width, height: height - header_height)
                         scroll_view.contentSize = CGSize(width: width, height: height)
+                }
+                
+                if state.render_type == .donation_view {
+                        donation_view.view.frame = view.bounds
+                } else {
+                        donation_view.view.frame = CGRect.zero
                 }
         }
 

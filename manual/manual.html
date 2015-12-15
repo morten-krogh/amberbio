@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8" />
-	<meta name="description" content="Amberbio app for data analysis.">
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	<title>Amberbio</title>
+                                        <meta charset="utf-8" />
+                                        <meta name="description" content="Amberbio app for data analysis.">
+                                        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+                                        <title>Amberbio</title>
         <link rel="icon" type="image/png" href="/favicon.png" />
-	<link rel="stylesheet" href="/css/index.css" type="text/css">
-	<script>
-	document.createElement('header');
-	document.createElement('nav');
-	document.createElement('article');
-	document.createElement('section');
-	</script>
+                                        <link rel="stylesheet" href="index.css" type="text/css">
+                                        <script>
+                                        document.createElement('header');
+                                        document.createElement('nav');
+                                        document.createElement('article');
+                                        document.createElement('section');
+                                        </script>
 </head>
 
 <body>
 <article>
-  <section-manual>
+  <section class="manual">
     <h1>Manual for the Amberbio app</h1>
 
     <p>
@@ -32,9 +32,9 @@
       This manual is available in the app and on the web
       at <a href="http://www.amberbio.com/manual">www.amberbio.com/manual</a>.
     </p>
-  </section-manual>
+  </section>
 
-  <section-manual>
+  <section class="manual">
     <h1 id="table-of-contents">Table of contents</h1>
 
     <div class="table-of-content-link">
@@ -62,15 +62,7 @@
     </div>
 
     <div class="table-of-content-link">
-      <a href="#import-of-files">Import of files</a>
-    </div>
-
-    <div class="table-of-content-link">
-      <a href="#parsing-import-files">Parsing import files</a>
-    </div>
-
-    <div class="table-of-content-link">
-      <a href="#file-format-of-txt-files">File format of txt files</a>
+      <a href="#geo">GEO</a>
     </div>
 
     <div class="table-of-content-link">
@@ -116,33 +108,46 @@
     <div class="table-of-content-link">
       <a  href="#svm">Support vector machine classification</a>
     </div>
-  </section-manual>
 
-  <section-manual id="version">
+    <div class="table-of-content-link">
+      <a  href="#k-means-clustering">k means clustering</a>
+    </div>
+
+    <div class="table-of-content-link">
+      <a  href="#sammon">Sammon map</a>
+    </div>
+
+    <div class="table-of-content-link">
+      <a href="#som">Self organizing map</a>
+    </div>
+
+  </section>
+
+  <section class="manual" id="version">
     <h1><a href="#table-of-contents">Version</a></h1>
     <p>
-      Version 3 of the Amberbio app.
+      Version 7 of the Amberbio app.
     </p>
-  </section-manual>
+  </section>
 
-  <section-manual id="privacy">
+  <section class="manual" id="privacy">
     <h1><a href="#table-of-contents">Privacy</a></h1>
     <p>
       All data is stored locally on the device. All calculations are performed locally. Amber
       Biosciences does not have any access to user data.
     </p>
-  </section-manual>
+  </section>
 
-  <section-manual id="navigation">
+  <section class="manual" id="navigation">
     <h1><a href="#table-of-contents">Navigation</a></h1>
     <p>
       The app has a home page that is reached by tapping the home icon in the upper left
       corner. Navigation is done from the home page by tapping the icons or by the back and forward
       buttons.
     </p>
-  </section-manual>
+  </section>
 
-  <section-manual id="projects-and-data-sets">
+  <section class="manual" id="projects-and-data-sets">
     <h1><a href="#table-of-contents">Projects and data sets</a></h1>
     <p>
       The app handles projects and data sets. A data set is a set of values organized in a table
@@ -170,9 +175,9 @@
       molecule annotations. An example could be the molecule annotation "Chromosome" where each
       molecule has a value such as "chromosome 21".
     </p>
-  </section-manual>
+  </section>
 
-  <section-manual id="the-active-data-set">
+  <section class="manual" id="the-active-data-set">
     <h1><a href="#table-of-contents">The active data set</a></h1>
     <p>
       Analysis is performed on the active data set. Selection of the active data set is done on the
@@ -187,199 +192,398 @@
      the app automatically makes the new data set active and jumps to the
      page <span class="app-page">Data Set Selection</span>
     </p>
-  </section-manual>
+  </section>
 
-  <section-manual id="import-of-data">
+  <section class="manual" id="import-of-data">
     <h1><a href="#table-of-contents">Import of data</a></h1>
     <p>
       Data import is used to create new projects and to add factor and molecule annotation
-      information to projects. Import of data is a two step process. First, a file is imported into
+      information to projects. Import of data is a two step process. First, a file is downloaded to
       the app. Second, the file is read and parsed and the data is imported into a database kept by
       the app.
     </p>
 
     <p>
-      Import of data is handled by the page <span class="app-page">Import data</span>. All imported
-files can be seen on this page.  The app keeps all imported files until they are deleted by the
-user.
-    </p>
-  </section-manual>
-
-  <section-manual id="import-of-files">
-    <h1><a href="#table-of-contents">Import of files</a></h1>
-    <p>
-      The app can import files with extension "txt" or "sqlite". The "txt" files represent tables of
-      data supplied by the user. The "sqlite" is a database file that has been exported from the app
-      at an earlier time. The "sqlite" files are used for backup and transfer of projects from one
-      device to another.
+      Import of data is handled by the page <span class="app-page">Import data</span>. All
+      downloaded files can be seen on this page.  The app keeps all imported files until they are
+      deleted by the user.
     </p>
 
     <p>
-      Files can be imported in two ways; either by "opening" the file in another app or by import from a cloud storage.
+      A project is created from a table of values. The values can not be changed. New values must be
+      imported in a new project. Factors and molecule annotations can be added at any time.
+    </p>
+
+    <h3>File types</h3>
+    <p>
+      The app can import files with file extension ".txt", ".xlsx" and ".sqlite".
+     </p>
+
+    <p>
+      The ".txt" and ".xlsx" files contain tables, or spreadsheets, of data. They are prepared by
+      the user.  The tables are used to create a new project, to import factors to the active
+      project, or to import molecule annotations to the active project. The precise format of these
+      file types is explained below.
     </p>
 
     <p>
-      Importing a file by "opening" it in another app is done by tapping the file in the other app
-      and selecting the Amberbio app. A typical use case is to open an email attachment by tapping
-      the attachment in the Mail app.
+      The ".sqlite" files are internal files. They are exported by the app and later imported
+      in the app on any device. They are used to transfer and backup data by the app.
+    </p>
+
+    <h3>Download of files</h3>
+    <p>
+      Files can be downloaded in two ways; either by "opening" the file in another app such as Mail
+      or by import from a cloud storage.
+    </p>
+
+    <p>
+      Opening a file in the Amberbio app from another app is done by tapping the file and selecting
+      the Amberbio app. A typical use case is to open an email attachment by tapping the attachment
+      in the Mail app.
     </p>
 
     <p>
       Files can be imported from a cloud storage such as iCloud Drive, Dropbox, Box, or Google
-      Drive. The import is done by tapping "Import new file" on the
-      page <span class="app-page">Import data</span>. The corresponding cloud storage app must
-      itself be installed on the device.
-    </p>
-  </section-manual>
-
-  <section-manual id="parsing-import-files">
-    <h1><a href="#table-of-contents">Parsing import files</a></h1>
-    <p>
-      Imported files are shown on the page <span class="app-page">Import data</span>. By tapping a
-      file, the file can be parsed and read into the database of the app. Files with extension
-      "sqlite" are read automatically into projects. Files with extension "txt" file can be used to
-      create a new project, to import factors to the active project, or to import molecule
-      annotations to the active project.
-    </p>
-  </section-manual>
-
-  <section-manual id="file-format-of-txt-files">
-    <h1><a href="#table-of-contents">File format of txt files</a></h1>
-    <p>
-      The "txt" files contain tables of values. The rows, or lines, are separated by "\n", "\r", or
-      "\r\n", and the cells are separated by "\t" or ",". The file extension should be "txt" in any
-      case. The app tries to find the separator by first searching for tabs. If there are tabs, the
-      app tries to read the file as a tab separated file. If there are no tabs, the file is read as
-      a comma separated file. Tabs are never allowed within the cells. If there are commas within the
-      cells, the file must be tab separated. The three types of "txt" files are described below.
+      Drive. The import is done by tapping "Download file" on the page <span class="app-page">Import
+      data</span>. The corresponding cloud storage app must itself be installed on the device. The
+      first time a certain cloud storage provider is used in the Amberbio app, it might be necessary
+      to tap "more" and enable that provider.
     </p>
 
+    <h3>Importing downloaded files</h3>
     <p>
-      The first file type contains the measurement values. This file is used to create a new
-      project. It contains samples in the columns and molecules in the rows. The first row contains
-      the sample names. The first column contains the molecule names. The values are written in the
-      cells.
+      Tap the button "Import" below the file name for a downloaded file to import it. ".sqlite"
+      files are automatically processed. ".txt" and ".xlsx" files are processed by an import wizard
+      that goes through several steps where the user can select a rectangular region by tapping. The
+      use of the import wizard minimizes the need to edit the table in an external program before
+      import.
+    </p>
+
+    <h3>Format of .txt files</h3>
+    <p>
+      The ".txt" files contain tables of data. The rows, or lines, are separated by "\n", "\r", or
+      "\r\n", and the cells are separated by "\t" or ",". In other words, the ".txt" files can be
+      both tab and comma separated and have all common line endings. The app finds the cell
+      separator automatically by first searching for tabs. If there are tabs, the app reads the file
+      as a tab separated file. If there are no tabs, the file is read as a comma separated
+      file. Tabs are never allowed within the cells. If there are commas within the cells, the file
+      must be tab separated.
+    </p>
+
+    <h3>Format of .xlsx files</h3>
+    <p>
+      The ".xlsx" are modern Excel files. They are distinct from the older ".xls" files. The ".xlsx"
+      files can be exported from Excel and many other programs. The data must reside in the first
+      sheet.
     </p>
 
     <p>
-      The decimal separator can be either point as in "12.98" or comma as in "12,98". If the decimal
-      separator is comma, the file must be tab separated. Missing values must be written as (the
-      empty string), NA, na, NaN, NAN, or nan. The upper left cell can contain anything. An example
-      value table with two missing values is shown below.
+      The ".xlsx" files are parsed by the library "XlsxReaderWriter" by René BIGOT. The library is
+      available at https://github.com/renebigot/XlsxReaderWriter.
     </p>
 
-    <table>
-      <tr>
-        <td>Anything</td>
-        <td>Sample 1</td>
-        <td>Sample 2</td>
-      </tr>
-      <tr>
-        <td>Molecule 1</td>
-        <td>6.7</td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>Molecule 2</td>
-        <td>-0.45</td>
-        <td>NaN</td>
-      </tr>
-      <tr>
-        <td>Molecule 3</td>
-        <td>50</td>
-        <td>-12</td>
-      </tr>
-    </table>
+    <h5 class="copyright-header">Copyright for XlsxReaderWriter</h5>
+      
+    <div class="copyright">
+      <p>
+	The MIT License (MIT)
+      </p>
+
+      <p>
+	Copyright (c) 2014 René BIGOT
+      </p>
+
+      <p>
+	Permission is hereby granted, free of charge, to any person obtaining a copy of this
+	software and associated documentation files (the "Software"), to deal in the Software
+	without restriction, including without limitation the rights to use, copy, modify, merge,
+	publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons
+	to whom the Software is furnished to do so, subject to the following conditions:
+      </p>
+
+      <p>
+	The above copyright notice and this permission notice shall be included in all copies or
+	substantial portions of the Software.
+      </p>
+
+      <p>
+	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+	INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
+	PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE
+	FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+	OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+	DEALINGS IN THE SOFTWARE.
+      </p>
+    </div>
+
+    <h3>Specification of tables from .txt and .xlsx files</h3>
+    <p>
+      Numerical values can be specified with either decimal point as in "12.98" or decimal comma as
+      in "12,98". If the decimal separator is comma, a ".txt" file must be tab separated. Anything else
+      than a number is taken as a missing value if a number is expected.
+    </p>
 
     <p>
-      The second file type contains factors for the samples. Factors can be imported into a project
-      at any time and are not part of the initial creation of the project. The first row of the
-      factor file contains sample names. The first column contains factor names. The values are the
-      levels for the factor and sample. The upper left cell can be anything. The factor names must
-      be distinct and the sample names can come in any order. All samples of the project must be
-      present. Extra samples will be ignored. An example factor table is shown below
+      Because of the import wizard, any reasonable arrangement of rows and columns can be used for
+      import. For instance, samples can be in either row or columns with molecules in the other
+      dimension. Examples are shown below.
     </p>
 
-    <table>
-      <tr>
-        <td>Anything</td>
-        <td>Sample 1</td>
-        <td>Sample 2</td>
-      </tr>
-      <tr>
-        <td>Gender</td>
-        <td>Male</td>
-        <td>Female</td>
-      </tr>
-      <tr>
-        <td>Disease</td>
-        <td>Cancer</td>
-        <td>Alzheimer</td>
-      </tr>
-      <tr>
-        <td>Age</td>
-        <td>55</td>
-        <td>78</td>
-      </tr>
-    </table>
+    <h4>Example 1</h4>
+    
+    <p>
+      The first example shows a table that contains everything, i.e., sample names, molecule names, values, factors, and molecule annotations.
+      Through the import wizard various rectangular regions can be imported.
+    </p>
+    
+    <div class="table-wrapper">
+      <table>
+	<tr>
+          <td>Anything</td>
+          <td>Sample 1</td>
+          <td>Sample 2</td>
+	  <td></td>
+	  <td>Unigene</td>
+	  <td>Chromosome</td>
+	</tr>
+	<tr>
+          <td>Molecule 1</td>
+          <td>6.7</td>
+          <td></td>
+	  <td></td>
+	  <td>Hs.243564</td>
+	  <td>1</td>
+	</tr>
+	<tr>
+          <td>Molecule 2</td>
+          <td>-0.45</td>
+          <td>NaN</td>
+	  <td></td>
+	  <td>Hs.375439</td>
+	  <td>19</td>
+	</tr>
+	<tr>
+          <td>Molecule 3</td>
+          <td>#NULL</td>
+          <td>-12</td>
+	  <td></td>
+	  <td>Hs.631576</td>
+	  <td>19</td>
+	</tr>
+	<tr>
+          <td></td>
+          <td></td>
+          <td></td>
+	  <td></td>
+	  <td></td>
+	  <td></td>
+	</tr>
+	<tr>
+          <td>Gender</td>
+          <td>Male</td>
+          <td>Female</td>
+	  <td></td>
+	  <td></td>
+	  <td></td>
+	</tr>
+	<tr>
+          <td>Status</td>
+          <td>Cancer</td>
+          <td>Normal</td>
+	  <td></td>
+	  <td></td>
+	  <td></td>
+	</tr>
+      </table>
+    </div>
+
+    <h4>Example 2</h4>
+    
+    <p>
+      The second example is a transposed version of the first example. Also "," is used as decimal
+      separator in some values. This file can not then be a comma separated ".txt" file.
+    </p>
+
+    <div class="table-wrapper">
+      <table>
+	<tr>
+          <td>Anything</td>
+          <td>Molecule 1</td>
+          <td>Molecule 2</td>
+          <td>Molecule 3</td>
+          <td></td>
+          <td>Gender</td>
+          <td>Status</td>
+	</tr>
+	<tr>
+          <td>Sample 1</td>
+          <td>6,7</td>
+          <td>-0.45</td>
+          <td>#NULL</td>
+          <td></td>
+          <td>Male</td>
+          <td>Cancer</td>
+	</tr>
+	<tr>
+          <td>Sample 2</td>
+          <td></td>
+          <td>NaN</td>
+          <td>-12</td>
+	  <td></td>
+          <td>Female</td>
+          <td>Normal</td>
+	</tr>
+	<tr>
+	  <td></td>
+	  <td></td>
+          <td></td>
+	  <td></td>
+	  <td></td>
+	  <td></td>
+	  <td></td>
+	</tr>
+	<tr>
+	  <td>Unigene</td>
+	  <td>Hs.243564</td>
+	  <td>Hs.375439</td>
+	  <td>Hs.631576</td>
+	  <td></td>
+	  <td></td>
+	  <td></td>
+	</tr>
+	<tr>
+	  <td>Chromosome</td>
+	  <td>1</td>
+	  <td>19</td>
+	  <td>19</td>
+	  <td></td>
+	  <td></td>
+	  <td></td>
+	</tr>
+      </table>
+    </div>
+
+    <h4>Example 3</h4>
 
     <p>
-      The third file type contains molecule annotations and it can be imported at any time and is
-      not part of the initial creation of the project. The first row contains the name of the molecule
-      annotation. The first column must contain all the molecule names. The order of the rows is
-      arbitrary and extra molecules are ignored. An example molecule annotation table is shown below
+      The third example shows a table that contains information about values and molecule
+      annotations but no factors.
     </p>
 
-    <table>
-      <tr>
-        <td>Anything</td>
-        <td>Unigene</td>
-        <td>Chromosome</td>
-      </tr>
-      <tr>
-        <td>Molecule 7</td>
-        <td>Hs.551713</td>
-        <td>18</td>
-      </tr>
-      <tr>
-        <td>Molecule 3</td>
-        <td>Hs.518267</td>
-        <td>3</td>
-      </tr>
-      <tr>
-        <td>Molecule 2</td>
-        <td>Hs.300701</td>
-        <td>6</td>
-      </tr>
-      <tr>
-        <td>Molecule 1</td>
-        <td>Hs.691131</td>
-        <td>10</td>
-      </tr>
-    </table>
-  </section-manual>
+    <div class="table-wrapper">
+      <table>
+	<tr>
+	  <td>Molecule name</td>
+	  <td>Molecule id</td>
+	  <td></td>
+	  <td></td>
+	  <td>Mouse A</td>
+	  <td>Mouse B</td>
+	</tr>
+	<tr>
+	  <td></td>
+	  <td></td>
+	  <td></td>
+	  <td></td>
+	  <td></td>
+	  <td></td>
+	</tr>
+	<tr>
+	  <td>Mol 1</td>
+	  <td>Id 1</td>
+	  <td></td>
+	  <td></td>
+	  <td>5.6</td>
+	  <td>3.4</td>
+	</tr>
+	<tr>
+	  <td>Mol 2</td>
+	  <td>Id 2</td>
+	  <td></td>
+	  <td></td>
+	  <td>-9.8</td>
+	  <td>#NA</td>
+	</tr>
+      </table>
+    </div>
 
-  <section-manual id="result-files">
+    <h4>Example 4</h4>
+
+    <p>
+      The fourth example provides factors for the third example. The factors can be imported at any
+      later time. Samples that are absent in the project, like Mouse C, are automatically ignored.
+    </p>
+
+    <div class="table-wrapper">
+      <table>
+	<tr>
+	  <td></td>
+	  <td>Treatment</td>
+	  <td>Diet</td>
+	</tr>
+	<tr>
+	<tr>
+	  <td>Mouse B</td>
+	  <td>Drug</td>
+	  <td>Fat</td>
+	</tr>
+	<tr>
+	  <td>Mouse C</td>
+	  <td>Drug</td>
+	  <td>Sugar</td>
+	</tr>
+	<tr>
+	  <td>Mouse A</td>
+	  <td>Placebo</td>
+	  <td>Fat</td>
+	</tr>
+      </table>
+    </div>
+  </section>
+
+  <section class="manual" id="geo">
+    <h1><a href="#table-of-contents">GEO</a></h1>
+    <p>
+      Data sets can be imported directly from the NCBI Gene Expression Omnibus (GEO). The app
+      downloads and imports a data set based on a user supplied id. The id must be of the form
+      GDSxxxx or GSExxxx where xxxx is any number. 
+    </p>
+
+    <p>
+      The imported data set becomes the original data in a new project named after the id. The app
+      extracts some, but not all, information from the downloaded data set. The factors are not
+      standardized in GEO data sets. Like all data sets in the app, factors can be manually edited
+      and added.
+    </p>
+
+    <p>
+      GEO data sets can be searched on the web page
+      <a href="http://www.ncbi.nlm.nih.gov/sites/GDSbrowser">http://www.ncbi.nlm.nih.gov/sites/GDSbrowser.</a>
+    </p>
+  </section>
+
+  <section class="manual" id="result-files">
     <h1><a href="#table-of-contents">Result files</a></h1>
     <p>
       Result files are created by the app. The result files are figures and tables and have the file
-      extension "txt", "pdf", or "png".  The result files are kept on the page
+      extension ".txt", ".pdf", or ".png".  The result files are kept on the page
       <span class="app-page">Result files</span>. The result files can be sent by email, opened in
       another app, or exported to a cloud storage.
     </p>
-  </section-manual>
+  </section>
 
-  <section-manual id="backup-and-sharing-of-projects">
+  <section class="manual" id="backup-and-sharing-of-projects">
     <h1><a href="#table-of-contents">Backup and sharing of projects</a></h1>
     <p>
       Projects can be exported to a database file on the page <span class="app-page">Export
-      projects</span>. The database file has the extension "sqlite". The file can be used for backup
+      projects</span>. The database file has the extension ".sqlite". The file can be used for backup
       and transfer of projects to other devices. The file can be sent by email or exported to a
       cloud storage.
     </p>
-  </section-manual>
+  </section>
 
-  <section-manual id="name-and-emails">
+  <section class="manual" id="name-and-emails">
     <h1><a href="#table-of-contents">Name and emails</a></h1>
     <p>
       On the page <span class="app-page">User</span>, a name and a list of emails can be
@@ -388,9 +592,9 @@ user.
       email from the app. The actual destination emails can always be changed before sending the
       email.
     </p>
-  </section-manual>
+  </section>
 
-  <section-manual id="anova">
+  <section class="manual" id="anova">
     <h1><a href="#table-of-contents">Anova</a></h1>
     <p>
       The Anova test is performed on the selected levels of a factor. The selected levels are
@@ -399,9 +603,9 @@ user.
       calculating the F-statistic as the ratio of between-groups variation divided by the
       within-groups variation. The p-value is the upper tail of the cumulative F-distribution.
     </p>
-  </section-manual>
+  </section>
 
-  <section-manual id="pairwise-test">
+  <section class="manual" id="pairwise-test">
     <h1><a href="#table-of-contents">Pairwise test</a></h1>
     <p>
       After selecting a factor, any number of pairwise tests between two levels can be selected in
@@ -411,9 +615,9 @@ user.
       size and by the Normal distribution approximation for large sample sizes.  The p-values are
       two-sided.
     </p>
-  </section-manual>
+  </section>
 
-  <section-manual id="paired-test">
+  <section class="manual" id="paired-test">
     <h1><a href="#table-of-contents">Paired test</a></h1>
     <p>
       A pairing factor must be selected. Samples with the same level for the pairing factor can be
@@ -435,9 +639,9 @@ user.
       comparison levels. The p-value is two-sided and tests the null hypothesis that the difference
       between the comparison levels is zero.
     </p>
-  </section-manual>
+  </section>
 
-  <section-manual id="linear-regression">
+  <section class="manual" id="linear-regression">
     <h1><a href="#table-of-contents">Linear regression</a></h1>
     <p>
       For the selected factor, the levels with a numeric interpretation are chosen. A level can be
@@ -455,9 +659,9 @@ user.
       large F-statistic, and correspondingly low p-value, implies that the line is a much better fit
       than a single mean value.
     </p>
-  </section-manual>
+  </section>
 
-  <section-manual id="multiple-hypothesis-testing">
+  <section class="manual" id="multiple-hypothesis-testing">
     <h1><a href="#table-of-contents">Multiple hypothesis testing</a></h1>
     <p>
       Multiple hypothesis testing is performed using the Benjamini-Hochberg false discovery rate
@@ -468,9 +672,9 @@ user.
       A histogram of the p-values can be seen by tapping "histogram". High frequencies for the low
       p-values imply a significant difference between the groups.
     </p>
-  </section-manual>
+  </section>
 
-   <section-manual id="supervised-classification">
+   <section class="manual" id="supervised-classification">
      <h1><a href="#table-of-contents">Supervised classification</a></h1>
      <p>
      The supervised classifiers separate samples into two or more levels. A classifier is
@@ -513,9 +717,9 @@ user.
        equal to leave-one-out cross validation. Leave-one-out cross validation has its own selection
        in the app because of it importance.
      </p>
-   </section-manual>
+   </section>
     
-  <section-manual id="knn">
+  <section class="manual" id="knn">
     <h1><a href="#table-of-contents">k nearest neighbor classification</a></h1>
     <p>
       Given a training set and a test sample, the k training samples with the smallest distances to
@@ -536,9 +740,9 @@ user.
       makes an arbitrary, but non-random, choice. This situation practically never occurs in real
       biological data.
     </p>
-  </section-manual>
+  </section>
 
-  <section-manual id="svm">
+  <section class="manual" id="svm">
     <h1><a href="#table-of-contents">Support vector machine classification</a></h1>
     <p>
       The support vector machine (SVM) classification uses the software library LIBSVM: "Chih-Chung
@@ -546,50 +750,50 @@ user.
       Intelligent Systems and Technology, 2:27:1--27:27, 2011". The LIBSVM software is available at
       http://www.csie.ntu.edu.tw/~cjlin/libsvm. The Amberbio app uses the LIBSVM library to train
       an SVM classifier and calculate the decision values and predicted classes for test samples.
-
-      <h5 class="copyright-header">Copyright for LIBSVM</h5>
-      
-      <div class="copyright">
-	<p>
-	Copyright (c) 2000-2014 Chih-Chung Chang and Chih-Jen Lin. All rights reserved.
-	</p>
-
-	<p>
-	  Redistribution and use in source and binary forms, with or without modification, are
-	  permitted provided that the following conditions are met:
-	</p>
-
-	<p>
-	  1. Redistributions of source code must retain the above copyright notice, this list of
-	  conditions and the following disclaimer.
-	</p>
-
-	<p>
-	  2. Redistributions in binary form must reproduce the above copyright notice, this list of
-	  conditions and the following disclaimer in the documentation and/or other materials
-	  provided with the distribution.
-	 </p>
-
-	<p>
-	  3. Neither name of copyright holders nor the names of its contributors may be used to
-	  endorse or promote products derived from this software without specific prior written
-	  permission.
-	</p>
-
-	<p>
-	  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS ``AS IS'' AND ANY
-	  EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
-	  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL
-	  THE REGENTS OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
-	  EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-	  SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
-	  HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR
-	  TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
-	  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-	</p>
-	
-      </div>
     </p>
+      
+    <h5 class="copyright-header">Copyright for LIBSVM</h5>
+      
+    <div class="copyright">
+      <p>
+	Copyright (c) 2000-2014 Chih-Chung Chang and Chih-Jen Lin. All rights reserved.
+      </p>
+
+      <p>
+	Redistribution and use in source and binary forms, with or without modification, are
+	permitted provided that the following conditions are met:
+      </p>
+
+      <p>
+	1. Redistributions of source code must retain the above copyright notice, this list of
+	conditions and the following disclaimer.
+      </p>
+
+      <p>
+	2. Redistributions in binary form must reproduce the above copyright notice, this list of
+	conditions and the following disclaimer in the documentation and/or other materials
+	provided with the distribution.
+      </p>
+
+      <p>
+	3. Neither name of copyright holders nor the names of its contributors may be used to
+	endorse or promote products derived from this software without specific prior written
+	permission.
+      </p>
+
+      <p>
+	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS ``AS IS'' AND ANY
+	EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+	MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE
+	REGENTS OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY,
+	OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+	SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+	THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+	OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+	POSSIBILITY OF SUCH DAMAGE.
+      </p>
+	
+    </div>
     
     <p>
       The SVM classifier in the app can compare two or more levels. A standard SVM classifier can
@@ -637,8 +841,139 @@ user.
     <p>
       Only molecules without missing values in the training and test sets are used for the SVM.
     </p>
-  </section-manual>
-  
+  </section>
+
+  <section class="manual" id="k-means-clustering">
+    <h1><a href="#table-of-contents">k means clustering</a></h1>
+    <p>
+      K means clustering is an unsupervised clustering algorithm that divides the samples into k
+      groups. The number of clusters, k, is user determined. The algorithm employed by the app is
+      probabilistic and might give different results for several runs on the same data set. However,
+      the results will be similar, and the differences are explained by movement of samples whose
+      group membership is ambiguous. Since there is no unique biologically correct clustering in
+      any case, the probabilistic nature of the algorithm is acceptable.
+    </p>
+
+    <p>
+      The algorithm is almost identical to the standard Lloyd algorithm. The steps are described below.
+    </p>
+
+    <ul style="list-style-type:none">
+      <li>
+	Iterate over the entire cluster algorithm below, and take the clustering with the smallest
+	sum of square deviation as the final result.  The number of iterations is dynamic and
+	depends on the duration for one iteration. The app should never become unresponsive by being
+	stuck in a long computation.
+      </li>
+
+      <li>
+	<ul style="list-style-type:none">
+	  <li>Assign the samples to random clusters.</li>
+	  <li>Resolve empty clusters by moving samples from the largest cluster to empty clusters.</li>
+	  <li>Iterate the following steps until the clusters are constant or a maximum limit is reached. In practice, the maximum limit is almost never needed.</li>
+	  <li>
+	    <ul style="list-style-type:none">
+	      <li>Calculate centroids as the average point in each cluster.</li>
+	      <li>Reassign samples to clusters. A sample belongs to the cluster whose centroid is closest.</li>
+	      <li>Resolve empty clusters by moving samples from the largest cluster to the empty clusters.
+	    </ul>
+	  </li>
+	  <li>Calculate the sum of square deviation of samples from their cluster centroid.</li>
+	</ul>
+      </li>
+    </ul>
+  </section>
+
+  <section class="manual" id="sammon">
+        <h1><a href="#table-of-contents">Sammon map</a></h1>
+	<p>
+	  The Sammon map is a projection of the high dimensional samples to a low dimensional space.
+	  The map was invented by Sammon in 1969. (J. W. Sammon jr. A Nonlinear Mapping for Data
+	  Structure Analysis. IEEE Transactions on Computers, vol. C-18, no. 5, pp 401-409, May
+	  1969). In this app the low dimensional space is two or three dimensional such that the
+	  samples can be visualized. The Sammon map attempts to preserve the pairwise distances
+	  between samples as much as possible.
+	</p>
+
+	<p>
+	  The distances in the high dimensional space are Euclidean distances using only the
+	  molecules without missing values for the selected samples. The algorithm is described by
+	  by Kohonen ( T. Kohonen. Self Organizing Maps. Springer, 3 edition, 2001) and is
+	  iterative. The number of iterations depend on the time of one iteration; the app will never
+	  go into a long computation.
+	</p>
+
+	<p>
+	  At each iteration, the algorithm loops over all pairs of samples and updates the two
+	  samples.  The update moves the two points directly away from each other if their distance
+	  is too small, and moves them towards each other if it is to large.  The size of the
+	  movement depends on the current distances and a variable multiplier. The multiplier starts
+	  at 0.4 and ends at a small value. The multiplier is reduced at each iteration.
+	</p>
+
+	<p>
+	  The purpose of the Sammon map is to obtain a visualization of the samples and hopefully
+	  gain some biological insight. The Sammon map is an alternative to the PCA map. The Sammon
+	  map has the property that samples close to each other remain close after the projection
+	  which is not guaranteed by the PCA map.
+	</p>
+
+  </section>
+
+  <section class="manual" id="som">
+        <h1><a href="#table-of-contents">Self organizing map</a></h1>
+	<p>
+	  The self organizing map was invented by Kohonen (Kohonen, Teuvo (1982). "Self-Organized
+	  Formation of Topologically Correct Feature Maps". Biological Cybernetics 43 (1): 59–69).
+	</p>
+	  
+	<p>
+	  The map works by mapping a grid of units into the space of the molecular values of the
+	  samples. In the Amberbio app the grid is made of hexagonal units with a user selected
+	  number of rows and columns. In the molecular space, only molecules without missing values
+	  are used.
+	</p>
+
+	<p>
+	  The map is calculated using an iterative process. At initialization, the units are given
+	  an arbitrary starting position. In the Amberbio app, the starting positions are distinct
+	  linear combinations of the samples. In the iterative process, a random sample is chosen at
+	  each step. The random number generator is seeded such that the same map is generated on
+	  the same samples for repeat runs of the algorithm. The unit closest to the random sample
+	  is found. Call this unit the special unit. The position of all units are updated such that
+	  they move closer to the random sample. The units are updated to a weighted average of their current position and
+	  the position of the random sample. The weight is largest for the special unit and falls
+	  off according to
+	</p>
+
+	  <div class="formula">K &times; exp(- distance_to_special_unit^2 / C)</div> 
+
+	<p>
+	  where the constants <span class="formula">K</span> and <span class="formula">C</span>
+	  themselves decrease exponentially for each iteration.
+	</p>
+
+	<p>
+	  After generating the map, the samples are mapped to their closest unit. The plot in the
+	  app shows the grid of units with the embedded samples. In this way, the self organizing
+	  map can be used for unsupervised clustering and for visualization of the samples.
+	</p>
+
+	<p>
+	  The borders between the neighboring units are colored according to the distance between
+	  the units in the molecular sample space. The borders of proximate units are light blue and the
+	  borders of distant units are dark blue.
+	</p>
+
+	<p>
+	  The self organizing map can be thought of as a sheet that attempts to wrap around the
+	  samples in the high dimensional space of molecular values. The samples are projected onto
+	  the sheet and the plot shows the two dimensional grid of units with the samples embedded.
+	</p>
+
+
+  </section>
+
 </article>
 </body>
 </html>

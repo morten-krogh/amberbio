@@ -109,6 +109,9 @@ class HierarchicalClusteringSelection: Component, UITableViewDataSource, UITable
                         let header = tableView.dequeueReusableHeaderFooterViewWithIdentifier("select-all-header") as! SelectAllHeaderFooterView
                         let text = "Samples to include"
                         header.update(text: text, tag: 0, delegate: self)
+                        let number_of_selected_samples = hierarchical_clustering_selection_state.selected_samples.filter({$0}).count
+                        header.select_all_button.enabled = number_of_selected_samples != state.number_of_samples
+                        header.deselect_all_button.enabled = number_of_selected_samples != 0
 
                         return header
                 }
@@ -227,7 +230,7 @@ class HierarchicalClusteringSelection: Component, UITableViewDataSource, UITable
 
                 is_present_molecule = [Int](count: state.number_of_molecules, repeatedValue: 0)
 
-                calculate_molecules_without_missing_values(state.values, state.number_of_molecules, state.sample_ids.count, selected_sample_indices, selected_sample_indices.count, &number_of_present_molecules, &is_present_molecule)
+                values_calculate_molecules_without_missing_values(state.values, state.number_of_molecules, state.sample_ids.count, selected_sample_indices, selected_sample_indices.count, &number_of_present_molecules, &is_present_molecule)
 
                 number_of_molecules_label.text = "Molecules without missing values: \(number_of_present_molecules)"
 

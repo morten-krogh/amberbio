@@ -75,6 +75,11 @@ class CenteredHeaderFooterView: UITableViewHeaderFooterView {
         func update_normal(text text: String) {
                 update(text: text, font_size: 25, color: UIColor.blackColor(), symbol: .None)
         }
+        
+        func update_multiline(text text: String) {
+                text_label.numberOfLines = 0
+                update_normal(text: text)
+        }
 
         func update_unselected(text text: String) {
                 update(text: text, font_size: 25, color: color_gray_unselected, symbol: .None)

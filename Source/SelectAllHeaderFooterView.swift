@@ -24,10 +24,12 @@ class SelectAllHeaderFooterView: UITableViewHeaderFooterView {
                 contentView.addSubview(text_label)
 
                 select_all_button.setAttributedTitle(astring_body(string: "Select all"), forState: .Normal)
+                select_all_button.setAttributedTitle(astring_font_size_color(string: "Select all", color: color_disabled), forState: .Disabled)
                 select_all_button.addTarget(self, action: "select_all_action", forControlEvents: .TouchUpInside)
                 contentView.addSubview(select_all_button)
 
                 deselect_all_button.setAttributedTitle(astring_body(string: "Deselect all"), forState: .Normal)
+                deselect_all_button.setAttributedTitle(astring_font_size_color(string: "Deselect all", color: color_disabled), forState: .Disabled)
                 deselect_all_button.addTarget(self, action: "deselect_all_action", forControlEvents: .TouchUpInside)
                 deselect_all_button.sizeToFit()
                 contentView.addSubview(deselect_all_button)

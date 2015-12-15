@@ -25,13 +25,14 @@ class RootComponent: Component {
         }
 
         override func render() {
-                if state.render_type == RenderType.full_page {
+                switch state.render_type {
+                case .full_page, .donation_view:
                         set_child_view_controller(view_controller: full_page)
                         full_page.render()
-                } else if state.render_type == RenderType.progress_indicator {
+                case .progress_indicator:
                         set_child_view_controller(view_controller: progress_indicator)
                         progress_indicator.render()
-                } else if state.render_type == RenderType.activity_indicator {
+                case .activity_indicator:
                         set_child_view_controller(view_controller: activity_indicator)
                         activity_indicator.render()
                 }

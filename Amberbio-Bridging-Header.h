@@ -1,11 +1,10 @@
 
 #import <sqlite3.h>
 
-#import "parse_values.h"
-#import "values.h"
-#import "remove_molecules.h"
-#import "distributions.h"
-#import "linear_regression.h"
-#import "knn.h"
-#import "random.h"
-#import "svm-adapter.h"
+#import <zlib.h>
+
+#import "c-functions.h"
+
+#import "ParserXLSX.h"
+
+#import "XlsxReaderWriter-swift-bridge.h"

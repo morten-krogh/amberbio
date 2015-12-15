@@ -1,27 +1,5 @@
-#include "knn.h"
-#include <stdlib.h>
-#include <math.h>
+#include "c-functions.h"
 
-void knn_molecules_without_missing_values(const double* values, const long number_of_molecules, const long number_of_samples, const long* sample_indices, const long sample_indices_length, long* molecule_indices, long* molecule_indices_length)
-{
-        long counter = 0;
-        for (long i = 0; i < number_of_molecules; i++) {
-                long offset = i * number_of_samples;
-                long missing = 0;
-                for (long j = 0; j < sample_indices_length; j++) {
-                        double value = values[offset + sample_indices[j]];
-                        if (isnan(value)) {
-                                missing = 1;
-                                break;
-                        }
-                }
-                if (missing == 0) {
-                        molecule_indices[counter] = i;
-                        counter++;
-                }
-        }
-        *molecule_indices_length = counter;
-}
 
 double knn_distance_square(const double* values, const long number_of_samples, const long* molecule_indices, const long molecule_indices_length, const long sample_index_1, const long sample_index_2)
 {
@@ -111,7 +89,7 @@ bool knn_classify_training_test(const double* values, const long number_of_molec
         long molecule_indices[number_of_molecules];
         long molecule_indices_length = 0;
 
-        knn_molecules_without_missing_values(values, number_of_molecules, number_of_samples, sample_indices, number_of_training_samples + number_of_test_samples, molecule_indices, &molecule_indices_length);
+        values_molecules_without_missing_values(values, number_of_molecules, number_of_samples, sample_indices, number_of_training_samples + number_of_test_samples, molecule_indices, &molecule_indices_length);
 
         if (molecule_indices_length == 0) {
                 return false;

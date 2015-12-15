@@ -125,7 +125,6 @@ class SupervisedClassificationResult: Component {
 
                 table_view.registerClass(CenteredHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: "tappable-header")
                 table_view.registerClass(CenteredHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: "header")
-                table_view.registerClass(SelectAllHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: "select-all-header")
                 table_view.registerClass(UITableViewHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: "footer")
                 table_view.registerClass(CenteredTableViewCell.self, forCellReuseIdentifier: "cell")
                 table_view.registerClass(ClassificationTableViewCell.self, forCellReuseIdentifier: "classification cell")

@@ -40,6 +40,9 @@ $INK -z -D -e "$BASE-72@2x.png" -f 	$SVG -w 144 -h 144
 $INK -z -D -e "$BASE-76.png" -f 	$SVG -w 76 -h 76 
 $INK -z -D -e "$BASE-76@2x.png" -f 	$SVG -w 152 -h 152
 
+# iPade Pro ios 9 83.5pt
+$INK -z -D -e "$BASE-83-5@2x.png" -f 	$SVG -w 167 -h 167
+
 #iTunes Artwork
 $INK -z -D -e "$BASE-512.png" -f 	$SVG -w 512 -h 512
 $INK -z -D -e "$BASE-1024.png" -f 	$SVG -w 1024 -h 1024

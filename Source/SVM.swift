@@ -119,7 +119,7 @@ class SVM: SupervisedClassification {
 
                 var shuffled_numbers = [Int](0 ..< core_sample_indices.count)
                 if k_fold < core_sample_indices.count {
-                        fisher_yates_shuffle(&shuffled_numbers, shuffled_numbers.count)
+                        random_fisher_yates_shuffle(&shuffled_numbers, shuffled_numbers.count)
                 }
 
                 let minimum_size = core_sample_indices.count / k_fold

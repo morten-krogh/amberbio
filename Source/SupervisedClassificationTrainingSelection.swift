@@ -72,6 +72,9 @@ class SupervisedClassificationTrainingSelection: Component, UITableViewDataSourc
                         let header = tableView.dequeueReusableHeaderFooterViewWithIdentifier("select-all-header") as! SelectAllHeaderFooterView
                         let text = "Select training samples"
                         header.update(text: text, tag: 0, delegate: self)
+                        header.select_all_button.enabled = supervised_classification.training_sample_index_set.count != supervised_classification.core_sample_indices.count
+                        header.deselect_all_button.enabled = !supervised_classification.training_sample_index_set.isEmpty
+
                         return header
                 } else {
                         let header = tableView.dequeueReusableHeaderFooterViewWithIdentifier("header") as! CenteredHeaderFooterView

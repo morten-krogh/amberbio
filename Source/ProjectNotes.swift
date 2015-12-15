@@ -114,7 +114,8 @@ class ProjectNotes: Component, UITableViewDataSource, UITableViewDelegate, UITex
                 top_margin = max(CGRectGetMaxY(cancel_button.frame), CGRectGetMaxY(done_button.frame)) + middle_margin
 
                 let width_text_view = min(350 as CGFloat, view.frame.width)
-                text_view.frame = CGRect(x: (view.frame.width - width_text_view) / 2, y: top_margin, width: width_text_view, height: view.frame.height - top_margin - middle_margin)
+                let new_note_height = min(500, view.frame.height - top_margin - middle_margin)
+                text_view.frame = CGRect(x: (view.frame.width - width_text_view) / 2, y: top_margin, width: width_text_view, height: new_note_height)
         }
 
         func numberOfSectionsInTableView(tableView: UITableView) -> Int {

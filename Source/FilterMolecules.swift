@@ -16,7 +16,7 @@ class FilterMoleculesState: PageState {
 
                 missing_values_per_molecule = [Int](count: state.number_of_molecules, repeatedValue: 0)
                 std_dev_per_molecule = [Double](count: state.number_of_molecules, repeatedValue: 0)
-                calculate_missing_values_and_std_devs(state.values, state.number_of_molecules, state.number_of_samples, &missing_values_per_molecule, &std_dev_per_molecule)
+                values_calculate_missing_values_and_std_devs(state.values, state.number_of_molecules, state.number_of_samples, &missing_values_per_molecule, &std_dev_per_molecule)
                 maximum_missing_values = state.number_of_samples
                 highest_std_dev = std_dev_per_molecule.maxElement() ?? 1
                 if isnan(highest_std_dev) || highest_std_dev == 0 {

@@ -1,4 +1,5 @@
 import UIKit
+import WebKit
 
 class ManualState: PageState {
 
@@ -10,9 +11,9 @@ class ManualState: PageState {
         }
 }
 
-class Manual: Component {
+class Manual: Component, WKNavigationDelegate {
 
-        let web_view = UIWebView()
+        let web_view = WKWebView()
 
         override func loadView() {
                 view = web_view
@@ -21,14 +22,27 @@ class Manual: Component {
 
         override func viewWillLayoutSubviews() {
                 super.viewWillLayoutSubviews()
-                render()
         }
 
         override func render() {
+                web_view.navigationDelegate = self
                 if let path = NSBundle.mainBundle().pathForResource("manual", ofType: "html") {
                         let url = NSURL(fileURLWithPath: path)
                         let request = NSURLRequest(URL: url)
                         web_view.loadRequest(request)
+                }
+        }
+
+        func webView(webView: WKWebView, decidePolicyForNavigationAction navigationAction: WKNavigationAction, decisionHandler: (WKNavigationActionPolicy) -> Void) {
+                let url = navigationAction.request.URL
+
+                if url?.scheme == "file" {
+                        decisionHandler(.Allow)
+                } else {
+                        if let url = url {
+                                UIApplication.sharedApplication().openURL(url)
+                        }
+                        decisionHandler(.Cancel)
                 }
         }
 }
