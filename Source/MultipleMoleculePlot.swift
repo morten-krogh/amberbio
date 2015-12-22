@@ -148,7 +148,7 @@ class MultipleMoleculePlotState: PageState {
 
         func content_for_cell(row row: Int) -> (text: String, number: Int?) {
                 let index = filtered_indices[row]
-                let text = state.molecule_names[index]
+                let text = state.get_molecule_annotation_selected(molecule_index: index)
                 var number = nil as Int?
                 if selected_molecule_indices[0] == index {
                         number = 1
@@ -173,7 +173,7 @@ class MultipleMoleculePlotState: PageState {
                         }
                 }
                 (points_x, points_y) = (stat_subtract_mean(values: points_x), stat_subtract_mean(values: points_y))
-                let axis_titles = [state.molecule_names[selected_molecule_indices[0]], state.molecule_names[selected_molecule_indices[1]]]
+                let axis_titles = [state.get_molecule_annotation_selected(molecule_index: selected_molecule_indices[0]), state.get_molecule_annotation_selected(molecule_index: selected_molecule_indices[1])]
                 return (names, colors, points_x, points_y, axis_titles)
         }
 
