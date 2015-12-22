@@ -192,7 +192,7 @@ class MultipleMoleculePlotState: PageState {
                         }
                 }
                 (points_x, points_y, points_z) = (stat_subtract_mean(values: points_x), stat_subtract_mean(values: points_y), stat_subtract_mean(values: points_z))
-                let axis_titles = [state.molecule_names[selected_molecule_indices[0]], state.molecule_names[selected_molecule_indices[1]], state.molecule_names[selected_molecule_indices[2]]]
+                let axis_titles = [state.get_molecule_annotation_selected(molecule_index: selected_molecule_indices[0]), state.get_molecule_annotation_selected(molecule_index: selected_molecule_indices[1]), state.get_molecule_annotation_selected(molecule_index: selected_molecule_indices[2])]
                 return (names, colors, points_x, points_y, points_z, axis_titles)
         }
 }

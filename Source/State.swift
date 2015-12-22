@@ -47,9 +47,10 @@ class State {
         var level_colors_by_factor_and_sample = [] as [[String]]
         var molecule_indices = [] as [Int]
         var molecule_names = [] as [String]
-        var number_of_molecules = 0
+        var number_of_molecules = 1
         var molecule_annotation_names = [] as [String]
         var molecule_annotation_values = [] as [[String]]
+        var molecule_annotation_selected_index = 0 as Int?
         var values = [] as [Double]
         var offsets_by_level_id = [:] as [Int: [Int]]
 
@@ -893,5 +894,13 @@ class State {
                 let result_files_state = ResultFilesState()
                 navigate(page_state: result_files_state)
                 render_type = RenderType.full_page
+        }
+
+        func get_molecule_annotation_selected(molecule_index molecule_index: Int) -> String {
+                if let molecule_annotation_selected_index = molecule_annotation_selected_index {
+                        return molecule_annotation_values[molecule_annotation_selected_index][molecule_index]
+                } else {
+                        return molecule_names[molecule_index]
+                }
         }
 }
