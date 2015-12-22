@@ -14,7 +14,7 @@ let reset_database = false
 #endif
 
 func state_init() {
-        //        print(database_path)
+//        print(database_url.path)
 
         var copy_database_from_bundle = false
 

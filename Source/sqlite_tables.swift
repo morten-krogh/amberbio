@@ -22,7 +22,7 @@ let sqlite_create_table_statements = [
         "active_data_set": "create table active_data_set (data_set_id integer references data_set)",
         "store_product": "create table store_product (store_product_id integer primary key, store_product_product_id text)",
         "key_value": "create table key_value (key_value_id integer primary key, key_value_key text, key_value_value text)",
-        "molecule_annotation_selected": "create table molecule_annotation_selected (molecule_annotation_selected_id integer primary key, project_id integer references project, molecule_annotation_selected_index integer)"
+        "molecule_annotation_selected": "create table molecule_annotation_selected (molecule_annotation_selected_id integer primary key, project_id integer unique references project, molecule_annotation_selected_index integer)"
 ]
 
 let sqlite_create_index_statements = [
