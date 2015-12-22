@@ -46,7 +46,8 @@ let sqlite_create_triggers_statements = [
         "file_data_set_delete": "create trigger file_data_set_delete after delete on file_data_set begin delete from file where file_id = old.file_id; end",
         "factor_delete": "create trigger factor_delete after delete on factor begin delete from level where factor_id = old.factor_id; end",
         "level_delete": "create trigger level_delete after delete on level begin delete from sample_level where level_id = old.level_id; end",
-        "sample_delete": "create trigger sample_delete after delete on sample begin delete from sample_level where sample_id = old.sample_id; end"
+        "sample_delete": "create trigger sample_delete after delete on sample begin delete from sample_level where sample_id = old.sample_id; end",
+        "molecule_annotation_selected": "create trigger molecule_annotation_selected after delete on project begin delete from molecule_annotation_selected where project_id = old.project_id; end"
 ]
 
 func sqlite_database_main_2(database database: Database) {
@@ -93,8 +94,9 @@ func sqlite_database_main_migrate_2_3(database database: Database) {
 }
 
 func sqlite_database_main_migrate_3_4(database database: Database) {
-        let statement = sqlite_create_table_statements["molecule_annotation_selected"]!
-        sqlite_execute(database: database, statement: statement)
+        for statement in [sqlite_create_table_statements["molecule_annotation_selected"]!, sqlite_create_triggers_statements["molecule_annotation_selected"]!] {
+                sqlite_execute(database: database, statement: statement)
+        }
         sqlite_set_info(database: database, version: 4, type: database_main_info_type)
 }
 

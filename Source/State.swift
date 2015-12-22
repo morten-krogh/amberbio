@@ -235,7 +235,12 @@ class State {
         }
 
         func set_molecule_annotation_selected_index() {
-                molecule_annotation_selected_index = -1
+                if let index = sqlite_molecule_annotation_selected_select(database: database, project_id: project_id) {
+                        molecule_annotation_selected_index = index
+                } else {
+                        sqlite_molecule_annotation_selected_insert(database: database, project_id: project_id, selected_index: -1)
+                        molecule_annotation_selected_index = -1
+                }
         }
 
         func set_page_state(page_state page_state: PageState) {
@@ -904,6 +909,7 @@ class State {
         }
 
         func update_molecule_annotation_selected_index(index index: Int) {
+                sqlite_molecule_annotation_selected_insert(database: database, project_id: project_id, selected_index: index)
                 molecule_annotation_selected_index = index
         }
 
