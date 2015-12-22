@@ -152,7 +152,7 @@ class PairedPlot: Component {
                 next_button.hidden = paired_plot_state.next_molecule_numbers.isEmpty
                 previous_button.hidden = paired_plot_state.previous_molecule_numbers.isEmpty
 
-                molecule_name = state.molecule_names[paired_plot_state.molecule_number]
+                molecule_name = state.get_molecule_annotation_selected(molecule_index: paired_plot_state.molecule_number)
 
                 let start_index = paired_plot_state.molecule_number * state.number_of_samples
                 let end_index = (paired_plot_state.molecule_number + 1) * state.number_of_samples

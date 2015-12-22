@@ -149,7 +149,7 @@ class SingleMolecule: Component {
                 var single_plot_colors = [] as [[UIColor]]
                 var single_plot_values = [] as [[Double]]
 
-                let molecule_name = state.molecule_names[single_molecule_state.molecule_number]
+                let molecule_name = state.get_molecule_annotation_selected(molecule_index: single_molecule_state.molecule_number)
 
                 molecule_name_button.update(text: molecule_name, font_size: 20)
 
@@ -200,7 +200,7 @@ class SingleMolecule: Component {
         func pdf_action() {
                 let file_name_stem = "single-molecule-plot"
 
-                var description = "Plot of molecule \(state.molecule_names[single_molecule_state.molecule_number])."
+                var description = "Plot of molecule \(state.get_molecule_annotation_selected(molecule_index: single_molecule_state.molecule_number))"
                 if single_molecule_state.selected_factor_id != 0 {
                         let selected_index = state.factor_ids.indexOf(single_molecule_state.selected_factor_id)!
                         let factor_name = state.factor_names[selected_index]

@@ -106,7 +106,7 @@ class MultipleMoleculePlotState: PageState {
                                 let potential_indices = search_string.rangeOfString(self.search_string, options: NSStringCompareOptions.CaseInsensitiveSearch, range: nil, locale: nil) != nil ? filtered_indices : sorted_indices
                                 filtered_indices = []
                                 for index in potential_indices {
-                                        let molecule_name = state.molecule_names[index]
+                                        let molecule_name = state.get_molecule_annotation_selected(molecule_index: index)
                                         if molecule_name.rangeOfString(search_string, options: NSStringCompareOptions.CaseInsensitiveSearch, range: nil, locale: nil) != nil {
                                                 filtered_indices.append(index)
                                         }
@@ -136,14 +136,6 @@ class MultipleMoleculePlotState: PageState {
                                 return false
                         }
                 }
-        }
-
-        func get_axis_title() -> [String] {
-                var titles = [state.molecule_names[selected_molecule_indices[0]], state.molecule_names[selected_molecule_indices[1]]]
-                if dimension == 3 {
-                        titles.append(state.molecule_names[selected_molecule_indices[2]])
-                }
-                return titles
         }
 
         func content_for_cell(row row: Int) -> (text: String, number: Int?) {

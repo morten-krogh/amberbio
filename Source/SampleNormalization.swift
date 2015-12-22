@@ -129,7 +129,7 @@ class SampleNormalization: Component, UITableViewDataSource, UITableViewDelegate
                 let cell = tableView.dequeueReusableCellWithIdentifier("cell") as! CenteredTableViewCell
 
                 let index = sample_normalization_state.indices_of_molecules_without_missing_values[indexPath.row]
-                let molecule_name = state.molecule_names[index]
+                let molecule_name = state.get_molecule_annotation_selected(molecule_index: index)
 
                 if sample_normalization_state.selected_rows.contains(indexPath.row) {
                         cell.update_selected_checkmark(text: molecule_name)

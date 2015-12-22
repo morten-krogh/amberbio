@@ -107,7 +107,7 @@ class SingleMoleculePlotTable: Component, UISearchBarDelegate, UITableViewDataSo
                 let cell = tableView.dequeueReusableCellWithIdentifier("cell") as! SingleMoleculeTableViewCell
 
                 let index = single_molecule_plot_table_state.filtered_search_rows[indexPath.row]
-                let molecule_name = state.molecule_names[index]
+                let molecule_name = state.get_molecule_annotation_selected(molecule_index: index)
 
                 var molecule_annotation_values = [] as [String]
                 for i in 0 ..< state.molecule_annotation_names.count {

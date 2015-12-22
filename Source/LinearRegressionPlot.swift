@@ -49,7 +49,7 @@ class LinearRegressionPlotState: PageState {
         }
 
         func current() {
-                molecule_name = state.molecule_names[molecule_number]
+                molecule_name = state.get_molecule_annotation_selected(molecule_index: molecule_number)
                 current_x_values = x_values[molecule_number]
                 current_y_values = y_values[molecule_number]
                 var tick_value_set = [] as Set<Double>
