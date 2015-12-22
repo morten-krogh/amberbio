@@ -366,3 +366,18 @@ func sqlite_key_value_insert(database database: Database, key: String, value: St
         let query_1 = Query(statement: statement_1, bind_texts: [value, key])
         sqlite_execute(database: database, queries: [query_0, query_1])
 }
+
+func sqlite_molecule_annotation_selected_select(database database: Database, project_id: Int) -> Int? {
+        let statement = "select molecule_annotation_selected_index from molecule_annotation_selected where project_id = :integer0"
+        let query = Query(statement: statement, bind_integers: [project_id], result_types: ["integer"])
+        sqlite_execute(database: database, query: query)
+        return query.result_integers[0].isEmpty ? nil : query.result_integers[0][0]
+}
+
+func sqlite_molecule_annotation_selected_insert(database database: Database, project_id: Int, selected_index: Int) {
+        let statement_0 = "insert or ignore into molecule_annotation_selected (project_id, molecule_annotation_selected_index) values (:integer0, :integer1)"
+        let query_0 = Query(statement: statement_0, bind_integers: [project_id, selected_index])
+        let statement_1 = "update molecule_annotation_selected set molecule_annotation_selected_index = :integer0 where project_id = :integer1"
+        let query_1 = Query(statement: statement_1, bind_integers: [selected_index, project_id])
+        sqlite_execute(database: database, queries: [query_0, query_1])
+}
