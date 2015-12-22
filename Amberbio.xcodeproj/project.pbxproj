@@ -43,6 +43,7 @@
 		605F52371BC3D9EF00033B91 /* SupervisedClassificationResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605F52361BC3D9EF00033B91 /* SupervisedClassificationResult.swift */; };
 		605F52391BC400EF00033B91 /* ClassificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605F52381BC400EF00033B91 /* ClassificationTableViewCell.swift */; };
 		605F523B1BC502A700033B91 /* CrossValidationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605F523A1BC502A700033B91 /* CrossValidationTableViewCell.swift */; };
+		606C00391C297845004CFE86 /* ProjectSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606C00381C297845004CFE86 /* ProjectSettings.swift */; };
 		6094A3741BD8E15500611310 /* StoreRestoreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6094A3731BD8E15500611310 /* StoreRestoreTableViewCell.swift */; };
 		6094A3751BDA105000611310 /* sqlite_functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B400C31BA19C7900D8DD80 /* sqlite_functions.swift */; };
 		6094CBED1BCF8DCF002A5E2A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6094CBEC1BCF8DCF002A5E2A /* AppDelegate.swift */; };
@@ -355,6 +356,7 @@
 		605F52361BC3D9EF00033B91 /* SupervisedClassificationResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SupervisedClassificationResult.swift; path = Source/SupervisedClassificationResult.swift; sourceTree = "<group>"; };
 		605F52381BC400EF00033B91 /* ClassificationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ClassificationTableViewCell.swift; path = Source/ClassificationTableViewCell.swift; sourceTree = "<group>"; };
 		605F523A1BC502A700033B91 /* CrossValidationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CrossValidationTableViewCell.swift; path = Source/CrossValidationTableViewCell.swift; sourceTree = "<group>"; };
+		606C00381C297845004CFE86 /* ProjectSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProjectSettings.swift; path = Source/ProjectSettings.swift; sourceTree = "<group>"; };
 		6094A3731BD8E15500611310 /* StoreRestoreTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StoreRestoreTableViewCell.swift; path = Source/StoreRestoreTableViewCell.swift; sourceTree = "<group>"; };
 		6094CBEA1BCF8DCF002A5E2A /* AmberbioTestingGround.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AmberbioTestingGround.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6094CBEC1BCF8DCF002A5E2A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -821,6 +823,7 @@
 				60B400A51BA19C7900D8DD80 /* PCAPage.swift */,
 				60B400AA1BA19C7900D8DD80 /* ProgressIndicator.swift */,
 				60B400AB1BA19C7900D8DD80 /* ProjectNotes.swift */,
+				606C00381C297845004CFE86 /* ProjectSettings.swift */,
 				60B400AC1BA19C7900D8DD80 /* PValueHistogram.swift */,
 				60E06B9D1BAC3D2F00B05223 /* RemoveMolecules.swift */,
 				60B400B31BA19C7900D8DD80 /* RemoveSamples.swift */,
@@ -1609,6 +1612,7 @@
 				60D906A01C05F4950043F42D /* BRAElementWithRelationships.m in Sources */,
 				60B400D61BA19C7900D8DD80 /* ActivityIndicator.swift in Sources */,
 				60B400F91BA19C7900D8DD80 /* FactorChart.swift in Sources */,
+				606C00391C297845004CFE86 /* ProjectSettings.swift in Sources */,
 				60B401411BA19C7900D8DD80 /* SampleNormalization.swift in Sources */,
 				60B401311BA19C7900D8DD80 /* Pdf.swift in Sources */,
 				60B401301BA19C7900D8DD80 /* PCAPage.swift in Sources */,

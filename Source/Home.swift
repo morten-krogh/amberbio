@@ -11,6 +11,7 @@ let home_page_name_to_section_row = [
         "geo": (1, 3),
         "data_set_selection": (2, 0),
         "project_notes": (2, 1),
+        "project_settings": (2, 2),
         "data_set_table": (3, 0),
         "data_set_summary": (3, 1),
         "factor_chart": (3, 2),
@@ -76,7 +77,7 @@ class Home: Component, UICollectionViewDataSource, UICollectionViewDelegate, UIC
         let page_titles = [
                 ["Donations", "Manual", "Feedback", "User"],
                 ["Import\nData", "Export Projects", "Result Files", "GEO"],
-                ["Data Set Selection", "Project Notes" ],
+                ["Data Set Selection", "Project Notes", "Project\nSettings"],
                 ["Data Set Table", "Data Set Summary", "Factor\nChart", "Factor Association", "Factor Summary", "Missing Values for Samples", "Single Molecule Plots", "Multiple Molecule Plot"],
                 ["Anova", "Pairwise Test", "Paired Test", "Linear Regression"],
                 ["Hierarchical Clustering", "PCA", "k means clustering", "Sammon map", "Self organizing map"],
@@ -109,6 +110,8 @@ class Home: Component, UICollectionViewDataSource, UICollectionViewDelegate, UIC
                         return DataSetSelectionState()
                 case (2, 1):
                         return ProjectNotesState()
+                case (2, 2):
+                        return ProjectSettingsState()
                 case (3, 0):
                         return DataSetTableState()
                 case (3, 1):

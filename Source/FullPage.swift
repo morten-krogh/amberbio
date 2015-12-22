@@ -123,6 +123,8 @@ class FullPage: Component, UIScrollViewDelegate, UISearchBarDelegate {
                                 page = EditProject()
                         case "project_notes":
                                 page = ProjectNotes()
+                        case "project_settings":
+                                page = ProjectSettings()
                         case "data_set_table":
                                 page = DataSetTable()
                         case "data_set_summary":

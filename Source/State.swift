@@ -50,7 +50,7 @@ class State {
         var number_of_molecules = 1
         var molecule_annotation_names = [] as [String]
         var molecule_annotation_values = [] as [[String]]
-        var molecule_annotation_selected_index = 0 as Int?
+        var molecule_annotation_selected_index = -1
         var values = [] as [Double]
         var offsets_by_level_id = [:] as [Int: [Int]]
 
@@ -149,6 +149,7 @@ class State {
                 number_of_molecules = 0
                 molecule_annotation_names = [] as [String]
                 molecule_annotation_values = [] as [[String]]
+                molecule_annotation_selected_index = -1
                 values = [] as [Double]
                 offsets_by_level_id = [:] as [Int: [Int]]
         }
@@ -229,6 +230,12 @@ class State {
                                 molecule_annotation_values.append(annotation_values)
                         }
                 }
+
+                set_molecule_annotation_selected_index()
+        }
+
+        func set_molecule_annotation_selected_index() {
+                molecule_annotation_selected_index = -1
         }
 
         func set_page_state(page_state page_state: PageState) {
@@ -896,8 +903,12 @@ class State {
                 render_type = RenderType.full_page
         }
 
+        func update_molecule_annotation_selected_index(index index: Int) {
+                molecule_annotation_selected_index = index
+        }
+
         func get_molecule_annotation_selected(molecule_index molecule_index: Int) -> String {
-                if let molecule_annotation_selected_index = molecule_annotation_selected_index {
+                if molecule_annotation_selected_index >= 0 {
                         return molecule_annotation_values[molecule_annotation_selected_index][molecule_index]
                 } else {
                         return molecule_names[molecule_index]
