@@ -21,7 +21,8 @@ let sqlite_create_table_statements = [
         "molecule_annotation": "create table molecule_annotation (project_id integer references project, molecule_annotation_name text, molecule_annotation_values blob)",
         "active_data_set": "create table active_data_set (data_set_id integer references data_set)",
         "store_product": "create table store_product (store_product_id integer primary key, store_product_product_id text)",
-        "key_value": "create table key_value (key_value_id integer primary key, key_value_key text, key_value_value text)"
+        "key_value": "create table key_value (key_value_id integer primary key, key_value_key text, key_value_value text)",
+        "molecule_annotation_selected": "create table molecule_annotation_selected (molecule_annotation_selected_id integer primary key, project_id integer references project, molecule_annotation_selected_index integer)"
 ]
 
 let sqlite_create_index_statements = [
@@ -91,9 +92,22 @@ func sqlite_database_main_migrate_2_3(database database: Database) {
         sqlite_set_info(database: database, version: 3, type: database_main_info_type)
 }
 
+func sqlite_database_main_migrate_3_4(database database: Database) {
+        let statement = sqlite_create_table_statements["molecule_annotation_selected"]!
+        sqlite_execute(database: database, statement: statement)
+        sqlite_set_info(database: database, version: 4, type: database_main_info_type)
+}
+
 func sqlite_database_main_migrate(database database: Database) {
-        if let (version, _) = sqlite_get_info(database: database) where version == 2 {
-                sqlite_database_main_migrate_2_3(database: database)
+        if var (version, _) = sqlite_get_info(database: database) {
+                if version == 2 {
+                        sqlite_database_main_migrate_2_3(database: database)
+                        version = 3
+                }
+                if version == 3 {
+                        sqlite_database_main_migrate_3_4(database: database)
+                        version = 4
+                }
         }
 }
 

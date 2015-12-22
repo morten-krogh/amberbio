@@ -6,7 +6,7 @@ class ProjectSettingsState: PageState {
                 super.init()
                 name = "project_settings"
                 title = astring_body(string: "Project Settings")
-                info = "The project settings are reused in several plots for this project."
+                info = "Project wide settings settings."
         }
 }
 
