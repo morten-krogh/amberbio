@@ -16,6 +16,8 @@ class HierarchicalClusteringSelectionState: PageState {
                 name = "hierarchical_clustering_selection"
                 title = astring_body(string: "Hierarchical Clustering")
                 info = "Tap the button \"create the plot\" after setting all options.\n\nThe samples are clustered, not the molecules.\n\nAll molecules without missing values are used for sample clustering.\n\nThe molecules shown in the heatmap can be either all, none, or those without missing values.\n\nThe values can be the original values of the data set or centered such that the mean is zero for each molecule."
+
+                molecule_title_number = state.molecule_annotation_selected_index + 1
         }
 }
 
